@@ -88,13 +88,13 @@ export const Contest = sequelize.define('Contest', {
     postmarkSenderAddress: {
         type: DataTypes.STRING,
     },
-    analyticsPixel: {
+    googleAnalyticsId: {
         type: DataTypes.STRING,
     },
-    tagManager: {
+    googleTagManagerId: {
         type: DataTypes.STRING
     },
-    metaPixel: {
+    metaPixelId: {
         type: DataTypes.STRING
     }
     }, {

@@ -9,7 +9,7 @@ type Contest = {
     metaDescription?: string,
     postmarkToken?: string,
     postmarkSenderAddress?: string,
-    metaPixelId: string,
+    googleAnalyticsId: string,
     googleTagManagerId: string,
-    googleAnalyticsId: string
+    metaPixelId: string
 }
