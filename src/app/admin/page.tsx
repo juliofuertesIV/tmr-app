@@ -29,7 +29,7 @@ export default async function Home() {
     const { data: brands } = await getCollection('brands')
 
     return (
-        <main className="flex min-h-screen flex-col gap-4">
+        <main className="flex min-h-screen flex-col">
             <header className="flex py-8 justify-center">
                 <h1>ADMIN PANEL</h1>
             </header>
@@ -46,16 +46,26 @@ export default async function Home() {
                     })
                 }
             </menu>
-            <section className="py-8 border border-white w-full max-w-4xl mx-auto bg-neutral-950">
-                <div className="flex flex-col items-center max-w-xl mx-auto gap-4">
-                <h2>CONTESTS</h2>
+            <div className="flex flex-col gap-4">
+            <section className="pt-6 pb-12 w-full max-w-4xl mx-auto bg-neutral-900">
+                <header className="w-full max-w-xl mx-auto py-4 mb-4">
+                    <h2>CONTESTS</h2>
+                </header>
+                <div className="flex flex-col items-center max-w-xl mx-auto gap-2">
                 {
                     contests.map((contest: IContest, index: number) => {
                         return (
-                            <div key={ index } className="flex text-white border-white bg-neutral-900 border px-8 py-4 rounded-md w-full">
+                            <div 
+                                key={ index } 
+                                className="flex text-white border-white bg-neutral-900 border px-8 py-4 rounded-md w-full"
+                                style={{
+                                    backgroundColor: contest.Brand?.backgroundColor || '',
+                                    color: contest.Brand?.foregroundColor || ''
+                                }}
+                            >
                                 <div className="flex flex-col justify-center flex-1">
                                     <header className="uppercase text-left font-bold leading-none">
-                                        { contest.name } ({ contest.year })
+                                        { contest.name } ({`${ contest.Brand?.name || "No branding"}, ${ contest.year }`})
                                     </header>
                                     <div className="opacity-70 pb-2">
                                         <small>{ contest.metaUrl }</small>
@@ -66,14 +76,14 @@ export default async function Home() {
                                 </div>
                                 <div className="flex flex-col justify-center gap-2 text-center text-sm">
                                     <Link 
-                                        className="bg-neutral-200 text-neutral-800 px-4 py-1 rounded-sm font-bold"
+                                        className="bg-neutral-200 text-neutral-800 px-4 py-1 rounded-sm font-bold leading-none hover:bg-neutral-50"
                                         href={ `/admin/contests/${contest.id}` }
                                     >
                                         EDITAR
                                     </Link>
                                     <Link 
-                                        className="bg-neutral-200 text-neutral-800 px-4 py-1 rounded-sm font-bold"
-                                        href={ `/admin/contests/${contest.id}` }
+                                        className="bg-neutral-200 text-neutral-800 px-4 py-1 rounded-sm font-bold leading-none hover:bg-neutral-50 pointer-events-none opacity-50"
+                                        href={ `/admin/contests/${contest.id}/stats` }
                                     >
                                         ESTADÍSTICAS
                                     </Link>
@@ -84,9 +94,11 @@ export default async function Home() {
                 }
                 </div>
             </section>
-            <section className="py-8 border border-white w-full max-w-4xl mx-auto bg-neutral-950">
-                <div className="flex flex-col items-center max-w-xl mx-auto gap-4">
-                <h2>BRANDS</h2>
+            <section className="pt-6 pb-12 w-full max-w-4xl mx-auto bg-neutral-900">
+                <header className="w-full max-w-xl mx-auto py-4 mb-4">
+                    <h2>BRANDS</h2>
+                </header>
+                <div className="flex flex-col items-center max-w-xl mx-auto gap-2">
                 {
                     brands.map((brand: IBrand, index: number) => {
                         return (
@@ -106,10 +118,9 @@ export default async function Home() {
                                 </div>
                                 <div className="flex items-center">
                                     <Link 
-                                        className="px-4 py-1 rounded-sm font-bold"
+                                        className="px-4 py-1 rounded-sm font-bold text-neutral-900"
                                         style={{
-                                            backgroundColor: brand.accentColor,
-                                            color: brand.backgroundColor
+                                            backgroundColor: brand.accentColor
                                         }}
                                         href={ `/admin/brands/${brand.id}` }
                                     >
@@ -122,6 +133,7 @@ export default async function Home() {
                 }
                 </div>
             </section>
+            </div>
         </main>
     )
 }

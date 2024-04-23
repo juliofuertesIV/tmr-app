@@ -5,7 +5,7 @@ import { IOneOfCollectionNames } from '@/interfaces'
 const modelsByCollectionName = {
     contests: {
         Model: Contest,
-        include: [ Param, State, Genre ]
+        include: [ Param, State, Genre, Brand ]
     },
     brands: {
         Model: Brand,

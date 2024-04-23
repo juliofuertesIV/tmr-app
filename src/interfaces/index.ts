@@ -24,7 +24,10 @@ export type IContest = {
     googleAnalyticsId: string | null,
     googleTagManagerId: string | null,
     metaPixelId: string | null,
-    StateId: string
+    StateId: string,
+    BrandId: number,
+    Brand: IBrand,
+    State: IContestState
 }
 
 export type IBrand = {

@@ -33,7 +33,7 @@ export default function AdminEditionForm({ action, fields, collection, item } : 
             className="flex flex-col gap-2 w-full"
             action={ formAction }
         >
-            <AdminFormFeedback formState={ state } />
+            <AdminFormFeedback state={ state } />
             {
                 fields.map((field, index) => {
                     return (

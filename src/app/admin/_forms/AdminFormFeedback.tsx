@@ -1,34 +1,36 @@
+'use client'
+
 import { IAPIResponse } from '@/interfaces/forms'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import FeedbackContent from './FeedbackContent'
 
-export default function AdminFormFeedback({ formState } : { formState: IAPIResponse }) {
+export default function AdminFormFeedback({ state } : { state: IAPIResponse }) {
 
-    if (!formState || !formState.message) return null
+    const [ formState, setFormState ] = useState<IAPIResponse | null>(null)
 
-    if (formState.error) {
+    useEffect(() => {
 
-        return (
-            <div className={ `px-4 py-1 text-sm rounded-md bg-red-900` }>
-                <p>
-                    { formState.message }
-                </p>
-                <div className='flex flex-col gap-1'>
-                {
-                    formState.error.errors.map((err, index) => {
-                        return (
-                            <small key={ index }>{ err.message }</small>
-                        )
-                    })
-                            
-                }
-                </div>
-            </div>
-        )
-    }
+        if (!state || !state.message) setFormState(null)
+        else setFormState(state) 
+
+    }, [ state ])
+
+    useEffect(() => {
+
+        setTimeout(() => {
+            setFormState(null)
+        }, 3500)
+
+    }, [ formState ])
+
+    if (!formState) return null
 
     return (
-        <p className={ `px-4 py-1 text-sm rounded-md bg-green-900` }>
-            { formState.message }
-        </p>
+        <div className='fixed top-2 left-0 mx-auto w-full justify-center items-center flex z-50'>
+            <div className='text-neutral-900 w-fit mx-auto py-1 text-center rounded-md'>
+                <FeedbackContent formState={ formState }/>
+            </div>
+        </div>
     )
+
 }

@@ -37,7 +37,7 @@ export default function AdminCreationForm({ action, fields, collection } : Props
             className="flex flex-col gap-2 w-full"
             action={ formAction }
         >
-            <AdminFormFeedback formState={ state } />
+            <AdminFormFeedback state={ state } />
             {
                 fields.map((input, index) => <AdminCreationInput key={ index } input={ input } />)
             }

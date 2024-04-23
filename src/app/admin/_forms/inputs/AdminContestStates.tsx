@@ -23,9 +23,9 @@ export default function AdminContestStates({ contest, states } : { contest: ICon
     
     return (
         <form action={ formAction }>
-            <AdminFormFeedback formState={ state }/> 
+            <AdminFormFeedback state={ state }/> 
             <fieldset className="border-2 border-neutral-100 px-4 pt-4 pb-4 flex flex-col gap-2 text-sm">
-                <legend className="uppercase px-2">Estado actual del concurso</legend>
+                <legend className="uppercase px-2">Cambiar estado del concurso</legend>
                 {
                     states.map((state, index) => 
                         <ContestStateRadioButton 

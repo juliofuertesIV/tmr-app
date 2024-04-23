@@ -9,8 +9,8 @@ const brands : IBrand[] = [
         name: 'Viña Rock',
         website: 'https://viñarock.com',
         backgroundColor: '#091312',
-        foregroundColor: '#cc131d',
-        accentColor: '#1166ee',
+        foregroundColor: '#e9e9e9',
+        accentColor: '#ED1D27',
         profile: 'https://instagram.com/vinarock'
     },
     {
@@ -26,7 +26,7 @@ const brands : IBrand[] = [
         website: 'https://arenalsound.com',
         backgroundColor: '#dcfdff',
         foregroundColor: '#000000',
-        accentColor: '#000000',
+        accentColor: '#FFF5D1',
         profile: 'https://instagram.com/arenalsound'
     },
     {
@@ -34,7 +34,7 @@ const brands : IBrand[] = [
         website: 'https://madridsalvaje.com',
         backgroundColor: '#0020f8',
         foregroundColor: '#ffffff',
-        accentColor: '#000000',
+        accentColor: '#EEFD1C',
         profile: 'https://instagram.com/madridsalvaje'
     }
 ]
