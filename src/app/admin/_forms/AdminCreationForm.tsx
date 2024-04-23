@@ -1,32 +1,44 @@
 'use client'
 
 import { useFormState } from 'react-dom'
-import FormSubmit from './FormSubmit'
-import { CreationFormByCollectionName, FormState } from '@/interfaces/forms'
-import FormFeedback from './FormFeedback'
+import AdminFormSubmit from './AdminFormSubmit'
+import { ICreationFormByCollectionName, IAPIResponse, IFormCreationAction, ICreationFormField } from '@/interfaces/forms'
+import AdminFormFeedback from './AdminFormFeedback'
 import { useEffect } from 'react'
+import { IOneOfCollectionNames } from '@/interfaces'
 
-const initialState : FormState = {
+const initialState : IAPIResponse = {
     success: false,
     message: '',
     error: null,
     data: null
 } 
 
-export default function Form({ action, fields } : CreationFormByCollectionName) {
+type Props = {
+    action: IFormCreationAction,
+    fields: ICreationFormField[],
+    collection: IOneOfCollectionNames
+}
 
-    const [state, formAction] = useFormState(action, initialState)
+export default function AdminCreationForm({ action, fields, collection } : Props) {
+
+    console.log({ collection })
+
+    const boundAction = action.bind(null, collection)
+
+    const [state, formAction] = useFormState(boundAction, initialState)
 
     useEffect(() => {
         
     }, [ state ])
+
 
     return (
         <form 
             className="flex flex-col gap-2 w-full"
             action={ formAction }
         >
-            <FormFeedback formState={ state } />
+            <AdminFormFeedback formState={ state } />
             {
                 fields.map((field, index) => {
                     return (
@@ -42,7 +54,7 @@ export default function Form({ action, fields } : CreationFormByCollectionName) 
                     )
                 })
             }
-            <FormSubmit/>
+            <AdminFormSubmit/>
         </form>
     )
 }

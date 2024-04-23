@@ -23,11 +23,13 @@ export const Brand = sequelize.define('Brand', {
     },
     name: {
         type: DataTypes.STRING,
+        unique: true,
         allowNull: false
     },
     website: {
         type: DataTypes.STRING,
         allowNull: false,
+        unique: true,
         defaultValue: 'https://www.google.com'
     },
     backgroundColor: {
@@ -45,9 +47,10 @@ export const Brand = sequelize.define('Brand', {
         allowNull: false,
         defaultValue: 'crimson'
     },    
-    brandProfile: {
+    profile: {
         type: DataTypes.STRING,
         allowNull: false,
+        unique: true,
         defaultValue: 'https://instagram.com'
     }
 })
@@ -66,8 +69,7 @@ export const Contest = sequelize.define('Contest', {
     },
     domain: {
         type: DataTypes.STRING,
-        allowNull: false,
-        unique: true
+        allowNull: false
     },
     year: {
         type: DataTypes.INTEGER,
@@ -77,19 +79,13 @@ export const Contest = sequelize.define('Contest', {
         type: DataTypes.STRING,
     },
     metaUrl: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        defaultValue: 'https://defaultvalue.com'
+        type: DataTypes.STRING
     },
     metaTitle: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        defaultValue: 'Meta título de la web'
+        type: DataTypes.STRING
     },
     metaDescription: {
-        type: DataTypes.TEXT,
-        allowNull: false,
-        defaultValue: 'Metadescripción de la web'
+        type: DataTypes.TEXT
     },
     postmarkToken: {
         type: DataTypes.STRING,
@@ -107,7 +103,13 @@ export const Contest = sequelize.define('Contest', {
         type: DataTypes.STRING
     }
     }, {
-    timestamps: false
+    timestamps: false,
+    indexes: [
+        { 
+            fields: ['domain', 'year'],
+            unique: true 
+        }
+    ]
 });
 
 export const State = sequelize.define('State', {
@@ -310,14 +312,17 @@ Contest.hasMany(Inscription)
 Contest.hasMany(Param)
 Param.belongsToMany(Contest, { through: 'ContestParams' })
 
-Contest.hasMany(State)
-Param.belongsToMany(Contest, { through: 'ContestStates' })
+Contest.belongsTo(State)
+State.hasMany(Contest)
 
 Contest.hasMany(Genre)
 Param.belongsToMany(Contest, { through: 'ContestGenres' })
 
 Voter.belongsTo(Contest)
 Contest.hasMany(Voter)
+
+Contest.belongsTo(Brand)
+Brand.hasMany(Contest)
 
 Vote.belongsTo(Inscription)
 Inscription.hasMany(Vote)

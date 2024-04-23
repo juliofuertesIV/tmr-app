@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link"
-import { getContests } from "../_fetch/get";
+import { getCollection } from "../_fetch/get";
+import { IBrand } from "@/interfaces";
 
 const adminMenuElements = [
     {
@@ -28,7 +29,8 @@ export const metadata: Metadata = {
 
 export default async function Home() {
 
-    const { data: contests } = await getContests()
+    const { data: contests } = await getCollection('contests')
+    const { data: brands } = await getCollection('brands')
 
     return (
         <main className="flex min-h-screen flex-col">
@@ -50,10 +52,11 @@ export default async function Home() {
             </menu>
             <section className="py-8">
                 <div className="flex flex-col items-center max-w-xl mx-auto gap-4">
+                <h2>CONTESTS</h2>
                 {
                     contests.map((contest: any, index: number) => {
                         return (
-                            <div key={ index } className="flex text-white border-white border px-8 py-4 rounded-md w-full">
+                            <div key={ index } className="flex text-white border-white bg-stone-950 border px-8 py-4 rounded-md w-full">
                                 <div className="flex flex-col justify-center flex-1">
                                     <header className="uppercase text-left font-bold">
                                         { contest.name } ({ contest.year })
@@ -62,11 +65,45 @@ export default async function Home() {
                                 </div>
                                 <div className="flex items-center">
                                     <Link 
-                                        className="bg-stone-200 text-stone-800 px-4 py-1 rounded-sm"
+                                        className="bg-stone-200 text-stone-800 px-4 py-1 rounded-sm font-bold"
                                         href={ `/admin/contests/${contest.id}` }
                                     >
                                             EDITAR
                                         </Link>
+                                </div>
+                            </div>
+                        )
+                    })
+                }
+                </div>
+            </section>
+            <section>
+                <div className="flex flex-col items-center max-w-xl mx-auto gap-4">
+                <h2>BRANDS</h2>
+                {
+                    brands.map((brand: IBrand, index: number) => {
+                        return (
+                            <div 
+                                key={ index }
+                                className={`flex border px-8 py-4 rounded-md w-full`}
+                                style={{
+                                    backgroundColor: brand.backgroundColor,
+                                    color: brand.foregroundColor
+                                }}
+                            >
+                                <div className="flex flex-col justify-center flex-1">
+                                    <header className="text-left pt-2">
+                                        <h4 className="uppercase font-bold leading-none">{ brand.name }</h4>
+                                        <Link target="_blank" href={ brand.website }><small>{ brand.website }</small></Link>
+                                    </header>
+                                </div>
+                                <div className="flex items-center">
+                                    <Link 
+                                        className="bg-stone-200 text-stone-800 px-4 py-1 rounded-sm font-bold"
+                                        href={ `/admin/brands/${brand.id}` }
+                                    >
+                                        EDITAR
+                                    </Link>
                                 </div>
                             </div>
                         )

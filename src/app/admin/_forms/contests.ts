@@ -1,9 +1,9 @@
-import { addContest } from "@/app/_fetch/post"
+import { addCollectionElement } from "@/app/_fetch/post"
 import { updateContest } from "@/app/_fetch/put"
-import { CreationFormByCollectionName } from "@/interfaces/forms"
+import { ICreationFormByCollectionName, IEditionFormByCollectionName } from "@/interfaces/forms"
 
-export const contestCreationForm : CreationFormByCollectionName = {
-    action: addContest,
+export const contestCreationForm : ICreationFormByCollectionName = {
+    action: addCollectionElement,
     fields: [{
         name: 'name',
         label: 'Nombre',
@@ -20,59 +20,79 @@ export const contestCreationForm : CreationFormByCollectionName = {
         name: 'year',
         label: 'Año de la edición',
         required: true,
-        type: 'text' 
+        type: 'number' 
     }]
 }
 
 
-export const contestEditForm : CreationFormByCollectionName = {
+export const contestEditForm : IEditionFormByCollectionName = {
     action: updateContest,
-    fields: [{
-        name: 'metaUrl',
-        label: 'URL del concurso',
-        required: false,
-        type: 'text' 
-    },
-    {
-        name: 'metaTitle',
-        label: 'Meta título de la web',
-        required: false,
-        type: 'text'
-    },
-    {
-        name: 'metaDescription',
-        label: 'Meta descripción de la web',
-        required: false,
-        type: 'text'
-    },    
-    {
-        name: 'postmarkToken',
-        label: 'Token de Postmark',   
-        required: false,
-        type: 'text'
-    },
-    {
-        name: 'postmarkSenderAddress',
-        label: 'Dirección de envío de Postmark',
-        required: false,
-        type: 'text'
-    },
-    {
-        name: 'metaPixelId',
-        label: 'ID del Píxel de Meta',
-        required: false,
-        type: 'text'
-    },
-    {
-        name: 'googleTagManagerId',
-        label: 'ID de Google Tag Manager',
-        required: false,
-        type: 'text'
-    },
-    {
-        name: 'googleAnalyticsId',
-        label: 'ID de Google Analytics',
-        required: false,
-        type: 'text'
-    }],
+    fields: [
+        {
+            name: 'name',
+            label: 'Nombre',
+            required: false,
+            type: 'text'
+        },
+        {
+            name: 'domain',
+            label: 'Dominio',
+            required: false,
+            type: 'text'
+        },
+        {
+            name: 'year',
+            label: 'Año de la edición',
+            required: false,
+            type: 'number'
+        },
+        {
+            name: 'metaUrl',
+            label: 'URL del concurso',
+            required: false,
+            type: 'text'
+        },
+        {
+            name: 'metaTitle',
+            label: 'Meta título de la web',
+            required: false,
+            type: 'text'
+        },
+        {
+            name: 'metaDescription',
+            label: 'Meta descripción de la web',
+            required: false,
+            type: 'text'
+        },    
+        {
+            name: 'postmarkToken',
+            label: 'Token de Postmark',   
+            required: false,
+            type: 'text'
+        },
+        {
+            name: 'postmarkSenderAddress',
+            label: 'Dirección de envío de Postmark',
+            required: false,
+            type: 'text'
+        },
+        {
+            name: 'metaPixelId',
+            label: 'ID del Píxel de Meta',
+            required: false,
+            type: 'text'
+        },
+        {
+            name: 'googleTagManagerId',
+            label: 'ID de Google Tag Manager',
+            required: false,
+            type: 'text'
+        },
+        {
+            name: 'googleAnalyticsId',
+            label: 'ID de Google Analytics',
+            required: false,
+            type: 'text'
+        }
+    ],
 }

@@ -1,21 +1,37 @@
+import { ValidationError } from "sequelize"
+import { IOneOfCollectionNames, IOneOfCollections } from "."
 
-export type IFormField = {
+export type ICreationFormField = {
     name: string,
     label: string,
     required: boolean,
     type: string
 }
 
-export type IFormAction = (prevState: any, formData: FormData, id?: string) => Promise<FormState>
-
-export type CreationFormByCollectionName = {
-    fields: IFormField[],
-    action: IFormAction
+export type IEditionFormField = {
+    name: string,
+    label: string,
+    required: boolean,
+    type: string
 }
 
-export type FormState = {
+export type IFormCreationAction = (collection: IOneOfCollectionNames, prevState: any, formData: FormData) => Promise<IAPIResponse>
+
+export type IFormEditionAction = (collection: IOneOfCollectionNames, id: string, prevState: any, formData: FormData) => Promise<IAPIResponse>
+
+export type ICreationFormByCollectionName = {
+    fields: ICreationFormField[],
+    action: IFormCreationAction
+}
+
+export type IEditionFormByCollectionName = {
+    fields: IEditionFormField[],
+    action: IFormEditionAction
+}
+
+export type IAPIResponse = {
     message: string,
     success: boolean,
-    error: any | null,
+    error: ValidationError | null,
     data: any | null
 }

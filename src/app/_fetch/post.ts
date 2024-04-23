@@ -1,11 +1,16 @@
 'use server'
 
-import { FormState, IFormAction } from "@/interfaces/forms"
+import { IOneOfCollectionNames } from "@/interfaces"
+import { IAPIResponse } from "@/interfaces/forms"
 import { revalidateTag } from "next/cache"
 
-export const addContest = async (prevState: any, formData: FormData) : Promise<FormState> => {
+export const addCollectionElement = async (collection: IOneOfCollectionNames, prevState: any, formData: FormData) : Promise<IAPIResponse> => {
 
-    const res = await fetch(`http://localhost:3000/api/contests`, {
+    const payload = Object.fromEntries(formData)
+
+    console.log({ payload })
+
+    const res = await fetch(`http://localhost:3000/api/${ collection }`, {
         method: "POST",
         cache: 'no-cache',
         body: JSON.stringify(Object.fromEntries(formData)),
@@ -16,7 +21,41 @@ export const addContest = async (prevState: any, formData: FormData) : Promise<F
     .then(async data => data.json())
     .catch(error => error)
     
+    console.log({ res })
+
+    revalidateTag(collection)
+    return res
+}
+
+export const addBrandToContest = async (id: string, prevState: any, payload: { brandId: string, removeBrandRelationship: false }) : Promise<IAPIResponse> => {
+    const res = await fetch(`http://localhost:3000/api/contests/${ id }/brands/${ payload.brandId }`, {
+        method: "POST",
+        cache: 'no-cache',
+        body: JSON.stringify(payload),
+        headers: {
+            "Content-Type": "application/json",
+        }
+    })
+    .then(async data => data.json())
+    .catch(error => error)
+    
     revalidateTag('contests')
     return res
+}
 
+export const setContestState = async (id: string, stateId: string, prevState: any, payload: any) : Promise<IAPIResponse> => {
+    
+    const res = await fetch(`http://localhost:3000/api/contests/${ id }/state/${ stateId }`, {
+        method: "POST",
+        cache: 'no-cache',
+        body: JSON.stringify(payload),
+        headers: {
+            "Content-Type": "application/json",
+        }
+    })
+    .then(async data => data.json())
+    .catch(error => error)
+    
+    revalidateTag('contests')
+    return res
 }

@@ -1,7 +1,43 @@
+import { IBrand } from "@/interfaces"
 
 
 type ContestStateId = 'inscriptionOnly' | 'open' | 'endedInscription' | 'ended' | 'hidden'
 type IContestParamIds = 'inscriptionIsPublic' | 'videoIsRequired' | 'cityIsRequired' | 'instagramIsRequired' | 'hasManyItems' | 'hasGenres'
+
+const brands : IBrand[] = [
+    {
+        name: 'Viña Rock',
+        website: 'https://viñarock.com',
+        backgroundColor: '#091312',
+        foregroundColor: '#cc131d',
+        accentColor: '#1166ee',
+        profile: 'https://instagram.com/vinarock'
+    },
+    {
+        name: 'FIB',
+        website: 'https://fiberfib.com',
+        backgroundColor: '#213f83',
+        foregroundColor: '#ffffff',
+        accentColor: '#ffd539',
+        profile: 'https://instagram.com/fiberfib'
+    },
+    {
+        name: 'Arenal Sound',
+        website: 'https://arenalsound.com',
+        backgroundColor: '#dcfdff',
+        foregroundColor: '#000000',
+        accentColor: '#000000',
+        profile: 'https://instagram.com/arenalsound'
+    },
+    {
+        name: 'Madrid Salvaje',
+        website: 'https://madridsalvaje.com',
+        backgroundColor: '#0020f8',
+        foregroundColor: '#ffffff',
+        accentColor: '#000000',
+        profile: 'https://instagram.com/madridsalvaje'
+    }
+]
 
 const states : { id: ContestStateId, name: string, description: string }[] = [
     {
@@ -82,4 +118,4 @@ const genres = [
     }
 ]
 
-export { genres, params, states }
+export { genres, params, states, brands }
