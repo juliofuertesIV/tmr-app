@@ -5,9 +5,9 @@ export const GET = async () => {
 
     const contests = await Contest.findAll({
         include: [ Param, State, Genre ]
-    })
+    }).then(data => data)
     
-    return Response.json({ message: 'OK!', success: true, error: null, contests })
+    return Response.json({ message: 'OK!', success: true, error: null, data: contests })
 }
 
 export const POST = async (req: Request) => {
@@ -16,14 +16,12 @@ export const POST = async (req: Request) => {
     const transaction = await sequelize.transaction()
 
     try {
-        const item = await Contest.create({ ...payload }, { transaction })
+        const data = await Contest.create({ ...payload }, { transaction })
         await transaction.commit()
-        return Response.json({ message: "Concurso creado correctamente.", item })
+        return Response.json({ message: "Concurso creado correctamente.", success: true, error: null, data })
     }
     catch (error) {
         await transaction.rollback();
-        return Response.json({ message: "Ha habido un problema creando el concurso.", error })
+        return Response.json({ message: "Ha habido un problema creando el concurso.", success: false, error, data: null })
     }
 }
-
-

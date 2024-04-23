@@ -5,12 +5,12 @@ type GetContestById = (
     contest: any
 }>
 
-type GetContests = (
-    id: string,
-) => Promise<{ 
-    contest: any
+type GetContests = () => Promise<{
+    data: any[],
+    message: string,
+    success: boolean,
+    error: any | null
 }>
-
 
 export const getContestById : GetContestById = async (id: string) => {
     
@@ -25,10 +25,7 @@ export const getContestById : GetContestById = async (id: string) => {
         }
     })
     .then(async (data) => await data.json())
-    .catch(error => {
-        console.log({ error })
-        throw new Error('Error updating data.')
-    })
+    .catch(error => error)
 
     return res
 }
@@ -46,10 +43,7 @@ export const getContests : GetContests = async () => {
         }
     })
     .then(async (data) => await data.json())
-    .catch(error => {
-        console.log({ error })
-        throw new Error('Error updating data.')
-    })
+    .catch(error => error)
 
     return res
 }

@@ -23,19 +23,28 @@ export const Brand = sequelize.define('Brand', {
     },
     name: {
         type: DataTypes.STRING,
-        allowNull: false,
-        defaultValue: 'Nombre de la entidad'
+        allowNull: false
     },
     website: {
         type: DataTypes.STRING,
         allowNull: false,
         defaultValue: 'https://www.google.com'
     },
-    brandColor: {
+    backgroundColor: {
         type: DataTypes.STRING,
         allowNull: false,
         defaultValue: '#e9e9e9'
     },
+    foregroundColor: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        defaultValue: '#121212'
+    },
+    accentColor: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        defaultValue: 'crimson'
+    },    
     brandProfile: {
         type: DataTypes.STRING,
         allowNull: false,

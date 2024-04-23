@@ -1,37 +1,22 @@
 'use server'
 
+import { FormState, IFormAction } from "@/interfaces/forms"
 import { revalidateTag } from "next/cache"
 
-const getContestPayload = (formData: FormData) => {
-    return {
-        name: formData.get('name'),
-        date: formData.get('date'),
-        description: formData.get('description'),
-        ticketUrl: formData.get('ticketUrl'),
-        isStarred: formData.get('isStarred') == 'on',
-        isSoldOut: formData.get('isSoldOut') == 'on',
-        isFreeEntry: formData.get('isFreeEntry') == 'on',
-        isVisible: formData.get('isVisible') == 'on'
-    }
-}
-
-export const addContest = async (formData: FormData) => {
-
-    const payload = getContestPayload(formData)
+export const addContest = async (prevState: any, formData: FormData) : Promise<FormState> => {
 
     const res = await fetch(`http://localhost:3000/api/contests`, {
         method: "POST",
         cache: 'no-cache',
-        body: JSON.stringify(payload),
+        body: JSON.stringify(Object.fromEntries(formData)),
         headers: {
             "Content-Type": "application/json",
         }
     })
-    .then(data => data.json())
-    .catch(e => {
-        throw new Error('Error añadiendo elemento.')
-    })
-
+    .then(async data => data.json())
+    .catch(error => error)
+    
     revalidateTag('contests')
     return res
+
 }

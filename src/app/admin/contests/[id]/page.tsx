@@ -1,6 +1,4 @@
 import { Metadata } from "next";
-import Form from "../_forms/Form";
-import { getFormByActionAndCollectionName } from "../_forms";
 
 export const metadata: Metadata = {
     title: "Panel de administración TMR | Gestión de concursos",
@@ -8,17 +6,13 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
-
-    const { action, fields } = getFormByActionAndCollectionName({ action: 'creation', collection: 'contests' })
-
     return (
         <main className="flex min-h-screen flex-col">
             <header className="flex py-8 justify-center">
                 <h1>GESTIÓN DE CONCURSOS</h1>
             </header>
             <div className="w-full max-w-xl mx-auto">
-                <h2 className="uppercase my-4">Creación de concurso</h2>
-                <Form action={ action } fields={ fields }/>
+                <h2 className="uppercase my-4">Concurso</h2>
             </div>
         </main>
     )
