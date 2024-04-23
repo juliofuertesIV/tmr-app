@@ -2,6 +2,14 @@ export type IOneOfCollections = IContest & IBrand
 
 export type IOneOfCollectionNames = 'contests' | 'brands'
 
+export type IContestState = {
+    name: string, 
+    id: string,
+    description: string
+}
+
+export type IContestStateNames = 'ended' | 'hidden' | 'endedInscription' | 'inscriptionOnly' | 'open'
+
 export type IContest = {
     id?: string | number,
     name: string,
@@ -15,7 +23,8 @@ export type IContest = {
     postmarkSenderAddress: string | null,
     googleAnalyticsId: string | null,
     googleTagManagerId: string | null,
-    metaPixelId: string | null
+    metaPixelId: string | null,
+    StateId: string
 }
 
 export type IBrand = {

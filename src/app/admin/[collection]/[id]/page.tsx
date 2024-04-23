@@ -3,6 +3,8 @@ import { IOneOfCollectionNames } from "@/interfaces";
 import AdminEditionForm from "../../_forms/AdminEditionForm";
 import { getEditionFormByCollectionName } from "../../_forms";
 import { getCollectionElementById } from "@/app/_fetch/get";
+import AdminContestStates from "../../_forms/inputs/AdminContestStates";
+import ContestExtras from "../../_forms/contests/ContestExtras";
 
 export const metadata: Metadata = {
     title: "Panel de administración TMR",
@@ -23,7 +25,14 @@ export default async function AdminElementPage({ params } : { params: { collecti
                 <h1 className="uppercase">{ collection }</h1>
             </header>
             <div className="w-full max-w-xl mx-auto">
-                <h2 className="uppercase my-4">Añadir</h2>
+                <h2 className="uppercase my-4">EDITAR { item.name }</h2>
+                {
+                    collection === 'contests' && 
+                    <>
+                        <ContestExtras contest={ item }/>
+                        <hr className=" my-8"></hr>
+                    </>    
+                }
                 <AdminEditionForm action={ action } fields={ fields } collection={ collection } item={ item }/>
             </div>
         </main>

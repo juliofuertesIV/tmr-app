@@ -42,20 +42,3 @@ export const addBrandToContest = async (id: string, prevState: any, payload: { b
     revalidateTag('contests')
     return res
 }
-
-export const setContestState = async (id: string, stateId: string, prevState: any, payload: any) : Promise<IAPIResponse> => {
-    
-    const res = await fetch(`http://localhost:3000/api/contests/${ id }/state/${ stateId }`, {
-        method: "POST",
-        cache: 'no-cache',
-        body: JSON.stringify(payload),
-        headers: {
-            "Content-Type": "application/json",
-        }
-    })
-    .then(async data => data.json())
-    .catch(error => error)
-    
-    revalidateTag('contests')
-    return res
-}

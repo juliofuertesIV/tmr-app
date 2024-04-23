@@ -2,10 +2,11 @@
 
 import { useFormState } from 'react-dom'
 import AdminFormSubmit from './AdminFormSubmit'
-import { ICreationFormByCollectionName, IAPIResponse, IFormCreationAction, ICreationFormField } from '@/interfaces/forms'
+import { IAPIResponse, IFormCreationAction, ICreationFormField } from '@/interfaces/forms'
 import AdminFormFeedback from './AdminFormFeedback'
 import { useEffect } from 'react'
 import { IOneOfCollectionNames } from '@/interfaces'
+import AdminCreationInput from './inputs/AdminCreationInput'
 
 const initialState : IAPIResponse = {
     success: false,
@@ -21,8 +22,6 @@ type Props = {
 }
 
 export default function AdminCreationForm({ action, fields, collection } : Props) {
-
-    console.log({ collection })
 
     const boundAction = action.bind(null, collection)
 
@@ -40,19 +39,7 @@ export default function AdminCreationForm({ action, fields, collection } : Props
         >
             <AdminFormFeedback formState={ state } />
             {
-                fields.map((field, index) => {
-                    return (
-                        <label key={ index } className="w-full flex flex-col pb-1">
-                            <div className="w-full">{ field.label }</div>
-                            <input 
-                                className="w-full rounded-sm bg-stone-800 pl-1"
-                                type="text"
-                                name={ field.name }
-                                required={ field.required }
-                            />
-                        </label>
-                    )
-                })
+                fields.map((input, index) => <AdminCreationInput key={ index } input={ input } />)
             }
             <AdminFormSubmit/>
         </form>

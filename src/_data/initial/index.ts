@@ -62,8 +62,8 @@ const states : { id: ContestStateId, name: string, description: string }[] = [
     },
     {
         id: 'hidden',
-        name: 'Finalizado y oculto',
-        description: 'El concurso devuelve una pantalla sin información, informando solamente de que ha finalizado.'
+        name: 'Oculto',
+        description: 'El concurso devuelve una pantalla sin información, informando solamente de que no está activo.'
     }
 ]
 

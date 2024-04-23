@@ -1,5 +1,5 @@
 import { addCollectionElement } from "@/app/_fetch/post"
-import { updateContest } from "@/app/_fetch/put"
+import { updateCollectionItem } from "@/app/_fetch/put"
 import { ICreationFormByCollectionName, IEditionFormByCollectionName } from "@/interfaces/forms"
 
 export const contestCreationForm : ICreationFormByCollectionName = {
@@ -21,12 +21,20 @@ export const contestCreationForm : ICreationFormByCollectionName = {
         label: 'Año de la edición',
         required: true,
         type: 'number' 
-    }]
+    },
+    {
+        name: 'StateId',
+        label: '',
+        required: true,
+        type: 'hidden',
+        defaultValue: 'hidden'
+    }
+]
 }
 
 
 export const contestEditForm : IEditionFormByCollectionName = {
-    action: updateContest,
+    action: updateCollectionItem,
     fields: [
         {
             name: 'name',

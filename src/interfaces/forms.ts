@@ -5,7 +5,8 @@ export type ICreationFormField = {
     name: string,
     label: string,
     required: boolean,
-    type: string
+    type: string,
+    defaultValue?: string
 }
 
 export type IEditionFormField = {

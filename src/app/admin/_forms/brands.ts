@@ -1,5 +1,5 @@
 import { addCollectionElement } from "@/app/_fetch/post"
-import { updateContest } from "@/app/_fetch/put"
+import { updateCollectionItem } from "@/app/_fetch/put"
 import { ICreationFormByCollectionName, IEditionFormByCollectionName } from "@/interfaces/forms"
 
 export const brandCreationForm : ICreationFormByCollectionName = {
@@ -26,7 +26,7 @@ export const brandCreationForm : ICreationFormByCollectionName = {
 
 
 export const brandEditForm : IEditionFormByCollectionName = {
-    action: updateContest,
+    action: updateCollectionItem,
     fields: [{
         name: 'name',
         label: 'Nombre',

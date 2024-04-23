@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link"
 import { getCollection } from "../_fetch/get";
-import { IBrand } from "@/interfaces";
+import { IBrand, IContest } from "@/interfaces";
 
 const adminMenuElements = [
     {
@@ -15,10 +15,6 @@ const adminMenuElements = [
     {
         name: 'usuarios',
         href: '/admin/users'
-    },
-    {
-        name: 'base de datos',
-        href: '/admin/database'
     }
 ]
 
@@ -33,7 +29,7 @@ export default async function Home() {
     const { data: brands } = await getCollection('brands')
 
     return (
-        <main className="flex min-h-screen flex-col">
+        <main className="flex min-h-screen flex-col gap-4">
             <header className="flex py-8 justify-center">
                 <h1>ADMIN PANEL</h1>
             </header>
@@ -50,26 +46,37 @@ export default async function Home() {
                     })
                 }
             </menu>
-            <section className="py-8">
+            <section className="py-8 border border-white w-full max-w-4xl mx-auto bg-neutral-950">
                 <div className="flex flex-col items-center max-w-xl mx-auto gap-4">
                 <h2>CONTESTS</h2>
                 {
-                    contests.map((contest: any, index: number) => {
+                    contests.map((contest: IContest, index: number) => {
                         return (
-                            <div key={ index } className="flex text-white border-white bg-stone-950 border px-8 py-4 rounded-md w-full">
+                            <div key={ index } className="flex text-white border-white bg-neutral-900 border px-8 py-4 rounded-md w-full">
                                 <div className="flex flex-col justify-center flex-1">
-                                    <header className="uppercase text-left font-bold">
+                                    <header className="uppercase text-left font-bold leading-none">
                                         { contest.name } ({ contest.year })
                                     </header>
-                                    <p className=" text-sm">{ contest.domain.replace('-', '.') }</p>
+                                    <div className="opacity-70 pb-2">
+                                        <small>{ contest.metaUrl }</small>
+                                    </div>
+                                    <div className="uppercase font-bold opacity-70 leading-none">
+                                        <small>ESTADO: { contest.State.name }</small>
+                                    </div>
                                 </div>
-                                <div className="flex items-center">
+                                <div className="flex flex-col justify-center gap-2 text-center text-sm">
                                     <Link 
-                                        className="bg-stone-200 text-stone-800 px-4 py-1 rounded-sm font-bold"
+                                        className="bg-neutral-200 text-neutral-800 px-4 py-1 rounded-sm font-bold"
                                         href={ `/admin/contests/${contest.id}` }
                                     >
-                                            EDITAR
-                                        </Link>
+                                        EDITAR
+                                    </Link>
+                                    <Link 
+                                        className="bg-neutral-200 text-neutral-800 px-4 py-1 rounded-sm font-bold"
+                                        href={ `/admin/contests/${contest.id}` }
+                                    >
+                                        ESTADÍSTICAS
+                                    </Link>
                                 </div>
                             </div>
                         )
@@ -77,7 +84,7 @@ export default async function Home() {
                 }
                 </div>
             </section>
-            <section>
+            <section className="py-8 border border-white w-full max-w-4xl mx-auto bg-neutral-950">
                 <div className="flex flex-col items-center max-w-xl mx-auto gap-4">
                 <h2>BRANDS</h2>
                 {
@@ -99,7 +106,11 @@ export default async function Home() {
                                 </div>
                                 <div className="flex items-center">
                                     <Link 
-                                        className="bg-stone-200 text-stone-800 px-4 py-1 rounded-sm font-bold"
+                                        className="px-4 py-1 rounded-sm font-bold"
+                                        style={{
+                                            backgroundColor: brand.accentColor,
+                                            color: brand.backgroundColor
+                                        }}
                                         href={ `/admin/brands/${brand.id}` }
                                     >
                                         EDITAR
