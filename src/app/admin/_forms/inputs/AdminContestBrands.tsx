@@ -45,7 +45,8 @@ export default function AdminContestBrands({ contest, brands } : { contest: ICon
                                         onClick={ () => onSelectBrand(parseInt(brand.id as string)) }
                                         style={{
                                             backgroundColor: isSelected ? brand.backgroundColor : '#212121',
-                                            color: isSelected ? brand.foregroundColor : '#e9e9e9'
+                                            color: isSelected ? brand.foregroundColor : '#e9e9e9',
+                                            border: isSelected ? `solid 2px ${ brand.accentColor }` : ''
                                         }}
                                     >
                                         <p>{ brand.name }</p>

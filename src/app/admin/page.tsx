@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import Link from "next/link"
 import { getCollection } from "../_fetch/get";
 import { IBrand, IContest } from "@/interfaces";
+import AdminLoader from "./_layout/AdminLoader";
 
 const adminMenuElements = [
     {
@@ -33,31 +34,18 @@ export default async function Home() {
             <header className="flex py-8 justify-center">
                 <h1>ADMIN PANEL</h1>
             </header>
-            <menu className="flex justify-center gap-4">
-                {
-                    adminMenuElements.map((element, index) => {
-                        return (
-                            <Link key={ index } href={ element.href }>
-                                <li className="px-4 py-1 uppercase">
-                                    { element.name }
-                                </li>
-                            </Link>
-                        )
-                    })
-                }
-            </menu>
             <div className="flex flex-col gap-4">
-            <section className="pt-6 pb-12 w-full max-w-4xl mx-auto bg-neutral-900">
-                <header className="w-full max-w-xl mx-auto py-4 mb-4">
+            <section className="p-12 pt-4 w-full max-w-5xl mx-auto bg-neutral-900">
+                <header className="w-full py-4 mb-4">
                     <h2>CONTESTS</h2>
                 </header>
-                <div className="flex flex-col items-center max-w-xl mx-auto gap-2">
+                <div className="flex flex-wrap gap-4 items-center mx-auto">
                 {
                     contests.map((contest: IContest, index: number) => {
                         return (
                             <div 
                                 key={ index } 
-                                className="flex text-white border-white bg-neutral-900 border px-8 py-4 rounded-md w-full"
+                                className="flex gap-8 text-white border-white bg-neutral-800 border px-8 py-4 rounded-md w-full max-w-fit "
                                 style={{
                                     backgroundColor: contest.Brand?.backgroundColor || '',
                                     color: contest.Brand?.foregroundColor || ''
@@ -79,13 +67,13 @@ export default async function Home() {
                                         className="bg-neutral-200 text-neutral-800 px-4 py-1 rounded-sm font-bold leading-none hover:bg-neutral-50"
                                         href={ `/admin/contests/${contest.id}` }
                                     >
-                                        EDITAR
+                                        MANAGE
                                     </Link>
                                     <Link 
                                         className="bg-neutral-200 text-neutral-800 px-4 py-1 rounded-sm font-bold leading-none hover:bg-neutral-50 pointer-events-none opacity-50"
                                         href={ `/admin/contests/${contest.id}/stats` }
                                     >
-                                        ESTADÍSTICAS
+                                        STATS
                                     </Link>
                                 </div>
                             </div>
@@ -94,17 +82,17 @@ export default async function Home() {
                 }
                 </div>
             </section>
-            <section className="pt-6 pb-12 w-full max-w-4xl mx-auto bg-neutral-900">
-                <header className="w-full max-w-xl mx-auto py-4 mb-4">
+            <section className="p-12 pt-4 w-full max-w-5xl mx-auto bg-neutral-900">
+                <header className="w-full py-4 mb-4">
                     <h2>BRANDS</h2>
                 </header>
-                <div className="flex flex-col items-center max-w-xl mx-auto gap-2">
+                <div className="grid xl:grid-cols-4 grid-cols-2 items-center w-full mx-auto gap-4">
                 {
                     brands.map((brand: IBrand, index: number) => {
                         return (
                             <div 
                                 key={ index }
-                                className={`flex border px-8 py-4 rounded-md w-full`}
+                                className="flex items-start border p-4 rounded-md aspect-square max-w-sm relative group cursor-pointer"
                                 style={{
                                     backgroundColor: brand.backgroundColor,
                                     color: brand.foregroundColor
@@ -113,18 +101,24 @@ export default async function Home() {
                                 <div className="flex flex-col justify-center flex-1">
                                     <header className="text-left pt-2">
                                         <h4 className="uppercase font-bold leading-none">{ brand.name }</h4>
-                                        <Link target="_blank" href={ brand.website }><small>{ brand.website }</small></Link>
+                                        <Link 
+                                            className="hover:underline"
+                                            target="_blank"
+                                            href={ brand.website }
+                                        >
+                                            <small>{ brand.website }</small>
+                                        </Link>
                                     </header>
                                 </div>
-                                <div className="flex items-center">
+                                <div className="flex items-center absolute top-1 right-2 group-hover:animate-pulse">
                                     <Link 
-                                        className="px-4 py-1 rounded-sm font-bold text-neutral-900"
+                                        className="font-bold"
                                         style={{
-                                            backgroundColor: brand.accentColor
+                                            color: brand.accentColor
                                         }}
                                         href={ `/admin/brands/${brand.id}` }
                                     >
-                                        EDITAR
+                                        EDIT
                                     </Link>
                                 </div>
                             </div>

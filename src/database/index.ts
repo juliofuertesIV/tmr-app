@@ -52,6 +52,10 @@ export const Brand = sequelize.define('Brand', {
         allowNull: false,
         unique: true,
         defaultValue: 'https://instagram.com'
+    },
+    logo: {
+        type: DataTypes.STRING,
+        unique: true
     }
 })
 

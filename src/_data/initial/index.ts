@@ -26,7 +26,7 @@ const brands : IBrand[] = [
         website: 'https://arenalsound.com',
         backgroundColor: '#dcfdff',
         foregroundColor: '#000000',
-        accentColor: '#FFF5D1',
+        accentColor: '#E255EC',
         profile: 'https://instagram.com/arenalsound'
     },
     {
@@ -43,11 +43,11 @@ const states : { id: ContestStateId, name: string, description: string }[] = [
     {
         id: 'inscriptionOnly',
         name: 'Inscripción activada',
-        description: 'El concurso está activo y funcionando, los usuarios pueden inscribirse pero no votar.'
+        description: 'El concurso está activo y funcionando, los usuarios pueden inscribirse pero no votar.',
     },
     {
         id: 'open',
-        name: 'Inscripción y votación',
+        name: 'Abierto',
         description: 'El concurso está activo y funcionando, los usuarios pueden tanto inscribirse como votar.'
     },
     {
