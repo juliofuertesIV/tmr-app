@@ -1,6 +1,5 @@
 import { IContest } from '@/interfaces'
 import Link from 'next/link'
-import React from 'react'
 
 export default function ContestGrid({ contests } : { contests: IContest[] }) {
     return (
@@ -16,13 +15,10 @@ export default function ContestGrid({ contests } : { contests: IContest[] }) {
                             color: contest.Brand?.foregroundColor || ''
                         }}
                     >
-                        <div className="flex flex-col justify-center flex-1">
+                        <div className="flex flex-col justify-center flex-1 gap-1">
                             <header className="uppercase text-left font-bold leading-none">
                                 { contest.name } ({`${ contest.Brand?.name || "No branding"}, ${ contest.year }`})
                             </header>
-                            <div className="opacity-70 pb-1">
-                                <small>{ contest.metaUrl }</small>
-                            </div>
                             <div className="uppercase font-bold opacity-70 leading-none">
                                 <small>ESTADO: { contest.State.name }</small>
                             </div>

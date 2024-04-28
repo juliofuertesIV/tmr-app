@@ -21,7 +21,7 @@ export default function BrandCircle({ brand } : { brand: IBrand }) {
             style={ brandProperties }
         >
             <div className="text-center">
-                <h4 className="uppercase font-bold leading-snug text-sm px-4">{ brand.name }</h4>
+                <h4 className="uppercase font-bold leading-none text-xl px-4">{ brand.name }</h4>
             </div>
         </Link>
     )

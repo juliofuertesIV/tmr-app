@@ -36,7 +36,15 @@ const brands : IBrand[] = [
         foregroundColor: '#ffffff',
         accentColor: '#EEFD1C',
         profile: 'https://instagram.com/madridsalvaje'
-    }
+    },
+    {
+        name: 'Premios Ídolo',
+        website: 'https://premiosidolo.com',
+        backgroundColor: '#800000',
+        foregroundColor: '#ffffff',
+        accentColor: '#121212',
+        profile: 'https://instagram.com/premiosidolo'
+    }    
 ]
 
 const states : { id: ContestStateId, name: string, description: string }[] = [

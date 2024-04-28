@@ -3,7 +3,6 @@ import { IOneOfCollectionNames } from "@/interfaces";
 import AdminEditionForm from "../../_forms/AdminEditionForm";
 import { getEditionFormByCollectionName } from "../../_forms";
 import { getCollectionElementById } from "@/app/_fetch/get";
-import AdminContestStates from "../../_forms/inputs/AdminContestStates";
 import ContestExtras from "../../_forms/contests/ContestExtras";
 
 export const metadata: Metadata = {
