@@ -6,7 +6,7 @@ import { updateCollectionItem } from "@/app/_fetch/put"
 import { useFormState } from "react-dom"
 import { IAPIResponse } from "@/interfaces/forms"
 import AdminFormFeedback from "../AdminFormFeedback"
-import ContestStateRadioButton from "./ContestStateRadioButton"
+import ContestStateRadioButton from "../inputs/ContestStateRadioButton"
 
 const initialState : IAPIResponse = {
     success: false,

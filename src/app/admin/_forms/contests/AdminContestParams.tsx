@@ -1,7 +1,7 @@
 'use client'
 
 import { IContest, IParam } from '@/interfaces'
-import AdminParamCheckbox from './AdminParamCheckbox'
+import AdminParamCheckbox from '../inputs/AdminParamCheckbox'
 import { manageContestParams } from '@/app/_fetch/post'
 import { useState } from 'react'
 

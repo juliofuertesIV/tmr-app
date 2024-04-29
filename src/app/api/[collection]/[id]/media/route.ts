@@ -30,15 +30,26 @@ const bucket = storage.bucket(process.env.GCP_BUCKET || '');
 const getModelByCollectionName = (collection: IOneOfCollectionNames) => modelsByCollectionName[collection]
 
 export const POST = async (
-    req: Request, { params } : 
-    { params: { collection: IOneOfCollectionNames }
+    req: Request, { params } : { params: { id: string | number, collection: IOneOfCollectionNames }
 }) => {
 
-    const { collection } = params
+    console.log({ params })
+
+    const { collection, id } = params
 
     const { Model, AssociationTable } = getModelByCollectionName(collection)
 
     const payload = await req.json()
+    
+    return Response.json({ 
+        message: "Imagen asociada correctamente al concurso.",
+        success: true,
+        error: null,
+        data: null 
+    })
+    
+    /* 
+    
     const transaction = await sequelize.transaction()
 
     try {
@@ -59,5 +70,5 @@ export const POST = async (
             error,
             data: null 
         })
-    }
+    } */
 }

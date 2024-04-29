@@ -1,8 +1,8 @@
 import { Brand, Param, State } from "@/database"
 import { IBrand, IContest, IContestState, IParam } from "@/interfaces"
-import AdminContestStates from "../inputs/AdminContestStates"
-import AdminContestBrands from "../inputs/AdminContestBrands"
-import AdminContestParams from "../inputs/AdminContestParams"
+import AdminContestStates from "./AdminContestStates"
+import AdminContestBrands from "./AdminContestBrands"
+import AdminContestParams from "./AdminContestParams"
 
 const getData = async () : Promise<{ states: IContestState[], brands: IBrand[], params: IParam[] }> => {
     const states = await State.findAll().then(data => data) as unknown as IContestState[]

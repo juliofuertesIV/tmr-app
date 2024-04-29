@@ -1,5 +1,3 @@
-'use client'
-
 import { IOneOfCollectionNames } from '@/interfaces'
 import { getCreationformByCollectionName } from '../_forms'
 import AdminCreationForm from '../_forms/AdminCreationForm'

@@ -51,6 +51,6 @@ export type IParam = {
 
 export type IContestMedia = {
     id: string,
-    type: 'footer' | 'banner' | 'logo',
+    type: 'footerElement' | 'banner' | 'logo',
     src: string
 }
