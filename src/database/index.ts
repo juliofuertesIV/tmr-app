@@ -316,6 +316,28 @@ export const ContestParam = sequelize.define('ContestParams', {
     timestamps: false
 })
 
+export const ContestMedia = sequelize.define('ContestMedia', {
+    id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true
+    },
+    type: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+    src: {
+        type: DataTypes.STRING,
+        allowNull: false
+    }
+})
+
+export const ContestMediaElements = sequelize.define('ContestMediaElements', {
+}, {
+    timestamps: false
+})
+
 Inscription.belongsTo(Contest)
 Contest.hasMany(Inscription)
 
@@ -325,8 +347,11 @@ Param.belongsToMany(Contest, { through: 'ContestParams'})
 Contest.belongsTo(State)
 State.hasMany(Contest)
 
-Contest.hasMany(Genre)
+Contest.belongsToMany(Genre, { through: 'ContestGenres' })
 Genre.belongsToMany(Contest, { through: 'ContestGenres' })
+
+Contest.belongsToMany(ContestMedia, { through: 'ContestsMediaElements' })
+ContestMedia.belongsToMany(Contest, { through: 'ContestsMediaElements' })
 
 Voter.belongsTo(Contest)
 Contest.hasMany(Voter)

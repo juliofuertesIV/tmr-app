@@ -29,7 +29,8 @@ export type IContest = {
     BrandId: number,
     Brand: IBrand,
     State: IContestState,
-    Params: IParam[]
+    Params: IParam[],
+    Media: IContestMedia[]
 }
 
 export type IBrand = {
@@ -46,4 +47,10 @@ export type IParam = {
     id: IContestParamIds,
     name: string,
     description?: string
+}
+
+export type IContestMedia = {
+    id: string,
+    type: 'footer' | 'banner' | 'logo',
+    src: string
 }
