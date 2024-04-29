@@ -32,9 +32,7 @@ export default function Panel({ contests, brands } : { contests: IContest[], bra
         } else {
             dialogRef.current?.close()
         }
-
     }, [ dialog ])
-
 
     return (
         <div className="flex flex-col gap-4">

@@ -1,16 +1,26 @@
-import { Brand, Contest, Genre, Param, State, sequelize } from "@/database";
+import { Brand, Contest, ContestParam, Genre, Param, State, sequelize } from "@/database";
 import { IOneOfCollectionNames } from "@/interfaces";
+import { Model, ModelStatic, Options } from "sequelize";
 
 const modelsByCollectionName = {
     contests: {
         Model: Contest,
-        include: [ Param, State, Genre, Brand ]
+        options: {
+            include: [
+                { model: Param, through: 'contestparams' },
+                { model: State },
+                { model: Genre },
+                { model: Brand }
+            ]
+        }
     },
     brands: {
         Model: Brand,
-        include: []
+        options: {
+            include: [ Contest ]
+        }
     }
-}
+} as { [key in IOneOfCollectionNames]: { Model: ModelStatic<Model<any, any>>, options: Options }}
 
 const getModelByCollectionName = (collection: IOneOfCollectionNames) => modelsByCollectionName[collection]
 
@@ -19,12 +29,15 @@ export const GET = async (req: Request, { params } : { params: { collection: IOn
 
     const { id, collection } = params
 
-    const { Model, include } = getModelByCollectionName(collection)
+    const { Model, options } = getModelByCollectionName(collection)
 
-    const contest = await Model.findOne({ where: { id }, include }).then(data => data)
-
-    return Response.json({ message: 'OK', success: true, error: null, data: contest })
-
+    try {
+        const contest = await Model.findOne({ where: { id }, ...options }).then(data => data).catch(error => console.log({ error }))
+        return Response.json({ message: 'OK', success: true, error: null, data: contest })
+    }
+    catch (error) {
+        return Response.json({ message: 'Failed to fetch', success: false, error, data: null })
+    }
 }
 
 export const PUT = async (req: Request, { params } : { params: { collection: IOneOfCollectionNames, id: string | number }}) => {

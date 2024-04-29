@@ -310,17 +310,23 @@ export const Vote = sequelize.define('Vote', {
         ]
 }); 
 
+
+export const ContestParam = sequelize.define('ContestParams', {
+}, {
+    timestamps: false
+})
+
 Inscription.belongsTo(Contest)
 Contest.hasMany(Inscription)
 
-Contest.hasMany(Param)
-Param.belongsToMany(Contest, { through: 'ContestParams' })
+Contest.belongsToMany(Param, { through: 'ContestParams'})
+Param.belongsToMany(Contest, { through: 'ContestParams'})
 
 Contest.belongsTo(State)
 State.hasMany(Contest)
 
 Contest.hasMany(Genre)
-Param.belongsToMany(Contest, { through: 'ContestGenres' })
+Genre.belongsToMany(Contest, { through: 'ContestGenres' })
 
 Voter.belongsTo(Contest)
 Contest.hasMany(Voter)

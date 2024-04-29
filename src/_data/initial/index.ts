@@ -1,8 +1,4 @@
-import { IBrand } from "@/interfaces"
-
-
-type ContestStateId = 'inscriptionOnly' | 'open' | 'endedInscription' | 'ended' | 'hidden'
-type IContestParamIds = 'inscriptionIsPublic' | 'videoIsRequired' | 'cityIsRequired' | 'instagramIsRequired' | 'hasManyItems' | 'hasGenres'
+import { IBrand, IContestParamIds, IContestStateIds } from "@/interfaces"
 
 const brands : IBrand[] = [
     {
@@ -47,7 +43,7 @@ const brands : IBrand[] = [
     }    
 ]
 
-const states : { id: ContestStateId, name: string, description: string }[] = [
+const states : { id: IContestStateIds, name: string, description: string }[] = [
     {
         id: 'inscriptionOnly',
         name: 'Inscripción activada',
@@ -105,6 +101,11 @@ const params : { id: IContestParamIds, name: string, description: string }[]  = 
         id: 'hasGenres',
         name: 'Géneros musicales',
         description: 'El concurso incluye diferentes géneros musicales.'
+    },
+    {
+        id: 'hasRanking',
+        name: 'ranking',
+        description: 'El ranking se muestra públicamente en una página específica y en la cabecera de las cards.'
     }
 ]
 

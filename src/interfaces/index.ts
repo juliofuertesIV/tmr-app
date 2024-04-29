@@ -1,14 +1,15 @@
+export type IContestStateIds = 'inscriptionOnly' | 'open' | 'endedInscription' | 'ended' | 'hidden'
+export type IContestParamIds = 'inscriptionIsPublic' | 'videoIsRequired' | 'cityIsRequired' | 'instagramIsRequired' | 'hasManyItems' | 'hasGenres' | 'hasRanking'
+
 export type IOneOfCollections = IContest & IBrand
 
 export type IOneOfCollectionNames = 'contests' | 'brands'
 
 export type IContestState = {
     name: string, 
-    id: string,
+    id: IContestStateIds,
     description: string
 }
-
-export type IContestStateNames = 'ended' | 'hidden' | 'endedInscription' | 'inscriptionOnly' | 'open'
 
 export type IContest = {
     id?: string | number,
@@ -27,7 +28,8 @@ export type IContest = {
     StateId: string,
     BrandId: number,
     Brand: IBrand,
-    State: IContestState
+    State: IContestState,
+    Params: IParam[]
 }
 
 export type IBrand = {
@@ -38,4 +40,10 @@ export type IBrand = {
     accentColor: string,
     profile: string,
     website: string
+}
+
+export type IParam = {
+    id: IContestParamIds,
+    name: string,
+    description?: string
 }
