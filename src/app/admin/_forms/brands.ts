@@ -6,7 +6,7 @@ export const brandCreationForm : ICreationFormByCollectionName = {
     action: addCollectionElement,
     fields: [{
         name: 'name',
-        label: 'Nombre',
+        label: 'Nombre de la marca',
         required: true,
         type: 'text' 
     },
@@ -29,7 +29,7 @@ export const brandEditForm : IEditionFormByCollectionName = {
     action: updateCollectionItem,
     fields: [{
         name: 'name',
-        label: 'Nombre',
+        label: 'Nombre de la marca',
         required: false,
         type: 'text' 
     },

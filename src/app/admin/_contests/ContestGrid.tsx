@@ -5,7 +5,7 @@ export default function ContestGrid({ contests } : { contests: IContest[] }) {
     return (
         <div className="flex flex-col gap-2 justify-start w-full">
         {
-            contests.map((contest: IContest, index: number) => {
+            contests?.map((contest: IContest, index: number) => {
                 return (
                     <div 
                         key={ index } 

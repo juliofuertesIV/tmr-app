@@ -41,7 +41,7 @@ export default function AdminContestBrands({ contest, brands } : { contest: ICon
                             return (
                                 <div key={ index }>
                                     <div 
-                                        className="border border-neutral-100 px-4 py-2 text-center font-bold uppercase rounded-sm cursor-pointer"
+                                        className="border border-neutral-100 px-4 py-1 text-center font-bold uppercase rounded-sm cursor-pointer text-sm"
                                         onClick={ () => onSelectBrand(parseInt(brand.id as string)) }
                                         style={{
                                             backgroundColor: isSelected ? brand.backgroundColor : '#212121',

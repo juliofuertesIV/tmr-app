@@ -6,7 +6,7 @@ export const contestCreationForm : ICreationFormByCollectionName = {
     action: addCollectionElement,
     fields: [{
         name: 'name',
-        label: 'Nombre',
+        label: 'Nombre del concurso',
         required: true,
         type: 'text' 
     },
@@ -38,7 +38,7 @@ export const contestEditForm : IEditionFormByCollectionName = {
     fields: [
         {
             name: 'name',
-            label: 'Nombre',
+            label: 'Nombre del concurso',
             required: false,
             type: 'text'
         },
