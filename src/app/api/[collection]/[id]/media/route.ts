@@ -1,5 +1,6 @@
 import { ContestMedia, ContestMediaElements, sequelize } from "@/database";
 import { IOneOfCollectionNames } from "@/interfaces";
+import { Storage } from "@google-cloud/storage";
 import { Model, ModelStatic, Options } from "sequelize";
 
 const modelsByCollectionName = {
@@ -15,6 +16,16 @@ const modelsByCollectionName = {
         options: Options 
     }
 }
+
+const storage = new Storage({
+    projectId: process.env.PROJECT_ID,
+    credentials: {
+        client_email: process.env.CLIENT_EMAIL,
+        private_key: process.env.GCP_PRIVATE_KEY
+    }
+});
+
+const bucket = storage.bucket(process.env.GCP_BUCKET || '');
 
 const getModelByCollectionName = (collection: IOneOfCollectionNames) => modelsByCollectionName[collection]
 
