@@ -4,19 +4,12 @@ import { IBrand, IContest } from "@/interfaces"
 import AdminFormSubmit from "../AdminFormSubmit"
 import { updateCollectionItem } from "@/app/_fetch/put"
 import { useFormState } from "react-dom"
-import { IAPIResponse } from "@/interfaces/forms"
+import { formInitialState } from "@/interfaces/forms"
 import AdminFormFeedback from "../AdminFormFeedback"
-import ContestBrandRadioButton from "../inputs/ContestBrandRadioButton"
+import BrandRadioButton from "../inputs/BrandRadioButton"
 import { useRef, useState } from "react"
 
-const initialState : IAPIResponse = {
-    success: false,
-    message: '',
-    error: null,
-    data: null
-} 
-
-export default function AdminContestBrands({ contest, brands } : { contest: IContest, brands: IBrand[] }) {
+export default function ContestBrands({ contest, brands } : { contest: IContest, brands: IBrand[] }) {
     
     const [ selectedBrandId, setSelectedBrandId ] = useState<number>(contest.BrandId)
 
@@ -24,7 +17,7 @@ export default function AdminContestBrands({ contest, brands } : { contest: ICon
 
     const boundAction = updateCollectionItem.bind(null, 'contests', contest.id as string)
     
-    const [state, formAction] = useFormState(boundAction, initialState)
+    const [state, formAction] = useFormState(boundAction, formInitialState)
     
     const form = useRef(null)
 
@@ -52,7 +45,7 @@ export default function AdminContestBrands({ contest, brands } : { contest: ICon
                                         <p>{ brand.name }</p>
                                     </div>
                                     <div className="hidden">
-                                        <ContestBrandRadioButton 
+                                        <BrandRadioButton 
                                             key={ index }
                                             brand={ brand }
                                             checked={ isSelected }

@@ -6,7 +6,7 @@ import { IAPIResponse, IFormCreationAction, ICreationFormField } from '@/interfa
 import AdminFormFeedback from './AdminFormFeedback'
 import { useEffect } from 'react'
 import { IOneOfCollectionNames } from '@/interfaces'
-import AdminCreationInput from './inputs/AdminCreationInput'
+import CreationInput from './inputs/CreationInput'
 
 const initialState : IAPIResponse = {
     success: false,
@@ -39,7 +39,7 @@ export default function AdminCreationForm({ action, fields, collection } : Props
         >
             <AdminFormFeedback state={ state } />
             {
-                fields.map((input, index) => <AdminCreationInput key={ index } input={ input } />)
+                fields.map((input, index) => <CreationInput key={ index } input={ input } />)
             }
             <AdminFormSubmit/>
         </form>

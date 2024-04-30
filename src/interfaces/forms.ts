@@ -1,5 +1,12 @@
 import { ValidationError } from "sequelize"
-import { IOneOfCollectionNames, IOneOfCollections } from "."
+import { IOneOfCollectionNames } from "."
+
+export const formInitialState : IAPIResponse = {
+    success: false,
+    message: '',
+    error: null,
+    data: null
+} 
 
 export type ICreationFormField = {
     name: string,

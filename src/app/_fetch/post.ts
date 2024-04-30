@@ -4,17 +4,18 @@ import { IOneOfCollectionNames } from "@/interfaces"
 import { IAPIResponse } from "@/interfaces/forms"
 import { revalidateTag } from "next/cache"
 
-export const addCollectionElement = async (collection: IOneOfCollectionNames, prevState: any, formData: FormData) : Promise<IAPIResponse> => {
+export const addCollectionElement = async (
+    collection: IOneOfCollectionNames,
+    prevState: any,
+    formData: FormData
+) : Promise<IAPIResponse> => {
 
     const payload = Object.fromEntries(formData)
 
     const res = await fetch(`http://localhost:3000/api/${ collection }`, {
         method: "POST",
         cache: 'no-cache',
-        body: JSON.stringify(payload),
-        headers: {
-            "Content-Type": "application/json",
-        }
+        body: JSON.stringify(payload)
     })
     .then(async data => data.json())
     .catch(error => error)
@@ -36,14 +37,30 @@ export const manageContestParams = async ({
     const res = await fetch(`http://localhost:3000/api/contestsparams`, {
         method,
         cache: 'no-cache',
-        body: JSON.stringify({ ContestId, ParamId }),
-        headers: {
-            "Content-Type": "application/json",
-        }
+        body: JSON.stringify({ ContestId, ParamId })
     })
     .then(async data => data.json())
     .catch(error => error)
 
     revalidateTag('contests')
+    return res
+}
+
+export const manageCollectionMedia = async(
+    collection: IOneOfCollectionNames,
+    elementId: string | number,
+    prevState: any,
+    formData: FormData
+) : Promise<IAPIResponse> => {
+
+    const res = await fetch(`http://localhost:3000/api/${ collection }/${ elementId }/media`, {
+        method: "POST",
+        cache: 'no-cache',
+        body: formData
+    })
+    .then(async data => data.json())
+    .catch(error => error)
+    
+    revalidateTag(collection)
     return res
 }

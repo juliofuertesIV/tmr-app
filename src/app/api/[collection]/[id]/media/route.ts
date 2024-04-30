@@ -3,6 +3,8 @@ import { IOneOfCollectionNames } from "@/interfaces";
 import { Storage } from "@google-cloud/storage";
 import { Model, ModelStatic, Options } from "sequelize";
 
+const bucketName = process.env.GCP_BUCKET as string
+
 const modelsByCollectionName = {
     contests: {
         Model: ContestMedia,
@@ -25,7 +27,7 @@ const storage = new Storage({
     }
 });
 
-const bucket = storage.bucket(process.env.GCP_BUCKET || '');
+const bucket = storage.bucket(bucketName);
 
 const getModelByCollectionName = (collection: IOneOfCollectionNames) => modelsByCollectionName[collection]
 
@@ -33,13 +35,13 @@ export const POST = async (
     req: Request, { params } : { params: { id: string | number, collection: IOneOfCollectionNames }
 }) => {
 
-    console.log({ params })
-
     const { collection, id } = params
 
     const { Model, AssociationTable } = getModelByCollectionName(collection)
+    
+    const payload = await req.formData()
 
-    const payload = await req.json()
+    console.log(Object.fromEntries(payload.entries()))
     
     return Response.json({ 
         message: "Imagen asociada correctamente al concurso.",

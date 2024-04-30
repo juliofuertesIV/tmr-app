@@ -4,7 +4,7 @@ import { useFormState } from 'react-dom'
 import AdminFormSubmit from './AdminFormSubmit'
 import { IAPIResponse, IEditionFormField, IFormEditionAction } from '@/interfaces/forms'
 import AdminFormFeedback from './AdminFormFeedback'
-import AdminEditionInput from './inputs/AdminEditionInput'
+import EditionInput from './inputs/EditionInput'
 import { IOneOfCollectionNames, IOneOfCollections } from '@/interfaces'
 
 const initialState : IAPIResponse = {
@@ -37,7 +37,7 @@ export default function AdminEditionForm({ action, fields, collection, item } : 
             {
                 fields.map((field, index) => {
                     return (
-                        <AdminEditionInput 
+                        <EditionInput 
                             key={ index }
                             input={ field }
                             item={ item }

@@ -1,11 +1,11 @@
 'use client'
 
 import { IContest, IParam } from '@/interfaces'
-import AdminParamCheckbox from '../inputs/AdminParamCheckbox'
+import ParamCheckbox from '../inputs/ParamCheckbox'
 import { manageContestParams } from '@/app/_fetch/post'
 import { useState } from 'react'
 
-export default function AdminContestParams({ contest, params } : { contest: IContest, params: IParam[] }) {
+export default function ContestParams({ contest, params } : { contest: IContest, params: IParam[] }) {
 
     const [ loadingId, setLoadingId ] = useState<string|null>(null)
   
@@ -23,7 +23,7 @@ export default function AdminContestParams({ contest, params } : { contest: ICon
             <legend className="uppercase px-2">Cambiar parámetros del concurso</legend>
                 {
                     params.map(param => 
-                        <AdminParamCheckbox 
+                        <ParamCheckbox 
                             key={ param.id }
                             loading={ loadingId === param.id }
                             contest={ contest }

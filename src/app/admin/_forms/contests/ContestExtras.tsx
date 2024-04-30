@@ -1,8 +1,6 @@
 import { Brand, Param, State } from "@/database"
 import { IBrand, IContest, IContestState, IParam } from "@/interfaces"
-import AdminContestStates from "./AdminContestStates"
-import AdminContestBrands from "./AdminContestBrands"
-import AdminContestParams from "./AdminContestParams"
+import Contest from './index'
 
 const getData = async () : Promise<{ states: IContestState[], brands: IBrand[], params: IParam[] }> => {
     const states = await State.findAll().then(data => data) as unknown as IContestState[]
@@ -18,19 +16,22 @@ const getData = async () : Promise<{ states: IContestState[], brands: IBrand[], 
 
 export default async function ContestExtras({ contest } : { contest: IContest }) {
 
-    const { states, brands, params } = await getData()
+    const { states, brands, params } = await getData()  
 
     return (
         <div className="flex flex-wrap gap-2">
             <div className="w-full max-w-xl min-w-96">
-                <AdminContestBrands brands={ brands } contest={ contest }/>
+                <Contest.Brands brands={ brands } contest={ contest }/>
             </div>
             <div className="w-full max-w-xl min-w-96">
-                <AdminContestStates states={ states } contest={ contest }/>
+                <Contest.States states={ states } contest={ contest }/>
             </div>
             <div className="w-full max-w-xl min-w-96">
-                <AdminContestParams contest={ contest } params={ params }/>
-            </div>            
+                <Contest.Params params={ params } contest={ contest }/>
+            </div>
+            <div className="w-full max-w-xl min-w-96">
+                <Contest.Media contest={ contest }/>
+            </div>
         </div>
     )
 }

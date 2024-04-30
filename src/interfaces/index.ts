@@ -49,6 +49,8 @@ export type IParam = {
     description?: string
 }
 
+export type IContestMediaType = 'footerElement' | 'banner' | 'logo'
+
 export type IContestMedia = {
     id: string,
     type: 'footerElement' | 'banner' | 'logo',
