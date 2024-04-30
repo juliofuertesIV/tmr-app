@@ -1,23 +1,6 @@
-import { ContestMedia, ContestMediaElements, sequelize } from "@/database";
 import { IOneOfCollectionNames } from "@/interfaces";
 import { Storage } from "@google-cloud/storage";
-import { Model, ModelStatic, Options } from "sequelize";
-
-const bucketName = process.env.GCP_BUCKET as string
-
-const modelsByCollectionName = {
-    contests: {
-        Model: ContestMedia,
-        AssociationTable: ContestMediaElements,
-        options: {}
-    }
-} as { 
-    [key in IOneOfCollectionNames]: { 
-        Model: ModelStatic<Model<any, any>>,
-        AssociationTable: ModelStatic<Model<any, any>>,
-        options: Options 
-    }
-}
+import { bucketName, getFilesizeLimitInBytes, getModelByCollectionName, limitInMegaBytes, produceFileName } from "./_utils";
 
 const storage = new Storage({
     projectId: process.env.PROJECT_ID,
@@ -29,27 +12,63 @@ const storage = new Storage({
 
 const bucket = storage.bucket(bucketName);
 
-const getModelByCollectionName = (collection: IOneOfCollectionNames) => modelsByCollectionName[collection]
-
 export const POST = async (
     req: Request, { params } : { params: { id: string | number, collection: IOneOfCollectionNames }
 }) => {
 
     const { collection, id } = params
-
     const { Model, AssociationTable } = getModelByCollectionName(collection)
-    
-    const payload = await req.formData()
 
-    console.log(Object.fromEntries(payload.entries()))
+    /* TO DO: VALIDATE FILE BYTE LENGTH ETC */
+
+    const payload = Object.fromEntries(await req.formData()) as { [k: string]: File }
+
+    const { logo } = payload
+
+    const filename = produceFileName(logo.name)
+
+    const bytes = await logo.arrayBuffer();
     
-    return Response.json({ 
-        message: "Imagen asociada correctamente al concurso.",
-        success: true,
-        error: null,
-        data: null 
-    })
-    
+    try {
+
+        const buffer = Buffer.from(bytes);
+
+        console.log({ bytes: bytes.byteLength })
+
+        await new Promise((resolve, reject) => {
+
+            const blob = bucket.file(`${ collection }/${ filename }`);
+
+            const blobStream = blob.createWriteStream({
+                resumable: false,
+            });
+        
+            blobStream
+            .on("error", (err) => reject(err))
+            .on("finish", () => resolve(true));
+        
+            blobStream.end(buffer);
+        });
+        
+        const publicUrl = `https://storage.googleapis.com/${bucket.name}/${ collection }/${ filename }`
+
+        return Response.json({ 
+            message: "Imagen asociada correctamente al concurso.",
+            success: true,
+            error: null,
+            data: publicUrl
+        })
+    }
+    catch (error) {
+        console.log({ error })
+        return Response.json({
+            message: 'Error subiendo el blob de imagen',
+            success: false,
+            error,
+            data: null
+        })
+    }
+
     /* 
     
     const transaction = await sequelize.transaction()
@@ -74,3 +93,5 @@ export const POST = async (
         })
     } */
 }
+
+
