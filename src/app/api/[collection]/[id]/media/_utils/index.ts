@@ -1,4 +1,4 @@
-import { ContestMedia, ContestMediaElements } from "@/database";
+import { ContestMedia, ContestsMediaElements } from "@/database";
 import { IOneOfCollectionNames } from "@/interfaces";
 import { Model, ModelStatic, Options } from "sequelize";
 import path from "path";
@@ -6,7 +6,7 @@ import path from "path";
 export const modelsByCollectionName = {
     contests: {
         Model: ContestMedia,
-        AssociationTable: ContestMediaElements,
+        AssociationTable: ContestsMediaElements,
         options: {}
     }
 } as { 
@@ -17,7 +17,7 @@ export const modelsByCollectionName = {
     }
 }
 
-export const getModelByCollectionName = (collection: IOneOfCollectionNames) => modelsByCollectionName[collection]
+export const getModelAndAssociationTableByCollectionName = (collection: IOneOfCollectionNames) => modelsByCollectionName[collection]
 
 export const produceFileName = (fileName: string) => crypto.randomUUID() + "-" + new Date().getTime() + path.extname(fileName);
 

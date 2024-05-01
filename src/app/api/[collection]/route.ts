@@ -1,27 +1,15 @@
 
-import { Contest, Param, State, Genre, sequelize, Brand } from '@/database'
+import { sequelize } from '@/database'
 import { IOneOfCollectionNames } from '@/interfaces'
-
-const modelsByCollectionName = {
-    contests: {
-        Model: Contest,
-        include: [ Param, State, Genre, Brand ]
-    },
-    brands: {
-        Model: Brand,
-        include: []
-    }
-}
-
-const getModelByCollectionName = (collection: IOneOfCollectionNames) => modelsByCollectionName[collection]
+import { getModelByCollectionName } from './_utils'
 
 export const GET = async (req: Request, { params } : { params: { collection: IOneOfCollectionNames }}) => {
 
     const { collection } = params
 
-    const { Model, include } = getModelByCollectionName(collection)
+    const { Model, options } = getModelByCollectionName(collection)
 
-    const data = await Model.findAll({ include }).then(data => data)
+    const data = await Model.findAll({ ...options }).then(data => data)
     
     return Response.json({ message: 'OK!', success: true, error: null, data })
 }

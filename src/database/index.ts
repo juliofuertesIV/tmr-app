@@ -333,7 +333,7 @@ export const ContestMedia = sequelize.define('ContestMedia', {
     }
 })
 
-export const ContestMediaElements = sequelize.define('ContestMediaElements', {
+export const ContestsMediaElements = sequelize.define('ContestsMediaElements', {
 }, {
     timestamps: false
 })

@@ -1,6 +1,8 @@
-import { IOneOfCollectionNames } from "@/interfaces";
+import { IContestMedia, IOneOfCollectionNames } from "@/interfaces";
 import { Storage } from "@google-cloud/storage";
-import { bucketName, getFilesizeLimitInBytes, getModelByCollectionName, limitInMegaBytes, produceFileName } from "./_utils";
+import { bucketName, getFilesizeLimitInBytes, getModelAndAssociationTableByCollectionName, limitInMegaBytes, produceFileName } from "./_utils";
+import { sequelize } from "@/database";
+import { Transaction } from "sequelize";
 
 const storage = new Storage({
     projectId: process.env.PROJECT_ID,
@@ -16,51 +18,28 @@ export const POST = async (
     req: Request, { params } : { params: { id: string | number, collection: IOneOfCollectionNames }
 }) => {
 
-    const { collection, id } = params
-    const { Model, AssociationTable } = getModelByCollectionName(collection)
+    const { collection, id } = params 
 
-    /* TO DO: VALIDATE FILE BYTE LENGTH ETC */
+    /* TO DO: VALIDATE COLLECTION NAME, PARAMS, FILE BYTE LENGTH, ETC */
 
-    const payload = Object.fromEntries(await req.formData()) as { [k: string]: File }
+    const payload = Object.fromEntries(await req.formData()) as { media: File, mediaType: 'logo' | 'footerElement' | 'banner' | 'inscription' }
 
-    const { logo } = payload
+    const { media, mediaType } = payload
 
-    const filename = produceFileName(logo.name)
+    const filename = produceFileName(media.name)
 
-    const bytes = await logo.arrayBuffer();
+    const publicUrl = `https://storage.googleapis.com/${bucket.name}/${ collection }/${ filename }`
+
+    const mediaCreationPayload = { type: mediaType, src: publicUrl }
+
+    const bytes = await media.arrayBuffer();
     
+    console.log({ bytes: bytes.byteLength });
+
     try {
-
-        const buffer = Buffer.from(bytes);
-
-        console.log({ bytes: bytes.byteLength })
-
-        await new Promise((resolve, reject) => {
-
-            const blob = bucket.file(`${ collection }/${ filename }`);
-
-            const blobStream = blob.createWriteStream({
-                resumable: false,
-            });
-        
-            blobStream
-            .on("error", (err) => reject(err))
-            .on("finish", () => resolve(true));
-        
-            blobStream.end(buffer);
-        });
-        
-        const publicUrl = `https://storage.googleapis.com/${bucket.name}/${ collection }/${ filename }`
-
-        return Response.json({ 
-            message: "Imagen asociada correctamente al concurso.",
-            success: true,
-            error: null,
-            data: publicUrl
-        })
+        await uploadToGoogleCloudStorage({ bytes, collection, filename })
     }
     catch (error) {
-        console.log({ error })
         return Response.json({
             message: 'Error subiendo el blob de imagen',
             success: false,
@@ -69,21 +48,27 @@ export const POST = async (
         })
     }
 
-    /* 
-    
     const transaction = await sequelize.transaction()
-
+    
     try {
-        const data = await Model.create({ ...payload }, { transaction })
-        await transaction.commit()
+        const relationship = await createAndAssociateMediaToCollection({ 
+            collection,
+            payload: mediaCreationPayload,
+            transaction,
+            id 
+        });
+
+        await transaction.commit();
+
         return Response.json({ 
             message: "Imagen asociada correctamente al concurso.",
             success: true,
             error: null,
-            data 
+            data: relationship
         })
     }
     catch (error) {
+        console.log({ error })
         await transaction.rollback();
         return Response.json({ 
             message: "Ha habido un problema asociando la imagen al concurso.",
@@ -91,7 +76,60 @@ export const POST = async (
             error,
             data: null 
         })
-    } */
+    }
 }
 
 
+async function createAndAssociateMediaToCollection({ collection, payload, transaction, id } : { 
+    collection: IOneOfCollectionNames,
+    payload: { type: string, src: string },
+    transaction: Transaction,
+    id: string | number 
+}) {
+
+    const { Model, AssociationTable } = getModelAndAssociationTableByCollectionName(collection);
+
+    const insertedImage = await Model.create({ ...payload }, { transaction }) as unknown as IContestMedia;
+
+    const associationPayload = getAssociationPayload('contests', id, insertedImage.id);
+
+    const relationship = await AssociationTable.create({ ...associationPayload }, { transaction });
+
+    return relationship;
+}
+
+async function uploadToGoogleCloudStorage({ bytes, collection, filename } : { bytes: ArrayBuffer, collection: string, filename: string }) {
+    
+    const buffer = Buffer.from(bytes)
+
+    await new Promise((resolve, reject) => {
+
+        const blob = bucket.file(`${collection}/${filename}`)
+        const blobStream = blob.createWriteStream({ resumable: false })
+
+        blobStream
+            .on("error", (err) => reject(err))
+            .on("finish", () => resolve(true));
+
+        blobStream.end(buffer);
+    })
+}
+
+const getAssociationPayload = (
+    collection: 'contests' | 'inscriptions',
+    collectionElementId: string | number,
+    mediaElementId: string | number) => { 
+
+        if (collection === 'contests') return { 
+            ContestId: collectionElementId,
+            ContestMediumId: mediaElementId 
+        }
+        else {
+            return Response.json({ 
+                message: 'No payload. La creación de inscription media no está implementada.',
+                success: false,
+                error: new Error('Too soon!'),
+                data: null 
+            })            
+        }
+}
