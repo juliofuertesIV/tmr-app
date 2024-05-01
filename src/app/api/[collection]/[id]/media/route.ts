@@ -10,7 +10,7 @@ export const POST = async (req: Request, { params } : { params: { id: string | n
 
     /* TO DO: VALIDATE COLLECTION NAME, PARAMS, FILE BYTE LENGTH, ETC */
 
-    const payload = Object.fromEntries(await req.formData()) as { media: File, mediaType: 'logo' | 'footerElement' | 'banner' | 'inscription' }
+    const payload = Object.fromEntries(await req.formData()) as { media: File, mediaType: 'logo' | 'footerElement' | 'banner' }
 
     const { media, mediaType } = payload
 
