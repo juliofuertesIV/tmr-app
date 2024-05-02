@@ -2,6 +2,7 @@
 import { sequelize } from '@/database'
 import { IOneOfCollectionNames } from '@/interfaces'
 import { getModelByCollectionName } from './_utils'
+import { constructAPIResponse } from '../_utils'
 
 export const GET = async (req: Request, { params } : { params: { collection: IOneOfCollectionNames }}) => {
 
@@ -26,10 +27,24 @@ export const POST = async (req: Request, { params } : { params: { collection: IO
     try {
         const data = await Model.create({ ...payload }, { transaction })
         await transaction.commit()
-        return Response.json({ message: "Elemento creado correctamente.", success: true, error: null, data })
+        return Response.json(
+            constructAPIResponse({ 
+                message: "Elemento creado correctamente.",
+                success: true,
+                error: null,
+                data 
+            })
+        )
     }
     catch (error) {
         await transaction.rollback();
-        return Response.json({ message: "Ha habido un problema creando el elemento.", success: false, error, data: null })
+        return Response.json(
+            constructAPIResponse({ 
+                message: "Ha habido un problema creando el elemento.",
+                success: false,
+                error,
+                data: null 
+            })
+        )
     }
 }

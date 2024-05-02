@@ -1,4 +1,4 @@
-import { ValidationError } from "sequelize"
+import { ValidationError, ValidationErrorItem } from "sequelize"
 import { IOneOfCollectionNames } from "."
 
 export const formInitialState : IAPIResponse = {
@@ -37,9 +37,15 @@ export type IEditionFormByCollectionName = {
     action: IFormEditionAction
 }
 
+export type IErrorTypes = 'validation' | 'regular'
+
 export type IAPIResponse = {
     message: string,
     success: boolean,
-    error: ValidationError | null,
+    error: {
+        errorType: IErrorTypes,
+        content: Error,
+        messages: string[]
+    } | null,
     data: any | null
 }

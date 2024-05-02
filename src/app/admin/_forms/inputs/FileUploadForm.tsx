@@ -16,8 +16,6 @@ type Props = {
 
 export default function FileUploadForm({ collectionElement, label, mediaType } : Props) {
 
-    console.log({ contest: collectionElement })
-
     const boundAction = manageCollectionMedia.bind(null, 'contests', collectionElement.id as string)
     
     const [state, formAction] = useFormState(boundAction, formInitialState)

@@ -1,5 +1,5 @@
 import { IContest } from "@/interfaces"
-import FileUploadForm from "../inputs/FileInput"
+import FileUploadForm from "../inputs/FileUploadForm"
 
 export default function ContestMediaManager({ contest } : { contest: IContest }) {
     

@@ -17,7 +17,7 @@ export const addCollectionElement = async (
         cache: 'no-cache',
         body: JSON.stringify(payload)
     })
-    .then(async data => data.json())
+    .then(async data => await data.json())
     .catch(error => error)
     
     revalidateTag(collection)
@@ -39,7 +39,7 @@ export const manageContestParams = async ({
         cache: 'no-cache',
         body: JSON.stringify({ ContestId, ParamId })
     })
-    .then(async data => data.json())
+    .then(async data => await data.json())
     .catch(error => error)
 
     revalidateTag('contests')
@@ -58,7 +58,7 @@ export const manageCollectionMedia = async(
         cache: 'no-cache',
         body: formData
     })
-    .then(async data => data.json())
+    .then(async data => await data.json())
     .catch(error => error)
     
     revalidateTag(collection)
