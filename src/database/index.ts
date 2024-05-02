@@ -17,9 +17,9 @@ const sequelize = new Sequelize(dbName, dbUser, dbPass, {
 export const Brand = sequelize.define('Brand', {
     id: {
         type: DataTypes.INTEGER,
-        allowNull: false,
+        primaryKey: true,
         autoIncrement: true,
-        primaryKey: true
+        allowNull: false,
     },
     name: {
         type: DataTypes.STRING,
@@ -61,10 +61,10 @@ export const Brand = sequelize.define('Brand', {
 
 export const Contest = sequelize.define('Contest', {
     id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.UUID,
+        primaryKey: true,
+        defaultValue: DataTypes.UUIDV4,
         allowNull: false,
-        autoIncrement: true,
-        primaryKey: true
     },
     name: {
         type: DataTypes.STRING,
@@ -107,7 +107,7 @@ export const Contest = sequelize.define('Contest', {
         type: DataTypes.STRING
     }
     }, {
-    timestamps: false,
+    paranoid: true,
     indexes: [
         { 
             fields: ['domain', 'year'],
@@ -169,10 +169,10 @@ export const Genre = sequelize.define('Genres', {
 
 export const Voter = sequelize.define('Voter', {
     id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.UUID,
+        primaryKey: true,
+        defaultValue: DataTypes.UUIDV4,
         allowNull: false,
-        autoIncrement: true,
-        primaryKey: true
     },
     firstName: {
         type: DataTypes.STRING,
@@ -200,6 +200,7 @@ export const Voter = sequelize.define('Voter', {
         defaultValue: false
     }
     }, {
+        paranoid: true,
         indexes: [
             { 
                 fields: ['email', 'ContestId'], 
@@ -210,10 +211,10 @@ export const Voter = sequelize.define('Voter', {
 
 export const Inscription = sequelize.define('Inscription', {
     id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.UUID,
+        primaryKey: true,
+        defaultValue: DataTypes.UUIDV4,
         allowNull: false,
-        autoIncrement: true,
-        primaryKey: true
     },
     name: {
         type: DataTypes.STRING,
@@ -285,6 +286,7 @@ export const Inscription = sequelize.define('Inscription', {
         type: DataTypes.INTEGER
     },
     }, {
+        paranoid: true,
         indexes: [
             { 
                 fields: ['instagram', 'video', 'ContestId', 'year'],
@@ -295,16 +297,17 @@ export const Inscription = sequelize.define('Inscription', {
 
 export const Vote = sequelize.define('Vote', {
     ContestantId: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.UUID,
         references: { model: Inscription },
         primaryKey: true
     },
     VoterId: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.UUID,
         references: { model: Voter },
         primaryKey: true
     }
     }, {
+        paranoid: true,
         indexes: [
             { fields: ['ContestantId', 'VoterId'], unique: true }
         ]
@@ -318,10 +321,10 @@ export const ContestParam = sequelize.define('ContestParams', {
 
 export const ContestMedia = sequelize.define('ContestMedia', {
     id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.UUID,
+        primaryKey: true,
+        defaultValue: DataTypes.UUIDV4,
         allowNull: false,
-        autoIncrement: true,
-        primaryKey: true
     },
     type: {
         type: DataTypes.STRING,

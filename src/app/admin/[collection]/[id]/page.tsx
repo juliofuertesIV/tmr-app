@@ -18,6 +18,7 @@ export default async function AdminElementPage({ params } : { params: { collecti
 
     const { action, fields } = getEditionFormByCollectionName({ collection })
 
+
     return (
         <main className="flex min-h-screen flex-col">
             <header className="flex py-8 justify-center">

@@ -2,17 +2,10 @@
 
 import { useFormState } from 'react-dom'
 import AdminFormSubmit from './AdminFormSubmit'
-import { IAPIResponse, IEditionFormField, IFormEditionAction } from '@/interfaces/forms'
+import { IEditionFormField, IFormEditionAction, formInitialState } from '@/interfaces/forms'
 import AdminFormFeedback from './AdminFormFeedback'
 import EditionInput from './inputs/EditionInput'
 import { IOneOfCollectionNames, IOneOfCollections } from '@/interfaces'
-
-const initialState : IAPIResponse = {
-    success: false,
-    message: '',
-    error: null,
-    data: null
-} 
 
 type Props = {
     collection: IOneOfCollectionNames,
@@ -25,8 +18,7 @@ export default function AdminEditionForm({ action, fields, collection, item } : 
 
     const boundAction = action.bind(null, collection, item.id as string)
     
-    const [state, formAction] = useFormState(boundAction, initialState)
-
+    const [state, formAction] = useFormState(boundAction, formInitialState)
 
     return (
         <form 

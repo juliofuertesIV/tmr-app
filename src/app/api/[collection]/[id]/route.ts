@@ -67,3 +67,37 @@ export const PUT = async (req: Request, { params } : { params: { collection: IOn
         )
     }
 }
+
+export const DELETE = async (req: Request, { params } : { params: { collection: IOneOfCollectionNames, id: string | number }}) => {
+
+    const { id, collection } = params
+
+    const { Model } = getModelByCollectionName(collection)
+
+    const transaction = await sequelize.transaction()
+
+    try {
+        const elementsDestroyed = await Model.destroy({ where: { id }, transaction })
+        await transaction.commit()
+
+        return Response.json(
+            constructAPIResponse({ 
+                message: "Elemento eliminado correctamente.",
+                success: true,
+                error: null,
+                data: elementsDestroyed
+            })
+        )
+    }
+    catch (error) {
+        await transaction.rollback();
+        return Response.json(
+            constructAPIResponse({ 
+                message: "No se ha podido eliminar el elemento.",
+                success: true,
+                error,
+                data: null 
+            })
+        )
+    }
+}
