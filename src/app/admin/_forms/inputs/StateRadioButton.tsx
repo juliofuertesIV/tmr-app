@@ -1,7 +1,7 @@
 import { IContestState } from '@/interfaces'
 import React from 'react'
 
-export default function ContestStateRadioButton({ checked, state } : { checked: boolean, state: IContestState }) {
+export default function StateRadioButton({ checked, state } : { checked: boolean, state: IContestState }) {
 
     const { id, name, description } = state
 

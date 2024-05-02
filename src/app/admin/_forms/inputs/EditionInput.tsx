@@ -1,7 +1,8 @@
-import { ICreationFormField } from '@/interfaces/forms'
+import { IOneOfCollections } from '@/interfaces'
+import { IEditionFormField } from '@/interfaces/forms'
 import React from 'react'
 
-export default function AdminCreationInput({ input } : { input: ICreationFormField }) {
+export default function EditionInput({ input, item } : { input: IEditionFormField, item: IOneOfCollections }) {
 
     const { label, name } = input
 
@@ -12,7 +13,7 @@ export default function AdminCreationInput({ input } : { input: ICreationFormFie
                 className="w-full rounded-sm bg-stone-800 pl-1"
                 type={ input.type }
                 name={ name }
-                defaultValue={ input.defaultValue || '' }
+                defaultValue={ item[name as keyof typeof item] as string || '' }
             />
         </label>
     )

@@ -1,48 +1,115 @@
-import { ContestMedia, ContestMediaElements, sequelize } from "@/database";
-import { IOneOfCollectionNames } from "@/interfaces";
-import { Storage } from "@google-cloud/storage";
-import { Model, ModelStatic, Options } from "sequelize";
+import { IContestMedia, IContestMediaType, IOneOfCollectionNames } from "@/interfaces";
+import { getAssociationPayload, getFilesizeLimitInBytes, getModelAndAssociationTableByCollectionName, produceFileName, uploadToGoogleCloudStorage } from "./_utils";
+import { sequelize } from "@/database";
+import { Transaction } from "sequelize";
+import { constructAPIResponse } from "@/app/api/_utils";
 
-const modelsByCollectionName = {
-    contests: {
-        Model: ContestMedia,
-        AssociationTable: ContestMediaElements,
-        options: {}
-    }
-} as { 
-    [key in IOneOfCollectionNames]: { 
-        Model: ModelStatic<Model<any, any>>,
-        AssociationTable: ModelStatic<Model<any, any>>,
-        options: Options 
-    }
+type IMediaPayload = {
+    media: File,
+    mediaType: IContestMediaType | 'inscription'
 }
 
-const storage = new Storage({
-    projectId: process.env.PROJECT_ID,
-    credentials: {
-        client_email: process.env.CLIENT_EMAIL,
-        private_key: process.env.GCP_PRIVATE_KEY
-    }
-});
-
-const bucket = storage.bucket(process.env.GCP_BUCKET || '');
-
-const getModelByCollectionName = (collection: IOneOfCollectionNames) => modelsByCollectionName[collection]
-
-export const POST = async (
-    req: Request, { params } : { params: { id: string | number, collection: IOneOfCollectionNames }
-}) => {
+export const POST = async (req: Request, { params } : { params: { id: string | number, collection: IOneOfCollectionNames }}) => {
 
     const { collection, id } = params
 
-    const { Model, AssociationTable } = getModelByCollectionName(collection)
+    const payload = Object.fromEntries(await req.formData()) as IMediaPayload
 
-    const payload = await req.json()
+    const { bytes, mediaCreationPayload, filename, validationError } = await prepareAndValidateMediaFile(payload, collection)
     
-    return Response.json({ 
-        message: "Imagen asociada correctamente al concurso.",
-        success: true,
-        error: null,
-        data: null 
-    })
+    if (validationError) {
+        return Response.json(
+            constructAPIResponse({ 
+                message: validationError.message,
+                success: false,
+                error: validationError,
+                data: null 
+            }))
+    }
+
+    try {
+        await uploadToGoogleCloudStorage({ bytes, collection, filename })
+    }
+    catch (error) {
+        return Response.json(
+            constructAPIResponse({
+                message: 'Error subiendo el blob de imagen',
+                success: false,
+                error,
+                data: null
+            })
+        )
+    }
+
+    const transaction = await sequelize.transaction()
+    
+    try {
+        const relationship = await createAndAssociateMediaToCollection({ 
+            collection,
+            payload: mediaCreationPayload,
+            transaction,
+            id 
+        });
+
+        await transaction.commit();
+
+        return Response.json({ 
+            message: "Imagen asociada correctamente al concurso.",
+            success: true,
+            error: null,
+            data: relationship
+        })
+    }
+    catch (error) {
+        await transaction.rollback();
+        return Response.json(
+            constructAPIResponse({ 
+                message: "Ha habido un problema asociando la imagen al concurso.",
+                success: false,
+                error,
+                data: null 
+            })
+        )
+    }
+}
+
+const prepareAndValidateMediaFile = async (payload: IMediaPayload, collection: IOneOfCollectionNames) => {
+
+    const { media, mediaType } = payload
+
+    const bytes = await media.arrayBuffer();
+
+    const validationError = mediaPayloadIsValidLength({ bytes }) ? null : new Error('La imagen es demasiado grande')
+    
+    const filename = produceFileName(media.name)
+
+    const publicUrl = `https://storage.googleapis.com/${process.env.GCP_BUCKET}/${ collection }/${ filename }`
+
+    const mediaCreationPayload = { type: mediaType, src: publicUrl }
+
+    return { bytes, filename, mediaCreationPayload, validationError }
+}
+
+const mediaPayloadIsValidLength = ({ bytes } : { bytes: ArrayBuffer }) => {
+    const byteLimit = getFilesizeLimitInBytes(parseInt(process.env.MAX_FILE_SIZE as string))
+
+    return bytes.byteLength < byteLimit;
+}
+
+async function createAndAssociateMediaToCollection({ collection, payload, transaction, id } : { 
+    collection: IOneOfCollectionNames,
+    payload: { type: string, src: string },
+    transaction: Transaction,
+    id: string | number 
+}) {
+
+    const { Model, AssociationTable } = getModelAndAssociationTableByCollectionName(collection);
+
+    const insertedImage = await Model.create({ ...payload }, { transaction }) as unknown as IContestMedia;
+
+    const associationPayload = getAssociationPayload('contests', id, insertedImage.id);
+
+    const relationship = await AssociationTable.create({ ...associationPayload }, { transaction });
+
+    return relationship;
 }

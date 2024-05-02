@@ -38,7 +38,7 @@ const brands : IBrand[] = [
         website: 'https://premiosidolo.com',
         backgroundColor: '#800000',
         foregroundColor: '#ffffff',
-        accentColor: '#121212',
+        accentColor: '#FEDBBE',
         profile: 'https://instagram.com/premiosidolo'
     }    
 ]
@@ -79,17 +79,17 @@ const params : { id: IContestParamIds, name: string, description: string }[]  = 
     },
     {
         id: 'videoIsRequired',
-        name: 'Vídeo requerido',
+        name: 'Requiere vídeo',
         description: 'Se require adjuntar un vídeo de YouTube para inscribirse.'
     },
     {
         id: 'cityIsRequired',
-        name: 'Ciudad de origen',
+        name: 'Requiere ciudad de origen',
         description: 'Se require especificar la ciudad de origen para inscribirse.'
     },
     {
         id: 'instagramIsRequired',
-        name: 'Perfil de instagram requerido',
+        name: 'Requiere perfil de instagram',
         description: 'Se require un perfil de Instagram para inscribirse.'
     },
     {
@@ -99,12 +99,12 @@ const params : { id: IContestParamIds, name: string, description: string }[]  = 
     },
     {
         id: 'hasGenres',
-        name: 'Géneros musicales',
-        description: 'El concurso incluye diferentes géneros musicales.'
+        name: 'Especifica géneros musicales',
+        description: 'El concurso incluye diferentes géneros musicales, se elige uno al inscribirse.'
     },
     {
         id: 'hasRanking',
-        name: 'ranking',
+        name: 'Muestra ranking público',
         description: 'El ranking se muestra públicamente en una página específica y en la cabecera de las cards.'
     }
 ]

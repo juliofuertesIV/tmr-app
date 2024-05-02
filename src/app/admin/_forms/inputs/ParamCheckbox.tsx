@@ -11,7 +11,7 @@ type Props = {
     submitForm: ({ ParamId, method } : { ParamId: string, method: 'POST' | 'DELETE' }) => void
 }
 
-export default function AdminParamCheckbox({ param, contest, loading, submitForm } : Props) {
+export default function ParamCheckbox({ param, contest, loading, submitForm } : Props) {
 
     const { id, name, description } = param
 

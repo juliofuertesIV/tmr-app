@@ -5,24 +5,26 @@ export default function FeedbackContent({ formState } : { formState: IAPIRespons
     
     if (!formState) return
 
-    if (formState.error) {
+    const { error } = formState 
+
+    if (error) {
+
         return (
             <div className="px-4 py-1 text-sm w-full rounded-md bg-red-400">    
                 <p>
                     { formState.message }
                 </p>
                 <div className='flex flex-col gap-1'>
-                {
-                    formState.error.errors.map((err, index) => {
-                        return (
-                            <small key={ index }>{ err.message }</small>
+                    {
+                        error.messages.map((message, index) => 
+                            <small key={ index }>
+                                { message }
+                            </small>
                         )
-                    })
-                            
-                }
+                    }
                 </div>
             </div>
-        )
+        )    
     }
 
     return (

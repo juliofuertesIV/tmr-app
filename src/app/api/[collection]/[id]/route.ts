@@ -1,29 +1,7 @@
-import { Brand, Contest, ContestParam, Genre, Param, State, sequelize } from "@/database";
+import { sequelize } from "@/database";
 import { IOneOfCollectionNames } from "@/interfaces";
-import { Model, ModelStatic, Options } from "sequelize";
-
-const modelsByCollectionName = {
-    contests: {
-        Model: Contest,
-        options: {
-            include: [
-                { model: Param, through: 'contestparams' },
-                { model: State },
-                { model: Genre },
-                { model: Brand }
-            ]
-        }
-    },
-    brands: {
-        Model: Brand,
-        options: {
-            include: [ Contest ]
-        }
-    }
-} as { [key in IOneOfCollectionNames]: { Model: ModelStatic<Model<any, any>>, options: Options }}
-
-const getModelByCollectionName = (collection: IOneOfCollectionNames) => modelsByCollectionName[collection]
-
+import { getModelByCollectionName } from "../_utils";
+import { constructAPIResponse } from "../../_utils";
 
 export const GET = async (req: Request, { params } : { params: { collection: IOneOfCollectionNames, id: string | number }}) => {
 
@@ -33,10 +11,24 @@ export const GET = async (req: Request, { params } : { params: { collection: IOn
 
     try {
         const contest = await Model.findOne({ where: { id }, ...options }).then(data => data).catch(error => console.log({ error }))
-        return Response.json({ message: 'OK', success: true, error: null, data: contest })
+        return Response.json(
+            constructAPIResponse({ 
+                message: 'OK',
+                success: true,
+                error: null,
+                data: contest 
+            })
+        )
     }
     catch (error) {
-        return Response.json({ message: 'Failed to fetch', success: false, error, data: null })
+        return Response.json(
+            constructAPIResponse({ 
+                message: 'Failed to fetch',
+                success: false,
+                error,
+                data: null 
+            })
+        )
     }
 }
 
@@ -54,11 +46,58 @@ export const PUT = async (req: Request, { params } : { params: { collection: IOn
         const affectedRows = await Model.update({ ...payload }, { where: { id }, transaction })
         await transaction.commit()
 
-        console.log({ affectedRows })
-        return Response.json({ message: "Elemento editado correctamente.", success: true, error: null, data: affectedRows })
+        return Response.json(
+            constructAPIResponse({ 
+                message: "Elemento editado correctamente.",
+                success: true,
+                error: null,
+                data: affectedRows 
+            })
+        )
     }
     catch (error) {
         await transaction.rollback();
-        return Response.json({ message: "No se ha podido editar el elemento.", success: true, error, data: null })
+        return Response.json(
+            constructAPIResponse({ 
+                message: "No se ha podido editar el elemento.",
+                success: true,
+                error,
+                data: null 
+            })
+        )
+    }
+}
+
+export const DELETE = async (req: Request, { params } : { params: { collection: IOneOfCollectionNames, id: string | number }}) => {
+
+    const { id, collection } = params
+
+    const { Model } = getModelByCollectionName(collection)
+
+    const transaction = await sequelize.transaction()
+
+    try {
+        const elementsDestroyed = await Model.destroy({ where: { id }, transaction })
+        await transaction.commit()
+
+        return Response.json(
+            constructAPIResponse({ 
+                message: "Elemento eliminado correctamente.",
+                success: true,
+                error: null,
+                data: elementsDestroyed
+            })
+        )
+    }
+    catch (error) {
+        await transaction.rollback();
+        return Response.json(
+            constructAPIResponse({ 
+                message: "No se ha podido eliminar el elemento.",
+                success: true,
+                error,
+                data: null 
+            })
+        )
     }
 }
