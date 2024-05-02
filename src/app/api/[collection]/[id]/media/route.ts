@@ -33,8 +33,6 @@ export const POST = async (
     req: Request, { params } : { params: { id: string | number, collection: IOneOfCollectionNames }
 }) => {
 
-    console.log({ params })
-
     const { collection, id } = params
 
     const { Model, AssociationTable } = getModelByCollectionName(collection)
@@ -47,28 +45,4 @@ export const POST = async (
         error: null,
         data: null 
     })
-    
-    /* 
-    
-    const transaction = await sequelize.transaction()
-
-    try {
-        const data = await Model.create({ ...payload }, { transaction })
-        await transaction.commit()
-        return Response.json({ 
-            message: "Imagen asociada correctamente al concurso.",
-            success: true,
-            error: null,
-            data 
-        })
-    }
-    catch (error) {
-        await transaction.rollback();
-        return Response.json({ 
-            message: "Ha habido un problema asociando la imagen al concurso.",
-            success: false,
-            error,
-            data: null 
-        })
-    } */
 }
