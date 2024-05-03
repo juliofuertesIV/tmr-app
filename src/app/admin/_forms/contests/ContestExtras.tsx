@@ -18,6 +18,8 @@ export default async function ContestExtras({ contest } : { contest: IContest })
 
     const { states, brands, params } = await getData()  
 
+    // TO DO: ADD DIALOG FOR ALL
+
     return (
         <div className="flex flex-wrap gap-2">
             <div className="w-full max-w-xl min-w-96">
@@ -28,9 +30,6 @@ export default async function ContestExtras({ contest } : { contest: IContest })
             </div>
             <div className="w-full max-w-xl min-w-96">
                 <Contest.Params params={ params } contest={ contest }/>
-            </div>
-            <div className="w-full max-w-xl min-w-96">
-                <Contest.Media contest={ contest }/>
             </div>
         </div>
     )

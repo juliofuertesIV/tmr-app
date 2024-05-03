@@ -326,11 +326,23 @@ export const ContestMedia = sequelize.define('ContestMedia', {
         defaultValue: DataTypes.UUIDV4,
         allowNull: false,
     },
-    type: {
+    role: {
         type: DataTypes.STRING,
         allowNull: false,
     },
     src: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    width: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
+    height: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
+    alt: {
         type: DataTypes.STRING,
         allowNull: false
     }
@@ -353,8 +365,8 @@ State.hasMany(Contest)
 Contest.belongsToMany(Genre, { through: 'ContestGenres' })
 Genre.belongsToMany(Contest, { through: 'ContestGenres' })
 
-Contest.belongsToMany(ContestMedia, { through: 'ContestsMediaElements' })
-ContestMedia.belongsToMany(Contest, { through: 'ContestsMediaElements' })
+Contest.belongsToMany(ContestMedia, { through: 'ContestsMediaElements', as: 'Media' })
+ContestMedia.belongsToMany(Contest, { through: 'ContestsMediaElements', as: 'Media' })
 
 Voter.belongsTo(Contest)
 Contest.hasMany(Voter)

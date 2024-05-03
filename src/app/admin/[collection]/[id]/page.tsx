@@ -16,16 +16,16 @@ export default async function AdminElementPage({ params } : { params: { collecti
 
     const { data: item } = await getCollectionElementById(collection, id)
 
-    const { action, fields } = getEditionFormByCollectionName({ collection })
+    // TO DO: not FORM but PANEL ({ general, params, brand association, media, etc... by collection }) which would remove the Extras? condition
 
+    const { action, fields, mediaFields } = getEditionFormByCollectionName({ collection })
 
     return (
         <main className="flex min-h-screen flex-col">
             <header className="flex py-8 justify-center">
-                <h1 className="uppercase">{ collection }</h1>
+                <h1 className="uppercase">EDITAR { item.name }</h1>
             </header>
             <div className="w-full max-w-xl mx-auto">
-                <h2 className="uppercase my-4">EDITAR { item.name }</h2>
                 {
                     collection === 'contests' && 
                     <>
@@ -33,7 +33,7 @@ export default async function AdminElementPage({ params } : { params: { collecti
                         <hr className=" my-8"></hr>
                     </>    
                 }
-                <AdminEditionForm action={ action } fields={ fields } collection={ collection } item={ item }/>
+                <AdminEditionForm action={ action } fields={ fields } mediaFields={ mediaFields } collection={ collection } item={ item }/>
             </div>
         </main>
     )

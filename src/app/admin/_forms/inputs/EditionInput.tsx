@@ -10,7 +10,7 @@ export default function EditionInput({ input, item } : { input: IEditionFormFiel
         <label className="w-full flex flex-col pb-1">
             <div className="w-full">{ label }</div>
             <input 
-                className="w-full rounded-sm bg-stone-800 pl-1"
+                className="w-full rounded-sm bg-neutral-800 pl-1"
                 type={ input.type }
                 name={ name }
                 defaultValue={ item[name as keyof typeof item] as string || '' }

@@ -1,4 +1,4 @@
-import { IContestMedia, IContestMediaType, IOneOfCollectionNames } from "@/interfaces";
+import { IContestMedia, IContestMediaRole, IOneOfCollectionNames } from "@/interfaces";
 import { getAssociationPayload, getFilesizeLimitInBytes, getModelAndAssociationTableByCollectionName, produceFileName, uploadToGoogleCloudStorage } from "./_utils";
 import { sequelize } from "@/database";
 import { Transaction } from "sequelize";
@@ -6,7 +6,15 @@ import { constructAPIResponse } from "@/app/api/_utils";
 
 type IMediaPayload = {
     media: File,
-    mediaType: IContestMediaType | 'inscription'
+    role: IContestMediaRole | 'inscription',
+    width: string,
+    height: string
+}
+
+type IMediaCreationPayload = {
+    role: IContestMediaRole | 'inscription',
+    width: string,
+    height: string
 }
 
 export const POST = async (req: Request, { params } : { params: { id: string | number, collection: IOneOfCollectionNames }}) => {
@@ -75,7 +83,7 @@ export const POST = async (req: Request, { params } : { params: { id: string | n
 
 const prepareAndValidateMediaFile = async (payload: IMediaPayload, collection: IOneOfCollectionNames) => {
 
-    const { media, mediaType } = payload
+    const { media, width, height, role } = payload
 
     const bytes = await media.arrayBuffer();
 
@@ -85,7 +93,13 @@ const prepareAndValidateMediaFile = async (payload: IMediaPayload, collection: I
 
     const publicUrl = `https://storage.googleapis.com/${process.env.GCP_BUCKET}/${ collection }/${ filename }`
 
-    const mediaCreationPayload = { type: mediaType, src: publicUrl }
+    const mediaCreationPayload = { 
+        role, 
+        src: publicUrl,
+        width,
+        height,
+        alt: 'Media belonging to a TMR contest.'
+    }
 
     return { bytes, filename, mediaCreationPayload, validationError }
 }
@@ -98,7 +112,7 @@ const mediaPayloadIsValidLength = ({ bytes } : { bytes: ArrayBuffer }) => {
 
 async function createAndAssociateMediaToCollection({ collection, payload, transaction, id } : { 
     collection: IOneOfCollectionNames,
-    payload: { type: string, src: string },
+    payload: IMediaCreationPayload,
     transaction: Transaction,
     id: string | number 
 }) {

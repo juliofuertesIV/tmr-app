@@ -7,12 +7,19 @@ import { constructAPIResponse } from '../_utils'
 export const GET = async (req: Request, { params } : { params: { collection: IOneOfCollectionNames }}) => {
 
     const { collection } = params
-
     const { Model, options } = getModelByCollectionName(collection)
 
     const data = await Model.findAll({ ...options }).then(data => data)
-    
-    return Response.json({ message: 'OK!', success: true, error: null, data })
+
+    return Response.json(
+        constructAPIResponse({ 
+            message: 'OK!',
+            success: true,
+            error: null,
+            data 
+        })
+    )
+
 }
 
 export const POST = async (req: Request, { params } : { params: { collection: IOneOfCollectionNames }}) => {

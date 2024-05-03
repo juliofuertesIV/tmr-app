@@ -7,15 +7,14 @@ export const metadata: Metadata = {
     description: "El buen admin panel"
   };
 
-export default async function Home() {
+export default async function AdminHome() {
 
     const { data: contests } = await getCollection('contests')
     const { data: brands } = await getCollection('brands')
 
     return (
         <main className="flex min-h-screen flex-col">
-            <header className="flex py-8 justify-center">
-            </header>
+            <h1>Admin Panel</h1>
             <Panel contests={ contests } brands={ brands }/>
         </main>
     )

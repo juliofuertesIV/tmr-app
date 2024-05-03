@@ -64,4 +64,5 @@ export const brandEditForm : IEditionFormByCollectionName = {
         type: 'color'
     },    
     ],
+    mediaFields: []
 }
