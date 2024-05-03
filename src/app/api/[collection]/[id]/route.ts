@@ -10,7 +10,7 @@ export const GET = async (req: Request, { params } : { params: { collection: IOn
     const { Model, options } = getModelByCollectionName(collection)
 
     try {
-        const contest = await Model.findOne({ where: { id }, ...options }).then(data => data).catch(error => console.log({ error }))
+        const contest = await Model.findOne({ where: { id }, ...options }).then(data => data)
         return Response.json(
             constructAPIResponse({ 
                 message: 'OK',

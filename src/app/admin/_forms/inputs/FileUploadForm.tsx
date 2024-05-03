@@ -10,7 +10,9 @@ import AdminFormSubmit from "../AdminFormSubmit"
 type Props = {
     collectionElement: IContest, // & IInscription
     label: string,
-    mediaType: IContestMediaType,
+    small: string,
+    acceptedTypes: string[],
+    mediaType: IContestMediaType | 'inscription',
 
 }
 
@@ -28,7 +30,7 @@ export default function FileUploadForm({ collectionElement, label, mediaType } :
                 <input type="file" name="media"/>
             </label>
             <input type="hidden" name="mediaType" value={ mediaType }/>
-            <AdminFormSubmit/>
+            <AdminFormSubmit value="Subir archivo"/>
         </form>
     )
 }

@@ -14,6 +14,7 @@ export default async function AdminHome() {
 
     return (
         <main className="flex min-h-screen flex-col">
+            <h1>Admin Panel</h1>
             <Panel contests={ contests } brands={ brands }/>
         </main>
     )

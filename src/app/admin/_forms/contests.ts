@@ -1,6 +1,7 @@
 import { addCollectionElement } from "@/app/_fetch/post"
 import { updateCollectionItem } from "@/app/_fetch/put"
 import { ICreationFormByCollectionName, IEditionFormByCollectionName } from "@/interfaces/forms"
+import ContestExtras from "./contests/ContestExtras"
 
 export const contestCreationForm : ICreationFormByCollectionName = {
     action: addCollectionElement,
@@ -28,8 +29,7 @@ export const contestCreationForm : ICreationFormByCollectionName = {
         required: true,
         type: 'hidden',
         defaultValue: 'hidden'
-    }
-]
+    }]
 }
 
 
@@ -103,4 +103,18 @@ export const contestEditForm : IEditionFormByCollectionName = {
             type: 'text'
         }
     ],
+    mediaFields: [
+        {
+            mediaType: 'logo',
+            label: 'Logotipo del concurso',
+            small: 'Debe pesar menos de 2mb',
+            acceptedTypes: ['png', 'svg']
+        },
+        {
+            mediaType: 'banner',
+            label: 'Banner del concurso',
+            small: 'Debe pesar menos de 2mb',
+            acceptedTypes: ['png', 'svg']
+        }
+    ]
 }

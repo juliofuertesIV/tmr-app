@@ -21,7 +21,6 @@ export const constructAPIResponse = ({
         error,
         data
     }
-       
 }
 
 const parseError = (error: unknown) => {
@@ -49,5 +48,4 @@ const parseError = (error: unknown) => {
             content: new Error('Error desconocido.')
         }
     }
-
 }

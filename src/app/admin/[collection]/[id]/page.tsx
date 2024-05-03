@@ -16,7 +16,7 @@ export default async function AdminElementPage({ params } : { params: { collecti
 
     const { data: item } = await getCollectionElementById(collection, id)
 
-    const { action, fields } = getEditionFormByCollectionName({ collection })
+    const { action, fields, mediaFields } = getEditionFormByCollectionName({ collection })
 
     return (
         <main className="flex min-h-screen flex-col">
@@ -31,7 +31,7 @@ export default async function AdminElementPage({ params } : { params: { collecti
                         <hr className=" my-8"></hr>
                     </>    
                 }
-                <AdminEditionForm action={ action } fields={ fields } collection={ collection } item={ item }/>
+                <AdminEditionForm action={ action } fields={ fields } mediaFields={ mediaFields } collection={ collection } item={ item }/>
             </div>
         </main>
     )
