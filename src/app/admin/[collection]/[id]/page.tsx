@@ -16,6 +16,8 @@ export default async function AdminElementPage({ params } : { params: { collecti
 
     const { data: item } = await getCollectionElementById(collection, id)
 
+    // TO DO: not FORM but PANEL ({ general, params, brand association, media, etc... by collection }) which would remove the Extras? condition
+
     const { action, fields, mediaFields } = getEditionFormByCollectionName({ collection })
 
     return (
