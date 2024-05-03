@@ -17,14 +17,15 @@ const modelsByCollectionName = {
                         attributes: [] }
                 }, {
                     model: ContestMedia,
-                    attributes: ['src', 'type'],
+                    attributes: ['src', 'role', 'width', 'height', 'alt'],
                     through: {
-                        attributes: []
-                    }
+                        attributes: [],
+                    },
+                    as: 'Media'
                 }
                 
             ]
-        }
+        } 
     },
     brands: {
         Model: Brand,
@@ -32,6 +33,11 @@ const modelsByCollectionName = {
             include: [ Contest ]
         }
     }
-} as { [key in IOneOfCollectionNames]: { Model: ModelStatic<Model<any, any>>, options: Options }}
+} as { 
+    [key in IOneOfCollectionNames]: { 
+        Model: ModelStatic<Model<any, any>>,
+        options: Options 
+    }
+}
 
 export const getModelByCollectionName = (collection: IOneOfCollectionNames) => modelsByCollectionName[collection]

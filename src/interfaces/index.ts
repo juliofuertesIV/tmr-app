@@ -49,10 +49,13 @@ export type IParam = {
     description?: string
 }
 
-export type IContestMediaType = 'footerElement' | 'banner' | 'logo'
+export type IContestMediaRole = 'footerElement' | 'banner' | 'logo' | 'favicon'
 
 export type IContestMedia = {
     id: string,
-    type: 'footerElement' | 'banner' | 'logo',
-    src: string
+    role: 'footerElement' | 'banner' | 'logo' | 'favicon',
+    src: string,
+    width: string,
+    height: string,
+    alt: string
 }

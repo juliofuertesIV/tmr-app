@@ -8,7 +8,9 @@ export const GET = async (req: Request, { params } : { params: { collection: IOn
 
     const { collection } = params
     const { Model, options } = getModelByCollectionName(collection)
-    const data = await Model.findAll({ ...options }).then(data => data)   
+
+    const data = await Model.findAll({ ...options }).then(data => data)
+
     return Response.json(
         constructAPIResponse({ 
             message: 'OK!',
@@ -17,6 +19,7 @@ export const GET = async (req: Request, { params } : { params: { collection: IOn
             data 
         })
     )
+
 }
 
 export const POST = async (req: Request, { params } : { params: { collection: IOneOfCollectionNames }}) => {

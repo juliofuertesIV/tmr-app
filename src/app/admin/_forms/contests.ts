@@ -115,6 +115,12 @@ export const contestEditForm : IEditionFormByCollectionName = {
             label: 'Banner del concurso',
             small: 'Debe pesar menos de 2mb',
             acceptedTypes: ['png', 'svg']
+        },
+        {
+            mediaType: 'favicon',
+            label: 'Favicon del concurso',
+            small: 'Debe ser imagen tipo .ico',
+            acceptedTypes: ['ico']
         }
     ]
 }

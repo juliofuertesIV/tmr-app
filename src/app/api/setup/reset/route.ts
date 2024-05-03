@@ -7,6 +7,7 @@ export const GET = async () => {
         await sequelize.sync({ force: true })
     }
     catch (error) {
+        console.log({ error })
         return Response.json({ message: 'Error purging database!', success: false, error })
     }
     

@@ -1,5 +1,5 @@
 import { ValidationError, ValidationErrorItem } from "sequelize"
-import { IContestMediaType, IOneOfCollectionNames } from "."
+import { IContestMediaRole, IOneOfCollectionNames } from "."
 
 export const formInitialState : IAPIResponse = {
     success: false,
@@ -24,7 +24,7 @@ export type IEditionFormField = {
 }
 
 export type IMediaFormField = {
-    mediaType: IContestMediaType | 'inscription',
+    mediaType: IContestMediaRole | 'inscription',
     label: string,
     small: string,
     acceptedTypes: string[]

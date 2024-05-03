@@ -6,7 +6,7 @@ import { IEditionFormField, IFormEditionAction, IMediaFormField, formInitialStat
 import AdminFormFeedback from './AdminFormFeedback'
 import EditionInput from './inputs/EditionInput'
 import { IOneOfCollectionNames, IOneOfCollections } from '@/interfaces'
-import FileUploadForm from './inputs/FileUploadForm'
+import FileUploadForm from './media/FileUploadForm'
 
 type Props = {
     collection: IOneOfCollectionNames,
