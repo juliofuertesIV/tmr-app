@@ -27,6 +27,7 @@ export default function FileUploadForm({ collectionElement, label, mediaType } :
     const [ inputFile, setInputFile ] = useState<File | null>(null)
     
     // TO DO: construct accept string from acceptTypes (string[])
+    // TO DO: Drag and drop instead of visualizer (using as background currentMedia ? currentMedia : bgcolor)
 
     const currentMedia = (collectionElement as IContest).Media.find((element: IContestMedia) => element.role === mediaType) || null
 
