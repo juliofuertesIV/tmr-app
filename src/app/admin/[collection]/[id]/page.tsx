@@ -18,14 +18,12 @@ export default async function AdminElementPage({ params } : { params: { collecti
 
     const { action, fields } = getEditionFormByCollectionName({ collection })
 
-
     return (
         <main className="flex min-h-screen flex-col">
             <header className="flex py-8 justify-center">
-                <h1 className="uppercase">{ collection }</h1>
+                <h1 className="uppercase">EDITAR { item.name }</h1>
             </header>
             <div className="w-full max-w-xl mx-auto">
-                <h2 className="uppercase my-4">EDITAR { item.name }</h2>
                 {
                     collection === 'contests' && 
                     <>
