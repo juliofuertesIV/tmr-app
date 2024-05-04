@@ -2,7 +2,7 @@ import { IOneOfCollections } from '@/interfaces'
 import { IEditionFormField } from '@/interfaces/forms'
 import React from 'react'
 
-export default function EditionInput({ input, item } : { input: IEditionFormField, item: IOneOfCollections }) {
+export default function EditionInput({ input, collectionElement } : { input: IEditionFormField, collectionElement: IOneOfCollections }) {
 
     const { label, name } = input
 
@@ -13,7 +13,7 @@ export default function EditionInput({ input, item } : { input: IEditionFormFiel
                 className="w-full rounded-sm bg-neutral-800 pl-1"
                 type={ input.type }
                 name={ name }
-                defaultValue={ item[name as keyof typeof item] as string || '' }
+                defaultValue={ collectionElement[name as keyof typeof collectionElement] as string || '' }
             />
         </label>
     )

@@ -6,26 +6,23 @@ import { IEditionFormField, IFormEditionAction, IMediaFormField, formInitialStat
 import AdminFormFeedback from './AdminFormFeedback'
 import EditionInput from './inputs/EditionInput'
 import { IOneOfCollectionNames, IOneOfCollections } from '@/interfaces'
-import FileUploadForm from './media/FileUploadForm'
 
 type Props = {
     collection: IOneOfCollectionNames,
     action: IFormEditionAction,
     fields: IEditionFormField[],
-    mediaFields: IMediaFormField[],
-    item: IOneOfCollections
+    collectionElement: IOneOfCollections
 }
 
-export default function AdminEditionForm({ action, fields, mediaFields, collection, item } : Props) {
+export default function AdminEditionForm({ action, fields, collection, collectionElement } : Props) {
 
-    const boundAction = action.bind(null, collection, item.id as string)
+    const boundAction = action.bind(null, collection, collectionElement.id as string)
     
     const [state, formAction] = useFormState(boundAction, formInitialState)
 
     return (
-        <>
         <form 
-            className="flex flex-col gap-2 w-full"
+            className="flex flex-col gap-2 w-full max-w-2xl"
             action={ formAction }
         >
             <AdminFormFeedback state={ state } />
@@ -35,30 +32,12 @@ export default function AdminEditionForm({ action, fields, mediaFields, collecti
                         <EditionInput 
                             key={ index }
                             input={ field }
-                            item={ item }
+                            collectionElement={ collectionElement }
                         />
                     )
                 })
             }
             <AdminFormSubmit/>
         </form>
-        <h2 className='mt-8 mb-2'>GESTIÓN DE IMÁGENES</h2>
-        {
-            mediaFields.map((field, index) => {
-
-                const { mediaType, label, small, acceptedTypes } = field
-                return (
-                    <FileUploadForm 
-                        key={ index }
-                        mediaType={ mediaType }
-                        collectionElement={ item }
-                        label={ label }
-                        small={ small }
-                        acceptedTypes={ acceptedTypes }
-                    />
-                )
-            })   
-        }
-        </>
     )
 }

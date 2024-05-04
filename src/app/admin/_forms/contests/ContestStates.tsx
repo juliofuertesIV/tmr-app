@@ -8,9 +8,9 @@ import { formInitialState } from "@/interfaces/forms"
 import AdminFormFeedback from "../AdminFormFeedback"
 import StateRadioButton from "../inputs/StateRadioButton"
 
-export default function ContestStates({ contest, states } : { contest: IContest, states: IContestState[] }) {
+export default function ContestStates({ collectionElement, items } : { collectionElement: IContest, items: IContestState[] }) {
     
-    const boundAction = updateCollectionItem.bind(null, 'contests', contest.id as string)
+    const boundAction = updateCollectionItem.bind(null, 'contests', collectionElement.id as string)
     
     const [state, formAction] = useFormState(boundAction, formInitialState)
     
@@ -20,11 +20,11 @@ export default function ContestStates({ contest, states } : { contest: IContest,
             <fieldset className="border-2 border-neutral-100 px-4 pt-4 pb-4 flex flex-col gap-2 text-sm">
                 <legend className="uppercase px-2">Cambiar estado del concurso</legend>
                 {
-                    states.map((state, index) => 
+                    items.map((state, index) => 
                         <StateRadioButton 
                             key={ index }
                             state={ state }
-                            checked={ contest.StateId === state.id }
+                            checked={ collectionElement.StateId === state.id }
                         />
                     )
                 }

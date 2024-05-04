@@ -1,7 +1,11 @@
 import { addCollectionElement } from "@/app/_fetch/post"
 import { updateCollectionItem } from "@/app/_fetch/put"
-import { ICreationFormByCollectionName, IEditionFormByCollectionName } from "@/interfaces/forms"
-import ContestExtras from "./contests/ContestExtras"
+import { ICollectionPanel, ICreationFormByCollectionName, IEditionFormByCollectionName } from "@/interfaces/forms"
+import ContestParams from "./contests/ContestParams"
+import ContestBrands from "./contests/ContestBrands"
+import ContestStates from "./contests/ContestStates"
+import AdminEditionForm from "./AdminEditionForm"
+import { ContestMedia } from "@/database"
 
 export const contestCreationForm : ICreationFormByCollectionName = {
     action: addCollectionElement,
@@ -105,22 +109,44 @@ export const contestEditForm : IEditionFormByCollectionName = {
     ],
     mediaFields: [
         {
-            mediaType: 'logo',
+            role: 'logo',
             label: 'Logotipo del concurso',
-            small: 'Debe pesar menos de 2mb',
-            acceptedTypes: ['png', 'svg']
+            instructions: 'Debe pesar menos de 2mb',
+            acceptedTypes: 'image/png, image/svg'
         },
         {
-            mediaType: 'banner',
+            role: 'banner',
             label: 'Banner del concurso',
-            small: 'Debe pesar menos de 2mb',
-            acceptedTypes: ['png', 'svg']
+            instructions: 'Debe pesar menos de 2mb',
+            acceptedTypes: 'image/png, image/svg'
         },
         {
-            mediaType: 'favicon',
+            role: 'favicon',
             label: 'Favicon del concurso',
-            small: 'Debe ser imagen tipo .ico',
-            acceptedTypes: ['ico']
+            instructions: 'Debe ser imagen tipo .ico',
+            acceptedTypes: '.ico'
         }
     ]
+}
+
+export const navItems = [
+    { name: 'Información', value: null },
+    { name: 'Estado', value: 'states' },
+    { name: 'Parámetros', value: 'params' },
+    { name: 'Imágenes', value: 'media' },
+    { name: 'Branding', value: 'brands' }
+]
+
+export const contestPanel : ICollectionPanel = {
+    navItems,
+    form: {
+        action: updateCollectionItem,
+        fields: contestEditForm.fields
+    },
+    sections: {
+        params: ContestParams,
+        brands: ContestBrands,
+        states: ContestStates
+    },
+    defaultSection: AdminEditionForm
 }
