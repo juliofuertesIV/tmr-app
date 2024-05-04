@@ -30,25 +30,11 @@ export default async function AdminElementPage({ params } : { params: { collecti
 
     const items = await getData()
 
-    // TO DO: not FORM but PANEL ({ general, params, brand association, media, etc... by collection }) which would remove the Extras? condition
-
-    const { action, fields, mediaFields } = getEditionFormByCollectionName({ collection })
-
     const panel = getPanelByCollectionName({ collection })
 
     return (
         <main className="flex min-h-screen flex-col">
             <CollectionPanel collection={ collection } panel={ panel } collectionElement={ collectionElement } items={ items }/>
-            <div className="w-full max-w-xl mx-auto">
-                {/*              {
-                    collection === 'contests' && 
-                    <>
-                        <ContestExtras contest={ item }/>
-                        <hr className=" my-8"></hr>
-                    </>    
-                }
-                <AdminEditionForm action={ action } fields={ fields } mediaFields={ mediaFields } collection={ collection } item={ item }/> */}
-            </div>
         </main>
     )
 }
