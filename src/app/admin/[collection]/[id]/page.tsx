@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { IBrand, IContestState, IOneOfCollectionNames, IParam } from "@/interfaces";
-import { getEditionFormByCollectionName, getPanelByCollectionName } from "../../_forms";
+import { getPanelByCollectionName } from "../../_forms";
 import { getCollectionElementById } from "@/app/_fetch/get";
 import CollectionPanel from "../../_collections/panel/CollectionPanel";
 import { Brand, Param, State } from "@/database";
