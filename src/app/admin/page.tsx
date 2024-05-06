@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { getCollection } from "../_fetch/get";
-import Panel from "./_panel/Panel";
+import Dashboard from "./_dashboard/Dashboard";
 
 export const metadata: Metadata = {
     title: "Panel de administración TMR",
@@ -15,7 +15,7 @@ export default async function AdminHome() {
     return (
         <main className="flex min-h-screen flex-col">
             <h1>Admin Panel</h1>
-            <Panel contests={ contests } brands={ brands }/>
+            <Dashboard contests={ contests } brands={ brands }/>
         </main>
     )
 }

@@ -1,6 +1,6 @@
 import { IOneOfCollectionNames } from "@/interfaces"
-import { contestCreationForm, contestEditForm, contestPanel } from "./contests"
-import { brandCreationForm, brandEditForm, brandPanel } from "./brands"
+import { contestCreationForm, contestEditForm } from "./contests"
+import { brandCreationForm, brandEditForm } from "./brands"
 
 const creationFormsByCollectionName = {
     contests: contestCreationForm,
@@ -12,13 +12,7 @@ const editionFormsByCollectionName = {
     brands: brandEditForm
 }
 
-const panelByCollectionName = {
-    contests: contestPanel,
-    brands: brandPanel
-}
-
 export const getCreationformByCollectionName = ({ collection } : { collection: IOneOfCollectionNames }) => creationFormsByCollectionName[collection]
 
 export const getEditionFormByCollectionName = ({ collection } : { collection: IOneOfCollectionNames }) => editionFormsByCollectionName[collection]
 
-export const getPanelByCollectionName = ({ collection } : { collection: IOneOfCollectionNames }) => panelByCollectionName[collection]

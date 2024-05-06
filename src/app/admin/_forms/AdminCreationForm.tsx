@@ -2,18 +2,11 @@
 
 import { useFormState } from 'react-dom'
 import AdminFormSubmit from './AdminFormSubmit'
-import { IAPIResponse, IFormCreationAction, ICreationFormField } from '@/interfaces/forms'
+import { IFormCreationAction, ICreationFormField, formInitialState } from '@/interfaces/forms'
 import AdminFormFeedback from './AdminFormFeedback'
 import { useEffect } from 'react'
 import { IOneOfCollectionNames } from '@/interfaces'
 import CreationInput from './inputs/CreationInput'
-
-const initialState : IAPIResponse = {
-    success: false,
-    message: '',
-    error: null,
-    data: null
-} 
 
 type Props = {
     action: IFormCreationAction,
@@ -25,7 +18,7 @@ export default function AdminCreationForm({ action, fields, collection } : Props
 
     const boundAction = action.bind(null, collection)
 
-    const [state, formAction] = useFormState(boundAction, initialState)
+    const [state, formAction] = useFormState(boundAction, formInitialState)
 
     useEffect(() => {
         

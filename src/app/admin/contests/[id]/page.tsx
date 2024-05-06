@@ -1,7 +1,7 @@
 import { getCollectionElementById } from "@/app/_fetch/get"
 import { Brand, Param, State } from "@/database"
 import { IBrand, IContestState, IParam } from "@/interfaces"
-import ContestPanel from "../../_collections/contests/ContestPanel"
+import ContestPanel from "../../_contests/panel/ContestPanel"
 
 const getData = async () : Promise<{ states: IContestState[], brands: IBrand[], contestParams: IParam[] }> => {
     const states = await State.findAll().then(data => data) as unknown as IContestState[]

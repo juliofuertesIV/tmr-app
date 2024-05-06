@@ -17,7 +17,7 @@ const initialDialogState : DialogState = {
     isOpen: false
 } 
 
-export default function Panel({ contests, brands } : { contests: IContest[], brands: IBrand[] }) {
+export default function Dashboard({ contests, brands } : { contests: IContest[], brands: IBrand[] }) {
 
     const [ dialog, setDialog ] = useState<DialogState>(initialDialogState)
 

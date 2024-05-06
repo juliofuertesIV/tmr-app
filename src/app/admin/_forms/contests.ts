@@ -1,6 +1,11 @@
 import { addCollectionElement } from "@/app/_fetch/post"
 import { updateCollectionItem } from "@/app/_fetch/put"
-import { ICreationFormByCollectionName, IEditionFormByCollectionName } from "@/interfaces/forms"
+import { ICollectionPanel, ICreationFormByCollectionName, IEditionFormByCollectionName } from "@/interfaces/forms"
+import ContestParams from "../_contests/panel/ContestParams"
+import ContestBrands from "../_contests/panel/ContestBrands"
+import ContestStates from "../_contests/panel/ContestStates"
+import AdminEditionForm from "./AdminEditionForm"
+import { IParam } from "@/interfaces"
 
 export const contestCreationForm : ICreationFormByCollectionName = {
     action: addCollectionElement,
@@ -100,6 +105,26 @@ export const contestEditForm : IEditionFormByCollectionName = {
             label: 'ID de Google Analytics',
             required: false,
             type: 'text'
+        }
+    ],
+    mediaFields: [
+        {
+            role: 'logo',
+            label: 'Logotipo del concurso',
+            instructions: 'Debe pesar menos de 2mb',
+            acceptedTypes: 'image/png, image/svg'
+        },
+        {
+            role: 'banner',
+            label: 'Banner del concurso',
+            instructions: 'Debe pesar menos de 2mb',
+            acceptedTypes: 'image/png, image/svg'
+        },
+        {
+            role: 'favicon',
+            label: 'Favicon del concurso',
+            instructions: 'Debe ser imagen tipo .ico',
+            acceptedTypes: '.ico'
         }
     ]
 }

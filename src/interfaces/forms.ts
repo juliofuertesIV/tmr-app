@@ -50,6 +50,7 @@ export type ICreationFormByCollectionName = {
 
 export type IEditionFormByCollectionName = {
     fields: IEditionFormField[],
+    mediaFields: IMediaFormField[],
     action: IFormEditionAction
 }
 

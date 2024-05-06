@@ -1,4 +1,4 @@
-import { IAPIResponse } from '@/interfaces/forms'
+import { IAPIResponse } from '@/interfaces/api'
 import React from 'react'
 
 export default function FeedbackContent({ formState } : { formState: IAPIResponse | null }) {

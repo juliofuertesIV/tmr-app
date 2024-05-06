@@ -2,7 +2,7 @@
 
 import { useFormState } from 'react-dom'
 import AdminFormSubmit from './AdminFormSubmit'
-import { IEditionFormField, IFormEditionAction, IMediaFormField, formInitialState } from '@/interfaces/forms'
+import { IEditionFormField, IFormEditionAction, formInitialState } from '@/interfaces/forms'
 import AdminFormFeedback from './AdminFormFeedback'
 import EditionInput from './inputs/EditionInput'
 import { IOneOfCollectionNames, IOneOfCollections } from '@/interfaces'

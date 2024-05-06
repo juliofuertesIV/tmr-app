@@ -1,6 +1,6 @@
 'use client'
 
-import { IBrand, IContest, IContestMedia, IContestState, IOneOfCollectionNames, IOneOfCollections, IParam } from "@/interfaces"
+import { IBrand, IContest, IContestState, IOneOfCollections, IParam } from "@/interfaces"
 import { useState } from "react"
 import AdminEditionForm from "../../_forms/AdminEditionForm"
 import ContestBrands from "./ContestBrands"
@@ -8,7 +8,7 @@ import ContestParams from "./ContestParams"
 import ContestStates from "./ContestStates"
 import ContestPanelNav from "./ContestPanelNav"
 import { getEditionFormByCollectionName } from "../../_forms"
-import { IEditionFormField, IFormEditionAction } from "@/interfaces/forms"
+import ContestMediaManager from "./ContestMediaManager"
 
 type Props = { 
     contest: IContest,
@@ -19,19 +19,20 @@ type Props = {
     }
 }
 
-export type IContestSectionName = 'info' | 'params' | 'brands' | 'states' | 'media'
+export type IContestSectionName = 'info' | 'params' | 'brands' | 'states' | 'media' | 'genres'
 
 const navItems : { name: string, value: IContestSectionName }[] = [
     { name: 'Información', value: 'info' },
-    { name: 'Marcas', value: 'brands' },
     { name: 'Estado', value: 'states' },
     { name: 'Configuración', value: 'params' },
     { name: 'Imágenes', value: 'media' },
+    { name: 'Branding', value: 'brands' },
+    { name: 'Géneros', value: 'genres' }
 ]
 
 export default function ContestPanel({ contest, relationships } : Props) {
 
-    const { action, fields } = getEditionFormByCollectionName({ collection: 'contests' })
+    const { action, fields, mediaFields } = getEditionFormByCollectionName({ collection: 'contests' })
 
     const [ selectedSection, setSelectedSection ] = useState<IContestSectionName>('info')
 
@@ -44,7 +45,8 @@ export default function ContestPanel({ contest, relationships } : Props) {
         brands: { Element: () => <ContestBrands items={ brands } collectionElement={ contest }/> },
         params: { Element: () => <ContestParams items={ params } collectionElement={ contest }/> },
         states: { Element: () => <ContestStates items={ states } collectionElement={ contest }/> },
-        media: { Element: () => <div></div> }
+        media: { Element: () => <ContestMediaManager collectionElement={ contest as IOneOfCollections } mediaFields={ mediaFields }/> },
+        genres: { Element: () => <div>Géneros</div> }
     }
 
     const { Element } = panelSections[selectedSection]
