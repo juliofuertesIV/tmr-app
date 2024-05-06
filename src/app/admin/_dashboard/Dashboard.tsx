@@ -27,8 +27,6 @@ export default function Dashboard() {
 
     const { contests, brands } = useContext(AdminContext)
 
-    const sections = [ contests, brands ]
-
     useLayoutEffect(() => {
 
         if (dialog.isOpen) {
