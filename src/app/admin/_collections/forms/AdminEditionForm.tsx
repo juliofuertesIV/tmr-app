@@ -6,8 +6,8 @@ import { formInitialState } from '@/interfaces/forms'
 import AdminFormFeedback from './AdminFormFeedback'
 import EditionInput from './inputs/EditionInput'
 import { IOneOfCollectionNames, IOneOfCollections } from '@/interfaces'
-import { getEditionFormByCollectionName } from '..'
 import { useParams } from 'next/navigation'
+import { getEditionFormByCollectionName } from '..'
 
 type Props = {
     item: IOneOfCollections

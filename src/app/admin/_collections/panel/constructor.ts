@@ -6,7 +6,7 @@ import ContestParams from "../forms/contests/ContestParams";
 import ContestStates from "../forms/contests/ContestStates";
 import ContestMediaManager from "../forms/contests/ContestMediaManager";
 
-const panels = {
+export const panelsByCollectionName = {
     contests: {
         navItems: [
             { name: 'Información', value: 'info' },
@@ -46,15 +46,8 @@ const panels = {
         navItems: { name: string, value: string }[],
         sections: {
             [key: string]: {
-                Element: ({ item } : { item: any }) => JSX.Element
+                Element: ({ item } : { item: any /* TO DO: FIX THIS  */ }) => JSX.Element
             }
         }
     } 
 }
-
-
-export const getCollectionElementPanel = ({ 
-    collection,
-} : { 
-    collection: IOneOfCollectionNames
-}) => panels[collection]

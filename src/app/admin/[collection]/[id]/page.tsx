@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import { IOneOfCollectionNames } from "@/interfaces";
 import { getCollectionElementById } from "@/app/_fetch/get";
-import CollectionPanel from "../../_dashboard/panel/CollectionPanel";
+import CollectionPanel from "../../_collections/panel/CollectionPanel";
 
 export const metadata: Metadata = {
     title: "Panel de administración TMR",

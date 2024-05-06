@@ -2,8 +2,8 @@
 
 import { IOneOfCollectionNames, IOneOfCollections } from "@/interfaces"
 import { useState } from "react"
-import { getCollectionElementPanel } from "../../_collections/panel"
-import CollectionPanelNav from "../../_collections/panel/nav/CollectionPanelNav"
+import CollectionPanelNav from "./nav/CollectionPanelNav"
+import { getCollectionElementPanel } from ".."
 
 type Props = { 
     collection: IOneOfCollectionNames,
