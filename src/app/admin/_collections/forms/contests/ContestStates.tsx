@@ -8,11 +8,11 @@ import { formInitialState } from "@/interfaces/forms"
 import AdminFormFeedback from "../AdminFormFeedback"
 import StateRadioButton from "./StateRadioButton"
 import { useContext } from "react"
-import { AdminContext } from "@/_providers/AdminProvider"
+import { AdminDataContext } from "@/_providers/AdminDataProvider"
 
 export default function ContestStates({ item: contest } : { item: IContest }) {
     
-    const { states } = useContext(AdminContext)
+    const { states } = useContext(AdminDataContext)
 
     const boundAction = updateCollectionItem.bind(null, 'contests', contest.id as string)
     

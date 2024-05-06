@@ -10,9 +10,9 @@ type Props = {
 
 export default function CollectionSection({ children, onManageDialog, title } : Props) {
   return (
-    <section className="w-full max-w-5xl mx-auto bg-gradient-to-tr from-neutral-900 to-neutral-800 rounded-xl overflow-hidden">
+    <section className="w-full max-w-5xl mx-auto bg-gradient-to-tr from-neutral-950 to-neutral-900 rounded-md overflow-hidden shadow-md">
         <header className="flex justify-between w-full py-4 mb-8 bg-neutral-700 pt-4 px-8">
-            <h2>{ title }</h2>
+            <h2 className='pointer-events-none'>{ title }</h2>
             <button 
                 onClick={ () => onManageDialog({ collection: 'contests', isOpen: true })}
                 className="bg-neutral-500 text-neutral-100 font-bold hover:bg-neutral-600 hover:text-neutral-50 px-4 rounded-md text-sm transition-colors shadow-md"

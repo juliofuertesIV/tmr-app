@@ -105,19 +105,19 @@ export const contestEditForm : IEditionFormByCollectionName = {
     mediaFields: [
         {
             role: 'logo',
-            label: 'Logotipo del concurso',
+            label: 'Logotipo',
             instructions: 'Debe pesar menos de 2mb',
             acceptedTypes: 'image/png, image/svg'
         },
         {
             role: 'banner',
-            label: 'Banner del concurso',
+            label: 'Banner',
             instructions: 'Debe pesar menos de 2mb',
             acceptedTypes: 'image/png, image/svg'
         },
         {
             role: 'favicon',
-            label: 'Favicon del concurso',
+            label: 'Favicon',
             instructions: 'Debe ser imagen tipo .ico',
             acceptedTypes: '.ico'
         }

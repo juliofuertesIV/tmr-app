@@ -1,7 +1,7 @@
 'use server'
 
 import { IOneOfCollectionNames } from "@/interfaces"
-import { IAPIResponse } from "@/interfaces/forms"
+import { IAPIResponse } from "@/interfaces/api"
 import { revalidateTag } from "next/cache"
 
 export const addCollectionElement = async (
@@ -9,7 +9,7 @@ export const addCollectionElement = async (
     prevState: any,
     formData: FormData
 ) : Promise<IAPIResponse> => {
-
+    
     const payload = Object.fromEntries(formData)
 
     const res = await fetch(`http://localhost:3000/api/${ collection }`, {
@@ -46,7 +46,7 @@ export const manageContestParams = async ({
     return res
 }
 
-export const manageCollectionMedia = async(
+export const manageCollectionMedia = async (
     collection: IOneOfCollectionNames,
     elementId: string | number,
     prevState: any,

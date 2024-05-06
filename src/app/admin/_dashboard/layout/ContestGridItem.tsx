@@ -5,13 +5,13 @@ import React from 'react'
 export default function ContestGridItem({ item } : { item: IContest }) {
     return (
         <div 
-            className="flex flex-1 gap-8 text-white border-white bg-neutral-800 border pl-4 px-2 py-2 rounded-md w-full"
+            className="flex gap-4 text-white border-white bg-neutral-800 border pl-4 px-2 py-2 rounded-md w-full"
             style={{
                 backgroundColor: item.Brand?.backgroundColor || '',
                 color: item.Brand?.foregroundColor || ''
             }}
         >
-            <div className="flex flex-col justify-center flex-1 gap-1">
+            <div className="flex flex-col justify-center flex-1 gap-1 w-full">
                 <header className="uppercase text-left font-bold leading-none">
                     { item.name } ({`${ item.Brand?.name || "No branding"}, ${ item.year }`})
                 </header>

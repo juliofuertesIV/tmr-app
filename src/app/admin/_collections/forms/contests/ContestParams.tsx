@@ -4,11 +4,11 @@ import { IContest, IParam } from '@/interfaces'
 import { manageContestParams } from '@/app/_fetch/post'
 import { useContext, useState } from 'react'
 import ParamCheckbox from './ParamCheckbox'
-import { AdminContext } from '@/_providers/AdminProvider'
+import { AdminDataContext } from '@/_providers/AdminDataProvider'
 
 export default function ContestParams({ item: contest } : { item: IContest }) {
 
-    const { params } = useContext(AdminContext)
+    const { params } = useContext(AdminDataContext)
 
     const [ loadingId, setLoadingId ] = useState<string|null>(null)
   

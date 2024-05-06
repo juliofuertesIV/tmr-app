@@ -1,4 +1,4 @@
-import { IBrand, IContest, IContestMedia, IContestMediaRole, IContestState, IOneOfCollectionNames, IOneOfCollections, IParam } from "."
+import { IContest, IContestMediaRole, IOneOfCollectionNames } from "."
 import { IAPIResponse } from "./api"
 
 export const formInitialState : IAPIResponse = {
@@ -53,16 +53,3 @@ export type IEditionFormByCollectionName = {
     mediaFields: IMediaFormField[],
     action: IFormEditionAction
 }
-
-export type ICollectionPanel = {
-    navItems: { name: string, value: string | null }[],
-    form: {
-        action: IFormEditionAction,
-        fields: ICollectionFormField[]
-    },
-    sections: {
-        [key: string]: ({ collectionElement, items }: { collectionElement: IContest; items: any[] }) => JSX.Element // FIX THAT ANY YOU COWARD
-    }
-}
-
-

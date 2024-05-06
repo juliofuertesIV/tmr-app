@@ -1,9 +1,9 @@
 'use client'
 
-import React, { useContext, useLayoutEffect, useRef, useState } from 'react'
+import React, { useLayoutEffect, useRef, useState } from 'react'
 import { IOneOfCollectionNames, IOneOfCollections } from '@/interfaces'
 import Dialog from './Dialog'
-import { AdminContext } from '@/_providers/AdminProvider'
+import { IAdminData } from '@/_providers/AdminDataProvider'
 import CollectionGrid from './layout/CollectionGrid'
 import CollectionSection from './layout/CollectionSection'
 
@@ -17,7 +17,7 @@ const initialDialogState : DialogState = {
     isOpen: false
 } 
 
-export default function Dashboard() {
+export default function Dashboard({ data } : { data: IAdminData }) {
 
     const [ dialog, setDialog ] = useState<DialogState>(initialDialogState)
 
@@ -25,7 +25,7 @@ export default function Dashboard() {
 
     const onManageDialog = (dialogState: DialogState) => setDialog(dialogState)
 
-    const { contests, brands } = useContext(AdminContext)
+    const { contests, brands } = data
 
     useLayoutEffect(() => {
 

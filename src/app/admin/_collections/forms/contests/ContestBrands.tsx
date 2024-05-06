@@ -1,6 +1,6 @@
 'use client'
 
-import { IBrand, IContest } from "@/interfaces"
+import { IContest } from "@/interfaces"
 import AdminFormSubmit from "../AdminFormSubmit"
 import { updateCollectionItem } from "@/app/_fetch/put"
 import { useFormState } from "react-dom"
@@ -8,11 +8,11 @@ import { formInitialState } from "@/interfaces/forms"
 import AdminFormFeedback from "../AdminFormFeedback"
 import BrandRadioButton from "./BrandRadioButton"
 import { useContext, useRef, useState } from "react"
-import { AdminContext } from "@/_providers/AdminProvider"
+import { AdminDataContext } from "@/_providers/AdminDataProvider"
 
 export default function ContestBrands({ item: contest } : { item: IContest }) {
     
-    const { brands } = useContext(AdminContext)
+    const { brands } = useContext(AdminDataContext)
 
     const [ selectedBrandId, setSelectedBrandId ] = useState<number>(contest.BrandId)
 

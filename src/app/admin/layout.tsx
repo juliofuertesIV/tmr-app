@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "../globals.css";
-import AdminProvider from "@/_providers/AdminProvider";
-import { IBrand, IContest, IContestState, IParam } from "@/interfaces";
+import AdminDataProvider, { IAdminData } from "@/_providers/AdminDataProvider";
 import { getAdminData } from "../_fetch/get";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -12,14 +11,7 @@ export const metadata: Metadata = {
     description: "Esta es la página genérica de los concursos de TMR FOR LIFE",
 };
 
-export type AdminData = {
-    contests: IContest[],
-    brands: IBrand[],
-    params: IParam[],
-    states: IContestState[]
-}
-
-const getData = async () : Promise<AdminData> => {
+const getData = async () : Promise<IAdminData> => {
     const { data } = await getAdminData()
     return data 
 } 
@@ -31,9 +23,9 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
     return (
         <html lang="en">
             <body className={ inter.className }>
-                <AdminProvider data={ data }>
+                <AdminDataProvider data={ data }>
                     { children }
-                </AdminProvider>
+                </AdminDataProvider>
             </body>
         </html>
     );

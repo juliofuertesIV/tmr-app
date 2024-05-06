@@ -8,12 +8,12 @@ export default function ContestMediaManager({ item: contest } : { item: IContest
     const { mediaFields } = getEditionFormByCollectionName({ collection: 'contests' })
 
     return (
-        <>
-            { mediaFields.map((field, index) => {
-                return (
+        <div className='flex flex-col gap-4 w-full'>
+            {
+                mediaFields.map((field, index) => 
                     <FileUploadForm key={ index } collectionElement={ contest } mediaField={ field }/>
                 )
-            })}
-        </>
+            }
+        </div>
     )
 }
