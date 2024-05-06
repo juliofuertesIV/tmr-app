@@ -50,11 +50,8 @@ export type ICreationFormByCollectionName = {
 
 export type IEditionFormByCollectionName = {
     fields: IEditionFormField[],
-    mediaFields: IMediaFormField[],
     action: IFormEditionAction
 }
-
-export type IContestRelations = IParam | IBrand | IContestState | IContestMedia
 
 export type ICollectionPanel = {
     navItems: { name: string, value: string | null }[],
@@ -63,12 +60,8 @@ export type ICollectionPanel = {
         fields: ICollectionFormField[]
     },
     sections: {
-        [key: string]: ({ collectionElement, items }: { collectionElement: IContest; items: IContestRelations[]; }) => JSX.Element
+        [key: string]: ({ collectionElement, items }: { collectionElement: IContest; items: any[] }) => JSX.Element // FIX THAT ANY YOU COWARD
     }
 }
 
-export type IRelationshipModule = (
-    { collectionElement, items } : 
-    { collectionElement: IContest; items: IContestRelations[]; }
-) => JSX.Element
 

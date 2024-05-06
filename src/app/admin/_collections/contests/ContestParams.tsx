@@ -1,9 +1,9 @@
 'use client'
 
 import { IContest, IParam } from '@/interfaces'
-import ParamCheckbox from '../inputs/ParamCheckbox'
 import { manageContestParams } from '@/app/_fetch/post'
 import { useState } from 'react'
+import ParamCheckbox from '../../_forms/inputs/ParamCheckbox'
 
 export default function ContestParams({ collectionElement, items } : { collectionElement: IContest, items: IParam[] }) {
 
@@ -23,7 +23,7 @@ export default function ContestParams({ collectionElement, items } : { collectio
             <legend className="uppercase px-2">Cambiar parámetros del concurso</legend>
                 {
                     items.map(param => 
-                        <ParamCheckbox 
+                        <ParamCheckbox
                             key={ param.id }
                             loading={ loadingId === param.id }
                             contest={ collectionElement }

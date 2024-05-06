@@ -1,6 +1,6 @@
 import { addCollectionElement } from "@/app/_fetch/post"
 import { updateCollectionItem } from "@/app/_fetch/put"
-import { ICollectionPanel, ICreationFormByCollectionName, IEditionFormByCollectionName } from "@/interfaces/forms"
+import { ICreationFormByCollectionName, IEditionFormByCollectionName } from "@/interfaces/forms"
 
 export const brandCreationForm : ICreationFormByCollectionName = {
     action: addCollectionElement,
@@ -64,19 +64,4 @@ export const brandEditForm : IEditionFormByCollectionName = {
         type: 'color'
     },    
     ],
-    mediaFields: []
-}
-
-
-export const navItems = [
-    { name: 'Información', value: null }
-]
-
-export const brandPanel : ICollectionPanel = {
-    navItems,
-    form: {
-        action: updateCollectionItem,
-        fields: brandEditForm.fields
-    },
-    sections: []
 }

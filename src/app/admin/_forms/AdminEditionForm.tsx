@@ -16,7 +16,8 @@ type Props = {
 
 export default function AdminEditionForm({ action, fields, collection, collectionElement } : Props) {
 
-    const boundAction = action.bind(null, collection, collectionElement.id as string)
+    
+    const boundAction = action?.bind(null, collection, collectionElement.id as string)
     
     const [state, formAction] = useFormState(boundAction, formInitialState)
 

@@ -1,7 +1,7 @@
 'use client'
 
-import { IOneOfCollectionNames, IOneOfCollections } from "@/interfaces"
-import { ICollectionPanel, IContestRelations } from "@/interfaces/forms"
+import { IBrand, IContestMedia, IContestState, IOneOfCollectionNames, IOneOfCollections, IParam } from "@/interfaces"
+import { ICollectionPanel } from "@/interfaces/forms"
 import CollectionPanelNav from "./nav/CollectionPanelNav"
 import { useState } from "react"
 import AdminEditionForm from "../../_forms/AdminEditionForm"
@@ -11,7 +11,7 @@ type Props = {
     collectionElement: IOneOfCollections,
     panel: ICollectionPanel,
     items: {
-        [key: string]: IContestRelations[]
+        [key: string]: IParam[] | IBrand[] | IContestState[] | IContestMedia[]
     }
 }
 
@@ -37,12 +37,21 @@ export default function CollectionPanel({ collection, collectionElement, panel, 
             </header>
         <section className=" grid place-items-center flex-1">
             {
-                !!CurrentSection ?
-                <CurrentSection collectionElement={ collectionElement } items={ currentItems } />
+                !CurrentSection ?
+                (<AdminEditionForm 
+                    collection={ collection }
+                    collectionElement={ collectionElement }
+                    action={ action }
+                    fields={ fields }
+                />)
                 : 
-                <AdminEditionForm collection={ collection } collectionElement={ collectionElement } action={ action } fields={ fields }/>
+                (
+                    <CurrentSection
+                    collectionElement={ collectionElement }
+                    items={ currentItems } 
+                />)
             }
-        </section>
+            </section>
         </div>
     )
 }

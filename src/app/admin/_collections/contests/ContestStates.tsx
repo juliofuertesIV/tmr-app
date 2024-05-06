@@ -1,12 +1,12 @@
 'use client'
 
 import { IContest, IContestState } from "@/interfaces"
-import AdminFormSubmit from "../AdminFormSubmit"
+import AdminFormSubmit from "../../_forms/AdminFormSubmit"
 import { updateCollectionItem } from "@/app/_fetch/put"
 import { useFormState } from "react-dom"
 import { formInitialState } from "@/interfaces/forms"
-import AdminFormFeedback from "../AdminFormFeedback"
-import StateRadioButton from "../inputs/StateRadioButton"
+import AdminFormFeedback from "../../_forms/AdminFormFeedback"
+import StateRadioButton from "../../_forms/inputs/StateRadioButton"
 
 export default function ContestStates({ collectionElement, items } : { collectionElement: IContest, items: IContestState[] }) {
     

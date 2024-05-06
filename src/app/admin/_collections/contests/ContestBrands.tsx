@@ -1,12 +1,12 @@
 'use client'
 
 import { IBrand, IContest } from "@/interfaces"
-import AdminFormSubmit from "../AdminFormSubmit"
+import AdminFormSubmit from "../../_forms/AdminFormSubmit"
 import { updateCollectionItem } from "@/app/_fetch/put"
 import { useFormState } from "react-dom"
 import { formInitialState } from "@/interfaces/forms"
-import AdminFormFeedback from "../AdminFormFeedback"
-import BrandRadioButton from "../inputs/BrandRadioButton"
+import AdminFormFeedback from "../../_forms/AdminFormFeedback"
+import BrandRadioButton from "../../_forms/inputs/BrandRadioButton"
 import { useRef, useState } from "react"
 
 export default function ContestBrands({ collectionElement, items } : { collectionElement: IContest, items: IBrand[] }) {
