@@ -2,13 +2,8 @@
 
 import { IBrand, IContest, IContestState, IOneOfCollections, IParam } from "@/interfaces"
 import { useState } from "react"
-import AdminEditionForm from "../../_forms/AdminEditionForm"
-import ContestBrands from "./ContestBrands"
-import ContestParams from "./ContestParams"
-import ContestStates from "./ContestStates"
 import ContestPanelNav from "./ContestPanelNav"
-import { getEditionFormByCollectionName } from "../../_forms"
-import ContestMediaManager from "./ContestMediaManager"
+import { getCollectionElementPanel } from "../../_collections/panel"
 
 type Props = { 
     contest: IContest,
@@ -19,37 +14,15 @@ type Props = {
     }
 }
 
-export type IContestSectionName = 'info' | 'params' | 'brands' | 'states' | 'media' | 'genres'
+export default function ContestPanel({ contest } : Props) {
 
-const navItems : { name: string, value: IContestSectionName }[] = [
-    { name: 'Información', value: 'info' },
-    { name: 'Estado', value: 'states' },
-    { name: 'Configuración', value: 'params' },
-    { name: 'Imágenes', value: 'media' },
-    { name: 'Branding', value: 'brands' },
-    { name: 'Géneros', value: 'genres' }
-]
+    const [ selectedSection, setSelectedSection ] = useState<string>('info')
 
-export default function ContestPanel({ contest, relationships } : Props) {
-
-    const { action, fields, mediaFields } = getEditionFormByCollectionName({ collection: 'contests' })
-
-    const [ selectedSection, setSelectedSection ] = useState<IContestSectionName>('info')
-
-    const onSelectNavItem = (section: IContestSectionName) => setSelectedSection(section)   
-
-    const { brands, params, states } = relationships
-
-    const panelSections : { [key in IContestSectionName]: { Element: () => JSX.Element } } = {
-        info: { Element: () => <AdminEditionForm action={ action } fields={ fields } collection="contests" collectionElement={ contest as IOneOfCollections  }/> },
-        brands: { Element: () => <ContestBrands items={ brands } collectionElement={ contest }/> },
-        params: { Element: () => <ContestParams items={ params } collectionElement={ contest }/> },
-        states: { Element: () => <ContestStates items={ states } collectionElement={ contest }/> },
-        media: { Element: () => <ContestMediaManager collectionElement={ contest as IOneOfCollections } mediaFields={ mediaFields }/> },
-        genres: { Element: () => <div>Géneros</div> }
-    }
-
-    const { Element } = panelSections[selectedSection]
+    const onSelectNavItem = (section: string) => setSelectedSection(section)   
+    
+    const { navItems, sections } = getCollectionElementPanel({ collection: 'contests', collectionElement: contest as IOneOfCollections })
+    
+    const { Element } = sections[selectedSection]
 
     return (
         <div className="min-h-screen flex flex-col">

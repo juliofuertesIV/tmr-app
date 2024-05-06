@@ -1,9 +1,9 @@
 import React from 'react'
 
 type Props = { 
-    item: { name: string, value: string | null }, 
+    item: { name: string, value: string }, 
     isActive: boolean,
-    onClickNavItem: (value: string | null) => void
+    onClickNavItem: (value: string) => void
 }
 
 export default function PanelNavItem({ item, isActive, onClickNavItem } : Props) {

@@ -1,14 +1,14 @@
 import PanelNavItem from './PanelNavItem'
 
 type Props = {
-    navItems: { name: string, value: string | null }[],
-    onSelectNavItem: (value: string | null) => void,
-    currentSection: string | null
+    navItems: { name: string, value: string }[],
+    onSelectNavItem: (value: string) => void,
+    currentSection: string
 }
 
 export default function CollectionPanelNav({ navItems, onSelectNavItem, currentSection } : Props) {
 
-    const onClickNavItem = (value: string | null) => onSelectNavItem(value)
+    const onClickNavItem = (value: string) => onSelectNavItem(value)
 
     return (
         <menu className='flex gap-2 justify-center uppercase'>

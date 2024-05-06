@@ -2,17 +2,20 @@
 
 import { IContest, IParam } from '@/interfaces'
 import { manageContestParams } from '@/app/_fetch/post'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import ParamCheckbox from '../../_forms/inputs/ParamCheckbox'
+import { AdminContext } from '@/_providers/AdminProvider'
 
-export default function ContestParams({ collectionElement, items } : { collectionElement: IContest, items: IParam[] }) {
+export default function ContestParams({ item: contest } : { item: IContest }) {
+
+    const { params } = useContext(AdminContext)
 
     const [ loadingId, setLoadingId ] = useState<string|null>(null)
   
     const submitForm = async ({ ParamId, method } : { ParamId: string, method: 'POST' | 'DELETE' }) => {
         setLoadingId(ParamId)
 
-        await manageContestParams({ method, ParamId, ContestId: collectionElement.id as string })
+        await manageContestParams({ method, ParamId, ContestId: contest.id as string })
         .then(data => data)
         .finally(() => setLoadingId(null))
     }
@@ -22,11 +25,11 @@ export default function ContestParams({ collectionElement, items } : { collectio
             <fieldset className="border-2 border-neutral-100 px-4 pt-4 pb-4 flex flex-col gap-2 text-sm">
             <legend className="uppercase px-2">Cambiar parámetros del concurso</legend>
                 {
-                    items.map(param => 
+                    params.map(param => 
                         <ParamCheckbox
                             key={ param.id }
                             loading={ loadingId === param.id }
-                            contest={ collectionElement }
+                            contest={ contest }
                             param={ param }
                             submitForm={ submitForm }
                         />

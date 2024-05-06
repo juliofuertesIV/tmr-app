@@ -1,10 +1,11 @@
 'use client'
 
-import React, { useLayoutEffect, useRef, useState } from 'react'
+import React, { useContext, useLayoutEffect, useRef, useState } from 'react'
 import ContestGrid from '../_contests/ContestGrid'
 import BrandGrid from '../_brands/BrandGrid'
-import { IBrand, IContest, IOneOfCollectionNames } from '@/interfaces'
+import { IOneOfCollectionNames } from '@/interfaces'
 import Dialog from './Dialog'
+import { AdminContext } from '@/_providers/AdminProvider'
 
 
 type DialogState = {
@@ -17,13 +18,19 @@ const initialDialogState : DialogState = {
     isOpen: false
 } 
 
-export default function Dashboard({ contests, brands } : { contests: IContest[], brands: IBrand[] }) {
+export default function Dashboard() {
 
     const [ dialog, setDialog ] = useState<DialogState>(initialDialogState)
 
     const dialogRef = useRef<HTMLDialogElement>(null)
 
     const onManageDialog = (dialogState: DialogState) => setDialog(dialogState)
+
+    const { contests, brands } = useContext(AdminContext)
+
+    const data = useContext(AdminContext)
+
+    console.log({ data })
 
     useLayoutEffect(() => {
 

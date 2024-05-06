@@ -2,22 +2,24 @@
 
 import { useFormState } from 'react-dom'
 import AdminFormSubmit from './AdminFormSubmit'
-import { IEditionFormField, IFormEditionAction, formInitialState } from '@/interfaces/forms'
+import { formInitialState } from '@/interfaces/forms'
 import AdminFormFeedback from './AdminFormFeedback'
 import EditionInput from './inputs/EditionInput'
 import { IOneOfCollectionNames, IOneOfCollections } from '@/interfaces'
+import { getEditionFormByCollectionName } from '.'
+import { useParams } from 'next/navigation'
 
 type Props = {
-    collection: IOneOfCollectionNames,
-    action: IFormEditionAction,
-    fields: IEditionFormField[],
-    collectionElement: IOneOfCollections
+    item: IOneOfCollections
 }
 
-export default function AdminEditionForm({ action, fields, collection, collectionElement } : Props) {
+export default function AdminEditionForm({ item } : Props) {
 
-    
-    const boundAction = action?.bind(null, collection, collectionElement.id as string)
+    const { collection } = useParams() as { collection: IOneOfCollectionNames }
+
+    const { action, fields } = getEditionFormByCollectionName({ collection })
+
+    const boundAction = action?.bind(null, collection, item.id as string)
     
     const [state, formAction] = useFormState(boundAction, formInitialState)
 
@@ -33,7 +35,7 @@ export default function AdminEditionForm({ action, fields, collection, collectio
                         <EditionInput 
                             key={ index }
                             input={ field }
-                            collectionElement={ collectionElement }
+                            collectionElement={ item }
                         />
                     )
                 })

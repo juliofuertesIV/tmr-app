@@ -5,6 +5,8 @@ type GetElementById = (collection: IOneOfCollectionNames, id: string) => Promise
 
 type GetContests = (collection: IOneOfCollectionNames) => Promise<IAPIResponse>
 
+type GetAdminData = () => Promise<IAPIResponse>
+
 export const getCollectionElementById : GetElementById = async (collection: IOneOfCollectionNames, id: string) => {
     
     const res = await fetch(`http://localhost:3000/api/${ collection }/${ id }`, {
@@ -41,4 +43,20 @@ export const getCollection : GetContests = async (collection: IOneOfCollectionNa
     return res
 }
 
+export const getAdminData : GetAdminData = async () => {
+    
+    const res = await fetch(`http://localhost:3000/api/admin`, {
+        method: "GET",
+        cache: 'no-cache',
+        headers: {
+            "Content-Type": "application/json",
+        },
+        next: {
+            tags: ['contests, brands, params, states']
+        }
+    })
+    .then(async (data) => await data.json())
+    .catch(error => error)
 
+    return res
+}

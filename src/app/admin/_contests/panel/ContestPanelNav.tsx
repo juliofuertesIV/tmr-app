@@ -1,15 +1,14 @@
-import { IContestSectionName } from './ContestPanel'
 import ContestPanelNavItem from './ContestPanelNavItem'
 
 type Props = {
-    navItems: { name: string, value: IContestSectionName }[],
-    onSelectNavItem: (value: IContestSectionName) => void,
-    currentSection: IContestSectionName
+    navItems: { name: string, value: string }[],
+    onSelectNavItem: (value: string) => void,
+    currentSection: string
 }
 
 export default function ContestPanelNav({ navItems, onSelectNavItem, currentSection } : Props) {
 
-    const onClickNavItem = (value: IContestSectionName) => onSelectNavItem(value)
+    const onClickNavItem = (value: string) => onSelectNavItem(value)
 
     return (
         <menu className='flex gap-2 justify-center uppercase'>

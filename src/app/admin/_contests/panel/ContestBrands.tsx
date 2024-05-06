@@ -7,15 +7,18 @@ import { useFormState } from "react-dom"
 import { formInitialState } from "@/interfaces/forms"
 import AdminFormFeedback from "../../_forms/AdminFormFeedback"
 import BrandRadioButton from "../../_forms/inputs/BrandRadioButton"
-import { useRef, useState } from "react"
+import { useContext, useRef, useState } from "react"
+import { AdminContext } from "@/_providers/AdminProvider"
 
-export default function ContestBrands({ collectionElement, items } : { collectionElement: IContest, items: IBrand[] }) {
+export default function ContestBrands({ item: contest } : { item: IContest }) {
     
-    const [ selectedBrandId, setSelectedBrandId ] = useState<number>(collectionElement.BrandId)
+    const { brands } = useContext(AdminContext)
+
+    const [ selectedBrandId, setSelectedBrandId ] = useState<number>(contest.BrandId)
 
     const onSelectBrand = (brandId: number) => setSelectedBrandId(brandId)
 
-    const boundAction = updateCollectionItem.bind(null, 'contests', collectionElement.id as string)
+    const boundAction = updateCollectionItem.bind(null, 'contests', contest.id as string)
     
     const [state, formAction] = useFormState(boundAction, formInitialState)
     
@@ -27,7 +30,7 @@ export default function ContestBrands({ collectionElement, items } : { collectio
                 <div className=" flex flex-col gap-2">
                     <h3 className="uppercase pb-2">Branding asociado:</h3>
                     {
-                        items.map((brand, index) => {
+                        brands.map((brand, index) => {
 
                             const isSelected = selectedBrandId === brand.id
 

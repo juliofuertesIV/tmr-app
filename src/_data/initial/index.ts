@@ -1,6 +1,5 @@
-import { IBrand, IContestParamIds, IContestStateIds } from "@/interfaces"
 
-const brands : IBrand[] = [
+const brands = [
     {
         name: 'Viña Rock',
         website: 'https://viñarock.com',
@@ -43,7 +42,7 @@ const brands : IBrand[] = [
     }    
 ]
 
-const states : { id: IContestStateIds, name: string, description: string }[] = [
+const states = [
     {
         id: 'inscriptionOnly',
         name: 'Inscripción activada',
@@ -71,7 +70,7 @@ const states : { id: IContestStateIds, name: string, description: string }[] = [
     }
 ]
 
-const params : { id: IContestParamIds, name: string, description: string }[]  = [
+const params = [
     {
         id: 'inscriptionIsPublic',
         name: 'Inscripción pública',
