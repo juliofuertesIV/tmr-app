@@ -3,7 +3,7 @@
 import { IContest, IParam } from '@/interfaces'
 import { manageContestParams } from '@/app/_fetch/post'
 import { useContext, useState } from 'react'
-import ParamCheckbox from '../../_forms/inputs/ParamCheckbox'
+import ParamCheckbox from './ParamCheckbox'
 import { AdminContext } from '@/_providers/AdminProvider'
 
 export default function ContestParams({ item: contest } : { item: IContest }) {

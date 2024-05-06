@@ -1,11 +1,10 @@
 
-import { IBrand, IOneOfCollectionNames, IOneOfCollections } from "@/interfaces";
-import AdminEditionForm from "../../_forms/AdminEditionForm";
-import ContestBrands from "../../_contests/panel/ContestBrands";
-import ContestParams from "../../_contests/panel/ContestParams";
-import ContestStates from "../../_contests/panel/ContestStates";
-import ContestMediaManager from "../../_contests/panel/ContestMediaManager";
-import { ComponentProps } from "react";
+import { IOneOfCollectionNames } from "@/interfaces";
+import AdminEditionForm from "../forms/AdminEditionForm";
+import ContestBrands from "../forms/contests/ContestBrands";
+import ContestParams from "../forms/contests/ContestParams";
+import ContestStates from "../forms/contests/ContestStates";
+import ContestMediaManager from "../forms/contests/ContestMediaManager";
 
 const panels = {
     contests: {
@@ -52,6 +51,7 @@ const panels = {
         }
     } 
 }
+
 
 export const getCollectionElementPanel = ({ 
     collection,

@@ -13,6 +13,4 @@ const editionFormsByCollectionName = {
 }
 
 export const getCreationformByCollectionName = ({ collection } : { collection: IOneOfCollectionNames }) => creationFormsByCollectionName[collection]
-
 export const getEditionFormByCollectionName = ({ collection } : { collection: IOneOfCollectionNames }) => editionFormsByCollectionName[collection]
-

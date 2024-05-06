@@ -1,12 +1,12 @@
 'use client'
 
-import { IContest, IContestState } from "@/interfaces"
-import AdminFormSubmit from "../../_forms/AdminFormSubmit"
+import { IContest } from "@/interfaces"
+import AdminFormSubmit from "../AdminFormSubmit"
 import { updateCollectionItem } from "@/app/_fetch/put"
 import { useFormState } from "react-dom"
 import { formInitialState } from "@/interfaces/forms"
-import AdminFormFeedback from "../../_forms/AdminFormFeedback"
-import StateRadioButton from "../../_forms/inputs/StateRadioButton"
+import AdminFormFeedback from "../AdminFormFeedback"
+import StateRadioButton from "./StateRadioButton"
 import { useContext } from "react"
 import { AdminContext } from "@/_providers/AdminProvider"
 

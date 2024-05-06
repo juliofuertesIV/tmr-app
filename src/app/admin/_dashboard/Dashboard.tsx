@@ -1,8 +1,8 @@
 'use client'
 
 import React, { useContext, useLayoutEffect, useRef, useState } from 'react'
-import ContestGrid from '../_contests/ContestGrid'
-import BrandGrid from '../_brands/BrandGrid'
+import ContestGrid from './layout/ContestGrid'
+import BrandGrid from './layout/_brands/BrandGrid'
 import { IOneOfCollectionNames } from '@/interfaces'
 import Dialog from './Dialog'
 import { AdminContext } from '@/_providers/AdminProvider'

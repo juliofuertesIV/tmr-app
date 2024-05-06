@@ -2,10 +2,8 @@
 
 import { IOneOfCollectionNames, IOneOfCollections } from "@/interfaces"
 import { useState } from "react"
-
 import { getCollectionElementPanel } from "../../_collections/panel"
-import ContestPanelNav from "../../_contests/panel/ContestPanelNav"
-import { useParams } from "next/navigation"
+import CollectionPanelNav from "../../_collections/panel/nav/CollectionPanelNav"
 
 type Props = { 
     collection: IOneOfCollectionNames,
@@ -25,12 +23,12 @@ export default function CollectionPanel({ collection, item } : Props) {
     return (
         <div className="min-h-screen flex flex-col">
             <header className="flex flex-col items-center justify-center py-8 pb-6 bg-neutral-900">
-                <h1 className="leading-none mb-4">Editando {  }</h1>
-                <ContestPanelNav navItems={ navItems } currentSection={ selectedSection } onSelectNavItem={ onSelectNavItem }/>
+                <h1 className="leading-none mb-4">Editando { item.name }</h1>
+                <CollectionPanelNav navItems={ navItems } currentSection={ selectedSection } onSelectNavItem={ onSelectNavItem }/>
             </header>
-        <section className="grid place-items-center flex-1">
-            <Element item={ item }/>
-        </section>
+            <section className="grid place-items-center flex-1">
+                <Element item={ item }/>
+            </section>
         </div>
     )
 }

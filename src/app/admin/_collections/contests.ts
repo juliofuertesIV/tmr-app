@@ -1,11 +1,6 @@
 import { addCollectionElement } from "@/app/_fetch/post"
 import { updateCollectionItem } from "@/app/_fetch/put"
-import { ICollectionPanel, ICreationFormByCollectionName, IEditionFormByCollectionName } from "@/interfaces/forms"
-import ContestParams from "../_contests/panel/ContestParams"
-import ContestBrands from "../_contests/panel/ContestBrands"
-import ContestStates from "../_contests/panel/ContestStates"
-import AdminEditionForm from "./AdminEditionForm"
-import { IParam } from "@/interfaces"
+import { ICreationFormByCollectionName, IEditionFormByCollectionName } from "@/interfaces/forms"
 
 export const contestCreationForm : ICreationFormByCollectionName = {
     action: addCollectionElement,

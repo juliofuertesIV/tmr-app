@@ -1,6 +1,6 @@
 import { IOneOfCollectionNames } from '@/interfaces'
-import { getCreationformByCollectionName } from '../_forms'
-import AdminCreationForm from '../_forms/AdminCreationForm'
+import { getCreationformByCollectionName } from '../_collections'
+import AdminCreationForm from '../_collections/forms/AdminCreationForm'
 
 type Props = {
     collection: IOneOfCollectionNames | null,
