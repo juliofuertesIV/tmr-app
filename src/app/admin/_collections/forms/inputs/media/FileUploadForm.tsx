@@ -24,7 +24,7 @@ export default function FileUploadForm({ collectionElement, mediaField } : Props
     
     const [ state, formAction ] = useFormState(boundAction, formInitialState)
 
-    const [ file, setFile ] = useState<File | null>(null)
+    const [ file, setFile ] = useState<File | IContestMedia | null>(null)
     
     const currentMedia = (collectionElement as IContest).Media.find((element: IContestMedia) => element.role === role) || null
 
@@ -40,6 +40,14 @@ export default function FileUploadForm({ collectionElement, mediaField } : Props
         fileInputRef.current.click()
     }
 
+    useEffect(() => {
+
+        if (!currentMedia) return
+
+        setFile(currentMedia)
+
+    }, [ currentMedia, setFile ])
+
     const onInputChange = (e: ChangeEvent<HTMLInputElement>) => {
         if (!e.currentTarget.files) return
 
@@ -51,11 +59,12 @@ export default function FileUploadForm({ collectionElement, mediaField } : Props
         setFile(file)
     }
 
+    console.log({ previewIsCurrentMedia: currentMedia === file })
+
     return (
         <form action={ formAction } className="flex flex-col w-full max-w-2xl mx-auto bg-neutral-800 px-4 pt-2 pb-4">
             <header className="flex flex-col items-center justify-between">
                 <h3 className="flex-1">{ label }</h3>
-                <CurrentMedia media={ currentMedia }/> 
             </header>
             <AdminFormFeedback state={ state }/>
             <FilePreview file={ file } onDiscardFile={ onDiscardFile }/>

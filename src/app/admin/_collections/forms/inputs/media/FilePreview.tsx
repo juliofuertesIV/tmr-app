@@ -1,10 +1,11 @@
 'use client'
 
+import { IContestMedia } from '@/interfaces'
 import Image from 'next/image'
 import React, { useEffect, useRef, useState } from 'react'
 
 type Props = {
-    file: File | null,
+    file: File | IContestMedia | null,
     onDiscardFile: () => void
 }
 
@@ -12,10 +13,9 @@ export default function FilePreview({ file, onDiscardFile } : Props) {
 
     const previewRef = useRef<HTMLImageElement>(null)
 
-    const [ inputFile, setInputFile ] = useState<File | null>(null) 
+    const [ inputFile, setInputFile ] = useState<File | IContestMedia | null>(null) 
     const [ previewSrc, setPreviewSrc ] = useState<string | null>(null) 
     
-
     useEffect(() => {
         if (!file) return
 
@@ -30,6 +30,10 @@ export default function FilePreview({ file, onDiscardFile } : Props) {
     useEffect(() => {
 
         if (!inputFile) return 
+
+        if (!(inputFile instanceof File)) {
+            return setPreviewSrc(inputFile.src)
+        }
 
         const reader = new FileReader();
 

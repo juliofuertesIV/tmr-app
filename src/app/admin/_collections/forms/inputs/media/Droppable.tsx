@@ -1,9 +1,10 @@
+import { IContestMedia } from "@/interfaces"
 import { DragEvent, MouseEvent, useState } from "react"
 
 type Props = {
     onSetFile: (file: File | null) => void,
     onClickDroppable: () => void,
-    currentFile: File | null
+    currentFile: File | IContestMedia | null
 }
 
 export default function Droppable({ currentFile, onSetFile, onClickDroppable } : Props) {
