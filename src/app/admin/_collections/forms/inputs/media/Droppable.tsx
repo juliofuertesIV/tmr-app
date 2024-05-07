@@ -1,13 +1,11 @@
-import { IContestMedia } from "@/interfaces"
 import { DragEvent, MouseEvent, useState } from "react"
 
 type Props = {
     onSetFile: (file: File | null) => void,
-    onClickDroppable: () => void,
-    currentFile: File | IContestMedia | null
+    onClickDroppable: () => void
 }
 
-export default function Droppable({ currentFile, onSetFile, onClickDroppable } : Props) {
+export default function Droppable({ onSetFile, onClickDroppable } : Props) {
 
     const [ highlight, setHighlight ] = useState<boolean>(false)
 
@@ -15,44 +13,29 @@ export default function Droppable({ currentFile, onSetFile, onClickDroppable } :
         event.preventDefault()
         onSetFile(event.dataTransfer.files[0] || null)
     }
-    const onDragExit = (event: DragEvent) => {
-        event.preventDefault()
-        setHighlight(false)
-    }
-    const onDragEnter = (event: DragEvent) => {
+    const onDragOver = (event: DragEvent) => {
         event.preventDefault()
         setHighlight(true)
-    }
-    const onDragLeave = (event: DragEvent) => {
-        event.preventDefault()
-        setHighlight(false)
-    }
-    const onMouseEnter = (event: MouseEvent) => {
-        event.preventDefault()
-        setHighlight(true)
-    }
-    const onMouseLeave = (event: MouseEvent) => {
-        event.preventDefault()
-        setHighlight(false)
     }
 
-    if (!!currentFile) return null
+    const onDragEnter = (e: DragEvent) => setHighlight(true)
+    const onDragLeave = (e: DragEvent) => setHighlight(false)
+    const onMouseEnter = (e: MouseEvent) => setHighlight(true)
+    const onMouseLeave = (e: MouseEvent) => setHighlight(false)
 
     return (
         <div 
             className='flex w-full min-h-48 h-full rounded-md border-2 border-dashed border-neutral-600 relative hover:border-neutral-400 data-[highlight="true"]:border-neutral-400 transition-colors' 
+            data-highlight={ highlight }
             onClick={ onClickDroppable }
             onDragLeave={ onDragLeave }
-            onDragExit={ onDragExit }
+            onDragOver={ onDragOver }
             onDragEnter={ onDragEnter }
             onMouseEnter={ onMouseEnter }
             onMouseLeave={ onMouseLeave }
             onDrop={ onDrop }
-            data-highlight={ highlight }
         >
-            <div className='absolute inset-0 w-full h-full grid place-items-center bg-neutral-700'>
-                <p className='uppercase text-center w-fit text-neutral-400'>Drop your image here</p>
-            </div>
+            <p className='absolute uppercase text-center top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] text-neutral-400 pointer-events-none'>Drop your image here</p>
         </div>
     )
 }

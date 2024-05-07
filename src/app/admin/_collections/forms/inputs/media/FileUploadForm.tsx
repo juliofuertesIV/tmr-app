@@ -67,8 +67,11 @@ export default function FileUploadForm({ collectionElement, mediaField } : Props
                 <h3 className="flex-1">{ label }</h3>
             </header>
             <AdminFormFeedback state={ state }/>
-            <FilePreview file={ file } onDiscardFile={ onDiscardFile }/>
-            <Droppable onClickDroppable={ onClickDroppable } onSetFile={ onSetFile } currentFile={ file }/>
+            {
+                !!file ? 
+                <FilePreview file={ file } onDiscardFile={ onDiscardFile }/> :
+                <Droppable onClickDroppable={ onClickDroppable } onSetFile={ onSetFile }/>
+            }
             <input 
                 ref={ fileInputRef } 
                 className="hidden"
