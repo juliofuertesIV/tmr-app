@@ -71,6 +71,8 @@ export default function FileUploadForm({ collectionElement, mediaField } : Props
 
     console.log({ previewIsCurrentMedia: currentMedia === file })
 
+    // TO DO: DELETE PRIOR ELEMENTS IF NOT OF TYPE FOOTERELEMENT
+
     return (
         <form action={ formAction } ref={ formRef } className="flex flex-col w-full max-w-2xl mx-auto bg-neutral-800 px-4 pt-2 pb-4">
             <header className="flex flex-col items-center justify-between">
