@@ -1,7 +1,7 @@
 import { DragEvent, MouseEvent, useState } from "react"
 
 type Props = {
-    onSetFile: (file: File | null) => void,
+    onSetFile: (event: DragEvent) => void,
     onClickDroppable: () => void
 }
 
@@ -11,7 +11,7 @@ export default function Droppable({ onSetFile, onClickDroppable } : Props) {
 
     const onDrop = (event: DragEvent) => {
         event.preventDefault()
-        onSetFile(event.dataTransfer.files[0] || null)
+        onSetFile(event)
     }
     const onDragOver = (event: DragEvent) => {
         event.preventDefault()

@@ -6,10 +6,9 @@ import { IMediaFormField, formInitialState } from "@/interfaces/forms"
 import { useFormState } from "react-dom"
 import AdminFormFeedback from "../../AdminFormFeedback"
 import AdminFormSubmit from "../../AdminFormSubmit"
-import { ChangeEvent, useEffect, useRef, useState } from "react"
+import { ChangeEvent, DragEvent, useEffect, useRef, useState } from "react"
 import FilePreview from "./FilePreview"
 import Droppable from "./Droppable"
-import CurrentMedia from "./CurrentMedia"
 
 type Props = {
     collectionElement: IContest, // & IInscription
@@ -29,10 +28,21 @@ export default function FileUploadForm({ collectionElement, mediaField } : Props
     const currentMedia = (collectionElement as IContest).Media.find((element: IContestMedia) => element.role === role) || null
 
     const fileInputRef = useRef<HTMLInputElement>(null)
+    const formRef = useRef<HTMLFormElement>(null)
 
-    const onSetFile = (file: File | null) => setFile(file)
+    const onSetFile = (event: DragEvent) => {
+        
+        if (!event.dataTransfer?.files) setFile(null)
+        if (!fileInputRef.current || !event.dataTransfer) return
+        
+        fileInputRef.current.files = event.dataTransfer.files
+    }
 
-    const onDiscardFile = () => setFile(null)
+    const onDiscardFile = () => {
+        if (!formRef.current) return
+        formRef.current.reset()
+        setFile(null)
+    }
 
     const onClickDroppable = () => {
         if (!fileInputRef.current) return
@@ -62,7 +72,7 @@ export default function FileUploadForm({ collectionElement, mediaField } : Props
     console.log({ previewIsCurrentMedia: currentMedia === file })
 
     return (
-        <form action={ formAction } className="flex flex-col w-full max-w-2xl mx-auto bg-neutral-800 px-4 pt-2 pb-4">
+        <form action={ formAction } ref={ formRef } className="flex flex-col w-full max-w-2xl mx-auto bg-neutral-800 px-4 pt-2 pb-4">
             <header className="flex flex-col items-center justify-between">
                 <h3 className="flex-1">{ label }</h3>
             </header>

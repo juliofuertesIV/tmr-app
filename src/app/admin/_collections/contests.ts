@@ -107,13 +107,13 @@ export const contestEditForm : IEditionFormByCollectionName = {
             role: 'logo',
             label: 'Logotipo',
             instructions: 'Debe pesar menos de 2mb',
-            acceptedTypes: 'image/png, image/svg'
+            acceptedTypes: 'image/png, image/svg+xml'
         },
         {
             role: 'banner',
             label: 'Banner',
             instructions: 'Debe pesar menos de 2mb',
-            acceptedTypes: 'image/png, image/svg'
+            acceptedTypes: 'image/png, image/svg+xml'
         },
         {
             role: 'favicon',

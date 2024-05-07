@@ -1,7 +1,7 @@
 'use server'
     
 import { IOneOfCollectionNames } from "@/interfaces"
-import { IAPIResponse } from "@/interfaces/forms"
+import { IAPIResponse } from "@/interfaces/api"
 import { revalidateTag } from "next/cache"
 
 export const deleteCollectionItem = async (collection: IOneOfCollectionNames, itemId: string, prevState: any, formData: FormData) : Promise<IAPIResponse> => {
