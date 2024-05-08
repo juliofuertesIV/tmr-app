@@ -1,5 +1,5 @@
 import { IContestMedia, IContestMediaRole, IOneOfCollectionNames } from "@/interfaces";
-import { getAssociationPayload, getFilesizeLimitInBytes, getModelAndAssociationTableByCollectionName, produceFileName, uploadToGoogleCloudStorage } from "./_utils";
+import { getAssociationPayload, getFilesizeLimitInBytes, getModelAndAssociationTableByCollectionName, mediaPayloadIsValidLength, produceFileName, uploadToGoogleCloudStorage } from "./_utils";
 import { sequelize } from "@/database";
 import { Transaction } from "sequelize";
 import { constructAPIResponse } from "@/app/api/_utils";
@@ -32,7 +32,8 @@ export const POST = async (req: Request, { params } : { params: { id: string | n
                 success: false,
                 error: validationError,
                 data: null 
-            }))
+            })
+        )
     }
 
     try {
@@ -104,11 +105,6 @@ const prepareAndValidateMediaFile = async (payload: IMediaPayload, collection: I
     return { bytes, filename, mediaCreationPayload, validationError }
 }
 
-const mediaPayloadIsValidLength = ({ bytes } : { bytes: ArrayBuffer }) => {
-    const byteLimit = getFilesizeLimitInBytes(parseInt(process.env.MAX_FILE_SIZE as string))
-
-    return bytes.byteLength < byteLimit;
-}
 
 async function createAndAssociateMediaToCollection({ collection, payload, transaction, id } : { 
     collection: IOneOfCollectionNames,

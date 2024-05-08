@@ -49,11 +49,11 @@ export type IParam = {
     description?: string
 }
 
-export type IContestMediaRole = 'footerElement' | 'banner' | 'logo' | 'favicon'
+export type IContestMediaRole = 'frame' | 'banner' | 'logo' | 'favicon' | 'footerElement'
 
 export type IContestMedia = {
     id: string,
-    role: 'footerElement' | 'banner' | 'logo' | 'favicon',
+    role: 'frame' | 'banner' | 'logo' | 'favicon',
     src: string,
     width: string,
     height: string,

@@ -1,4 +1,4 @@
-import { IContest, IContestMediaRole, IOneOfCollectionNames } from "."
+import { IContestMediaRole, IOneOfCollectionNames } from "."
 import { IAPIResponse } from "./api"
 
 export const formInitialState : IAPIResponse = {

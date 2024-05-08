@@ -46,7 +46,7 @@ export default function FileUploadForm({ collectionElement, mediaField } : Props
         if (!!currentMedia && previewIsCurrentMedia) {
             console.log('Deleting...')
             
-            const res = await deleteContestMediaItem({ contestId: collectionElement.id.toString(), mediaId: currentMedia.id.toString() })
+            const res = await deleteContestMediaItem({ contestId: collectionElement.id.toString(), mediaId: currentMedia.id.toString(), role })
 
             console.log({ res })
         }

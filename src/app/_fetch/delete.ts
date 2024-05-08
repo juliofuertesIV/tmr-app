@@ -1,6 +1,6 @@
 'use server'
     
-import { IOneOfCollectionNames } from "@/interfaces"
+import { IContestMediaRole, IOneOfCollectionNames } from "@/interfaces"
 import { IAPIResponse } from "@/interfaces/api"
 import { revalidateTag } from "next/cache"
 
@@ -24,12 +24,12 @@ export const deleteCollectionItem = async (collection: IOneOfCollectionNames, it
     return res
 }
 
-export const deleteContestMediaItem = async ({ contestId, mediaId } : { contestId: string, mediaId: string }) : Promise<IAPIResponse> => {
+export const deleteContestMediaItem = async ({ contestId, mediaId, role } : { contestId: string, mediaId: string, role: IContestMediaRole }) : Promise<IAPIResponse> => {
     
     const res = await fetch(`http://localhost:3000/api/contests/${ contestId }/media/${ mediaId }`, {
         method: "DELETE",
         cache: 'no-cache',
-        body: JSON.stringify({ mediaId }),
+        body: JSON.stringify({ mediaId, role }),
         headers: {
             "Content-Type": "application/json",
         }

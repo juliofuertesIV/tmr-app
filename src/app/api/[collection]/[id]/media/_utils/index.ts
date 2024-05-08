@@ -73,3 +73,11 @@ export const getAssociationPayload = (
         })
     }
 }
+
+
+export const mediaPayloadIsValidLength = ({ bytes } : { bytes: ArrayBuffer }) => {
+    
+    const byteLimit = getFilesizeLimitInBytes(parseInt(process.env.MAX_FILE_SIZE as string))
+
+    return bytes.byteLength < byteLimit;
+}

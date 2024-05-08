@@ -38,7 +38,7 @@ export const PUT = async (req: Request, { params } : { params: { collection: IOn
 
     const { Model } = getModelByCollectionName(collection)
 
-    const payload = await req.json()
+    const payload = Object.fromEntries(await req.formData())
 
     const transaction = await sequelize.transaction()
 
