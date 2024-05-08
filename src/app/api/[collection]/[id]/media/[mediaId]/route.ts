@@ -49,7 +49,7 @@ export const DELETE = async (req: Request, { params } : { params: Params }) => {
         await transaction.rollback()
         return Response.json(
             constructAPIResponse({
-                message: 'Error deleting from Cloud Storage',
+                message: 'Error eliminando la imagen de Cloud Storage',
                 success: true,
                 error,
                 data: null
