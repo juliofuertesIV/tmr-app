@@ -23,3 +23,21 @@ export const deleteCollectionItem = async (collection: IOneOfCollectionNames, it
 
     return res
 }
+
+export const deleteContestMediaItem = async ({ contestId, mediaId } : { contestId: string, mediaId: string }) : Promise<IAPIResponse> => {
+    
+    const res = await fetch(`http://localhost:3000/api/contests/${ contestId }/media/${ mediaId }`, {
+        method: "DELETE",
+        cache: 'no-cache',
+        body: JSON.stringify({ mediaId }),
+        headers: {
+            "Content-Type": "application/json",
+        }
+    })
+    .then(async data => data.json())
+    .catch(error => error)
+    
+    revalidateTag('contests')
+
+    return res
+}

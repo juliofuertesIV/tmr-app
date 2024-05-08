@@ -35,7 +35,8 @@ export type IMediaFormField = {
     role: IContestMediaRole,
     label: string,
     instructions: string,
-    acceptedTypes: string
+    acceptedTypes: string,
+    multiple: boolean
 }
 
 export type IFormCreationAction = (collection: IOneOfCollectionNames, prevState: any, formData: FormData) => Promise<IAPIResponse>

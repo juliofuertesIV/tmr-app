@@ -365,8 +365,8 @@ State.hasMany(Contest)
 Contest.belongsToMany(Genre, { through: 'ContestGenres' })
 Genre.belongsToMany(Contest, { through: 'ContestGenres' })
 
-Contest.belongsToMany(ContestMedia, { through: 'ContestsMediaElements', as: 'Media' })
-ContestMedia.belongsToMany(Contest, { through: 'ContestsMediaElements', as: 'Media' })
+Contest.belongsToMany(ContestMedia, { through: 'ContestsMediaElements', as: 'Media', onDelete: 'CASCADE' })
+ContestMedia.belongsToMany(Contest, { through: 'ContestsMediaElements', as: 'Media', onDelete: 'CASCADE' })
 
 Voter.belongsTo(Contest)
 Contest.hasMany(Voter)

@@ -9,6 +9,7 @@ import AdminFormSubmit from "../../AdminFormSubmit"
 import { ChangeEvent, DragEvent, useEffect, useRef, useState } from "react"
 import FilePreview from "./FilePreview"
 import Droppable from "./Droppable"
+import { deleteContestMediaItem } from "@/app/_fetch/delete"
 
 type Props = {
     collectionElement: IContest, // & IInscription
@@ -30,7 +31,9 @@ export default function FileUploadForm({ collectionElement, mediaField } : Props
     const fileInputRef = useRef<HTMLInputElement>(null)
     const formRef = useRef<HTMLFormElement>(null)
 
-    const onSetFile = (event: DragEvent) => {
+    const previewIsCurrentMedia = currentMedia === file
+
+    const onSetFileFromDropEvent = (event: DragEvent) => {
         
         if (!event.dataTransfer?.files) setFile(null)
         if (!fileInputRef.current || !event.dataTransfer) return
@@ -38,8 +41,25 @@ export default function FileUploadForm({ collectionElement, mediaField } : Props
         fileInputRef.current.files = event.dataTransfer.files
     }
 
-    const onDiscardFile = () => {
+    const deleteCurrentMediaFile = async () => {
+
+        if (!!currentMedia && previewIsCurrentMedia) {
+            console.log('Deleting...')
+            
+            const res = await deleteContestMediaItem({ contestId: collectionElement.id.toString(), mediaId: currentMedia.id.toString() })
+
+            console.log({ res })
+        }
+    }
+
+
+    const onDiscardPreviewFile = () => {
         if (!formRef.current) return
+
+        if (previewIsCurrentMedia) {
+            deleteCurrentMediaFile();
+        }
+
         formRef.current.reset()
         setFile(null)
     }
@@ -69,10 +89,6 @@ export default function FileUploadForm({ collectionElement, mediaField } : Props
         setFile(file)
     }
 
-    console.log({ previewIsCurrentMedia: currentMedia === file })
-
-    // TO DO: DELETE PRIOR ELEMENTS IF NOT OF TYPE FOOTERELEMENT
-
     return (
         <form action={ formAction } ref={ formRef } className="flex flex-col w-full max-w-2xl mx-auto bg-neutral-800 px-4 pt-2 pb-4">
             <header className="flex flex-col items-center justify-between">
@@ -81,8 +97,8 @@ export default function FileUploadForm({ collectionElement, mediaField } : Props
             <AdminFormFeedback state={ state }/>
             {
                 !!file ? 
-                <FilePreview file={ file } onDiscardFile={ onDiscardFile }/> :
-                <Droppable onClickDroppable={ onClickDroppable } onSetFile={ onSetFile }/>
+                <FilePreview file={ file } onDiscardFile={ onDiscardPreviewFile } previewIsCurrentMedia={ previewIsCurrentMedia }/> :
+                <Droppable onClickDroppable={ onClickDroppable } onSetFile={ onSetFileFromDropEvent }/>
             }
             <input 
                 ref={ fileInputRef } 

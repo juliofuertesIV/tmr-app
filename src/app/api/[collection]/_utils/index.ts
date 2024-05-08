@@ -17,7 +17,7 @@ const modelsByCollectionName = {
                         attributes: [] }
                 }, {
                     model: ContestMedia,
-                    attributes: ['src', 'role', 'width', 'height', 'alt'],
+                    attributes: ['id', 'src', 'role', 'width', 'height', 'alt'],
                     through: {
                         attributes: [],
                     },

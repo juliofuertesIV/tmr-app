@@ -6,10 +6,11 @@ import React, { useEffect, useRef, useState } from 'react'
 
 type Props = {
     file: File | IContestMedia | null,
+    previewIsCurrentMedia: boolean,
     onDiscardFile: () => void
 }
 
-export default function FilePreview({ file, onDiscardFile } : Props) {
+export default function FilePreview({ file, previewIsCurrentMedia, onDiscardFile } : Props) {
 
     const previewRef = useRef<HTMLImageElement>(null)
 
@@ -73,7 +74,7 @@ export default function FilePreview({ file, onDiscardFile } : Props) {
                     onClick={ onRejectFile }
                     className='px-4 py-1 rounded-sm bg-neutral-200 text-neutral-800 cursor-pointer hover:bg-neutral-50 hover:text-neutral-900'
                 >
-                    Descartar
+                    { previewIsCurrentMedia ? 'Eliminar' : 'Descartar' }
                 </button>
             </div>
         </div>
