@@ -17,7 +17,7 @@ export default function BrandGridItem({ item } : { item: IOneOfCollections }) {
     return (
         <Link
             href={ `/admin/brands/${item.id}` }
-            className={ `flex flex-1 items-center border-2 py-2 cursor-pointer bg-neutral-900 hover:bg-[--bgColor] hover:text-[--fgColor] hover:border-[--accentColor] transition-colors` }
+            className={ `flex flex-1 min-w-fit items-center border-2 py-2 cursor-pointer bg-neutral-900 hover:bg-[--bgColor] hover:text-[--fgColor] hover:border-[--accentColor] transition-colors` }
             style={ brandProperties }
         >
             <div className="text-center w-full">

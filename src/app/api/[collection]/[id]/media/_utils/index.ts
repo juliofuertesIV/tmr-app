@@ -1,4 +1,4 @@
-import { ContestMedia, ContestsMediaElements } from "@/database";
+import { Media, ContestMedia } from "@/database";
 import { IOneOfCollectionNames } from "@/interfaces";
 import { Model, ModelStatic, Options } from "sequelize";
 import path from "path";
@@ -6,8 +6,8 @@ import { Storage } from "@google-cloud/storage";
 
 export const modelsByCollectionName = {
     contests: {
-        Model: ContestMedia,
-        AssociationTable: ContestsMediaElements,
+        Model: Media,
+        AssociationTable: ContestMedia,
         options: {}
     }
 } as { 
@@ -62,7 +62,7 @@ export const getAssociationPayload = (
 
     if (collection === 'contests') return { 
         ContestId: collectionElementId,
-        ContestMediumId: mediaElementId 
+        MediumId: mediaElementId 
     }
     else {
         return Response.json({ 

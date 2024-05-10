@@ -26,7 +26,7 @@ export default function CollectionPanel({ collection, item } : Props) {
                 <h1 className="leading-none mb-4">Editando { item.name }</h1>
                 <CollectionPanelNav navItems={ navItems } currentSection={ selectedSection } onSelectNavItem={ onSelectNavItem }/>
             </header>
-            <section className="grid place-items-center flex-1">
+            <section className="grid place-items-center flex-1 pt-4">
                 <Element item={ item }/>
             </section>
         </div>

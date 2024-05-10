@@ -17,6 +17,14 @@ const brands = [
         profile: 'https://instagram.com/fiberfib'
     },
     {
+        name: 'FIB DJs',
+        website: 'https://fiberfib.com',
+        backgroundColor: '#213f83',
+        foregroundColor: '#ffffff',
+        accentColor: '#ffd539',
+        profile: 'https://instagram.com/fiberfib'
+    },    
+    {
         name: 'Arenal Sound',
         website: 'https://arenalsound.com',
         backgroundColor: '#dcfdff',
@@ -24,6 +32,14 @@ const brands = [
         accentColor: '#E255EC',
         profile: 'https://instagram.com/arenalsound'
     },
+    {
+        name: 'Arenal Sound DJs',
+        website: 'https://arenalsound.com',
+        backgroundColor: '#dcfdff',
+        foregroundColor: '#000000',
+        accentColor: '#E255EC',
+        profile: 'https://instagram.com/arenalsound'
+    },    
     {
         name: 'Madrid Salvaje',
         website: 'https://madridsalvaje.com',

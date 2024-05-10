@@ -1,14 +1,14 @@
 'use client'
 
 import { manageCollectionMedia } from "@/app/_fetch/post"
-import { IContest, IContestMedia } from "@/interfaces"
+import { IContest, IContestMedia, IContestMediaRole } from "@/interfaces"
 import { IMediaFormField, formInitialState } from "@/interfaces/forms"
 import { useFormState } from "react-dom"
 import AdminFormFeedback from "../../AdminFormFeedback"
 import AdminFormSubmit from "../../AdminFormSubmit"
 import { ChangeEvent, DragEvent, useEffect, useRef, useState } from "react"
-import FilePreview from "./FilePreview"
-import Droppable from "./Droppable"
+import FilePreview from "./single/FilePreview"
+import Droppable from "./single/Droppable"
 import { deleteContestMediaItem } from "@/app/_fetch/delete"
 
 type Props = {
@@ -16,7 +16,16 @@ type Props = {
     mediaField: IMediaFormField
 }
 
-export default function FileUploadForm({ collectionElement, mediaField } : Props) {
+const getCurrentMedia = ({ collectionElement, role } : { collectionElement: IContest, role: IContestMediaRole }) => {
+    
+    if (!collectionElement.Media) return null
+
+    if (role === 'footerElement') return null
+
+    return collectionElement.Media.find(media => media.role === role) || null
+}
+
+export default function SingleFileUploadForm({ collectionElement, mediaField } : Props) {
 
     const { role, instructions, label } = mediaField
 
@@ -26,7 +35,7 @@ export default function FileUploadForm({ collectionElement, mediaField } : Props
 
     const [ file, setFile ] = useState<File | IContestMedia | null>(null)
     
-    const currentMedia = (collectionElement as IContest).Media.find((element: IContestMedia) => element.role === role) || null
+    const currentMedia = getCurrentMedia({ collectionElement, role })
 
     const fileInputRef = useRef<HTMLInputElement>(null)
     const formRef = useRef<HTMLFormElement>(null)
@@ -51,7 +60,6 @@ export default function FileUploadForm({ collectionElement, mediaField } : Props
             console.log({ res })
         }
     }
-
 
     const onDiscardPreviewFile = () => {
         if (!formRef.current) return

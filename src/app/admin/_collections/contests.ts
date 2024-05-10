@@ -118,11 +118,18 @@ export const contestEditForm : IEditionFormByCollectionName = {
             multiple: false,
         },
         {
+            role: 'frame',
+            label: 'Marco',
+            instructions: 'Debe pesar menos de 2mb',
+            acceptedTypes: 'image/png, image/svg+xml',
+            multiple: false,
+        },
+        {
             role: 'favicon',
             label: 'Favicon',
             instructions: 'Debe ser imagen tipo .ico',
             acceptedTypes: '.ico',
             multiple: false,
-        }
+        },
     ]
 }

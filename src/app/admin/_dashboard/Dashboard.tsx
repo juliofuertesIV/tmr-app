@@ -38,10 +38,10 @@ export default function Dashboard({ data } : { data: IAdminData }) {
 
     return (
         <div className="flex flex-col gap-4">
-            <CollectionSection title='Concursos' onManageDialog={ onManageDialog }>
+            <CollectionSection collection='contests' title='Concursos' onManageDialog={ onManageDialog }>
                 <CollectionGrid collection={ 'contests' } items={ contests as IOneOfCollections[] }/>
             </CollectionSection>
-            <CollectionSection title='Marcas' onManageDialog={ onManageDialog }>
+            <CollectionSection collection='brands' title='Marcas' onManageDialog={ onManageDialog }>
                 <CollectionGrid collection={ 'brands' } items={ brands as IOneOfCollections[] }/>
             </CollectionSection>
             <dialog ref={ dialogRef } className='backdrop:bg-neutral-950 backdrop:opacity-50 bg-transparent w-full'>
