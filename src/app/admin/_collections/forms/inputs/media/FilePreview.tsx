@@ -7,7 +7,7 @@ import React, { useEffect, useRef, useState } from 'react'
 type Props = {
     file: File | IContestMedia | null,
     previewIsCurrentMedia: boolean,
-    onDiscardFile: () => void
+    onDiscardFile: (id?: string) => void
 }
 
 export default function FilePreview({ file, previewIsCurrentMedia, onDiscardFile } : Props) {
@@ -53,7 +53,10 @@ export default function FilePreview({ file, previewIsCurrentMedia, onDiscardFile
 
     }, [ inputFile ])
 
-    const onRejectFile = () => onDiscardFile()
+    const onRejectFile = () => {
+
+        inputFile instanceof File ? onDiscardFile() : onDiscardFile(inputFile?.id)
+    }
 
     if (!previewSrc) return null
 

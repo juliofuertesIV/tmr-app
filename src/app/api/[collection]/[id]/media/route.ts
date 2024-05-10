@@ -1,5 +1,5 @@
 import { IContestMedia, IContestMediaRole, IOneOfCollectionNames } from "@/interfaces";
-import { getAssociationPayload, getFilesizeLimitInBytes, getModelAndAssociationTableByCollectionName, mediaPayloadIsValidLength, produceFileName, uploadToGoogleCloudStorage } from "./_utils";
+import { getAssociationPayload, getModelAndAssociationTableByCollectionName, mediaPayloadIsValidLength, produceFileName, uploadToGoogleCloudStorage } from "./_utils";
 import { sequelize } from "@/database";
 import { Transaction } from "sequelize";
 import { constructAPIResponse } from "@/app/api/_utils";
@@ -7,6 +7,7 @@ import { constructAPIResponse } from "@/app/api/_utils";
 type IMediaPayload = {
     media: File,
     role: IContestMediaRole | 'inscription',
+    type: 'single' | 'multiple',
     width: string,
     height: string
 }
@@ -17,20 +18,40 @@ type IMediaCreationPayload = {
     height: string
 }
 
+type IValidationOutcome = {
+    bytes: ArrayBuffer,
+    mediaCreationPayload: IMediaCreationPayload,
+    filename: string,
+    sizeError: Error | null
+}
+
 export const POST = async (req: Request, { params } : { params: { id: string | number, collection: IOneOfCollectionNames }}) => {
 
     const { collection, id } = params
 
     const payload = Object.fromEntries(await req.formData()) as IMediaPayload
 
-    const { bytes, mediaCreationPayload, filename, validationError } = await prepareAndValidateMediaFile(payload, collection)
+    const { bytes, mediaCreationPayload, filename, sizeError } = await prepareAndValidateMediaFile(payload, collection)
     
-    if (validationError) {
+    const { type } = payload
+
+    if (type === 'multiple') {
         return Response.json(
             constructAPIResponse({ 
-                message: validationError.message,
+                message: 'Multiple files not yet supported.',
                 success: false,
-                error: validationError,
+                error: new Error('Todavía no podemos subir imágenes múltiples.'),
+                data: null 
+            })
+        )
+    }
+
+    if (sizeError) {
+        return Response.json(
+            constructAPIResponse({ 
+                message: sizeError.message,
+                success: false,
+                error: sizeError,
                 data: null 
             })
         )
@@ -82,13 +103,13 @@ export const POST = async (req: Request, { params } : { params: { id: string | n
     }
 }
 
-const prepareAndValidateMediaFile = async (payload: IMediaPayload, collection: IOneOfCollectionNames) => {
+const prepareAndValidateMediaFile = async (payload: IMediaPayload, collection: IOneOfCollectionNames) : Promise<IValidationOutcome> => {
 
     const { media, width, height, role } = payload
 
     const bytes = await media.arrayBuffer();
 
-    const validationError = mediaPayloadIsValidLength({ bytes }) ? null : new Error('La imagen es demasiado grande')
+    const sizeError = mediaPayloadIsValidLength({ bytes }) ? null : new Error('La imagen es demasiado grande')
     
     const filename = produceFileName(media.name)
 
@@ -102,7 +123,7 @@ const prepareAndValidateMediaFile = async (payload: IMediaPayload, collection: I
         alt: 'Media belonging to a TMR contest.'
     }
 
-    return { bytes, filename, mediaCreationPayload, validationError }
+    return { bytes, filename, mediaCreationPayload, sizeError }
 }
 
 

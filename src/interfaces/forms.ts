@@ -34,6 +34,8 @@ export type ICollectionFormField = {
 export type IMediaFormField = {
     role: IContestMediaRole,
     label: string,
+    width?: number,
+    height?: number,
     instructions: string,
     acceptedTypes: string,
     multiple: boolean

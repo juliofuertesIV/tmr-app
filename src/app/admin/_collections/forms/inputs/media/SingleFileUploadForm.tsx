@@ -7,8 +7,8 @@ import { useFormState } from "react-dom"
 import AdminFormFeedback from "../../AdminFormFeedback"
 import AdminFormSubmit from "../../AdminFormSubmit"
 import { ChangeEvent, DragEvent, useEffect, useRef, useState } from "react"
-import FilePreview from "./single/FilePreview"
-import Droppable from "./single/Droppable"
+import FilePreview from "./FilePreview"
+import Droppable from "./Droppable"
 import { deleteContestMediaItem } from "@/app/_fetch/delete"
 
 type Props = {
@@ -18,10 +18,6 @@ type Props = {
 
 const getCurrentMedia = ({ collectionElement, role } : { collectionElement: IContest, role: IContestMediaRole }) => {
     
-    if (!collectionElement.Media) return null
-
-    if (role === 'footerElement') return null
-
     return collectionElement.Media.find(media => media.role === role) || null
 }
 
@@ -55,7 +51,7 @@ export default function SingleFileUploadForm({ collectionElement, mediaField } :
         if (!!currentMedia && previewIsCurrentMedia) {
             console.log('Deleting...')
             
-            const res = await deleteContestMediaItem({ contestId: collectionElement.id.toString(), mediaId: currentMedia.id.toString(), role })
+            const res = await deleteContestMediaItem({ contestId: collectionElement.id as string, mediaId: currentMedia.id })
 
             console.log({ res })
         }
@@ -118,8 +114,8 @@ export default function SingleFileUploadForm({ collectionElement, mediaField } :
             />
             <small>{ instructions }</small>
             <input type="hidden" name="role" value={ role }/>
-            <input type="hidden" name="width" value={ 500 }/>
-            <input type="hidden" name="height" value={ 500 }/>
+            <input type="hidden" name="width" value={ mediaField.width || 500 }/>
+            <input type="hidden" name="height" value={ mediaField.height || 500 }/>
             <AdminFormSubmit value={ !!currentMedia ? "Reemplazar" : "Subir archivo" }/>
         </form>
     )
