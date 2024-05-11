@@ -1,12 +1,12 @@
 'use client'
 
 import { manageCollectionMedia } from "@/app/_fetch/post"
-import { IContest, IContestMedia, IContestMediaRole } from "@/interfaces"
+import { IContest, IContestMedia } from "@/interfaces"
 import { IMediaFormField, formInitialState } from "@/interfaces/forms"
 import { useFormState } from "react-dom"
 import AdminFormFeedback from "../../AdminFormFeedback"
 import AdminFormSubmit from "../../AdminFormSubmit"
-import { ChangeEvent, DragEvent, FormEvent, useEffect, useLayoutEffect, useRef, useState } from "react"
+import { ChangeEvent, DragEvent, useLayoutEffect, useRef, useState } from "react"
 import FilePreview from "./FilePreview"
 import Droppable from "./Droppable"
 
