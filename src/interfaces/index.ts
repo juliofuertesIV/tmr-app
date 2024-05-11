@@ -53,7 +53,7 @@ export type IContestMediaRole = 'frame' | 'banner' | 'logo' | 'favicon' | 'foote
 
 export type IContestMedia = {
     id: string,
-    role: 'frame' | 'banner' | 'logo' | 'favicon',
+    role: IContestMediaRole
     src: string,
     width: string,
     height: string,
