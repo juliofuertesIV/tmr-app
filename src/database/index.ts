@@ -28,9 +28,7 @@ export const Brand = sequelize.define('Brand', {
     },
     website: {
         type: DataTypes.STRING,
-        allowNull: false,
-        unique: true,
-        defaultValue: 'https://www.google.com'
+        allowNull: false
     },
     backgroundColor: {
         type: DataTypes.STRING,
@@ -49,9 +47,7 @@ export const Brand = sequelize.define('Brand', {
     },    
     profile: {
         type: DataTypes.STRING,
-        allowNull: false,
-        unique: true,
-        defaultValue: 'https://instagram.com'
+        allowNull: false
     },
     logo: {
         type: DataTypes.STRING,
@@ -319,7 +315,7 @@ export const ContestParam = sequelize.define('ContestParams', {
     timestamps: false
 })
 
-export const ContestMedia = sequelize.define('ContestMedia', {
+export const Media = sequelize.define('Media', {
     id: {
         type: DataTypes.UUID,
         primaryKey: true,
@@ -348,7 +344,7 @@ export const ContestMedia = sequelize.define('ContestMedia', {
     }
 })
 
-export const ContestsMediaElements = sequelize.define('ContestsMediaElements', {
+export const ContestMedia = sequelize.define('ContestMedia', {
 }, {
     timestamps: false
 })
@@ -365,8 +361,8 @@ State.hasMany(Contest)
 Contest.belongsToMany(Genre, { through: 'ContestGenres' })
 Genre.belongsToMany(Contest, { through: 'ContestGenres' })
 
-Contest.belongsToMany(ContestMedia, { through: 'ContestsMediaElements', as: 'Media' })
-ContestMedia.belongsToMany(Contest, { through: 'ContestsMediaElements', as: 'Media' })
+Contest.belongsToMany(Media, { through: 'ContestMedia', onDelete: 'CASCADE' })
+Media.belongsToMany(Contest, { through: 'ContestMedia', onDelete: 'CASCADE' })
 
 Voter.belongsTo(Contest)
 Contest.hasMany(Voter)

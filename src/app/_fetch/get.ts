@@ -1,9 +1,11 @@
 import { IOneOfCollectionNames } from "@/interfaces"
-import { IAPIResponse } from "@/interfaces/forms"
+import { IAPIResponse } from "@/interfaces/api"
 
 type GetElementById = (collection: IOneOfCollectionNames, id: string) => Promise<IAPIResponse>
 
 type GetContests = (collection: IOneOfCollectionNames) => Promise<IAPIResponse>
+
+type GetAdminData = () => Promise<IAPIResponse>
 
 export const getCollectionElementById : GetElementById = async (collection: IOneOfCollectionNames, id: string) => {
     
@@ -41,4 +43,20 @@ export const getCollection : GetContests = async (collection: IOneOfCollectionNa
     return res
 }
 
+export const getAdminData : GetAdminData = async () => {
+    
+    const res = await fetch(`http://localhost:3000/api/admin`, {
+        method: "GET",
+        cache: 'no-cache',
+        headers: {
+            "Content-Type": "application/json",
+        },
+        next: {
+            tags: ['contests, brands, params, states']
+        }
+    })
+    .then(async (data) => await data.json())
+    .catch(error => error)
 
+    return res
+}

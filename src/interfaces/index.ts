@@ -12,7 +12,7 @@ export type IContestState = {
 }
 
 export type IContest = {
-    id?: string | number,
+    id: string | number,
     name: string,
     domain: string,
     year: number | string,
@@ -34,7 +34,7 @@ export type IContest = {
 }
 
 export type IBrand = {
-    id?: string | number,
+    id: string | number,
     name: string,
     backgroundColor: string,
     foregroundColor: string,
@@ -49,11 +49,11 @@ export type IParam = {
     description?: string
 }
 
-export type IContestMediaRole = 'footerElement' | 'banner' | 'logo' | 'favicon'
+export type IContestMediaRole = 'frame' | 'banner' | 'logo' | 'favicon' | 'footerElement'
 
 export type IContestMedia = {
     id: string,
-    role: 'footerElement' | 'banner' | 'logo' | 'favicon',
+    role: IContestMediaRole
     src: string,
     width: string,
     height: string,

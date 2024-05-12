@@ -1,5 +1,5 @@
-import { ValidationError, ValidationErrorItem } from "sequelize"
 import { IContestMediaRole, IOneOfCollectionNames } from "."
+import { IAPIResponse } from "./api"
 
 export const formInitialState : IAPIResponse = {
     success: false,
@@ -23,15 +23,27 @@ export type IEditionFormField = {
     type: string
 }
 
-export type IMediaFormField = {
-    mediaType: IContestMediaRole | 'inscription',
+export type ICollectionFormField = {
+    name: string,
     label: string,
-    small: string,
-    acceptedTypes: string[]
+    type: string,
+    required: boolean,
+    instructions?: string
+}
+
+export type IMediaFormField = {
+    role: IContestMediaRole,
+    label: string,
+    width?: number,
+    height?: number,
+    instructions: string,
+    acceptedTypes: string,
+    multiple: boolean
 }
 
 export type IFormCreationAction = (collection: IOneOfCollectionNames, prevState: any, formData: FormData) => Promise<IAPIResponse>
 // TO DO: unify through modes 'create' | 'edit' ? 
+
 export type IFormEditionAction = (collection: IOneOfCollectionNames, id: string, prevState: any, formData: FormData) => Promise<IAPIResponse>
 
 export type ICreationFormByCollectionName = {
@@ -43,17 +55,4 @@ export type IEditionFormByCollectionName = {
     fields: IEditionFormField[],
     mediaFields: IMediaFormField[],
     action: IFormEditionAction
-}
-
-export type IErrorTypes = 'validation' | 'regular'
-
-export type IAPIResponse = {
-    message: string,
-    success: boolean,
-    error: {
-        errorType: IErrorTypes,
-        content: Error,
-        messages: string[]
-    } | null,
-    data: any | null
 }

@@ -1,4 +1,4 @@
-import { Brand, Contest, ContestMedia, Genre, Param, State } from "@/database";
+import { Brand, Contest, Media, Genre, Param, State } from "@/database";
 import { IOneOfCollectionNames } from "@/interfaces";
 import { Model, ModelStatic, Options } from "sequelize";
 
@@ -16,12 +16,11 @@ const modelsByCollectionName = {
                     through: { 
                         attributes: [] }
                 }, {
-                    model: ContestMedia,
-                    attributes: ['src', 'role', 'width', 'height', 'alt'],
+                    model: Media,
+                    attributes: ['id', 'src', 'role', 'width', 'height', 'alt'],
                     through: {
                         attributes: [],
-                    },
-                    as: 'Media'
+                    }
                 }
                 
             ]
