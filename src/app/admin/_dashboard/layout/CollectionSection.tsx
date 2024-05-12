@@ -18,7 +18,7 @@ export default function CollectionSection({ children, collection, onManageDialog
                 onClick={ () => onManageDialog({ collection, isOpen: true })}
                 className="bg-neutral-500 text-neutral-100 font-bold hover:bg-neutral-600 hover:text-neutral-50 px-4 rounded-md text-sm transition-colors shadow-md"
             >
-                ADD NEW
+                CREAR NUEVO
             </button>
         </header>
         <div className="px-8 pb-8">

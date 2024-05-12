@@ -1,6 +1,6 @@
 import { IContest } from '@/interfaces'
 import React from 'react'
-import FileUploadFormWithPreview from '../inputs/media/FileUploadFormWithPreview'
+import FileUploadForm from '../inputs/media/FileUploadForm'
 import { getEditionFormByCollectionName } from '../..'
 
 export default function ContestMediaManager({ item: contest } : { item: IContest }) {
@@ -11,7 +11,7 @@ export default function ContestMediaManager({ item: contest } : { item: IContest
         <div className='flex flex-col gap-4 w-full'>
             {
                 mediaFields.map((field, index) => 
-                    <FileUploadFormWithPreview key={ index } collectionElement={ contest } mediaField={ field }/>
+                    <FileUploadForm key={ index } collectionElement={ contest } mediaField={ field } showDatabaseValue={ true }/>
                 )
             }
         </div>

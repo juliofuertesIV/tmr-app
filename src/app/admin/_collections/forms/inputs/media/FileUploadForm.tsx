@@ -1,21 +1,28 @@
 'use client'
 
 import { manageCollectionMedia } from "@/app/_fetch/post"
-import { IContest, IContestMedia } from "@/interfaces"
+import { IContest, IContestMedia, IContestMediaRole } from "@/interfaces"
 import { IMediaFormField, formInitialState } from "@/interfaces/forms"
 import { useFormState } from "react-dom"
 import AdminFormFeedback from "../../AdminFormFeedback"
 import AdminFormSubmit from "../../AdminFormSubmit"
-import { ChangeEvent, DragEvent, useLayoutEffect, useRef, useState } from "react"
+import { ChangeEvent, DragEvent, useEffect, useLayoutEffect, useRef, useState } from "react"
 import FilePreview from "./FilePreview"
 import Droppable from "./Droppable"
+import { deleteContestMediaItem } from "@/app/_fetch/delete"
 
 type Props = {
     collectionElement: IContest, // & IInscription
-    mediaField: IMediaFormField
+    mediaField: IMediaFormField,
+    showDatabaseValue: boolean
 }
 
-export default function FileUploadForm({ collectionElement, mediaField } : Props) {
+const getCurrentMedia = ({ collectionElement, role } : { collectionElement: IContest, role: IContestMediaRole }) => {
+    
+    return collectionElement.Media.find(media => media.role === role) || null
+}
+
+export default function FileUploadForm({ collectionElement, mediaField, showDatabaseValue } : Props) {
 
     const { role, instructions, label } = mediaField
 
@@ -25,10 +32,12 @@ export default function FileUploadForm({ collectionElement, mediaField } : Props
 
     const [ file, setFile ] = useState<File | IContestMedia | null>(null)
     
+    const currentMedia = getCurrentMedia({ collectionElement, role })
+
     const fileInputRef = useRef<HTMLInputElement>(null)
     const formRef = useRef<HTMLFormElement>(null)
 
-    const previewIsCurrentMedia = false
+    const previewIsCurrentMedia = showDatabaseValue ? currentMedia === file : false
 
     const onSetFileFromDropEvent = (event: DragEvent) => {
         
@@ -38,9 +47,20 @@ export default function FileUploadForm({ collectionElement, mediaField } : Props
         fileInputRef.current.files = event.dataTransfer.files
     }
 
+    const deleteCurrentMediaFile = async () => {
+
+        // TO DO: Feedback en el front
+        if (!!currentMedia && previewIsCurrentMedia) {           
+            await deleteContestMediaItem({ contestId: collectionElement.id as string, mediaId: currentMedia.id })
+        }
+    }
+
     const onDiscardPreviewFile = () => {
         if (!formRef.current) return
 
+        if (previewIsCurrentMedia) {
+            deleteCurrentMediaFile();
+        }
 
         formRef.current.reset()
         setFile(null)
@@ -51,6 +71,14 @@ export default function FileUploadForm({ collectionElement, mediaField } : Props
 
         fileInputRef.current.click()
     }
+
+    useEffect(() => {
+
+        if (!currentMedia || !showDatabaseValue) return
+
+        setFile(currentMedia)
+
+    }, [ currentMedia, setFile, showDatabaseValue ])
 
     const onInputChange = (e: ChangeEvent<HTMLInputElement>) => {
         if (!e.currentTarget.files) return
@@ -65,10 +93,12 @@ export default function FileUploadForm({ collectionElement, mediaField } : Props
 
     useLayoutEffect(() => {
 
-        setFile(null)
-        formRef.current?.reset()
+        if (!showDatabaseValue) {
+            setFile(null)
+            formRef.current?.reset()
+        }
 
-    }, [ state ])
+    }, [ state, showDatabaseValue ])
 
 
     return (
@@ -94,7 +124,7 @@ export default function FileUploadForm({ collectionElement, mediaField } : Props
             <input type="hidden" name="role" value={ role }/>
             <input type="hidden" name="width" value={ mediaField.width || 500 }/>
             <input type="hidden" name="height" value={ mediaField.height || 500 }/>
-            <AdminFormSubmit value={ "Subir archivo" }/>
+            <AdminFormSubmit value={ !!currentMedia ? "Reemplazar" : "Subir archivo" }/>
         </form>
     )
 }

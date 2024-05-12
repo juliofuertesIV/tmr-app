@@ -38,7 +38,7 @@ export default function Dashboard({ data } : { data: IAdminData }) {
 
     return (
         <div className="w-full flex flex-col gap-4">
-            <CollectionSection collection='contests' title='Concursos' onManageDialog={ onManageDialog }>
+            <CollectionSection collection='contests' title='Últimos concursos' onManageDialog={ onManageDialog }>
                 <CollectionGrid collection={ 'contests' } items={ contests as IOneOfCollections[] }/>
             </CollectionSection>
             <CollectionSection collection='brands' title='Marcas' onManageDialog={ onManageDialog }>

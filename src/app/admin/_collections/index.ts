@@ -8,7 +8,6 @@ const creationFormsByCollectionName = {
     brands: brandCreationForm
 }
 
-
 const editionFormsByCollectionName = {
     contests: contestEditForm,
     brands: brandEditForm

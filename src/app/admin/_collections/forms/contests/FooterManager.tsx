@@ -43,7 +43,11 @@ export default function FooterManager({ item: contest } : { item: IContest }) {
                     })
                 }
             </div>
-            <FileUploadForm collectionElement={ contest } mediaField={ footerMediaField }/>
+            <FileUploadForm 
+                collectionElement={ contest }
+                mediaField={ footerMediaField }
+                showDatabaseValue={ false }
+            />
         </div>
     )
 }
