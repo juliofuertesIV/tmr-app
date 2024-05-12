@@ -19,22 +19,22 @@ const initialDialogState : DialogState = {
 
 export default function Dashboard({ data } : { data: IAdminData }) {
 
-    const [ dialog, setDialog ] = useState<DialogState>(initialDialogState)
-
-    const dialogRef = useRef<HTMLDialogElement>(null)
-
-    const onManageDialog = (dialogState: DialogState) => setDialog(dialogState)
-
     const { contests, brands } = data
 
-    useLayoutEffect(() => {
+    const [ dialog, setDialog ] = useState<DialogState>(initialDialogState)
+    const dialogRef = useRef<HTMLDialogElement>(null)
 
-        if (dialog.isOpen) {
-            dialogRef.current?.showModal()
-        } else {
-            dialogRef.current?.close()
-        }
+    useLayoutEffect(() => {
+        
+        if (!dialogRef.current) return
+        
+        dialog.isOpen ? 
+        dialogRef.current.showModal() 
+        : dialogRef.current?.close()
+        
     }, [ dialog ])
+
+    const onManageDialog = (dialogState: DialogState) => setDialog(dialogState)
 
     return (
         <div className="w-full flex flex-col gap-4">
