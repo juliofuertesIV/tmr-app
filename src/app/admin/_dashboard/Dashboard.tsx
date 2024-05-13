@@ -37,13 +37,20 @@ export default function Dashboard({ data } : { data: IAdminData }) {
     const onManageDialog = (dialogState: DialogState) => setDialog(dialogState)
 
     return (
-        <div className="w-full flex flex-col gap-4">
+        <div className="w-full grid gap-4">
+            
             <CollectionSection collection='contests' title='Últimos concursos' onManageDialog={ onManageDialog }>
                 <CollectionGrid collection={ 'contests' } items={ contests as IOneOfCollections[] }/>
             </CollectionSection>
+            
             <CollectionSection collection='brands' title='Marcas' onManageDialog={ onManageDialog }>
                 <CollectionGrid collection={ 'brands' } items={ brands as IOneOfCollections[] }/>
             </CollectionSection>
+            
+            <CollectionSection collection='brands' title='Redes sociales' onManageDialog={ onManageDialog }>
+                <CollectionGrid collection={ 'brands' } items={ brands as IOneOfCollections[] }/>
+            </CollectionSection>
+            
             <dialog ref={ dialogRef } className='backdrop:bg-neutral-950 backdrop:opacity-50 bg-transparent w-full'>
                 <Dialog collection={ dialog.collection } onManageDialog={ onManageDialog }/>
             </dialog>

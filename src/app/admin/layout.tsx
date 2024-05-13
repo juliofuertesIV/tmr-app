@@ -3,8 +3,6 @@ import { Inter } from "next/font/google";
 import "../globals.css";
 import AdminDataProvider, { IAdminData } from "@/_providers/AdminDataProvider";
 import { getAdminData } from "../_fetch/get";
-import Link from "next/link";
-import Image from "next/image";
 import Nav from "./_layout/Nav";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -27,9 +25,9 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
         <html lang="en">
             <body className={ inter.className }>
                 <AdminDataProvider data={ data }>
-                    <main className="grid grid-flow-col grid-cols-12">
+                    <main className="flex">
                         <Nav/>
-                        <section className="w-full col-span-11">
+                        <section className="w-full">
                             { children }
                         </section>
                     </main>

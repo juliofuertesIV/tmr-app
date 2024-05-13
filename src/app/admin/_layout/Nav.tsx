@@ -1,31 +1,34 @@
+'use client'
+
 import Image from 'next/image'
 import React from 'react'
 import NavItem from './NavItem'
+import * as Icon from './_design/icons'
+import TMRLogo from './_design/TmrLogo'
 
 const adminNavItems = [
-    { href: '/admin', label: 'Panel' },
-    { href: '/admin/contests', label: 'Concursos' },
-    { href: '/admin/brands', label: 'Marcas' },
-    { href: '/admin/social', label: 'Redes sociales' },
-    { href: '/admin/users', label: 'Usuarios' },
-    { href: '/admin/logout', label: 'Log out' }
+    { href: '/admin', label: 'Panel', Icon: Icon.dashboard },
+    { href: '/admin/contests', label: 'Concursos', Icon: Icon.contest },
+    { href: '/admin/brands', label: 'Marcas', Icon: Icon.brands },
+    { href: '/admin/social', label: 'Redes sociales', Icon: Icon.instagram },
+    { href: '/admin/users', label: 'Usuarios', Icon: Icon.users },
+    { href: '/admin/logout', label: 'Log out', Icon: Icon.logout }
 ]
 
 export default function Nav() {
     return (
-        <nav className="xl:col-span-1 col-span-2 flex flex-col bg-neutral-950">
+        <nav className="flex flex-col bg-neutral-950 w-full max-w-64">
             <div className='px-4'>
-                <Image 
-                    className="w-full max-w-full my-4"
-                    src={ '/img/tmr_logo.png' }
-                    alt='TMR Logo'
-                    width={ 150 }
-                    height={ 13 }
-                />  
+                <TMRLogo/>
+            </div>
+            <div className='py-2 pb-4 px-4'>
+                <p>Hey, <b>USER</b></p>
             </div>
             <menu className="flex flex-col uppercase text-sm divide-y divide-neutral-600">
             {
-                adminNavItems.map((item, index) => <NavItem key={ index } item={ item }/>)
+                adminNavItems.map((item, index) => 
+                    <NavItem key={ index } item={ item }/>
+                )
             }
             </menu>
         </nav>
