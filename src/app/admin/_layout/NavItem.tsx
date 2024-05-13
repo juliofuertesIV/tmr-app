@@ -1,30 +1,28 @@
 'use client'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
 import { SVGProps } from 'react'
 
 type Props = {
     item: {
         href: string,
         label: string,
-        Icon?: (props: SVGProps<SVGSVGElement>) => JSX.Element;
-    }
+        Icon: (props: SVGProps<SVGSVGElement>) => JSX.Element;
+    },
+    isActive: boolean
 }
 
-export default function NavItem({ item } : Props) {
+export default function NavItem({ item, isActive } : Props) {
 
-    const pathname = usePathname()
-
-    const { href, label, Icon } = item 
+    const { href, Icon, label } = item
 
     return (
         <Link 
             className='flex items-center py-2 px-4  hover:bg-neutral-800 text-sm data-[active="true"]:bg-neutral-900'
-            data-active={ pathname === href }
+            data-active={ isActive }
             href={ href }
         >
             <span className='text-xl pr-1'>
-            { Icon ? <Icon/> : null }
+            <Icon/>
             </span>
             <span>
             { label }

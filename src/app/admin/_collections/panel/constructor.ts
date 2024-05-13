@@ -9,6 +9,25 @@ import FooterManager from "../forms/contests/FooterManager";
 
 export const panelsByCollectionName = {
     contests: {
+        sections: []
+    },
+    inscriptions: {
+        sections: []
+    },
+    brands: {
+        sections: []
+    },
+    social: {
+        sections: []
+    },
+    users: {
+        sections: []
+    }
+}
+
+
+export const itemPanelsByCollectionName = {
+    contests: {
         navItems: [
             { name: 'Información', value: 'info' },
             { name: 'Estado', value: 'states' },

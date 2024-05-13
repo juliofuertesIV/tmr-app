@@ -1,5 +1,5 @@
 
-export type IErrorTypes = 'validation' | 'regular'
+export type IErrorTypes = 'validation' | 'regular' 
 
 export type IAPIResponse = {
     message: string,

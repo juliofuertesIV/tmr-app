@@ -1,4 +1,4 @@
-import { IAPIResponse, IErrorTypes } from "@/interfaces/forms"
+import { IAPIResponse, IErrorTypes } from "@/interfaces/api"
 import { ValidationError } from "sequelize"
 
 export const constructAPIResponse = ({ 

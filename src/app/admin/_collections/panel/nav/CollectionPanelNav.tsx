@@ -11,11 +11,12 @@ export default function CollectionPanelNav({ navItems, onSelectNavItem, currentS
     const onClickNavItem = (value: string) => onSelectNavItem(value)
 
     return (
-        <menu className='flex gap-2 justify-center uppercase'>
+        <menu className='flex w-full justify-center max-w-full uppercase divide-x'>
             {
                 navItems.map((item, index) => {
                     return (
                         <PanelNavItem 
+                            className='bg-neutral-900 p-1 px-4 text-base cursor-pointer hover:bg-neutral-700 data-[active="true"]:bg-neutral-800 data-[active="true"]:pointer-events-none'
                             key={ index }
                             isActive={ currentSection == item.value }
                             item={ item }

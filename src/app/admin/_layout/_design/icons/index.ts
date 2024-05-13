@@ -4,6 +4,7 @@ import { UsersIcon } from "./UsersIcon";
 import { LogOutIcon } from "./LogoutIcon";
 import { BrandsIcon } from "./BrandsIcon";
 import { DashboardIcon } from "./DashboardIcon";
+import { InscriptionIcon } from "./InscriptionIcon";
 
 
 export { 
@@ -12,5 +13,6 @@ export {
     InstagramIcon as instagram,
     UsersIcon as users,
     LogOutIcon as logout,
-    DashboardIcon as dashboard 
+    DashboardIcon as dashboard,
+    InscriptionIcon as inscription
 } 
