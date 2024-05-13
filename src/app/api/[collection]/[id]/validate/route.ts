@@ -1,12 +1,10 @@
 import { constructAPIResponse } from "@/app/api/_utils"
 import { getModelByCollectionName } from "../../_utils"
-import { IContest, IOneOfCollectionNames } from "@/interfaces"
+import { IContest, IContestMedia, IOneOfCollectionNames } from "@/interfaces"
 
-export const GET = async (req: Request, { params } : { params: { collection: IOneOfCollectionNames, id: string | number }}) => {
+export const GET = async (req: Request, { params } : { params: { collection: IOneOfCollectionNames, id: string }}) => {
 
     const { id, collection } = params
-
-    const { Model, options } = getModelByCollectionName(collection)
 
     if (collection !== 'contests') {
         return Response.json(
@@ -18,34 +16,20 @@ export const GET = async (req: Request, { params } : { params: { collection: IOn
             })
         )
     }
-    
-    const contest = await Model.findOne({ where: { id }, ...options })
-    .then(data => data)
-    .catch(error => {
-        return Response.json(
-            constructAPIResponse({ 
-                message: 'Fallo encontrando el concurso',
-                success: false,
-                error,
-                data: null 
-            })
-        )
-    }) as unknown as IContest
 
+    
+    const contest = await getCollectionItem({ collection, id }) as unknown as IContest
+
+    if (!contest) {
+        return returnContestNotValid(new Error('No se ha encontrado el concurso.'))
+    }
+    
     try {
         validateContest(contest)
     }
     catch (error) {
-        return Response.json(
-            constructAPIResponse({ 
-                message: 'Fallo validando el concurso',
-                success: false,
-                error,
-                data: null 
-            })
-        )
+        return returnContestNotValid(error)
     }
-
 
     return Response.json(
         constructAPIResponse({ 
@@ -55,14 +39,28 @@ export const GET = async (req: Request, { params } : { params: { collection: IOn
             data: { message: 'El concurso es válido.' }
         })
     )
-    
 }
 
 const validateContest = (contest : IContest) => {
-
-    return findBasicInfoError(contest)
+    
+    findBrandError(contest)
+    findMediaError(contest)
+    findBasicInfoError(contest)
 
 }
+
+const returnContestNotValid = (error: unknown) => {
+    return Response.json(
+        constructAPIResponse({ 
+            message: 'El concurso no está preparado.',
+            success: false,
+            error,
+            data: null 
+        })
+    )
+}
+
+
 
 const findBasicInfoError = (contest: IContest) => {
 
@@ -78,10 +76,34 @@ const findBasicInfoError = (contest: IContest) => {
         'year'
     ] as (keyof IContest)[]
 
-
-    const errors = fieldsToTest.filter(field => contest[field] === null).map((field) => `El campo ${ field } está vacío.`)
+    const errors = fieldsToTest.filter(field => contest[field] === null)
 
     if (errors.length) {
-        throw new Error(errors.join(' '))
+        throw new Error(`Faltan ${ errors.length } campos de información del concurso por rellenar: ${ errors.join(', ')}.`)
     }
+}
+
+const findBrandError = (contest: IContest) => {
+    
+    if (!contest.BrandId) {
+        throw new Error('El concurso no está asociado a ninguna marca.')
+    }   
+}
+
+const findMediaError = (contest: IContest) => {
+    if (!contest.Media.length) {
+        throw new Error('El concurso no tiene imágenes.')
+    }
+}
+
+
+const getCollectionItem = async ({ collection, id } : { collection: IOneOfCollectionNames, id: string }) => {
+
+    const { Model, options } = getModelByCollectionName(collection)
+    
+    const collectionItem = await Model.findOne({ where: { id }, ...options })
+    .then(data => data)
+    .catch(error => { throw new Error(error) })
+
+    return collectionItem
 }
