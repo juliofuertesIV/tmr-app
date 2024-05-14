@@ -142,4 +142,19 @@ const genres = [
     }
 ]
 
-export { genres, params, states, brands }
+
+const social = [
+    {
+        id: 'ig',
+        name: 'Instagram',
+        icon: 'instagram'
+    },
+    {
+        id: 'tiktok',
+        name: 'TikTok',
+        icon: 'tiktok'
+    }
+]
+
+
+export { genres, params, states, brands, social }

@@ -1,4 +1,4 @@
-import { Brand, Contest, Media, Param, State } from "@/database"
+import { Brand, Contest, Genre, Media, Param, State } from "@/database"
 import { constructAPIResponse } from "../_utils"
 
 export const GET = async () => {
@@ -7,13 +7,14 @@ export const GET = async () => {
     const brands = await Brand.findAll().then(data => data)
     const params = await Param.findAll().then(data => data)
     const states = await State.findAll().then(data => data)
+    const genres = await Genre.findAll().then(data => data)
     
     return Response.json(
         constructAPIResponse({ 
             message: 'OK!',
             success: true,
             error: null,
-            data: { contests, brands, params, states } 
+            data: { contests, brands, params, states, genres } 
         })
     )
 }

@@ -33,6 +33,8 @@ export type IContest = {
     Media: IContestMedia[]
 }
 
+export type IAssociationTypes = 'params' | 'media' | 'genres' | 'social'
+
 export type IBrand = {
     id: string | number,
     name: string,
@@ -47,6 +49,11 @@ export type IParam = {
     id: IContestParamIds,
     name: string,
     description?: string
+}
+
+export type IGenre = {
+    id: string,
+    name: string
 }
 
 export type IContestMediaRole = 'frame' | 'banner' | 'logo' | 'favicon' | 'footerElement'

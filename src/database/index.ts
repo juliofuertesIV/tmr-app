@@ -148,6 +148,23 @@ export const Param = sequelize.define('Param', {
     timestamps: false
 })
 
+export const SocialMedia = sequelize.define('SocialMedia', {
+    id: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        primaryKey: true,
+        unique: true
+    },
+    name: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    icon: {
+        type: DataTypes.STRING,
+        allowNull: false
+    }
+})
+
 export const Genre = sequelize.define('Genres', {
     id: {
         type: DataTypes.INTEGER,
@@ -309,12 +326,6 @@ export const Vote = sequelize.define('Vote', {
         ]
 }); 
 
-
-export const ContestParam = sequelize.define('ContestParams', {
-}, {
-    timestamps: false
-})
-
 export const Media = sequelize.define('Media', {
     id: {
         type: DataTypes.UUID,
@@ -344,6 +355,21 @@ export const Media = sequelize.define('Media', {
     }
 })
 
+export const ContestParam = sequelize.define('ContestParams', {
+}, {
+    timestamps: false
+})
+
+export const ContestGenre = sequelize.define('ContestGenres', {
+}, {
+    timestamps: false
+})
+
+export const ContestSocial = sequelize.define('ContestSocial', {
+}, {
+    timestamps: false
+})
+
 export const ContestMedia = sequelize.define('ContestMedia', {
 }, {
     timestamps: false
@@ -354,6 +380,9 @@ Contest.hasMany(Inscription)
 
 Contest.belongsToMany(Param, { through: 'ContestParams'})
 Param.belongsToMany(Contest, { through: 'ContestParams'})
+
+Contest.belongsToMany(SocialMedia, { through: 'ContestSocial'})
+SocialMedia.belongsToMany(Contest, { through: 'ContestSocial'})
 
 Contest.belongsTo(State)
 State.hasMany(Contest)
