@@ -1,5 +1,5 @@
 import { IOneOfCollectionNames } from "@/interfaces"
-import { contestCreationForm, contestEditForm} from "./contests"
+import { contestCreationForm, contestEditForm, mediaFieldsByCollection} from "./contests"
 import { brandCreationForm, brandEditForm } from "./brands"
 import { itemPanelsByCollectionName, panelsByCollectionName } from "./panel/constructor"
 
@@ -20,3 +20,5 @@ export const getEditionFormByCollectionName = ({ collection } : { collection: IO
 export const getCollectionItemPanelByCollectionName = ({ collection } : { collection: IOneOfCollectionNames }) => itemPanelsByCollectionName[collection]
 
 export const getCollectionPanelByCollectionName = ({ collection } : { collection: IOneOfCollectionNames }) => panelsByCollectionName[collection]
+
+export const getMediaFieldsByCollection = ({ collection } : { collection: IOneOfCollectionNames }) => mediaFieldsByCollection[collection]

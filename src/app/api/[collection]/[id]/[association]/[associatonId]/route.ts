@@ -19,6 +19,8 @@ export const POST = async (req: Request, { params } : Params) => {
             associationIdField 
         } = getAssociationModelByName(association)
 
+        if (!collectionItemIdField || !AssociationTable) throw new Error('Bad request.')
+
         const payload = {
             [collectionItemIdField]: id,
             [associationIdField]: associationId 
@@ -82,6 +84,8 @@ export const DELETE = async (req: Request, { params } : Params) => {
     const { id, association, associationId } = params
 
     const { AssociationTable, collectionItemIdField, associationIdField } = getAssociationModelByName(association)
+
+    if (!collectionItemIdField || !AssociationTable) throw new Error('Bad request.')
 
     const payload = { [collectionItemIdField]: id, [associationIdField]: associationId }
 

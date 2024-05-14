@@ -1,20 +1,11 @@
-'use client'
-
-import { IContest } from "@/interfaces"
+import { IContest, IContestState } from "@/interfaces"
 import FormSubmit from "../FormSubmit"
-import { updateCollectionItem } from "@/app/_fetch/put"
-import { useFormState } from "react-dom"
-import { formInitialState } from "@/interfaces/forms"
 import AdminFormFeedback from "../FormFeedback"
 import StateRadioButton from "./StateRadioButton"
-import { useContext, useEffect, useState } from "react"
-import { AdminDataContext } from "@/_providers/AdminDataProvider"
 
-export default function ContestStates({ item: contest } : { item: IContest }) {
+export default function ContestStates({ contest, states } : { contest: IContest, states: IContestState[] }) {
     
-    const { states } = useContext(AdminDataContext)
-
-    const boundAction = updateCollectionItem.bind(null, 'contests', contest.id as string)
+/*     const boundAction = updateCollectionItem.bind(null, 'contests', contest.id as string)
     
     const [state, formAction] = useFormState(boundAction, formInitialState)
 
@@ -49,12 +40,12 @@ export default function ContestStates({ item: contest } : { item: IContest }) {
                 <p className="bg-red-800 leading-none py-2 px-4 text-center rounded-md">No se puede cambiar el estado: { contestStatus.message } </p>    
             </div>
         )
-    }
+    } */
 
     return (
-        <form action={ formAction }>
-            <p className="bg-green-800 leading-none py-2 px-4 mb-4 text-center rounded-md">{ contestStatus.message } </p>
-            <AdminFormFeedback state={ state }/> 
+        <form>
+            {/* <p className="bg-green-800 leading-none py-2 px-4 mb-4 text-center rounded-md">{ contestStatus.message } </p> */}
+            {/* <AdminFormFeedback state={ state }/>  */}
             <fieldset className="border-2 border-neutral-100 px-4 pt-4 pb-4 flex flex-col gap-2 text-sm">
                 <legend className="uppercase px-2">Cambiar estado del concurso</legend>
                 {
@@ -66,7 +57,6 @@ export default function ContestStates({ item: contest } : { item: IContest }) {
                         />
                     )
                 }
-                <FormSubmit disabled={ loadingState || !contestStatus?.enabled }/>
             </fieldset>
         </form>
     )

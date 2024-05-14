@@ -1,6 +1,7 @@
 import { addCollectionElement } from "@/app/_fetch/post"
 import { updateCollectionItem } from "@/app/_fetch/put"
-import { ICreationFormByCollectionName, IEditionFormByCollectionName } from "@/interfaces/forms"
+import { IOneOfCollectionNames } from "@/interfaces"
+import { ICreationFormByCollectionName, IEditionFormByCollectionName, IMediaFormField } from "@/interfaces/forms"
 
 export const contestCreationForm : ICreationFormByCollectionName = {
     action: addCollectionElement,
@@ -132,4 +133,40 @@ export const contestEditForm : IEditionFormByCollectionName = {
             multiple: false,
         },
     ]
+}
+
+export const mediaFieldsByCollection = {
+    contests: [
+        {
+            role: 'logo',
+            label: 'Logotipo',
+            instructions: 'Debe pesar menos de 2mb',
+            acceptedTypes: 'image/png, image/svg+xml',
+            multiple: false,
+        },
+        {
+            role: 'banner',
+            label: 'Banner',
+            instructions: 'Debe pesar menos de 2mb',
+            acceptedTypes: 'image/png, image/svg+xml',
+            multiple: false,
+        },
+        {
+            role: 'frame',
+            label: 'Marco',
+            instructions: 'Debe pesar menos de 2mb',
+            acceptedTypes: 'image/png, image/svg+xml',
+            multiple: false,
+        },
+        {
+            role: 'favicon',
+            label: 'Favicon',
+            instructions: 'Debe ser imagen tipo .ico',
+            acceptedTypes: '.ico',
+            multiple: false,
+        },
+    ],
+    brands: []
+} as {
+    [key in IOneOfCollectionNames]: IMediaFormField[]
 }

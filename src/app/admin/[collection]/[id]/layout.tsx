@@ -6,13 +6,15 @@ const navItemsByCollectionName = {
         { name: 'Información', value: '' },
         { name: 'Estado', value: 'states' },
         { name: 'Configuración', value: 'params' },
-        { name: 'Imágenes', value: 'media' },
+        { name: 'Imágenes', value: '' },
         { name: 'Footer', value: '' },
         { name: 'Branding', value: 'brands' },
         { name: 'Géneros', value: 'genres' },
         { name: 'Redes sociales', value: 'social' }
     ],
-    brands: []
+    brands: [
+        { name: 'Información', value: '' },
+    ]
 }
 
 type Props = {

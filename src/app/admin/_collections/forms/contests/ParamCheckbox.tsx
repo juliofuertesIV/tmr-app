@@ -2,25 +2,18 @@
 
 import { IContest, IParam } from '@/interfaces'
 import Image from 'next/image'
-import { ChangeEvent } from 'react'
 
 type Props = {
     param: IParam,
     contest: IContest,
-    loading: boolean,
-    submitForm: ({ ParamId, method } : { ParamId: string, method: 'POST' | 'DELETE' }) => void
+    loading: boolean
 }
 
-export default function ParamCheckbox({ param, contest, loading, submitForm } : Props) {
+export default function ParamCheckbox({ param, contest, loading } : Props) {
 
     const { id, name, description } = param
 
     const contestHasParam = contest.Params.find(one => one.id === param.id) !== undefined
-
-    const onChange = (e: ChangeEvent<HTMLInputElement>) => {
-        
-        submitForm({ ParamId: param.id, method: contestHasParam ? 'DELETE' : 'POST' })
-    }
 
     if (contestHasParam) return (
         <div 
@@ -29,7 +22,7 @@ export default function ParamCheckbox({ param, contest, loading, submitForm } : 
         >
             <label className="flex flex-col gap-2 cursor-pointer leading-none">
                 <div className="flex gap-2 items-center leading-none">
-                    <input type="checkbox" name={ 'ParamId' } value={ id } defaultChecked={ contestHasParam } onChange={ onChange }/>
+                    <input type="checkbox" name={ 'ParamId' } value={ id } defaultChecked={ contestHasParam } />
                     <p className='uppercase'>{ name }</p>
                     <small 
                         data-loading={ loading }
@@ -61,7 +54,7 @@ export default function ParamCheckbox({ param, contest, loading, submitForm } : 
         >
             <label className="flex flex-col gap-2 cursor-pointer leading-none">
                 <div className="flex gap-2 items-center leading-none">
-                    <input type="checkbox" name={ 'ParamId' } value={ id } defaultChecked={ contestHasParam } onChange={ onChange }/>
+                    <input type="checkbox" name={ 'ParamId' } value={ id } defaultChecked={ contestHasParam }/>
                     <p className='uppercase'>{ name }</p>
                     <small 
                         data-loading={ loading }

@@ -9,6 +9,8 @@ export const GET = async (req: Request, { params } : Params) => {
 
     const { AssociationTable, collectionItemIdField } = getAssociationModelByName(association)
 
+    if (!collectionItemIdField || !AssociationTable) throw new Error('Bad request.')
+
     const data = await AssociationTable
         .findAll({ where: { [collectionItemIdField]: id }})
         .then(data => data)
