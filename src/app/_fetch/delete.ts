@@ -1,6 +1,6 @@
 'use server'
     
-import { IContestMediaRole, IOneOfCollectionNames } from "@/interfaces"
+import { IAssociationTypes, IContestMediaRole, IOneOfCollectionNames } from "@/interfaces"
 import { IAPIResponse } from "@/interfaces/api"
 import { revalidateTag } from "next/cache"
 
@@ -39,5 +39,26 @@ export const deleteContestMediaItem = async ({ contestId, mediaId } : { contestI
     
     revalidateTag('contests')
 
+    return res
+}
+
+
+export const disassociateItems = async (
+    collection: IOneOfCollectionNames,
+    collectionItemId: string | number,
+    association: IAssociationTypes,
+    associationItemId: string | number,
+    prevState: any,
+    formData: FormData
+) : Promise<IAPIResponse> => {
+
+    const res = await fetch(`http://localhost:3000/api/${ collection }/${ collectionItemId }/${ association }/${ associationItemId }`, {
+        method: "DELETE",
+        cache: 'no-cache'
+    })
+    .then(async data => await data.json())
+    .catch(error => error)
+    
+    revalidateTag(collection)
     return res
 }

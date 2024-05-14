@@ -1,23 +1,79 @@
 import { IAssociationTypes, IOneOfCollectionNames } from "@/interfaces";
-import { getAssociationModelByName } from "../../../_utils";
+import { getAssociationModelByName, getModelByCollectionName } from "../../../_utils";
+import { constructAPIResponse } from "@/app/api/_utils";
 
 
 type Params = { params: { collection: IOneOfCollectionNames, id: string, association: IAssociationTypes, associationId: string }}
 
-// localhost/api/contests/contestId/genres/genreId POST || DELETE
-
 export const POST = async (req: Request, { params } : Params) => {
 
-    const { id, association, associationId } = params
+    const { collection, id, association, associationId } = params
 
-    const { AssociationTable, collectionItemIdField, associationIdField } = getAssociationModelByName(association)
+    const { isManyToMany } = Object.fromEntries(await req.formData()) || false
 
-    const payload = { [collectionItemIdField]: id, [associationIdField]: associationId }
+    if (isManyToMany) {
 
-    const data = await AssociationTable.create({ ...payload })
-        .then(data => data)
+        const { 
+            AssociationTable,
+            collectionItemIdField,
+            associationIdField 
+        } = getAssociationModelByName(association)
 
-    return Response.json(data)
+        const payload = {
+            [collectionItemIdField]: id,
+            [associationIdField]: associationId 
+        }
+    
+        try {
+            const data = await AssociationTable.create({ ...payload }).then(data => data)
+            return Response.json(
+                constructAPIResponse({
+                    message: 'Elementos asociados correctamente.',
+                    error: null,
+                    success: true,
+                    data
+                })
+            )
+        }
+        catch (error) {
+            return Response.json(
+                constructAPIResponse({
+                    message: 'Fallo asociando elementos.',
+                    error,
+                    success: false,
+                    data: null
+                })
+            )
+        }    
+    }
+
+    const { associationIdField } = getAssociationModelByName(association)
+
+    const { Model } = getModelByCollectionName(collection)
+
+    const payload = { [associationIdField]: associationId }
+
+    try {
+        const data = await Model.update({ ...payload }, { where: { id }})
+        return Response.json(
+            constructAPIResponse({
+                message: 'Elementos asociados correctamente.',
+                error: null,
+                success: true,
+                data
+            })
+        )
+    }
+    catch (error) {
+        return Response.json(
+            constructAPIResponse({
+                message: 'Fallo asociando elementos.',
+                error,
+                success: false,
+                data: null
+            })
+        )
+    }
 }
 
 
@@ -33,5 +89,4 @@ export const DELETE = async (req: Request, { params } : Params) => {
     .then(data => data)
 
     return Response.json(data)
-
 }

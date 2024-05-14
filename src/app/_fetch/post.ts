@@ -1,6 +1,6 @@
 'use server'
 
-import { IOneOfCollectionNames } from "@/interfaces"
+import { IAssociationTypes, IOneOfCollectionNames } from "@/interfaces"
 import { IAPIResponse } from "@/interfaces/api"
 import { revalidateTag } from "next/cache"
 
@@ -63,4 +63,26 @@ export const manageCollectionMedia = async (
     
     revalidateTag(collection)
     return res
+}
+
+export const associateItems = async (
+    collection: IOneOfCollectionNames,
+    collectionItemId: string | number,
+    association: IAssociationTypes,
+    associationItemId: string | number,
+    prevState: any,
+    formData: FormData
+) : Promise<IAPIResponse> => {
+
+    const res = await fetch(`http://localhost:3000/api/${ collection }/${ collectionItemId }/${ association }/${ associationItemId }`, {
+        method: "POST",
+        cache: 'no-cache',
+        body: formData
+    })
+    .then(async data => await data.json())
+    .catch(error => error)
+    
+    revalidateTag(collection)
+    return res
+
 }

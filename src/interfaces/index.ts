@@ -5,6 +5,12 @@ export type IOneOfCollections = IContest & IBrand
 
 export type IOneOfCollectionNames = 'contests' | 'brands'
 
+export type IOneOfCollectionsWithAssociations = IContest | IBrand
+
+export type IOneOfAssociations = IBrand | IParam | IContestState | IGenre | ISocialMedia | IContestMedia
+
+export type IOneOfCollectionsNamesWithAssociations = 'contests' | 'users'
+
 export type IContestState = {
     name: string, 
     id: IContestStateIds,
@@ -33,7 +39,7 @@ export type IContest = {
     Media: IContestMedia[]
 }
 
-export type IAssociationTypes = 'params' | 'media' | 'genres' | 'social'
+export type IAssociationTypes = 'params' | 'media' | 'states' | 'brands' | 'genres' | 'social'
 
 export type IBrand = {
     id: string | number,
@@ -54,6 +60,12 @@ export type IParam = {
 export type IGenre = {
     id: string,
     name: string
+}
+
+export type ISocialMedia = {
+    id: string,
+    name: string,
+    icon: string
 }
 
 export type IContestMediaRole = 'frame' | 'banner' | 'logo' | 'favicon' | 'footerElement'
