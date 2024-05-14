@@ -3,10 +3,11 @@
 import { useFormStatus } from 'react-dom'
 
 type Props = {
-    value?: string
+    value?: string,
+    disabled?: boolean
 }
 
-export default function AdminFormSubmit({ value = 'Enviar' } : Props) {
+export default function FormSubmit({ value = 'Enviar', disabled = false } : Props) {
 
     const { pending } = useFormStatus()
 
@@ -14,6 +15,7 @@ export default function AdminFormSubmit({ value = 'Enviar' } : Props) {
         className='bg-stone-300 text-stone-800 uppercase font-bold py-1 rounded-sm'
         type='submit'
         value={ pending ? 'Guardando...' : value } 
+        disabled={ disabled }
     />
         
 }

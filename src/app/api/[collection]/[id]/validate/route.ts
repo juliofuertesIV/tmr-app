@@ -33,10 +33,10 @@ export const GET = async (req: Request, { params } : { params: { collection: IOn
 
     return Response.json(
         constructAPIResponse({ 
-            message: 'OK',
+            message: 'El concurso puede cambiar de estado.',
             success: true,
             error: null,
-            data: { message: 'El concurso es válido.' }
+            data: null
         })
     )
 }
@@ -52,7 +52,7 @@ const validateContest = (contest : IContest) => {
 const returnContestNotValid = (error: unknown) => {
     return Response.json(
         constructAPIResponse({ 
-            message: 'El concurso no está preparado.',
+            message: 'El concurso no está preparado para cambiar de estado.',
             success: false,
             error,
             data: null 
@@ -84,7 +84,6 @@ const findBasicInfoError = (contest: IContest) => {
 }
 
 const findBrandError = (contest: IContest) => {
-    
     if (!contest.BrandId) {
         throw new Error('El concurso no está asociado a ninguna marca.')
     }   
@@ -93,6 +92,16 @@ const findBrandError = (contest: IContest) => {
 const findMediaError = (contest: IContest) => {
     if (!contest.Media.length) {
         throw new Error('El concurso no tiene imágenes.')
+    }
+
+    // We check for all media that's not a footer element (which are optional) and there should be: logo, banner, frame, favicon
+
+    const mediaRequiredElements = contest.Media.filter((media) => media.role !== 'footerElement').length 
+
+    console.log({ mediaRequiredElements })
+
+    if (mediaRequiredElements < 4) {
+        throw new Error('El concurso no tiene alguna de las imágenes requeridas (logo, favicon, marco, banner).')
     }
 }
 

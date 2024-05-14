@@ -1,6 +1,6 @@
 
 import { IOneOfCollectionNames, IOneOfCollections } from "@/interfaces";
-import AdminEditionForm from "../forms/AdminEditionForm";
+import AdminEditionForm from "../forms/EditionForm";
 import ContestBrands from "../forms/contests/ContestBrands";
 import ContestParams from "../forms/contests/ContestParams";
 import ContestStates from "../forms/contests/ContestStates";

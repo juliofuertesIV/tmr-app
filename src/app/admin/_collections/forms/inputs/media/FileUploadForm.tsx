@@ -4,8 +4,8 @@ import { manageCollectionMedia } from "@/app/_fetch/post"
 import { IContest, IContestMedia, IContestMediaRole } from "@/interfaces"
 import { IMediaFormField, formInitialState } from "@/interfaces/forms"
 import { useFormState } from "react-dom"
-import AdminFormFeedback from "../../AdminFormFeedback"
-import AdminFormSubmit from "../../AdminFormSubmit"
+import AdminFormFeedback from "../../FormFeedback"
+import FormSubmit from "../../FormSubmit"
 import { ChangeEvent, DragEvent, useEffect, useLayoutEffect, useRef, useState } from "react"
 import FilePreview from "./FilePreview"
 import Droppable from "./Droppable"
@@ -124,7 +124,7 @@ export default function FileUploadForm({ collectionElement, mediaField, showData
             <input type="hidden" name="role" value={ role }/>
             <input type="hidden" name="width" value={ mediaField.width || 500 }/>
             <input type="hidden" name="height" value={ mediaField.height || 500 }/>
-            <AdminFormSubmit value={ !!currentMedia ? "Reemplazar" : "Subir archivo" }/>
+            <FormSubmit value={ !!currentMedia ? "Reemplazar" : "Subir archivo" }/>
         </form>
     )
 }

@@ -3,7 +3,7 @@
 import { IOneOfCollectionNames, IOneOfCollections } from "@/interfaces"
 import { useState } from "react"
 import CollectionPanelNav from "./nav/CollectionPanelNav"
-import { getCollectionItemPanel } from ".."
+import { getCollectionItemPanelByCollectionName } from ".."
 
 type Props = { 
     collection: IOneOfCollectionNames,
@@ -16,7 +16,7 @@ export default function CollectionItemPanel({ collection, item } : Props) {
 
     const onSelectNavItem = (section: string) => setSelectedSection(section)      
 
-    const { navItems, sections } = getCollectionItemPanel({ collection })
+    const { navItems, sections } = getCollectionItemPanelByCollectionName({ collection })
     
     const { Element } = sections[selectedSection]
 

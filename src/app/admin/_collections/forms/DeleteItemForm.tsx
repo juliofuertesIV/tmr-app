@@ -4,8 +4,8 @@ import { deleteCollectionItem } from "@/app/_fetch/delete"
 import { IOneOfCollectionNames } from "@/interfaces"
 import { formInitialState } from "@/interfaces/forms"
 import { useFormState } from "react-dom"
-import AdminFormFeedback from "./AdminFormFeedback"
-import AdminFormSubmit from "./AdminFormSubmit"
+import AdminFormFeedback from "./FormFeedback"
+import FormSubmit from "./FormSubmit"
 
 export default function DeleteItemForm({ collection, itemId } : { collection: IOneOfCollectionNames, itemId: string | number }) {
     
@@ -20,7 +20,7 @@ export default function DeleteItemForm({ collection, itemId } : { collection: IO
             action={ formAction }
         >
             <AdminFormFeedback state={ state } />
-            <AdminFormSubmit/>
+            <FormSubmit/>
         </form>
     )
 }

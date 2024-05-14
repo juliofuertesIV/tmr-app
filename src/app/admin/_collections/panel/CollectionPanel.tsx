@@ -1,7 +1,7 @@
 'use client'
 
 import { IOneOfCollectionNames } from "@/interfaces"
-import { getCollectionPanel } from ".."
+import { getCollectionPanelByCollectionName } from ".."
 
 type Props = { 
     collection: IOneOfCollectionNames
@@ -9,7 +9,7 @@ type Props = {
 
 export default function CollectionPanel({ collection } : Props) {
 
-    const { sections } = getCollectionPanel({ collection })
+    const { sections } = getCollectionPanelByCollectionName({ collection })
 
     return (
         <div className="h-screen flex flex-col w-full relative">

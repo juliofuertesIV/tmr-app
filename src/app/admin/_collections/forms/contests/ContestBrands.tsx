@@ -1,11 +1,11 @@
 'use client'
 
 import { IContest } from "@/interfaces"
-import AdminFormSubmit from "../AdminFormSubmit"
+import FormSubmit from "../FormSubmit"
 import { updateCollectionItem } from "@/app/_fetch/put"
 import { useFormState } from "react-dom"
 import { formInitialState } from "@/interfaces/forms"
-import AdminFormFeedback from "../AdminFormFeedback"
+import AdminFormFeedback from "../FormFeedback"
 import BrandRadioButton from "./BrandRadioButton"
 import { useContext, useRef, useState } from "react"
 import { AdminDataContext } from "@/_providers/AdminDataProvider"
@@ -58,7 +58,7 @@ export default function ContestBrands({ item: contest } : { item: IContest }) {
                             )
                         })
                     }
-                <AdminFormSubmit/>
+                <FormSubmit/>
                 <AdminFormFeedback state={ state }/>
                 </div>
             </form>

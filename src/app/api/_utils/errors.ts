@@ -1,29 +1,32 @@
-import { IErrorTypes } from "@/interfaces/api"
+import { IAPIError, IErrorTypes } from "@/interfaces/api"
 import { ValidationError } from "sequelize"
 
 
-export const parseError = (error: unknown) => {
+export const parseError = (error: unknown) : IAPIError => {
 
     if (!error) return null
 
     if (error instanceof ValidationError) 
         return { 
             errorType: "validation" as IErrorTypes,
-            content: error,
+            message: error.message,
+            cause: error.cause as string || undefined,
             messages: error.errors.map(err => err.message)
         }
 
     if (error instanceof Error) 
         return {
             errorType: "regular" as IErrorTypes,
-            content: error,
+            message: error.message,
+            cause: error.cause as string || undefined,
             messages: [error.message]
         }
 
     else {
         return {
             errorType: "regular" as IErrorTypes, 
-            content: new Error('Error desconocido.'),
+            message: 'Error desconocido',
+            cause: 'Causa desconocida',
             messages: ['Error desconocido.'],
         }
     }

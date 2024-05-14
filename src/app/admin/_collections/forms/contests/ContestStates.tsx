@@ -1,13 +1,13 @@
 'use client'
 
 import { IContest } from "@/interfaces"
-import AdminFormSubmit from "../AdminFormSubmit"
+import FormSubmit from "../FormSubmit"
 import { updateCollectionItem } from "@/app/_fetch/put"
 import { useFormState } from "react-dom"
 import { formInitialState } from "@/interfaces/forms"
-import AdminFormFeedback from "../AdminFormFeedback"
+import AdminFormFeedback from "../FormFeedback"
 import StateRadioButton from "./StateRadioButton"
-import { useContext } from "react"
+import { useContext, useEffect, useState } from "react"
 import { AdminDataContext } from "@/_providers/AdminDataProvider"
 
 export default function ContestStates({ item: contest } : { item: IContest }) {
@@ -17,9 +17,43 @@ export default function ContestStates({ item: contest } : { item: IContest }) {
     const boundAction = updateCollectionItem.bind(null, 'contests', contest.id as string)
     
     const [state, formAction] = useFormState(boundAction, formInitialState)
+
+    const [ contestStatus, setContestStatus ] = useState<{ message?: string, enabled: boolean }>({ message: 'Loading...', enabled: false })
+    const [ loadingState, setLoadingState ] = useState<boolean>(true)
+
+    useEffect(() => {
+
+        const fetchData = async () => {
+            const res = await fetch(`http://localhost:3000/api/contests/${ contest.id }/validate`, {
+                method: 'GET',
+                cache: 'no-cache',
+                headers: {
+                    "Content-Type": "application/json",
+                }
+            }).then(data => data.json())
+
+            setLoadingState(false)
+            setContestStatus({ 
+                message: res.success ? res.message : res.error.message,
+                enabled: res.success 
+            })
+        }
+
+        fetchData()
+
+    }, [ contest.id ])
     
+    if (!contestStatus.enabled) {
+        return (
+            <div>
+                <p className="bg-red-800 leading-none py-2 px-4 text-center rounded-md">No se puede cambiar el estado: { contestStatus.message } </p>    
+            </div>
+        )
+    }
+
     return (
         <form action={ formAction }>
+            <p className="bg-green-800 leading-none py-2 px-4 mb-4 text-center rounded-md">{ contestStatus.message } </p>
             <AdminFormFeedback state={ state }/> 
             <fieldset className="border-2 border-neutral-100 px-4 pt-4 pb-4 flex flex-col gap-2 text-sm">
                 <legend className="uppercase px-2">Cambiar estado del concurso</legend>
@@ -32,7 +66,7 @@ export default function ContestStates({ item: contest } : { item: IContest }) {
                         />
                     )
                 }
-                <AdminFormSubmit/>
+                <FormSubmit disabled={ loadingState || !contestStatus?.enabled }/>
             </fieldset>
         </form>
     )

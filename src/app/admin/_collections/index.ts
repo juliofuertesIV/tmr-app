@@ -17,6 +17,6 @@ export const getCreationFormByCollectionName = ({ collection } : { collection: I
 
 export const getEditionFormByCollectionName = ({ collection } : { collection: IOneOfCollectionNames }) => editionFormsByCollectionName[collection]
 
-export const getCollectionItemPanel = ({ collection } : { collection: IOneOfCollectionNames }) => itemPanelsByCollectionName[collection]
+export const getCollectionItemPanelByCollectionName = ({ collection } : { collection: IOneOfCollectionNames }) => itemPanelsByCollectionName[collection]
 
-export const getCollectionPanel = ({ collection } : { collection: IOneOfCollectionNames }) => panelsByCollectionName[collection]
+export const getCollectionPanelByCollectionName = ({ collection } : { collection: IOneOfCollectionNames }) => panelsByCollectionName[collection]

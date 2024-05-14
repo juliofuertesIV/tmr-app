@@ -1,9 +1,9 @@
 'use client'
 
 import { useFormState } from 'react-dom'
-import AdminFormSubmit from './AdminFormSubmit'
+import FormSubmit from './FormSubmit'
 import { formInitialState } from '@/interfaces/forms'
-import AdminFormFeedback from './AdminFormFeedback'
+import AdminFormFeedback from './FormFeedback'
 import EditionInput from './inputs/EditionInput'
 import { IOneOfCollectionNames, IOneOfCollections } from '@/interfaces'
 import { useParams } from 'next/navigation'
@@ -40,7 +40,7 @@ export default function AdminEditionForm({ item } : Props) {
                     )
                 })
             }
-            <AdminFormSubmit/>
+            <FormSubmit/>
         </form>
     )
 }
