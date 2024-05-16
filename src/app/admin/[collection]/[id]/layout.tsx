@@ -4,13 +4,13 @@ import Link from "next/link";
 const navItemsByCollectionName = {
     contests: [
         { name: 'Información', value: '' },
-        { name: 'Estado', value: 'states' },
         { name: 'Configuración', value: 'params' },
-        { name: 'Imágenes', value: '' },
-        { name: 'Footer', value: '' },
         { name: 'Branding', value: 'brands' },
         { name: 'Géneros', value: 'genres' },
-        { name: 'Redes sociales', value: 'social' }
+        { name: 'Redes sociales', value: 'social' },
+        { name: 'Imágenes', value: '' },
+        { name: 'Footer', value: '' },
+        { name: 'Estado', value: 'states' },
     ],
     brands: [
         { name: 'Información', value: '' },

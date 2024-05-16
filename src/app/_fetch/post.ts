@@ -69,12 +69,11 @@ export const associateItems = async (
     collection: IOneOfCollectionNames,
     collectionItemId: string | number,
     association: IAssociationTypes,
-    associationItemId: string | number,
     prevState: any,
     formData: FormData
 ) : Promise<IAPIResponse> => {
 
-    const res = await fetch(`http://localhost:3000/api/${ collection }/${ collectionItemId }/${ association }/${ associationItemId }`, {
+    const res = await fetch(`http://localhost:3000/api/${ collection }/${ collectionItemId }/${ association }`, {
         method: "POST",
         cache: 'no-cache',
         body: formData

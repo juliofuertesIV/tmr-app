@@ -1,12 +1,21 @@
 import { Metadata } from "next";
 import Dashboard from "./_dashboard/Dashboard";
 import { getAdminData } from "../_fetch/get";
-import { IAdminData } from "@/_providers/AdminDataProvider";
+import { IBrand, IContest, IContestState, IGenre, IParam } from "@/interfaces";
 
 export const metadata: Metadata = {
     title: "Panel de administración TMR",
     description: "El buen admin panel"
 };
+
+
+type IAdminData = {
+    contests: IContest[],
+    brands: IBrand[],
+    params: IParam[],
+    states: IContestState[],
+    genres: IGenre[]
+}
 
 const getData = async () : Promise<IAdminData> => {
     const { data } : { data: IAdminData } = await getAdminData()

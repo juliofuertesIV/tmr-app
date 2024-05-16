@@ -7,7 +7,7 @@ export type IOneOfCollectionNames = 'contests' | 'brands'
 
 export type IOneOfCollectionsWithAssociations = IContest | IBrand
 
-export type IOneOfAssociations = IBrand | IParam | IContestState | IGenre | ISocialMedia | IContestMedia
+export type IOneOfAssociations = IBrand | IParam | IContestState | IGenre | ISocialMedia
 
 export type IOneOfCollectionsNamesWithAssociations = 'contests' | 'users'
 
@@ -35,11 +35,19 @@ export type IContest = {
     BrandId: number,
     Brand: IBrand,
     State: IContestState,
+    Genres: IGenre[],
+    SocialMedia: ISocialMedia[],
     Params: IParam[],
     Media: IContestMedia[]
 }
 
-export type IAssociationTypes = 'params' | 'media' | 'states' | 'brands' | 'genres' | 'social'
+export type IAssociationTypes = 'params' | 'states' | 'brands' | 'genres' | 'social'
+
+export type IManyToManyAssociationKeys = IManyToManyContestKeys | 'Roles'
+
+export type IManyToManyContestKeys = 'Params' | 'Genres' | 'SocialMedia'
+
+export type ISimpleAssociationKeys = 'StateId' | 'BrandId'
 
 export type IBrand = {
     id: string | number,

@@ -3,7 +3,7 @@ import FormSubmit from "../FormSubmit"
 import AdminFormFeedback from "../FormFeedback"
 import StateRadioButton from "./StateRadioButton"
 
-export default function ContestStates({ contest, states } : { contest: IContest, states: IContestState[] }) {
+export default function StateManager({ contest, states } : { contest: IContest, states: IContestState[] }) {
     
 /*     const boundAction = updateCollectionItem.bind(null, 'contests', contest.id as string)
     

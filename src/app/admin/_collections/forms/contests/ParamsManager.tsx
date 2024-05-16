@@ -1,7 +1,7 @@
 
 import { IContest, IParam } from '@/interfaces'
 
-export default function ContestParams({ contest, params } : { contest: IContest, params: IParam[] }) {
+export default function ParamsManager({ contest, params } : { contest: IContest, params: IParam[] }) {
 
     if (!params) {
         return null

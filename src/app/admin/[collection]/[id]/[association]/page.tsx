@@ -1,10 +1,8 @@
 import { Metadata } from "next";
-import { IAssociationTypes, IBrand, IContest, IContestMedia, IContestState, IGenre, IOneOfAssociations, IOneOfCollectionNames, IOneOfCollectionsNamesWithAssociations, IOneOfCollectionsWithAssociations, IParam, ISocialMedia } from "@/interfaces";
+import { IAssociationTypes, IOneOfAssociations, IOneOfCollectionNames, IOneOfCollectionsWithAssociations } from "@/interfaces";
 import { getAssociationModelByName, getModelByCollectionName } from "@/app/api/[collection]/_utils";
-import ContestParams from "@/app/admin/_collections/forms/contests/ContestParams";
-import ContestStates from "@/app/admin/_collections/forms/contests/ContestStates";
-import ContestMediaManager from "@/app/admin/_collections/forms/contests/ContestMediaManager";
-import ContestBrands from "@/app/admin/_collections/forms/contests/ContestBrands";
+import AssociationManager from "@/app/admin/_collections/forms/contests/AssociationManager";
+import { getAssociationOptionsByName } from "./_utils";
 
 export const metadata: Metadata = {
     title: "Panel de administración TMR",
@@ -29,18 +27,15 @@ const getPageData = async ({ collection, id, association } : { collection: IOneO
 
     return { item, associationItems }
 }
-
-
-const elementsByAssociationName = (item: IOneOfCollectionsWithAssociations, items: IOneOfAssociations[]) => {
+/* const getComponentByAssociationName = (item: IOneOfCollectionsWithAssociations, items: IOneOfAssociations[]) => {
     return {
-        params: () => ContestParams({ contest: item as IContest, params: items as IParam[] }),
-        states: () => ContestStates({ contest: item as IContest, states: items as IContestState[] }),
-        brands: () => ContestBrands({ contest: item as IContest, brands: items as IBrand[] }),
-        media: () => null, // throws error
-        genres: null,
+        params: () => ParamsManager({ contest: item as IContest, params: items as IParam[] }),
+        states: () => StateManager({ contest: item as IContest, states: items as IContestState[] }),
+        brands: () => BrandManager({ contest: item as IContest, brands: items as IBrand[] }),
+        genres: () => GenreManager({ contest: item as IContest, genres: items as IGenre[] }),
         social: null
     }
-}
+} */
 
 
 export default async function AdminAssociationPage({ params } : Props) {
@@ -48,25 +43,31 @@ export default async function AdminAssociationPage({ params } : Props) {
     const { collection, id, association } = params
 
     const { item, associationItems } = await getPageData({ collection, association, id })
-
-    const getElementByAssociationName = ({ association, associationItems } : { association: IAssociationTypes, associationItems: IOneOfAssociations[] }) => {
-
-        if (association == 'genres' || association == 'social') return null
-    
-        return elementsByAssociationName(item, associationItems)[association]
+/* 
+    const ComponentByAssociationName = ({ association, associationItems } : { association: IAssociationTypes, associationItems: IOneOfAssociations[] }) => {   
+        return getComponentByAssociationName(item, associationItems)[association]
     }
 
-    const Element = getElementByAssociationName({ association, associationItems })
+    const AssociationManager = ComponentByAssociationName({ association, associationItems })
 
-    if (!Element) {
+    if (!AssociationManager) {
         return (
             <p>
                 { item.name } || { associationItems.map((item, index) => <span className="px-2" key={ index }>{ item.id }</span>) }
             </p>
         )
     }
+ */
+    const { associationKey, isManyToMany } = getAssociationOptionsByName(association)
 
     return (
-        <Element/>
+        <AssociationManager 
+            collection={ collection }
+            collectionItem={ item } 
+            association={ association }
+            associationItems={ associationItems }
+            associationKey={ associationKey }
+            isManyToMany={ isManyToMany }
+        />
     )
 }

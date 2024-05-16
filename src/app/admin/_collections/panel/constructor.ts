@@ -1,9 +1,9 @@
 
 import { IOneOfCollectionNames, IOneOfCollections } from "@/interfaces";
 import AdminEditionForm from "../forms/EditionForm";
-import ContestBrands from "../forms/contests/ContestBrands";
-import ContestParams from "../forms/contests/ContestParams";
-import ContestStates from "../forms/contests/ContestStates";
+import BrandManager from "../forms/contests/BrandManager";
+import ParamsManager from "../forms/contests/ParamsManager";
+import StateManager from "../forms/contests/StateManager";
 import ContestMediaManager from "../forms/contests/ContestMediaManager";
 import FooterManager from "../forms/contests/FooterManager";
 
@@ -41,13 +41,13 @@ export const itemPanelsByCollectionName = {
                 Element: AdminEditionForm 
             },
             brands: { 
-                Element: ContestBrands 
+                Element: BrandManager 
             },
             params: { 
-                Element: ContestParams 
+                Element: ParamsManager 
             },
             states: { 
-                Element: ContestStates 
+                Element: StateManager 
             },
             media: { 
                 Element: ContestMediaManager 

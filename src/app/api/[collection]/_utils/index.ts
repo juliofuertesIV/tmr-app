@@ -1,6 +1,5 @@
-import ContestStates from "@/app/admin/_collections/forms/contests/ContestStates";
 import { Brand, Contest, Media, Genre, Param, State, ContestParam, ContestMedia, ContestGenre, ContestSocial, SocialMedia } from "@/database";
-import { IAssociationTypes, IOneOfCollectionNames, IOneOfCollectionsNamesWithAssociations } from "@/interfaces";
+import { IAssociationTypes, IOneOfCollectionNames } from "@/interfaces";
 import { Model, ModelStatic, Options } from "sequelize";
 
 const modelsByCollectionName = {
@@ -10,7 +9,8 @@ const modelsByCollectionName = {
             include: [
                 State, 
                 Genre,
-                Brand, 
+                Brand,
+                SocialMedia,
                 { 
                     model: Param,
                     attributes: ['id', 'name', 'description'],

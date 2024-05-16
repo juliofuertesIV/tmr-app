@@ -7,7 +7,7 @@ import AdminFormFeedback from "../FormFeedback"
 import BrandRadioButton from "./BrandRadioButton"
 import { useRef, useState } from "react"
 
-export default function ContestBrands({ contest, brands } : { contest: IContest, brands: IBrand[] }) {
+export default function BrandManager({ contest, brands } : { contest: IContest, brands: IBrand[] }) {
     
 /*     const [ selectedBrandId, setSelectedBrandId ] = useState<number>(contest.BrandId)
 
