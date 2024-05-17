@@ -16,7 +16,7 @@ export default function FeedbackContent({ formState } : { formState: IAPIRespons
                 </p>
                 <div className='flex flex-col gap-1'>
                     {
-                        error.messages.map((message, index) => 
+                        error.messages?.map((message, index) => 
                             <small key={ index }>
                                 { message }
                             </small>

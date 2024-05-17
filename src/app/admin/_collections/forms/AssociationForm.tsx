@@ -5,8 +5,9 @@ import { IAssociationTypes, IContest, IManyToManyAssociationKeys, IOneOfAssociat
 import { IAPIResponse } from "@/interfaces/api"
 import { formInitialState } from "@/interfaces/forms"
 import { useFormState } from "react-dom"
-import AdminFormFeedback from "../FormFeedback"
-import FormSubmit from "../FormSubmit"
+import AdminFormFeedback from "./FormFeedback"
+import FormSubmit from "./FormSubmit"
+import AssociationFormInput from "./inputs/AssociationFormInput"
 
 type Props = {
     collection: IOneOfCollectionNames,
@@ -28,15 +29,6 @@ export default function AssociationForm({
     action,
 } : Props) {
     
-    const itemIsContest = (item: IOneOfCollectionsWithAssociations) : item is IContest => {
-        return collection === 'contests'
-    }
-
-    const itemIsChecked = (item: IOneOfAssociations) => {
-        if (itemIsContest(collectionItem)) {
-            return collectionItem[associationKey as keyof IContest] === item.id
-        }
-    }
 
     const boundAction = associateItems.bind(null, collection, collectionItem.id, association)
 
@@ -48,18 +40,23 @@ export default function AssociationForm({
             <fieldset className="border-2 border-neutral-100 px-4 pt-4 pb-4 flex flex-col gap-2 text-sm">
             <legend className="uppercase px-2">asdfasdf asdfa sdf </legend>
                 {
-                    associationItems.map(item => {
+                    associationItems.map((item, index) => {
                         return (
-                            <label className='flex gap-2' key={ item.id }>
-                                <p>{ item.name }</p>
-                                <input type='radio' defaultChecked={ itemIsChecked(item) } name="associationId" value={ item.id }></input>
-                            </label>
+                            <AssociationFormInput 
+                                key={ index }
+                                collection={ collection }
+                                collectionItem={ collectionItem }
+                                association={ association }
+                                associationKey={ associationKey }
+                                associationItem={ item }
+                                isManyToMany={ isManyToMany }
+                            />
                         )
                     })
                 }
                 <input type="hidden" name="isManyToMany" value={ `${isManyToMany}` }/>
             </fieldset>
             <FormSubmit/>
-        </form>        
+        </form>
     )
 }

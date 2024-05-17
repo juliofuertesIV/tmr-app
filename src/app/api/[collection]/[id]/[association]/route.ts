@@ -25,15 +25,9 @@ export const POST = async (req: Request, { params } : Params) => {
 
     const { collection, id, association, } = params
 
-    const { associationId, isManyToMany } = Object.fromEntries(await req.formData()) || false
+    const formData = Object.fromEntries(await req.formData())
 
-    console.log({
-        collection,
-        id,
-        association,
-        associationId,
-        isManyToMany
-    })
+    const { associationId, isManyToMany } = formData
 
     if (isManyToMany === "true") {
 

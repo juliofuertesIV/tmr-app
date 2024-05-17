@@ -1,6 +1,6 @@
 'use client'
 
-import { IAssociationTypes, IContest, IManyToManyAssociationKeys, IOneOfAssociations, IOneOfCollectionNames, IOneOfCollectionsWithAssociations, ISimpleAssociationKeys } from '@/interfaces'
+import { IAssociationTypes, IManyToManyAssociationKeys, IOneOfAssociations, IOneOfCollectionNames, IOneOfCollectionsWithAssociations, ISimpleAssociationKeys } from '@/interfaces'
 import React from 'react'
 import AssociationForm from './AssociationForm'
 import { associateItems } from '@/app/_fetch/post'

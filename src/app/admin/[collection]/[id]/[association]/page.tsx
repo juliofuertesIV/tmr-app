@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import { IAssociationTypes, IOneOfAssociations, IOneOfCollectionNames, IOneOfCollectionsWithAssociations } from "@/interfaces";
 import { getAssociationModelByName, getModelByCollectionName } from "@/app/api/[collection]/_utils";
-import AssociationManager from "@/app/admin/_collections/forms/contests/AssociationManager";
+import AssociationManager from "@/app/admin/_collections/forms/AssociationManager";
 import { getAssociationOptionsByName } from "./_utils";
 
 export const metadata: Metadata = {

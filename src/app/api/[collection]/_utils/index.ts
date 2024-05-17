@@ -75,7 +75,7 @@ const associationByName = {
         AssociationTable: ContestSocial,
         AssociationModel: SocialMedia,
         collectionItemIdField: 'ContestId',
-        associationIdField: 'SocialMediaId'
+        associationIdField: 'SocialMediumId'
     }
 }
 
