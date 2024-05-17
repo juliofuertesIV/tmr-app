@@ -1,13 +1,13 @@
 'use client'
 
 import { associateItems } from "@/app/_fetch/post"
-import { IAssociationTypes, IContest, IManyToManyAssociationKeys, IOneOfAssociations, IOneOfCollectionNames, IOneOfCollectionsWithAssociations, ISimpleAssociationKeys } from "@/interfaces"
+import { IAssociationTypes, IManyToManyAssociationKeys, IOneOfAssociations, IOneOfCollectionNames, IOneOfCollectionsWithAssociations, ISimpleAssociationKeys } from "@/interfaces"
 import { IAPIResponse } from "@/interfaces/api"
 import { formInitialState } from "@/interfaces/forms"
 import { useFormState } from "react-dom"
-import AdminFormFeedback from "./FormFeedback"
-import FormSubmit from "./FormSubmit"
-import AssociationFormInput from "./inputs/AssociationFormInput"
+import AdminFormFeedback from "../../../../_collections/forms/FormFeedback"
+import FormSubmit from "../../../../_collections/forms/FormSubmit"
+import AssociationFormInput from "./AssociationFormInput"
 
 type Props = {
     collection: IOneOfCollectionNames,
@@ -35,7 +35,10 @@ export default function AssociationForm({
     const [ state, formAction ] = useFormState(boundAction, formInitialState)
 
     return (
-        <form action={ formAction }>
+        <form 
+            className="w-full max-w-xl mx-auto"
+            action={ formAction }
+        >
             <AdminFormFeedback state={ state }/>
             <fieldset className="border-2 border-neutral-100 px-4 pt-4 pb-4 flex flex-col gap-2 text-sm">
             <legend className="uppercase px-2">asdfasdf asdfa sdf </legend>
