@@ -1,10 +1,8 @@
 'use client'
 
 import { IAssociationTypes, IManyToManyAssociationKeys, IOneOfAssociations, IOneOfCollectionNames, IOneOfCollectionsWithAssociations, ISimpleAssociationKeys } from '@/interfaces'
-import React from 'react'
-import AssociationForm from './AssociationForm'
-import { associateItems } from '@/app/_fetch/post'
-import AssociationManyToManyForm from './AssociationManyToManyForm'
+import AssociationInput from './AssociationInput'
+import { determineIfItemIsAssociated } from '../_utils'
 
 type Props = {
     collectionItem: IOneOfCollectionsWithAssociations,
@@ -24,33 +22,25 @@ export default function AssociationManager({
     associationKey 
 } : Props) {
     
-    
-    if (!isManyToMany) {
-        return (
-            <AssociationForm
-                collection={ collection }
-                collectionItem={ collectionItem }
-                association={ association }
-                associationItems={ associationItems }
-                associationKey={ associationKey as ISimpleAssociationKeys }
-                isManyToMany={ isManyToMany }
-                action={ associateItems }
-            />
-        )
-    }
-
     return (
-        <div>
+        <div className=" flex flex-col gap-2 w-full max-w-2xl mx-auto">
             {
+                associationItems.map((item, index) => {
 
-                <AssociationManyToManyForm
-                    collection={ collection }
-                    collectionItem={ collectionItem }
-                    association={ association }
-                    associationItems={ associationItems }
-                    associationKey={ associationKey as IManyToManyAssociationKeys }
-                    isManyToMany={ isManyToMany }
-                />
+                    const isCurrentlyAssociated = determineIfItemIsAssociated({ item, collection, collectionItem, associationKey, isManyToMany })
+
+                    return (
+                        <AssociationInput 
+                            key={ index }
+                            collection={ collection }
+                            collectionItem={ collectionItem }
+                            association={ association }
+                            associationItem={ item }
+                            isCurrentlyAssociated={ isCurrentlyAssociated }
+                            isManyToMany={ isManyToMany }
+                        />
+                    )
+                })
             }
         </div>
     )

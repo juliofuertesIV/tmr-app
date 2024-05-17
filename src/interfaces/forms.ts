@@ -1,4 +1,4 @@
-import { IContestMediaRole, IOneOfCollectionNames } from "."
+import { IAssociationTypes, IContestMediaRole, IOneOfCollectionNames } from "."
 import { IAPIResponse } from "./api"
 
 export const formInitialState : IAPIResponse = {
@@ -56,3 +56,7 @@ export type IEditionFormByCollectionName = {
     mediaFields: IMediaFormField[],
     action: IFormEditionAction
 }
+
+export type IAssociationAction = (collection: IOneOfCollectionNames, collectionItemId: string | number, association: IAssociationTypes, prevState: any, formData: FormData) => Promise<IAPIResponse>
+
+export type IDissociationAction = (collection: IOneOfCollectionNames, collectionItemId: string | number, association: IAssociationTypes, associationId: string | number, prevState: any, formData: FormData) => Promise<IAPIResponse>

@@ -42,7 +42,6 @@ export const deleteContestMediaItem = async ({ contestId, mediaId } : { contestI
     return res
 }
 
-
 export const disassociateItems = async (
     collection: IOneOfCollectionNames,
     collectionItemId: string | number,
