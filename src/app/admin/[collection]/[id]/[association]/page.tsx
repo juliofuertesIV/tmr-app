@@ -23,7 +23,7 @@ const getPageData = async ({ collection, id, association } : { collection: IOneO
     const { Model, options } = getModelByCollectionName(collection)
 
     const item = await Model.findOne({ where: { id }, ...options }).then(data => data) as unknown as IOneOfCollectionsWithAssociations
-    const associationItems = await AssociationModel.findAll().then(data => data) as unknown as IOneOfAssociations[]
+    const associationItems = await AssociationModel.findAll({ order: [['name', 'ASC']]}).then(data => data) as unknown as IOneOfAssociations[]
 
     return { 
         item: JSON.parse(JSON.stringify(item)), 
