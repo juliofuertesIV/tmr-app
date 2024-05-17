@@ -4,7 +4,6 @@ import { useFormState } from 'react-dom'
 import FormSubmit from './FormSubmit'
 import { IFormCreationAction, ICreationFormField, formInitialState } from '@/interfaces/forms'
 import AdminFormFeedback from './FormFeedback'
-import { useEffect } from 'react'
 import { IOneOfCollectionNames } from '@/interfaces'
 import CreationInput from './inputs/CreationInput'
 
@@ -19,11 +18,6 @@ export default function CreationForm({ action, fields, collection } : Props) {
     const boundAction = action.bind(null, collection)
 
     const [state, formAction] = useFormState(boundAction, formInitialState)
-
-    useEffect(() => {
-        
-    }, [ state ])
-
 
     return (
         <form 

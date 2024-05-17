@@ -72,6 +72,7 @@ export const associateItems = async (
     prevState: any,
     formData: FormData
 ) : Promise<IAPIResponse> => {
+    'use server'
 
     const res = await fetch(`http://localhost:3000/api/${ collection }/${ collectionItemId }/${ association }`, {
         method: "POST",

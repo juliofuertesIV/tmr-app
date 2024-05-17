@@ -27,7 +27,15 @@ export const POST = async (req: Request, { params } : Params) => {
 
     const { associationId, isManyToMany } = Object.fromEntries(await req.formData()) || false
 
-    if (isManyToMany) {
+    console.log({
+        collection,
+        id,
+        association,
+        associationId,
+        isManyToMany
+    })
+
+    if (isManyToMany === "true") {
 
         const { 
             AssociationTable,
@@ -35,7 +43,7 @@ export const POST = async (req: Request, { params } : Params) => {
             associationIdField 
         } = getAssociationModelByName(association)
 
-        if (!collectionItemIdField || !AssociationTable) throw new Error('Bad request.')
+        if (!collectionItemIdField || !AssociationTable) throw new Error('Bad request. Cannot find collectionItemIdField or Association Table.')
 
         const payload = {
             [collectionItemIdField]: id,

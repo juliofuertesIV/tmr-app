@@ -25,39 +25,18 @@ const getPageData = async ({ collection, id, association } : { collection: IOneO
     const item = await Model.findOne({ where: { id }, ...options }).then(data => data) as unknown as IOneOfCollectionsWithAssociations
     const associationItems = await AssociationModel.findAll().then(data => data) as unknown as IOneOfAssociations[]
 
-    return { item, associationItems }
-}
-/* const getComponentByAssociationName = (item: IOneOfCollectionsWithAssociations, items: IOneOfAssociations[]) => {
-    return {
-        params: () => ParamsManager({ contest: item as IContest, params: items as IParam[] }),
-        states: () => StateManager({ contest: item as IContest, states: items as IContestState[] }),
-        brands: () => BrandManager({ contest: item as IContest, brands: items as IBrand[] }),
-        genres: () => GenreManager({ contest: item as IContest, genres: items as IGenre[] }),
-        social: null
+    return { 
+        item: JSON.parse(JSON.stringify(item)), 
+        associationItems: JSON.parse(JSON.stringify(associationItems)) 
     }
-} */
-
+}
 
 export default async function AdminAssociationPage({ params } : Props) {
     
     const { collection, id, association } = params
 
     const { item, associationItems } = await getPageData({ collection, association, id })
-/* 
-    const ComponentByAssociationName = ({ association, associationItems } : { association: IAssociationTypes, associationItems: IOneOfAssociations[] }) => {   
-        return getComponentByAssociationName(item, associationItems)[association]
-    }
 
-    const AssociationManager = ComponentByAssociationName({ association, associationItems })
-
-    if (!AssociationManager) {
-        return (
-            <p>
-                { item.name } || { associationItems.map((item, index) => <span className="px-2" key={ index }>{ item.id }</span>) }
-            </p>
-        )
-    }
- */
     const { associationKey, isManyToMany } = getAssociationOptionsByName(association)
 
     return (

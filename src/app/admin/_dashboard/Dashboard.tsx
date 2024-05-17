@@ -3,9 +3,9 @@
 import React, { useLayoutEffect, useRef, useState } from 'react'
 import { IOneOfCollectionNames, IOneOfCollections } from '@/interfaces'
 import Dialog from './Dialog'
-import { IAdminData } from '@/_providers/AdminDataProvider'
 import CollectionGrid from './layout/CollectionGrid'
 import CollectionSection from './layout/CollectionSection'
+import { IAdminData } from '@/interfaces/admin'
 
 type DialogState = {
     collection: IOneOfCollectionNames | null,

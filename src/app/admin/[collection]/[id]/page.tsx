@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import { IOneOfCollectionNames } from "@/interfaces";
 import { getCollectionElementById } from "@/app/_fetch/get";
-import CollectionItemPanel from "../../_collections/panel/CollectionItemPanel";
+import AdminEditionForm from "../../_collections/forms/EditionForm";
 
 export const metadata: Metadata = {
     title: "Panel de administración TMR",
@@ -14,5 +14,7 @@ export default async function AdminElementPage({ params } : { params: { collecti
 
     const { data: item } = await getCollectionElementById(collection, id)
 
-    return <CollectionItemPanel collection={ collection } item={ item }/>
+    return (
+        <AdminEditionForm item={ item }/>
+    )
 }
