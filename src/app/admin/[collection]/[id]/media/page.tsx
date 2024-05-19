@@ -1,6 +1,8 @@
 import { Metadata } from "next";
-import { IAssociationTypes, IOneOfAssociations, IOneOfCollectionNames, IOneOfCollectionsWithAssociations } from "@/types";
-import { getAssociationModelByName, getModelByCollectionName } from "@/app/api/[collection]/_utils";
+import { IContest, IOneOfCollectionNames } from "@/types";
+import { getModelByCollectionName } from "@/app/api/[collection]/_utils";
+import ContestMediaManager from "@/app/admin/_collections/forms/contests/ContestMediaManager";
+import FooterManager from "@/app/admin/_collections/forms/contests/FooterManager";
 
 export const metadata: Metadata = {
     title: "Panel de administración TMR",
@@ -16,10 +18,11 @@ type Props = {
 
 const getPageData = async ({ collection, id } : { collection: IOneOfCollectionNames, id: string }) => {
 
-    
+    if (collection !== 'contests') throw new Error('This collection does not have media: ' + collection)
+
     const { Model, options } = getModelByCollectionName(collection)
 
-    const item = await Model.findOne({ where: { id }, ...options }).then(data => data) as unknown as IOneOfCollectionsWithAssociations
+    const item = await Model.findOne({ where: { id }, ...options }).then(data => data) as IContest
     
     return { 
         item: JSON.parse(JSON.stringify(item))
@@ -33,6 +36,15 @@ export default async function AdminAssociationPage({ params } : Props) {
     const { item } = await getPageData({ collection, id })
 
     return (
-        <p>Media</p>
+        <div className="overflow-y-scroll w-full max-h-screen">
+            <h2 className="text-center mt-4 mb-8">Gestor de imágenes</h2>
+            <section>
+                <ContestMediaManager contest={ item }/>
+            </section>
+            <h2 className="text-center mt-4 mb-8">Gestor de imágenes del footer</h2>
+            <section>
+                <FooterManager contest={ item } />
+            </section>
+        </div>
     )
 }

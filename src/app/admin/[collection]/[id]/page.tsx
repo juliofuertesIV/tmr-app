@@ -14,6 +14,8 @@ export default async function AdminElementPage({ params } : { params: { collecti
 
     const { data: item } = await getCollectionElementById(collection, id)
 
+    if (!item) throw new Error('No se ha encontrado el elemento en la base de datos.')
+
     return (
         <AdminEditionForm item={ item }/>
     )

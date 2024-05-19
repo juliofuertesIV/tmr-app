@@ -6,7 +6,7 @@ import { deleteContestMediaItem } from '@/app/_fetch/delete'
 import FilePreview from '../inputs/media/FilePreview'
 import FileUploadForm from '../inputs/media/FileUploadForm'
 
-export default function FooterManager({ item: contest } : { item: IContest }) {
+export default function FooterManager({ contest } : { contest: IContest }) {
 
 
     const footerMediaField : IMediaFormField = {
