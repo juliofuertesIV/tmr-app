@@ -5,12 +5,12 @@ import { formInitialState } from '@/types/forms'
 import React, { useEffect, useRef, useState } from 'react'
 import { useFormState } from 'react-dom'
 import AssociationIcon from './AssociationIcon'
-import { IAssociationTypes, IOneOfAssociations, IOneOfCollectionsWithAssociations } from '@/types/associations'
+import { IAssociationNames, IOneOfAssociations, IOneOfCollectionsWithAssociations } from '@/types/associations'
 
 type Props = {
     collection: IOneOfCollectionNames,
     collectionItem: IOneOfCollectionsWithAssociations,
-    association: IAssociationTypes,
+    association: IAssociationNames,
     associationItem: IOneOfAssociations,
     isCurrentlyAssociated: boolean,
     isManyToMany: boolean

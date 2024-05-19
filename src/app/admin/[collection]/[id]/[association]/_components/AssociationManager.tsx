@@ -3,12 +3,12 @@
 import { IOneOfCollectionNames } from '@/types'
 import AssociationInput from './AssociationInput'
 import { determineIfItemIsAssociated } from '../_utils'
-import { IAssociationTypes, IManyToManyAssociationKeys, IOneOfAssociations, IOneOfCollectionsWithAssociations, ISimpleAssociationKeys } from '@/types/associations'
+import { IAssociationNames, IManyToManyAssociationKeys, IOneOfAssociations, IOneOfCollectionsWithAssociations, ISimpleAssociationKeys } from '@/types/associations'
 
 type Props = {
     collectionItem: IOneOfCollectionsWithAssociations,
     associationItems: IOneOfAssociations[],
-    association: IAssociationTypes,
+    association: IAssociationNames,
     associationKey: ISimpleAssociationKeys | IManyToManyAssociationKeys,
     collection: IOneOfCollectionNames,
     isManyToMany: boolean

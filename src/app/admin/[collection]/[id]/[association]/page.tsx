@@ -3,7 +3,8 @@ import { IOneOfCollectionNames } from "@/types";
 import { getAssociationModelByName, getModelByCollectionName } from "@/app/api/[collection]/_utils";
 import AssociationManager from "./_components/AssociationManager";
 import { getAssociationOptionsByName } from "./_utils";
-import { IAssociationTypes, IOneOfAssociations, IOneOfCollectionsWithAssociations } from "@/types/associations";
+import { IAssociationNames, IOneOfAssociations, IOneOfCollectionsWithAssociations } from "@/types/associations";
+import AssociationPageHeader from "./_components/AssociationPageHeader";
 
 export const metadata: Metadata = {
     title: "Panel de administración TMR",
@@ -14,11 +15,11 @@ type Props = {
     params: { 
         collection: IOneOfCollectionNames,
         id: string,
-        association: IAssociationTypes 
+        association: IAssociationNames 
     }
 }
 
-const getPageData = async ({ collection, id, association } : { collection: IOneOfCollectionNames, id: string, association: IAssociationTypes }) => {
+const getPageData = async ({ collection, id, association } : { collection: IOneOfCollectionNames, id: string, association: IAssociationNames }) => {
 
     const { AssociationModel } = getAssociationModelByName(association)
     const { Model, options } = getModelByCollectionName(collection)
@@ -41,13 +42,16 @@ export default async function AdminAssociationPage({ params } : Props) {
     const { associationKey, isManyToMany } = getAssociationOptionsByName(association)
 
     return (
-        <AssociationManager 
-            collection={ collection }
-            collectionItem={ item } 
-            association={ association }
-            associationItems={ associationItems }
-            associationKey={ associationKey }
-            isManyToMany={ isManyToMany }
-        />
+        <section className="w-full flex flex-col items-center">
+            <AssociationPageHeader association={ association }/>
+            <AssociationManager 
+                collection={ collection }
+                collectionItem={ item } 
+                association={ association }
+                associationItems={ associationItems }
+                associationKey={ associationKey }
+                isManyToMany={ isManyToMany }
+            />
+        </section>
     )
 }
