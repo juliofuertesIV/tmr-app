@@ -4,6 +4,7 @@ import { addCollectionElement } from "@/app/_fetch/post"
 import { updateCollectionItem } from "@/app/_fetch/put"
 import { IFormField, IFormAction, IActionTarget } from "@/types/forms"
 import { brandFields } from "./brands"
+import { genreFields } from "./genres"
 
 const formsByCollectionName : IFormByCollectionName = {
     action: {
@@ -13,7 +14,8 @@ const formsByCollectionName : IFormByCollectionName = {
     fields: {
         contests: contestFields,
         brands: brandFields,
-        social: { creation: [], update: [] }
+        social: { creation: [], update: [] },
+        genres: genreFields
     }
 } 
 

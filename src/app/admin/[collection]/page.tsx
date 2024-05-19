@@ -1,8 +1,8 @@
 import { Metadata } from "next";
 import { IOneOfCollectionNames, IOneOfCollections } from "@/types";
 import { getCollection } from "@/app/_fetch/get";
-import Link from "next/link";
-import { ArrowRightIcon } from "../_layout/_design/icons/ArrowRightIcon";
+import CollectionItemLinks from "./_components/CollectionItemLinks";
+import CreationDialog from "../_dashboard/CreationDialog";
 
 
 export const metadata: Metadata = {
@@ -22,6 +22,8 @@ export default async function AdminElementPage({ params } : { params: { collecti
         </div>
     )
 
+    const canAddToCollection = ['contests', 'brands', 'genres'].includes(collection)
+
     return (
         <div className="flex flex-col justify-start items-center w-full min-h-screen bg-neutral-950">
             <section className="flex flex-col gap-2 w-full max-w-2xl">
@@ -29,21 +31,11 @@ export default async function AdminElementPage({ params } : { params: { collecti
                     <h1 className="capitalize">{ collection }</h1>
                 </header>
                 {
-                    items.map((item, index) => {
-                        return (
-                            <Link 
-                                className="bg-neutral-300 text-neutral-800 w-full px-4 py-1 uppercase flex justify-between items-center hover:bg-neutral-50 hover.text-neutral-950 border-2 border-transparent hover:border-green-600"
-                                key={ index }
-                                href={ `${ collection }/${ item.id }`}
-                            >
-                                <p>
-                                    { item.name }
-                                </p>
-                                <ArrowRightIcon className="max-w-6 text-xl"/>
-                            </Link>
-                        )
-                    })
+                    canAddToCollection && (
+                        <CreationDialog collection={ collection }/>
+                    )
                 }
+                <CollectionItemLinks collection={ collection } items={ items }/>
             </section>
         </div>
     )
