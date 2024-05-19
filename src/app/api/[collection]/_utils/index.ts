@@ -37,6 +37,10 @@ const modelsByCollectionName = {
     social: {
         Model: SocialMedia,
         options: {}
+    },
+    genres: {
+        Model: Genre,
+        options: {}
     }
 } as { 
     [key in IOneOfCollectionNames]: { 

@@ -9,7 +9,7 @@ export default function ContestMediaManager({ contest } : { contest: IContest })
     const mediaFields = getMediaFieldsByCollection({ collection: 'contests' })
 
     return (
-        <div className='flex flex-col gap-4 w-full'>
+        <div className='grid grid-cols-2 gap-4 w-full max-w-4xl mx-auto'>
             {
                 mediaFields.map((field, index) => 
                     <FileUploadForm key={ index } collectionElement={ contest } mediaField={ field } showDatabaseValue={ true }/>

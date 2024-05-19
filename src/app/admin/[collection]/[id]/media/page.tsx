@@ -37,12 +37,16 @@ export default async function AdminAssociationPage({ params } : Props) {
 
     return (
         <div className="overflow-y-scroll w-full max-h-screen">
-            <h2 className="text-center mt-4 mb-8">Gestor de imágenes</h2>
-            <section>
+            <section className="mb-16">
+                <header className="max-w-2xl mb-8 mx-auto">
+                    <h2 className="text-center">Gestor de imágenes</h2>
+                </header>
                 <ContestMediaManager contest={ item }/>
             </section>
-            <h2 className="text-center mt-4 mb-8">Gestor de imágenes del footer</h2>
-            <section>
+            <section className="pb-16 mb-16">
+                <header className="max-w-2xl mb-8 mx-auto">
+                    <h2 className="text-center mt-4 mb-8">Gestor de imágenes del footer</h2>
+                </header>
                 <FooterManager contest={ item } />
             </section>
         </div>

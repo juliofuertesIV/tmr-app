@@ -35,9 +35,9 @@ export default function AssociationPageHeader({ association } : { association: I
     const { title, description } = headersByAssociationName[association]
     
     return (
-        <header className="text-center">
-            <h1>{ title }</h1>
-            <p>{ description }</p>
+        <header className="text-center max-w-2xl mb-8">
+            <h1 className="mb-4">{ title }</h1>
+            <p className="text-justify">{ description }</p>
         </header>
     )
 }

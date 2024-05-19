@@ -32,6 +32,12 @@ export const adminNavItems = [
         isActive: (path: string) => path.includes('/admin/social')
     },
     { 
+        href: '/admin/genres', 
+        label: 'Géneros',
+        Icon: Icon.genres,
+        isActive: (path: string) => path.includes('/admin/genres')
+    },    
+    { 
         href: '/admin/users', 
         label: 'Usuarios',
         Icon: Icon.users,

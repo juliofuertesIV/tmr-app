@@ -18,7 +18,7 @@ export default async function AdminElementPage({ params } : { params: { collecti
 
     return (
         <section className="w-full flex flex-col items-center">
-            <header className="text-center">
+            <header className="text-center max-w-2xl mb-8">
                 <h1>Editar información básica</h1>
             </header>
             <AdminEditionForm item={ item }/>

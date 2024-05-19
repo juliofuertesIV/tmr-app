@@ -29,7 +29,7 @@ export default function FooterManager({ contest } : { contest: IContest }) {
 
     return (
         <div className='flex flex-col gap-4 w-full justify-start h-full'>
-            <div className='w-full max-w-4xl mx-auto grid grid-cols-4 gap-4'>    
+            <div className='grid grid-cols-2 gap-4 w-full max-w-4xl mx-auto'>
                 {
                     currentFooterMedia.map((media, index) => {
                         return (

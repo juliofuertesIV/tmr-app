@@ -1,7 +1,7 @@
 
 export type IOneOfCollections = IContest & IBrand & ISocialMedia
 
-export type IOneOfCollectionNames = 'contests' | 'brands' | 'social'
+export type IOneOfCollectionNames = 'contests' | 'brands' | 'social' | 'genres'
 
 export type IOneOfCollectionsWithMediaNames = 'contests'
 
