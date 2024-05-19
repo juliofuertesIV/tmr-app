@@ -74,7 +74,7 @@ export default function AssociationInput({
             <div className='flex w-full justify-between items-center py-2'>
                 <div className='flex flex-col gap-1'>
                     <p className='text-sm uppercase leading-none'>{ associationItem.name }</p>
-                    { description && <p className='text-sm leading-none'>{ description }</p> }
+                    { description && <p className='text-xs leading-none'>{ description }</p> }
                 </div>
                 <AssociationIcon loading={ loading } checked={ isCurrentlyAssociated } hovered={ hovered } isManyToMany={ isManyToMany }/>
             </div>
