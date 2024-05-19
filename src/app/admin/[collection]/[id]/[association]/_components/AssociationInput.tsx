@@ -54,6 +54,8 @@ export default function AssociationInput({
 
     }, [ state ])
 
+    const { description } = (associationItem as any) || null
+
     const manageHoverState = (hovered: boolean) => setHovered(hovered)
 
     return (
@@ -69,8 +71,11 @@ export default function AssociationInput({
             onMouseOver={ () => manageHoverState(true) }
             onMouseLeave={ () => manageHoverState(false) }
         >  
-            <div className='flex w-full justify-between items-center'>
-                <p>{ associationItem.name }</p>
+            <div className='flex w-full justify-between items-center py-2'>
+                <div className='flex flex-col gap-1'>
+                    <p className='text-sm uppercase leading-none'>{ associationItem.name }</p>
+                    { description && <p className='text-sm leading-none'>{ description }</p> }
+                </div>
                 <AssociationIcon loading={ loading } checked={ isCurrentlyAssociated } hovered={ hovered } isManyToMany={ isManyToMany }/>
             </div>
             <form action={ formAction } ref={ form }>

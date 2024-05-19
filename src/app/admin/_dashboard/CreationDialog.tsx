@@ -32,16 +32,11 @@ export default function CreationDialog({ collection }: Props) {
         
         if (!dialogRef.current) return
 
-        dialog.isOpen ? 
-        dialogRef.current.showModal() 
-        : dialogRef.current?.close()
+        dialog.isOpen ? dialogRef.current.showModal() : dialogRef.current?.close()
         
     }, [ dialog.isOpen ])
 
-    const onManageDialog = (dialogState: DialogState) => {
-        
-        setDialog(dialogState)
-    }
+    const onManageDialog = (dialogState: DialogState) => setDialog(dialogState)
 
     const { action, fields } = getFormByCollectionName({ collection, actionTarget: 'creation' })
 
@@ -49,7 +44,7 @@ export default function CreationDialog({ collection }: Props) {
         <>
             <button 
                 onClick={ () => onManageDialog({ collection, isOpen: true })}
-                className="w-fit flex gap-2 justify-between ml-auto bg-neutral-300 text-neutral-700 font-bold hover:bg-neutral-50 hover:text-neutral-950 py-2 px-4 rounded-sm text-sm"
+                className="w-fit flex gap-2 justify-between ml-auto bg-neutral-300 text-neutral-800 font-bold hover:bg-neutral-50 hover:text-neutral-950 py-2 px-4 rounded-sm text-sm"
             >
                 <span>CREAR NUEVO</span>
                 <CircleAddIcon className='text-xl'/>

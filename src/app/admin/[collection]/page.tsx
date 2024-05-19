@@ -16,12 +16,6 @@ export default async function AdminElementPage({ params } : { params: { collecti
 
     const { data: items } = await getCollection(collection) as { data: IOneOfCollections[] }
 
-    if (!items) return (
-        <div className="grid place-items-center w-full min-h-screen">
-            No hay elementos en esta categoría.
-        </div>
-    )
-
     const canAddToCollection = ['contests', 'brands', 'genres'].includes(collection)
 
     return (
@@ -31,11 +25,13 @@ export default async function AdminElementPage({ params } : { params: { collecti
                     <h1 className="capitalize">{ collection }</h1>
                 </header>
                 {
-                    canAddToCollection && (
-                        <CreationDialog collection={ collection }/>
-                    )
+                    canAddToCollection && <CreationDialog collection={ collection }/>
                 }
-                <CollectionItemLinks collection={ collection } items={ items }/>
+                {
+                    !!items && items.length ?  
+                    <CollectionItemLinks collection={ collection } items={ items }/>
+                    : <p>Aún no hay elementos en esta categoría.</p>
+                }
             </section>
         </div>
     )

@@ -17,7 +17,8 @@ const navItemsByCollectionName = {
     brands: [
         { name: 'Información', value: '' },
     ],
-    social: []
+    social: [],
+    genres: []
 } as {
     [key in IOneOfCollectionNames]: { name: string, value: string }[]
 }
@@ -33,7 +34,7 @@ export default function CollectionItemNav({ collection, id } : { collection: IOn
     }
 
     return (
-        <header className="bg-neutral-900 pt-3 pb-4 mx-auto mb-8 w-full">
+        <header className=" pt-3 pb-4 mx-auto mb-8 w-full">
             <ul className="w-full flex gap-2 px-4 items-center justify-center">
                 { 
                     navItemsByCollectionName[collection].map((item, index) => 
