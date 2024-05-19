@@ -1,4 +1,4 @@
-import { IContest } from '@/interfaces'
+import { IContest } from '@/types'
 import Link from 'next/link'
 import React from 'react'
 

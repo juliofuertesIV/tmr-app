@@ -1,8 +1,8 @@
 'use client'
 
 import { manageCollectionMedia } from "@/app/_fetch/post"
-import { IContest, IContestMedia, IContestMediaRole } from "@/interfaces"
-import { IMediaFormField, formInitialState } from "@/interfaces/forms"
+import { IContest, IContestMedia, IContestMediaRole } from "@/types"
+import { IMediaFormField, formInitialState } from "@/types/forms"
 import { useFormState } from "react-dom"
 import AdminFormFeedback from "../../FormFeedback"
 import FormSubmit from "../../FormSubmit"

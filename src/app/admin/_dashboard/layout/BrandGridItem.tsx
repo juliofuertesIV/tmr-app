@@ -1,4 +1,4 @@
-import { IBrand, IOneOfCollections } from '@/interfaces'
+import { IBrand, IOneOfCollections } from '@/types'
 import Link from 'next/link'
 import React from 'react'
 

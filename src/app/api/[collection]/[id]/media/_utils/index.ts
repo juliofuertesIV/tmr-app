@@ -1,5 +1,5 @@
 import { Media, ContestMedia } from "@/database";
-import { IOneOfCollectionNames } from "@/interfaces";
+import { IOneOfCollectionNames } from "@/types";
 import { Model, ModelStatic, Options } from "sequelize";
 import path from "path";
 import { Storage } from "@google-cloud/storage";

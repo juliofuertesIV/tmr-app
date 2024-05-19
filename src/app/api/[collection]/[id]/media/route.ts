@@ -1,4 +1,4 @@
-import { IContestMedia, IContestMediaRole, IOneOfCollectionNames } from "@/interfaces";
+import { IContestMedia, IContestMediaRole, IOneOfCollectionNames } from "@/types";
 import { getAssociationPayload, getModelAndAssociationTableByCollectionName, mediaPayloadIsValidLength, produceFileName, uploadToGoogleCloudStorage } from "./_utils";
 import { sequelize } from "@/database";
 import { Transaction } from "sequelize";

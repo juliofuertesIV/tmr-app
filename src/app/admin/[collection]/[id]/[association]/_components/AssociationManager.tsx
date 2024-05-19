@@ -1,6 +1,6 @@
 'use client'
 
-import { IAssociationTypes, IManyToManyAssociationKeys, IOneOfAssociations, IOneOfCollectionNames, IOneOfCollectionsWithAssociations, ISimpleAssociationKeys } from '@/interfaces'
+import { IAssociationTypes, IManyToManyAssociationKeys, IOneOfAssociations, IOneOfCollectionNames, IOneOfCollectionsWithAssociations, ISimpleAssociationKeys } from '@/types'
 import AssociationInput from './AssociationInput'
 import { determineIfItemIsAssociated } from '../_utils'
 

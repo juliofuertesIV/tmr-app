@@ -1,5 +1,5 @@
-import { IOneOfCollections } from '@/interfaces'
-import { IEditionFormField } from '@/interfaces/forms'
+import { IOneOfCollections } from '@/types'
+import { IEditionFormField } from '@/types/forms'
 import React from 'react'
 
 export default function EditionInput({ input, collectionElement } : { input: IEditionFormField, collectionElement: IOneOfCollections }) {

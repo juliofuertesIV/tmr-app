@@ -1,4 +1,4 @@
-import { IAssociationTypes, IOneOfCollectionNames } from "@/interfaces";
+import { IAssociationTypes, IOneOfCollectionNames } from "@/types";
 import { getAssociationModelByName, getModelByCollectionName } from "../../_utils";
 import { constructAPIResponse } from "@/app/api/_utils";
 

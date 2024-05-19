@@ -1,7 +1,7 @@
 import { addCollectionElement } from "@/app/_fetch/post"
 import { updateCollectionItem } from "@/app/_fetch/put"
-import { IOneOfCollectionNames } from "@/interfaces"
-import { ICreationFormByCollectionName, IEditionFormByCollectionName, IMediaFormField } from "@/interfaces/forms"
+import { IOneOfCollectionNames } from "@/types"
+import { ICreationFormByCollectionName, IEditionFormByCollectionName, IMediaFormField } from "@/types/forms"
 
 export const contestCreationForm : ICreationFormByCollectionName = {
     action: addCollectionElement,

@@ -1,4 +1,4 @@
-import { IOneOfCollectionNames } from '@/interfaces'
+import { IOneOfCollectionNames } from '@/types'
 import { getCreationFormByCollectionName } from '../_collections'
 import CreationForm from '../_collections/forms/CreationForm'
 

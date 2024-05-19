@@ -6,7 +6,6 @@ import { BrandsIcon } from "./BrandsIcon";
 import { DashboardIcon } from "./DashboardIcon";
 import { InscriptionIcon } from "./InscriptionIcon";
 
-
 export { 
     ContestIcon as contest,
     BrandsIcon as brands,

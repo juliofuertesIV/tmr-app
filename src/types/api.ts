@@ -1,5 +1,5 @@
 
-export type IErrorTypes = 'validation' | 'regular' 
+export type IErrorTypes = 'validation' | 'aggregate' | 'regular' 
 
 export type IAPIError = {
     errorType: IErrorTypes,

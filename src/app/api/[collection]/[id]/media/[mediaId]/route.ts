@@ -1,4 +1,4 @@
-import { IContestMedia, IOneOfCollectionNames } from "@/interfaces";
+import { IContestMedia, IOneOfCollectionNames } from "@/types";
 import { constructAPIResponse } from "@/app/api/_utils";
 import { Media, sequelize } from "@/database";
 import { Storage } from "@google-cloud/storage";

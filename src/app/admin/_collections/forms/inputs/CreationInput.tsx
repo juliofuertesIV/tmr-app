@@ -1,4 +1,4 @@
-import { ICreationFormField } from '@/interfaces/forms'
+import { ICreationFormField } from '@/types/forms'
 import React from 'react'
 
 export default function CreationInput({ input } : { input: ICreationFormField }) {

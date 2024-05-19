@@ -1,5 +1,5 @@
-import { IOneOfCollectionNames } from "@/interfaces"
-import { IAPIResponse } from "@/interfaces/api"
+import { IOneOfCollectionNames } from "@/types"
+import { IAPIResponse } from "@/types/api"
 
 type GetElementById = (collection: IOneOfCollectionNames, id: string) => Promise<IAPIResponse>
 

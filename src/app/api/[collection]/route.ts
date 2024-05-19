@@ -1,6 +1,6 @@
 
 import { sequelize } from '@/database'
-import { IOneOfCollectionNames } from '@/interfaces'
+import { IOneOfCollectionNames } from '@/types'
 import { getModelByCollectionName } from './_utils'
 import { constructAPIResponse } from '../_utils'
 

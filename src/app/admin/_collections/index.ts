@@ -1,4 +1,4 @@
-import { IOneOfCollectionNames } from "@/interfaces"
+import { IOneOfCollectionNames } from "@/types"
 import { contestCreationForm, contestEditForm, mediaFieldsByCollection} from "./contests"
 import { brandCreationForm, brandEditForm } from "./brands"
 

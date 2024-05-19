@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import Dashboard from "./_dashboard/Dashboard";
 import { getAdminData } from "../_fetch/get";
-import { IAdminData } from "@/interfaces/admin";
+import { IAdminData } from "@/types/admin";
 
 export const metadata: Metadata = {
     title: "Panel de administración TMR",
@@ -9,8 +9,13 @@ export const metadata: Metadata = {
 };
 
 const getData = async () : Promise<IAdminData> => {
-    const { data } : { data: IAdminData } = await getAdminData()
-    return data 
+    const res = await getAdminData()
+
+    if (res.error) {
+        throw new Error(res.error.message)
+    }
+    
+    return res.data
 } 
 
 export default async function AdminHome() {

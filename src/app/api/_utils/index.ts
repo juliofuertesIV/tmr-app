@@ -1,4 +1,4 @@
-import { IAPIResponse } from "@/interfaces/api"
+import { IAPIResponse } from "@/types/api"
 import { parseError } from "./errors"
 
 export const constructAPIResponse = ({ 

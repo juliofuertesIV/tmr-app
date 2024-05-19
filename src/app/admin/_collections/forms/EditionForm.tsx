@@ -2,10 +2,10 @@
 
 import { useFormState } from 'react-dom'
 import FormSubmit from './FormSubmit'
-import { formInitialState } from '@/interfaces/forms'
+import { formInitialState } from '@/types/forms'
 import AdminFormFeedback from './FormFeedback'
 import EditionInput from './inputs/EditionInput'
-import { IOneOfCollectionNames, IOneOfCollections } from '@/interfaces'
+import { IOneOfCollectionNames, IOneOfCollections } from '@/types'
 import { useParams } from 'next/navigation'
 import { getEditionFormByCollectionName } from '..'
 

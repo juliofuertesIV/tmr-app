@@ -1,6 +1,6 @@
 'use client'
 
-import { IContestMedia } from '@/interfaces'
+import { IContestMedia } from '@/types'
 import Image from 'next/image'
 import React, { useEffect, useRef, useState } from 'react'
 

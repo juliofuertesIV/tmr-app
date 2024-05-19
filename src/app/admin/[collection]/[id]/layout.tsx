@@ -1,4 +1,4 @@
-import { IOneOfCollectionNames } from "@/interfaces";
+import { IOneOfCollectionNames } from "@/types";
 import Link from "next/link";
 
 const navItemsByCollectionName = {
@@ -33,7 +33,7 @@ export default function Layout({ params, children } : Props) {
 
     return (
         <div className="h-screen flex flex-col w-full relative bg-neutral-950">
-            <header className="flex items-center justify-center bg-neutral-900 pt-3 pb-4 border-2 border-t-0 border-neutral-400 rounded-b-sm w-full max-w-[95%] mx-auto mb-8">
+            <header className="flex items-center justify-center bg-neutral-900 pt-3 pb-4 mx-auto mb-8">
                 <ul className="w-full flex gap-2 px-4 items-center">
                     { 
                         navItems.map((item, index) => 

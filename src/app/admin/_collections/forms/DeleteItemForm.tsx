@@ -1,8 +1,8 @@
 'use client'
 
 import { deleteCollectionItem } from "@/app/_fetch/delete"
-import { IOneOfCollectionNames } from "@/interfaces"
-import { formInitialState } from "@/interfaces/forms"
+import { IOneOfCollectionNames } from "@/types"
+import { formInitialState } from "@/types/forms"
 import { useFormState } from "react-dom"
 import AdminFormFeedback from "./FormFeedback"
 import FormSubmit from "./FormSubmit"

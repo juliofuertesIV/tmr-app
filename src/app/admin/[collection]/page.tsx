@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { IOneOfCollectionNames } from "@/interfaces";
+import { IOneOfCollectionNames } from "@/types";
 import { getCollection } from "@/app/_fetch/get";
 
 

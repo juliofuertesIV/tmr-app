@@ -1,4 +1,4 @@
-import { IContest } from '@/interfaces'
+import { IContest } from '@/types'
 import React from 'react'
 import FileUploadForm from '../inputs/media/FileUploadForm'
 import { getMediaFieldsByCollection } from '../..'

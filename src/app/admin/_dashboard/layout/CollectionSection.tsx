@@ -1,4 +1,4 @@
-import { IOneOfCollectionNames } from '@/interfaces'
+import { IOneOfCollectionNames } from '@/types'
 import React from 'react'
 
 

@@ -1,6 +1,6 @@
 import { constructAPIResponse } from "@/app/api/_utils"
 import { getModelByCollectionName } from "../../_utils"
-import { IContest, IOneOfCollectionNames } from "@/interfaces"
+import { IContest, IOneOfCollectionNames } from "@/types"
 
 export const GET = async (req: Request, { params } : { params: { collection: IOneOfCollectionNames, id: string }}) => {
 

@@ -1,4 +1,4 @@
-import { IOneOfCollectionNames, IOneOfCollections } from '@/interfaces'
+import { IOneOfCollectionNames, IOneOfCollections } from '@/types'
 import ContestGridItem from './ContestGridItem'
 import BrandGridItem from './BrandGridItem'
 

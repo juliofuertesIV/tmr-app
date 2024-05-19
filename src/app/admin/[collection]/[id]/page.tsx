@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { IOneOfCollectionNames } from "@/interfaces";
+import { IOneOfCollectionNames } from "@/types";
 import { getCollectionElementById } from "@/app/_fetch/get";
 import AdminEditionForm from "../../_collections/forms/EditionForm";
 

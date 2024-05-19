@@ -2,9 +2,9 @@
 
 import { useFormState } from 'react-dom'
 import FormSubmit from './FormSubmit'
-import { IFormCreationAction, ICreationFormField, formInitialState } from '@/interfaces/forms'
+import { IFormCreationAction, ICreationFormField, formInitialState } from '@/types/forms'
 import AdminFormFeedback from './FormFeedback'
-import { IOneOfCollectionNames } from '@/interfaces'
+import { IOneOfCollectionNames } from '@/types'
 import CreationInput from './inputs/CreationInput'
 
 type Props = {

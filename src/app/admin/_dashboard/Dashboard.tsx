@@ -1,11 +1,11 @@
 'use client'
 
 import React, { useLayoutEffect, useRef, useState } from 'react'
-import { IOneOfCollectionNames, IOneOfCollections } from '@/interfaces'
+import { IOneOfCollectionNames, IOneOfCollections } from '@/types'
 import Dialog from './Dialog'
 import CollectionGrid from './layout/CollectionGrid'
 import CollectionSection from './layout/CollectionSection'
-import { IAdminData } from '@/interfaces/admin'
+import { IAdminData } from '@/types/admin'
 
 type DialogState = {
     collection: IOneOfCollectionNames | null,

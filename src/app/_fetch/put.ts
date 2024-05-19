@@ -1,7 +1,7 @@
 'use server'
     
-import { IOneOfCollectionNames } from "@/interfaces"
-import { IAPIResponse } from "@/interfaces/api"
+import { IOneOfCollectionNames } from "@/types"
+import { IAPIResponse } from "@/types/api"
 import { revalidateTag } from "next/cache"
 
 export const updateCollectionItem = async (collection: IOneOfCollectionNames, itemId: string, prevState: any, formData: FormData) : Promise<IAPIResponse> => {
