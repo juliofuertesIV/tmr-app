@@ -1,8 +1,9 @@
 'use client'
 
-import { IAssociationTypes, IManyToManyAssociationKeys, IOneOfAssociations, IOneOfCollectionNames, IOneOfCollectionsWithAssociations, ISimpleAssociationKeys } from '@/types'
+import { IOneOfCollectionNames } from '@/types'
 import AssociationInput from './AssociationInput'
 import { determineIfItemIsAssociated } from '../_utils'
+import { IAssociationTypes, IManyToManyAssociationKeys, IOneOfAssociations, IOneOfCollectionsWithAssociations, ISimpleAssociationKeys } from '@/types/associations'
 
 type Props = {
     collectionItem: IOneOfCollectionsWithAssociations,

@@ -1,5 +1,6 @@
 import { Brand, Contest, Media, Genre, Param, State, ContestParam, ContestMedia, ContestGenre, ContestSocial, SocialMedia } from "@/database";
-import { IAssociationTypes, IOneOfCollectionNames } from "@/types";
+import { IOneOfCollectionNames } from "@/types";
+import { IAssociationTypes } from "@/types/associations";
 import { Model, ModelStatic, Options } from "sequelize";
 
 const modelsByCollectionName = {
@@ -80,6 +81,13 @@ const associationByName = {
         AssociationModel: SocialMedia,
         collectionItemIdField: 'ContestId',
         associationIdField: 'SocialMediumId'
+    }
+} as {
+    [key in IAssociationTypes]: {
+        AssociationTable: ModelStatic<Model<any, any>> | null,
+        AssociationModel: ModelStatic<Model<any, any>>,
+        collectionItemIdField: string | null,
+        associationIdField: string
     }
 }
 

@@ -1,8 +1,9 @@
 import { Metadata } from "next";
-import { IAssociationTypes, IOneOfAssociations, IOneOfCollectionNames, IOneOfCollectionsWithAssociations } from "@/types";
+import { IOneOfCollectionNames } from "@/types";
 import { getAssociationModelByName, getModelByCollectionName } from "@/app/api/[collection]/_utils";
 import AssociationManager from "./_components/AssociationManager";
 import { getAssociationOptionsByName } from "./_utils";
+import { IAssociationTypes, IOneOfAssociations, IOneOfCollectionsWithAssociations } from "@/types/associations";
 
 export const metadata: Metadata = {
     title: "Panel de administración TMR",

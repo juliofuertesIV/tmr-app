@@ -1,7 +1,8 @@
 'use server'
 
-import { IAssociationTypes, IOneOfCollectionNames } from "@/types"
+import { IOneOfCollectionNames } from "@/types"
 import { IAPIResponse } from "@/types/api"
+import { IAssociationTypes } from "@/types/associations"
 import { revalidateTag } from "next/cache"
 
 export const addCollectionElement = async (

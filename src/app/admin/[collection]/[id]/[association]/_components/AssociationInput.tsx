@@ -1,10 +1,11 @@
 import { disassociateItems } from '@/app/_fetch/delete'
 import { associateItems } from '@/app/_fetch/post'
-import { IAssociationTypes, IOneOfAssociations, IOneOfCollectionNames, IOneOfCollectionsWithAssociations } from '@/types'
+import { IOneOfCollectionNames } from '@/types'
 import { formInitialState } from '@/types/forms'
 import React, { useEffect, useRef, useState } from 'react'
 import { useFormState } from 'react-dom'
 import AssociationIcon from './AssociationIcon'
+import { IAssociationTypes, IOneOfAssociations, IOneOfCollectionsWithAssociations } from '@/types/associations'
 
 type Props = {
     collection: IOneOfCollectionNames,
