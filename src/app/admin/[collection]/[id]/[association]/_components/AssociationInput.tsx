@@ -61,7 +61,7 @@ export default function AssociationInput({
             data-active={ isCurrentlyAssociated }
             data-loading={ loading }
             style={{
-                pointerEvents: isCurrentlyAssociated && !isManyToMany ? 'none' : 'auto'
+                pointerEvents: (isCurrentlyAssociated && !isManyToMany) || loading ? 'none' : 'auto'
             }}
             onClick={ onClickItem }
             onMouseEnter={ () => manageHoverState(true) }
