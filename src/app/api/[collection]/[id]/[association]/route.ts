@@ -1,8 +1,9 @@
-import { IAssociationTypes, IOneOfCollectionNames } from "@/types";
+import { IOneOfCollectionNames } from "@/types";
 import { getAssociationModelByName, getModelByCollectionName } from "../../_utils";
 import { constructAPIResponse } from "@/app/api/_utils";
+import { IAssociationNames } from "@/types/associations";
 
-type Params = { params: { collection: IOneOfCollectionNames, id: string, association: IAssociationTypes }}
+type Params = { params: { collection: IOneOfCollectionNames, id: string, association: IAssociationNames }}
 
 export const GET = async (req: Request, { params } : Params) => {
 

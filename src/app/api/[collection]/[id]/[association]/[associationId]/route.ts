@@ -1,9 +1,10 @@
-import { IAssociationTypes, IOneOfCollectionNames } from "@/types";
+import { IOneOfCollectionNames } from "@/types";
 import { getAssociationModelByName } from "../../../_utils";
 import { constructAPIResponse } from "@/app/api/_utils";
+import { IAssociationNames } from "@/types/associations";
 
 
-type Params = { params: { collection: IOneOfCollectionNames, id: string, association: IAssociationTypes, associationId: string }}
+type Params = { params: { collection: IOneOfCollectionNames, id: string, association: IAssociationNames, associationId: string }}
 
 export const DELETE = async (req: Request, { params } : Params) => {
 

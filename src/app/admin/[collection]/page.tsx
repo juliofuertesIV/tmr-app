@@ -23,25 +23,28 @@ export default async function AdminElementPage({ params } : { params: { collecti
     )
 
     return (
-        <div className="grid place-items-center w-full min-h-screen">
-            <div className="flex flex-col gap-2 w-full max-w-2xl">
-            {
-                items.map((item, index) => {
-                    return (
-                        <Link 
-                            className="bg-neutral-300 text-neutral-800 w-full px-4 py-1 uppercase flex justify-between items-center hover:bg-neutral-50 hover.text-neutral-950 border-2 border-transparent hover:border-green-600"
-                            key={ index }
-                            href={ `${ collection }/${ item.id }`}
-                        >
-                            <p>
-                                { item.name }
-                            </p>
-                            <ArrowRightIcon className="max-w-6 text-xl"/>
-                        </Link>
-                    )
-                })
-            }
-            </div>
+        <div className="flex flex-col justify-start items-center w-full min-h-screen bg-neutral-950">
+            <section className="flex flex-col gap-2 w-full max-w-2xl">
+                <header className="py-8">
+                    <h1 className="capitalize">{ collection }</h1>
+                </header>
+                {
+                    items.map((item, index) => {
+                        return (
+                            <Link 
+                                className="bg-neutral-300 text-neutral-800 w-full px-4 py-1 uppercase flex justify-between items-center hover:bg-neutral-50 hover.text-neutral-950 border-2 border-transparent hover:border-green-600"
+                                key={ index }
+                                href={ `${ collection }/${ item.id }`}
+                            >
+                                <p>
+                                    { item.name }
+                                </p>
+                                <ArrowRightIcon className="max-w-6 text-xl"/>
+                            </Link>
+                        )
+                    })
+                }
+            </section>
         </div>
     )
 }
