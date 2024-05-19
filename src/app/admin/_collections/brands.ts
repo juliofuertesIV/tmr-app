@@ -1,10 +1,7 @@
-import { addCollectionElement } from "@/app/_fetch/post"
-import { updateCollectionItem } from "@/app/_fetch/put"
-import { ICreationFormByCollectionName, IEditionFormByCollectionName } from "@/types/forms"
+import { ICreationFormField, IEditionFormField } from "@/types/forms"
 
-export const brandCreationForm : ICreationFormByCollectionName = {
-    action: addCollectionElement,
-    fields: [{
+export const brandCreationFormFields : ICreationFormField[] = [
+    {
         name: 'name',
         label: 'Nombre de la marca',
         required: true,
@@ -21,13 +18,12 @@ export const brandCreationForm : ICreationFormByCollectionName = {
         label: 'Perfil de Instagram',
         required: true,
         type: 'text' 
-    }]
-}
+    }
+]
 
 
-export const brandEditForm : IEditionFormByCollectionName = {
-    action: updateCollectionItem,
-    fields: [{
+export const brandEditionFormFields : IEditionFormField[] = [
+    {
         name: 'name',
         label: 'Nombre de la marca',
         required: false,
@@ -62,7 +58,5 @@ export const brandEditForm : IEditionFormByCollectionName = {
         label: 'Color de acento',
         required: false,
         type: 'color'
-    },    
-    ],
-    mediaFields: []
-}
+    }
+]

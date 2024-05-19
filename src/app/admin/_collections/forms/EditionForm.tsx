@@ -7,17 +7,13 @@ import AdminFormFeedback from './FormFeedback'
 import EditionInput from './inputs/EditionInput'
 import { IOneOfCollectionNames, IOneOfCollections } from '@/types'
 import { useParams } from 'next/navigation'
-import { getEditionFormByCollectionName } from '..'
+import { getFormByCollectionName } from '..'
 
-type Props = {
-    item: IOneOfCollections
-}
-
-export default function AdminEditionForm({ item } : Props) {
+export default function AdminEditionForm({ item } : { item: IOneOfCollections }) {
 
     const { collection } = useParams() as { collection: IOneOfCollectionNames }
 
-    const { action, fields } = getEditionFormByCollectionName({ collection })
+    const { action, fields } = getFormByCollectionName({ collection, actionTarget: 'update' })
 
     const boundAction = action?.bind(null, collection, item.id as string)
     

@@ -1,5 +1,5 @@
 import { IOneOfCollectionNames } from '@/types'
-import { getCreationFormByCollectionName } from '../_collections'
+import { getFormByCollectionName } from '../_collections'
 import CreationForm from '../_collections/forms/CreationForm'
 
 type Props = {
@@ -11,7 +11,7 @@ export default function Dialog({ collection, onManageDialog }: Props) {
 
     if (!collection) return null
 
-    const { action, fields } = getCreationFormByCollectionName({ collection })
+    const { action, fields } = getFormByCollectionName({ collection, actionTarget: 'creation' })
 
     return (
         <div className='bg-neutral-950 text-neutral-100 border-2 border-neutral-300 rounded-md w-full max-w-2xl mx-auto'>

@@ -1,7 +1,8 @@
-import { IAssociationTypes, IContestMediaRole, IOneOfCollectionNames } from "."
+import { IContestMediaRole, IOneOfCollectionNames } from "."
 import { IAPIResponse } from "./api"
+import { IAssociationTypes } from "./associations"
 
-export const formInitialState : IAPIResponse = {
+export const formInitialState : IAPIResponse<any> = {
     success: false,
     message: '',
     error: null,
@@ -41,22 +42,13 @@ export type IMediaFormField = {
     multiple: boolean
 }
 
-export type IFormCreationAction = (collection: IOneOfCollectionNames, prevState: any, formData: FormData) => Promise<IAPIResponse>
+export type IFormCreationAction = (collection: IOneOfCollectionNames, prevState: any, formData: FormData) => Promise<IAPIResponse<any>>
 // TO DO: unify through modes 'create' | 'edit' ? 
 
-export type IFormEditionAction = (collection: IOneOfCollectionNames, id: string, prevState: any, formData: FormData) => Promise<IAPIResponse>
+export type IFormAction = (...args: any) => Promise<IAPIResponse<any>>
 
-export type ICreationFormByCollectionName = {
-    fields: ICreationFormField[],
-    action: IFormCreationAction
-}
+export type IFormEditionAction = (collection: IOneOfCollectionNames, id: string, prevState: any, formData: FormData) => Promise<IAPIResponse<any>>
 
-export type IEditionFormByCollectionName = {
-    fields: IEditionFormField[],
-    mediaFields: IMediaFormField[],
-    action: IFormEditionAction
-}
+export type IAssociationAction = (collection: IOneOfCollectionNames, collectionItemId: string | number, association: IAssociationTypes, prevState: any, formData: FormData) => Promise<IAPIResponse<any>>
 
-export type IAssociationAction = (collection: IOneOfCollectionNames, collectionItemId: string | number, association: IAssociationTypes, prevState: any, formData: FormData) => Promise<IAPIResponse>
-
-export type IDissociationAction = (collection: IOneOfCollectionNames, collectionItemId: string | number, association: IAssociationTypes, associationId: string | number, prevState: any, formData: FormData) => Promise<IAPIResponse>
+export type IDissociationAction = (collection: IOneOfCollectionNames, collectionItemId: string | number, association: IAssociationTypes, associationId: string | number, prevState: any, formData: FormData) => Promise<IAPIResponse<any>>

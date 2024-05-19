@@ -1,21 +1,7 @@
-export type IContestStateIds = 'inscriptionOnly' | 'open' | 'endedInscription' | 'ended' | 'hidden'
-export type IContestParamIds = 'inscriptionIsPublic' | 'videoIsRequired' | 'cityIsRequired' | 'instagramIsRequired' | 'hasManyItems' | 'hasGenres' | 'hasRanking'
 
 export type IOneOfCollections = IContest & IBrand & ISocialMedia
 
 export type IOneOfCollectionNames = 'contests' | 'brands' | 'social'
-
-export type IOneOfCollectionsWithAssociations = IContest | IBrand
-
-export type IOneOfAssociations = IBrand | IParam | IContestState | IGenre | ISocialMedia
-
-export type IOneOfCollectionsNamesWithAssociations = 'contests' | 'users'
-
-export type IContestState = {
-    name: string, 
-    id: IContestStateIds,
-    description: string
-}
 
 export type IContest = {
     id: string | number,
@@ -41,14 +27,6 @@ export type IContest = {
     Media: IContestMedia[]
 }
 
-export type IAssociationTypes = 'params' | 'states' | 'brands' | 'genres' | 'social'
-
-export type IManyToManyAssociationKeys = IManyToManyContestKeys | 'Roles'
-
-export type IManyToManyContestKeys = 'Params' | 'Genres' | 'SocialMedia'
-
-export type ISimpleAssociationKeys = 'StateId' | 'BrandId'
-
 export type IBrand = {
     id: string | number,
     name: string,
@@ -65,6 +43,12 @@ export type IParam = {
     description?: string
 }
 
+export type IContestState = {
+    name: string, 
+    id: IContestStateIds,
+    description: string
+}
+
 export type IGenre = {
     id: string,
     name: string
@@ -76,8 +60,6 @@ export type ISocialMedia = {
     icon: string
 }
 
-export type IContestMediaRole = 'frame' | 'banner' | 'logo' | 'favicon' | 'footerElement'
-
 export type IContestMedia = {
     id: string,
     role: IContestMediaRole
@@ -86,3 +68,10 @@ export type IContestMedia = {
     height: string,
     alt: string
 }
+
+
+export type IContestParamIds = 'inscriptionIsPublic' | 'videoIsRequired' | 'cityIsRequired' | 'instagramIsRequired' | 'hasManyItems' | 'hasGenres' | 'hasRanking'
+
+export type IContestStateIds = 'inscriptionOnly' | 'open' | 'endedInscription' | 'ended' | 'hidden'
+
+export type IContestMediaRole = 'frame' | 'banner' | 'logo' | 'favicon' | 'footerElement'

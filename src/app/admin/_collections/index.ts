@@ -1,19 +1,38 @@
 import { IOneOfCollectionNames } from "@/types"
-import { contestCreationForm, contestEditForm, mediaFieldsByCollection} from "./contests"
-import { brandCreationForm, brandEditForm } from "./brands"
+import { contestEditFormFields, mediaFieldsByCollection} from "./contests"
+import { brandEditionFormFields } from "./brands"
+import { addCollectionElement } from "@/app/_fetch/post"
+import { updateCollectionItem } from "@/app/_fetch/put"
+import { IEditionFormField, IFormAction } from "@/types/forms"
 
-const creationFormsByCollectionName = {
-    contests: contestCreationForm,
-    brands: brandCreationForm
+type IActionTarget = 'creation' | 'update'
+
+const formsByCollectionName : IFormByCollectionName = {
+    action: {
+        creation: addCollectionElement,
+        update: updateCollectionItem
+    },
+    fields: {
+        contests: contestEditFormFields,
+        brands: brandEditionFormFields,
+        social: [] as IEditionFormField[],
+    }
+} 
+
+type IFormByCollectionName = {
+    action: { 
+        [key in IActionTarget]: IFormAction
+    },
+    fields: {
+        [key in IOneOfCollectionNames]: IEditionFormField[] 
+    }
 }
 
-const editionFormsByCollectionName = {
-    contests: contestEditForm,
-    brands: brandEditForm
+export const getFormByCollectionName = ({ collection, actionTarget } : { collection: IOneOfCollectionNames, actionTarget: IActionTarget }) : { action: IFormAction, fields: IEditionFormField[] } => {
+    return {
+        action: formsByCollectionName.action[actionTarget],
+        fields: formsByCollectionName.fields[collection]
+    }   
 }
-
-export const getCreationFormByCollectionName = ({ collection } : { collection: IOneOfCollectionNames }) => creationFormsByCollectionName[collection]
-
-export const getEditionFormByCollectionName = ({ collection } : { collection: IOneOfCollectionNames }) => editionFormsByCollectionName[collection]
 
 export const getMediaFieldsByCollection = ({ collection } : { collection: IOneOfCollectionNames }) => mediaFieldsByCollection[collection]
