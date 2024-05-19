@@ -1,6 +1,6 @@
 import { disassociateItems } from '@/app/_fetch/delete'
 import { associateItems } from '@/app/_fetch/post'
-import { IOneOfCollectionNames } from '@/types'
+import { IContestState, IOneOfCollectionNames, IParam } from '@/types'
 import { formInitialState } from '@/types/forms'
 import React, { useEffect, useRef, useState } from 'react'
 import { useFormState } from 'react-dom'
@@ -54,7 +54,7 @@ export default function AssociationInput({
 
     }, [ state ])
 
-    const { description } = (associationItem as any) || null
+    const { description } = (associationItem as IParam | IContestState) || null
 
     const manageHoverState = (hovered: boolean) => setHovered(hovered)
 
