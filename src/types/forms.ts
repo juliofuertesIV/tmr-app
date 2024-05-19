@@ -27,8 +27,7 @@ export type IFormEditionAction = (collection: IOneOfCollectionNames, id: string,
 
 export type IAssociationAction = (collection: IOneOfCollectionNames, collectionItemId: string | number, association: IAssociationNames, prevState: any, formData: FormData) => Promise<IAPIResponse<any>>
 
-<<<<<<< HEAD
-export type IDissociationAction = (collection: IOneOfCollectionNames, collectionItemId: string | number, association: IAssociationTypes, associationId: string | number, prevState: any, formData: FormData) => Promise<IAPIResponse<any>>
+export type IDissociationAction = (collection: IOneOfCollectionNames, collectionItemId: string | number, association: IAssociationNames, associationId: string | number, prevState: any, formData: FormData) => Promise<IAPIResponse<any>>
 
 export const formInitialState : IAPIResponse<any> = {
     success: false,
@@ -36,6 +35,3 @@ export const formInitialState : IAPIResponse<any> = {
     error: null,
     data: null
 } 
-=======
-export type IDissociationAction = (collection: IOneOfCollectionNames, collectionItemId: string | number, association: IAssociationNames, associationId: string | number, prevState: any, formData: FormData) => Promise<IAPIResponse<any>>
->>>>>>> 8f627ef6f2c48fb707377594b58a9254763e36a6
