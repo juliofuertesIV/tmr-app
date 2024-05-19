@@ -1,7 +1,7 @@
 import { IAPIResponse } from '@/types/api'
 import React from 'react'
 
-export default function FeedbackContent({ formState } : { formState: IAPIResponse | null }) {
+export default function FeedbackContent({ formState } : { formState: IAPIResponse<any> | null }) {
     
     if (!formState) return
 

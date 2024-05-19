@@ -6,7 +6,7 @@ const brands = [
         backgroundColor: '#091312',
         foregroundColor: '#e9e9e9',
         accentColor: '#ED1D27',
-        profile: 'https://instagram.com/vinarock'
+        instagramProfile: 'https://instagram.com/vinarock'
     },
     {
         name: 'FIB',
@@ -14,7 +14,7 @@ const brands = [
         backgroundColor: '#213f83',
         foregroundColor: '#ffffff',
         accentColor: '#ffd539',
-        profile: 'https://instagram.com/fiberfib'
+        instagramProfile: 'https://instagram.com/fiberfib'
     },
     {
         name: 'FIB DJs',
@@ -22,7 +22,7 @@ const brands = [
         backgroundColor: '#213f83',
         foregroundColor: '#ffffff',
         accentColor: '#ffd539',
-        profile: 'https://instagram.com/fiberfib'
+        instagramProfile: 'https://instagram.com/fiberfib'
     },    
     {
         name: 'Arenal Sound',
@@ -30,7 +30,7 @@ const brands = [
         backgroundColor: '#dcfdff',
         foregroundColor: '#000000',
         accentColor: '#E255EC',
-        profile: 'https://instagram.com/arenalsound'
+        instagramProfile: 'https://instagram.com/arenalsound'
     },
     {
         name: 'Arenal Sound DJs',
@@ -38,7 +38,7 @@ const brands = [
         backgroundColor: '#dcfdff',
         foregroundColor: '#000000',
         accentColor: '#E255EC',
-        profile: 'https://instagram.com/arenalsound'
+        instagramProfile: 'https://instagram.com/arenalsound'
     },    
     {
         name: 'Madrid Salvaje',
@@ -46,7 +46,7 @@ const brands = [
         backgroundColor: '#0020f8',
         foregroundColor: '#ffffff',
         accentColor: '#EEFD1C',
-        profile: 'https://instagram.com/madridsalvaje'
+        instagramProfile: 'https://instagram.com/madridsalvaje'
     },
     {
         name: 'Premios Ídolo',
@@ -54,7 +54,7 @@ const brands = [
         backgroundColor: '#800000',
         foregroundColor: '#ffffff',
         accentColor: '#FEDBBE',
-        profile: 'https://instagram.com/premiosidolo'
+        instagramProfile: 'https://instagram.com/premiosidolo'
     }    
 ]
 

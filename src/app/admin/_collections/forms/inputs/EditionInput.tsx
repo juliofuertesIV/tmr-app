@@ -1,8 +1,8 @@
 import { IOneOfCollections } from '@/types'
-import { IEditionFormField } from '@/types/forms'
+import { IFormField } from '@/types/forms'
 import React from 'react'
 
-export default function EditionInput({ input, collectionElement } : { input: IEditionFormField, collectionElement: IOneOfCollections }) {
+export default function EditionInput({ input, collectionElement } : { input: IFormField, collectionElement: IOneOfCollections }) {
 
     const { label, name } = input
 

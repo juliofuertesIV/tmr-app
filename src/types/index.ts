@@ -3,6 +3,8 @@ export type IOneOfCollections = IContest & IBrand & ISocialMedia
 
 export type IOneOfCollectionNames = 'contests' | 'brands' | 'social'
 
+export type IOneOfCollectionsWithMediaNames = 'contests'
+
 export type IContest = {
     id: string | number,
     name: string,
@@ -33,7 +35,8 @@ export type IBrand = {
     backgroundColor: string,
     foregroundColor: string,
     accentColor: string,
-    profile: string,
+    instagramProfile: string,
+    tiktokProfile?: string,
     website: string
 }
 

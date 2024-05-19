@@ -4,9 +4,9 @@ import { IAPIResponse } from '@/types/api'
 import React, { useEffect, useState } from 'react'
 import FeedbackContent from './FeedbackContent'
 
-export default function AdminFormFeedback({ state } : { state: IAPIResponse }) {
+export default function AdminFormFeedback({ state } : { state: IAPIResponse<any> }) {
 
-    const [ formState, setFormState ] = useState<IAPIResponse | null>(null)
+    const [ formState, setFormState ] = useState<IAPIResponse<any> | null>(null)
 
     useEffect(() => {
 

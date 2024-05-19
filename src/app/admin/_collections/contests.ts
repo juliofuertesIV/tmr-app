@@ -1,104 +1,98 @@
-import { IOneOfCollectionNames } from "@/types"
-import { ICreationFormField, IEditionFormField, IMediaFormField } from "@/types/forms"
+import { IOneOfCollectionsWithMediaNames } from "@/types"
+import { IActionTarget, IFormField, IMediaFormField } from "@/types/forms"
 
-export const contestCreationFormFields : ICreationFormField[] = [
-    {
-        name: 'name',
-        label: 'Nombre del concurso',
-        required: true,
-        type: 'text' 
-    },
-    {
-        name: 'domain',
-        label: 'Dominio',
-        required: true,
-        type: 'text' 
-    },
-    {
-        name: 'year',
-        label: 'Año de la edición',
-        required: true,
-        type: 'number' 
-    },
-    {
-        name: 'StateId',
-        label: '',
-        required: true,
-        type: 'hidden',
-        defaultValue: 'hidden'
-    }
-]
-
-
-export const contestEditFormFields : IEditionFormField[] = [
-    {
-        name: 'name',
-        label: 'Nombre del concurso',
-        required: false,
-        type: 'text'
-    },
-    {
-        name: 'domain',
-        label: 'Dominio',
-        required: false,
-        type: 'text'
-    },
-    {
-        name: 'year',
-        label: 'Año de la edición',
-        required: false,
-        type: 'number'
-    },
-    {
-        name: 'metaUrl',
-        label: 'URL del concurso',
-        required: false,
-        type: 'text'
-    },
-    {
-        name: 'metaTitle',
-        label: 'Meta título de la web',
-        required: false,
-        type: 'text'
-    },
-    {
-        name: 'metaDescription',
-        label: 'Meta descripción de la web',
-        required: false,
-        type: 'text'
-    },    
-    {
-        name: 'postmarkToken',
-        label: 'Token de Postmark',   
-        required: false,
-        type: 'text'
-    },
-    {
-        name: 'postmarkSenderAddress',
-        label: 'Dirección de envío de Postmark',
-        required: false,
-        type: 'text'
-    },
-    {
-        name: 'metaPixelId',
-        label: 'ID del Píxel de Meta',
-        required: false,
-        type: 'text'
-    },
-    {
-        name: 'googleTagManagerId',
-        label: 'ID de Google Tag Manager',
-        required: false,
-        type: 'text'
-    },
-    {
-        name: 'googleAnalyticsId',
-        label: 'ID de Google Analytics',
-        required: false,
-        type: 'text'
-    }
-]
-
+export const contestFields = {
+    creation: [
+        {
+            name: 'name',
+            label: 'Nombre del concurso',
+            required: true,
+            type: 'text' 
+        },
+        {
+            name: 'domain',
+            label: 'Dominio',
+            required: true,
+            type: 'text' 
+        },
+        {
+            name: 'year',
+            label: 'Año de la edición',
+            required: true,
+            type: 'number' 
+        }
+    ],
+    update: [
+        {
+            name: 'name',
+            label: 'Nombre del concurso',
+            required: false,
+            type: 'text'
+        },
+        {
+            name: 'domain',
+            label: 'Dominio',
+            required: false,
+            type: 'text'
+        },
+        {
+            name: 'year',
+            label: 'Año de la edición',
+            required: false,
+            type: 'number'
+        },
+        {
+            name: 'metaUrl',
+            label: 'URL del concurso',
+            required: false,
+            type: 'text'
+        },
+        {
+            name: 'metaTitle',
+            label: 'Meta título de la web',
+            required: false,
+            type: 'text'
+        },
+        {
+            name: 'metaDescription',
+            label: 'Meta descripción de la web',
+            required: false,
+            type: 'text'
+        },    
+        {
+            name: 'postmarkToken',
+            label: 'Token de Postmark',   
+            required: false,
+            type: 'text'
+        },
+        {
+            name: 'postmarkSenderAddress',
+            label: 'Dirección de envío de Postmark',
+            required: false,
+            type: 'text'
+        },
+        {
+            name: 'metaPixelId',
+            label: 'ID del Píxel de Meta',
+            required: false,
+            type: 'text'
+        },
+        {
+            name: 'googleTagManagerId',
+            label: 'ID de Google Tag Manager',
+            required: false,
+            type: 'text'
+        },
+        {
+            name: 'googleAnalyticsId',
+            label: 'ID de Google Analytics',
+            required: false,
+            type: 'text'
+        }
+    ],
+} as {
+    [key in IActionTarget]: IFormField[]
+}
 
 export const mediaFieldsByCollection = {
     contests: [
@@ -130,11 +124,9 @@ export const mediaFieldsByCollection = {
             acceptedTypes: '.ico',
             multiple: false,
         },
-    ],
-    brands: [],
-    social: []
+    ]
 } as {
-    [key in IOneOfCollectionNames]: IMediaFormField[]
+    [key in IOneOfCollectionsWithMediaNames]: IMediaFormField[]
 }
 
 

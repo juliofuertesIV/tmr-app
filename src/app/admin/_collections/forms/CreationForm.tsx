@@ -2,14 +2,14 @@
 
 import { useFormState } from 'react-dom'
 import FormSubmit from './FormSubmit'
-import { IFormCreationAction, ICreationFormField, formInitialState } from '@/types/forms'
+import { IFormAction, IFormField, formInitialState } from '@/types/forms'
 import AdminFormFeedback from './FormFeedback'
 import { IOneOfCollectionNames } from '@/types'
 import CreationInput from './inputs/CreationInput'
 
 type Props = {
-    action: IFormCreationAction,
-    fields: ICreationFormField[],
+    action: IFormAction,
+    fields: IFormField[],
     collection: IOneOfCollectionNames
 }
 

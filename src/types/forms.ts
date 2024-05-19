@@ -2,34 +2,13 @@ import { IContestMediaRole, IOneOfCollectionNames } from "."
 import { IAPIResponse } from "./api"
 import { IAssociationTypes } from "./associations"
 
-export const formInitialState : IAPIResponse<any> = {
-    success: false,
-    message: '',
-    error: null,
-    data: null
-} 
+export type IActionTarget = 'creation' | 'update'
 
-export type ICreationFormField = {
-    name: string,
-    label: string,
-    required: boolean,
-    type: string,
-    defaultValue?: string
-}
-
-export type IEditionFormField = {
+export type IFormField = {
     name: string,
     label: string,
     required: boolean,
     type: string
-}
-
-export type ICollectionFormField = {
-    name: string,
-    label: string,
-    type: string,
-    required: boolean,
-    instructions?: string
 }
 
 export type IMediaFormField = {
@@ -42,9 +21,6 @@ export type IMediaFormField = {
     multiple: boolean
 }
 
-export type IFormCreationAction = (collection: IOneOfCollectionNames, prevState: any, formData: FormData) => Promise<IAPIResponse<any>>
-// TO DO: unify through modes 'create' | 'edit' ? 
-
 export type IFormAction = (...args: any) => Promise<IAPIResponse<any>>
 
 export type IFormEditionAction = (collection: IOneOfCollectionNames, id: string, prevState: any, formData: FormData) => Promise<IAPIResponse<any>>
@@ -52,3 +28,10 @@ export type IFormEditionAction = (collection: IOneOfCollectionNames, id: string,
 export type IAssociationAction = (collection: IOneOfCollectionNames, collectionItemId: string | number, association: IAssociationTypes, prevState: any, formData: FormData) => Promise<IAPIResponse<any>>
 
 export type IDissociationAction = (collection: IOneOfCollectionNames, collectionItemId: string | number, association: IAssociationTypes, associationId: string | number, prevState: any, formData: FormData) => Promise<IAPIResponse<any>>
+
+export const formInitialState : IAPIResponse<any> = {
+    success: false,
+    message: '',
+    error: null,
+    data: null
+} 

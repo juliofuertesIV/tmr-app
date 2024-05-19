@@ -1,7 +1,7 @@
-import { ICreationFormField } from '@/types/forms'
+import { IFormField } from '@/types/forms'
 import React from 'react'
 
-export default function CreationInput({ input } : { input: ICreationFormField }) {
+export default function CreationInput({ input } : { input: IFormField }) {
 
     const { label, name } = input
 
@@ -12,7 +12,6 @@ export default function CreationInput({ input } : { input: ICreationFormField })
                 className="w-full rounded-sm bg-stone-800 pl-1"
                 type={ input.type }
                 name={ name }
-                defaultValue={ input.defaultValue || '' }
             />
         </label>
     )

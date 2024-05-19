@@ -19,7 +19,7 @@ const initialDialogState : DialogState = {
 
 export default function Dashboard({ data } : { data: IAdminData }) {
 
-    const { contests, brands, socialMedia } = data
+    const { contests, brands, social } = data
 
     const [ dialog, setDialog ] = useState<DialogState>(initialDialogState)
     const dialogRef = useRef<HTMLDialogElement>(null)
@@ -48,7 +48,7 @@ export default function Dashboard({ data } : { data: IAdminData }) {
             </CollectionSection>
             
             <CollectionSection collection='brands' title='Redes sociales' onManageDialog={ onManageDialog }>
-                <CollectionGrid collection={ 'brands' } items={ socialMedia as IOneOfCollections[] }/>
+                <CollectionGrid collection={ 'brands' } items={ social as IOneOfCollections[] }/>
             </CollectionSection>
             
             <dialog ref={ dialogRef } className='backdrop:bg-neutral-950 backdrop:opacity-50 bg-transparent w-full'>

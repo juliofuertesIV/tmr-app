@@ -1,11 +1,9 @@
-import { IOneOfCollectionNames } from "@/types"
-import { contestEditFormFields, mediaFieldsByCollection} from "./contests"
-import { brandEditionFormFields } from "./brands"
+import { IOneOfCollectionNames, IOneOfCollectionsWithMediaNames } from "@/types"
+import { contestFields, mediaFieldsByCollection} from "./contests"
 import { addCollectionElement } from "@/app/_fetch/post"
 import { updateCollectionItem } from "@/app/_fetch/put"
-import { IEditionFormField, IFormAction } from "@/types/forms"
-
-type IActionTarget = 'creation' | 'update'
+import { IFormField, IFormAction, IActionTarget } from "@/types/forms"
+import { brandFields } from "./brands"
 
 const formsByCollectionName : IFormByCollectionName = {
     action: {
@@ -13,9 +11,9 @@ const formsByCollectionName : IFormByCollectionName = {
         update: updateCollectionItem
     },
     fields: {
-        contests: contestEditFormFields,
-        brands: brandEditionFormFields,
-        social: [] as IEditionFormField[],
+        contests: contestFields,
+        brands: brandFields,
+        social: { creation: [], update: [] }
     }
 } 
 
@@ -24,15 +22,26 @@ type IFormByCollectionName = {
         [key in IActionTarget]: IFormAction
     },
     fields: {
-        [key in IOneOfCollectionNames]: IEditionFormField[] 
+        [key in IOneOfCollectionNames]: {
+           [key in IActionTarget]: IFormField[] 
+        }
     }
 }
 
-export const getFormByCollectionName = ({ collection, actionTarget } : { collection: IOneOfCollectionNames, actionTarget: IActionTarget }) : { action: IFormAction, fields: IEditionFormField[] } => {
+export const getFormByCollectionName = ({ 
+    collection,
+    actionTarget 
+} : { 
+    collection: IOneOfCollectionNames,
+    actionTarget: IActionTarget 
+}) => {
     return {
         action: formsByCollectionName.action[actionTarget],
-        fields: formsByCollectionName.fields[collection]
-    }   
+        fields: formsByCollectionName.fields[collection][actionTarget]
+    } as {
+        action: IFormAction,
+        fields: IFormField[] 
+    }
 }
 
-export const getMediaFieldsByCollection = ({ collection } : { collection: IOneOfCollectionNames }) => mediaFieldsByCollection[collection]
+export const getMediaFieldsByCollection = ({ collection } : { collection: IOneOfCollectionsWithMediaNames }) => mediaFieldsByCollection[collection]

@@ -14,6 +14,24 @@ const sequelize = new Sequelize(dbName, dbUser, dbPass, {
     port: 3306
 });
 
+export const State = sequelize.define('State', {
+    id: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        primaryKey: true,
+        unique: true
+    },
+    name: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    description: {
+        type: DataTypes.STRING
+    }
+}, {
+    timestamps: false
+})
+
 export const Brand = sequelize.define('Brand', {
     id: {
         type: DataTypes.INTEGER,
@@ -45,7 +63,11 @@ export const Brand = sequelize.define('Brand', {
         allowNull: false,
         defaultValue: 'crimson'
     },    
-    profile: {
+    instagramProfile: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    tiktokProfile: {
         type: DataTypes.STRING,
         allowNull: false
     },
@@ -101,6 +123,11 @@ export const Contest = sequelize.define('Contest', {
     },
     metaPixelId: {
         type: DataTypes.STRING
+    },
+    StateId: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        defaultValue: 'hidden'
     }
     }, {
     paranoid: true,
@@ -112,23 +139,7 @@ export const Contest = sequelize.define('Contest', {
     ]
 });
 
-export const State = sequelize.define('State', {
-    id: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        primaryKey: true,
-        unique: true
-    },
-    name: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-    description: {
-        type: DataTypes.STRING
-    }
-}, {
-    timestamps: false
-})
+
 
 export const Param = sequelize.define('Param', {
     id: {

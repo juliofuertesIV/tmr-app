@@ -31,6 +31,8 @@ export const POST = async (req: Request, { params } : { params: { collection: IO
     const payload = await req.json()
     const transaction = await sequelize.transaction()
 
+    console.log({ payload })
+
     try {
         const data = await Model.create({ ...payload }, { transaction })
         await transaction.commit()
