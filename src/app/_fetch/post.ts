@@ -2,7 +2,7 @@
 
 import { IOneOfCollectionNames } from "@/types"
 import { IAPIResponse } from "@/types/api"
-import { IAssociationTypes } from "@/types/associations"
+import { IAssociationNames } from "@/types/associations"
 import { revalidateTag } from "next/cache"
 
 export const addCollectionElement = async (
@@ -47,7 +47,7 @@ export const manageCollectionMedia = async (
 export const associateItems = async (
     collection: IOneOfCollectionNames,
     collectionItemId: string | number,
-    association: IAssociationTypes,
+    association: IAssociationNames,
     prevState: any,
     formData: FormData
 ) : Promise<IAPIResponse<null>> => {

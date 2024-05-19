@@ -17,6 +17,11 @@ export default async function AdminElementPage({ params } : { params: { collecti
     if (!item) throw new Error('No se ha encontrado el elemento en la base de datos.')
 
     return (
-        <AdminEditionForm item={ item }/>
+        <section className="w-full flex flex-col items-center">
+            <header className="text-center">
+                <h1>Editar información básica</h1>
+            </header>
+            <AdminEditionForm item={ item }/>
+        </section>
     )
 }

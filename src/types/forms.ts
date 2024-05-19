@@ -1,6 +1,6 @@
 import { IContestMediaRole, IOneOfCollectionNames } from "."
 import { IAPIResponse } from "./api"
-import { IAssociationTypes } from "./associations"
+import { IAssociationNames } from "./associations"
 
 export const formInitialState : IAPIResponse<any> = {
     success: false,
@@ -49,6 +49,6 @@ export type IFormAction = (...args: any) => Promise<IAPIResponse<any>>
 
 export type IFormEditionAction = (collection: IOneOfCollectionNames, id: string, prevState: any, formData: FormData) => Promise<IAPIResponse<any>>
 
-export type IAssociationAction = (collection: IOneOfCollectionNames, collectionItemId: string | number, association: IAssociationTypes, prevState: any, formData: FormData) => Promise<IAPIResponse<any>>
+export type IAssociationAction = (collection: IOneOfCollectionNames, collectionItemId: string | number, association: IAssociationNames, prevState: any, formData: FormData) => Promise<IAPIResponse<any>>
 
-export type IDissociationAction = (collection: IOneOfCollectionNames, collectionItemId: string | number, association: IAssociationTypes, associationId: string | number, prevState: any, formData: FormData) => Promise<IAPIResponse<any>>
+export type IDissociationAction = (collection: IOneOfCollectionNames, collectionItemId: string | number, association: IAssociationNames, associationId: string | number, prevState: any, formData: FormData) => Promise<IAPIResponse<any>>
