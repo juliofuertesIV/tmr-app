@@ -8,9 +8,9 @@ export type IAPIError = {
     messages?: string[]
 } | null
 
-export type IAPIResponse = {
+export type IAPIResponse<T> = {
     message: string,
     success: boolean,
     error: IAPIError,
-    data: any | null
+    data: T | null
 }

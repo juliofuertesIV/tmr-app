@@ -1,13 +1,8 @@
-import { IOneOfCollectionNames } from "@/types"
+import { IContest, IOneOfCollectionNames, IOneOfCollections } from "@/types"
+import { IAdminData } from "@/types/admin"
 import { IAPIResponse } from "@/types/api"
 
-type GetElementById = (collection: IOneOfCollectionNames, id: string) => Promise<IAPIResponse>
-
-type GetContests = (collection: IOneOfCollectionNames) => Promise<IAPIResponse>
-
-type GetAdminData = () => Promise<IAPIResponse>
-
-export const getCollectionElementById : GetElementById = async (collection: IOneOfCollectionNames, id: string) => {
+export const getCollectionElementById = async (collection: IOneOfCollectionNames, id: string) : Promise<IAPIResponse<IOneOfCollections>> => {
     
     const res = await fetch(`http://localhost:3000/api/${ collection }/${ id }`, {
         method: "GET",
@@ -25,7 +20,7 @@ export const getCollectionElementById : GetElementById = async (collection: IOne
     return res
 }
 
-export const getCollection : GetContests = async (collection: IOneOfCollectionNames) => {
+export const getCollection = async (collection: IOneOfCollectionNames) : Promise<IAPIResponse<IOneOfCollections[]>> => {
     
     const res = await fetch(`http://localhost:3000/api/${ collection }`, {
         method: "GET",
@@ -43,7 +38,7 @@ export const getCollection : GetContests = async (collection: IOneOfCollectionNa
     return res
 }
 
-export const getAdminData : GetAdminData = async () => {
+export const getAdminData = async () : Promise<IAPIResponse<IAdminData>> => {
     
     const res = await fetch(`http://localhost:3000/api/admin`, {
         method: "GET",

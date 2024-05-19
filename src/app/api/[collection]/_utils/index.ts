@@ -32,6 +32,10 @@ const modelsByCollectionName = {
         options: {
             include: [ Contest ]
         }
+    },
+    social: {
+        Model: SocialMedia,
+        options: {}
     }
 } as { 
     [key in IOneOfCollectionNames]: { 

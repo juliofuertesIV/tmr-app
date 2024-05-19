@@ -1,9 +1,9 @@
 export type IContestStateIds = 'inscriptionOnly' | 'open' | 'endedInscription' | 'ended' | 'hidden'
 export type IContestParamIds = 'inscriptionIsPublic' | 'videoIsRequired' | 'cityIsRequired' | 'instagramIsRequired' | 'hasManyItems' | 'hasGenres' | 'hasRanking'
 
-export type IOneOfCollections = IContest & IBrand
+export type IOneOfCollections = IContest & IBrand & ISocialMedia
 
-export type IOneOfCollectionNames = 'contests' | 'brands'
+export type IOneOfCollectionNames = 'contests' | 'brands' | 'social'
 
 export type IOneOfCollectionsWithAssociations = IContest | IBrand
 

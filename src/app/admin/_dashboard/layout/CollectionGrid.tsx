@@ -8,7 +8,8 @@ const gridItemByCollectionName : {
     ({ item } : { item: IOneOfCollections }) => JSX.Element 
 } = {
     contests: ContestGridItem,
-    brands: BrandGridItem
+    brands: BrandGridItem,
+    social: ContestGridItem
 } 
 
 
@@ -19,7 +20,7 @@ export default function CollectionGrid({ items, collection } : { items: IOneOfCo
     return (
         <div className="flex flex-wrap gap-2 justify-start w-full">
         {
-            items.map(
+            items?.map(
                 (item: IOneOfCollections, index: number) => 
                     <GridItem key={ index } item={ item }/>
             )

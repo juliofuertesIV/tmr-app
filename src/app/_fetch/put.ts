@@ -4,7 +4,7 @@ import { IOneOfCollectionNames } from "@/types"
 import { IAPIResponse } from "@/types/api"
 import { revalidateTag } from "next/cache"
 
-export const updateCollectionItem = async (collection: IOneOfCollectionNames, itemId: string, prevState: any, formData: FormData) : Promise<IAPIResponse> => {
+export const updateCollectionItem = async (collection: IOneOfCollectionNames, itemId: string, prevState: any, formData: FormData) : Promise<IAPIResponse<null>> => {
     
     const res = await fetch(`http://localhost:3000/api/${ collection }/${ itemId }`, {
         method: "PUT",

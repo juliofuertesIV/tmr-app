@@ -4,7 +4,7 @@ import { IAssociationTypes, IContestMediaRole, IOneOfCollectionNames } from "@/t
 import { IAPIResponse } from "@/types/api"
 import { revalidateTag } from "next/cache"
 
-export const deleteCollectionItem = async (collection: IOneOfCollectionNames, itemId: string, prevState: any, formData: FormData) : Promise<IAPIResponse> => {
+export const deleteCollectionItem = async (collection: IOneOfCollectionNames, itemId: string, prevState: any, formData: FormData) : Promise<IAPIResponse<null>> => {
     
     const payload = Object.fromEntries(formData)
 
@@ -24,7 +24,7 @@ export const deleteCollectionItem = async (collection: IOneOfCollectionNames, it
     return res
 }
 
-export const deleteContestMediaItem = async ({ contestId, mediaId } : { contestId: string, mediaId: string }) : Promise<IAPIResponse> => {
+export const deleteContestMediaItem = async ({ contestId, mediaId } : { contestId: string, mediaId: string }) : Promise<IAPIResponse<null>> => {
     
     const res = await fetch(`http://localhost:3000/api/contests/${ contestId }/media/${ mediaId }`, {
         method: "DELETE",
@@ -49,7 +49,7 @@ export const disassociateItems = async (
     associationItemId: string | number,
     prevState: any,
     formData: FormData
-) : Promise<IAPIResponse> => {
+) : Promise<IAPIResponse<null>> => {
 
     const res = await fetch(`http://localhost:3000/api/${ collection }/${ collectionItemId }/${ association }/${ associationItemId }`, {
         method: "DELETE",

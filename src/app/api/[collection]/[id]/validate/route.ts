@@ -98,8 +98,6 @@ const findMediaError = (contest: IContest) => {
 
     const mediaRequiredElements = contest.Media.filter((media) => media.role !== 'footerElement').length 
 
-    console.log({ mediaRequiredElements })
-
     if (mediaRequiredElements < 4) {
         throw new Error('El concurso no tiene alguna de las imágenes requeridas (logo, favicon, marco, banner).')
     }
