@@ -35,7 +35,7 @@ export default function CollectionItemNav({ collection, id } : { collection: IOn
 
     return (
         <header className=" pt-3 pb-4 mx-auto mb-8 w-full">
-            <ul className="w-full flex gap-2 px-4 items-center justify-center">
+            <ul className="w-full flex flex-wrap gap-2 px-4 items-center justify-center">
                 { 
                     navItemsByCollectionName[collection].map((item, index) => 
                         <Link

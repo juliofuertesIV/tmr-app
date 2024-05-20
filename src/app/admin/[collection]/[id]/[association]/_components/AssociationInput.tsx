@@ -39,6 +39,7 @@ export default function AssociationInput({
     const onClickItem = () => {
         
         if (isCurrentlyAssociated && !isManyToMany) return
+        
         setLoading(true)
 
         form.current?.requestSubmit()

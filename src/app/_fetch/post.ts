@@ -4,6 +4,7 @@ import { IOneOfCollectionNames } from "@/types"
 import { IAPIResponse } from "@/types/api"
 import { IAssociationNames } from "@/types/associations"
 import { revalidateTag } from "next/cache"
+import { constructAPIResponse } from "../api/_utils"
 
 export const addCollectionElement = async (
     collection: IOneOfCollectionNames,
@@ -51,6 +52,20 @@ export const associateItems = async (
     prevState: any,
     formData: FormData
 ) : Promise<IAPIResponse<null>> => {
+
+    if (association === 'states') {
+        await fetch(`http://localhost:3000/api/${ collection }/${ collectionItemId }/validate`, {
+            method: 'GET',
+            cache: 'no-cache'
+        })
+        .then(async res => await res.json())
+        .then((data: IAPIResponse<null>) => {
+            if (!data.success) {
+                throw new Error(data.error?.message)
+            }
+        })
+        .catch(error => { throw new Error(error) })
+    }
 
     const res = await fetch(`http://localhost:3000/api/${ collection }/${ collectionItemId }/${ association }`, {
         method: "POST",
