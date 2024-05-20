@@ -37,13 +37,13 @@ export default async function AdminAssociationPage({ params } : Props) {
     
     const { collection, id, association } = params
 
-    const { item, associationItems } = await getPageData({ collection, association, id })
+    const { item, associationItems } = await getPageData({ collection, association, id }) as { item: IOneOfCollectionsWithAssociations, associationItems: IOneOfAssociations[] }
 
     const { associationKey, isManyToMany } = getAssociationOptionsByName(association)
 
     return (
         <section className="w-full flex flex-col items-center">
-            <AssociationPageHeader association={ association }/>
+            <AssociationPageHeader association={ association } item={ item }/>
             <AssociationManager 
                 collection={ collection }
                 collectionItem={ item } 

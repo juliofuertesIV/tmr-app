@@ -1,4 +1,4 @@
-import { IAssociationNames } from "@/types/associations";
+import { IAssociationNames, IOneOfCollectionsWithAssociations } from "@/types/associations";
 
 const headersByAssociationName = {
     params: {
@@ -30,13 +30,13 @@ const headersByAssociationName = {
 
 
 
-export default function AssociationPageHeader({ association } : { association: IAssociationNames }) {
+export default function AssociationPageHeader({ association, item } : { association: IAssociationNames, item: IOneOfCollectionsWithAssociations }) {
     
     const { title, description } = headersByAssociationName[association]
     
     return (
         <header className="text-center max-w-2xl mb-8">
-            <h1 className="mb-4 uppercase">{ title }</h1>
+            <h1 className="mb-4 uppercase">{ title } de { item.name }</h1>
             <p className="text-justify">{ description }</p>
         </header>
     )

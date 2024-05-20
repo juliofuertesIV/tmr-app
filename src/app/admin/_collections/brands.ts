@@ -42,7 +42,7 @@ export const brandFields = {
         },
         {
             name: 'tiktokProfile',
-            label: 'Perfil de Instagram',
+            label: 'Perfil de TikTok',
             required: false,
             type: 'text' 
         },
