@@ -60,7 +60,7 @@ export default function AssociationInput({
 
     return (
         <div 
-            className="bg-neutral-300 text-neutral-600 rounded-sm px-4 py-1 cursor-pointer hover:bg-neutral-100 data-[active='true']:bg-green-400 data-[active='true']:text-neutral-900 data-[active='true']:hover:bg-red-400 data-[loading='true']:pointer-events-none data-[loading='true']:bg-orange-500 "
+            className="bg-neutral-300 text-neutral-800 rounded-sm px-4 py-1 cursor-pointer hover:bg-neutral-100 data-[active='true']:bg-green-400 data-[active='true']:text-neutral-900 data-[active='true']:hover:bg-red-400 data-[loading='true']:pointer-events-none data-[loading='true']:bg-orange-500 "
             data-active={ isCurrentlyAssociated }
             data-loading={ loading }
             style={{
@@ -72,7 +72,7 @@ export default function AssociationInput({
             onMouseLeave={ () => manageHoverState(false) }
         >  
             <div className='flex w-full justify-between items-center py-2'>
-                <div className='flex flex-col gap-1'>
+                <div className='flex flex-col gap-1.5'>
                     <p className='text-sm uppercase leading-none'>{ associationItem.name }</p>
                     { description && <p className='text-xs leading-none'>{ description }</p> }
                 </div>

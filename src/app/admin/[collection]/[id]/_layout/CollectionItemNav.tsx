@@ -39,7 +39,7 @@ export default function CollectionItemNav({ collection, id } : { collection: IOn
                 { 
                     navItemsByCollectionName[collection].map((item, index) => 
                         <Link
-                            className="bg-neutral-800 px-4 py-1 rounded-sm w-fit text-center data-[active='true']:bg-neutral-500 data-[active='true']:text-neutral-50 data-[active='true']:pointer-events-none hover:bg-neutral-600"
+                            className="bg-neutral-800 px-4 py-1 rounded-sm w-fit text-center data-[active='true']:bg-neutral-500 data-[active='true']:text-neutral-50 data-[active='true']:pointer-events-none hover:bg-neutral-600 uppercase text-sm"
                             href={ `/admin/${ collection }/${ id }/${ item.value }` }
                             key={ index }
                             data-active={ isActive(item.value) }
