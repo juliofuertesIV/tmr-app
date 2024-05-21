@@ -1,6 +1,6 @@
 'use server'
 
-import { IOneOfCollectionNames } from "@/types"
+import { IManager, IOneOfCollectionNames } from "@/types"
 import { IAPIResponse } from "@/types/api"
 import { IAssociationNames } from "@/types/associations"
 import { revalidateTag } from "next/cache"
@@ -79,3 +79,21 @@ export const associateItems = async (
     return res
 
 }
+
+export const loginManager = async (
+    prevState: any,
+    formData: FormData
+) : Promise<IAPIResponse<null>> => {
+
+
+    const res = await fetch(`http://localhost:3000/api/auth/login`, {
+        method: "POST",
+        cache: 'no-cache',
+        body: formData
+    })
+    .then(async data => await data.json())
+    .catch(error => error)
+    
+    return res
+
+} 

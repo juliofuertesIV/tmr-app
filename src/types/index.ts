@@ -16,10 +16,13 @@ export type IManager = {
     id: string,
     name: string,
     email: string,
+    hash: string,
+    salt: string,
     emailVerified: boolean,
     token: string,
     tokenExpirationDate: string,
-    Contests: IContest[]
+    Contests: IContest[],
+    Role: IManagerRole
 }
 
 export type IContest = {

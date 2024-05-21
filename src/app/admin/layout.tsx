@@ -18,9 +18,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
             <body className={ inter.className }>
                 <main className="flex">
                     <Nav/>
-                    <section className="w-full">
-                        { children }
-                    </section>
+                    { children }
                 </main>
             </body>
         </html>

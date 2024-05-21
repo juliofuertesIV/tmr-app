@@ -4,7 +4,7 @@ import { customAlphabet } from 'nanoid'
 
 // NANOID
 const alphabet = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
-const generateToken = customAlphabet(alphabet, 15);
+export const generateUserToken = customAlphabet(alphabet, 15);
 
 //HASH AND SALT
 export const getHashAndSaltFromPassword = (password: string) => {
@@ -16,6 +16,7 @@ export const getHashAndSaltFromPassword = (password: string) => {
 
     return { hash, salt }
 }
+
 
 export const getManagerCreationPayload = (
     { name, email, password, RoleId } : 
@@ -30,8 +31,19 @@ export const getManagerCreationPayload = (
         hash,
         salt,
         RoleId,
-        token: generateToken()
+        token: generateUserToken()
     }
 
     return manager
+}
+
+export const passwordsAreMatching = ({ hash, salt, inputPassword } : { hash: string, salt: string, inputPassword: string }) => {
+    
+    const inputHash = crypto
+        .pbkdf2Sync(inputPassword, salt, 1000, 64, 'sha512')
+        .toString('hex')
+
+    const passwordsMatch = hash === inputHash
+    
+    return passwordsMatch
 }
