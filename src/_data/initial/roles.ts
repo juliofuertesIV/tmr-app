@@ -4,15 +4,15 @@ export const roles = [
         name: 'Colaborador',
     },
     {
-        id: 3,
+        id: 2,
         name: 'Editor'
     },
     {
-        id: 4,
+        id: 3,
         name: 'Admin'
     },
     {
-        id: 5,
+        id: 4,
         name: 'Super Admin'
     }
 ]

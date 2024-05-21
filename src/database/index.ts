@@ -79,10 +79,6 @@ export const Manager = sequelize.define('Manager', {
         type: DataTypes.STRING,
         allowNull: false
     },
-    emailVerified: {
-        type: DataTypes.BOOLEAN,
-        allowNull: false
-    },
     token: {
         type: DataTypes.STRING,
         allowNull: false
@@ -90,6 +86,15 @@ export const Manager = sequelize.define('Manager', {
     tokenExpirationDate: {
         type: DataTypes.DATE,
         allowNull: false
+    }
+}, {
+    hooks: {
+        beforeValidate: (record, options) => {
+            const now = new Date()
+            const expirationDate = new Date(now.setMonth(now.getMonth() + 3)).toISOString()
+            
+            record.dataValues.tokenExpirationDate = expirationDate
+        },
     }
 })
 
@@ -483,6 +488,9 @@ Genre.belongsToMany(Contest, { through: 'ContestGenres' })
 
 Contest.belongsToMany(Media, { through: 'ContestMedia', onDelete: 'CASCADE' })
 Media.belongsToMany(Contest, { through: 'ContestMedia', onDelete: 'CASCADE' })
+
+Manager.belongsTo(Role)
+Role.hasMany(Manager)
 
 Contest.belongsToMany(Manager, { through: 'ManagerContests', onDelete: 'CASCADE' })
 Manager.belongsToMany(Contest, { through: 'ManagerContests', onDelete: 'CASCADE' })

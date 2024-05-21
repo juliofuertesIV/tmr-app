@@ -5,8 +5,10 @@ export type IOneOfCollectionNames = 'contests' | 'brands' | 'social' | 'genres' 
 
 export type IOneOfCollectionsWithMediaNames = 'contests'
 
-export type IRole = {
-    id: number,
+export type IManagerRoleId = 1 | 2 | 3 | 4
+
+export type IManagerRole = {
+    id: IManagerRoleId,
     name: string
 }
 

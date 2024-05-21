@@ -4,5 +4,6 @@ import { params } from "./params"
 import { social } from "./social"
 import { states } from "./states"
 import { roles } from "./roles"
+import { superAdmin } from "./managers"
 
-export { genres, params, states, brands, social, roles }
+export { genres, params, states, brands, social, roles, superAdmin }

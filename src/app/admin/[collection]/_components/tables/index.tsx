@@ -39,9 +39,11 @@ const tables : { [key in IOneOfCollectionNames]: ICollectionTable } = {
         associations: null,
     },
     managers: {
-        headers: ['Nombre'],
+        headers: ['Nombre', 'Rol'],
         fields: ['name'],
-        associations: null,
+        associations: [
+            { key: 'Role', field: 'name' }
+        ],
     }
 } 
 

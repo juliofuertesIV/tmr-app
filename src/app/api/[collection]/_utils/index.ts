@@ -1,4 +1,4 @@
-import { Brand, Contest, Media, Genre, Param, State, ContestParam, ContestMedia, ContestGenre, ContestSocial, SocialMedia } from "@/database";
+import { Brand, Contest, Media, Genre, Param, State, ContestParam, ContestMedia, ContestGenre, ContestSocial, SocialMedia, Manager, Role } from "@/database";
 import { IOneOfCollectionNames } from "@/types";
 import { IAssociationNames } from "@/types/associations";
 import { Model, ModelStatic, Options } from "sequelize";
@@ -43,8 +43,10 @@ const modelsByCollectionName = {
         options: {}
     },
     managers: {
-        Model: Contest,
-        options: {}
+        Model: Manager,
+        options: {
+            include: [ Role ]
+        }
     },
     inscriptions: {
         Model: Contest,
@@ -93,6 +95,12 @@ const associationByName = {
         AssociationModel: SocialMedia,
         collectionItemIdField: 'ContestId',
         associationIdField: 'SocialMediumId'
+    },
+    managers: {
+        AssociationTable: null,
+        AssociationModel: Role,
+        collectionItemIdField: null,
+        associationIdField: 'RoleId'
     }
 } as {
     [key in IAssociationNames]: {

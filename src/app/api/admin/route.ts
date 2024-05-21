@@ -13,7 +13,7 @@ export const GET = async () => {
         const states = await State.findAll().then(data => data) as unknown as IContestState[]
         const genres = await Genre.findAll().then(data => data) as unknown as IGenre[]
         const social = await SocialMedia.findAll().then(data => data) as unknown as ISocialMedia[]
-        const users = [{}, {}] 
+        const managers = [{}, {}] 
         const inscriptions = [{}, {}]
         
         return Response.json(
@@ -21,7 +21,7 @@ export const GET = async () => {
                 message: 'OK!',
                 success: true,
                 error: null,
-                data: { contests, brands, params, states, genres, social, users, inscriptions } as IAdminData
+                data: { contests, brands, params, states, genres, social, inscriptions, managers } as IAdminData
             })
         )
     }
