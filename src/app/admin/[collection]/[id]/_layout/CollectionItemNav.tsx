@@ -17,8 +17,18 @@ const navItemsByCollectionName = {
     brands: [
         { name: 'Información', value: '' },
     ],
-    social: [],
-    genres: []
+    social: [
+        { name: 'Información', value: '' },
+    ],
+    genres: [
+        { name: 'Información', value: '' },
+    ],
+    managers: [
+        { name: 'Información', value: '' },
+    ],
+    inscriptions: [
+        { name: 'Información', value: '' },
+    ]
 } as {
     [key in IOneOfCollectionNames]: { name: string, value: string }[]
 }
@@ -33,11 +43,18 @@ export default function CollectionItemNav({ collection, id } : { collection: IOn
         : path === `/admin/${ collection }/${ id }`
     }
 
+    const getNavItemsByCollectionName = () => {
+        const items = navItemsByCollectionName[collection]
+        if (!items) throw new Error('No hay items de navegación para esta colección: ' + collection)
+
+        return items
+    }
+
     return (
         <header className=" pt-3 pb-4 mx-auto mb-8 w-full">
             <ul className="w-full flex flex-wrap gap-2 px-4 items-center justify-center">
                 { 
-                    navItemsByCollectionName[collection].map((item, index) => 
+                    getNavItemsByCollectionName().map((item, index) => 
                         <Link
                             className="bg-neutral-800 px-4 py-1 rounded-sm w-fit text-center data-[active='true']:bg-neutral-500 data-[active='true']:text-neutral-50 data-[active='true']:pointer-events-none hover:bg-neutral-600 uppercase text-sm"
                             href={ `/admin/${ collection }/${ id }/${ item.value }` }

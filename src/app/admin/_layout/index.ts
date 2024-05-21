@@ -1,50 +1,59 @@
+import { SVGProps } from 'react'
 import * as Icon from './_design/icons'
+import { IOneOfCollectionNames } from '@/types'
 
-export const adminNavItems = [
+export type IAdminNavItem = {
+    collection: IOneOfCollectionNames | 'logout' | null,
+    label: string,
+    Icon: (props: SVGProps<SVGSVGElement>) => JSX.Element,
+    isActive: (path: string) => boolean
+}
+
+export const adminNavItems : IAdminNavItem[] = [
     { 
-        href: '/admin', 
+        collection: null, 
         label: 'Panel',
         Icon: Icon.dashboard,
         isActive: (path: string) => path === '/admin'
     },
     { 
-        href: '/admin/contests', 
+        collection: 'contests', 
         label: 'Concursos',
         Icon: Icon.contest,
         isActive: (path: string) => path.includes('/admin/contests')
     },
     { 
-        href: '/admin/inscriptions', 
+        collection: 'inscriptions', 
         label: 'Inscripciones',
         Icon: Icon.inscription,
         isActive: (path: string) => path.includes('/admin/inscriptions')
     },
     { 
-        href: '/admin/brands', 
+        collection: 'brands', 
         label: 'Marcas',
         Icon: Icon.brands,
         isActive: (path: string) => path.includes('/admin/brands')
     },
     { 
-        href: '/admin/social', 
+        collection: 'social', 
         label: 'Redes sociales',
         Icon: Icon.instagram,
         isActive: (path: string) => path.includes('/admin/social')
     },
     { 
-        href: '/admin/genres', 
+        collection: 'genres', 
         label: 'Géneros',
         Icon: Icon.genres,
         isActive: (path: string) => path.includes('/admin/genres')
     },    
     { 
-        href: '/admin/users', 
-        label: 'Usuarios',
+        collection: 'managers', 
+        label: 'Managers',
         Icon: Icon.users,
-        isActive: (path: string) => path.includes('/admin/users')
+        isActive: (path: string) => path.includes('/admin/managers')
     },
     { 
-        href: '/admin/logout', 
+        collection: 'logout', 
         label: 'Log out',
         Icon: Icon.logout,
         isActive: (path: string) => path === '/admin/logout'

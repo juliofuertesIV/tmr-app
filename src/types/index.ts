@@ -1,9 +1,24 @@
 
 export type IOneOfCollections = IContest & IBrand & ISocialMedia
 
-export type IOneOfCollectionNames = 'contests' | 'brands' | 'social' | 'genres'
+export type IOneOfCollectionNames = 'contests' | 'brands' | 'social' | 'genres' | 'inscriptions' | 'managers'
 
 export type IOneOfCollectionsWithMediaNames = 'contests'
+
+export type IRole = {
+    id: number,
+    name: string
+}
+
+export type IManager = {
+    id: string,
+    name: string,
+    email: string,
+    emailVerified: boolean,
+    token: string,
+    tokenExpirationDate: string,
+    Contests: IContest[]
+}
 
 export type IContest = {
     id: string | number,

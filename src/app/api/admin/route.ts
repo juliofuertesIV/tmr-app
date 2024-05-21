@@ -13,13 +13,15 @@ export const GET = async () => {
         const states = await State.findAll().then(data => data) as unknown as IContestState[]
         const genres = await Genre.findAll().then(data => data) as unknown as IGenre[]
         const social = await SocialMedia.findAll().then(data => data) as unknown as ISocialMedia[]
+        const users = [{}, {}] 
+        const inscriptions = [{}, {}]
         
         return Response.json(
             constructAPIResponse({ 
                 message: 'OK!',
                 success: true,
                 error: null,
-                data: { contests, brands, params, states, genres, social } as IAdminData
+                data: { contests, brands, params, states, genres, social, users, inscriptions } as IAdminData
             })
         )
     }

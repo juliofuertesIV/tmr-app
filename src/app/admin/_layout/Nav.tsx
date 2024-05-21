@@ -6,7 +6,6 @@ import TMRLogo from './_design/TmrLogo'
 import { adminNavItems as links } from '.'
 import { usePathname } from 'next/navigation'
 
-
 export default function Nav() {
 
     const pathname = usePathname()
@@ -25,7 +24,7 @@ export default function Nav() {
                     <NavItem 
                         key={ index }
                         item={ item }
-                        isActive={ item.isActive(pathname) }
+                        path={ pathname }
                     />
                 )
             }

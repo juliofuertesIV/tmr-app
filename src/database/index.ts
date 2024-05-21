@@ -14,6 +14,86 @@ const sequelize = new Sequelize(dbName, dbUser, dbPass, {
     port: 3306
 });
 
+export const Log = sequelize.define('Log', {
+    id: {
+        type: DataTypes.UUID,
+        primaryKey: true,
+        defaultValue: DataTypes.UUIDV4,
+        allowNull: false,
+    },
+    type: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    message: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    errorCause: {
+        type: DataTypes.STRING,
+    },
+    digest: {
+        type: DataTypes.STRING,
+    },
+    route: {
+        type: DataTypes.STRING
+    },
+    collection: {
+        type: DataTypes.STRING
+    },
+    // UserId to blame
+})
+
+export const Role = sequelize.define('Role', {
+    id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        allowNull: false,
+    },
+    name: {
+        type: DataTypes.STRING,
+        allowNull: false
+    }
+})
+
+export const Manager = sequelize.define('Manager', {
+    id: {
+        type: DataTypes.UUID,
+        primaryKey: true,
+        defaultValue: DataTypes.UUIDV4,
+        allowNull: false,
+    },
+    name: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    hash: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    salt: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },    
+    email: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    emailVerified: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false
+    },
+    token: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    tokenExpirationDate: {
+        type: DataTypes.DATE,
+        allowNull: false
+    }
+})
+
+
 export const State = sequelize.define('State', {
     id: {
         type: DataTypes.STRING,
@@ -403,6 +483,9 @@ Genre.belongsToMany(Contest, { through: 'ContestGenres' })
 
 Contest.belongsToMany(Media, { through: 'ContestMedia', onDelete: 'CASCADE' })
 Media.belongsToMany(Contest, { through: 'ContestMedia', onDelete: 'CASCADE' })
+
+Contest.belongsToMany(Manager, { through: 'ManagerContests', onDelete: 'CASCADE' })
+Manager.belongsToMany(Contest, { through: 'ManagerContests', onDelete: 'CASCADE' })
 
 Voter.belongsTo(Contest)
 Contest.hasMany(Voter)

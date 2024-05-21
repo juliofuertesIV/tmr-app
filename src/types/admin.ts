@@ -6,5 +6,7 @@ export type IAdminData = {
     params: IParam[],
     states: IContestState[],
     genres: IGenre[],
-    social: ISocialMedia[]
+    social: ISocialMedia[],
+    managers: any[],
+    inscriptions: any[]
 }

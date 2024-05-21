@@ -7,7 +7,6 @@ type ICollectionTable = {
         key: string,
         field: string,
     }[] | null
-    buttons: string[]
 }
 
 const tables : { [key in IOneOfCollectionNames]: ICollectionTable } = {
@@ -18,25 +17,31 @@ const tables : { [key in IOneOfCollectionNames]: ICollectionTable } = {
             { key: 'Brand', field: 'name' },
             { key: 'State', field: 'name' },
         ],
-        buttons: ['delete', 'manage']
     },
     brands: {
         headers: ['Nombre'],
         fields: ['name'],
         associations: null,
-        buttons: ['delete', 'manage']
     },
     genres: {
         headers: ['Nombre'],
         fields: ['name'],
         associations: null,
-        buttons: ['delete', 'manage']
     },
     social: {
         headers: ['Nombre'],
         fields: ['name'],
         associations: null,
-        buttons: ['manage']
+    },
+    inscriptions: {
+        headers: ['Nombre'],
+        fields: ['name'],
+        associations: null,
+    },
+    managers: {
+        headers: ['Nombre'],
+        fields: ['name'],
+        associations: null,
     }
 } 
 

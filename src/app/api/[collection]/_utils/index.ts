@@ -41,6 +41,14 @@ const modelsByCollectionName = {
     genres: {
         Model: Genre,
         options: {}
+    },
+    managers: {
+        Model: Contest,
+        options: {}
+    },
+    inscriptions: {
+        Model: Contest,
+        options: {}
     }
 } as { 
     [key in IOneOfCollectionNames]: { 
