@@ -1,9 +1,8 @@
 import { Metadata } from "next";
 import { IOneOfCollectionNames, IOneOfCollections } from "@/types";
 import { getCollection } from "@/app/_fetch/get";
-import CollectionItemLinks from "./_components/CollectionItemLinks";
 import CreationDialog from "../_dashboard/CreationDialog";
-
+import CollectionTable from "./_components/tables/CollectionTable";
 
 export const metadata: Metadata = {
     title: "Panel de administración TMR",
@@ -27,11 +26,7 @@ export default async function AdminElementPage({ params } : { params: { collecti
                 {
                     canAddToCollection && <CreationDialog collection={ collection }/>
                 }
-                {
-                    !!items && items.length ?  
-                    <CollectionItemLinks collection={ collection } items={ items }/>
-                    : <p>Aún no hay elementos en esta categoría.</p>
-                }
+                <CollectionTable collection={ collection } items={ items }/>
             </section>
         </div>
     )

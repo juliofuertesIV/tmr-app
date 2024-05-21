@@ -1,20 +1,18 @@
 import { IOneOfCollectionNames } from "@/types";
 
-type CollectionTable = {
-    [key in IOneOfCollectionNames]: {
-        headers: string[],
-        fields: string[],
-        associations: {
-            key: string,
-            field: string,
-        }[] | null
-        buttons: string[]
-    }
+type ICollectionTable = {
+    headers: string[],
+    fields: string[],
+    associations: {
+        key: string,
+        field: string,
+    }[] | null
+    buttons: string[]
 }
 
-const tables : CollectionTable = {
+const tables : { [key in IOneOfCollectionNames]: ICollectionTable } = {
     contests: {
-        headers: ['Nombre'],
+        headers: ['Nombre', 'Año', 'Marca', 'Estado'],
         fields: ['name', 'year'],
         associations: [
             { key: 'Brand', field: 'name' },
@@ -42,6 +40,6 @@ const tables : CollectionTable = {
     }
 } 
 
-export const getTableByCollectionName = (collection: IOneOfCollectionNames) => {
+export const getTableByCollectionName = (collection: IOneOfCollectionNames) : ICollectionTable => {
     return tables[collection]
 }
