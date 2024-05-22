@@ -12,12 +12,7 @@ export const middleware = async (req: NextRequest) => {
     if (sessionToken) {
 
         const session = await decryptJWT(sessionToken.value)
-        console.log('Accesed by ' + session.manager.name)
-        console.log('Accesed by ' + session.manager.name)
-        console.log('Accesed by ' + session.manager.name)
-        console.log('Accesed by ' + session.manager.name)
-        console.log('Accesed by ' + session.manager.name)
-        console.log('Accesed by ' + session.manager.name)
+        // validate
         
     } 
     
