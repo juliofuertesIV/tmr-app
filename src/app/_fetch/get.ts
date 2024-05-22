@@ -1,6 +1,9 @@
-import { IContest, IOneOfCollectionNames, IOneOfCollections } from "@/types"
+'use server'
+
+import { IOneOfCollectionNames, IOneOfCollections } from "@/types"
 import { IAdminData } from "@/types/admin"
 import { IAPIResponse } from "@/types/api"
+import { cookies } from "next/headers"
 
 export const getCollectionElementById = async (collection: IOneOfCollectionNames, id: string) : Promise<IAPIResponse<IOneOfCollections>> => {
     
@@ -51,6 +54,30 @@ export const getAdminData = async () : Promise<IAPIResponse<IAdminData>> => {
         }
     })
     .then(async (data) => await data.json())
+    .catch(error => error)
+
+    return res
+}
+
+export const logoutManager = async () : Promise<IAPIResponse<any>> => {
+
+    const res = await fetch(`http://localhost:3000/api/auth/logout`, {
+        method: "GET",
+        cache: 'no-cache'
+    })
+    .then(async (data) => {
+        
+        const res = await data.json()
+
+        console.log(res)
+
+        if (res.success) {
+
+            const { session, expires } = res.data
+
+        }
+        return res
+    })
     .catch(error => error)
 
     return res

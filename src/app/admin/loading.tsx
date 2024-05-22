@@ -3,7 +3,7 @@ import AdminLoader from './_layout/_design/AdminLoader'
 
 export default function Loading() {
     return (
-        <main>
+        <main className='w-full min-h-screen grid place-items-center'>
             <AdminLoader/>
         </main>
     )

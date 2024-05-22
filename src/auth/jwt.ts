@@ -14,11 +14,13 @@ export async function getEncryptedAndSignedJWT(payload: any) {
 }
 
 
-export async function decryptJWT(input: string): Promise<any> {
+export async function decryptJWT(input: string): Promise<IManager | null> {
     
-    const { payload: manager } = await jwtVerify(input, key, { algorithms: ["HS256"] }) as { payload: IManager }
+    const { payload } = await jwtVerify(input, key, { algorithms: ["HS256"] }) as { payload: { manager: IManager }}
 
-    return manager;
+    const { manager } = payload
+
+    return manager ? manager : null;
 }
 
   

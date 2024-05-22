@@ -6,9 +6,7 @@ export default async function LoginPage() {
 
     const currentSession = cookies().get('session')
     
-    const session = currentSession ? await decryptJWT(currentSession?.value) : null
-
-    const manager = session ? session.manager : null
+    const manager = currentSession ? await decryptJWT(currentSession?.value) : null
 
     return (
         <section className="w-full h-full min-h-screen">

@@ -3,9 +3,9 @@
 import { login } from "@/app/_fetch/post"
 import { formInitialState } from "@/types/forms"
 import { useFormState } from "react-dom"
-import FormSubmit from "../../_collections/forms/FormSubmit"
-import AdminFormFeedback from "../../_collections/forms/FormFeedback"
 import { useEffect } from "react"
+import AdminFormFeedback from "@/app/admin/_collections/forms/FormFeedback"
+import FormSubmit from "@/app/admin/_collections/forms/FormSubmit"
 
 export default function LoginForm() {
 

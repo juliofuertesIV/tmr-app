@@ -1,3 +1,5 @@
+'use server'
+
 import { getEncryptedAndSignedJWT } from "@/auth";
 import { IManager } from "@/types";
 import { cookies } from "next/headers";
@@ -36,16 +38,15 @@ export async function updateSession(request: NextRequest) {
     if (!session) return;
   
     // Refresh the session so it doesn't expire
-    const parsed = await decryptJWT(session);
-    parsed.expires = new Date(Date.now() + 172800000);
+    const manager = await decryptJWT(session);
 
     const res = NextResponse.next();
 
     res.cookies.set({
         name: "session",
-        value: await getEncryptedAndSignedJWT(parsed),
+        value: await getEncryptedAndSignedJWT(manager),
         httpOnly: true,
-        expires: parsed.expires,
+        expires: new Date(Date.now() + 172800000)
     });
 
     return res;
@@ -53,6 +54,12 @@ export async function updateSession(request: NextRequest) {
 
 export async function destroySession() {
     // Destroy the session
-    cookies().set("session", "", { expires: new Date(0) });
+    try {
+        cookies().set("session", "", { expires: new Date(0) });
+    }
+    catch (error)
+    {
+        console.log({ error })
+    }
 }
  
