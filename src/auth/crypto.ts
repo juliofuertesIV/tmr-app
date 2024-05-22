@@ -1,12 +1,5 @@
-
 import crypto from 'crypto'
-import { customAlphabet } from 'nanoid'
 
-// NANOID
-const alphabet = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
-export const generateUserToken = customAlphabet(alphabet, 15);
-
-//HASH AND SALT
 export const getHashAndSaltFromPassword = (password: string) => {
 
     if (!password || typeof password !== 'string') throw new Error('Bad password fed to hash generation.')
@@ -17,25 +10,6 @@ export const getHashAndSaltFromPassword = (password: string) => {
     return { hash, salt }
 }
 
-
-export const getManagerCreationPayload = (
-    { name, email, password, RoleId } : 
-    { name: string, email: string, password: string, RoleId: 1 | 2 | 3 | 4 }
-) => {
-
-    const { hash, salt } = getHashAndSaltFromPassword(password)
-
-    const manager = {
-        name,
-        email,
-        hash,
-        salt,
-        RoleId,
-        token: generateUserToken()
-    }
-
-    return manager
-}
 
 export const passwordsAreMatching = ({ hash, salt, inputPassword } : { hash: string, salt: string, inputPassword: string }) => {
     

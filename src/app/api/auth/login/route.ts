@@ -1,13 +1,13 @@
 import { Manager, Role } from "@/database"
-import { generateUserToken, passwordsAreMatching } from "../_utils"
+import { createSession, passwordsAreMatching } from "@/auth"
 import { NextRequest } from "next/server"
 import { IManager } from "@/types"
 import { constructAPIResponse } from "../../_utils"
 
-
 export const POST = async (request: NextRequest) => {
 
-    const { email, password } = Object.fromEntries(await request.formData()) as { email: string, password: string }
+    const formData = await request.formData()
+    const { email, password } = Object.fromEntries(formData) as { email: string, password: string }
 
     const manager = await Manager.findOne({ 
         where: { email }, 
@@ -37,30 +37,24 @@ export const POST = async (request: NextRequest) => {
         )
     }
 
-    const refreshedToken = generateUserToken()
-
-    try {    
-
-        await Manager.update({ token: refreshedToken }, { where: { id: manager.id }})
-
-        const data = { email, authToken: manager.token, name: manager.name, id: manager.id, Role: manager.Role }
+    try {
+        const { session, expires } = await createSession({ manager })
 
         return Response.json(
             constructAPIResponse({
-                message: 'Login correcto',
-                success: true,
-                data,
-                error: null
+                message: 'Logged in.',
+                error: null,
+                data: { session, expires },
+                success: true
             })
         )
-
     }
     catch (error) {
-
+        console.log({ error })
         return Response.json(
             constructAPIResponse({
-                message: 'Error actualizando el token de seguridad.',
-                error: new Error('Error actualizando el token de seguridad.'),
+                message: 'Error generando sesión.',
+                error,
                 data: null,
                 success: false
             })

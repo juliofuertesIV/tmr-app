@@ -1,21 +1,25 @@
 'use client'
 
-import { loginManager } from "@/app/_fetch/post"
+import { login } from "@/app/_fetch/post"
 import { formInitialState } from "@/types/forms"
 import { useFormState } from "react-dom"
-import AdminFormFeedback from "../../_collections/forms/FormFeedback"
 import FormSubmit from "../../_collections/forms/FormSubmit"
-
-// import login post function
+import AdminFormFeedback from "../../_collections/forms/FormFeedback"
+import { useEffect } from "react"
 
 export default function LoginForm() {
 
-    const [ state, formAction ] = useFormState(loginManager, formInitialState)
+    const [ state, formAction ] = useFormState(login, formInitialState)
 
-    console.log({ state })
+    useEffect(() => {
+
+        console.log({ state })
+        
+    }, [ state ])
 
     return (
-        <form action={ formAction }
+        <form 
+            action={ formAction }
             className="flex flex-col gap-4 w-full max-w-md bg-neutral-900 p-4 rounded-md"
         >
             <AdminFormFeedback state={ state }/>

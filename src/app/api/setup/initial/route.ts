@@ -1,8 +1,8 @@
 
 import { brands, genres, params, roles, social, states, superAdmin } from '@/_data/initial'
 import { Param, State, Genre, Brand, SocialMedia, sequelize, Manager, Role } from '@/database'
-import { getManagerCreationPayload } from '../../auth/_utils'
 import { constructAPIResponse } from '../../_utils'
+import { generateUserToken, getHashAndSaltFromPassword } from '../../../../auth'
 
 export const GET = async () => {
     
@@ -51,3 +51,21 @@ export const GET = async () => {
     return Response.json({ message: 'OK!', success: true, error: null, payload: { manager, addedGenres, addedParams, addedStates, addedBrands, addedSocial }})
 }
 
+const getManagerCreationPayload = (
+    { name, email, password, RoleId } : 
+    { name: string, email: string, password: string, RoleId: 1 | 2 | 3 | 4 }
+) => {
+
+    const { hash, salt } = getHashAndSaltFromPassword(password)
+
+    const manager = {
+        name,
+        email,
+        hash,
+        salt,
+        RoleId,
+        token: generateUserToken()
+    }
+
+    return manager
+}

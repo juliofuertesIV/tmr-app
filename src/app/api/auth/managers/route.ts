@@ -1,6 +1,7 @@
 import { Manager, sequelize } from "@/database"
 import { constructAPIResponse } from "../../_utils"
-import { getManagerCreationPayload } from "../_utils"
+import { getHashAndSaltFromPassword } from "../../../../auth/crypto"
+import { generateUserToken } from "../../../../auth/nanoid"
 
 export const POST = async (req: Request) => {
 
@@ -33,4 +34,24 @@ export const POST = async (req: Request) => {
             })
         )
     }
+}
+
+
+const getManagerCreationPayload = (
+    { name, email, password, RoleId } : 
+    { name: string, email: string, password: string, RoleId: 1 | 2 | 3 | 4 }
+) => {
+
+    const { hash, salt } = getHashAndSaltFromPassword(password)
+
+    const manager = {
+        name,
+        email,
+        hash,
+        salt,
+        RoleId,
+        token: generateUserToken()
+    }
+
+    return manager
 }

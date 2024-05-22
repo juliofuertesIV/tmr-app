@@ -5,6 +5,7 @@ import { IAPIResponse } from "@/types/api"
 import { IAssociationNames } from "@/types/associations"
 import { revalidateTag } from "next/cache"
 import { constructAPIResponse } from "../api/_utils"
+import { cookies } from "next/headers"
 
 export const addCollectionElement = async (
     collection: IOneOfCollectionNames,
@@ -70,8 +71,9 @@ export const associateItems = async (
     const res = await fetch(`http://localhost:3000/api/${ collection }/${ collectionItemId }/${ association }`, {
         method: "POST",
         cache: 'no-cache',
-        body: formData
+        body: formData,
     })
+    .then(data => data)
     .then(async data => await data.json())
     .catch(error => error)
     
@@ -80,7 +82,7 @@ export const associateItems = async (
 
 }
 
-export const loginManager = async (
+export const login = async (
     prevState: any,
     formData: FormData
 ) : Promise<IAPIResponse<null>> => {
@@ -91,7 +93,28 @@ export const loginManager = async (
         cache: 'no-cache',
         body: formData
     })
-    .then(async data => await data.json())
+    .then(async (data) => {
+
+        const response = await data.json()
+
+        if (response.success) {
+            
+            const { session } = response.data
+            
+            cookies().set(
+                'session',
+                session,
+                { 
+                    secure: true,
+                    maxAge: 1000 * 60 * 60 * 72,
+                    domain: 'localhost',
+                    httpOnly: true 
+                }
+            )
+        }
+
+        return response
+    })
     .catch(error => error)
     
     return res
