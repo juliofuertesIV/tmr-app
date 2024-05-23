@@ -2,6 +2,7 @@ import { Manager, sequelize } from "@/database"
 import { constructAPIResponse } from "../../_utils"
 import { getHashAndSaltFromPassword } from "../../../../auth/crypto"
 import { generateUserToken } from "../../../../auth/nanoid"
+import { logError } from "../../_utils/errors"
 
 export const POST = async (req: Request) => {
 
@@ -25,6 +26,13 @@ export const POST = async (req: Request) => {
     }
     catch (error) {
         await transaction.rollback();
+
+        await logError({ 
+            error, 
+            collection: 'managers',
+            route: `/api/auth/managers`
+        })
+
         return Response.json(
             constructAPIResponse({ 
                 message: "Ha habido un problema creando el manager en la base de datos.",

@@ -53,13 +53,7 @@ export async function updateSession(request: NextRequest) {
 }
 
 export async function destroySession() {
-    // Destroy the session
-    try {
-        cookies().set("session", "", { expires: new Date(0) });
-    }
-    catch (error)
-    {
-        console.log({ error })
-    }
+    // Destroy the session    
+    cookies().set("session", "", { expires: new Date(0) });
 }
  

@@ -36,7 +36,8 @@ export const Log = sequelize.define('Log', {
         type: DataTypes.STRING,
     },
     route: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
+        allowNull: false
     },
     collection: {
         type: DataTypes.STRING

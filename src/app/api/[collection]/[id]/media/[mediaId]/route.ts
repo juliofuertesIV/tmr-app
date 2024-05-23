@@ -3,6 +3,7 @@ import { constructAPIResponse } from "@/app/api/_utils";
 import { Media, sequelize } from "@/database";
 import { Storage } from "@google-cloud/storage";
 import { bucketName } from "../_utils";
+import { logError } from "@/app/api/_utils/errors";
 
 type Params = {
     id: string,
@@ -32,6 +33,13 @@ export const DELETE = async (req: Request, { params } : { params: Params }) => {
     try {
         await Media.destroy({ where: { id: mediaId }, transaction })
     } catch (error) {
+
+        await logError({ 
+            error, 
+            collection,
+            route: `/api/${ collection }/${ id }/media/${ mediaId }`
+        })
+        
         return Response.json(
             constructAPIResponse({
                 message: 'Error eliminando la imagen de la base de datos.',
@@ -47,6 +55,13 @@ export const DELETE = async (req: Request, { params } : { params: Params }) => {
     } 
     catch (error) {
         await transaction.rollback()
+
+        await logError({ 
+            error, 
+            collection,
+            route: `/api/${ collection }/${ id }/media/${ mediaId }`
+        })
+
         return Response.json(
             constructAPIResponse({
                 message: 'Error eliminando la imagen de Cloud Storage',

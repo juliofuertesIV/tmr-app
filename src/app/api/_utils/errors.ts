@@ -1,3 +1,5 @@
+import { Log } from "@/database"
+import { IOneOfCollectionNames } from "@/types"
 import { IAPIError, IErrorTypes } from "@/types/api"
 import { ConnectionRefusedError, ValidationError } from "sequelize"
 
@@ -40,3 +42,27 @@ export const parseError = (error: unknown) : IAPIError => {
         }
     }
 }
+
+export const logError = async ({
+    error,
+    route,
+    collection
+} : {
+    error: unknown,
+    route: string,
+    collection?: IOneOfCollectionNames | null       
+}) => {
+    
+    const log = {
+        type: 'error', 
+        message: error instanceof Error ? error.message : 'Error desconocido',
+        route,
+        collection
+    }
+
+    await Log.create({ ...log })
+    .then(data => data)
+    .catch(error => error)
+    
+}
+ 

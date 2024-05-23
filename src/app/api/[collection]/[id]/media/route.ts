@@ -3,6 +3,7 @@ import { getAssociationPayload, getModelAndAssociationTableByCollectionName, med
 import { sequelize } from "@/database";
 import { Transaction } from "sequelize";
 import { constructAPIResponse } from "@/app/api/_utils";
+import { logError } from "@/app/api/_utils/errors";
 
 type IMediaPayload = {
     media: File,
@@ -61,6 +62,13 @@ export const POST = async (req: Request, { params } : { params: { id: string | n
         await uploadToGoogleCloudStorage({ bytes, collection, filename })
     }
     catch (error) {
+
+        await logError({ 
+            error, 
+            collection,
+            route: `/api/${ collection }/${ id }/media`
+        })
+
         return Response.json(
             constructAPIResponse({
                 message: 'Error subiendo el blob de imagen',
@@ -92,6 +100,13 @@ export const POST = async (req: Request, { params } : { params: { id: string | n
     }
     catch (error) {
         await transaction.rollback();
+
+        await logError({ 
+            error, 
+            collection,
+            route: `/api/${ collection }/${ id }/media`
+        })
+        
         return Response.json(
             constructAPIResponse({ 
                 message: "Ha habido un problema asociando la imagen al concurso.",

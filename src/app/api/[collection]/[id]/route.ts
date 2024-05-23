@@ -2,6 +2,7 @@ import { sequelize } from "@/database";
 import { IOneOfCollectionNames } from "@/types";
 import { getModelByCollectionName } from "../_utils";
 import { constructAPIResponse } from "../../_utils";
+import { logError } from "../../_utils/errors";
 
 export const GET = async (req: Request, { params } : { params: { collection: IOneOfCollectionNames, id: string | number }}) => {
 
@@ -57,6 +58,13 @@ export const PUT = async (req: Request, { params } : { params: { collection: IOn
     }
     catch (error) {
         await transaction.rollback();
+
+        await logError({ 
+            error, 
+            collection,
+            route: `/api/${ collection }/${ id }`
+        })
+
         return Response.json(
             constructAPIResponse({ 
                 message: "No se ha podido editar el elemento.",
@@ -91,6 +99,13 @@ export const DELETE = async (req: Request, { params } : { params: { collection: 
     }
     catch (error) {
         await transaction.rollback();
+
+        await logError({ 
+            error, 
+            collection,
+            route: `/api/${ collection }/${ id }`
+        })
+        
         return Response.json(
             constructAPIResponse({ 
                 message: "No se ha podido eliminar el elemento.",

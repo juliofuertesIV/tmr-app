@@ -1,8 +1,9 @@
 
-import { sequelize } from '@/database'
-import { IOneOfCollectionNames } from '@/types'
+import { Log, sequelize } from '@/database'
+import { ILog, IOneOfCollectionNames } from '@/types'
 import { getModelByCollectionName } from './_utils'
 import { constructAPIResponse } from '../_utils'
+import { logError } from '../_utils/errors'
 
 export const GET = async (req: Request, { params } : { params: { collection: IOneOfCollectionNames }}) => {
 
@@ -45,6 +46,13 @@ export const POST = async (req: Request, { params } : { params: { collection: IO
     }
     catch (error) {
         await transaction.rollback();
+
+        await logError({ 
+            error, 
+            collection,
+            route: `/api/${ collection }`
+        })
+
         return Response.json(
             constructAPIResponse({ 
                 message: "Ha habido un problema creando el elemento.",
