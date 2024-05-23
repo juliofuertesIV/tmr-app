@@ -17,15 +17,9 @@ export default function LoginForm({ manager } : { manager: IManager | null }) {
 
     useEffect(() => {
 
-        const navigateToAdminPage = () => {
-            setTimeout(() => {
-                router.push('/admin')
-            }, 500)
-        }
+        const navigateToAdminPage = () => router.push('/admin')
 
-        if (!!manager) {
-            navigateToAdminPage()
-        } 
+        if (!!manager) navigateToAdminPage() 
         
     }, [ router, manager ])
 
@@ -53,7 +47,7 @@ export default function LoginForm({ manager } : { manager: IManager | null }) {
                     autoComplete="off"
                 />
             </label>
-            <FormSubmit value="Iniciar sesión"/>
+            <FormSubmit value="Iniciar sesión" pendingValue="Iniciando sesión"/>
         </form>
     )
 }

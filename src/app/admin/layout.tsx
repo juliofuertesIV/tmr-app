@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "../globals.css";
 
-import Nav from "./_layout/Nav";
+import AdminMainNav from "./_layout/AdminMainNav";
+import { cookies } from "next/headers";
+import { decryptJWT } from "@/auth";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -13,11 +15,17 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
 
+    const currentSession = cookies().get('session')
+    
+    const manager = currentSession ? await decryptJWT(currentSession?.value) : null
+
+    if (!manager) throw new Error('No manager found. Unauthorized.')
+
     return (
         <html lang="en">
             <body className={ inter.className }>
                 <main className="flex">
-                    <Nav/>
+                    <AdminMainNav manager={ manager }/>
                     { children }
                 </main>
             </body>

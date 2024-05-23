@@ -22,7 +22,9 @@ export type IManager = {
     token: string,
     tokenExpirationDate: string,
     Contests: IContest[],
-    Role: IManagerRole
+    Role: IManagerRole,
+    createdAt: string,
+    updatedAt: string
 }
 
 export type IContest = {
@@ -46,7 +48,9 @@ export type IContest = {
     Genres: IGenre[],
     SocialMedia: ISocialMedia[],
     Params: IParam[],
-    Media: IContestMedia[]
+    Media: IContestMedia[],
+    createdAt: string,
+    updatedAt: string
 }
 
 export type IBrand = {
@@ -57,7 +61,9 @@ export type IBrand = {
     accentColor: string,
     instagramProfile: string,
     tiktokProfile?: string,
-    website: string
+    website: string,
+    createdAt: string,
+    updatedAt: string
 }
 
 export type IParam = {
@@ -80,7 +86,9 @@ export type IGenre = {
 export type ISocialMedia = {
     id: string,
     name: string,
-    icon: string
+    icon: string,
+    createdAt: string,
+    updatedAt: string
 }
 
 export type IContestMedia = {

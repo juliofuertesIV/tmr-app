@@ -225,8 +225,6 @@ export const Contest = sequelize.define('Contest', {
     ]
 });
 
-
-
 export const Param = sequelize.define('Param', {
     id: {
         type: DataTypes.STRING,

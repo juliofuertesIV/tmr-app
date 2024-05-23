@@ -41,7 +41,7 @@ export const getCollection = async (collection: IOneOfCollectionNames) : Promise
     return res
 }
 
-export const getAdminData = async () : Promise<IAPIResponse<IAdminData>> => {
+export const getDashboardData = async () : Promise<IAPIResponse<IAdminData>> => {
     
     const res = await fetch(`http://localhost:3000/api/admin`, {
         method: "GET",
