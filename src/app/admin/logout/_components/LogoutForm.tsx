@@ -12,9 +12,7 @@ export default function LogoutForm({ manager, formAction } : { manager?: IManage
     useEffect(() => {
 
         const navigateToLoginPage = () => {
-            setTimeout(() => {
-                router.push('/login')
-            }, 500)
+            router.push('/login')
         }
 
         if (!manager) {
@@ -26,9 +24,9 @@ export default function LogoutForm({ manager, formAction } : { manager?: IManage
     return (
         <form 
             action={ formAction }
-            className="flex flex-col gap-4 w-full max-w-md bg-neutral-900 p-4 rounded-md"
+            className="flex flex-col gap-4 w-full max-w-md"
         >
-            <FormSubmit value="Cerrar sesión"/>
+            <FormSubmit value="Cerrar sesión" pendingValue="Cerrando sesión"/>
         </form>
     )
 }

@@ -5,8 +5,9 @@ import NavItem from './NavItem'
 import TMRLogo from './_design/TmrLogo'
 import { adminNavItems as links } from '.'
 import { usePathname } from 'next/navigation'
+import { IManager } from '@/types'
 
-export default function Nav() {
+export default function AdminMainNav({ manager } : { manager: IManager }) {
 
     const pathname = usePathname()
 
@@ -16,7 +17,7 @@ export default function Nav() {
                 <TMRLogo/>
             </div>
             <div className='py-2 pb-4 px-4'>
-                <p>Hey, <b className='underline'>USER</b></p>
+                <p>Hey, <b className='underline'>{ manager.name }</b></p>
             </div>
             <menu className="flex flex-col uppercase text-sm divide-y divide-neutral-600">
             {
