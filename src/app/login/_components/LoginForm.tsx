@@ -6,16 +6,28 @@ import { useFormState } from "react-dom"
 import { useEffect } from "react"
 import AdminFormFeedback from "@/app/admin/_collections/forms/FormFeedback"
 import FormSubmit from "@/app/admin/_collections/forms/FormSubmit"
+import { useRouter } from "next/navigation"
+import { IManager } from "@/types"
 
-export default function LoginForm() {
+export default function LoginForm({ manager } : { manager: IManager | null }) {
 
     const [ state, formAction ] = useFormState(login, formInitialState)
 
+    const router = useRouter()
+
     useEffect(() => {
 
-        console.log({ state })
+        const navigateToAdminPage = () => {
+            setTimeout(() => {
+                router.push('/admin')
+            }, 500)
+        }
+
+        if (!!manager) {
+            navigateToAdminPage()
+        } 
         
-    }, [ state ])
+    }, [ router, manager ])
 
     return (
         <form 

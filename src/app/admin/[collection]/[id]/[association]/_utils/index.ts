@@ -1,7 +1,8 @@
-import { IAssociationTypes, IContest, IManyToManyAssociationKeys, IManyToManyContestKeys, IOneOfAssociations, IOneOfCollectionNames, IOneOfCollectionsWithAssociations, ISimpleAssociationKeys } from "@/types"
+import { IContest, IOneOfCollectionNames } from "@/types"
+import { IAssociationNames, IManyToManyAssociationKeys, IManyToManyContestKeys, IOneOfAssociations, IOneOfCollectionsWithAssociations, ISimpleAssociationKeys } from "@/types/associations"
 
 const associationOptionsByName : {
-    [key in IAssociationTypes]: {
+    [key in IAssociationNames]: {
         associationKey: ISimpleAssociationKeys | IManyToManyAssociationKeys,
         isManyToMany: boolean
     }
@@ -28,7 +29,7 @@ const associationOptionsByName : {
     },
 }
 
-export const getAssociationOptionsByName = (association: IAssociationTypes) => {
+export const getAssociationOptionsByName = (association: IAssociationNames) => {
     return associationOptionsByName[association]
 }
  

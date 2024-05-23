@@ -14,13 +14,11 @@ export default async function LoginPage() {
                 <h1>Login</h1>
             </header>
             {
-                manager ? 
-                <p className=" text-center">Sesión iniciada como { manager.name }</p>
-                : 
-                <div className="flex flex-col justify-start items-center">
-                    <LoginForm/>
-                </div>
+                !!manager && (<p className=" text-center">Sesión iniciada como { manager.name }</p>)
             }
+                <div className="flex flex-col justify-start items-center">
+                    <LoginForm manager={ manager }/>
+                </div>
         </section>
     
     )

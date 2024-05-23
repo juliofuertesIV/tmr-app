@@ -6,6 +6,9 @@ const secretJWTKey = process.env.SECRET_JWT_KEY
 const key = new TextEncoder().encode(secretJWTKey);
 
 export async function getEncryptedAndSignedJWT(payload: any) {
+
+    if (!secretJWTKey) throw new Error('Secret encryption key not found.')
+
     return await new SignJWT(payload)
       .setProtectedHeader({ alg: "HS256" })
       .setIssuedAt()
