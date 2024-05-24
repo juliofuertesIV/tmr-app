@@ -1,4 +1,4 @@
-import { Brand, Contest, Media, Genre, Param, State, ContestParam, ContestMedia, ContestGenre, ContestSocial, SocialMedia, Manager, Role } from "@/database";
+import { Brand, Contest, Media, Genre, Param, State, ContestParam, ContestMedia, ContestGenre, ContestSocial, SocialMedia, Manager, Role, Log } from "@/database";
 import { IOneOfCollectionNames } from "@/types";
 import { IAssociationNames } from "@/types/associations";
 import { Model, ModelStatic, Options } from "sequelize";
@@ -51,6 +51,12 @@ const modelsByCollectionName = {
     inscriptions: {
         Model: Contest,
         options: {}
+    },
+    logs: {
+        Model: Log,
+        options: {
+            order: [['createdAt', 'DESC']]
+        }
     }
 } as { 
     [key in IOneOfCollectionNames]: { 

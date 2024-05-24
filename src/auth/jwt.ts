@@ -18,6 +18,8 @@ export async function getEncryptedAndSignedJWT(payload: any) {
 
 
 export async function decryptJWT(input: string): Promise<IManager | null> {
+
+    if (!input) return null
     
     const { payload } = await jwtVerify(input, key, { algorithms: ["HS256"] }) as { payload: { manager: IManager }}
 

@@ -3,8 +3,6 @@ import Dashboard from "./_dashboard/Dashboard";
 import { getDashboardData } from "../_fetch/get";
 import { IAdminData } from "@/types/admin";
 import { IAPIResponse } from "@/types/api";
-import { decryptJWT } from "@/auth";
-import { cookies } from "next/headers";
 
 export const metadata: Metadata = {
     title: "Panel de administración TMR",
@@ -17,10 +15,6 @@ const getData = async () : Promise<IAPIResponse<IAdminData>> => {
 
     if (res.error) throw new Error(res.error.message)
     
-    const currentSession = cookies().get('session')
-
-    const manager = currentSession ? await decryptJWT(currentSession?.value) : null
-
     return res
 } 
 

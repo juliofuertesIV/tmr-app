@@ -3,13 +3,15 @@
 import React from 'react'
 import NavItem from './NavItem'
 import TMRLogo from './_design/TmrLogo'
-import { adminNavItems as links } from '.'
+import { adminNavItems, adminNavItems as links } from '.'
 import { usePathname } from 'next/navigation'
 import { IManager } from '@/types'
 
 export default function AdminMainNav({ manager } : { manager: IManager }) {
 
     const pathname = usePathname()
+
+    const navItemsByRole = (adminNavItems).filter(item => item.minimumRole <= manager.RoleId)
 
     return (
         <nav className="flex flex-col bg-neutral-950 w-full max-w-64 border-r border-neutral-600">
@@ -21,7 +23,7 @@ export default function AdminMainNav({ manager } : { manager: IManager }) {
             </div>
             <menu className="flex flex-col uppercase text-sm divide-y divide-neutral-600">
             {
-                links.map((item, index) => 
+                navItemsByRole.map((item, index) => 
                     <NavItem 
                         key={ index }
                         item={ item }

@@ -1,7 +1,7 @@
 
 export type IOneOfCollections = IContest & IBrand & ISocialMedia
 
-export type IOneOfCollectionNames = 'contests' | 'brands' | 'social' | 'genres' | 'inscriptions' | 'managers'
+export type IOneOfCollectionNames = 'contests' | 'brands' | 'social' | 'genres' | 'inscriptions' | 'managers' | 'logs'
 
 export type IOneOfCollectionsWithMediaNames = 'contests'
 
@@ -22,6 +22,7 @@ export type IManager = {
     token: string,
     tokenExpirationDate: string,
     Contests: IContest[],
+    RoleId: IManagerRoleId,
     Role: IManagerRole,
     createdAt: string,
     updatedAt: string
@@ -110,6 +111,75 @@ export type ILog = {
     digest?: number,
     route: string,
     collection?: IOneOfCollectionNames
+}
+
+export type IInscription = {
+/*
+
+    id: string,
+    name: string,
+    year: number,
+    image: string,
+    city: string,
+    genre: {
+        type: DataTypes.STRING,
+    },
+    description: {
+        type: DataTypes.STRING,
+    },
+    instagram: {
+        type: DataTypes.STRING,
+    },
+    video: {
+        type: DataTypes.STRING
+    },
+    facebook: {
+        type: DataTypes.STRING
+    },
+    spotify: {
+        type: DataTypes.STRING
+    },
+    tiktok: {
+        type: DataTypes.STRING
+    },
+    twitter: {
+        type: DataTypes.STRING
+    },
+    contactEmail: {
+        type:DataTypes.STRING,
+        allowNull: false
+    },
+    contactPhone: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
+    contactName: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    verified: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: false
+    },
+    discarded: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: false
+    },
+    previousPosition: {
+        type: DataTypes.INTEGER
+    },
+    }, {
+        paranoid: true,
+        indexes: [
+            { 
+                fields: ['instagram', 'video', 'ContestId', 'year'],
+                unique: true 
+            }
+        ]
+
+*/
 }
 
 export type IContestParamIds = 'inscriptionIsPublic' | 'videoIsRequired' | 'cityIsRequired' | 'instagramIsRequired' | 'hasManyItems' | 'hasGenres' | 'hasRanking'

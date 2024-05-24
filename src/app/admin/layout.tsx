@@ -5,6 +5,7 @@ import "../globals.css";
 import AdminMainNav from "./_layout/AdminMainNav";
 import { cookies } from "next/headers";
 import { decryptJWT } from "@/auth";
+import { redirect } from "next/navigation";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,7 +20,9 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
     
     const manager = currentSession ? await decryptJWT(currentSession?.value) : null
 
-    if (!manager) throw new Error('No manager found. Unauthorized.')
+    if (!manager) {
+        redirect('/login')
+    }
 
     return (
         <html lang="en">

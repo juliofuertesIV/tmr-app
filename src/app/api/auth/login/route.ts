@@ -1,4 +1,4 @@
-import { Manager, Role } from "@/database"
+import { Log, Manager, Role } from "@/database"
 import { createSession, passwordsAreMatching } from "@/auth"
 import { NextRequest } from "next/server"
 import { IManager } from "@/types"
@@ -40,6 +40,12 @@ export const POST = async (request: NextRequest) => {
 
     try {
         const { session, expires } = await createSession({ manager })
+
+        await Log.create({
+            type: 'login',
+            message: `Sesión creada para ${ manager.name }`,
+            route: '/api/login'
+        })
 
         return Response.json(
             constructAPIResponse({
