@@ -44,11 +44,6 @@ const tables : { [key in IOneOfCollectionNames]: ICollectionTable } = {
         associations: [
             { key: 'Role', field: 'name' }
         ],
-    },
-    logs: {
-        headers: ['Tipo', 'Mensaje', 'Ruta', 'Colección', 'Fecha'],
-        fields: ['type', 'message', 'route', 'collection', 'createdAt'],
-        associations: null,
     }
 } 
 

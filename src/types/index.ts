@@ -1,9 +1,9 @@
 
-export type IOneOfCollections = IContest & IBrand & ISocialMedia
+export type IOneOfCollections = IContest & IBrand & ISocialMedia & IGenre & IInscription & IManager
 
-export type IOneOfCollectionNames = 'contests' | 'brands' | 'social' | 'genres' | 'inscriptions' | 'managers' | 'logs'
+export type IOneOfCollectionNames = 'contests' | 'brands' | 'social' | 'genres' | 'inscriptions' | 'managers'
 
-export type IOneOfCollectionsWithMediaNames = 'contests'
+export type IOneOfCollectionsWithMediaNames = 'contests' | 'inscriptions'
 
 export type IManagerRoleId = 1 | 2 | 3 | 4
 
@@ -110,7 +110,8 @@ export type ILog = {
     errorCause?: string,
     digest?: number,
     route: string,
-    collection?: IOneOfCollectionNames
+    collection?: IOneOfCollectionNames,
+    createdAt: Date,
 }
 
 export type IInscription = {

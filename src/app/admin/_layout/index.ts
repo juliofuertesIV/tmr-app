@@ -3,7 +3,7 @@ import * as Icon from './_design/icons'
 import { IManagerRoleId, IOneOfCollectionNames } from '@/types'
 
 export type IAdminNavItem = {
-    collection: IOneOfCollectionNames | 'logout' | null,
+    collection: IOneOfCollectionNames | 'logout' |'logs' | null,
     label: string,
     Icon: (props: SVGProps<SVGSVGElement>) => JSX.Element,
     isActive: (path: string) => boolean,
@@ -66,7 +66,7 @@ export const adminNavItems : IAdminNavItem[] = [
         Icon: Icon.users,
         isActive: (path: string) => path.includes('/admin/logs'),
         minimumRole: 4
-    },    
+    },
     { 
         collection: 'logout', 
         label: 'Log out',

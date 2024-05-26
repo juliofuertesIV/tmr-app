@@ -34,18 +34,20 @@ export default async function LogPage() {
                             <th className='table-cell border border-neutral-700 px-4'>Ruta</th>
                             <th className='table-cell border border-neutral-700 px-4'>Causa</th>
                             <th className='table-cell border border-neutral-700 px-4'>Colección</th>
+                            <th className='table-cell border border-neutral-700 px-4'>Fecha</th>
                         </tr>
                     </thead>
                     <tbody className='table-row-group'>
                         {
                             logs.map((log, index) => {
                                 return (
-                                    <tr className='table-row' key={ index }>
+                                    <tr className='table-row text-sm' key={ index }>
                                         <td className='table-cell border border-neutral-700 px-4 text-center'>{ log.type }</td>
                                         <td className='table-cell border border-neutral-700 px-4 text-center'>{ log.message }</td>
                                         <td className='table-cell border border-neutral-700 px-4 text-center'>{ log.route }</td>
                                         <td className='table-cell border border-neutral-700 px-4 text-center'>{ log.errorCause || "N/A" }</td>
                                         <td className='table-cell border border-neutral-700 px-4 text-center'>{ log.collection || "N/A" }</td>
+                                        <td className='table-cell border border-neutral-700 px-4 text-center'>{ `${log.createdAt.toLocaleDateString()} ${log.createdAt.toLocaleTimeString()}` }</td>
                                     </tr>
                                 )
                             })

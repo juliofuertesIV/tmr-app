@@ -15,7 +15,9 @@ const formsByCollectionName : IFormByCollectionName = {
         contests: contestFields,
         brands: brandFields,
         social: { creation: [], update: [] },
-        genres: genreFields
+        genres: genreFields,
+        inscriptions: { creation: [], update: [] },
+        managers: { creation: [], update: [] }
     }
 } 
 

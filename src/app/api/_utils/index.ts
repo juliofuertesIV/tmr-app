@@ -11,7 +11,7 @@ export const constructAPIResponse = ({
     success: boolean,
     error: unknown | null,
     data: any | null
-}) : IAPIResponse => {
+}) : IAPIResponse<typeof data> => {
 
     const error = parseError(apiError)
 
