@@ -121,7 +121,7 @@ export type IInscription = {
     city: string,
     description: string,
     email: string,
-    contactPhone: string,
+    phone: string,
     contactName: string,
     verified: boolean,
     discarded: boolean,

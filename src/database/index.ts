@@ -368,11 +368,11 @@ export const Inscription = sequelize.define('Inscription', {
     twitter: {
         type: DataTypes.STRING
     },
-    contactEmail: {
+    email: {
         type:DataTypes.STRING,
         allowNull: false
     },
-    contactPhone: {
+    phone: {
         type: DataTypes.INTEGER,
         allowNull: false
     },
