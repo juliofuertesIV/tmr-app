@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "../globals.css";
-
 import AdminMainNav from "./_layout/AdminMainNav";
 import { cookies } from "next/headers";
 import { decryptJWT } from "@/auth";
@@ -14,11 +13,20 @@ export const metadata: Metadata = {
     description: "Esta es la página genérica de los concursos de TMR FOR LIFE",
 };
 
+
+async function getManagerSession() {
+
+    const currentSession = cookies().get('session');
+    
+    const manager = currentSession ? await decryptJWT(currentSession?.value) : null;
+
+    return manager;
+}
+
+
 export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
 
-    const currentSession = cookies().get('session')
-    
-    const manager = currentSession ? await decryptJWT(currentSession?.value) : null
+    const manager = await getManagerSession();
 
     if (!manager) {
         redirect('/login')
@@ -35,3 +43,4 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
         </html>
     );
 }
+
