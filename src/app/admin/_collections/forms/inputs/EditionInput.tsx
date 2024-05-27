@@ -6,6 +6,23 @@ export default function EditionInput({ input, collectionElement } : { input: IFo
 
     const { label, name } = input
 
+    if (input.type === 'radio') {
+        return (
+            <fieldset>
+                {
+                    input.options?.map((option, index) => {
+                        return (
+                            <label className='flex gap-2' key={ index }>
+                                <input type="radio" name={ input.name } value={ option.value } />
+                                <p>{ option.name }</p>
+                            </label>
+                        )
+                    })
+                }
+            </fieldset>
+        )
+    }
+
     return (
         <label className="w-full flex flex-col pb-1">
             <div className="w-full">{ label }</div>
