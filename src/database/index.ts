@@ -139,10 +139,6 @@ export const Brand = sequelize.define('Brand', {
     tiktokProfile: {
         type: DataTypes.STRING,
         allowNull: false
-    },
-    logo: {
-        type: DataTypes.STRING,
-        unique: true
     }
 })
 
@@ -311,18 +307,12 @@ export const Inscription = sequelize.define('Inscription', {
         type: DataTypes.STRING,
         allowNull: false
     },
+    description: {
+        type: DataTypes.STRING,
+    },
     year: {
         type: DataTypes.INTEGER,
         allowNull: false
-    },
-    image: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-    language: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        defaultValue: 'castellano'
     },
     city: {
         type: DataTypes.STRING,
@@ -330,17 +320,14 @@ export const Inscription = sequelize.define('Inscription', {
     genre: {
         type: DataTypes.STRING,
     },
-    description: {
-        type: DataTypes.STRING,
-    },
-    instagram: {
+    image: {
         type: DataTypes.STRING,
     },
     video: {
         type: DataTypes.STRING
     },
-    facebook: {
-        type: DataTypes.STRING
+    instagram: {
+        type: DataTypes.STRING,
     },
     spotify: {
         type: DataTypes.STRING
@@ -348,8 +335,9 @@ export const Inscription = sequelize.define('Inscription', {
     tiktok: {
         type: DataTypes.STRING
     },
-    twitter: {
-        type: DataTypes.STRING
+    contactName: {
+        type: DataTypes.STRING,
+        allowNull: false
     },
     email: {
         type:DataTypes.STRING,
@@ -357,10 +345,6 @@ export const Inscription = sequelize.define('Inscription', {
     },
     phone: {
         type: DataTypes.INTEGER,
-        allowNull: false
-    },
-    contactName: {
-        type: DataTypes.STRING,
         allowNull: false
     },
     verified: {
@@ -383,8 +367,14 @@ export const Inscription = sequelize.define('Inscription', {
                 fields: ['instagram', 'video', 'ContestId', 'year'],
                 unique: true 
             }
-        ]
-});
+        ],
+        hooks: {
+            beforeCreate: record => {
+                record.dataValues.year = new Date().getUTCFullYear()
+            }
+        }
+    }
+);
 
 export const Vote = sequelize.define('Vote', {
     ContestantId: {

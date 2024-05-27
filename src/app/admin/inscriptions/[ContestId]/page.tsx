@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import { getInscriptionsFromContestId } from "@/app/_fetch/get";
+import CreateInscriptionForm from "./components/CreateInscriptionForm";
 
 export const metadata: Metadata = {
     title: "Panel de administración TMR",
@@ -12,8 +13,6 @@ export default async function AdminElementPage({ params } : { params: { ContestI
 
     const { data } = await getInscriptionsFromContestId(ContestId)
 
-    console.log({ data })
-
     if (!data) throw new Error('No se ha encontrado el concurso en la base de datos.')
 
     const { contest, inscriptions } = data
@@ -24,7 +23,7 @@ export default async function AdminElementPage({ params } : { params: { ContestI
                 <header className="py-8">
                     <h1 className="uppercase">INSCRIPCIONES DE { contest.name }</h1>
                 </header>
-
+                <CreateInscriptionForm contest={ contest }/>
             </section>
         </div>
     )
