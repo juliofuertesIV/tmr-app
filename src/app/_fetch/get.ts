@@ -1,9 +1,8 @@
 'use server'
 
-import { IOneOfCollectionNames, IOneOfCollections } from "@/types"
+import { IContest, IInscription, IOneOfCollectionNames, IOneOfCollections } from "@/types"
 import { IAdminData } from "@/types/admin"
 import { IAPIResponse } from "@/types/api"
-import { cookies } from "next/headers"
 
 export const getCollectionElementById = async (collection: IOneOfCollectionNames, id: string) : Promise<IAPIResponse<IOneOfCollections>> => {
     
@@ -22,6 +21,25 @@ export const getCollectionElementById = async (collection: IOneOfCollectionNames
 
     return res
 }
+
+export const getInscriptionsFromContestId = async (contestId: string) : Promise<IAPIResponse<{ contest: IContest, inscriptions: IInscription[] }>> => {
+    
+    const res = await fetch(`http://localhost:3000/api/inscriptions/${ contestId }`, {
+        method: "GET",
+        cache: 'no-cache',
+        headers: {
+            "Content-Type": "application/json",
+        },
+        next: {
+            tags: ['inscriptions']
+        }
+    })
+    .then(async (data) => await data.json())
+    .catch(error => error)
+
+    return res
+}
+
 
 export const getCollection = async (collection: IOneOfCollectionNames) : Promise<IAPIResponse<IOneOfCollections[]>> => {
     

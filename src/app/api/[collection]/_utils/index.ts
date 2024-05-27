@@ -1,7 +1,7 @@
 import { Brand, Contest, Media, Genre, Param, State, ContestParam, ContestMedia, ContestGenre, ContestSocial, SocialMedia, Manager, Role, Log } from "@/database";
 import { IOneOfCollectionNames } from "@/types";
 import { IAssociationNames } from "@/types/associations";
-import { Model, ModelStatic, Options } from "sequelize";
+import { FindOptions, Model, ModelStatic } from "sequelize";
 
 const modelsByCollectionName = {
     contests: {
@@ -61,7 +61,7 @@ const modelsByCollectionName = {
 } as { 
     [key in IOneOfCollectionNames]: { 
         Model: ModelStatic<Model<any, any>>,
-        options: Options 
+        options: FindOptions 
     }
 }
 
