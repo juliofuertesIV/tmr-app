@@ -94,8 +94,7 @@ export const contestFields = {
     [key in IActionTarget]: IFormField[]
 }
 
-export const mediaFieldsByCollection = {
-    contests: [
+export const contestsMediaFields : IMediaFormField[] = [
         {
             role: 'logo',
             label: 'Logotipo',
@@ -125,8 +124,3 @@ export const mediaFieldsByCollection = {
             multiple: false,
         },
     ]
-} as {
-    [key in IOneOfCollectionsWithMediaNames]: IMediaFormField[]
-}
-
-

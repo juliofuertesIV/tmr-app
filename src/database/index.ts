@@ -79,23 +79,6 @@ export const Manager = sequelize.define('Manager', {
     email: {
         type: DataTypes.STRING,
         allowNull: false
-    },
-    token: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-    tokenExpirationDate: {
-        type: DataTypes.DATE,
-        allowNull: false
-    }
-}, {
-    hooks: {
-        beforeValidate: (record, options) => {
-            const now = new Date()
-            const expirationDate = new Date(now.setMonth(now.getMonth() + 3)).toISOString()
-            
-            record.dataValues.tokenExpirationDate = expirationDate
-        },
     }
 })
 

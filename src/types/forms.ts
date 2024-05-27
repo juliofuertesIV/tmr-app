@@ -2,13 +2,26 @@ import { IContestMediaRole, IOneOfCollectionNames } from "."
 import { IAPIResponse } from "./api"
 import { IAssociationNames } from "./associations"
 
+
+export type IFormByCollectionName = {
+    action: { 
+        [key in IActionTarget]: IFormAction
+    },
+    fields: {
+        [key in IOneOfCollectionNames]: {
+           [key in IActionTarget]: IFormField[] 
+        }
+    }
+}
+
 export type IActionTarget = 'creation' | 'update'
 
 export type IFormField = {
     name: string,
     label: string,
     required: boolean,
-    type: string
+    type: string,
+    options?: { name: string, value: string }[]
 }
 
 export type IMediaFormField = {
