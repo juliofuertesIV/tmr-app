@@ -12,6 +12,8 @@ export const getHashAndSaltFromPassword = (password: string) => {
 
 
 export const passwordsAreMatching = ({ hash, salt, inputPassword } : { hash: string, salt: string, inputPassword: string }) => {
+
+    console.log({ hash, salt, inputPassword })
     
     const inputHash = crypto
         .pbkdf2Sync(inputPassword, salt, 1000, 64, 'sha512')

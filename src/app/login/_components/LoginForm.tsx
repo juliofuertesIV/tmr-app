@@ -29,19 +29,19 @@ export default function LoginForm({ manager } : { manager: IManager | null }) {
             className="flex flex-col gap-4 w-full max-w-md bg-neutral-900 p-4 rounded-md"
         >
             <AdminFormFeedback state={ state }/>
-            <label className="flex gap-2 items-center">
+            <label className="flex flex-col gap-1 w-full">
                 <p className="text-sm">Email:</p>
                 <input
-                    className="flex-1 pl-2 py-1 rounded-sm flex items-center text-neutral-800" 
+                    className="pl-2 py-1 rounded-sm w-full text-neutral-800" 
                     type="email" 
                     name="email"
                     autoComplete="on"
                 />
             </label>
-            <label className="flex gap-2 items-center">
+            <label className="flex flex-col gap-1 w-full">
                 <p className="text-sm">Contraseña:</p>
                 <input
-                    className="flex-1 pl-2 py-1 rounded-sm flex items-center text-neutral-800" 
+                    className="pl-2 py-1 rounded-sm w-full text-neutral-800" 
                     type="password" 
                     name="password"
                     autoComplete="off"

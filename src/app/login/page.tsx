@@ -1,6 +1,7 @@
 import { cookies } from "next/headers";
 import LoginForm from "./_components/LoginForm";
 import { decryptJWT } from "@/auth";
+import TMRLogo from "../admin/_layout/_design/TmrLogo";
 
 export default async function LoginPage() {
 
@@ -10,8 +11,8 @@ export default async function LoginPage() {
 
     return (
         <section className="w-full h-full min-h-screen">
-            <header className=" py-8 pb-12 text-center">
-                <h1>Login</h1>
+            <header className="py-8 pb-12 text-center flex flex-col justify-center items-center">
+                <TMRLogo/>
             </header>
             {
                 !!manager && (<p className=" text-center">Sesión iniciada como { manager.name }</p>)

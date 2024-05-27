@@ -12,7 +12,7 @@ export const POST = async (request: NextRequest) => {
 
     const manager = await Manager.findOne({ 
         where: { email }, 
-        attributes: ['id', 'email', 'token', 'name', 'hash', 'salt' ], 
+        attributes: ['id', 'email', 'name', 'hash', 'salt' ], 
         include: [ Role ]
     })
     .then(data => data)
@@ -26,7 +26,9 @@ export const POST = async (request: NextRequest) => {
             })
         )
     }) as unknown as IManager
-        
+
+    console.log({ manager })
+
     if (!passwordsAreMatching({ hash: manager.hash, salt: manager.salt, inputPassword: password })) { 
         return Response.json(
             constructAPIResponse({

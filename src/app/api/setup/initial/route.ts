@@ -2,7 +2,7 @@
 import { brands, genres, params, roles, social, states, superAdmin } from '@/_data/initial'
 import { Param, State, Genre, Brand, SocialMedia, sequelize, Manager, Role } from '@/database'
 import { constructAPIResponse } from '../../_utils'
-import { generateUserToken, getHashAndSaltFromPassword } from '../../../../auth'
+import { getHashAndSaltFromPassword } from '../../../../auth'
 
 export const GET = async () => {
     
@@ -63,8 +63,7 @@ const getManagerCreationPayload = (
         email,
         hash,
         salt,
-        RoleId,
-        token: generateUserToken()
+        RoleId
     }
 
     return manager

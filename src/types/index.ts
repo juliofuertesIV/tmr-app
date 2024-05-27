@@ -19,8 +19,6 @@ export type IManager = {
     hash: string,
     salt: string,
     emailVerified: boolean,
-    token: string,
-    tokenExpirationDate: string,
     Contests: IContest[],
     RoleId: IManagerRoleId,
     Role: IManagerRole,
