@@ -1,8 +1,8 @@
 import { Log } from "@/database"
 import { IOneOfCollectionNames } from "@/types"
 import { IAPIError, IErrorTypes } from "@/types/api"
-import { ConnectionRefusedError, ValidationError } from "sequelize"
-
+import { ConnectionRefusedError, Transaction, ValidationError } from "sequelize"
+import { constructAPIResponse } from "."
 
 export const parseError = (error: unknown) : IAPIError => {
 
@@ -62,7 +62,33 @@ export const logError = async ({
 
     await Log.create({ ...log })
     .then(data => data)
-    .catch(error => error)
-    
+    .catch(error => error)  
 }
  
+export const handleApiError = async ({
+    error,
+    route,
+    message,
+    collection,
+    transaction
+} : {
+    error: unknown,
+    route: string,
+    message?: string,
+    collection?: IOneOfCollectionNames,
+    transaction?: Transaction
+}) => {
+
+    if (!!transaction) await transaction.rollback()
+
+    await logError({ error, collection, route })
+
+    return Response.json(
+        constructAPIResponse({ 
+            message: message || 'Error desconocido.',
+            success: false,
+            error,
+            data: null 
+        })
+    )
+}

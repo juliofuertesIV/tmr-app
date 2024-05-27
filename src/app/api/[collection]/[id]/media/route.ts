@@ -3,7 +3,7 @@ import { getAssociationPayload, getModelAndAssociationTableByCollectionName, med
 import { sequelize } from "@/database";
 import { Transaction } from "sequelize";
 import { constructAPIResponse } from "@/app/api/_utils";
-import { logError } from "@/app/api/_utils/errors";
+import { handleApiError } from "@/app/api/_utils/errors";
 
 type IMediaPayload = {
     media: File,
@@ -47,7 +47,7 @@ export const POST = async (req: Request, { params } : { params: { id: string | n
         )
     }
 
-    if (sizeError) {
+    if (sizeError) {        
         return Response.json(
             constructAPIResponse({ 
                 message: sizeError.message,
@@ -63,20 +63,12 @@ export const POST = async (req: Request, { params } : { params: { id: string | n
     }
     catch (error) {
 
-        await logError({ 
-            error, 
+        await handleApiError({
+            error,
             collection,
-            route: `/api/${ collection }/${ id }/media`
+            route: `/api/${ collection }/${ id }/media`,
+            message: 'Error subiendo el blob de imagen.'
         })
-
-        return Response.json(
-            constructAPIResponse({
-                message: 'Error subiendo el blob de imagen',
-                success: false,
-                error,
-                data: null
-            })
-        )
     }
 
     const transaction = await sequelize.transaction()
@@ -99,22 +91,13 @@ export const POST = async (req: Request, { params } : { params: { id: string | n
         })
     }
     catch (error) {
-        await transaction.rollback();
-
-        await logError({ 
-            error, 
+        await handleApiError({
+            error,
             collection,
-            route: `/api/${ collection }/${ id }/media`
+            route: `/api/${ collection }/${ id }/media`,
+            message: "Ha habido un problema asociando la imagen al concurso.",
+            transaction
         })
-        
-        return Response.json(
-            constructAPIResponse({ 
-                message: "Ha habido un problema asociando la imagen al concurso.",
-                success: false,
-                error,
-                data: null 
-            })
-        )
     }
 }
 

@@ -2,7 +2,7 @@ import { IOneOfCollectionNames } from "@/types";
 import { getAssociationModelByName, getModelByCollectionName } from "../../_utils";
 import { constructAPIResponse } from "@/app/api/_utils";
 import { IAssociationNames } from "@/types/associations";
-import { logError } from "@/app/api/_utils/errors";
+import { handleApiError } from "@/app/api/_utils/errors";
 
 type Params = { params: { collection: IOneOfCollectionNames, id: string, association: IAssociationNames }}
 
@@ -58,21 +58,12 @@ export const POST = async (req: Request, { params } : Params) => {
             )
         }
         catch (error) {
-
-            await logError({ 
-                error, 
+            await handleApiError({
+                error,
                 collection,
-                route: `/api/${ collection }/${ id }/${ association }`
+                route: `/api/${ collection }/${ id }/${ association }`,
+                message: 'Fallo asociando elemento'
             })
-
-            return Response.json(
-                constructAPIResponse({
-                    message: 'Fallo asociando elementos.',
-                    error,
-                    success: false,
-                    data: null
-                })
-            )
         }    
     }
 
@@ -94,21 +85,12 @@ export const POST = async (req: Request, { params } : Params) => {
         )
     }
     catch (error) {
-
-        await logError({ 
-            error, 
+        await handleApiError({
+            error,
             collection,
-            route: `/api/${ collection }/${ id }/${ association }`
+            route: `/api/${ collection }/${ id }/${ association }`,
+            message: 'Fallo asociando elementos'
         })
-
-        return Response.json(
-            constructAPIResponse({
-                message: 'Fallo asociando elementos.',
-                error,
-                success: false,
-                data: null
-            })
-        )
     }
 }
 

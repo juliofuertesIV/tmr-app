@@ -1,6 +1,7 @@
 
 import { Contest, Inscription } from '@/database'
 import { constructAPIResponse } from '@/app/api/_utils'
+import { handleApiError } from '../../_utils/errors'
 
 export const GET = async (req: Request, { params } : { params: { contestId: string }}) => {
 
@@ -25,19 +26,14 @@ export const GET = async (req: Request, { params } : { params: { contestId: stri
     )
 
 }
-/* 
-export const POST = async (req: Request, { params } : { params: { collection: IOneOfCollectionNames }}) => {
 
-    const { collection } = params
+export const POST = async (req: Request, { params } : { params: { contestId: string }}) => {
 
-    const { Model } = getModelByCollectionName(collection)
-
-    const payload = await req.json()
-    const transaction = await sequelize.transaction()
+    const { contestId } = params
+    const payload = await req.formData()
 
     try {
-        const data = await Model.create({ ...payload }, { transaction })
-        await transaction.commit()
+        const data = await Inscription.create({ ...payload })
         return Response.json(
             constructAPIResponse({ 
                 message: "Elemento creado correctamente.",
@@ -48,22 +44,11 @@ export const POST = async (req: Request, { params } : { params: { collection: IO
         )
     }
     catch (error) {
-        await transaction.rollback();
-
-        await logError({ 
-            error, 
-            collection,
-            route: `/api/${ collection }`
+        await handleApiError({
+            error,
+            message: 'Ha habido un error iniciando la inscripción en la base de datos',
+            route: '/inscriptions/' + contestId,
+            collection: 'inscriptions'
         })
-
-        return Response.json(
-            constructAPIResponse({ 
-                message: "Ha habido un problema creando el elemento.",
-                success: false,
-                error,
-                data: null 
-            })
-        )
     }
 }
- */
