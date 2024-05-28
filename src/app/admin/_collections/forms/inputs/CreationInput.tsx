@@ -1,4 +1,4 @@
-import { IValidationCriteriaFieldNames, getValidationMethodAndProcessingFromFieldName } from '@/_forms/validation'
+import { IValidationCriteriaFieldNames, getValidationMethodAndProcessingFromFieldName } from '@/forms/validation'
 import { IFormField } from '@/types/forms'
 import React from 'react'
 

@@ -21,7 +21,9 @@ export type IFormField = {
     name: string,
     label: string,
     type: HTMLInputTypeAttribute,
-    htmlProps: HTMLProps<HTMLInputElement>
+    validationMethod: (value: string, valueToTestAgainst: string | null) => boolean,
+    processingMethod: (value: string) => string,
+    testAgainst: string | null,
     options?: { name: string, value: string }[],
 }
 
