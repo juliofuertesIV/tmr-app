@@ -1,4 +1,4 @@
-import { extractSubdomain, isValidDomain, isValidEmail, isValidSocialProfile, isValidUrl, processBasicTextInput } from "./functions";
+import { extractSubdomain, isValidDomain, isValidEmail, isValidSocialProfile, isValidString, isValidUrl, processBasicTextInput } from "./functions";
 
 type IValidationTypes = 'basicTextInput' | 'emailInput' | 'urlInput' | 'socialInput' | 'domainInput'
 
@@ -27,12 +27,12 @@ export const potentialValidationFields : IValidationCriteriaFieldNames[] = [
 
 const validations : { 
     [key in IValidationTypes]: { 
-        validationMethod: ((value: string, testAgainst?: string) => boolean) | null,
+        validationMethod: ((value: string, testAgainst: string | null) => boolean) | null,
         processingMethod: (value: string) => string
     }
 } = {
     basicTextInput: {
-        validationMethod: null,
+        validationMethod: isValidString,
         processingMethod: processBasicTextInput
     },
     emailInput: {
@@ -54,7 +54,7 @@ const validations : {
 }
 
 const validationCriteriaByFieldName = {
-    name: {
+    name: { 
         key: 'basicTextInput',
         testAgainst: null
     },
@@ -132,7 +132,7 @@ export const getValidationMethodAndProcessingFromFieldName = (fieldName: IValida
 
     const criteria = validationCriteriaByFieldName[fieldName]
 
-    const emptyCriteria = { validationMethod: null, processingMethod: null, testAgainst: null }
+    const emptyCriteria = { validationMethod: null, processingMethod: null, valueToTestAgainst: null }
 
     if (!criteria) return emptyCriteria
 
@@ -146,6 +146,6 @@ export const getValidationMethodAndProcessingFromFieldName = (fieldName: IValida
 
     const { validationMethod, processingMethod } = methods
 
-    return { validationMethod, processingMethod, testAgainst: criteria.testAgainst }
+    return { validationMethod, processingMethod, valueToTestAgainst: criteria.testAgainst }
 
 }

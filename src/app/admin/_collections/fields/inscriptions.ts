@@ -5,7 +5,9 @@ export const socialFields = {
         {
             name: 'name',
             label: 'Nombre',
-            required: true,
+            htmlProps: {
+                required: true
+            },
             type: 'text' 
         },
     ],
@@ -13,7 +15,9 @@ export const socialFields = {
         {
             name: 'name',
             label: 'Nombre de la red social',
-            required: true,
+            htmlProps: {
+                required: true
+            },
             type: 'text' 
         },
     ],

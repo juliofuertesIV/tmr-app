@@ -5,19 +5,25 @@ export const brandFields = {
         {
             name: 'name',
             label: 'Nombre de la marca',
-            required: true,
+            htmlProps: {
+                required: true
+            },
             type: 'text' 
         },
         {
             name: 'website',
             label: 'Página web',
-            required: true,
+            htmlProps: {
+                required: true
+            },
             type: 'text' 
         },
         {
             name: 'instagramProfile',
             label: 'Perfil de Instagram',
-            required: true,
+            htmlProps: {
+                required: true
+            },
             type: 'text' 
         }
     ],
@@ -25,43 +31,57 @@ export const brandFields = {
         {
             name: 'name',
             label: 'Nombre de la marca',
-            required: false,
+            htmlProps: {
+                required: false
+            },
             type: 'text' 
         },
         {
             name: 'website',
             label: 'Página web',
-            required: false,
+            htmlProps: {
+                required: false
+            },
             type: 'text' 
         },
         {
             name: 'instagramProfile',
             label: 'Perfil de Instagram',
-            required: false,
+            htmlProps: {
+                required: false
+            },
             type: 'text' 
         },
         {
             name: 'tiktokProfile',
             label: 'Perfil de TikTok',
-            required: false,
+            htmlProps: {
+                required: false
+            },
             type: 'text' 
         },
         {
             name: 'backgroundColor',
             label: 'Color de fondo',
-            required: false,
+            htmlProps: {
+                required: false
+            },
             type: 'color' 
         },
         {
             name: 'foregroundColor',
             label: 'Color de texto',
-            required: false,
+            htmlProps: {
+                required: false
+            },
             type: 'color'
         },
         {
             name: 'accentColor',
             label: 'Color de acento',
-            required: false,
+            htmlProps: {
+                required: false
+            },
             type: 'color'
         }
     ]    

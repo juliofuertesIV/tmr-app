@@ -5,7 +5,9 @@ export const genreFields = {
         {
             name: 'name',
             label: 'Nombre del género',
-            required: true,
+            htmlProps: {
+                required: true,
+            },
             type: 'text' 
         }
     ],
@@ -13,7 +15,9 @@ export const genreFields = {
         {
             name: 'name',
             label: 'Nombre del género',
-            required: false,
+            htmlProps: {
+                required: false,
+            },
             type: 'text' 
         },
     ]    

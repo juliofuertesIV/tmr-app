@@ -6,19 +6,25 @@ export const contestFields = {
         {
             name: 'name',
             label: 'Nombre del concurso',
-            required: true,
+            htmlProps: {
+                required: true
+            },
             type: 'text' 
         },
         {
             name: 'domain',
             label: 'Dominio',
-            required: true,
+            htmlProps: {
+                required: true
+            },
             type: 'text' 
         },
         {
             name: 'year',
             label: 'Año de la edición',
-            required: true,
+            htmlProps: {
+                required: true
+            },
             type: 'number' 
         }
     ],
@@ -26,67 +32,89 @@ export const contestFields = {
         {
             name: 'name',
             label: 'Nombre del concurso',
-            required: false,
+            htmlProps: {
+                required: false,
+            },
             type: 'text'
         },
         {
             name: 'domain',
             label: 'Dominio',
-            required: false,
+            htmlProps: {
+                required: false,
+            },
             type: 'text'
         },
         {
             name: 'year',
             label: 'Año de la edición',
-            required: false,
+            htmlProps: {
+                required: false,
+            },
             type: 'number'
         },
         {
             name: 'metaUrl',
             label: 'URL del concurso',
-            required: false,
+            htmlProps: {
+                required: false,
+            },
             type: 'text'
         },
         {
             name: 'metaTitle',
             label: 'Meta título de la web',
-            required: false,
+            htmlProps: {
+                required: false,
+            },
             type: 'text'
         },
         {
             name: 'metaDescription',
             label: 'Meta descripción de la web',
-            required: false,
+            htmlProps: {
+                required: false,
+            },
             type: 'text'
         },    
         {
             name: 'postmarkToken',
             label: 'Token de Postmark',   
-            required: false,
+            htmlProps: {
+                required: false,
+            },
             type: 'text'
         },
         {
             name: 'postmarkSenderAddress',
             label: 'Dirección de envío de Postmark',
-            required: false,
+            htmlProps: {
+                required: false,
+            },
             type: 'text'
         },
         {
             name: 'metaPixelId',
             label: 'ID del Píxel de Meta',
-            required: false,
+            htmlProps: {
+                required: false,
+            },
             type: 'text'
         },
         {
             name: 'googleTagManagerId',
             label: 'ID de Google Tag Manager',
-            required: false,
+            htmlProps: {
+                required: false,
+            },
             type: 'text'
         },
         {
             name: 'googleAnalyticsId',
             label: 'ID de Google Analytics',
-            required: false,
+            htmlProps: {
+                required: false,
+            },
             type: 'text'
         }
     ],

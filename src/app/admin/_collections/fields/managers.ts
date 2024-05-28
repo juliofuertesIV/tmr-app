@@ -5,25 +5,33 @@ export const managerFields = {
         {
             name: 'name',
             label: 'Nombre del usuario',
-            required: true,
+            htmlProps: {
+                required: true,
+            },
             type: 'text' 
         },
         {
             name: 'email',
             label: 'E-mail',
-            required: true,
+            htmlProps: {
+                required: true,
+            },
             type: 'text' 
         },
         {
             name: 'password',
             label: 'Contraseña',
-            required: true,
+            htmlProps: {
+                required: true,
+            },
             type: 'password' 
         },
         {
             name: 'RoleId',
             label: 'Rol',
-            required: true,
+            htmlProps: {
+                required: true,
+            },
             type: 'radio',
             options: [ 
                 { name: 'Colaborador', value: 1 },
@@ -36,25 +44,33 @@ export const managerFields = {
         {
             name: 'name',
             label: 'Nombre del usuario',
-            required: true,
+            htmlProps: {
+                required: false,
+            },
             type: 'text' 
         },
         {
             name: 'email',
             label: 'E-mail',
-            required: true,
+            htmlProps: {
+                required: false,
+            },
             type: 'text' 
         },
         {
             name: 'password',
             label: 'Contraseña',
-            required: true,
+            htmlProps: {
+                required: false,
+            },
             type: 'password' 
         },
         {
             name: 'RoleId',
             label: 'Rol',
-            required: true,
+            htmlProps: {
+                required: false,
+            },
             type: 'radio',
             options: [ 
                 { name: 'Colaborador', value: 1 },

@@ -5,13 +5,17 @@ export const socialFields = {
         {
             name: 'name',
             label: 'Nombre de la red social',
-            required: true,
+            htmlProps: {
+                required: true
+            },
             type: 'text' 
         },
         {
             name: 'icon',
             label: 'Ruta del icono',
-            required: true,
+            htmlProps: {
+                required: true
+            },
             type: 'text' 
         }
     ],
@@ -19,13 +23,17 @@ export const socialFields = {
         {
             name: 'name',
             label: 'Nombre de la red social',
-            required: true,
+            htmlProps: {
+                required: false
+            },
             type: 'text' 
         },
         {
             name: 'icon',
             label: 'Ruta del icono',
-            required: true,
+            htmlProps: {
+                required: false
+            },
             type: 'text' 
         }
     ],

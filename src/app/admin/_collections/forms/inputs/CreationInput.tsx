@@ -6,15 +6,6 @@ export default function CreationInput({ input } : { input: IFormField }) {
 
     const { label, name } = input
 
-    const validationMethods = getValidationMethodAndProcessingFromFieldName(input.name as IValidationCriteriaFieldNames)
-
-    if (!!validationMethods.validationMethod) {
-        console.log({ 
-            name: input.name,
-            validationMethods 
-        })
-    }
-
     if (input.type === 'radio') {
         return (
             <fieldset>

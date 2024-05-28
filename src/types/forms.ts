@@ -1,3 +1,4 @@
+import { HTMLInputTypeAttribute, HTMLProps } from "react"
 import { IContestMediaRole, IOneOfCollectionNames } from "."
 import { IAPIResponse } from "./api"
 import { IAssociationNames } from "./associations"
@@ -19,9 +20,9 @@ export type IActionTarget = 'creation' | 'update'
 export type IFormField = {
     name: string,
     label: string,
-    required: boolean,
-    type: string,
-    options?: { name: string, value: string }[]
+    type: HTMLInputTypeAttribute,
+    htmlProps: HTMLProps<HTMLInputElement>
+    options?: { name: string, value: string }[],
 }
 
 export type IMediaFormField = {
