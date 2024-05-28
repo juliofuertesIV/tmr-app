@@ -1,61 +1,151 @@
-import { IOneOfCollectionNames } from "@/types";
-import { isValidSocialProfile, isValidUrl } from "./functions";
+import { extractSubdomain, isValidDomain, isValidEmail, isValidSocialProfile, isValidUrl, processBasicTextInput } from "./functions";
 
-const validationCriteriaByCollection = {
-    contests: {
-        name: null,
-        domain: isValidUrl,
-        year: null,
-        bannerHref: null,
-        metaUrl: null,
-        metaTitle: null,
-        metaDescription: null,
-        postmarkToken: null,
-        postmarkSenderAddress: null,
-        googleAnalyticsId: null,
-        googleTagManagerId: null,
-        metaPixelId: null
+type IValidationTypes = 'basicTextInput' | 'emailInput' | 'urlInput' | 'socialInput' | 'domainInput'
+
+export type IValidationCriteriaFieldNames = keyof typeof validationCriteriaByFieldName
+
+export const potentialValidationFields : IValidationCriteriaFieldNames[] = [
+    'name',
+    'contactName',
+    'email',
+    'phone',
+    'city',
+    'domain',
+    'bannerHref',
+    'metaUrl',
+    'metaTitle',
+    'metaDescription',
+    'description',
+    'spotify',
+    'instagram',
+    'tiktok',
+    'video',
+    'website',
+    'instagramProfile',
+    'tiktokProfile',
+] 
+
+const validations : { 
+    [key in IValidationTypes]: { 
+        validationMethod: ((value: string, testAgainst?: string) => boolean) | null,
+        processingMethod: (value: string) => string
+    }
+} = {
+    basicTextInput: {
+        validationMethod: null,
+        processingMethod: processBasicTextInput
     },
-    inscriptions: {
-        name: null,
-        description: null,
-        spotify: null,
-        instagram: isValidSocialProfile,
-        tiktok: isValidSocialProfile,
-        video: isValidUrl,
-        image: null,
-        contactName: null,
-        email: null,
-        phone: null,
-        city: null
+    emailInput: {
+        validationMethod: isValidEmail,
+        processingMethod: processBasicTextInput
     },
-    brands: {
-        name: null,
-        website: isValidUrl,
-        instagramProfile: isValidSocialProfile,
-        tiktokProfile: isValidSocialProfile,
-        backgroundColor: null,
-        foregroundColor: null,
-        accentColor: null
+    urlInput: {
+        validationMethod: isValidUrl,
+        processingMethod: processBasicTextInput
     },
-    social: {
-        name: null,
-        icon: null
+    socialInput: {
+        validationMethod: isValidSocialProfile,
+        processingMethod: processBasicTextInput
     },
-    genres: {
-        name: null
-    },
-    managers: {
-        name: null,
-        email: null,
-        password: null
+    domainInput: {
+        validationMethod: isValidDomain,
+        processingMethod: extractSubdomain
     }
 }
 
-const getValidationCriteriaForInputField = ({ collection, fieldName } : { collection: IOneOfCollectionNames, fieldName: string }) => {
+const validationCriteriaByFieldName = {
+    name: {
+        key: 'basicTextInput',
+        testAgainst: null
+    },
+    contactName: {
+        key: 'basicTextInput',
+        testAgainst: null
+    },
+    email: {
+        key: 'emailInput',
+        testAgainst: null
+    },
+    phone: {
+        key: 'basicTextInput',
+        testAgainst: null
+    },
+    city: {
+        key: 'basicTextInput',
+        testAgainst: null
+    },
+    domain: {
+        key: 'domainInput',
+        testAgainst: null
+    },
+    bannerHref: {
+        key: 'urlInput',
+        testAgainst: null
+    },
+    metaUrl: {
+        key: 'urlInput',
+        testAgainst: null
+    },
+    metaTitle: {
+        key: 'basicTextInput',
+        testAgainst: null
+    },
+    metaDescription: {
+        key: 'basicTextInput',
+        testAgainst: null
+    },
+    description: {
+        key: 'basicTextInput',
+        testAgainst: null
+    },
+    spotify: {
+        key: 'socialInput',
+        testAgainst: 'spotify'
+    },
+    instagram: {
+        key: 'socialInput',
+        testAgainst: 'instagram'
+    },
+    tiktok: {
+        key: 'socialInput',
+        testAgainst: 'tiktok'
+    },
+    video: {
+        key: 'urlInput',
+        testAgainst: 'youtube'
+    },
+    website: {
+        key: 'urlInput',
+        testAgainst: null
+    },
+    instagramProfile: {
+        key: 'socialInput',
+        testAgainst: 'instagram'
+    },
+    tiktokProfile: {
+        key: 'socialInput',
+        testAgainst: 'tiktok'
+    },
+}
 
-    const criteria = (validationCriteriaByCollection[collection] as any)[fieldName]
+export const getValidationMethodAndProcessingFromFieldName = (fieldName: IValidationCriteriaFieldNames) => {
 
-    return criteria 
+    const criteria = validationCriteriaByFieldName[fieldName]
+
+    const emptyCriteria = { validationMethod: null, processingMethod: null, testAgainst: null }
+
+    if (!criteria) return emptyCriteria
+
+    const { key } = criteria
+
+    if (!key) return emptyCriteria
+
+    const methods = validations[key as keyof typeof validations]
+
+    if (!methods) return emptyCriteria
+
+    const { validationMethod, processingMethod } = methods
+
+    return { validationMethod, processingMethod, testAgainst: criteria.testAgainst }
 
 }

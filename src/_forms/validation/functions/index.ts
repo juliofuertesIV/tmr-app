@@ -1,20 +1,35 @@
 
 
-export const isValidUrl = (
-    { value, includes } : 
-    { value: string, includes?: string }
-) => {
-
-    if (!includes) return value.startsWith('https://')
-
-    return value.startsWith('https://') && value.includes(includes)
+export const processBasicTextInput = (value: string) => {
+    return value.trim()
 }
 
-export const isValidSocialProfile = (
-    { value, social } : 
-    { value: string, social: 'instagram' | 'tiktok' }
-) => {
+export const isValidEmail = (value: string) => {
+    
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(value);
+}
 
-    return value.startsWith(`https://${ social }.com/`)
+export const isValidDomain = (value: string) => {
+    
+    const subdomainRegexp = /([a-z0-9\-]+\.)+[a-z0-9\-]+\.[a-z]+/
+
+    return subdomainRegexp.test(value)
+}
+
+export const extractSubdomain = (value: string) => {
+    return [value.split('.')[0], value.split('.')[1]].join('-')
+}
+
+export const isValidUrl = (value: string, testAgainst?: string) => {
+
+    if (!testAgainst) return value.startsWith('https://')
+
+    return value.startsWith('https://') && value.includes(testAgainst)
+}
+
+export const isValidSocialProfile = (value: string, testAgainst?: string) => {
+
+    return value.startsWith(`https://${ testAgainst }.com/`)
 
 }
