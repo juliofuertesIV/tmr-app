@@ -3,8 +3,9 @@ import { TextInput } from './with_validation/TextInput'
 import { IFormField } from '@/types/forms'
 import { validateInput } from './with_validation'
 import Label from '../label/Label'
+import { IOneOfCollections } from '@/types'
 
-export default function FormInput({ field } : { field: IFormField }) {
+export default function FormInput({ field, collectionItem } : { field: IFormField, collectionItem?: IOneOfCollections }) {
 
     const [ value, setValue ] = useState<string | null>(null)
     const [ isValid, setIsValid ] = useState<boolean | null>(null)
@@ -26,6 +27,8 @@ export default function FormInput({ field } : { field: IFormField }) {
         setIsValid(isValid)
     }
 
+    const defaultValue = collectionItem ? collectionItem[name as keyof typeof collectionItem] as string : ''
+
     return (
         <Label textContent={ label } isValid={ isValid }>
             <TextInput 
@@ -33,6 +36,7 @@ export default function FormInput({ field } : { field: IFormField }) {
                 name={ name }
                 type={ type }
                 onChange={ onInputChange }
+                defaultValue={ defaultValue }
             />
         </Label>
     )

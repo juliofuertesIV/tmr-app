@@ -18,7 +18,7 @@ export const formsByCollectionName : IFormByCollectionName = {
         brands: brandFields,
         social: socialFields,
         genres: genreFields,
-        inscriptions: { creation: [], update: [] },
+        inscriptions: [],
         managers: managerFields
     }
 } 

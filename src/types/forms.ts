@@ -9,9 +9,7 @@ export type IFormByCollectionName = {
         [key in IActionTarget]: IFormAction
     },
     fields: {
-        [key in IOneOfCollectionNames]: {
-           [key in IActionTarget]: IFormField[] 
-        }
+        [key in IOneOfCollectionNames]: IFormField[] 
     }
 }
 
@@ -21,9 +19,10 @@ export type IFormField = {
     name: string,
     label: string,
     type: HTMLInputTypeAttribute,
-    validationMethod: (value: string, valueToTestAgainst: string | null) => boolean,
-    processingMethod: (value: string) => string,
+    validationMethod: ((value: string, valueToTestAgainst: string | null) => boolean) | null,
+    processingMethod: ((value: string) => string) | null,
     testAgainst: string | null,
+    requiredForItemCreation: boolean,
     options?: { name: string, value: string }[],
 }
 

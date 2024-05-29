@@ -1,4 +1,3 @@
-import { IValidationCriteriaFieldNames, getValidationMethodAndProcessingFromFieldName } from '@/forms/validation'
 import { IFormField } from '@/types/forms'
 import React from 'react'
 
@@ -30,7 +29,6 @@ export default function CreationInput({ input } : { input: IFormField }) {
                 className="w-full rounded-sm bg-stone-800 pl-1"
                 type={ input.type }
                 name={ name }
-                required={ input.required }
             />
         </label>
     )

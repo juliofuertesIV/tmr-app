@@ -1,8 +1,8 @@
 import { Metadata } from "next";
 import { IContest, IOneOfCollectionNames } from "@/types";
 import { getModelByCollectionName } from "@/app/api/[collection]/_utils";
-import ContestMediaManager from "@/app/admin/_collections/forms/contests/ContestMediaManager";
-import FooterManager from "@/app/admin/_collections/forms/contests/FooterManager";
+import ContestMediaManager from "@/forms/inputs/media/ContestMediaManager";
+import FooterManager from "@/forms/inputs/media/FooterManager";
 
 export const metadata: Metadata = {
     title: "Panel de administración TMR",

@@ -1,19 +1,20 @@
 'use client'
 
 import { useFormState } from 'react-dom'
-import FormSubmit from '../../../../forms/feedback/FormSubmit'
 import { IFormAction, IFormField, formInitialState } from '@/types/forms'
-import AdminFormFeedback from '../../../../forms/feedback/FormFeedback'
-import { IOneOfCollectionNames } from '@/types'
-import CreationInput from './inputs/CreationInput'
+import { IOneOfCollectionNames, IOneOfCollections } from '@/types'
+import AdminFormFeedback from './feedback/FormFeedback'
+import FormInput from './inputs/FormInput'
+import FormSubmit from '@/forms/feedback/FormSubmit'
 
 type Props = {
     action: IFormAction,
     fields: IFormField[],
-    collection: IOneOfCollectionNames
+    collection: IOneOfCollectionNames,
+    collectionItem?: IOneOfCollections
 }
 
-export default function CreationForm({ action, fields, collection } : Props) {
+export default function Form({ action, fields, collection, collectionItem } : Props) {
 
     const boundAction = action.bind(null, collection)
 
@@ -26,7 +27,9 @@ export default function CreationForm({ action, fields, collection } : Props) {
         >
             <AdminFormFeedback state={ state } />
             {
-                fields.map((input, index) => <CreationInput key={ index } input={ input } />)
+                fields.map((field, index) => 
+                    <FormInput key={ index } field={ field } collectionItem={ collectionItem } />
+                )
             }
             <FormSubmit/>
         </form>

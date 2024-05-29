@@ -1,7 +1,7 @@
 'use client'
 
 import { IOneOfCollectionNames } from '@/types'
-import { getFormByCollectionName } from '../_collections'
+import { getFormByCollectionName } from '../../../forms/collection'
 import CreationForm from '../_collections/forms/CreationForm'
 import { useLayoutEffect, useRef, useState } from 'react'
 import { PlusIcon } from '../_layout/_design/icons/PlusIcon'

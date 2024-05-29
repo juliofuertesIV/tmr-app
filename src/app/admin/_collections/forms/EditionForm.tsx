@@ -1,13 +1,13 @@
 'use client'
 
 import { useFormState } from 'react-dom'
-import FormSubmit from './FormSubmit'
+import FormSubmit from '../../../../forms/feedback/FormSubmit'
 import { formInitialState } from '@/types/forms'
-import AdminFormFeedback from './FormFeedback'
+import AdminFormFeedback from '../../../../forms/feedback/FormFeedback'
 import EditionInput from './inputs/EditionInput'
 import { IOneOfCollectionNames, IOneOfCollections } from '@/types'
 import { useParams } from 'next/navigation'
-import { getFormByCollectionName } from '..'
+import { getFormByCollectionName } from '../../../../forms/collection'
 
 export default function AdminEditionForm({ item } : { item: IOneOfCollections }) {
 

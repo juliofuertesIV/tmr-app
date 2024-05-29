@@ -3,7 +3,7 @@
 import { IContest } from "@/types"
 import ContactInfoInputs from "./form/ContactInfoInputs"
 import InscriptionInfoInputs from "./form/InscriptionInfoInputs"
-import FormSubmit from "@/app/admin/_collections/forms/FormSubmit"
+import FormSubmit from "@/forms/feedback/FormSubmit"
 
 type Props = {
     contest: IContest

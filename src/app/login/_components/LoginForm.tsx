@@ -5,7 +5,7 @@ import { formInitialState } from "@/types/forms"
 import { useFormState } from "react-dom"
 import { useEffect } from "react"
 import AdminFormFeedback from "@/app/admin/_collections/forms/FormFeedback"
-import FormSubmit from "@/app/admin/_collections/forms/FormSubmit"
+import FormSubmit from "@/forms/feedback/FormSubmit"
 import { useRouter } from "next/navigation"
 import { IManager } from "@/types"
 

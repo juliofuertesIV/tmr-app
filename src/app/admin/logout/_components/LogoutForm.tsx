@@ -1,6 +1,6 @@
 'use client'
 
-import FormSubmit from "@/app/admin/_collections/forms/FormSubmit"
+import FormSubmit from "@/forms/feedback/FormSubmit"
 import { IManager } from "@/types"
 
 export default function LogoutForm({ formAction } : { formAction: (payload: FormData) => void }) {

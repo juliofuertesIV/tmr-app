@@ -1,7 +1,7 @@
 import { IContest } from '@/types'
 import React from 'react'
-import FileUploadForm from '../inputs/media/FileUploadForm'
-import { getMediaFieldsByCollection } from '../..'
+import { getMediaFieldsByCollection } from '../../collection'
+import FileUploadForm from './FileUploadForm'
 
 
 export default function ContestMediaManager({ contest } : { contest: IContest }) {
