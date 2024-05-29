@@ -1,4 +1,4 @@
-import { disassociateItems } from '@/app/_fetch/delete'
+import { disassociateItems } from '@/fetch/delete'
 import { associateItems } from '@/app/_fetch/post'
 import { IContestState, IOneOfCollectionNames, IParam } from '@/types'
 import { formInitialState } from '@/types/forms'

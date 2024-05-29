@@ -9,7 +9,7 @@ import FormSubmit from "../../FormSubmit"
 import { ChangeEvent, DragEvent, useEffect, useLayoutEffect, useRef, useState } from "react"
 import FilePreview from "./FilePreview"
 import Droppable from "./Droppable"
-import { deleteContestMediaItem } from "@/app/_fetch/delete"
+import { deleteContestMediaItem } from "@/fetch/delete"
 
 type Props = {
     collectionElement: IContest, // & IInscription

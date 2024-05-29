@@ -2,11 +2,10 @@
 
 import { IOneOfCollectionNames } from '@/types'
 import { getFormByCollectionName } from '../../../forms/collection'
-import CreationForm from '../_collections/forms/CreationForm'
 import { useLayoutEffect, useRef, useState } from 'react'
-import { PlusIcon } from '../_layout/_design/icons/PlusIcon'
 import { CircleAddIcon } from '../_layout/_design/icons/CircleAddIcon'
 import { CloseIcon } from '../_layout/_design/icons/CloseIcon'
+import Form from '@/forms/Form'
 
 type Props = {
     collection: IOneOfCollectionNames,
@@ -60,7 +59,7 @@ export default function CreationDialog({ collection }: Props) {
                         </button>
                     </header>
                     <div className='p-4'>
-                        <CreationForm collection={ collection } action={ action } fields={ fields }/>
+                        <Form collection={ collection } action={ action } fields={ fields }/>
                     </div>
                 </div>
             </dialog>

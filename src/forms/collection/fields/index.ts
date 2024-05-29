@@ -1,5 +1,3 @@
-import { addCollectionElement } from "@/app/_fetch/post";
-import { updateCollectionItem } from "@/app/_fetch/put";
 import { IFormByCollectionName, IMediaFormField } from "@/types/forms";
 import { contestFields, contestsMediaFields } from "./contests";
 import { brandFields } from "./brands";
@@ -7,6 +5,8 @@ import { socialFields } from "./social";
 import { genreFields } from "./genres";
 import { managerFields } from "./managers";
 import { IOneOfCollectionsWithMediaNames } from "@/types";
+import { addCollectionElement } from "@/fetch/post";
+import { updateCollectionItem } from "@/fetch/put";
 
 export const formsByCollectionName : IFormByCollectionName = {
     action: {

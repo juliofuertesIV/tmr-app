@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { getInscriptionsFromContestId } from "@/app/_fetch/get";
+import { getInscriptionsFromContestId } from "@/fetch/get";
 import CreateInscriptionForm from "./components/CreateInscriptionForm";
 
 export const metadata: Metadata = {

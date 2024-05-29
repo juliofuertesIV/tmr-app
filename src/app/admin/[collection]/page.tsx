@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { IOneOfCollectionNames, IOneOfCollections } from "@/types";
-import { getCollection } from "@/app/_fetch/get";
+import { getCollection } from "@/fetch/get";
 import CreationDialog from "../_dashboard/CreationDialog";
 import CollectionTable from "./_components/tables/CollectionTable";
 

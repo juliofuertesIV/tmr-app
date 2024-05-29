@@ -2,7 +2,7 @@
 
 import { IContest } from '@/types'
 import { IMediaFormField } from '@/types/forms'
-import { deleteContestMediaItem } from '@/app/_fetch/delete'
+import { deleteContestMediaItem } from '@/fetch/delete'
 import FilePreview from '../inputs/media/FilePreview'
 import FileUploadForm from '../inputs/media/FileUploadForm'
 

@@ -1,4 +1,4 @@
-import { getCollection } from "@/app/_fetch/get"
+import { getCollection } from "@/fetch/get"
 import { IContest } from "@/types"
 import Link from "next/link"
 import { ArrowRightIcon } from "../_layout/_design/icons/ArrowRightIcon"

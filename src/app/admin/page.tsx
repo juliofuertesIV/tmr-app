@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import Dashboard from "./_dashboard/Dashboard";
-import { getDashboardData } from "../_fetch/get";
+import { getDashboardData } from "../../fetch/get";
 import { IAdminData } from "@/types/admin";
 import { IAPIResponse } from "@/types/api";
 
