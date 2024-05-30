@@ -51,6 +51,10 @@ export const limitInMegaBytes = 2
 
 export const getFilesizeLimitInBytes = (mbNumber: number) => 1024 * 1024 * mbNumber
 
+export const manageMediaFiles = () => {
+    
+}
+
 export async function uploadToGoogleCloudStorage({ bytes, collection, filename } : { bytes: ArrayBuffer, collection: string, filename: string }) {
     
     const buffer = Buffer.from(bytes)

@@ -1,6 +1,6 @@
 
-import { Log, sequelize } from '@/database'
-import { ILog, IOneOfCollectionNames } from '@/types'
+import { sequelize } from '@/database'
+import { IOneOfCollectionNames } from '@/types'
 import { getModelByCollectionName } from './_utils'
 import { constructAPIResponse } from '../_utils'
 import { logError } from '../_utils/errors'
