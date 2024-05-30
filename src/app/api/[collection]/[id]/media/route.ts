@@ -58,7 +58,7 @@ export const POST = async (req: Request, { params } : { params: { id: string | n
     }
 
     try {
-        await uploadToGoogleCloudStorage({ bytes, collection, filename })
+        await uploadToGoogleCloudStorage({ bytes, collectionOrDomain: collection, filename })
     }
     catch (error) {
 

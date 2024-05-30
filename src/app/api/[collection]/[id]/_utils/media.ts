@@ -16,9 +16,17 @@ type IMediaPayload = {
 
 type IMediaCreationPayload = {
     role: IContestMediaRole | 'inscription',
-    width: string,
-    height: string
+    width: number,
+    height: number,
 }
+
+type IInscriptionValidationOutcome = {
+    bytes: ArrayBuffer,
+    filename: string,
+    src: string,
+    sizeError: Error | null
+}
+
 
 type IValidationOutcome = {
     bytes: ArrayBuffer,
@@ -55,7 +63,7 @@ export const manageMediaFiles = () => {
     
 }
 
-export async function uploadToGoogleCloudStorage({ bytes, collection, filename } : { bytes: ArrayBuffer, collection: string, filename: string }) {
+export async function uploadToGoogleCloudStorage({ bytes, collectionOrDomain, filename } : { bytes: ArrayBuffer, collectionOrDomain: string, filename: string }) {
     
     const buffer = Buffer.from(bytes)
     
@@ -71,7 +79,7 @@ export async function uploadToGoogleCloudStorage({ bytes, collection, filename }
 
     await new Promise((resolve, reject) => {
 
-        const blob = bucket.file(`${collection}/${filename}`)
+        const blob = bucket.file(`${collectionOrDomain}/${filename}`)
         const blobStream = blob.createWriteStream({ resumable: false })
 
         blobStream
@@ -110,7 +118,22 @@ export const mediaPayloadIsValidLength = ({ bytes } : { bytes: ArrayBuffer }) =>
 }
 
 
-export const prepareAndValidateMediaFile = async (payload: IMediaPayload, collection: IOneOfCollectionNames) : Promise<IValidationOutcome> => {
+export const validateInscriptionMedia = async ({ file, domain } : { file: File, domain: string }) : Promise<IInscriptionValidationOutcome> => {
+
+    const bytes = await file.arrayBuffer();
+
+    const sizeError = mediaPayloadIsValidLength({ bytes }) ? null : new Error('La imagen es demasiado grande')
+    
+    const filename = produceFileName(file.name)
+
+    const publicUrl = `https://storage.googleapis.com/${process.env.GCP_BUCKET}/${ domain }/${ filename }`
+
+    return { bytes, filename, src: publicUrl, sizeError }
+}
+
+
+
+export const prepareAndValidateMediaFile = async (payload: IMediaPayload, collection: IOneOfCollectionNames | 'inscriptions') : Promise<IValidationOutcome> => {
 
     const { media, width, height, role } = payload
 
@@ -125,8 +148,8 @@ export const prepareAndValidateMediaFile = async (payload: IMediaPayload, collec
     const mediaCreationPayload = { 
         role, 
         src: publicUrl,
-        width,
-        height,
+        width: parseInt(width),
+        height: parseInt(height),
         alt: 'Media belonging to a TMR contest.'
     }
 
