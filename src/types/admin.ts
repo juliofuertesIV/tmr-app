@@ -1,12 +1,7 @@
-import { IBrand, IContest, IContestState, IGenre, IParam, ISocialMedia } from "."
+import { IBrand, IContest } from "."
 
 export type IAdminData = {
     contests: IContest[],
     brands: IBrand[],
-    params: IParam[],
-    states: IContestState[],
-    genres: IGenre[],
-    social: ISocialMedia[],
-    managers: any[],
     inscriptions: any[]
 }

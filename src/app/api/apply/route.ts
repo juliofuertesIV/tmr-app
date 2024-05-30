@@ -29,7 +29,7 @@ export const POST = async (req: Request) => {
             collection: 'inscriptions',
             route: '/api/apply',
             error,
-            message: 'Error al subir el archivo de imagen a GCP.' 
+            message: 'Error al subir el archivo de imagen.' 
         })
     }
     
