@@ -3,6 +3,7 @@ import { handleApiError } from "../_utils/errors"
 import { constructAPIResponse } from "../_utils"
 import { ICreateInscriptionPayload } from "@/types/inscriptions"
 import { uploadToGoogleCloudStorage, validateInscriptionMedia } from "../[collection]/[id]/_utils/media"
+import { IContestMedia } from "@/types"
 
 export const POST = async (req: Request) => {
 
@@ -36,19 +37,18 @@ export const POST = async (req: Request) => {
     const transaction = await sequelize.transaction()
 
     try {
-        const inscription = await Inscription.create({ 
-            image: src,
-            ...payload 
-        }, { transaction })
-
         const image = await Media.create({
             role: 'inscription',
             src,
             width: 500,
             height: 500,
             alt: 'Media for TMR contest.'
-        })
+        }, { transaction }).then(data => data) as unknown as IContestMedia
 
+        const inscription = await Inscription.create({ 
+            MediumId: image.id,
+            ...payload 
+        }, { transaction })
         
         await transaction.commit()
 

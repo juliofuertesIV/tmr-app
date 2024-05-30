@@ -320,9 +320,6 @@ export const Inscription = sequelize.define('Inscription', {
     genre: {
         type: DataTypes.STRING,
     },
-    image: {
-        type: DataTypes.STRING,
-    },
     video: {
         type: DataTypes.STRING
     },
@@ -454,6 +451,9 @@ SocialMedia.belongsToMany(Contest, { through: 'ContestSocial'})
 
 Contest.belongsTo(State)
 State.hasMany(Contest)
+
+Inscription.belongsTo(Media)
+Media.hasOne(Inscription)
 
 Contest.belongsToMany(Genre, { through: 'ContestGenres' })
 Genre.belongsToMany(Contest, { through: 'ContestGenres' })
