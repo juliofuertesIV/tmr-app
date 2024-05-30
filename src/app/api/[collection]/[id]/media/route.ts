@@ -1,7 +1,6 @@
-import { IContestMedia, IContestMediaRole, IOneOfCollectionNames } from "@/types";
-import { getAssociationPayload, getModelAndAssociationTableByCollectionName, mediaPayloadIsValidLength, produceFileName, uploadToGoogleCloudStorage } from "./_utils";
+import { IContestMediaRole, IOneOfCollectionNames } from "@/types";
+import { createAndAssociateMediaToCollection, prepareAndValidateMediaFile, uploadToGoogleCloudStorage } from "../_utils/media";
 import { sequelize } from "@/database";
-import { Transaction } from "sequelize";
 import { constructAPIResponse } from "@/app/api/_utils";
 import { handleApiError } from "@/app/api/_utils/errors";
 
@@ -99,46 +98,4 @@ export const POST = async (req: Request, { params } : { params: { id: string | n
             transaction
         })
     }
-}
-
-const prepareAndValidateMediaFile = async (payload: IMediaPayload, collection: IOneOfCollectionNames) : Promise<IValidationOutcome> => {
-
-    const { media, width, height, role } = payload
-
-    const bytes = await media.arrayBuffer();
-
-    const sizeError = mediaPayloadIsValidLength({ bytes }) ? null : new Error('La imagen es demasiado grande')
-    
-    const filename = produceFileName(media.name)
-
-    const publicUrl = `https://storage.googleapis.com/${process.env.GCP_BUCKET}/${ collection }/${ filename }`
-
-    const mediaCreationPayload = { 
-        role, 
-        src: publicUrl,
-        width,
-        height,
-        alt: 'Media belonging to a TMR contest.'
-    }
-
-    return { bytes, filename, mediaCreationPayload, sizeError }
-}
-
-
-async function createAndAssociateMediaToCollection({ collection, payload, transaction, id } : { 
-    collection: IOneOfCollectionNames,
-    payload: IMediaCreationPayload,
-    transaction: Transaction,
-    id: string | number 
-}) {
-
-    const { Model, AssociationTable } = getModelAndAssociationTableByCollectionName(collection);
-
-    const insertedImage = await Model.create({ ...payload }, { transaction }) as unknown as IContestMedia;
-
-    const associationPayload = getAssociationPayload('contests', id, insertedImage.id);
-
-    const relationship = await AssociationTable.create({ ...associationPayload }, { transaction });
-
-    return relationship;
 }

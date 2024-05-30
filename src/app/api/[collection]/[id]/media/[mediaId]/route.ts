@@ -1,9 +1,8 @@
 import { IContestMedia, IOneOfCollectionNames } from "@/types";
 import { constructAPIResponse } from "@/app/api/_utils";
 import { Media, sequelize } from "@/database";
-import { Storage } from "@google-cloud/storage";
-import { bucketName } from "../_utils";
 import { logError } from "@/app/api/_utils/errors";
+import { deleteFromCloudStorage } from "../../_utils/media";
 
 type Params = {
     id: string,
@@ -82,19 +81,4 @@ export const DELETE = async (req: Request, { params } : { params: Params }) => {
             data: null
         })
     )
-}
-
-const deleteFromCloudStorage = async ({ src } : { src: string }) => {
-
-    const fileName = src.replace('https://storage.googleapis.com/concursos_tmr_media/', '')
-
-    const storage = new Storage({
-        projectId: process.env.PROJECT_ID,
-        credentials: {
-            client_email: process.env.CLIENT_EMAIL,
-            private_key: process.env.GCP_PRIVATE_KEY
-        }
-    });
-
-    await storage.bucket(bucketName).file(fileName).delete()
 }
