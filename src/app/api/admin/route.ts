@@ -20,7 +20,8 @@ export const GET = async () => {
         
         const inscriptions = await Inscription.findAll({
             order: [['createdAt', 'DESC']],
-            limit: 10
+            limit: 10,
+            include: [ Media, Contest ]
         }).then(data => data) as unknown as IInscription[]
         
         return Response.json(

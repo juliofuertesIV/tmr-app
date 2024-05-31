@@ -1,4 +1,4 @@
-import { IContestMedia, IOneOfCollectionNames } from "@/types";
+import { IMedia, IOneOfCollectionNames } from "@/types";
 import { constructAPIResponse } from "@/app/api/_utils";
 import { Media, sequelize } from "@/database";
 import { logError } from "@/app/api/_utils/errors";
@@ -15,7 +15,7 @@ export const DELETE = async (req: Request, { params } : { params: Params }) => {
     const { collection, id, mediaId } = params
 
     const media = await Media.findOne({ where: { id: mediaId }})
-    .then(data => data as unknown as IContestMedia) 
+    .then(data => data as unknown as IMedia) 
     .catch(err => {
         return Response.json(
             constructAPIResponse({ 
@@ -50,7 +50,7 @@ export const DELETE = async (req: Request, { params } : { params: Params }) => {
     }
 
     try {
-        await deleteFromCloudStorage({ src: (media as IContestMedia).src })
+        await deleteFromCloudStorage({ src: (media as IMedia).src })
     } 
     catch (error) {
         await transaction.rollback()

@@ -11,13 +11,11 @@ export const addCollectionElement = async (
     prevState: any,
     formData: FormData
 ) : Promise<IAPIResponse<null>> => {
-    
-    const payload = Object.fromEntries(formData)
 
     const res = await fetch(`http://localhost:3000/api/${ collection }`, {
         method: "POST",
         cache: 'no-cache',
-        body: JSON.stringify(payload)
+        body: formData
     })
     .then(async data => await data.json())
     .catch(error => error)

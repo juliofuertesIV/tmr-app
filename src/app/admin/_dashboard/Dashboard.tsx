@@ -36,19 +36,19 @@ export default function Dashboard({ data } : { data: IAdminData }) {
                     <h3 className='text-neutral-200'>ÚLTIMAS INSCRIPCIONES</h3>
                 </header>
                 <div className='w-full flex flex-col gap-2 p-4'>
-{/*                 {
+                {    
                         inscriptions.map((inscription, index) => {
                             return (
                                 <div   
                                     className='bg-neutral-600 text-neutral-100 px-4 rounded-sm text-center flex justify-between items-center border border-transparent hover:border-neutral-100 cursor-pointer'
                                     key={ `ins_${ index }`}
                                 >
-                                    <div>{ inscription.name } </div>
+                                    <div>{ inscription.name } ({ inscription.Contest.name }) </div>
                                     <div className='text-sm'>{ inscription.createdAt.split('T')[0].slice(5).replace('-', '/') } a las { inscription.createdAt.split('T')[1].slice(0, 8) }h.</div>
                                 </div>
                             )
                         })
-                    } */}
+                    }
                 </div>
             </article>
             <article className='col-span-2 bg-neutral-800 rounded-md w-full min-h-40'>

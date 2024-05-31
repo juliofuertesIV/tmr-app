@@ -1,4 +1,3 @@
-
 export type IOneOfCollections = IContest & IBrand & ISocialMedia & IGenre & IInscription & IManager
 
 export type IOneOfCollectionNames = 'contests' | 'brands' | 'social' | 'genres' | 'inscriptions' | 'managers'
@@ -47,7 +46,7 @@ export type IContest = {
     Genres: IGenre[],
     SocialMedia: ISocialMedia[],
     Params: IParam[],
-    Media: IContestMedia[],
+    Media: IMedia[],
     createdAt: string,
     updatedAt: string
 }
@@ -90,9 +89,9 @@ export type ISocialMedia = {
     updatedAt: string
 }
 
-export type IContestMedia = {
+export type IMedia = {
     id: string,
-    role: IContestMediaRole
+    role: IContestMediaRole | 'inscription'
     src: string,
     width: string,
     height: string,
@@ -125,6 +124,8 @@ export type IInscription = {
     verified: boolean,
     discarded: boolean,
     previousPosition: number,
+    Medium: IMedia,
+    Contest: IContest,
     genre?: string,
     instagram?: string,
     video?: string,

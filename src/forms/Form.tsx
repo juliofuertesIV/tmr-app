@@ -6,15 +6,17 @@ import { IOneOfCollectionNames, IOneOfCollections } from '@/types'
 import AdminFormFeedback from './feedback/FormFeedback'
 import FormInput from './inputs/FormInput'
 import FormSubmit from '@/forms/feedback/FormSubmit'
+import { ReactNode } from 'react'
 
 type Props = {
     action: IFormAction,
     fields: IFormField[],
     collection: IOneOfCollectionNames,
-    collectionItem?: IOneOfCollections
+    collectionItem?: IOneOfCollections,
+    children?: ReactNode
 }
 
-export default function Form({ action, fields, collection, collectionItem } : Props) {
+export default function Form({ action, fields, collection, collectionItem, children } : Props) {
 
     const boundAction = action.bind(null, collection)
 
@@ -31,6 +33,7 @@ export default function Form({ action, fields, collection, collectionItem } : Pr
                     <FormInput key={ index } field={ field } collectionItem={ collectionItem } />
                 )
             }
+            { children }
             <FormSubmit/>
         </form>
     )

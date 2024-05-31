@@ -24,7 +24,7 @@ export const getCollectionElementById = async (collection: IOneOfCollectionNames
 
 export const getInscriptionsFromContestId = async (contestId: string) : Promise<IAPIResponse<{ contest: IContest, inscriptions: IInscription[] }>> => {
     
-    const res = await fetch(`http://localhost:3000/api/inscriptions/${ contestId }`, {
+    const res = await fetch(`http://localhost:3000/api/apply/${ contestId }`, {
         method: "GET",
         cache: 'no-cache',
         headers: {

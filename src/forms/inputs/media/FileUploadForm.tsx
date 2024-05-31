@@ -1,7 +1,7 @@
 'use client'
 
 import { manageCollectionMedia } from "@/app/_fetch/post"
-import { IContest, IContestMedia, IContestMediaRole } from "@/types"
+import { IContest, IMedia, IContestMediaRole } from "@/types"
 import { IMediaFormField, formInitialState } from "@/types/forms"
 import { useFormState } from "react-dom"
 import AdminFormFeedback from "../../../../../../forms/feedback/FormFeedback"
@@ -30,7 +30,7 @@ export default function FileUploadForm({ collectionElement, mediaField, showData
     
     const [ state, formAction ] = useFormState(boundAction, formInitialState)
 
-    const [ file, setFile ] = useState<File | IContestMedia | null>(null)
+    const [ file, setFile ] = useState<File | IMedia | null>(null)
     
     const currentMedia = getCurrentMedia({ collectionElement, role })
 

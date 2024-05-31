@@ -1,4 +1,4 @@
-import { IContestMedia, IContestMediaRole, IOneOfCollectionNames } from "@/types";
+import { IMedia, IContestMediaRole, IOneOfCollectionNames } from "@/types";
 import { Transaction } from "sequelize";
 import { Media, ContestMedia } from "@/database";
 import { Model, ModelStatic, Options } from "sequelize";
@@ -166,7 +166,7 @@ export const createAndAssociateMediaToCollection = async ({ collection, payload,
 
     const { Model, AssociationTable } = getModelAndAssociationTableByCollectionName(collection);
 
-    const insertedImage = await Model.create({ ...payload }, { transaction }) as unknown as IContestMedia;
+    const insertedImage = await Model.create({ ...payload }, { transaction }) as unknown as IMedia;
 
     const associationPayload = getAssociationPayload('contests', id, insertedImage.id);
 

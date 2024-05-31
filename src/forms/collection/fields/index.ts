@@ -7,6 +7,7 @@ import { managerFields } from "./managers";
 import { IOneOfCollectionsWithMediaNames } from "@/types";
 import { addCollectionElement } from "@/fetch/post";
 import { updateCollectionItem } from "@/fetch/put";
+import { inscriptionFields } from "./inscriptions";
 
 export const formsByCollectionName : IFormByCollectionName = {
     action: {
@@ -18,7 +19,7 @@ export const formsByCollectionName : IFormByCollectionName = {
         brands: brandFields,
         social: socialFields,
         genres: genreFields,
-        inscriptions: [],
+        inscriptions: inscriptionFields,
         managers: managerFields
     }
 } 

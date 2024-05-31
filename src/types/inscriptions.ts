@@ -3,7 +3,7 @@ export type ICreateInscriptionPayload = {
     contactName: string,
     email: string,
     phone: string,
-    media: File,
+    image: File,
     ContestId: string,
     domain: string,
 }

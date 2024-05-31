@@ -1,11 +1,11 @@
 'use client'
 
-import { IContestMedia } from '@/types'
+import { IMedia } from '@/types'
 import Image from 'next/image'
 import React, { useEffect, useRef, useState } from 'react'
 
 type Props = {
-    file: File | IContestMedia | null,
+    file: File | IMedia | null,
     previewIsCurrentMedia: boolean,
     onDiscardFile: (id?: string) => void
 }
@@ -14,7 +14,7 @@ export default function FilePreview({ file, previewIsCurrentMedia, onDiscardFile
 
     const previewRef = useRef<HTMLImageElement>(null)
 
-    const [ inputFile, setInputFile ] = useState<File | IContestMedia | null>(null) 
+    const [ inputFile, setInputFile ] = useState<File | IMedia | null>(null) 
     const [ previewSrc, setPreviewSrc ] = useState<string | null>(null) 
     
     useEffect(() => {
