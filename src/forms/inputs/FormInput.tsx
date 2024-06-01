@@ -1,7 +1,7 @@
 import React, { ChangeEvent, useState } from 'react'
-import { TextInput } from './with_validation/TextInput'
+import { TextInput } from '@/forms/inputs/by_type/TextInput'
 import { IFormField } from '@/types/forms'
-import { validateInput } from './with_validation'
+import { validateInput } from '@/forms/validation'
 import Label from '../label/Label'
 import { IOneOfCollections } from '@/types'
 

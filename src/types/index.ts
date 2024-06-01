@@ -1,3 +1,5 @@
+import { IMedia } from "./media"
+
 export type IOneOfCollections = IContest & IBrand & ISocialMedia & IGenre & IInscription & IManager
 
 export type IOneOfCollectionNames = 'contests' | 'brands' | 'social' | 'genres' | 'inscriptions' | 'managers'
@@ -89,15 +91,6 @@ export type ISocialMedia = {
     updatedAt: string
 }
 
-export type IMedia = {
-    id: string,
-    role: IContestMediaRole | 'inscription'
-    src: string,
-    width: string,
-    height: string,
-    alt: string
-}
-
 export type ILogTypes = 'error' | 'login'
 
 export type ILog = {
@@ -124,8 +117,6 @@ export type IInscription = {
     verified: boolean,
     discarded: boolean,
     previousPosition: number,
-    Medium: IMedia,
-    Contest: IContest,
     genre?: string,
     instagram?: string,
     video?: string,
@@ -133,12 +124,10 @@ export type IInscription = {
     spotify?: string,
     tiktok?: string,
     twitter?: string
+    Medium: IMedia,
+    Contest: IContest,
 }
 
 export type IContestParamIds = 'inscriptionIsPublic' | 'videoIsRequired' | 'cityIsRequired' | 'instagramIsRequired' | 'hasManyItems' | 'hasGenres' | 'hasRanking'
 
 export type IContestStateIds = 'inscriptionOnly' | 'open' | 'endedInscription' | 'ended' | 'hidden'
-
-export type IContestMediaRole = 'frame' | 'banner' | 'logo' | 'favicon' | 'footerElement'
-
-export type IMediaRole = IMediaRole

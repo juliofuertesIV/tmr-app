@@ -1,17 +1,13 @@
 import { handleApiError } from "@/app/api/_utils/errors"
-import { IMediaRole, IOneOfCollectionsWithMediaNames } from "@/types"
+import { IOneOfCollectionsWithMediaNames } from "@/types"
 import { prepareMediaFile } from "./preparation"
 import { uploadToGoogleCloudStorage } from "@/lib/gcp_storage"
+import { IMediaPayload, IMediaRole } from "@/types/media"
 
 type Props = {
     collection: IOneOfCollectionsWithMediaNames,
     domain: string,
-    payload: {
-        file: File,
-        height: string,
-        width: string,
-        role: IMediaRole
-    }
+    payload: IMediaPayload
 }
 
 export type UploadMediaReturnType = {

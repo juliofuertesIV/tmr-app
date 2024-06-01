@@ -1,3 +1,4 @@
+import { extractSubdomain } from "@/forms/validation/functions";
 import { DataTypes } from "sequelize";
 import { Sequelize } from 'sequelize'
 
@@ -201,7 +202,12 @@ export const Contest = sequelize.define('Contest', {
             fields: ['domain', 'year'],
             unique: true 
         }
-    ]
+    ],
+    hooks: {
+        beforeCreate: record => {
+            record.dataValues.domain = extractSubdomain(record.dataValues.domain)
+        }
+    }
 });
 
 export const Param = sequelize.define('Param', {

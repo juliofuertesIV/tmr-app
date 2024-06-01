@@ -21,7 +21,10 @@ export const isValidDomain = (value: string) => {
 }
 
 export const extractSubdomain = (value: string) => {
-    return [value.split('.')[0], value.split('.')[1]].join('-')
+    
+    const domainString = value.replace('https://', '')
+
+    return [domainString.split('.')[0], domainString.split('.')[1]].join('-')
 }
 
 export const isValidUrl = (value: string, testAgainst: string | null) => {

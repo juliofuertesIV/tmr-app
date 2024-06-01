@@ -1,6 +1,7 @@
-import { IMediaRole, IOneOfCollectionsWithMediaNames } from "@/types";
+import { IOneOfCollectionsWithMediaNames } from "@/types";
 import { mediaPayloadIsValidLength } from "./validation";
 import path from "path";
+import { IMediaPayload } from "@/types/media";
 
 export const produceFileName = (fileName: string) => crypto.randomUUID() + "-" + new Date().getTime() + path.extname(fileName);
 
@@ -9,12 +10,7 @@ export const prepareMediaFile = async ({
     domain,
     collection 
 } : {
-    payload: {
-        file: File,
-        height: string,
-        width: string,
-        role: IMediaRole
-    },
+    payload: IMediaPayload,
     domain: string,
     collection: IOneOfCollectionsWithMediaNames
 }

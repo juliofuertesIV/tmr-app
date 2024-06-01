@@ -1,5 +1,5 @@
 import { isValidSocialProfile, isValidString, isValidUrl, processBasicTextInput } from "@/forms/validation/functions"
-import { IFormField, IActionTarget } from "@/types/forms"
+import { IFormField } from "@/types/forms"
 
 export const brandFields : IFormField[] = [
         {

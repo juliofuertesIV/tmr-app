@@ -5,7 +5,7 @@ import { getModelByCollectionName } from './_utils'
 import { constructAPIResponse } from '../_utils'
 import { handleApiError, logError } from '../_utils/errors'
 import { ICreateInscriptionPayload } from '@/types/inscriptions'
-import { ManageRequestMedia } from './_utils/media'
+import { CreateMedia } from '@/media/create'
 
 export const GET = async (req: Request, { params } : { params: { collection: IOneOfCollectionNames }}) => {
 
@@ -87,7 +87,7 @@ const ManageContestInscription = async (formData: FormData) => {
     
     const payload = Object.fromEntries(formData) as ICreateInscriptionPayload
 
-    const { MediumId } = await ManageRequestMedia(formData)
+    const { MediumId } = await CreateMedia({ formData, collection: 'inscriptions', domain: 'test-domain' })
 
     const creationPayload = MediumId ? { MediumId, ...payload } : payload
 
