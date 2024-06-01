@@ -140,3 +140,5 @@ export type IContestParamIds = 'inscriptionIsPublic' | 'videoIsRequired' | 'city
 export type IContestStateIds = 'inscriptionOnly' | 'open' | 'endedInscription' | 'ended' | 'hidden'
 
 export type IContestMediaRole = 'frame' | 'banner' | 'logo' | 'favicon' | 'footerElement'
+
+export type IMediaRole = IMediaRole
