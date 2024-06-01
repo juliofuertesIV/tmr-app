@@ -1,5 +1,5 @@
 
-import { brands, genres, params, roles, social, states, superAdmin } from '@/_data/initial'
+import { brands, genres, params, roles, social, states, superAdmin } from '@/data/initial'
 import { Param, State, Genre, Brand, SocialMedia, sequelize, Manager, Role } from '@/database'
 import { constructAPIResponse } from '../../_utils'
 import { getHashAndSaltFromPassword } from '../../../../auth'

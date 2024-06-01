@@ -1,8 +1,8 @@
 import { Media, sequelize } from "@/database"
-import { uploadMedia } from "./media_upload"
+import { uploadMedia } from "@/media/upload"
 import { IMedia } from "@/types"
 import { handleApiError } from "@/app/api/_utils/errors"
-import { deleteFromCloudStorage } from "./gcp_lib"
+import { deleteFromCloudStorage } from "@/lib/gcp_storage"
 
 export const ManageRequestMedia = async (formData: FormData) : Promise<{ MediumId: string | null }> => {
 

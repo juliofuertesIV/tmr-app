@@ -2,8 +2,6 @@ import { IMedia, IOneOfCollectionNames } from "@/types";
 import { Transaction } from "sequelize";
 import { Media, ContestMedia } from "@/database";
 import { Model, ModelStatic, Options } from "sequelize";
-import { Storage } from "@google-cloud/storage";
-
 
 export const modelsByCollectionName = {
     contests: {

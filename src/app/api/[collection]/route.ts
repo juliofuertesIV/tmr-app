@@ -14,8 +14,6 @@ export const GET = async (req: Request, { params } : { params: { collection: IOn
 
     const data = await Model.findAll({ ...options }).then(data => data)
 
-    console.log({ data })
-
     return Response.json(
         constructAPIResponse({ 
             message: 'OK!',
