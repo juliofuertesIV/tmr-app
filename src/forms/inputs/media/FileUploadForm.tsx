@@ -1,15 +1,16 @@
 'use client'
 
-import { manageCollectionMedia } from "@/app/_fetch/post"
-import { IContest, IMedia, IContestMediaRole } from "@/types"
+import { IContest } from "@/types"
 import { IMediaFormField, formInitialState } from "@/types/forms"
 import { useFormState } from "react-dom"
-import AdminFormFeedback from "../../../../../../forms/feedback/FormFeedback"
-import FormSubmit from "../../FormSubmit"
 import { ChangeEvent, DragEvent, useEffect, useLayoutEffect, useRef, useState } from "react"
 import FilePreview from "./FilePreview"
 import Droppable from "./Droppable"
 import { deleteContestMediaItem } from "@/fetch/delete"
+import { IMedia, IMediaRole } from "@/types/media"
+import { manageCollectionMedia } from "@/fetch/post"
+import AdminFormFeedback from "@/forms/feedback/FormFeedback"
+import FormSubmit from "@/forms/feedback/FormSubmit"
 
 type Props = {
     collectionElement: IContest, // & IInscription
@@ -17,14 +18,14 @@ type Props = {
     showDatabaseValue: boolean
 }
 
-const getCurrentMedia = ({ collectionElement, role } : { collectionElement: IContest, role: IContestMediaRole }) => {
+const getCurrentMedia = ({ collectionElement, role } : { collectionElement: IContest, role: IMediaRole }) => {
     
     return collectionElement.Media.find(media => media.role === role) || null
 }
 
 export default function FileUploadForm({ collectionElement, mediaField, showDatabaseValue } : Props) {
 
-    const { role, instructions, label } = mediaField
+    const { role, label } = mediaField
 
     const boundAction = manageCollectionMedia.bind(null, 'contests', collectionElement.id as string)
     
@@ -120,10 +121,9 @@ export default function FileUploadForm({ collectionElement, mediaField, showData
                 accept="image"
                 onChange={ onInputChange }
             />
-            <small>{ instructions }</small>
             <input type="hidden" name="role" value={ role }/>
-            <input type="hidden" name="width" value={ mediaField.width || 500 }/>
-            <input type="hidden" name="height" value={ mediaField.height || 500 }/>
+            <input type="hidden" name="width" value={ 500 }/>
+            <input type="hidden" name="height" value={ 500 }/>
             <FormSubmit value={ !!currentMedia ? "Reemplazar" : "Subir archivo" }/>
         </form>
     )

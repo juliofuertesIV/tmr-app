@@ -1,7 +1,8 @@
-import { HTMLInputTypeAttribute, HTMLProps } from "react"
-import { IContestMediaRole, IOneOfCollectionNames } from "."
+import { HTMLInputTypeAttribute } from "react"
+import { IOneOfCollectionNames } from "."
 import { IAPIResponse } from "./api"
 import { IAssociationNames } from "./associations"
+import { IMediaRole } from "./media"
 
 
 export type IFormByCollectionName = {
@@ -27,13 +28,9 @@ export type IFormField = {
 }
 
 export type IMediaFormField = {
-    role: IContestMediaRole,
+    role: IMediaRole,
     label: string,
-    width?: number,
-    height?: number,
-    instructions: string,
-    acceptedTypes: string,
-    multiple: boolean
+    type: 'image' | 'pdf'
 }
 
 export type IFormAction = (...args: any) => Promise<IAPIResponse<any>>

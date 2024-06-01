@@ -1,6 +1,6 @@
 'use client'
 
-import { formInitialState } from "@/types/forms"
+import { formInitialState } from '@/forms/feedback/state'
 import { useFormState } from "react-dom"
 import { useEffect } from "react"
 import FormSubmit from "@/forms/feedback/FormSubmit"

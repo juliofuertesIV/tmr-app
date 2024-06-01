@@ -22,7 +22,6 @@ export const GET = async (req: Request, { params } : { params: { collection: IOn
             data 
         })
     )
-
 }
 
 export const POST = async (req: Request, { params } : { params: { collection: IOneOfCollectionNames }}) => {
