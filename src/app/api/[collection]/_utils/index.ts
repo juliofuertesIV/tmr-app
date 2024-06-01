@@ -1,5 +1,5 @@
 import { Brand, Contest, Media, Genre, Param, State, ContestParam, ContestMedia, ContestGenre, ContestSocial, SocialMedia, Manager, Role, Log, Inscription } from "@/database";
-import { IOneOfCollectionNames } from "@/types";
+import { IOneOfCollectionNames, IOneOfCollectionsWithMediaNames } from "@/types";
 import { IAssociationNames } from "@/types/associations";
 import { FindOptions, Model, ModelStatic } from "sequelize";
 
@@ -122,3 +122,7 @@ const associationByName = {
 export const getModelByCollectionName = (collection: IOneOfCollectionNames) => modelsByCollectionName[collection]
 
 export const getAssociationModelByName = (association: IAssociationNames) => associationByName[association]
+
+export const collectionHasMedia = (collection: IOneOfCollectionNames) : collection is IOneOfCollectionsWithMediaNames => {
+    return collection === 'contests' || collection === 'inscriptions'
+}

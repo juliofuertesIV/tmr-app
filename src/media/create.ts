@@ -46,7 +46,7 @@ export const CreateMedia = async ({
             collection: 'inscriptions',
             route: '/api/inscriptions',
             error,
-            message: 'Fallo inscribiendo candidatura.' 
+            message: 'Fallo guardando el contenido multimedia en la DB.' 
         })
         return { MediumId: null }
     }
