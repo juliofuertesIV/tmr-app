@@ -21,28 +21,24 @@ export const uploadMedia = async ({ collection, domain, payload } : Props) : Pro
 
     const { width, height, role } = payload
 
-    const data = await prepareMediaFile({ 
+    const { success, error, bytes, filename, src } = await prepareMediaFile({ 
         payload,
         domain,
-        collection 
+        collection
     })
-    .then((data) => data)
-    .catch(error => {
+
+    if (!success) {
         handleApiError({
             collection: collection,
             route: '/api/' + collection,
             error,
             message: 'Error validando la imagen.' 
         })
-    }) as {
-        bytes: ArrayBuffer,
-        filename: string,
-        src: string
     }
 
     await uploadToGoogleCloudStorage({ 
-        bytes: data.bytes,
-        filename: data.filename,
+        bytes,
+        filename,
         collection,
         domain 
     })
@@ -54,8 +50,6 @@ export const uploadMedia = async ({ collection, domain, payload } : Props) : Pro
             message: 'Error al subir el archivo de imagen.' 
         })
     })
-
-    const { src } = data
 
     return { width, height, role, src }
 }

@@ -19,7 +19,8 @@ type Props = {
 
 export default function Form({ action, fields, collection, collectionItem, children } : Props) {
 
-    const boundAction = action.bind(null, collection)
+    // TO DO: on creation we don't need to bind ID, on update we do (refactor this mess)
+    const boundAction = !!collectionItem ? action.bind(null, collection, collectionItem.id) : action.bind(null, collection)
 
     const [state, formAction] = useFormState(boundAction, formInitialState)
 

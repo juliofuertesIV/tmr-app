@@ -107,29 +107,21 @@ export const contestsMediaFields : IMediaFormField[] = [
     {
         role: 'logo',
         label: 'Logotipo',
-        instructions: 'Debe pesar menos de 2mb',
-        acceptedTypes: 'image/png, image/svg+xml',
-        multiple: false,
+        type: 'image',
     },
     {
         role: 'banner',
         label: 'Banner',
-        instructions: 'Debe pesar menos de 2mb',
-        acceptedTypes: 'image/png, image/svg+xml',
-        multiple: false,
+        type: 'image',
     },
     {
         role: 'frame',
         label: 'Marco',
-        instructions: 'Debe pesar menos de 2mb',
-        acceptedTypes: 'image/png, image/svg+xml',
-        multiple: false,
+        type: 'image',
     },
     {
         role: 'favicon',
         label: 'Favicon',
-        instructions: 'Debe ser imagen tipo .ico',
-        acceptedTypes: '.ico',
-        multiple: false,
+        type: 'image',
     },
 ]

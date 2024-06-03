@@ -18,6 +18,9 @@ export default function CreateInscriptionForm({ contest } : Props) {
                 <input type="hidden" value={ new Date().getFullYear() } name="year"/>
                 <input type="hidden" value={ contest.id } name="ContestId"/>
                 <input type="hidden" value={ contest.domain } name="domain"/>
+                <input type="hidden" value={ 500 } name="width"/>
+                <input type="hidden" value={ 500 } name="height"/>
+                <input type="hidden" value={ 'inscriptions' } name="role"/>
             </Form>
         </div>
     )

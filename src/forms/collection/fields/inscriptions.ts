@@ -48,7 +48,7 @@ export const inscriptionFields : IFormField[] = [
         requiredForItemCreation: true
     },
     {
-        name: 'image',
+        name: 'file',
         label: 'Imagen',
         validationMethod: null,
         processingMethod: null,

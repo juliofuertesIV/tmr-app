@@ -4,6 +4,7 @@ import { IOneOfCollectionsWithMediaNames } from "@/types"
 import { handleApiError } from "@/app/api/_utils/errors"
 import { deleteFromCloudStorage } from "@/lib/gcp_storage"
 import { IMedia, IMediaPayload } from "@/types/media"
+import { constructAPIResponse } from "@/app/api/_utils"
 
 export const CreateMedia = async ({ 
     formData,
@@ -14,10 +15,17 @@ export const CreateMedia = async ({
     domain: string,
     collection: IOneOfCollectionsWithMediaNames 
 }
-) : Promise<{ MediumId: string | null }> => {
+) : Promise<{ MediumId: string } | Response> => {
 
     if (!formData.has('file')) {
-        return { MediumId: null }
+        return Response.json(
+            constructAPIResponse({
+                message: 'No hay imagen en la inscripción.',
+                data: null,
+                success: false,
+                error: new Error('No hay archivo de imagen.')
+            })
+        )
     }
 
     const payload = Object.fromEntries(formData) as IMediaPayload
@@ -37,17 +45,18 @@ export const CreateMedia = async ({
             transaction 
         }).then(data => data) as unknown as IMedia
 
+        await transaction.commit()
+        
         return { MediumId: image.id } 
     }
     catch (error) {
         await deleteFromCloudStorage({ src })
-        await handleApiError({
+        return await handleApiError({
             transaction,
             collection: 'inscriptions',
             route: '/api/inscriptions',
             error,
             message: 'Fallo guardando el contenido multimedia en la DB.' 
         })
-        return { MediumId: null }
     }
 }

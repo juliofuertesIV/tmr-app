@@ -17,22 +17,26 @@ export const prepareMediaFile = async ({
 ) : Promise<{ 
     bytes: ArrayBuffer,
     filename: string,
-    src: string
+    src: string,
+    error: Error | null,
+    success: boolean
 }> => {
 
-    const { file, width, height, role } = payload
+    console.log({ payload, domain, collection })
+
+    const { file } = payload
 
     const bytes = await file.arrayBuffer();
 
-    if (!mediaPayloadIsValidLength({ bytes })) {
-        throw new Error('La imagen es demasiado grande')
-    }
-    
     const filename = produceFileName(file.name)
 
     const src = `https://storage.googleapis.com/${process.env.GCP_BUCKET}/${ domain }/${ collection }/${ filename }`
 
-    return { bytes, filename, src }
+    if (!mediaPayloadIsValidLength({ bytes })) {
+        return { bytes, filename, src, error: new Error('La imagen es demasiado grande'), success: false }
+    }
+
+    return { bytes, filename, src, error: null, success: true }
 }
 
 
