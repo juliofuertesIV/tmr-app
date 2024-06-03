@@ -10,22 +10,27 @@ type Props = {
     payload: IMediaPayload
 }
 
-export type UploadMediaReturnType = {
+export const uploadMedia = async ({ 
+    collection,
+    domain,
+    payload 
+} : Props
+) : Promise<{
     width: string,
     height: string,
     role: IMediaRole,
     src: string
-}
-
-export const uploadMedia = async ({ collection, domain, payload } : Props) : Promise<UploadMediaReturnType>  => {
+}> => {
 
     const { width, height, role } = payload
 
-    const { success, error, bytes, filename, src } = await prepareMediaFile({ 
-        payload,
-        domain,
-        collection
-    })
+    const { 
+        success,
+        error,
+        bytes,
+        filename,
+        src 
+    } = await prepareMediaFile({ payload, domain, collection })
 
     if (!success) {
         handleApiError({
