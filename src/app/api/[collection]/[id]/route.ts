@@ -1,22 +1,29 @@
 import { IOneOfCollectionNames } from "@/types";
-import { updateElement } from "./_functions/put";
-import { deleteElement } from "./_functions/delete";
-import { getItemById } from "./_functions/get";
+import { updateCollectionItem } from "./_functions/put";
+import { deleteCollectionItem } from "./_functions/delete";
+import { getCollectionItemById } from "./_functions/get";
 
-export const GET = async (req: Request, { params } : { params: { collection: IOneOfCollectionNames, id: string }}) => {
-
-    const { collection, id } = params
-    return await getItemById({ collection, id })
+type RouteParams = {
+    params: {
+        collection: IOneOfCollectionNames,
+        id: string
+    }
 }
 
-export const PUT = async (req: Request, { params } : { params: { collection: IOneOfCollectionNames, id: string }}) => {
+export const GET = async (req: Request, { params } : RouteParams) => {
 
     const { collection, id } = params
-    return await updateElement({ collection, id, req })
+    return await getCollectionItemById({ collection, id })
 }
 
-export const DELETE = async (req: Request, { params } : { params: { collection: IOneOfCollectionNames, id: string }}) => {
+export const PUT = async (req: Request, { params } : RouteParams) => {
 
     const { collection, id } = params
-    return await deleteElement({ collection, id })
+    return await updateCollectionItem({ collection, id, req })
+}
+
+export const DELETE = async (req: Request, { params } : RouteParams) => {
+
+    const { collection, id } = params
+    return await deleteCollectionItem({ collection, id })
 }

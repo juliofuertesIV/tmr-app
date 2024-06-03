@@ -6,7 +6,7 @@ import { handleApiError, logError } from "../../_utils/errors"
 import { ICreateInscriptionPayload } from "@/types/inscriptions"
 import { CreateMedia } from "@/media/create"
 
-export const createItem = async ({ collection, formData } : { collection: IOneOfCollectionNames, formData: FormData }) => {
+export const addToCollection = async ({ collection, formData } : { collection: IOneOfCollectionNames, formData: FormData }) => {
 
     const { Model } = getModelByCollectionName(collection)
 
@@ -45,7 +45,7 @@ export const createItem = async ({ collection, formData } : { collection: IOneOf
     }
 }
 
-export const createItemWithMedia = async ({ collection, formData } : { collection: IOneOfCollectionsWithMediaNames, formData: FormData }) => {
+export const addToCollectionWithMedia = async ({ collection, formData } : { collection: IOneOfCollectionsWithMediaNames, formData: FormData }) => {
     
     const payload = Object.fromEntries(formData) as ICreateInscriptionPayload
 

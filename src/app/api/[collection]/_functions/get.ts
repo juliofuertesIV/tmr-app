@@ -2,7 +2,7 @@ import { IOneOfCollectionNames } from "@/types"
 import { getModelByCollectionName } from "../_utils"
 import { constructAPIResponse } from "../../_utils"
 
-export async function getElementsByCollectionName({ collection } : { collection: IOneOfCollectionNames }) {
+export async function getCollectionByName({ collection } : { collection: IOneOfCollectionNames }) {
     
     const { Model, options } = getModelByCollectionName(collection)
 

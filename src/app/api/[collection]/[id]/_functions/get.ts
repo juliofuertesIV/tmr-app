@@ -7,7 +7,7 @@ type Props = {
     id: string
 }
 
-export const getItemById = async ({ collection, id } : Props) => {
+export const getCollectionItemById = async ({ collection, id } : Props) => {
     
     const { Model, options } = getModelByCollectionName(collection)
 

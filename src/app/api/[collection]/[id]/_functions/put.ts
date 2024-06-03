@@ -10,7 +10,7 @@ type Props = {
     id: string
 }
 
-export const updateElement = async ({ collection, req, id } : Props) => {
+export const updateCollectionItem = async ({ collection, req, id } : Props) => {
 
     const { Model } = getModelByCollectionName(collection)
 

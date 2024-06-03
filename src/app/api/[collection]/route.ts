@@ -1,14 +1,13 @@
 
 import { IOneOfCollectionNames } from '@/types'
-import { getElementsByCollectionName } from './_functions/get'
-import { createItem, createItemWithMedia } from './_functions/post'
+import { getCollectionByName } from './_functions/get'
+import { addToCollection, addToCollectionWithMedia } from './_functions/post'
 
 export const GET = async (req: Request, { params } : { params: { collection: IOneOfCollectionNames }}) => {
 
     const { collection } = params
     
-    return await getElementsByCollectionName({ collection })
-
+    return await getCollectionByName({ collection })
 }
 
 export const POST = async (req: Request, { params } : { params: { collection: IOneOfCollectionNames }}) => {
@@ -19,5 +18,8 @@ export const POST = async (req: Request, { params } : { params: { collection: IO
 
     const creationIncludesMedia = collection === 'inscriptions'
 
-    return creationIncludesMedia ? await createItemWithMedia({ collection, formData }) : await createItem({ collection, formData })
+    if (creationIncludesMedia) 
+        return await addToCollectionWithMedia({ collection, formData })
+    else 
+        return await addToCollection({ collection, formData })
 }

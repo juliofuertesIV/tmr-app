@@ -19,9 +19,7 @@ export const GET = async (req: Request, { params } : Params) => {
         .then(data => data)
 
     return Response.json(data)
-
 }
-
 
 export const POST = async (req: Request, { params } : Params) => {
 

@@ -9,7 +9,7 @@ type Props = {
     id: string
 }
 
-export const deleteElement = async ({ collection, id } : Props) => {
+export const deleteCollectionItem = async ({ collection, id } : Props) => {
     const { Model } = getModelByCollectionName(collection)
 
     const transaction = await sequelize.transaction()
