@@ -25,7 +25,7 @@ export const GET = async (req: Request, { params } : Params) => {
 
 export const POST = async (req: Request, { params } : Params) => {
 
-    const { collection, id, association, } = params
+    const { collection, id, association } = params
 
     const formData = Object.fromEntries(await req.formData())
 

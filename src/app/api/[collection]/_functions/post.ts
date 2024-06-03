@@ -49,9 +49,9 @@ export const createItemWithMedia = async ({ collection, formData } : { collectio
     
     const payload = Object.fromEntries(formData) as ICreateInscriptionPayload
 
-    const { MediumId } = await CreateMedia({ formData, collection, domain: payload.domain }) as { MediumId: string }
+    // TO DO: Media validation!!
 
-    console.log({ MediumId })
+    const { MediumId } = await CreateMedia({ formData, collection, domain: payload.domain }) as { MediumId: string }
 
     try {
         const inscription = await Inscription.create({ MediumId, ...payload })

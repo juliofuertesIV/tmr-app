@@ -52,7 +52,7 @@ export const associateItems = async (
 ) : Promise<IAPIResponse<null>> => {
 
     if (association === 'states') {
-        await fetch(`http://localhost:3000/api/${ collection }/${ collectionItemId }/validate`, {
+        await fetch(`http://localhost:3000/api/validate/${ collection }/${ collectionItemId }`, {
             method: 'GET',
             cache: 'no-cache'
         })

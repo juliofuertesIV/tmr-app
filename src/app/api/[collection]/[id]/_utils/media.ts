@@ -1,7 +1,8 @@
-import { IMedia, IOneOfCollectionNames } from "@/types";
+import { IOneOfCollectionNames } from "@/types";
 import { Transaction } from "sequelize";
 import { Media, ContestMedia } from "@/database";
 import { Model, ModelStatic, Options } from "sequelize";
+import { IMedia } from "@/types/media";
 
 export const modelsByCollectionName = {
     contests: {
