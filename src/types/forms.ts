@@ -2,7 +2,7 @@ import { HTMLInputTypeAttribute } from "react"
 import { ICollectionNames } from "."
 import { IAPIResponse } from "./api"
 import { IAssociationNames } from "./associations"
-import { IMediaRole } from "./media"
+import { IMediaRole, IMediaTypes } from "./media"
 
 
 export type IFormByCollectionName = {
@@ -30,7 +30,7 @@ export type IFormField = {
 export type IMediaFormField = {
     role: IMediaRole,
     label: string,
-    type: 'image' | 'pdf'
+    type: IMediaTypes
 }
 
 export type IFormAction = (...args: any) => Promise<IAPIResponse<any>>
