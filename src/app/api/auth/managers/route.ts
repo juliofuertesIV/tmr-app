@@ -1,7 +1,7 @@
-import { Manager, sequelize } from "@/database"
+import { Manager } from "@/database"
 import { constructAPIResponse } from "../../_utils"
 import { getHashAndSaltFromPassword } from "../../../../auth/crypto"
-import { logError } from "../../_utils/errors"
+import { handleApiError } from "../../_utils/errors"
 
 export const POST = async (req: Request) => {
 
@@ -9,11 +9,9 @@ export const POST = async (req: Request) => {
 
     const managerCreationPayload = getManagerCreationPayload({ ...requestPayload })
 
-    const transaction = await sequelize.transaction()
-
     try {
-        const data = await Manager.create({ ...managerCreationPayload }, { transaction })
-        await transaction.commit()
+        const data = await Manager.create({ ...managerCreationPayload })
+        
         return Response.json(
             constructAPIResponse({ 
                 message: "Manager creado correctamente.",
@@ -24,22 +22,11 @@ export const POST = async (req: Request) => {
         )
     }
     catch (error) {
-        await transaction.rollback();
-
-        await logError({ 
+        return await handleApiError({
             error, 
             collection: 'managers',
             route: `/api/auth/managers`
         })
-
-        return Response.json(
-            constructAPIResponse({ 
-                message: "Ha habido un problema creando el manager en la base de datos.",
-                success: false,
-                error,
-                data: null 
-            })
-        )
     }
 }
 

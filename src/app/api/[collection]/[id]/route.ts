@@ -19,6 +19,7 @@ export const GET = async (req: Request, { params } : RouteParams) => {
 export const PUT = async (req: Request, { params } : RouteParams) => {
 
     const { collection, id } = params
+
     return await updateCollectionItem({ collection, id, req })
 }
 

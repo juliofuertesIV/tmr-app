@@ -1,8 +1,11 @@
-import { IOneOfCollectionNames } from "@/types";
+import { IOneOfCollectionNames, IOneOfCollectionsWithMediaNames } from "@/types";
 import { Transaction } from "sequelize";
 import { Media, ContestMedia } from "@/database";
 import { Model, ModelStatic, Options } from "sequelize";
 import { IMedia } from "@/types/media";
+
+export const creationIncludesMedia = (collection: IOneOfCollectionNames) 
+    : collection is IOneOfCollectionsWithMediaNames => collection === 'inscriptions' || collection === 'contests'
 
 export const modelsByCollectionName = {
     contests: {

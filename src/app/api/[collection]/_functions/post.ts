@@ -1,21 +1,21 @@
 import { IOneOfCollectionNames, IOneOfCollectionsWithMediaNames } from "@/types"
 import { getModelByCollectionName } from "../_utils"
-import { Inscription, sequelize } from "@/database"
+import { Inscription } from "@/database"
 import { constructAPIResponse } from "../../_utils"
-import { handleApiError, logError } from "../../_utils/errors"
+import { handleApiError } from "../../_utils/errors"
 import { ICreateInscriptionPayload } from "@/types/inscriptions"
 import { CreateMedia } from "@/media/create"
+import { validateMedia } from "@/media/validation"
 
 export const addToCollection = async ({ collection, formData } : { collection: IOneOfCollectionNames, formData: FormData }) => {
 
     const { Model } = getModelByCollectionName(collection)
 
     const payload = Object.fromEntries(formData)
-    const transaction = await sequelize.transaction()
 
     try {
-        const data = await Model.create({ ...payload }, { transaction })
-        await transaction.commit()
+        const data = await Model.create({ ...payload })
+        
         return Response.json(
             constructAPIResponse({ 
                 message: "Elemento creado correctamente.",
@@ -26,22 +26,12 @@ export const addToCollection = async ({ collection, formData } : { collection: I
         )
     }
     catch (error) {
-        await transaction.rollback();
-
-        await logError({ 
+        return await handleApiError({
             error, 
             collection,
             route: `/api/${ collection }`
         })
-
-        return Response.json(
-            constructAPIResponse({ 
-                message: "Ha habido un problema creando el elemento.",
-                success: false,
-                error,
-                data: null 
-            })
-        )
+        
     }
 }
 
@@ -49,7 +39,17 @@ export const addToCollectionWithMedia = async ({ collection, formData } : { coll
     
     const payload = Object.fromEntries(formData) as ICreateInscriptionPayload
 
-    // TO DO: Media validation!!
+    try {
+        validateMedia({ file: payload.file, type: 'image' })
+    }
+    catch (error) {
+        return await handleApiError({
+            collection: 'inscriptions',
+            route: '/api/' + collection,
+            error,
+            message: 'Fallo validando el archivo.' 
+        })
+    }
 
     const { MediumId } = await CreateMedia({ formData, collection, domain: payload.domain }) as { MediumId: string }
 
@@ -66,18 +66,9 @@ export const addToCollectionWithMedia = async ({ collection, formData } : { coll
         )
     }
     catch (error) {
-
-        const route = '/api/' + collection
-
-        await logError({ 
-            error, 
-            collection,
-            route
-        })
-
         return await handleApiError({
             collection: 'inscriptions',
-            route,
+            route: '/api/' + collection,
             error,
             message: 'Fallo inscribiendo candidatura.' 
         })

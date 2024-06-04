@@ -3,7 +3,7 @@ import { createSession, passwordsAreMatching } from "@/auth"
 import { NextRequest } from "next/server"
 import { IManager } from "@/types"
 import { constructAPIResponse } from "../../_utils"
-import { logError } from "../../_utils/errors"
+import { handleApiError } from "../../_utils/errors"
 
 export const POST = async (request: NextRequest) => {
 
@@ -60,19 +60,10 @@ export const POST = async (request: NextRequest) => {
     }
     catch (error) {
 
-        await logError({ 
+        return await handleApiError({
+            message: 'Error generando sesión.',
             error, 
-            collection: null,
             route: `/api/login`
         })
-
-        return Response.json(
-            constructAPIResponse({
-                message: 'Error generando sesión.',
-                error,
-                data: null,
-                success: false
-            })
-        )
     }
 }

@@ -1,5 +1,5 @@
 import { constructAPIResponse } from "@/app/api/_utils"
-import { logError } from "@/app/api/_utils/errors"
+import { handleApiError } from "@/app/api/_utils/errors"
 import { Media, sequelize } from "@/database"
 import { deleteFromCloudStorage } from "@/lib/gcp_storage"
 import { IMedia } from "@/types/media"
@@ -21,44 +21,27 @@ export const deleteMedia = async ({ mediaId } : { mediaId: string }) => {
 
     const transaction = await sequelize.transaction()
 
-    try { await Media.destroy({ where: { id: mediaId }, transaction }) } 
+    try { 
+        await Media.destroy({ where: { id: mediaId }, transaction }) 
+    } 
     catch (error) {
         // TO DO: Collection? Media?
-        await logError({ 
+        return await handleApiError({
             error, 
-            collection: undefined,
             route: `/api/delete-media`
         })
-        
-        return Response.json(
-            constructAPIResponse({
-                message: 'Error eliminando la imagen de la base de datos.',
-                success: false,
-                error,
-                data: null
-            })
-        )
     }
 
-    try { await deleteFromCloudStorage({ src: (media as IMedia).src }) } 
+    try { 
+        await deleteFromCloudStorage({ src: (media as IMedia).src }) 
+    } 
     catch (error) {
         await transaction.rollback()
-
         // TO DO: Collection? Media?
-        await logError({ 
+        return await handleApiError({
             error, 
-            collection: undefined,
             route: `/api/delete-media`
         })
-
-        return Response.json(
-            constructAPIResponse({
-                message: 'Error eliminando la imagen de Cloud Storage',
-                success: true,
-                error,
-                data: null
-            })
-        )
     }
 
     await transaction.commit()
