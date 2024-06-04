@@ -2,12 +2,15 @@ export type IContestMediaRole = 'frame' | 'banner' | 'logo' | 'favicon' | 'foote
 
 export type IMediaRole = IContestMediaRole | 'inscriptions'
 
+export type IMediaTypes = 'image' | 'pdf'
+
 export type IMediaPayload = {
     file: File,
-    type: 'image' | 'pdf',
+    type: IMediaTypes,
     width: string,
     height: string,
-    role: IMediaRole
+    role: IMediaRole,
+    domain: string
 }
 
 export type IMedia = {

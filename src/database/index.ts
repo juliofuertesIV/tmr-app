@@ -458,8 +458,8 @@ SocialMedia.belongsToMany(Contest, { through: 'ContestSocial'})
 Contest.belongsTo(State)
 State.hasMany(Contest)
 
-Inscription.belongsTo(Media)
-Media.hasOne(Inscription)
+Inscription.belongsTo(Media, { onDelete: 'CASCADE' })
+Media.hasOne(Inscription, { onDelete: 'CASCADE' })
 
 Contest.belongsToMany(Genre, { through: 'ContestGenres' })
 Genre.belongsToMany(Contest, { through: 'ContestGenres' })

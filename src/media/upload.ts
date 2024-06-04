@@ -33,7 +33,7 @@ export const uploadMedia = async ({
     } = await prepareMediaFile({ payload, domain, collection })
 
     if (!success) {
-        handleApiError({
+        await handleApiError({
             collection: collection,
             route: '/api/' + collection,
             error,
@@ -47,8 +47,8 @@ export const uploadMedia = async ({
         collection,
         domain 
     })
-    .catch(error => {
-        handleApiError({
+    .catch(async (error) => {
+        return await handleApiError({
             collection: collection,
             route: '/api/' + collection,
             error,

@@ -125,7 +125,8 @@ export type IInscription = {
     facebook?: string,
     spotify?: string,
     tiktok?: string,
-    twitter?: string
+    twitter?: string,
+    MediumId: string,
     Medium: IMedia,
     Contest: IContest,
 }
