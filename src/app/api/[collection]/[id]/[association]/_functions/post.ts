@@ -1,6 +1,6 @@
 import { constructAPIResponse } from "@/app/api/_utils"
 import { getAssociationModelByName } from "../../../_utils"
-import { handleApiError } from "@/app/api/_utils/errors"
+import { handleApiError } from "@/errors"
 import { ICollectionNames } from "@/types"
 import { IAssociationNames } from "@/types/associations"
 

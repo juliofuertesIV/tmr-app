@@ -1,4 +1,4 @@
-import { handleApiError } from "@/app/api/_utils/errors"
+import { handleApiError } from "@/errors"
 import { ICollectionsWithMediaNames } from "@/types"
 import { prepareMediaFile } from "./preparation"
 import { uploadToGoogleCloudStorage } from "@/lib/gcp_storage"

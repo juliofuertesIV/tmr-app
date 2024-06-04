@@ -1,6 +1,6 @@
 import { ICollectionNames } from "@/types";
 import { IAssociationNames } from "@/types/associations";
-import { handleApiError } from "@/app/api/_utils/errors";
+import { handleApiError } from "@/errors";
 import { deleteAssociation } from "./_functions/delete";
 
 type Params = { params: { collection: ICollectionNames, id: string, association: IAssociationNames, associationId: string }}

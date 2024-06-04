@@ -1,5 +1,5 @@
+import { parseError } from "@/errors"
 import { IAPIResponse } from "@/types/api"
-import { parseError } from "./errors"
 
 export const constructAPIResponse = ({ 
     message,

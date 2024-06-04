@@ -1,5 +1,5 @@
 import { constructAPIResponse } from "@/app/api/_utils"
-import { handleApiError } from "@/app/api/_utils/errors"
+import { handleApiError } from "@/errors"
 import { Media, sequelize } from "@/database"
 import { deleteFromCloudStorage } from "@/lib/gcp_storage"
 import { IMedia } from "@/types/media"

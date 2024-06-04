@@ -1,7 +1,7 @@
 import { ICollectionNames } from "@/types"
 import { getModelByCollectionName } from "../../_utils"
 import { constructAPIResponse } from "@/app/api/_utils"
-import { handleApiError } from "@/app/api/_utils/errors"
+import { handleApiError } from "@/errors"
 
 type Props = {
     collection: ICollectionNames,
