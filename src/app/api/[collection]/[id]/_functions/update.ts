@@ -5,7 +5,7 @@ import { constructAPIResponse } from "@/app/api/_utils"
 import { handleApiError } from "@/errors"
 import { validateMedia } from "@/media/validation"
 import { IMediaPayload } from "@/types/media"
-import { CreateMedia } from "@/media/create"
+import { createMedia } from "@/media/create"
 import { deleteFromCloudStorage } from "@/lib/gcp_storage"
 
 type Props = {
@@ -76,7 +76,7 @@ export const updateInscriptionMedia = async ({ collection, formData, id } : Prop
             })
         }) as unknown as IInscription
 
-    const { MediumId: newMediumId } = await CreateMedia({ formData, collection: 'inscriptions', domain })
+    const { MediumId: newMediumId } = await createMedia({ formData, collection: 'inscriptions', domain })
         .then(data => data)
         .catch(async (error) => {
             return await handleApiError({

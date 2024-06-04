@@ -5,13 +5,11 @@ import { handleApiError } from "@/errors"
 import { deleteFromCloudStorage } from "@/lib/gcp_storage"
 import { IMedia, IMediaPayload } from "@/types/media"
 
-export const CreateMedia = async ({ 
+export const createMedia = async ({ 
     formData,
     collection,
-    domain
 } : { 
     formData: FormData,
-    domain: string,
     collection: ICollectionsWithMediaNames 
 }
 ) : Promise<{ MediumId: string | null }> => {
@@ -20,7 +18,22 @@ export const CreateMedia = async ({
 
     const payload = Object.fromEntries(formData) as IMediaPayload
 
-    const { src, width, height, role } = await uploadMedia({ collection, domain, payload }) 
+    const domain = formData.get('domain') as string
+
+    if (!domain) {
+        await handleApiError({
+            route: 'create-media',
+            error: new Error('No hay domain en la formData.'),
+            message: 'Ausencia de domain.' 
+        })
+        return { MediumId: null }
+    }
+
+    const { src, width, height, role } = await uploadMedia({ 
+        collection,
+        domain,
+        payload 
+    }) 
 
     const transaction = await sequelize.transaction()
 

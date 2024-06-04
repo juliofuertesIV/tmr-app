@@ -1,6 +1,6 @@
 import { ICollectionNames } from "@/types";
 import { IAssociationNames } from "@/types/associations";
-import { createAssociation } from "./_functions/post";
+import { createAssociation, createAssociationWithMedia } from "./_functions/post";
 import { getAssociation } from "./_functions/get";
 
 type Params = { params: { collection: ICollectionNames, id: string, association: IAssociationNames }}
@@ -18,8 +18,10 @@ export const POST = async (req: Request, { params } : Params) => {
 
     const formData = await req.formData()
 
+    if (formData.has('file')) {
+        return await createAssociationWithMedia({ collection, association, id, formData })
+    }
+
     return await createAssociation({ collection, id, association, formData })
     
 }
-
-

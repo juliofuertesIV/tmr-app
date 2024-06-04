@@ -4,7 +4,7 @@ import { Inscription } from "@/database"
 import { constructAPIResponse } from "../../_utils"
 import { handleApiError } from "../../_utils/errors"
 import { ICreateInscriptionPayload } from "@/types/inscriptions"
-import { CreateMedia } from "@/media/create"
+import { createMedia } from "@/media/create"
 import { validateMedia } from "@/media/validation"
 
 export const addToCollection = async ({ collection, formData } : { collection: ICollectionNames, formData: FormData }) => {
@@ -51,7 +51,7 @@ export const addToCollectionWithMedia = async ({ collection, formData } : { coll
         })
     }
 
-    const { MediumId } = await CreateMedia({ formData, collection, domain: payload.domain }) as { MediumId: string }
+    const { MediumId } = await createMedia({ formData, collection, domain: payload.domain }) as { MediumId: string }
 
     try {
         const inscription = await Inscription.create({ MediumId, ...payload })
