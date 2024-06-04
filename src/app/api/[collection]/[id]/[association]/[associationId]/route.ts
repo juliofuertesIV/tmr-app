@@ -13,9 +13,16 @@ export const DELETE = async (req: Request, { params } : Params) => {
     try {
         const { AssociationTable, collectionItemIdField, associationIdField } = getAssociationModelByName(association)
     
-        if (!collectionItemIdField || !AssociationTable) throw new Error('Bad request.')
+        if (!collectionItemIdField || !AssociationTable) {
+            return await handleApiError({
+                message: 'No se han encontrado asociaciones para esta colección.',
+                collection,
+                route: `/api/${ collection }/${ id }/${ association }/${ associationId }`,
+                error: new Error('No collectionItemIdField or AssociationTable found')
+            })
+        }
     
-        const payload = { [collectionItemIdField]: id, [associationIdField]: associationId }
+        const payload = { [collectionItemIdField]: id, [associationIdField]: associationId } // i.e. ContestId: id, MediumId: mediumId
     
         const data = await AssociationTable.destroy({ where: {...payload }})
         .then(data => data)
