@@ -1,6 +1,6 @@
 'use client'
 
-import { IAdminData } from '@/lib/types/admin'
+import { IAdminData } from '@/types/admin'
 
 export default function Dashboard({ data } : { data: IAdminData }) {
 

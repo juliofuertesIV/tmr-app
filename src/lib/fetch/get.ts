@@ -1,8 +1,8 @@
 'use server'
 
 import { IContest, IInscription, ICollectionNames, IAllCollections } from "@/lib/types"
-import { IAdminData } from "@/lib/types/admin"
-import { IAPIResponse } from "@/lib/types/api"
+import { IAdminData } from "@/types/admin"
+import { IAPIResponse } from "@/types/api"
 
 export const getCollectionElementById = async (collection: ICollectionNames, id: string) : Promise<IAPIResponse<IAllCollections>> => {
     

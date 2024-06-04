@@ -1,5 +1,5 @@
 import { isValidString, processBasicTextInput } from "@/lib/forms/validation/functions"
-import { IFormField } from "@/lib/types/forms"
+import { IFormField } from "@/types/forms"
 
 export const socialFields : IFormField[] = [
         {

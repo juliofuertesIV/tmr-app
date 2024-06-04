@@ -1,6 +1,6 @@
 'use client'
 
-import { IAPIResponse } from '@/lib/types/api'
+import { IAPIResponse } from '@/types/api'
 import React, { useEffect, useState } from 'react'
 import FeedbackContent from './FeedbackContent'
 

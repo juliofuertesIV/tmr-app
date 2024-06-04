@@ -3,7 +3,7 @@ import { ICollectionNames } from "@/lib/types";
 import { getAssociationModelByName, getModelByCollectionName } from "@/app/api/[collection]/_utils";
 import AssociationManager from "./_components/AssociationManager";
 import { getAssociationOptionsByName } from "./_utils";
-import { IAssociationNames, IAssociations, ICollectionsWithAssociations } from "@/lib/types/associations";
+import { IAssociationNames, IAssociations, ICollectionsWithAssociations } from "@/types/associations";
 import AssociationPageHeader from "./_components/AssociationPageHeader";
 
 export const metadata: Metadata = {

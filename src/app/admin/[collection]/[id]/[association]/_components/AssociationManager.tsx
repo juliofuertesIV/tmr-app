@@ -3,7 +3,7 @@
 import { ICollectionNames } from '@/lib/types'
 import AssociationInput from './AssociationInput'
 import { determineIfItemIsAssociated } from '../_utils'
-import { IAssociationNames, IAssociationKeys, IAssociations, ICollectionsWithAssociations, ISimpleAssociationKeys } from '@/lib/types/associations'
+import { IAssociationNames, IAssociationKeys, IAssociations, ICollectionsWithAssociations, ISimpleAssociationKeys } from '@/types/associations'
 
 type Props = {
     collectionItem: ICollectionsWithAssociations,

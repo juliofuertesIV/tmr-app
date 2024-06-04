@@ -1,8 +1,8 @@
 'use server'
     
 import { ICollectionNames } from "@/lib/types"
-import { IAPIResponse } from "@/lib/types/api"
-import { IAssociationNames } from "@/lib/types/associations"
+import { IAPIResponse } from "@/types/api"
+import { IAssociationNames } from "@/types/associations"
 import { revalidateTag } from "next/cache"
 
 export const deleteCollectionItem = async (collection: ICollectionNames, itemId: string, prevState: any, formData: FormData) : Promise<IAPIResponse<null>> => {

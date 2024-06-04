@@ -1,7 +1,7 @@
 'use client'
 
 import { useFormState } from 'react-dom'
-import { IActionTarget, IFormAction, IFormField, IMediaFormField } from '@/lib/types/forms'
+import { IActionTarget, IFormAction, IFormField, IMediaFormField } from '@/types/forms'
 import { ICollectionNames, IAllCollections } from '@/lib/types'
 import AdminFormFeedback from './feedback/FormFeedback'
 import FormInput from './inputs/FormInput'

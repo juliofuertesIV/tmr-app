@@ -1,5 +1,5 @@
 import { extractSubdomain, isValidDomain, isValidString, isValidUrl, processBasicTextInput } from "@/lib/forms/validation/functions"
-import { IFormField, IMediaFormField } from "@/lib/types/forms"
+import { IFormField, IMediaFormField } from "@/types/forms"
 
 export const contestFields : IFormField[] = [
     {

@@ -1,4 +1,4 @@
-import { IFormByCollectionName, IMediaFormField } from "@/lib/types/forms";
+import { IFormByCollectionName, IMediaFormField } from "@/types/forms";
 import { contestFields, contestsMediaFields } from "./contests";
 import { brandFields } from "./brands";
 import { socialFields } from "./social";

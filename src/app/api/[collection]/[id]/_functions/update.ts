@@ -4,7 +4,7 @@ import { Inscription, Media, sequelize } from "@/lib/database"
 import { constructAPIResponse } from "@/app/api/_utils"
 import { handleApiError } from "@/lib/errors"
 import { validateMedia } from "@/lib/media/validation"
-import { IMediaPayload } from "@/lib/types/media"
+import { IMediaPayload } from "@/types/media"
 import { createMedia } from "@/lib/media/create"
 import { deleteFromCloudStorage } from "@/lib/gcp_storage"
 

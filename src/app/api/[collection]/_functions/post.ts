@@ -3,7 +3,7 @@ import { getModelByCollectionName } from "../_utils"
 import { Inscription } from "@/lib/database"
 import { constructAPIResponse } from "../../_utils"
 import { handleApiError } from "@/lib/errors"
-import { ICreateInscriptionPayload } from "@/lib/types/inscriptions"
+import { ICreateInscriptionPayload } from "@/types/inscriptions"
 import { createMedia } from "@/lib/media/create"
 import { validateMedia } from "@/lib/media/validation"
 

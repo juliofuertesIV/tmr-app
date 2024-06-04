@@ -2,7 +2,7 @@ import { handleApiError } from "@/lib/errors"
 import { ICollectionsWithMediaNames } from "@/lib/types"
 import { prepareMediaFile } from "./preparation"
 import { uploadToGoogleCloudStorage } from "@/lib/gcp_storage"
-import { IMediaPayload, IMediaRole } from "@/lib/types/media"
+import { IMediaPayload, IMediaRole } from "@/types/media"
 
 type Props = {
     collection: ICollectionsWithMediaNames,

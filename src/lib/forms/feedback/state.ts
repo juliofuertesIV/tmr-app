@@ -1,4 +1,4 @@
-import { IAPIResponse } from "@/lib/types/api";
+import { IAPIResponse } from "@/types/api";
 
 export const formInitialState : IAPIResponse<any> = {
     success: false,

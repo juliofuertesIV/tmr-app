@@ -1,13 +1,13 @@
 'use client'
 
 import { IContest } from "@/lib/types"
-import { IMediaFormField, formInitialState } from "@/lib/types/forms"
+import { IMediaFormField, formInitialState } from "@/types/forms"
 import { useFormState } from "react-dom"
 import { ChangeEvent, DragEvent, useEffect, useLayoutEffect, useRef, useState } from "react"
 import FilePreview from "./FilePreview"
 import Droppable from "./Droppable"
 import { deleteContestMediaItem } from "@/lib/fetch/delete"
-import { IMedia, IMediaRole } from "@/lib/types/media"
+import { IMedia, IMediaRole } from "@/types/media"
 import { manageCollectionMedia } from "@/lib/fetch/post"
 import AdminFormFeedback from "@/lib/forms/feedback/FormFeedback"
 import FormSubmit from "@/lib/forms/feedback/FormSubmit"

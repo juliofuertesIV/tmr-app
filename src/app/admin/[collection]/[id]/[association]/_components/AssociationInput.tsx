@@ -4,7 +4,7 @@ import { formInitialState } from '@/lib/forms/feedback/state'
 import React, { useEffect, useRef, useState } from 'react'
 import { useFormState } from 'react-dom'
 import AssociationIcon from './AssociationIcon'
-import { IAssociationNames, IAssociations, ICollectionsWithAssociations } from '@/lib/types/associations'
+import { IAssociationNames, IAssociations, ICollectionsWithAssociations } from '@/types/associations'
 import { associateItems } from '@/lib/fetch/post'
 
 type Props = {

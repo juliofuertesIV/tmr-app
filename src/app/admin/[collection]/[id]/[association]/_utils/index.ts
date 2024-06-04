@@ -1,5 +1,5 @@
 import { IContest, ICollectionNames } from "@/lib/types"
-import { IAssociationNames, IAssociationKeys, IAssociations, ICollectionsWithAssociations } from "@/lib/types/associations"
+import { IAssociationNames, IAssociationKeys, IAssociations, ICollectionsWithAssociations } from "@/types/associations"
 
 const associationOptionsByName : {
     [key in IAssociationNames]: IAssociationKeys

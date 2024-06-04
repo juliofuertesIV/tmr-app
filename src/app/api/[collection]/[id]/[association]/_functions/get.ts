@@ -1,4 +1,4 @@
-import { IAssociationNames } from "@/lib/types/associations"
+import { IAssociationNames } from "@/types/associations"
 import { getAssociationModelByName } from "../../../_utils"
 import { ICollectionNames } from "@/lib/types"
 import { handleApiError } from "@/lib/errors"

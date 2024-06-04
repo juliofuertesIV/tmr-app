@@ -1,5 +1,5 @@
 import { ICollectionNames, ICollectionsWithMediaNames } from "@/lib/types"
-import { IActionTarget, IFormAction, IFormField, IMediaFormField } from "@/lib/types/forms"
+import { IActionTarget, IFormAction, IFormField, IMediaFormField } from "@/types/forms"
 import { formsByCollectionName, mediaFieldsByCollectionName } from "./fields"
 
 type FormByCollectionNameProps = {

@@ -1,7 +1,7 @@
 'use client'
 
 import { IContest } from '@/lib/types'
-import { IMediaFormField } from '@/lib/types/forms'
+import { IMediaFormField } from '@/types/forms'
 import { deleteContestMediaItem } from '@/lib/fetch/delete'
 import FilePreview from '../inputs/media/FilePreview'
 import FileUploadForm from '../inputs/media/FileUploadForm'

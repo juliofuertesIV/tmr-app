@@ -1,7 +1,7 @@
 import { ICollectionsWithMediaNames } from "@/lib/types";
 import { mediaPayloadIsValidLength } from "./validation";
 import path from "path";
-import { IMediaPayload } from "@/lib/types/media";
+import { IMediaPayload } from "@/types/media";
 
 export const produceFileName = (fileName: string) => crypto.randomUUID() + "-" + new Date().getTime() + path.extname(fileName);
 

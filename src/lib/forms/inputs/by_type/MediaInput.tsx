@@ -1,6 +1,6 @@
 'use client'
 
-import { IMediaFormField } from '@/lib/types/forms'
+import { IMediaFormField } from '@/types/forms'
 import React, { HTMLProps } from 'react'
 
 type Props = {

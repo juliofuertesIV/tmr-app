@@ -1,4 +1,4 @@
-import { IAPIResponse } from '@/lib/types/api'
+import { IAPIResponse } from '@/types/api'
 import React from 'react'
 
 export default function FeedbackContent({ formState } : { formState: IAPIResponse<any> | null }) {

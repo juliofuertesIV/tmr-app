@@ -1,5 +1,5 @@
 import { ICollectionNames } from "@/lib/types";
-import { IAssociationNames } from "@/lib/types/associations";
+import { IAssociationNames } from "@/types/associations";
 import { createAssociation, createAssociationWithMedia } from "./_functions/post";
 import { getAssociation } from "./_functions/get";
 

@@ -2,7 +2,7 @@ import { constructAPIResponse } from "@/app/api/_utils"
 import { handleApiError } from "@/lib/errors"
 import { Media, sequelize } from "@/lib/database"
 import { deleteFromCloudStorage } from "@/lib/gcp_storage"
-import { IMedia } from "@/lib/types/media"
+import { IMedia } from "@/types/media"
 
 export const deleteMedia = async ({ mediaId } : { mediaId: string }) => {
 

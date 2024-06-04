@@ -3,7 +3,7 @@ import { uploadMedia } from "@/lib/media/upload"
 import { ICollectionsWithMediaNames } from "@/lib/types"
 import { handleApiError } from "@/lib/errors"
 import { deleteFromCloudStorage } from "@/lib/gcp_storage"
-import { IMedia, IMediaPayload } from "@/lib/types/media"
+import { IMedia, IMediaPayload } from "@/types/media"
 
 export const createMedia = async ({ 
     formData,

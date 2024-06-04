@@ -1,6 +1,6 @@
 import { Brand, Contest, Media, Genre, Param, State, ContestParam, ContestMedia, ContestGenre, ContestSocial, SocialMedia, Manager, Role, Log, Inscription } from "@/lib/database";
 import { ICollectionNames, ICollectionsWithMediaNames } from "@/lib/types";
-import { IAssociationNames } from "@/lib/types/associations";
+import { IAssociationNames } from "@/types/associations";
 import { FindOptions, Model, ModelStatic } from "sequelize";
 
 const modelsByCollectionName = {

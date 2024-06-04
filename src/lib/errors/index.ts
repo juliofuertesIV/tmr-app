@@ -1,7 +1,7 @@
 import { constructAPIResponse } from "@/app/api/_utils"
 import { Log } from "@/lib/database"
 import { ICollectionNames } from "@/lib/types"
-import { IAPIError, IErrorTypes } from "@/lib/types/api"
+import { IAPIError, IErrorTypes } from "@/types/api"
 import { ConnectionRefusedError, Transaction, ValidationError } from "sequelize"
 
 export const parseError = (error: unknown) : IAPIError => {

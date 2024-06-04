@@ -1,8 +1,8 @@
 import { Metadata } from "next";
 import Dashboard from "./_dashboard/Dashboard";
 import { getDashboardData } from "../../lib/fetch/get";
-import { IAdminData } from "@/lib/types/admin";
-import { IAPIResponse } from "@/lib/types/api";
+import { IAdminData } from "@/types/admin";
+import { IAPIResponse } from "@/types/api";
 
 export const metadata: Metadata = {
     title: "Panel de administración TMR",
