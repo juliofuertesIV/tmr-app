@@ -4,7 +4,7 @@ import { Inscription, Media, sequelize } from "@/database"
 import { constructAPIResponse } from "@/app/api/_utils"
 import { handleApiError } from "@/app/api/_utils/errors"
 import { validateMedia } from "@/media/validation"
-import { IMediaPayload, IMediaTypes } from "@/types/media"
+import { IMediaPayload } from "@/types/media"
 import { CreateMedia } from "@/media/create"
 import { deleteFromCloudStorage } from "@/lib/gcp_storage"
 
@@ -117,6 +117,4 @@ export const updateInscriptionMedia = async ({ collection, formData, id } : Prop
             success: true
         })
     )
-
-
 }
