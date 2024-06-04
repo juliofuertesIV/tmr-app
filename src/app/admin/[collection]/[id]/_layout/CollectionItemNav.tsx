@@ -1,6 +1,6 @@
 'use client'
 
-import { IOneOfCollectionNames } from "@/types"
+import { ICollectionNames } from "@/types"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 
@@ -30,10 +30,10 @@ const navItemsByCollectionName = {
         { name: 'Información', value: '' },
     ]
 } as {
-    [key in IOneOfCollectionNames]: { name: string, value: string }[]
+    [key in ICollectionNames]: { name: string, value: string }[]
 }
 
-export default function CollectionItemNav({ collection, id } : { collection: IOneOfCollectionNames, id: string | number }) {
+export default function CollectionItemNav({ collection, id } : { collection: ICollectionNames, id: string | number }) {
 
     const path = usePathname()
 

@@ -1,10 +1,10 @@
 'use server'
 
-import { IContest, IInscription, IOneOfCollectionNames, IOneOfCollections } from "@/types"
+import { IContest, IInscription, ICollectionNames, IAllCollections } from "@/types"
 import { IAdminData } from "@/types/admin"
 import { IAPIResponse } from "@/types/api"
 
-export const getCollectionElementById = async (collection: IOneOfCollectionNames, id: string) : Promise<IAPIResponse<IOneOfCollections>> => {
+export const getCollectionElementById = async (collection: ICollectionNames, id: string) : Promise<IAPIResponse<IAllCollections>> => {
     
     const res = await fetch(`http://localhost:3000/api/${ collection }/${ id }`, {
         method: "GET",
@@ -41,7 +41,7 @@ export const getInscriptionsFromContestId = async (contestId: string) : Promise<
 }
 
 
-export const getCollection = async (collection: IOneOfCollectionNames) : Promise<IAPIResponse<IOneOfCollections[]>> => {
+export const getCollection = async (collection: ICollectionNames) : Promise<IAPIResponse<IAllCollections[]>> => {
     
     const res = await fetch(`http://localhost:3000/api/${ collection }`, {
         method: "GET",

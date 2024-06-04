@@ -1,5 +1,5 @@
 import { Log } from "@/database"
-import { IOneOfCollectionNames } from "@/types"
+import { ICollectionNames } from "@/types"
 import { IAPIError, IErrorTypes } from "@/types/api"
 import { ConnectionRefusedError, Transaction, ValidationError } from "sequelize"
 import { constructAPIResponse } from "."
@@ -50,7 +50,7 @@ export const logError = async ({
 } : {
     error: unknown,
     route: string,
-    collection?: IOneOfCollectionNames | null       
+    collection?: ICollectionNames | null       
 }) => {
     
     const log = {
@@ -75,7 +75,7 @@ export const handleApiError = async ({
     error: unknown,
     route: string,
     message?: string,
-    collection?: IOneOfCollectionNames,
+    collection?: ICollectionNames,
     transaction?: Transaction
 }) => {
 

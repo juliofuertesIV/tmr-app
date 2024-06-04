@@ -1,8 +1,8 @@
-import { IOneOfCollectionNames } from "@/types"
+import { ICollectionNames } from "@/types"
 import { getModelByCollectionName } from "../_utils"
 import { constructAPIResponse } from "../../_utils"
 
-export async function getCollectionByName({ collection } : { collection: IOneOfCollectionNames }) {
+export async function getCollectionByName({ collection } : { collection: ICollectionNames }) {
     
     const { Model, options } = getModelByCollectionName(collection)
 

@@ -1,17 +1,17 @@
 
-import { IOneOfCollectionNames } from '@/types'
+import { ICollectionNames } from '@/types'
 import { getCollectionByName } from './_functions/get'
 import { addToCollection, addToCollectionWithMedia } from './_functions/post'
 import { collectionHasMedia } from './_utils'
 
-export const GET = async (req: Request, { params } : { params: { collection: IOneOfCollectionNames }}) => {
+export const GET = async (req: Request, { params } : { params: { collection: ICollectionNames }}) => {
 
     const { collection } = params
     
     return await getCollectionByName({ collection })
 }
 
-export const POST = async (req: Request, { params } : { params: { collection: IOneOfCollectionNames }}) => {
+export const POST = async (req: Request, { params } : { params: { collection: ICollectionNames }}) => {
 
     const { collection } = params
 

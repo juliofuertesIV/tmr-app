@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { IOneOfCollectionNames } from "@/types";
+import { ICollectionNames } from "@/types";
 import { getCollectionElementById } from "@/fetch/get";
 import EditionModule from "./_components/EditionModule";
 
@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     description: "El buen admin panel"
 };
 
-export default async function AdminElementPage({ params } : { params: { collection: IOneOfCollectionNames, id: string }}) {
+export default async function AdminElementPage({ params } : { params: { collection: ICollectionNames, id: string }}) {
     
     const { collection, id } = params
 

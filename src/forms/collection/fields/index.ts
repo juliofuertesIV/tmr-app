@@ -4,7 +4,7 @@ import { brandFields } from "./brands";
 import { socialFields } from "./social";
 import { genreFields } from "./genres";
 import { managerFields } from "./managers";
-import { IOneOfCollectionsWithMediaNames } from "@/types";
+import { ICollectionsWithMediaNames } from "@/types";
 import { addCollectionElement } from "@/fetch/post";
 import { updateCollectionItem } from "@/fetch/put";
 import { inscriptionFields } from "./inscriptions";
@@ -28,5 +28,5 @@ export const mediaFieldsByCollectionName = {
     contests: contestsMediaFields,
     inscriptions: []
 } as {
-    [key in IOneOfCollectionsWithMediaNames]: IMediaFormField[]
+    [key in ICollectionsWithMediaNames]: IMediaFormField[]
 }

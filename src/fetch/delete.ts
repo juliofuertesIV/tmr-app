@@ -1,11 +1,11 @@
 'use server'
     
-import { IOneOfCollectionNames } from "@/types"
+import { ICollectionNames } from "@/types"
 import { IAPIResponse } from "@/types/api"
 import { IAssociationNames } from "@/types/associations"
 import { revalidateTag } from "next/cache"
 
-export const deleteCollectionItem = async (collection: IOneOfCollectionNames, itemId: string, prevState: any, formData: FormData) : Promise<IAPIResponse<null>> => {
+export const deleteCollectionItem = async (collection: ICollectionNames, itemId: string, prevState: any, formData: FormData) : Promise<IAPIResponse<null>> => {
     
     const payload = Object.fromEntries(formData)
 
@@ -44,7 +44,7 @@ export const deleteContestMediaItem = async ({ contestId, mediaId } : { contestI
 }
 
 export const disassociateItems = async (
-    collection: IOneOfCollectionNames,
+    collection: ICollectionNames,
     collectionItemId: string | number,
     association: IAssociationNames,
     associationItemId: string | number,

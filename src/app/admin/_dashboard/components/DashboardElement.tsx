@@ -1,8 +1,8 @@
-import { IOneOfCollections } from '@/types'
+import { IAllCollections } from '@/types'
 import React from 'react'
 
 type Props = {
-    items: IOneOfCollections[],
+    items: IAllCollections[],
 }
 
 export default function DashboardElement({ items } : Props) {

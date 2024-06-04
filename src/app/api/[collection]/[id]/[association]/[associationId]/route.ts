@@ -1,47 +1,28 @@
-import { IOneOfCollectionNames } from "@/types";
-import { getAssociationModelByName } from "../../../_utils";
-import { constructAPIResponse } from "@/app/api/_utils";
+import { ICollectionNames } from "@/types";
 import { IAssociationNames } from "@/types/associations";
 import { handleApiError } from "@/app/api/_utils/errors";
+import { deleteAssociation } from "./_functions/delete";
 
-type Params = { params: { collection: IOneOfCollectionNames, id: string, association: IAssociationNames, associationId: string }}
+type Params = { params: { collection: ICollectionNames, id: string, association: IAssociationNames, associationId: string }}
 
 export const DELETE = async (req: Request, { params } : Params) => {
 
+    const formData = await req.formData()
+
     const { collection, id, association, associationId } = params
 
-    try {
-        const { AssociationTable, collectionItemIdField, associationIdField } = getAssociationModelByName(association)
-    
-        if (!collectionItemIdField || !AssociationTable) {
-            return await handleApiError({
-                message: 'No se han encontrado asociaciones para esta colección.',
-                collection,
-                route: `/api/${ collection }/${ id }/${ association }/${ associationId }`,
-                error: new Error('No collectionItemIdField or AssociationTable found')
-            })
-        }
-    
-        const payload = { [collectionItemIdField]: id, [associationIdField]: associationId } // i.e. ContestId: id, MediumId: mediumId
-    
-        const data = await AssociationTable.destroy({ where: {...payload }})
-        .then(data => data)
-    
-        return Response.json(
-            constructAPIResponse({
-                message: 'Asociación eliminada correctamente.',
-                success: true,
-                error: null,
-                data
-            })
-        )
-    }
-    catch (error) {
-        await handleApiError({
-            error,
-            collection,
+    const isManyToMany = formData.get('isManyToMany')
+
+    if (isManyToMany === null) {
+        return await handleApiError({
+            message: 'Type of relationship (many to many, simple) not specified.',
+            error: new Error('isManyToMany missing.'),
             route: `/api/${ collection }/${ id }/${ association }/${ associationId }`,
-            message: 'Fallo eliminando la asociación'
+            collection
         })
     }
+
+    return await deleteAssociation({ collection, id, association, associationId, isManyToMany, formData })
+
+
 }

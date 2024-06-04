@@ -1,4 +1,4 @@
-import { IContest, IOneOfCollectionNames } from "@/types"
+import { IContest, ICollectionNames } from "@/types"
 import { IAssociationNames, IManyToManyAssociationKeys, IManyToManyContestKeys, IOneOfAssociations, IOneOfCollectionsWithAssociations, ISimpleAssociationKeys } from "@/types/associations"
 
 const associationOptionsByName : {
@@ -33,7 +33,7 @@ export const getAssociationOptionsByName = (association: IAssociationNames) => {
     return associationOptionsByName[association]
 }
  
-export const itemIsContest = (item: IOneOfCollectionsWithAssociations, collection: IOneOfCollectionNames) : item is IContest => collection === 'contests'
+export const itemIsContest = (item: IOneOfCollectionsWithAssociations, collection: ICollectionNames) : item is IContest => collection === 'contests'
 
 export const determineIfItemIsAssociated = ({
     item,
@@ -44,7 +44,7 @@ export const determineIfItemIsAssociated = ({
 } : {
     item: IOneOfAssociations,
     collectionItem: IOneOfCollectionsWithAssociations,
-    collection: IOneOfCollectionNames,
+    collection: ICollectionNames,
     associationKey: ISimpleAssociationKeys | IManyToManyAssociationKeys,
     isManyToMany: boolean
     

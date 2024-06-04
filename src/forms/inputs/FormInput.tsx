@@ -3,9 +3,9 @@ import { TextInput } from '@/forms/inputs/by_type/TextInput'
 import { IFormField } from '@/types/forms'
 import { validateInput } from '@/forms/validation'
 import Label from '../label/Label'
-import { IOneOfCollections } from '@/types'
+import { IAllCollections } from '@/types'
 
-export default function FormInput({ field, collectionItem } : { field: IFormField, collectionItem?: IOneOfCollections }) {
+export default function FormInput({ field, collectionItem } : { field: IFormField, collectionItem?: IAllCollections }) {
 
     const [ value, setValue ] = useState<string | null>(null)
     const [ isValid, setIsValid ] = useState<boolean | null>(null)

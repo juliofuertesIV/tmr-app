@@ -1,9 +1,9 @@
 import { SVGProps } from 'react'
 import * as Icon from './_design/icons'
-import { IManagerRoleId, IOneOfCollectionNames } from '@/types'
+import { IManagerRoleId, ICollectionNames } from '@/types'
 
 export type IAdminNavItem = {
-    collection: IOneOfCollectionNames | 'logout' |'logs' | null,
+    collection: ICollectionNames | 'logout' |'logs' | null,
     label: string,
     Icon: (props: SVGProps<SVGSVGElement>) => JSX.Element,
     isActive: (path: string) => boolean,

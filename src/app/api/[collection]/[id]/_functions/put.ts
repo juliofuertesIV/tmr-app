@@ -1,5 +1,5 @@
 import { getModelByCollectionName } from "../../_utils"
-import { IInscription, IOneOfCollectionNames } from "@/types"
+import { IInscription, ICollectionNames } from "@/types"
 import { Inscription, Media, sequelize } from "@/database"
 import { constructAPIResponse } from "@/app/api/_utils"
 import { handleApiError } from "@/app/api/_utils/errors"
@@ -10,7 +10,7 @@ import { deleteFromCloudStorage } from "@/lib/gcp_storage"
 
 type Props = {
     formData: FormData,
-    collection: IOneOfCollectionNames,
+    collection: ICollectionNames,
     id: string
 }
 

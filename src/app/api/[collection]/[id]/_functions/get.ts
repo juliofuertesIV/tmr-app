@@ -1,9 +1,9 @@
-import { IOneOfCollectionNames } from "@/types"
+import { ICollectionNames } from "@/types"
 import { getModelByCollectionName } from "../../_utils"
 import { constructAPIResponse } from "@/app/api/_utils"
 
 type Props = {
-    collection: IOneOfCollectionNames,
+    collection: ICollectionNames,
     id: string
 }
 

@@ -1,4 +1,4 @@
-import { IOneOfCollectionNames, IOneOfCollectionsWithMediaNames } from "@/types"
+import { ICollectionNames, ICollectionsWithMediaNames } from "@/types"
 import { getModelByCollectionName } from "../_utils"
 import { Inscription } from "@/database"
 import { constructAPIResponse } from "../../_utils"
@@ -7,7 +7,7 @@ import { ICreateInscriptionPayload } from "@/types/inscriptions"
 import { CreateMedia } from "@/media/create"
 import { validateMedia } from "@/media/validation"
 
-export const addToCollection = async ({ collection, formData } : { collection: IOneOfCollectionNames, formData: FormData }) => {
+export const addToCollection = async ({ collection, formData } : { collection: ICollectionNames, formData: FormData }) => {
 
     const { Model } = getModelByCollectionName(collection)
 
@@ -35,7 +35,7 @@ export const addToCollection = async ({ collection, formData } : { collection: I
     }
 }
 
-export const addToCollectionWithMedia = async ({ collection, formData } : { collection: IOneOfCollectionsWithMediaNames, formData: FormData }) => {
+export const addToCollectionWithMedia = async ({ collection, formData } : { collection: ICollectionsWithMediaNames, formData: FormData }) => {
     
     const payload = Object.fromEntries(formData) as ICreateInscriptionPayload
 

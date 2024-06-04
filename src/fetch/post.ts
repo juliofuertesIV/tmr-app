@@ -1,13 +1,13 @@
 'use server'
 
-import { IOneOfCollectionNames } from "@/types"
+import { ICollectionNames } from "@/types"
 import { IAPIResponse } from "@/types/api"
 import { IAssociationNames } from "@/types/associations"
 import { revalidateTag } from "next/cache"
 import { cookies } from "next/headers"
 
 export const addCollectionElement = async (
-    collection: IOneOfCollectionNames,
+    collection: ICollectionNames,
     prevState: any,
     formData: FormData
 ) : Promise<IAPIResponse<null>> => {
@@ -25,7 +25,7 @@ export const addCollectionElement = async (
 }
 
 export const manageCollectionMedia = async (
-    collection: IOneOfCollectionNames,
+    collection: ICollectionNames,
     elementId: string | number,
     prevState: any,
     formData: FormData
@@ -44,7 +44,7 @@ export const manageCollectionMedia = async (
 }
 
 export const associateItems = async (
-    collection: IOneOfCollectionNames,
+    collection: ICollectionNames,
     collectionItemId: string | number,
     association: IAssociationNames,
     prevState: any,

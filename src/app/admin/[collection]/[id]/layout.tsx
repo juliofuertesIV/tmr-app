@@ -1,9 +1,9 @@
-import { IOneOfCollectionNames } from "@/types";
+import { ICollectionNames } from "@/types";
 import CollectionItemNav from "./_layout/CollectionItemNav";
 
 type Props = {
     params: {
-        collection: IOneOfCollectionNames,
+        collection: ICollectionNames,
         id: string
     },
     children: React.ReactNode

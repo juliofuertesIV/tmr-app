@@ -1,4 +1,4 @@
-import { IOneOfCollectionsWithMediaNames } from "@/types";
+import { ICollectionsWithMediaNames } from "@/types";
 import { mediaPayloadIsValidLength } from "./validation";
 import path from "path";
 import { IMediaPayload } from "@/types/media";
@@ -12,7 +12,7 @@ export const prepareMediaFile = async ({
 } : {
     payload: IMediaPayload,
     domain: string,
-    collection: IOneOfCollectionsWithMediaNames
+    collection: ICollectionsWithMediaNames
 }
 ) : Promise<{ 
     bytes: ArrayBuffer,

@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { IOneOfCollectionNames, IOneOfCollections } from "@/types";
+import { ICollectionNames, IAllCollections } from "@/types";
 import { getCollection } from "@/fetch/get";
 import CreationDialog from "../_dashboard/CreationDialog";
 import CollectionTable from "./_components/tables/CollectionTable";
@@ -9,11 +9,11 @@ export const metadata: Metadata = {
     description: "El buen admin panel"
 };
 
-export default async function AdminElementPage({ params } : { params: { collection: IOneOfCollectionNames }}) {
+export default async function AdminElementPage({ params } : { params: { collection: ICollectionNames }}) {
     
     const { collection } = params
 
-    const { data: items } = await getCollection(collection) as { data: IOneOfCollections[] }
+    const { data: items } = await getCollection(collection) as { data: IAllCollections[] }
 
     const canAddToCollection = ['contests', 'brands', 'genres'].includes(collection)
 

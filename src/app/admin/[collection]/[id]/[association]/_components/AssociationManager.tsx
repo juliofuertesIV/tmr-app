@@ -1,6 +1,6 @@
 'use client'
 
-import { IOneOfCollectionNames } from '@/types'
+import { ICollectionNames } from '@/types'
 import AssociationInput from './AssociationInput'
 import { determineIfItemIsAssociated } from '../_utils'
 import { IAssociationNames, IManyToManyAssociationKeys, IOneOfAssociations, IOneOfCollectionsWithAssociations, ISimpleAssociationKeys } from '@/types/associations'
@@ -10,7 +10,7 @@ type Props = {
     associationItems: IOneOfAssociations[],
     association: IAssociationNames,
     associationKey: ISimpleAssociationKeys | IManyToManyAssociationKeys,
-    collection: IOneOfCollectionNames,
+    collection: ICollectionNames,
     isManyToMany: boolean
 }
 

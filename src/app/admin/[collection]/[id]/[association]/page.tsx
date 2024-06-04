@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { IOneOfCollectionNames } from "@/types";
+import { ICollectionNames } from "@/types";
 import { getAssociationModelByName, getModelByCollectionName } from "@/app/api/[collection]/_utils";
 import AssociationManager from "./_components/AssociationManager";
 import { getAssociationOptionsByName } from "./_utils";
@@ -13,13 +13,13 @@ export const metadata: Metadata = {
 
 type Props = {
     params: { 
-        collection: IOneOfCollectionNames,
+        collection: ICollectionNames,
         id: string,
         association: IAssociationNames 
     }
 }
 
-const getPageData = async ({ collection, id, association } : { collection: IOneOfCollectionNames, id: string, association: IAssociationNames }) => {
+const getPageData = async ({ collection, id, association } : { collection: ICollectionNames, id: string, association: IAssociationNames }) => {
 
     const { AssociationModel } = getAssociationModelByName(association)
     const { Model, options } = getModelByCollectionName(collection)

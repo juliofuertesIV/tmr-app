@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { IContest, IOneOfCollectionNames } from "@/types";
+import { IContest, ICollectionNames } from "@/types";
 import { getModelByCollectionName } from "@/app/api/[collection]/_utils";
 import ContestMediaManager from "@/forms/inputs/media/ContestMediaManager";
 import FooterManager from "@/forms/inputs/media/FooterManager";
@@ -11,12 +11,12 @@ export const metadata: Metadata = {
 
 type Props = {
     params: { 
-        collection: IOneOfCollectionNames,
+        collection: ICollectionNames,
         id: string,
     }
 }
 
-const getPageData = async ({ collection, id } : { collection: IOneOfCollectionNames, id: string }) => {
+const getPageData = async ({ collection, id } : { collection: ICollectionNames, id: string }) => {
 
     if (collection !== 'contests') throw new Error('This collection does not have media: ' + collection)
 

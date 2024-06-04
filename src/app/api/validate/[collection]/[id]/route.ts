@@ -1,8 +1,8 @@
 import { getModelByCollectionName } from "@/app/api/[collection]/_utils"
 import { constructAPIResponse } from "@/app/api/_utils"
-import { IContest, IOneOfCollectionNames } from "@/types"
+import { IContest, ICollectionNames } from "@/types"
 
-export const GET = async (req: Request, { params } : { params: { collection: IOneOfCollectionNames, id: string }}) => {
+export const GET = async (req: Request, { params } : { params: { collection: ICollectionNames, id: string }}) => {
 
     const { id, collection } = params
 
@@ -104,7 +104,7 @@ const findMediaError = (contest: IContest) => {
 }
 
 
-const getCollectionItem = async ({ collection, id } : { collection: IOneOfCollectionNames, id: string }) => {
+const getCollectionItem = async ({ collection, id } : { collection: ICollectionNames, id: string }) => {
 
     const { Model, options } = getModelByCollectionName(collection)
     

@@ -1,6 +1,6 @@
 import { Media, sequelize } from "@/database"
 import { uploadMedia } from "@/media/upload"
-import { IOneOfCollectionsWithMediaNames } from "@/types"
+import { ICollectionsWithMediaNames } from "@/types"
 import { handleApiError } from "@/app/api/_utils/errors"
 import { deleteFromCloudStorage } from "@/lib/gcp_storage"
 import { IMedia, IMediaPayload } from "@/types/media"
@@ -12,7 +12,7 @@ export const CreateMedia = async ({
 } : { 
     formData: FormData,
     domain: string,
-    collection: IOneOfCollectionsWithMediaNames 
+    collection: ICollectionsWithMediaNames 
 }
 ) : Promise<{ MediumId: string | null }> => {
 

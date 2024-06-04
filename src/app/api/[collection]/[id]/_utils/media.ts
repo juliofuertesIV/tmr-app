@@ -1,11 +1,11 @@
-import { IOneOfCollectionNames, IOneOfCollectionsWithMediaNames } from "@/types";
+import { ICollectionNames, ICollectionsWithMediaNames } from "@/types";
 import { Transaction } from "sequelize";
 import { Media, ContestMedia } from "@/database";
 import { Model, ModelStatic, Options } from "sequelize";
 import { IMedia } from "@/types/media";
 
-export const creationIncludesMedia = (collection: IOneOfCollectionNames) 
-    : collection is IOneOfCollectionsWithMediaNames => collection === 'inscriptions' || collection === 'contests'
+export const creationIncludesMedia = (collection: ICollectionNames) 
+    : collection is ICollectionsWithMediaNames => collection === 'inscriptions' || collection === 'contests'
 
 export const modelsByCollectionName = {
     contests: {
@@ -14,14 +14,14 @@ export const modelsByCollectionName = {
         options: {}
     }
 } as { 
-    [key in IOneOfCollectionNames]: { 
+    [key in ICollectionNames]: { 
         Model: ModelStatic<Model<any, any>>,
         AssociationTable: ModelStatic<Model<any, any>>,
         options: Options
     }
 }
 
-export const getModelAndAssociationTableByCollectionName = (collection: IOneOfCollectionNames) => modelsByCollectionName[collection]
+export const getModelAndAssociationTableByCollectionName = (collection: ICollectionNames) => modelsByCollectionName[collection]
 
 
 export const getAssociationPayload = (
@@ -45,7 +45,7 @@ export const getAssociationPayload = (
 
 
 export const createAndAssociateMediaToCollection = async ({ collection, payload, transaction, id } : { 
-    collection: IOneOfCollectionNames,
+    collection: ICollectionNames,
     payload: any,
     transaction: Transaction,
     id: string | number 

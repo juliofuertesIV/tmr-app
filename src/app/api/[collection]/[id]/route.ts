@@ -1,11 +1,11 @@
-import { IOneOfCollectionNames } from "@/types";
+import { ICollectionNames } from "@/types";
 import { updateCollectionItem, updateInscriptionMedia } from "./_functions/put";
 import { deleteCollectionItem } from "./_functions/delete";
 import { getCollectionItemById } from "./_functions/get";
 
 type RouteParams = {
     params: {
-        collection: IOneOfCollectionNames,
+        collection: ICollectionNames,
         id: string
     }
 }

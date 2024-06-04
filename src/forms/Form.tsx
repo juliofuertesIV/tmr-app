@@ -2,7 +2,7 @@
 
 import { useFormState } from 'react-dom'
 import { IFormAction, IFormField } from '@/types/forms'
-import { IOneOfCollectionNames, IOneOfCollections } from '@/types'
+import { ICollectionNames, IAllCollections } from '@/types'
 import AdminFormFeedback from './feedback/FormFeedback'
 import FormInput from './inputs/FormInput'
 import FormSubmit from '@/forms/feedback/FormSubmit'
@@ -12,8 +12,8 @@ import { formInitialState } from './feedback/state'
 type Props = {
     action: IFormAction,
     fields: IFormField[],
-    collection: IOneOfCollectionNames,
-    collectionItem?: IOneOfCollections,
+    collection: ICollectionNames,
+    collectionItem?: IAllCollections,
     children?: ReactNode
 }
 

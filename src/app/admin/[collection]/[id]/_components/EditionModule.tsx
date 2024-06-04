@@ -2,9 +2,9 @@
 
 import Form from "@/forms/Form"
 import { getFormByCollectionName } from "@/forms/collection"
-import { IOneOfCollectionNames, IOneOfCollections } from "@/types"
+import { ICollectionNames, IAllCollections } from "@/types"
 
-export default function EditionModule({ collection, collectionItem } : { collection: IOneOfCollectionNames, collectionItem: IOneOfCollections }) {
+export default function EditionModule({ collection, collectionItem } : { collection: ICollectionNames, collectionItem: IAllCollections }) {
 
     const { action, fields } = getFormByCollectionName({ collection, actionTarget: 'update' })
 
