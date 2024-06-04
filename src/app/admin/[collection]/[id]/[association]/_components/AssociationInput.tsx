@@ -4,14 +4,14 @@ import { formInitialState } from '@/forms/feedback/state'
 import React, { useEffect, useRef, useState } from 'react'
 import { useFormState } from 'react-dom'
 import AssociationIcon from './AssociationIcon'
-import { IAssociationNames, IOneOfAssociations, IOneOfCollectionsWithAssociations } from '@/types/associations'
+import { IAssociationNames, IAssociations, ICollectionsWithAssociations } from '@/types/associations'
 import { associateItems } from '@/fetch/post'
 
 type Props = {
     collection: ICollectionNames,
-    collectionItem: IOneOfCollectionsWithAssociations,
+    collectionItem: ICollectionsWithAssociations,
     association: IAssociationNames,
-    associationItem: IOneOfAssociations,
+    associationItem: IAssociations,
     isCurrentlyAssociated: boolean,
     isManyToMany: boolean
 }

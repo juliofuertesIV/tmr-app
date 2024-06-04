@@ -1,5 +1,7 @@
 import { IManager } from "@/types";
 import { SignJWT, jwtVerify } from "jose";
+import { destroySession } from "./session";
+import { logoutManager } from "@/fetch/get";
 
 const secretJWTKey = process.env.SECRET_JWT_KEY
 
@@ -21,11 +23,15 @@ export async function decryptJWT(input: string): Promise<IManager | null> {
 
     if (!input) return null
     
-    const { payload } = await jwtVerify(input, key, { algorithms: ["HS256"] }) as { payload: { manager: IManager }}
-
-    const { manager } = payload
-
-    return manager ? manager : null;
+    try {
+        const data = await jwtVerify(input, key, { algorithms: ["HS256"] }).then((data) => { return data.payload }) as { manager: IManager }       
+        const { manager } = data
+        return manager ? manager : null;
+    }
+    catch (error) {
+        await logoutManager()
+        return null
+    }
 }
 
   

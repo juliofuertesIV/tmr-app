@@ -10,7 +10,7 @@ export const middleware = async (req: NextRequest) => {
         const manager = await decryptJWT(sessionToken.value) 
 
         if (!manager) {
-            throw new Error('Bad JSON web token.')
+            return Response.redirect(new URL('/login', req.url))
         }
     } 
     

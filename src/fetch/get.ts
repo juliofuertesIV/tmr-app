@@ -84,16 +84,7 @@ export const logoutManager = async () : Promise<IAPIResponse<any>> => {
         cache: 'no-cache'
     })
     .then(async (data) => {
-        
         const res = await data.json()
-
-        console.log(res)
-
-        if (res.success) {
-
-            const { session, expires } = res.data
-
-        }
         return res
     })
     .catch(error => error)

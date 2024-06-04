@@ -2,7 +2,7 @@ import { ICollectionNames, ICollectionsWithMediaNames } from "@/types"
 import { getModelByCollectionName } from "../_utils"
 import { Inscription } from "@/database"
 import { constructAPIResponse } from "../../_utils"
-import { handleApiError } from "../../_utils/errors"
+import { handleApiError } from "@/errors"
 import { ICreateInscriptionPayload } from "@/types/inscriptions"
 import { createMedia } from "@/media/create"
 import { validateMedia } from "@/media/validation"
@@ -51,7 +51,7 @@ export const addToCollectionWithMedia = async ({ collection, formData } : { coll
         })
     }
 
-    const { MediumId } = await createMedia({ formData, collection, domain: payload.domain }) as { MediumId: string }
+    const { MediumId } = await createMedia({ formData, collection }) as { MediumId: string }
 
     try {
         const inscription = await Inscription.create({ MediumId, ...payload })

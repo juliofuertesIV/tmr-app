@@ -1,7 +1,7 @@
 import { Manager } from "@/database"
 import { constructAPIResponse } from "../../_utils"
 import { getHashAndSaltFromPassword } from "../../../../auth/crypto"
-import { handleApiError } from "../../_utils/errors"
+import { handleApiError } from "@/errors"
 
 export const POST = async (req: Request) => {
 

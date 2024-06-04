@@ -76,7 +76,7 @@ export const updateInscriptionMedia = async ({ collection, formData, id } : Prop
             })
         }) as unknown as IInscription
 
-    const { MediumId: newMediumId } = await createMedia({ formData, collection: 'inscriptions', domain })
+    const { MediumId: newMediumId } = await createMedia({ formData, collection: 'inscriptions' })
         .then(data => data)
         .catch(async (error) => {
             return await handleApiError({

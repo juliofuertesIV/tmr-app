@@ -3,7 +3,7 @@ import { ICollectionNames } from "@/types";
 import { getAssociationModelByName, getModelByCollectionName } from "@/app/api/[collection]/_utils";
 import AssociationManager from "./_components/AssociationManager";
 import { getAssociationOptionsByName } from "./_utils";
-import { IAssociationNames, IOneOfAssociations, IOneOfCollectionsWithAssociations } from "@/types/associations";
+import { IAssociationNames, IAssociations, ICollectionsWithAssociations } from "@/types/associations";
 import AssociationPageHeader from "./_components/AssociationPageHeader";
 
 export const metadata: Metadata = {
@@ -24,8 +24,8 @@ const getPageData = async ({ collection, id, association } : { collection: IColl
     const { AssociationModel } = getAssociationModelByName(association)
     const { Model, options } = getModelByCollectionName(collection)
 
-    const item = await Model.findOne({ where: { id }, ...options }).then(data => data) as unknown as IOneOfCollectionsWithAssociations
-    const associationItems = await AssociationModel.findAll({ order: [['name', 'ASC']]}).then(data => data) as unknown as IOneOfAssociations[]
+    const item = await Model.findOne({ where: { id }, ...options }).then(data => data) as unknown as ICollectionsWithAssociations
+    const associationItems = await AssociationModel.findAll({ order: [['name', 'ASC']]}).then(data => data) as unknown as IAssociations[]
 
     return { 
         item: JSON.parse(JSON.stringify(item)), 
@@ -37,7 +37,7 @@ export default async function AdminAssociationPage({ params } : Props) {
     
     const { collection, id, association } = params
 
-    const { item, associationItems } = await getPageData({ collection, association, id }) as { item: IOneOfCollectionsWithAssociations, associationItems: IOneOfAssociations[] }
+    const { item, associationItems } = await getPageData({ collection, association, id }) as { item: ICollectionsWithAssociations, associationItems: IAssociations[] }
 
     const { associationKey, isManyToMany } = getAssociationOptionsByName(association)
 

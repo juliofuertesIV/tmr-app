@@ -1,15 +1,10 @@
-import { IBrand, IContest, IContestState, IGenre, IParam, ISocialMedia } from "."
+import { IContest, IGenre, IManager, IManagerRole, IParam, ISocialMedia } from "."
+import { IMedia } from "./media"
 
-export type IOneOfCollectionsWithAssociations = IContest | IBrand
+export type ICollectionsWithAssociations = IContest | IManager
 
-export type IOneOfAssociations = IBrand | IParam | IContestState | IGenre | ISocialMedia
+export type IAssociations = IParam | IGenre | ISocialMedia | IManagerRole | IMedia
 
-export type IOneOfCollectionsNamesWithAssociations = 'contests' | 'users'
+export type IAssociationNames = 'params' | 'genres' | 'social' | 'media' 
 
-export type IAssociationNames = 'params' | 'genres' | 'social' | 'media' | 'managers'
-
-export type IManyToManyAssociationKeys = IManyToManyContestKeys | 'Roles'
-
-export type IManyToManyContestKeys = 'Params' | 'Genres' | 'SocialMedia'
-
-export type ISimpleAssociationKeys = 'StateId' | 'BrandId'
+export type IAssociationKeys = 'Params' | 'Genres' | 'SocialMedia' | 'Media'
