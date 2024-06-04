@@ -1,6 +1,6 @@
 'use server'
 
-import { IContest, IInscription, ICollectionNames, IAllCollections } from "@/lib/types"
+import { IContest, IInscription, ICollectionNames, IAllCollections } from "@/types"
 import { IAdminData } from "@/types/admin"
 import { IAPIResponse } from "@/types/api"
 

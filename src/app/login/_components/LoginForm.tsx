@@ -5,7 +5,7 @@ import { useFormState } from "react-dom"
 import { useEffect } from "react"
 import FormSubmit from "@/lib/forms/feedback/FormSubmit"
 import { useRouter } from "next/navigation"
-import { IManager } from "@/lib/types"
+import { IManager } from "@/types"
 import { login } from "@/lib/fetch/post"
 import AdminFormFeedback from "@/lib/forms/feedback/FormFeedback"
 

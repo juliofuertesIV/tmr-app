@@ -1,4 +1,4 @@
-import { IAllCollections } from '@/lib/types'
+import { IAllCollections } from '@/types'
 import React from 'react'
 
 type Props = {

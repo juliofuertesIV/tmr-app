@@ -1,6 +1,6 @@
 'use client'
 
-import { IContest } from "@/lib/types"
+import { IContest } from "@/types"
 import { IMediaFormField, formInitialState } from "@/types/forms"
 import { useFormState } from "react-dom"
 import { ChangeEvent, DragEvent, useEffect, useLayoutEffect, useRef, useState } from "react"

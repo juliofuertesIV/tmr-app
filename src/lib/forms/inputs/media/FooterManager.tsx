@@ -1,22 +1,19 @@
 'use client'
 
-import { IContest } from '@/lib/types'
 import { IMediaFormField } from '@/types/forms'
 import { deleteContestMediaItem } from '@/lib/fetch/delete'
-import FilePreview from '../inputs/media/FilePreview'
-import FileUploadForm from '../inputs/media/FileUploadForm'
+import { IContest } from '@/types'
+import FilePreview from './FilePreview'
+import FileUploadForm from './FileUploadForm'
+
 
 export default function FooterManager({ contest } : { contest: IContest }) {
-
 
     const footerMediaField : IMediaFormField = {
         role: 'footerElement',
         label: 'Imagen de footer',
-        instructions: 'Tipo svg / png',
-        acceptedTypes: 'image/png, image/svg+xml',
-        multiple: true,
+        type: 'image'
     }
-
 
     const onDiscardFile = async (mediaId?: string) => {
         

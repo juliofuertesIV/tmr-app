@@ -3,7 +3,7 @@ import { TextInput } from '@/lib/forms/inputs/by_type/TextInput'
 import { IFormField } from '@/types/forms'
 import { validateInput } from '@/lib/forms/validation'
 import Label from '../label/Label'
-import { IAllCollections } from '@/lib/types'
+import { IAllCollections } from '@/types'
 
 export default function FormInput({ field, collectionItem } : { field: IFormField, collectionItem?: IAllCollections }) {
 

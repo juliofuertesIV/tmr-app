@@ -1,5 +1,5 @@
 import { Log } from '@/lib/database'
-import { ILog } from '@/lib/types'
+import { ILog } from '@/types'
 import React from 'react'
 
 const getLogs = async () : Promise<ILog[]> => {

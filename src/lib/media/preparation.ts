@@ -1,4 +1,4 @@
-import { ICollectionsWithMediaNames } from "@/lib/types";
+import { ICollectionsWithMediaNames } from "@/types";
 import { mediaPayloadIsValidLength } from "./validation";
 import path from "path";
 import { IMediaPayload } from "@/types/media";

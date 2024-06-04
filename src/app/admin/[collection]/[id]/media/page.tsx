@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { IContest, ICollectionNames } from "@/lib/types";
+import { IContest, ICollectionNames } from "@/types";
 import { getModelByCollectionName } from "@/app/api/[collection]/_utils";
 import ContestMediaManager from "@/lib/forms/inputs/media/ContestMediaManager";
 import FooterManager from "@/lib/forms/inputs/media/FooterManager";

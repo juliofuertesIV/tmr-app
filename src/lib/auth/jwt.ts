@@ -1,4 +1,4 @@
-import { IManager } from "@/lib/types";
+import { IManager } from "@/types";
 import { SignJWT, jwtVerify } from "jose";
 import { destroySession } from "./session";
 import { logoutManager } from "@/lib/fetch/get";

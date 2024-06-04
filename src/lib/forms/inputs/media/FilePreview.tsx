@@ -1,6 +1,6 @@
 'use client'
 
-import { IMedia } from '@/lib/types'
+import { IMedia } from '@/types'
 import Image from 'next/image'
 import React, { useEffect, useRef, useState } from 'react'
 

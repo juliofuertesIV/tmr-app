@@ -1,6 +1,6 @@
 'use server'
 
-import { ICollectionNames } from "@/lib/types"
+import { ICollectionNames } from "@/types"
 import { IAPIResponse } from "@/types/api"
 import { IAssociationNames } from "@/types/associations"
 import { revalidateTag } from "next/cache"

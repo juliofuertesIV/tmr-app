@@ -1,5 +1,5 @@
 import { EditIcon } from '@/app/admin/_layout/_design/icons/EditIcon'
-import { ICollectionNames, IAllCollections } from '@/lib/types'
+import { ICollectionNames, IAllCollections } from '@/types'
 import Link from 'next/link'
 import React from 'react'
 

@@ -1,6 +1,6 @@
 import { SVGProps } from 'react'
 import * as Icon from './_design/icons'
-import { IManagerRoleId, ICollectionNames } from '@/lib/types'
+import { IManagerRoleId, ICollectionNames } from '@/types'
 
 export type IAdminNavItem = {
     collection: ICollectionNames | 'logout' |'logs' | null,

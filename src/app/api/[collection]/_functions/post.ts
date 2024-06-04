@@ -1,4 +1,4 @@
-import { ICollectionNames, ICollectionsWithMediaNames } from "@/lib/types"
+import { ICollectionNames, ICollectionsWithMediaNames } from "@/types"
 import { getModelByCollectionName } from "../_utils"
 import { Inscription } from "@/lib/database"
 import { constructAPIResponse } from "../../_utils"

@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { ICollectionNames } from "@/lib/types";
+import { ICollectionNames } from "@/types";
 import { getAssociationModelByName, getModelByCollectionName } from "@/app/api/[collection]/_utils";
 import AssociationManager from "./_components/AssociationManager";
 import { getAssociationOptionsByName } from "./_utils";

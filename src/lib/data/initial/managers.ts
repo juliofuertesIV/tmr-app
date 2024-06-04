@@ -1,4 +1,4 @@
-import { IManagerRoleId } from "@/lib/types";
+import { IManagerRoleId } from "@/types";
 
 export const superAdmin = {
     name: 'Julio F.',

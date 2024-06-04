@@ -1,7 +1,7 @@
 'use server'
 
 import { getEncryptedAndSignedJWT } from "@/lib/auth";
-import { IManager } from "@/lib/types";
+import { IManager } from "@/types";
 import { cookies } from "next/headers";
 import { decryptJWT } from "./jwt";
 import { NextRequest, NextResponse } from "next/server";

@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { ICollectionNames } from "@/lib/types";
+import { ICollectionNames } from "@/types";
 import { getCollectionElementById } from "@/lib/fetch/get";
 import EditionModule from "./_components/EditionModule";
 

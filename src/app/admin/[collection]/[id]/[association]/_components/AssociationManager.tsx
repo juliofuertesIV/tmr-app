@@ -1,6 +1,6 @@
 'use client'
 
-import { ICollectionNames } from '@/lib/types'
+import { ICollectionNames } from '@/types'
 import AssociationInput from './AssociationInput'
 import { determineIfItemIsAssociated } from '../_utils'
 import { IAssociationNames, IAssociationKeys, IAssociations, ICollectionsWithAssociations, ISimpleAssociationKeys } from '@/types/associations'

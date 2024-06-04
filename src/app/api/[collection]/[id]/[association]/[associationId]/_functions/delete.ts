@@ -1,7 +1,7 @@
 import { getAssociationModelByName } from "@/app/api/[collection]/_utils"
 import { constructAPIResponse } from "@/app/api/_utils"
 import { handleApiError } from "@/lib/errors"
-import { ICollectionNames } from "@/lib/types"
+import { ICollectionNames } from "@/types"
 import { IAssociationNames } from "@/types/associations"
 
 export const deleteAssociation = async ({ 

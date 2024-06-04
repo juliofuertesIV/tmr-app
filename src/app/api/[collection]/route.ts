@@ -1,5 +1,5 @@
 
-import { ICollectionNames } from '@/lib/types'
+import { ICollectionNames } from '@/types'
 import { getCollectionByName } from './_functions/get'
 import { addToCollection, addToCollectionWithMedia } from './_functions/post'
 import { collectionHasMedia } from './_utils'

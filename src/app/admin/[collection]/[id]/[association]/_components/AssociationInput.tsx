@@ -1,5 +1,5 @@
 import { disassociateItems } from '@/lib/fetch/delete'
-import { IContestState, ICollectionNames, IParam } from '@/lib/types'
+import { IContestState, ICollectionNames, IParam } from '@/types'
 import { formInitialState } from '@/lib/forms/feedback/state'
 import React, { useEffect, useRef, useState } from 'react'
 import { useFormState } from 'react-dom'

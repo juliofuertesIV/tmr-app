@@ -2,7 +2,7 @@
 
 import Form from "@/lib/forms/Form"
 import { getFormByCollectionName } from "@/lib/forms/collection"
-import { ICollectionNames, IAllCollections } from "@/lib/types"
+import { ICollectionNames, IAllCollections } from "@/types"
 
 export default function EditionModule({ collection, collectionItem } : { collection: ICollectionNames, collectionItem: IAllCollections }) {
 

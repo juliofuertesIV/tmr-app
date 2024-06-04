@@ -1,4 +1,4 @@
-import { ICollectionNames } from "@/lib/types"
+import { ICollectionNames } from "@/types"
 import { getModelByCollectionName } from "../../_utils"
 import { constructAPIResponse } from "@/app/api/_utils"
 import { handleApiError } from "@/lib/errors"

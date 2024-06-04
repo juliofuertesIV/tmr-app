@@ -4,8 +4,6 @@ export type IAllCollections = IContest & IBrand & ISocialMedia & IGenre & IInscr
 
 export type ICollectionNames = 'contests' | 'brands' | 'social' | 'genres' | 'inscriptions' | 'managers'
 
-export type ICollectionsWithMediaNames = 'contests' | 'inscriptions'
-
 export type ICollectionsWithMedia = IContest & IInscription
 
 export type IManagerRoleId = 1 | 2 | 3 | 4

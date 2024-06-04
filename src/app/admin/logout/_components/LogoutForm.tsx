@@ -1,7 +1,7 @@
 'use client'
 
 import FormSubmit from "@/lib/forms/feedback/FormSubmit"
-import { IManager } from "@/lib/types"
+import { IManager } from "@/types"
 
 export default function LogoutForm({ formAction } : { formAction: (payload: FormData) => void }) {
 

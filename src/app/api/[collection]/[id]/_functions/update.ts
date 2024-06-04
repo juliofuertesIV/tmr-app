@@ -1,12 +1,12 @@
 import { getModelByCollectionName } from "../../_utils"
-import { IInscription, ICollectionNames } from "@/lib/types"
 import { Inscription, Media, sequelize } from "@/lib/database"
 import { constructAPIResponse } from "@/app/api/_utils"
 import { handleApiError } from "@/lib/errors"
 import { validateMedia } from "@/lib/media/validation"
 import { IMediaPayload } from "@/types/media"
 import { createMedia } from "@/lib/media/create"
-import { deleteFromCloudStorage } from "@/lib/gcp_storage"
+import { ICollectionNames, IInscription } from "@/types"
+import { deleteFromCloudStorage } from "@/lib/storage/gcp_storage"
 
 type Props = {
     formData: FormData,

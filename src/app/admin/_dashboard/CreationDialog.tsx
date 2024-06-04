@@ -1,6 +1,6 @@
 'use client'
 
-import { ICollectionNames } from '@/lib/types'
+import { ICollectionNames } from '@/types'
 import { getFormByCollectionName } from '../../../lib/forms/collection'
 import { useLayoutEffect, useRef, useState } from 'react'
 import { CircleAddIcon } from '../_layout/_design/icons/CircleAddIcon'

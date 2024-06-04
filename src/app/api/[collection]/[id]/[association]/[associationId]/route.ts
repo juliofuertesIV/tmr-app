@@ -1,4 +1,4 @@
-import { ICollectionNames } from "@/lib/types";
+import { ICollectionNames } from "@/types";
 import { IAssociationNames } from "@/types/associations";
 import { deleteAssociation } from "./_functions/delete";
 

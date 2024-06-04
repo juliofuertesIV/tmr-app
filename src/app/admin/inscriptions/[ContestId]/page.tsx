@@ -3,7 +3,7 @@ import { getCollectionElementById } from "@/lib/fetch/get";
 import CreateInscriptionForm from "./_components/CreateInscriptionForm";
 import Image from "next/image";
 import { Inscription, Media } from "@/lib/database";
-import { IInscription } from "@/lib/types";
+import { IInscription } from "@/types";
 
 export const metadata: Metadata = {
     title: "Panel de administración TMR",

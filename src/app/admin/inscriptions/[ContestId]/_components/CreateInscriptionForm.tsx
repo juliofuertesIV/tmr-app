@@ -1,6 +1,6 @@
 'use client'
 
-import { IContest } from "@/lib/types"
+import { IContest } from "@/types"
 import Form from "@/lib/forms/Form"
 import { getFormByCollectionName } from "@/lib/forms/collection"
 
