@@ -6,7 +6,7 @@ export type IOneOfAssociations = IBrand | IParam | IContestState | IGenre | ISoc
 
 export type IOneOfCollectionsNamesWithAssociations = 'contests' | 'users'
 
-export type IAssociationNames = 'params' | 'states' | 'brands' | 'genres' | 'social'
+export type IAssociationNames = 'params' | 'genres' | 'social' | 'media' | 'managers'
 
 export type IManyToManyAssociationKeys = IManyToManyContestKeys | 'Roles'
 

@@ -1,5 +1,5 @@
 import { ICollectionNames } from "@/types";
-import { updateCollectionItem, updateInscriptionMedia } from "./_functions/put";
+import { updateCollectionItem, updateInscriptionMedia } from "./_functions/update";
 import { deleteCollectionItem } from "./_functions/delete";
 import { getCollectionItemById } from "./_functions/get";
 

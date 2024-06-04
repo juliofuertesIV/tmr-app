@@ -80,18 +80,6 @@ const associationByName = {
         collectionItemIdField: 'ContestId',
         associationIdField: 'MediumId'
     },
-    brands: {
-        AssociationTable: null,
-        AssociationModel: Brand,
-        collectionItemIdField: null,
-        associationIdField: 'BrandId'
-    },
-    states: {
-        AssociationTable: null,
-        AssociationModel: State,
-        collectionItemIdField: null,
-        associationIdField: 'StateId'
-    },
     genres: {
         AssociationTable: ContestGenre,
         AssociationModel: Genre,

@@ -1,47 +1,10 @@
-import { getAssociationModelByName, getModelByCollectionName } from "@/app/api/[collection]/_utils"
+import { getAssociationModelByName } from "@/app/api/[collection]/_utils"
 import { constructAPIResponse } from "@/app/api/_utils"
 import { handleApiError } from "@/errors"
 import { ICollectionNames } from "@/types"
 import { IAssociationNames } from "@/types/associations"
 
-
-export const deleteSimpleAssociation = async ({ 
-    collection,
-    id,
-    association,
-}: {
-    collection: ICollectionNames,
-    id: string,
-    association: IAssociationNames,
-}) => {
-    const { associationIdField } = getAssociationModelByName(association)
-
-    const { Model } = getModelByCollectionName(collection)
-
-    const payload = { [associationIdField]: null }
-
-    try {
-        const data = await Model.update({ ...payload }, { where: { id }})
-        return Response.json(
-            constructAPIResponse({
-                message: 'Elementos asociados correctamente.',
-                error: null,
-                success: true,
-                data
-            })
-        )
-    }
-    catch (error) {
-        await handleApiError({
-            error,
-            collection,
-            route: `/api/${ collection }/${ id }/${ association }`,
-            message: 'Fallo asociando elementos'
-        })
-    }
-}
-
-export const deleteManyToManyAssociation = async ({ 
+export const deleteAssociation = async ({ 
     collection,
     association,
     id,
@@ -87,24 +50,4 @@ export const deleteManyToManyAssociation = async ({
             message: 'Fallo eliminando la asociación'
         })
     }
-
-}
-
-
-
-type Props = {
-    isManyToMany: FormDataEntryValue,
-    formData: FormData,
-    collection: ICollectionNames,
-    association: IAssociationNames,
-    associationId: string,
-    id: string,
-}
-
-export const deleteAssociation = async ({ collection, id, association, associationId, isManyToMany } : Props) => {
-    
-    if (isManyToMany === 'true') 
-        return await deleteManyToManyAssociation({ collection, id, association, associationId })
-
-    return await deleteSimpleAssociation({ collection, id, association })
 }
