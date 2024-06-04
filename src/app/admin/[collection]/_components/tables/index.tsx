@@ -1,4 +1,4 @@
-import { ICollectionNames } from "@/types";
+import { ICollectionNames } from "@/lib/types";
 
 type ICollectionTable = {
     headers: string[],

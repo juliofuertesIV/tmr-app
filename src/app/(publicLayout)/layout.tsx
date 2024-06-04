@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import '../globals.css'
-import MetaPixel from "./_components/tracking/MetaPixel";
+import MetaPixel from "@/lib/tracking/MetaPixel";
 
 const inter = Inter({ subsets: ["latin"] });
 

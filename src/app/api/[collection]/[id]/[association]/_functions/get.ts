@@ -1,7 +1,7 @@
-import { IAssociationNames } from "@/types/associations"
+import { IAssociationNames } from "@/lib/types/associations"
 import { getAssociationModelByName } from "../../../_utils"
-import { ICollectionNames } from "@/types"
-import { handleApiError } from "@/errors"
+import { ICollectionNames } from "@/lib/types"
+import { handleApiError } from "@/lib/errors"
 
 type Props = {
     collection: ICollectionNames,

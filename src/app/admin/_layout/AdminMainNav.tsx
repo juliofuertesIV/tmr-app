@@ -5,7 +5,7 @@ import NavItem from './NavItem'
 import TMRLogo from './_design/TmrLogo'
 import { adminNavItems, adminNavItems as links } from '.'
 import { usePathname } from 'next/navigation'
-import { IManager } from '@/types'
+import { IManager } from '@/lib/types'
 
 export default function AdminMainNav({ manager } : { manager: IManager }) {
 

@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import "../globals.css";
 import AdminMainNav from "./_layout/AdminMainNav";
 import { cookies } from "next/headers";
-import { decryptJWT } from "@/auth";
+import { decryptJWT } from "@/lib/auth";
 import { redirect } from "next/navigation";
 
 const inter = Inter({ subsets: ["latin"] });

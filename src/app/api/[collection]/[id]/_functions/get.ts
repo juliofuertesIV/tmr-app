@@ -1,4 +1,4 @@
-import { ICollectionNames } from "@/types"
+import { ICollectionNames } from "@/lib/types"
 import { getModelByCollectionName } from "../../_utils"
 import { constructAPIResponse } from "@/app/api/_utils"
 

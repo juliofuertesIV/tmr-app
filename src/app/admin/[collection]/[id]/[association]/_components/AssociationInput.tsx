@@ -1,11 +1,11 @@
-import { disassociateItems } from '@/fetch/delete'
-import { IContestState, ICollectionNames, IParam } from '@/types'
-import { formInitialState } from '@/forms/feedback/state'
+import { disassociateItems } from '@/lib/fetch/delete'
+import { IContestState, ICollectionNames, IParam } from '@/lib/types'
+import { formInitialState } from '@/lib/forms/feedback/state'
 import React, { useEffect, useRef, useState } from 'react'
 import { useFormState } from 'react-dom'
 import AssociationIcon from './AssociationIcon'
-import { IAssociationNames, IAssociations, ICollectionsWithAssociations } from '@/types/associations'
-import { associateItems } from '@/fetch/post'
+import { IAssociationNames, IAssociations, ICollectionsWithAssociations } from '@/lib/types/associations'
+import { associateItems } from '@/lib/fetch/post'
 
 type Props = {
     collection: ICollectionNames,

@@ -1,6 +1,6 @@
 import { cookies } from "next/headers";
 import LoginForm from "./_components/LoginForm";
-import { decryptJWT } from "@/auth";
+import { decryptJWT } from "@/lib/auth";
 import TMRLogo from "../admin/_layout/_design/TmrLogo";
 
 export default async function LoginPage() {

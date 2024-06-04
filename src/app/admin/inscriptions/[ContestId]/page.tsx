@@ -1,9 +1,9 @@
 import { Metadata } from "next";
-import { getCollectionElementById } from "@/fetch/get";
+import { getCollectionElementById } from "@/lib/fetch/get";
 import CreateInscriptionForm from "./_components/CreateInscriptionForm";
 import Image from "next/image";
-import { Inscription, Media } from "@/database";
-import { IInscription } from "@/types";
+import { Inscription, Media } from "@/lib/database";
+import { IInscription } from "@/lib/types";
 
 export const metadata: Metadata = {
     title: "Panel de administración TMR",

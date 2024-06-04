@@ -1,5 +1,5 @@
-import { ICollectionNames } from "@/types";
-import { IAssociationNames } from "@/types/associations";
+import { ICollectionNames } from "@/lib/types";
+import { IAssociationNames } from "@/lib/types/associations";
 import { deleteAssociation } from "./_functions/delete";
 
 type Params = { params: { collection: ICollectionNames, id: string, association: IAssociationNames, associationId: string }}

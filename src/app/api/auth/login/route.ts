@@ -1,9 +1,9 @@
-import { Log, Manager, Role } from "@/database"
-import { createSession, passwordsAreMatching } from "@/auth"
+import { Log, Manager, Role } from "@/lib/database"
+import { createSession, passwordsAreMatching } from "@/lib/auth"
 import { NextRequest } from "next/server"
-import { IManager } from "@/types"
+import { IManager } from "@/lib/types"
 import { constructAPIResponse } from "../../_utils"
-import { handleApiError } from "@/errors"
+import { handleApiError } from "@/lib/errors"
 
 export const POST = async (request: NextRequest) => {
 

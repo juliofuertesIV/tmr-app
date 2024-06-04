@@ -1,11 +1,11 @@
 'use client'
 
-import { ICollectionNames } from '@/types'
-import { getFormByCollectionName } from '../../../forms/collection'
+import { ICollectionNames } from '@/lib/types'
+import { getFormByCollectionName } from '../../../lib/forms/collection'
 import { useLayoutEffect, useRef, useState } from 'react'
 import { CircleAddIcon } from '../_layout/_design/icons/CircleAddIcon'
 import { CloseIcon } from '../_layout/_design/icons/CloseIcon'
-import Form from '@/forms/Form'
+import Form from '@/lib/forms/Form'
 
 type Props = {
     collection: ICollectionNames,

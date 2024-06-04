@@ -1,5 +1,5 @@
 import { NextRequest } from "next/server";
-import { decryptJWT } from "./auth";
+import { decryptJWT } from "./lib/auth";
 
 export const middleware = async (req: NextRequest) => {
     

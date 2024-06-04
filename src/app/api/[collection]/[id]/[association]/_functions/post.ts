@@ -1,9 +1,9 @@
 import { constructAPIResponse } from "@/app/api/_utils"
 import { getAssociationModelByName } from "../../../_utils"
-import { handleApiError } from "@/errors"
-import { ICollectionNames, ICollectionsWithMediaNames } from "@/types"
-import { IAssociationNames } from "@/types/associations"
-import { createMedia } from "@/media/create"
+import { handleApiError } from "@/lib/errors"
+import { ICollectionNames, ICollectionsWithMediaNames } from "@/lib/types"
+import { IAssociationNames } from "@/lib/types/associations"
+import { createMedia } from "@/lib/media/create"
 
 type Props = {
     collection: ICollectionNames,

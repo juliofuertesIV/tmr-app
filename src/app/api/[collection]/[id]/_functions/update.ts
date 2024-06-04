@@ -1,11 +1,11 @@
 import { getModelByCollectionName } from "../../_utils"
-import { IInscription, ICollectionNames } from "@/types"
-import { Inscription, Media, sequelize } from "@/database"
+import { IInscription, ICollectionNames } from "@/lib/types"
+import { Inscription, Media, sequelize } from "@/lib/database"
 import { constructAPIResponse } from "@/app/api/_utils"
-import { handleApiError } from "@/errors"
-import { validateMedia } from "@/media/validation"
-import { IMediaPayload } from "@/types/media"
-import { createMedia } from "@/media/create"
+import { handleApiError } from "@/lib/errors"
+import { validateMedia } from "@/lib/media/validation"
+import { IMediaPayload } from "@/lib/types/media"
+import { createMedia } from "@/lib/media/create"
 import { deleteFromCloudStorage } from "@/lib/gcp_storage"
 
 type Props = {

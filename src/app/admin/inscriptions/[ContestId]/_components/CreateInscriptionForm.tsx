@@ -1,8 +1,8 @@
 'use client'
 
-import { IContest } from "@/types"
-import Form from "@/forms/Form"
-import { getFormByCollectionName } from "@/forms/collection"
+import { IContest } from "@/lib/types"
+import Form from "@/lib/forms/Form"
+import { getFormByCollectionName } from "@/lib/forms/collection"
 
 type Props = {
     contest: IContest

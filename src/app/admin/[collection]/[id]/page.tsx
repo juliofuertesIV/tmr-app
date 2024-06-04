@@ -1,6 +1,6 @@
 import { Metadata } from "next";
-import { ICollectionNames } from "@/types";
-import { getCollectionElementById } from "@/fetch/get";
+import { ICollectionNames } from "@/lib/types";
+import { getCollectionElementById } from "@/lib/fetch/get";
 import EditionModule from "./_components/EditionModule";
 
 export const metadata: Metadata = {

@@ -1,13 +1,13 @@
 'use client'
 
-import { formInitialState } from '@/forms/feedback/state'
+import { formInitialState } from '@/lib/forms/feedback/state'
 import { useFormState } from "react-dom"
 import { useEffect } from "react"
-import FormSubmit from "@/forms/feedback/FormSubmit"
+import FormSubmit from "@/lib/forms/feedback/FormSubmit"
 import { useRouter } from "next/navigation"
-import { IManager } from "@/types"
-import { login } from "@/fetch/post"
-import AdminFormFeedback from "@/forms/feedback/FormFeedback"
+import { IManager } from "@/lib/types"
+import { login } from "@/lib/fetch/post"
+import AdminFormFeedback from "@/lib/forms/feedback/FormFeedback"
 
 export default function LoginForm({ manager } : { manager: IManager | null }) {
 

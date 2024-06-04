@@ -1,4 +1,4 @@
-import { ICollectionNames, IAllCollections } from "@/types"
+import { ICollectionNames, IAllCollections } from "@/lib/types"
 import { getTableByCollectionName } from "."
 import CollectionTableRow from "./CollectionTableRow"
 

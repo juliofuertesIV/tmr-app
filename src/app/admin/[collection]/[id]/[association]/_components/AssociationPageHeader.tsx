@@ -1,4 +1,4 @@
-import { IAssociationNames, ICollectionsWithAssociations } from "@/types/associations";
+import { IAssociationNames, ICollectionsWithAssociations } from "@/lib/types/associations";
 
 const headersByAssociationName = {
     params: {

@@ -1,5 +1,5 @@
-import { getCollection } from "@/fetch/get"
-import { IContest } from "@/types"
+import { getCollection } from "@/lib/fetch/get"
+import { IContest } from "@/lib/types"
 import Link from "next/link"
 import { ArrowRightIcon } from "../_layout/_design/icons/ArrowRightIcon"
 

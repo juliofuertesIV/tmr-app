@@ -1,8 +1,8 @@
 'use client'
 
-import Form from "@/forms/Form"
-import { getFormByCollectionName } from "@/forms/collection"
-import { ICollectionNames, IAllCollections } from "@/types"
+import Form from "@/lib/forms/Form"
+import { getFormByCollectionName } from "@/lib/forms/collection"
+import { ICollectionNames, IAllCollections } from "@/lib/types"
 
 export default function EditionModule({ collection, collectionItem } : { collection: ICollectionNames, collectionItem: IAllCollections }) {
 

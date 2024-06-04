@@ -1,4 +1,4 @@
-import { ICollectionNames } from "@/types";
+import { ICollectionNames } from "@/lib/types";
 import { updateCollectionItem, updateInscriptionMedia } from "./_functions/update";
 import { deleteCollectionItem } from "./_functions/delete";
 import { getCollectionItemById } from "./_functions/get";

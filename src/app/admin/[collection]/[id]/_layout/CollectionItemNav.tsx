@@ -1,6 +1,6 @@
 'use client'
 
-import { ICollectionNames } from "@/types"
+import { ICollectionNames } from "@/lib/types"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 

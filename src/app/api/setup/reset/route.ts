@@ -1,5 +1,5 @@
 
-import { sequelize } from '@/database'
+import { sequelize } from '@/lib/database'
 
 export const GET = async () => {
     
