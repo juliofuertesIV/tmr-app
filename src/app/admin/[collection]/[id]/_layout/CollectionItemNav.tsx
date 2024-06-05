@@ -6,31 +6,31 @@ import { usePathname } from "next/navigation"
 
 const navItemsByCollectionName = {
     contests: [
-        { name: 'Información', value: '' },
-        { name: 'Configuración', value: 'params' },
-        { name: 'Branding', value: 'brands' },
-        { name: 'Géneros', value: 'genres' },
-        { name: 'Redes sociales', value: 'social' },
-        { name: 'Imágenes', value: 'media' },
-        { name: 'Estado', value: 'states' },
+        { name: 'Información', value: '', association: false },
+        { name: 'Branding', value: 'brands', association: false },
+        { name: 'Imágenes', value: 'media', association: false },
+        { name: 'Redes sociales', value: 'social', association: true },
+        { name: 'Géneros', value: 'genres', association: true },
+        { name: 'Configuración', value: 'params', association: true },
+        { name: 'Estado', value: 'states', association: false },
     ],
     brands: [
-        { name: 'Información', value: '' },
+        { name: 'Información', value: '', association: false },
     ],
     social: [
-        { name: 'Información', value: '' },
+        { name: 'Información', value: '', association: false },
     ],
     genres: [
-        { name: 'Información', value: '' },
+        { name: 'Información', value: '', association: false },
     ],
     managers: [
-        { name: 'Información', value: '' },
+        { name: 'Información', value: '', association: false },
     ],
     inscriptions: [
-        { name: 'Información', value: '' },
+        { name: 'Información', value: '', association: false },
     ]
 } as {
-    [key in ICollectionNames]: { name: string, value: string }[]
+    [key in ICollectionNames]: { name: string, value: string, association: boolean }[]
 }
 
 export default function CollectionItemNav({ collection, id } : { collection: ICollectionNames, id: string | number }) {
@@ -38,9 +38,7 @@ export default function CollectionItemNav({ collection, id } : { collection: ICo
     const path = usePathname()
 
     const isActive = (value: string) => {
-        return !!value ?
-        path === `/admin/${ collection }/${ id }/${ value }`
-        : path === `/admin/${ collection }/${ id }`
+        return !!value ? path.includes(value) : path === `/admin/${ collection }/${ id }`
     }
 
     const getNavItemsByCollectionName = () => {
@@ -50,6 +48,11 @@ export default function CollectionItemNav({ collection, id } : { collection: ICo
         return items
     }
 
+    const getHref = (item: any) => {
+
+        return !!item.association ? `/admin/${ collection }/${ id }/manage/${ item.value }` : `/admin/${ collection }/${ id }/${ item.value }`
+    }
+
     return (
         <header className=" pt-3 pb-4 mx-auto mb-8 w-full">
             <ul className="w-full flex flex-wrap gap-2 px-4 items-center justify-center">
@@ -57,7 +60,7 @@ export default function CollectionItemNav({ collection, id } : { collection: ICo
                     getNavItemsByCollectionName().map((item, index) => 
                         <Link
                             className="bg-neutral-800 px-4 py-1 rounded-sm w-fit text-center data-[active='true']:bg-neutral-500 data-[active='true']:text-neutral-50 data-[active='true']:pointer-events-none hover:bg-neutral-600 uppercase text-sm"
-                            href={ `/admin/${ collection }/${ id }/${ item.value }` }
+                            href={ getHref(item) }
                             key={ index }
                             data-active={ isActive(item.value) }
                         >

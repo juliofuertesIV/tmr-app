@@ -111,6 +111,10 @@ export const getModelByCollectionName = (collection: ICollectionNames) => models
 
 export const getAssociationModelByName = (association: IAssociationNames) => associationByName[association]
 
-export const collectionHasMedia = (collection: ICollectionNames) : collection is ICollectionsWithMediaNames => {
+export const collectionHasMedia = (collection: ICollectionNames | ICollectionsWithMediaNames) : collection is ICollectionsWithMediaNames => {
     return collection === 'contests' || collection === 'inscriptions'
+}
+
+export const collectionCreationIncludesMedia = (collection: ICollectionNames | ICollectionsWithMediaNames) : collection is ICollectionsWithMediaNames => {
+    return collection === 'inscriptions'
 }

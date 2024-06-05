@@ -1,4 +1,4 @@
-import { ICollectionNames, ICollectionsWithMediaNames } from "@/types"
+import { ICollectionNames } from "@/types"
 import { getModelByCollectionName } from "../_utils"
 import { Inscription } from "@/lib/database"
 import { constructAPIResponse } from "../../_utils"
@@ -6,6 +6,7 @@ import { handleApiError } from "@/lib/errors"
 import { ICreateInscriptionPayload } from "@/types/inscriptions"
 import { createMedia } from "@/lib/media/create"
 import { validateMedia } from "@/lib/media/validation"
+import { ICollectionsWithMediaNames } from "@/types/media"
 
 export const addToCollection = async ({ collection, formData } : { collection: ICollectionNames, formData: FormData }) => {
 

@@ -6,6 +6,7 @@ import { useFormState } from 'react-dom'
 import AssociationIcon from './AssociationIcon'
 import { IAssociationNames, IAssociations, ICollectionsWithAssociations } from '@/types/associations'
 import { associateItems } from '@/lib/fetch/post'
+import { IMedia } from '@/types/media'
 
 type Props = {
     collection: ICollectionNames,
@@ -13,7 +14,6 @@ type Props = {
     association: IAssociationNames,
     associationItem: IAssociations,
     isCurrentlyAssociated: boolean,
-    isManyToMany: boolean
 }
 
 export default function AssociationInput({ 
@@ -22,7 +22,7 @@ export default function AssociationInput({
     associationItem,
     isCurrentlyAssociated,
     association,
-    isManyToMany
+    
 } : Props) {
 
 
@@ -37,9 +37,7 @@ export default function AssociationInput({
     const form = useRef<HTMLFormElement>(null)
 
     const onClickItem = () => {
-        
-        if (isCurrentlyAssociated && !isManyToMany) return
-        
+                
         setLoading(true)
 
         form.current?.requestSubmit()
@@ -59,14 +57,20 @@ export default function AssociationInput({
 
     const manageHoverState = (hovered: boolean) => setHovered(hovered)
 
+    const itemIsMedia = (item: IAssociations | IMedia) : item is IMedia => {
+        return association === 'media'
+    }
+
+    if (itemIsMedia(associationItem)) {
+        return null
+    }
+
     return (
         <div 
             className="bg-neutral-300 text-neutral-800 rounded-sm px-4 py-1 cursor-pointer hover:bg-neutral-100 data-[active='true']:bg-green-400 data-[active='true']:text-neutral-900 data-[active='true']:hover:bg-red-400 data-[loading='true']:pointer-events-none data-[loading='true']:bg-orange-500 "
             data-active={ isCurrentlyAssociated }
             data-loading={ loading }
-            style={{
-                pointerEvents: (isCurrentlyAssociated && !isManyToMany) || loading ? 'none' : 'auto'
-            }}
+            style={{ pointerEvents: loading ? 'none' : 'auto' }}
             onClick={ onClickItem }
             onMouseEnter={ () => manageHoverState(true) }
             onMouseOver={ () => manageHoverState(true) }
@@ -77,11 +81,10 @@ export default function AssociationInput({
                     <p className='text-sm uppercase leading-none'>{ associationItem.name }</p>
                     { description && <p className='text-xs leading-none'>{ description }</p> }
                 </div>
-                <AssociationIcon loading={ loading } checked={ isCurrentlyAssociated } hovered={ hovered } isManyToMany={ isManyToMany }/>
+                <AssociationIcon loading={ loading } checked={ isCurrentlyAssociated } hovered={ hovered }/>
             </div>
             <form action={ formAction } ref={ form }>
                 <input type="hidden" name="associationId" value={ associationItem.id }/>
-                <input type="hidden" name="isManyToMany" value={ `${isManyToMany}` }/>
             </form>
         </div>            
     )

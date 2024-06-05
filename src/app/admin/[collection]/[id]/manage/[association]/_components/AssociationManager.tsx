@@ -3,15 +3,14 @@
 import { ICollectionNames } from '@/types'
 import AssociationInput from './AssociationInput'
 import { determineIfItemIsAssociated } from '../_utils'
-import { IAssociationNames, IAssociationKeys, IAssociations, ICollectionsWithAssociations, ISimpleAssociationKeys } from '@/types/associations'
+import { IAssociationNames, IAssociationKeys, IAssociations, ICollectionsWithAssociations } from '@/types/associations'
 
 type Props = {
     collectionItem: ICollectionsWithAssociations,
     associationItems: IAssociations[],
     association: IAssociationNames,
-    associationKey: ISimpleAssociationKeys | IAssociationKeys,
-    collection: ICollectionNames,
-    isManyToMany: boolean
+    associationKey: IAssociationKeys,
+    collection: ICollectionNames
 }
 
 export default function AssociationManager({ 
@@ -19,7 +18,6 @@ export default function AssociationManager({
     associationItems,
     association,
     collection,
-    isManyToMany,
     associationKey 
 } : Props) {
     
@@ -28,7 +26,7 @@ export default function AssociationManager({
             {
                 associationItems.map((item, index) => {
 
-                    const isCurrentlyAssociated = determineIfItemIsAssociated({ item, collection, collectionItem, associationKey, isManyToMany })
+                    const isCurrentlyAssociated = determineIfItemIsAssociated({ item, collection, collectionItem, associationKey })
 
                     return (
                         <AssociationInput 
@@ -38,7 +36,6 @@ export default function AssociationManager({
                             association={ association }
                             associationItem={ item }
                             isCurrentlyAssociated={ isCurrentlyAssociated }
-                            isManyToMany={ isManyToMany }
                         />
                     )
                 })

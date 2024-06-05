@@ -8,10 +8,9 @@ type Props = {
     loading: boolean,
     checked: boolean,
     hovered: boolean,
-    isManyToMany: boolean
 }
 
-export default function AssociationIcon({ loading, checked, hovered, isManyToMany } : Props) {
+export default function AssociationIcon({ loading, checked, hovered } : Props) {
 
     if (loading) {
         return (
@@ -20,8 +19,6 @@ export default function AssociationIcon({ loading, checked, hovered, isManyToMan
             </div>
         )
     }
-
-    if (!checked && hovered && isManyToMany) return <PlusIcon/>
 
     if (checked && hovered) return <CloseIcon/> 
 

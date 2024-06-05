@@ -39,7 +39,7 @@ export default async function AdminAssociationPage({ params } : Props) {
 
     const { item, associationItems } = await getPageData({ collection, association, id }) as { item: ICollectionsWithAssociations, associationItems: IAssociations[] }
 
-    const { associationKey, isManyToMany } = getAssociationOptionsByName(association)
+    const associationKey = getAssociationOptionsByName(association)
 
     return (
         <section className="w-full flex flex-col items-center">
@@ -50,7 +50,6 @@ export default async function AdminAssociationPage({ params } : Props) {
                 association={ association }
                 associationItems={ associationItems }
                 associationKey={ associationKey }
-                isManyToMany={ isManyToMany }
             />
         </section>
     )
