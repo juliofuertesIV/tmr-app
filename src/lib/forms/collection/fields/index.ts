@@ -4,10 +4,10 @@ import { brandFields } from "./brands";
 import { socialFields } from "./social";
 import { genreFields } from "./genres";
 import { managerFields } from "./managers";
-import { ICollectionsWithMediaNames } from "@/types";
 import { addCollectionElement } from "@/lib/fetch/post";
 import { updateCollectionItem } from "@/lib/fetch/put";
 import { inscriptionFields } from "./inscriptions";
+import { ICollectionsWithMediaNames } from "@/types/media";
 
 export const formsByCollectionName : IFormByCollectionName = {
     action: {

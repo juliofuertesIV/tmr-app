@@ -12,7 +12,7 @@ import MediaInput from './inputs/by_type/MediaInput'
 
 type Props = {
     action: IFormAction,
-    fields: IFormField[],
+    fields?: IFormField[],
     mediaFields?: IMediaFormField[],
     collection: ICollectionNames,
     collectionItem?: IAllCollections,
@@ -44,7 +44,7 @@ export default function Form({
         >
             <AdminFormFeedback state={ state } />
             { 
-                fields.map((field, index) => 
+                fields?.map((field, index) => 
                     <FormInput key={ index } field={ field } collectionItem={ collectionItem } />) 
             }
             { 

@@ -8,7 +8,7 @@ const navItemsByCollectionName = {
     contests: [
         { name: 'Información', value: '', association: false },
         { name: 'Branding', value: 'brands', association: false },
-        { name: 'Imágenes', value: 'media', association: false },
+        { name: 'Imágenes', value: 'media', association: true },
         { name: 'Redes sociales', value: 'social', association: true },
         { name: 'Géneros', value: 'genres', association: true },
         { name: 'Configuración', value: 'params', association: true },
