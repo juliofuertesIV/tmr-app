@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import { ICollectionNames, IAllCollections } from "@/types";
 import { getCollection } from "@/lib/fetch/get";
 import CreationDialog from "../_dashboard/CreationDialog";
-import CollectionTable from "./_components/tables/CollectionTable";
+import CollectionTable from "@/lib/tables/CollectionTable";
 
 export const metadata: Metadata = {
     title: "Panel de administración TMR",
