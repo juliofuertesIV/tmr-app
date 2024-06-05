@@ -2,7 +2,7 @@ import { Media, sequelize } from "@/lib/database"
 import { uploadMedia } from "@/lib/media/upload"
 import { handleApiError } from "@/lib/errors"
 import { IMedia, IMediaPayload } from "@/types/media"
-import { ICollectionsWithMediaNames } from "@/types"
+import { ICollectionsWithMediaNames } from "@/types/media"
 import { deleteFromCloudStorage } from "../storage/gcp_storage"
 
 export const createMedia = async ({ 

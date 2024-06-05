@@ -68,7 +68,7 @@ export const addToCollectionWithMedia = async ({ collection, formData } : { coll
     }
     catch (error) {
         return await handleApiError({
-            collection: 'inscriptions',
+            collection,
             route: '/api/' + collection,
             error,
             message: 'Fallo inscribiendo candidatura.' 
