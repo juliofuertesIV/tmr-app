@@ -4,31 +4,37 @@ import { formInitialState } from '@/lib/forms/feedback/state'
 import React, { useEffect, useRef, useState } from 'react'
 import { useFormState } from 'react-dom'
 import AssociationIcon from './AssociationIcon'
-import { IAssociationNames, IAssociations, ICollectionsWithAssociations } from '@/types/associations'
+import { IAssociationIdFieldnames, IAssociationKeys, IAssociationNames, IAssociations, ICollectionsWithAssociations, IRelationshipIdFieldnames, IRelationshipNames, IRelationships } from '@/types/associations'
 import { associateItems } from '@/lib/fetch/post'
-import { IMedia } from '@/types/media'
+import { updateCollectionItem } from '@/lib/fetch/put'
 
 type Props = {
     collection: ICollectionNames,
     collectionItem: ICollectionsWithAssociations,
-    association: IAssociationNames,
-    associationItem: IAssociations,
+    association: IAssociationNames | IRelationshipNames,
+    associationItem: IAssociations | IRelationships,
+    associationIdField: IAssociationIdFieldnames | IRelationshipIdFieldnames,
     isCurrentlyAssociated: boolean,
+    isRelationship: boolean
 }
 
 export default function AssociationInput({ 
     collection,
     collectionItem,
     associationItem,
+    associationIdField,
     isCurrentlyAssociated,
+    isRelationship,
     association,
     
 } : Props) {
 
 
-    const boundAssociationAction = associateItems.bind(null, collection, collectionItem.id, association)
-    const boundDissociationAction = disassociateItems.bind(null, collection, collectionItem.id, association, associationItem.id)
-    const boundAction = isCurrentlyAssociated ? boundDissociationAction : boundAssociationAction
+    const boundAssociationAction = associateItems.bind(null, collection, collectionItem.id, association as IAssociationNames)
+    const boundDissociationAction = disassociateItems.bind(null, collection, collectionItem.id, association as IAssociationNames, associationItem.id)
+    const boundRelationshipAction = updateCollectionItem.bind(null, collection, collectionItem.id)
+
+    const boundAction = isRelationship ? boundRelationshipAction : (isCurrentlyAssociated ? boundDissociationAction : boundAssociationAction)
 
     const [ state, formAction ] = useFormState(boundAction, formInitialState)
     const [ loading, setLoading ] = useState<boolean>(false)
@@ -57,20 +63,12 @@ export default function AssociationInput({
 
     const manageHoverState = (hovered: boolean) => setHovered(hovered)
 
-    const itemIsMedia = (item: IAssociations | IMedia) : item is IMedia => {
-        return association === 'media'
-    }
-
-    if (itemIsMedia(associationItem)) {
-        return null
-    }
-
     return (
         <div 
             className="bg-neutral-300 text-neutral-800 rounded-sm px-4 py-1 cursor-pointer hover:bg-neutral-100 data-[active='true']:bg-green-400 data-[active='true']:text-neutral-900 data-[active='true']:hover:bg-red-400 data-[loading='true']:pointer-events-none data-[loading='true']:bg-orange-500 "
             data-active={ isCurrentlyAssociated }
             data-loading={ loading }
-            style={{ pointerEvents: loading ? 'none' : 'auto' }}
+            style={{ pointerEvents: isCurrentlyAssociated && isRelationship ? 'none' : (loading ? 'none' : 'auto') }}
             onClick={ onClickItem }
             onMouseEnter={ () => manageHoverState(true) }
             onMouseOver={ () => manageHoverState(true) }
@@ -84,7 +82,8 @@ export default function AssociationInput({
                 <AssociationIcon loading={ loading } checked={ isCurrentlyAssociated } hovered={ hovered }/>
             </div>
             <form action={ formAction } ref={ form }>
-                <input type="hidden" name="associationId" value={ associationItem.id }/>
+                { /* TO DO: ALL WITH VARIABLE associationkey */ }
+                <input type="hidden" name={ isRelationship ? associationIdField : "associationId" } value={ associationItem.id }/>
             </form>
         </div>            
     )

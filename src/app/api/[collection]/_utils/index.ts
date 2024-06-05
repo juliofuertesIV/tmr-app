@@ -1,6 +1,7 @@
 import { Brand, Contest, Media, Genre, Param, State, ContestParam, ContestMedia, ContestGenre, ContestSocial, SocialMedia, Manager, Role, Log, Inscription } from "@/lib/database";
-import { ICollectionNames, ICollectionsWithMediaNames } from "@/types";
-import { IAssociationNames } from "@/types/associations";
+import { ICollectionNames } from "@/types";
+import { IAssociationIdFieldnames, IAssociationKeys, IAssociationNames, IRelationshipIdFieldnames, IRelationshipNames } from "@/types/associations";
+import { ICollectionsWithMediaNames } from "@/types/media";
 import { FindOptions, Model, ModelStatic } from "sequelize";
 
 const modelsByCollectionName = {
@@ -71,50 +72,60 @@ const associationByName = {
     params: {
         AssociationTable: ContestParam,
         AssociationModel: Param,
+        associationKey: 'Params',
         collectionItemIdField: 'ContestId',
         associationIdField: 'ParamId'
-    },
-    media: {
-        AssociationTable: ContestMedia,
-        AssociationModel: Media,
-        collectionItemIdField: 'ContestId',
-        associationIdField: 'MediumId'
     },
     genres: {
         AssociationTable: ContestGenre,
         AssociationModel: Genre,
+        associationKey: 'Genres',
         collectionItemIdField: 'ContestId',
         associationIdField: 'GenreId'
     },
     social: {
         AssociationTable: ContestSocial,
         AssociationModel: SocialMedia,
+        associationKey: 'SocialMedia',
         collectionItemIdField: 'ContestId',
         associationIdField: 'SocialMediumId'
     },
-    managers: {
-        AssociationTable: null,
-        AssociationModel: Role,
-        collectionItemIdField: null,
-        associationIdField: 'RoleId'
-    }
 } as {
     [key in IAssociationNames]: {
         AssociationTable: ModelStatic<Model<any, any>> | null,
         AssociationModel: ModelStatic<Model<any, any>>,
+        associationKey: IAssociationKeys,
         collectionItemIdField: string | null,
-        associationIdField: string
+        associationIdField: IAssociationIdFieldnames
     }
 }
+
+const relationshipByName = {
+    brand: {
+        RelationshipModel: Brand,
+        relationshipIdFieldName: 'BrandId'
+    },
+    state: {
+        RelationshipModel: State,
+        relationshipIdFieldName: 'StateId'
+    }
+} as {
+    [key in IRelationshipNames]: {
+        RelationshipModel: ModelStatic<Model<any, any>>,
+        relationshipIdFieldName: IRelationshipIdFieldnames
+    }
+}
+
+export const collectionHasMedia = (
+    collection: ICollectionNames | ICollectionsWithMediaNames
+) : collection is ICollectionsWithMediaNames => collection === 'contests' || collection === 'inscriptions'
+
+export const collectionCreationIncludesMedia = (
+    collection: ICollectionNames | ICollectionsWithMediaNames
+) : collection is ICollectionsWithMediaNames => collection === 'inscriptions'
 
 export const getModelByCollectionName = (collection: ICollectionNames) => modelsByCollectionName[collection]
 
 export const getAssociationModelByName = (association: IAssociationNames) => associationByName[association]
 
-export const collectionHasMedia = (collection: ICollectionNames | ICollectionsWithMediaNames) : collection is ICollectionsWithMediaNames => {
-    return collection === 'contests' || collection === 'inscriptions'
-}
-
-export const collectionCreationIncludesMedia = (collection: ICollectionNames | ICollectionsWithMediaNames) : collection is ICollectionsWithMediaNames => {
-    return collection === 'inscriptions'
-}
+export const getRelationshipModelByName = (relationship: IRelationshipNames) => relationshipByName[relationship]

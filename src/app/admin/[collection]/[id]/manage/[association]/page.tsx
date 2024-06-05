@@ -1,9 +1,8 @@
 import { Metadata } from "next";
-import { ICollectionNames } from "@/types";
+import { IAllCollections, ICollectionNames } from "@/types";
 import { getAssociationModelByName, getModelByCollectionName } from "@/app/api/[collection]/_utils";
 import AssociationManager from "./_components/AssociationManager";
-import { getAssociationOptionsByName } from "./_utils";
-import { IAssociationNames, IAssociations, ICollectionsWithAssociations } from "@/types/associations";
+import { IAssociationIdFieldnames, IAssociationKeys, IAssociationNames, IAssociations, ICollectionsWithAssociations } from "@/types/associations";
 import AssociationPageHeader from "./_components/AssociationPageHeader";
 
 export const metadata: Metadata = {
@@ -19,9 +18,22 @@ type Props = {
     }
 }
 
-const getPageData = async ({ collection, id, association } : { collection: ICollectionNames, id: string, association: IAssociationNames }) => {
+const getPageData = async ({ 
+    collection,
+    id,
+    association 
+} : { 
+    collection: ICollectionNames,
+    id: string,
+    association: IAssociationNames 
+}) : Promise<{
+    item: ICollectionsWithAssociations,
+    associationIdField: IAssociationIdFieldnames,
+    associationKey: IAssociationKeys,
+    associationItems: IAssociations[]
+}> => {
 
-    const { AssociationModel } = getAssociationModelByName(association)
+    const { AssociationModel, associationIdField, associationKey } = getAssociationModelByName(association)
     const { Model, options } = getModelByCollectionName(collection)
 
     const item = await Model.findOne({ where: { id }, ...options }).then(data => data) as unknown as ICollectionsWithAssociations
@@ -29,7 +41,9 @@ const getPageData = async ({ collection, id, association } : { collection: IColl
 
     return { 
         item: JSON.parse(JSON.stringify(item)), 
-        associationItems: JSON.parse(JSON.stringify(associationItems)) 
+        associationItems: JSON.parse(JSON.stringify(associationItems)),
+        associationKey,
+        associationIdField,
     }
 }
 
@@ -37,9 +51,7 @@ export default async function AdminAssociationPage({ params } : Props) {
     
     const { collection, id, association } = params
 
-    const { item, associationItems } = await getPageData({ collection, association, id }) as { item: ICollectionsWithAssociations, associationItems: IAssociations[] }
-
-    const associationKey = getAssociationOptionsByName(association)
+    const { item, associationItems, associationIdField, associationKey } = await getPageData({ collection, association, id })
 
     return (
         <section className="w-full flex flex-col items-center">
@@ -50,6 +62,7 @@ export default async function AdminAssociationPage({ params } : Props) {
                 association={ association }
                 associationItems={ associationItems }
                 associationKey={ associationKey }
+                associationIdField={ associationIdField }
             />
         </section>
     )

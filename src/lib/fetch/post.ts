@@ -51,7 +51,7 @@ export const associateItems = async (
     formData: FormData
 ) : Promise<IAPIResponse<null>> => {
 
-    if (association === 'states') {
+    /* TO DO: VALIDATE if (association === 'states') {
         await fetch(`http://localhost:3000/api/validate/${ collection }/${ collectionItemId }`, {
             method: 'GET',
             cache: 'no-cache'
@@ -63,7 +63,7 @@ export const associateItems = async (
             }
         })
         .catch(error => { throw new Error(error) })
-    }
+    } */
 
     const res = await fetch(`http://localhost:3000/api/${ collection }/${ collectionItemId }/${ association }`, {
         method: "POST",

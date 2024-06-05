@@ -28,7 +28,7 @@ export type IManager = {
 }
 
 export type IContest = {
-    id: string | number,
+    id: string,
     name: string,
     domain: string,
     year: number | string,

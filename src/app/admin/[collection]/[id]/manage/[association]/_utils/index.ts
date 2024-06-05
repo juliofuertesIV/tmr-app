@@ -1,36 +1,27 @@
 import { IContest, ICollectionNames } from "@/types"
-import { IAssociationNames, IAssociationKeys, IAssociations, ICollectionsWithAssociations } from "@/types/associations"
-
-const associationOptionsByName : {
-    [key in IAssociationNames]: IAssociationKeys
-} = {
-    params: 'Params',
-    genres: 'Genres',
-    social: 'SocialMedia',
-    media: 'Media',
-}
-
-export const getAssociationOptionsByName = (association: IAssociationNames) => {
-    return associationOptionsByName[association]
-}
- 
-export const itemIsContest = (item: ICollectionsWithAssociations, collection: ICollectionNames) : item is IContest => collection === 'contests'
+import { IAssociationKeys, IAssociations, ICollectionsWithAssociations, IRelationships, IRelationshipIdFieldnames, IAssociationIdFieldnames } from "@/types/associations"
 
 export const determineIfItemIsAssociated = ({
     item,
     collectionItem,
     collection,
     associationKey,
+    associationIdField,
 } : {
-    item: IAssociations,
+    item: IAssociations | IRelationships,
     collectionItem: ICollectionsWithAssociations,
     collection: ICollectionNames,
-    associationKey: IAssociationKeys,
+    associationIdField: IRelationshipIdFieldnames | IAssociationIdFieldnames,
+    associationKey: IAssociationKeys | null,
     
 }) => {
-
-    if (!itemIsContest(collectionItem, collection)) return false;
-
-    return collectionItem[associationKey].some(associatedItem => associatedItem.id === item.id)
     
+    // TO DO: Tidy up this mess
+    if (!itemIsContest(collectionItem, collection)) return false;
+    if (itemIsRelationship(item, associationKey)) return collectionItem[associationIdField as IRelationshipIdFieldnames] === item.id
+    return collectionItem[associationKey as IAssociationKeys]?.some(associatedItem => associatedItem.id === item.id)  
 }
+
+export const itemIsContest = (item: ICollectionsWithAssociations, collection: ICollectionNames) : item is IContest => collection === 'contests'
+
+export const itemIsRelationship = (item: IAssociations | IRelationships, associationKey: IAssociationKeys | null) : item is IRelationships => !associationKey

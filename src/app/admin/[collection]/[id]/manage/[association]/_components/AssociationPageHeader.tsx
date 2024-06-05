@@ -1,11 +1,11 @@
-import { IAssociationNames, ICollectionsWithAssociations } from "@/types/associations";
+import { IAssociationNames, ICollectionsWithAssociations, IRelationshipNames } from "@/types/associations";
 
 const headersByAssociationName = {
     params: {
         title: 'Configuración',
         description: 'La configuración es una serie de parámetros que definen el tipo de concurso. Parámetros como el ranking público o el número de inscripciones repercuten en el diseño del front, y parámetros como la inscripción pública o los requerimientos de vídeo o ciudad afectan al proceso de inscripción.'
     },
-    brands: {
+    brand: {
         title: 'Marca',
         description: 'Los concursos deben pertenecer a una marca. El branding define los colores que se van a emplear en el front, pero tambien la página oficial del festival al que pertenece y sus perfiles en redes sociales.'
     },
@@ -13,7 +13,7 @@ const headersByAssociationName = {
         title: 'Géneros',
         description: 'Si el concurso incluye géneros musicales, puedes marcar aquí qué géneros quieres que puedan utilizarse en el proceso de inscripción.'
     },
-    states: {
+    state: {
         title: 'Estado',
         description: 'El estado actual del concurso afecta al proceso de inscripción y de votación. Hasta que un concurso no está completamente configurado no puede cambiar su estado y permanecerá oculto.'
     },
@@ -21,16 +21,14 @@ const headersByAssociationName = {
         title: 'Redes sociales',
         description: 'Las redes sociales a las que está vinculado un concurso son pasos necesarios en el proceso de votación. Se requerira al usuario seguir a la cuenta asociada a la marca en las redes que estén marcadas.'
     },
-} as {
-    [key in IAssociationNames]: {
-        title: string,
-        description: string
-    }
+    media: {
+        title: '',
+        description: ''
+    },
 }
 
 
-
-export default function AssociationPageHeader({ association, item } : { association: IAssociationNames, item: ICollectionsWithAssociations }) {
+export default function AssociationPageHeader({ association, item } : { association: IAssociationNames | IRelationshipNames, item: ICollectionsWithAssociations }) {
     
     const { title, description } = headersByAssociationName[association]
     
