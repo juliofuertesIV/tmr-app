@@ -22,8 +22,6 @@ export const prepareMediaFile = async ({
     success: boolean
 }> => {
 
-    console.log({ payload, domain, collection })
-
     const { file } = payload
 
     const bytes = await file.arrayBuffer();

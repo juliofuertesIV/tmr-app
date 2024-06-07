@@ -40,10 +40,6 @@ export default async function AdminElementPage({ params } : { params: { contestI
                 {
                     inscriptions.map((inscription, index) => {
                         
-                        console.log({ media: inscription.Medium })
-
-                        console.log({ inscription })
-
                         if (!inscription.Medium) return null
 
                         return (

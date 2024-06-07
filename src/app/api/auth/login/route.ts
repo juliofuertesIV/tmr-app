@@ -27,8 +27,6 @@ export const POST = async (request: NextRequest) => {
         )
     }) as unknown as IManager
 
-    console.log({ manager })
-
     if (!passwordsAreMatching({ hash: manager.hash, salt: manager.salt, inputPassword: password })) { 
         return Response.json(
             constructAPIResponse({

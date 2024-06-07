@@ -3,7 +3,7 @@
 import { usePathname } from "next/navigation";
 import Script from "next/script";
 import { useEffect, useState } from "react";
-import * as pixel from "@/pixels/metaPixel";
+import * as pixel from "@/lib/tracking/pixels/metaPixel";
 
 const MetaPixel = () => {
   const [loaded, setLoaded] = useState(false);

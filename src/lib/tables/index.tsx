@@ -34,8 +34,8 @@ const tables : { [key in ICollectionNames]: ICollectionTable } = {
         associations: null,
     },
     inscriptions: {
-        headers: ['Nombre'],
-        fields: ['name'],
+        headers: ['Nombre', 'Contacto'],
+        fields: ['name', 'contact'],
         associations: null,
     },
     managers: {

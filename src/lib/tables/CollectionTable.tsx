@@ -27,7 +27,7 @@ export default function CollectionTable({ collection, items } : { collection: IC
             </thead>
             <tbody className="border border-neutral-600">
                 {
-                    items.map((item, index) => 
+                    items?.map((item, index) => 
                         <CollectionTableRow 
                             key={ index }
                             collection={ collection }
