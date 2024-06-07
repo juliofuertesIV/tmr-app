@@ -109,7 +109,6 @@ export const contestsMediaFields : IMediaFormField[] = [
         label: 'Logotipo',
         type: 'image',
         name: 'logo',
-        requiredForItemCreation: true,
         multiple: false
     },
     {
@@ -117,7 +116,6 @@ export const contestsMediaFields : IMediaFormField[] = [
         label: 'Banner',
         type: 'image',
         name: 'banner',
-        requiredForItemCreation: true,
         multiple: false
     },
     {
@@ -125,7 +123,6 @@ export const contestsMediaFields : IMediaFormField[] = [
         label: 'Marco',
         type: 'image',
         name: 'frame',
-        requiredForItemCreation: true,
         multiple: false
     },
     {
@@ -133,7 +130,13 @@ export const contestsMediaFields : IMediaFormField[] = [
         label: 'Favicon',
         type: 'image',
         name: 'favicon',
-        requiredForItemCreation: true,
+        multiple: false
+    },
+    {
+        role: 'conditions',
+        label: 'Bases del concurso',
+        type: 'pdf',
+        name: 'conditions',
         multiple: false
     },
 ]

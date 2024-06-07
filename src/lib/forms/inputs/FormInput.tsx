@@ -1,6 +1,6 @@
 import React, { ChangeEvent, useState } from 'react'
-import { TextInput } from '@/lib/forms/inputs/by_type/TextInput'
-import { IFormField } from '@/types/forms'
+import { RegularInput } from '@/lib/forms/inputs/by_type/RegularInput'
+import { IFormField, IMediaFormField } from '@/types/forms'
 import { validateInput } from '@/lib/forms/validation'
 import Label from '../label/Label'
 import { IAllCollections } from '@/types'
@@ -31,7 +31,7 @@ export default function FormInput({ field, collectionItem } : { field: IFormFiel
 
     return (
         <Label textContent={ label } isValid={ isValid }>
-            <TextInput 
+            <RegularInput 
                 className="pl-2 w-full text-neutral-800"
                 name={ name }
                 type={ type }

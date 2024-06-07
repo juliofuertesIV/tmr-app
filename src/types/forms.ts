@@ -32,7 +32,6 @@ export type IMediaFormField = {
     label: string,
     type: IMediaTypes
     name: string,
-    requiredForItemCreation: boolean,
     multiple: boolean
 }
 

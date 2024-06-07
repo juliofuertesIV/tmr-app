@@ -45,7 +45,7 @@ export default function Form({
             <AdminFormFeedback state={ state } />
             { 
                 fields?.map((field, index) => 
-                    <FormInput key={ index } field={ field } collectionItem={ collectionItem } />) 
+                    <FormInput key={ index } field={ field } collectionItem={ collectionItem }/>) 
             }
             { 
                 mediaFields?.map((field, index) => 

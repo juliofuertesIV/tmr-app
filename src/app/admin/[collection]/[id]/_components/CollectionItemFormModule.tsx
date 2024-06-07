@@ -5,11 +5,11 @@ import { getFormByCollectionName, getMediaFieldsByCollection } from "@/lib/forms
 import { ICollectionNames, IAllCollections } from "@/types"
 import { IActionTarget } from "@/types/forms"
 
-export default function FormModule({ collection, collectionItem, target } : { collection: ICollectionNames, collectionItem: IAllCollections, target: IActionTarget }) {
+export default function CollectionItemFormModule({ collection, collectionItem, target } : { collection: ICollectionNames, collectionItem: IAllCollections, target: IActionTarget }) {
 
     const { action, fields } = getFormByCollectionName({ collection, actionTarget: 'update' })
 
-    const mediaFields = getMediaFieldsByCollection({ collection })
+    const pdfMediaFields = getMediaFieldsByCollection({ collection }).filter(field => field.type === 'pdf')
 
     return (
         <div className="w-full max-w-xl">
@@ -17,7 +17,7 @@ export default function FormModule({ collection, collectionItem, target } : { co
                 target={ target }
                 action={ action }
                 fields={ fields }
-                mediaFields={ mediaFields }
+                mediaFields={ pdfMediaFields }
                 collection={ collection }
                 collectionItem={ collectionItem }
             />
