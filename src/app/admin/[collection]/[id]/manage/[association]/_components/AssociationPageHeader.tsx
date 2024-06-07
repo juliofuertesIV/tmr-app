@@ -25,6 +25,10 @@ const headersByAssociationName = {
         title: '',
         description: ''
     },
+    role: {
+        title: '',
+        description: ''
+    }
 }
 
 

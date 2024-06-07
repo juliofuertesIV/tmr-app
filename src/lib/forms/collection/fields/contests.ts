@@ -108,20 +108,32 @@ export const contestsMediaFields : IMediaFormField[] = [
         role: 'logo',
         label: 'Logotipo',
         type: 'image',
+        name: 'logo',
+        requiredForItemCreation: true,
+        multiple: false
     },
     {
         role: 'banner',
         label: 'Banner',
         type: 'image',
+        name: 'banner',
+        requiredForItemCreation: true,
+        multiple: false
     },
     {
         role: 'frame',
         label: 'Marco',
         type: 'image',
+        name: 'frame',
+        requiredForItemCreation: true,
+        multiple: false
     },
     {
         role: 'favicon',
         label: 'Favicon',
         type: 'image',
+        name: 'favicon',
+        requiredForItemCreation: true,
+        multiple: false
     },
 ]

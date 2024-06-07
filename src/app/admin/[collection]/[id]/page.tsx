@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import { ICollectionNames } from "@/types";
 import { getCollectionElementById } from "@/lib/fetch/get";
-import EditionModule from "./_components/EditionModule";
+import FormModule from "./_components/FormModule";
 
 export const metadata: Metadata = {
     title: "Panel de administración TMR",
@@ -21,7 +21,7 @@ export default async function AdminElementPage({ params } : { params: { collecti
             <header className="text-center max-w-2xl mb-8">
                 <h1 className="uppercase">Editar información básica</h1>
             </header>
-            <EditionModule collection={ collection } collectionItem={ item }/>
+            <FormModule collection={ collection } collectionItem={ item } target={ 'update' }/>
         </section>
     )
 }

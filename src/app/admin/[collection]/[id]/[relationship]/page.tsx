@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import { ICollectionNames } from "@/types";
 import { getModelByCollectionName, getRelationshipModelByName } from "@/app/api/[collection]/_utils";
-import { IAssociations, ICollectionsWithAssociations, IRelationshipNames, IRelationships } from "@/types/associations";
+import { ICollectionsWithAssociations, IRelationshipNames, IRelationships } from "@/types/associations";
 import AssociationPageHeader from "../manage/[association]/_components/AssociationPageHeader";
 import AssociationManager from "../manage/[association]/_components/AssociationManager";
 

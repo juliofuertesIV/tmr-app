@@ -1,4 +1,4 @@
-import { Brand, Contest, Media, Genre, Param, State, ContestParam, ContestMedia, ContestGenre, ContestSocial, SocialMedia, Manager, Role, Log, Inscription } from "@/lib/database";
+import { Brand, Contest, Media, Genre, Param, State, ContestParam, ContestGenre, ContestSocial, SocialMedia, Manager, Role, Log, Inscription } from "@/lib/database";
 import { ICollectionNames } from "@/types";
 import { IAssociationIdFieldnames, IAssociationKeys, IAssociationNames, IRelationshipIdFieldnames, IRelationshipNames } from "@/types/associations";
 import { ICollectionsWithMediaNames } from "@/types/media";
@@ -108,6 +108,10 @@ const relationshipByName = {
     state: {
         RelationshipModel: State,
         relationshipIdFieldName: 'StateId'
+    },
+    role: {
+        RelationshipModel: Role,
+        relationshipIdFieldName: 'RoleId'
     }
 } as {
     [key in IRelationshipNames]: {

@@ -31,6 +31,9 @@ export type IMediaFormField = {
     role: IMediaRole,
     label: string,
     type: IMediaTypes
+    name: string,
+    requiredForItemCreation: boolean,
+    multiple: boolean
 }
 
 export type IFormAction = (...args: any) => Promise<IAPIResponse<any>>

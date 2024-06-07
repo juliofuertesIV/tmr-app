@@ -18,6 +18,7 @@ export const determineIfItemIsAssociated = ({
     
     // TO DO: Tidy up this mess
     if (!itemIsContest(collectionItem, collection)) return false;
+    
     if (itemIsRelationship(item, associationKey)) return collectionItem[associationIdField as IRelationshipIdFieldnames] === item.id
     return collectionItem[associationKey as IAssociationKeys]?.some(associatedItem => associatedItem.id === item.id)  
 }

@@ -1,7 +1,7 @@
 import { ICollectionNames } from "@/types"
 import { IActionTarget, IFormAction, IFormField, IMediaFormField } from "@/types/forms"
 import { formsByCollectionName, mediaFieldsByCollectionName } from "./fields"
-import { ICollectionsWithMediaNames } from "@/types/media"
+import { collectionHasMedia } from "@/app/api/[collection]/_utils"
 
 type FormByCollectionNameProps = {
     collection: ICollectionNames,
@@ -26,6 +26,9 @@ export const getFormByCollectionName : FormByCollectionName = ({ collection, act
     return { action, fields: allFields }
 }
 
-export const getMediaFieldsByCollection = ({ collection } : { collection: ICollectionsWithMediaNames }) : IMediaFormField[] => {
+export const getMediaFieldsByCollection = ({ collection } : { collection: ICollectionNames }) : IMediaFormField[] => {
+
+    if (!collectionHasMedia(collection)) return []
+
     return mediaFieldsByCollectionName[collection]
 }

@@ -8,7 +8,7 @@ const navItemsByCollectionName = {
     contests: [
         { name: 'Información', value: '', association: false },
         { name: 'Branding', value: 'brand', association: false },
-        { name: 'Imágenes', value: 'media', association: true },
+        { name: 'Footer', value: 'media', association: true },
         { name: 'Redes sociales', value: 'social', association: true },
         { name: 'Géneros', value: 'genres', association: true },
         { name: 'Configuración', value: 'params', association: true },
@@ -25,6 +25,7 @@ const navItemsByCollectionName = {
     ],
     managers: [
         { name: 'Información', value: '', association: false },
+        { name: 'Rol', value: 'role', association: false },
     ],
     inscriptions: [
         { name: 'Información', value: '', association: false },
@@ -49,7 +50,6 @@ export default function CollectionItemNav({ collection, id } : { collection: ICo
     }
 
     const getHref = (item: any) => {
-
         return !!item.association ? `/admin/${ collection }/${ id }/manage/${ item.value }` : `/admin/${ collection }/${ id }/${ item.value }`
     }
 
