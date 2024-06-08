@@ -109,34 +109,39 @@ export const contestsMediaFields : IMediaFormField[] = [
         label: 'Logotipo',
         type: 'image',
         name: 'logo',
-        multiple: false
+        multiple: false,
+        accept: 'image/svg+xml'
     },
     {
         role: 'banner',
         label: 'Banner',
         type: 'image',
         name: 'banner',
-        multiple: false
+        multiple: false,
+        accept: 'image/svg+xml'
     },
     {
         role: 'frame',
         label: 'Marco',
         type: 'image',
         name: 'frame',
-        multiple: false
+        multiple: false,
+        accept: 'image/svg+xml'
     },
     {
         role: 'favicon',
         label: 'Favicon',
         type: 'image',
         name: 'favicon',
-        multiple: false
+        multiple: false,
+        accept: 'image/vnd.microsoft.icon'
     },
     {
         role: 'conditions',
         label: 'Bases del concurso',
         type: 'pdf',
         name: 'conditions',
-        multiple: false
+        multiple: false,
+        accept: 'application/pdf'
     },
 ]

@@ -32,7 +32,8 @@ export type IMediaFormField = {
     label: string,
     type: IMediaTypes
     name: string,
-    multiple: boolean
+    multiple: boolean,
+    accept: string
 }
 
 export type IFormAction = (...args: any) => Promise<IAPIResponse<any>>
