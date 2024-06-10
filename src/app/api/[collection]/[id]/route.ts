@@ -24,12 +24,12 @@ export const PUT = async (req: Request, { params } : RouteParams) => {
 
     const formData = await req.formData()
 
+    // TO DO: UpdateElementMedia, contest should have it too
     if (collection === 'inscriptions' && formData.has('file')) {
         return await updateInscriptionMedia({ collection, id, formData })
     }
     
     return await updateCollectionItem({ collection, id, formData })
-
 }
 
 export const DELETE = async (req: Request, { params } : RouteParams) => {
