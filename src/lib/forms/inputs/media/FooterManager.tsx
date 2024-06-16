@@ -3,7 +3,7 @@
 import { IMediaFormField } from '@/types/forms'
 import { deleteContestMediaItem } from '@/lib/fetch/delete'
 import { IContest } from '@/types'
-import FileInputPreview from './FileInputPreview'
+import MediaPreview from './MediaPreview'
 import FileUploadForm from './FileUploadForm'
 
 
@@ -30,7 +30,7 @@ export default function FooterManager({ contest } : { contest: IContest }) {
                 {
                     currentFooterMedia.map((media, index) => {
                         return (
-                            <FileInputPreview 
+                            <MediaPreview 
                                 key={ index }
                                 file={ media }
                                 previewIsCurrentMedia={ true }

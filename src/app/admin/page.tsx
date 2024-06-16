@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 };
 
 const getData = async () : Promise<IAPIResponse<IAdminData>> => {
-    
+
     const res = await getDashboardData()
 
     if (res.error) throw new Error(res.error.message)

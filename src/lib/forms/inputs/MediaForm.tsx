@@ -5,7 +5,7 @@ import React, { ChangeEvent, HTMLProps, useEffect, useRef, useState } from 'reac
 import Label from '../label/Label'
 import Form from '../Form'
 import { IAllCollections, ICollectionNames, ICollectionsWithMedia } from '@/types'
-import FileInputPreview from './media/FileInputPreview'
+import MediaPreview from './media/MediaPreview'
 
 type Props = {
     field: IMediaFormField,
@@ -83,7 +83,7 @@ export default function MediaForm({ collection, collectionItem, field, domain, a
 
     return (
         <Form collection={ collection } action={ action } collectionItem={ collectionItem as IAllCollections }>
-            <FileInputPreview src={ previewSrc } width={ imageMeasurements.width } height={ imageMeasurements.height } onDiscardFile={ discardFile }/>
+            <MediaPreview src={ previewSrc } width={ imageMeasurements.width } height={ imageMeasurements.height } onDiscardFile={ discardFile }/>
             <Label textContent={ label } isValid={ null }>
                 <input ref={ fileInputRef } type="file" name='file' accept={ accept } { ...props } onChange={ onFileInputchange }/>
             </Label>

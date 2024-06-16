@@ -10,23 +10,29 @@ type Props = {
     onDiscardFile: () => void
 }
 
-export default function FileInputPreview({ src, width, height, onDiscardFile } : Props) {
+export default function MediaPreview({ 
+    src,
+    width,
+    height,
+    onDiscardFile 
+} : Props) {
 
     const previewRef = useRef<HTMLImageElement>(null)
-
-    if (!src) return null
 
     return (
         <div className='flex w-full mx-auto border-2 border-dashed border-neutral-600 relative'>
             <NextImage
                 className='rounded-sm w-full max-w-full object-contain'
                 ref={ previewRef }
-                src={ src }
+                src={ src ? src : '/img/no-image-placeholder.svg' }
                 width={ width }
                 height={ height }
                 alt={ '' }
             />
-            <div className='absolute top-3 left-2'>
+            <div 
+                className='absolute top-3 left-2 data-[hidden="true"]:hidden'
+                data-hidden={ !src }
+            >
                 <button 
                     type='button'
                     role='button'

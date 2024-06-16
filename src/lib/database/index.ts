@@ -426,6 +426,23 @@ export const Media = sequelize.define('Media', {
     }
 })
 
+export const Document = sequelize.define('Document', {
+    id: {
+        type: DataTypes.UUID,
+        primaryKey: true,
+        defaultValue: DataTypes.UUIDV4,
+        allowNull: false,
+    },
+    role: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+    src: {
+        type: DataTypes.STRING,
+        allowNull: false
+    }
+})
+
 export const ContestParam = sequelize.define('ContestParams', {
 }, {
     timestamps: false
@@ -442,6 +459,11 @@ export const ContestSocial = sequelize.define('ContestSocial', {
 })
 
 export const ContestMedia = sequelize.define('ContestMedia', {
+}, {
+    timestamps: false
+})
+
+export const ContestDocument = sequelize.define('ContestDocuments', {
 }, {
     timestamps: false
 })
@@ -466,6 +488,9 @@ Genre.belongsToMany(Contest, { through: 'ContestGenres' })
 
 Contest.belongsToMany(Media, { through: 'ContestMedia', onDelete: 'CASCADE' })
 Media.belongsToMany(Contest, { through: 'ContestMedia', onDelete: 'CASCADE' })
+
+Contest.belongsToMany(Document, { through: 'ContestDocuments', onDelete: 'CASCADE' })
+Document.belongsToMany(Contest, { through: 'ContestDocuments', onDelete: 'CASCADE' })
 
 Manager.belongsTo(Role)
 Role.hasMany(Manager)
