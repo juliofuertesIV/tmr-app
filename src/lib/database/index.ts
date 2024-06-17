@@ -363,6 +363,11 @@ export const Inscription = sequelize.define('Inscription', {
     previousPosition: {
         type: DataTypes.INTEGER
     },
+    internalVoteQuantity: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        defaultValue: 0
+    }
     }, {
         paranoid: true,
         indexes: [

@@ -11,6 +11,8 @@ export default function AdminMainNav({ manager } : { manager: IManager }) {
 
     const pathname = usePathname()
 
+    console.log({ managerRole: manager.RoleId })
+
     const navItemsByRole = (adminNavItems).filter(item => item.minimumRole <= manager.RoleId)
 
     return (

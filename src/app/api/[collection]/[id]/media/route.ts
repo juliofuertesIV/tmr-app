@@ -1,8 +1,8 @@
 import { ICollectionNames } from "@/types";
 import { IAssociationNames } from "@/types/associations";
-import { createAssociation, createAssociationWithMedia } from "./_functions/post";
-import { getAssociation } from "./_functions/get";
 import { handleApiError } from "@/lib/errors";
+import { getAssociation } from "../[association]/_functions/get";
+import { createAssociationWithMedia } from "../[association]/_functions/post";
 
 type Params = { params: { collection: ICollectionNames, id: string, association: IAssociationNames }}
 
@@ -19,12 +19,7 @@ export const POST = async (req: Request, { params } : Params) => {
 
     await req.formData()
     .then(async (formData) => {
-
-        if (formData.has('file')) {
-            return await createAssociationWithMedia({ collection, association, id, formData: formData })
-        }
-    
-        return await createAssociation({ collection, id, association, formData: formData })
+        return await createAssociationWithMedia({ collection, association, id, formData: formData })
     })
     .catch(async (error) => {
         console.log({ error })
