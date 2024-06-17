@@ -10,7 +10,7 @@ type Props = {
     onDiscardFile: () => void
 }
 
-export default function MediaPreview({ 
+export default function ImagePreview({ 
     src,
     width,
     height,

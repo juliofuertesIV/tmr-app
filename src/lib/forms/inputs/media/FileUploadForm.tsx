@@ -4,7 +4,7 @@ import { IContest } from "@/types"
 import { IMediaFormField, formInitialState } from "@/types/forms"
 import { useFormState } from "react-dom"
 import { ChangeEvent, DragEvent, useEffect, useLayoutEffect, useRef, useState } from "react"
-import MediaPreview from "./MediaPreview"
+import ImagePreview from "./ImagePreview"
 import Droppable from "./Droppable"
 import { deleteContestMediaItem } from "@/lib/fetch/delete"
 import { IMedia, IMediaRole } from "@/types/media"
@@ -110,7 +110,7 @@ export default function FileUploadForm({ collectionElement, mediaField, showData
             <AdminFormFeedback state={ state }/>
             {
                 !!file ? 
-                <MediaPreview file={ file } onDiscardFile={ onDiscardPreviewFile } previewIsCurrentMedia={ previewIsCurrentMedia }/> :
+                <ImagePreview file={ file } onDiscardFile={ onDiscardPreviewFile } previewIsCurrentMedia={ previewIsCurrentMedia }/> :
                 <Droppable onClickDroppable={ onClickDroppable } onSetFile={ onSetFileFromDropEvent }/>
             }
             <input 

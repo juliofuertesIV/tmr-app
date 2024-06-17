@@ -17,7 +17,6 @@ export default function CollectionItemFormModule({ collection, collectionItem, t
                 target={ target }
                 action={ action }
                 fields={ fields }
-                mediaFields={ pdfMediaFields }
                 collection={ collection }
                 collectionItem={ collectionItem }
             />

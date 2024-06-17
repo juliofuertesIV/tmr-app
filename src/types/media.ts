@@ -23,3 +23,9 @@ export type IMedia = {
     height: string,
     alt: string
 }
+
+export type IDocument = {
+    id: string,
+    role: IMediaRole
+    src: string
+}

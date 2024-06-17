@@ -5,7 +5,7 @@ import React, { ChangeEvent, HTMLProps, useEffect, useRef, useState } from 'reac
 import Label from '../label/Label'
 import Form from '../Form'
 import { IAllCollections, ICollectionNames, ICollectionsWithMedia } from '@/types'
-import MediaPreview from './media/MediaPreview'
+import ImagePreview from './media/ImagePreview'
 
 type Props = {
     field: IMediaFormField,
@@ -71,8 +71,7 @@ export default function MediaForm({ collection, collectionItem, field, domain, a
 
                 updateImageMeasurements(src)
                 
-                // convert image file to base64 string
-                setPreviewSrc(src)
+                setPreviewSrc(src) // convert image file to base64 string
             },
             false,
         );
@@ -83,7 +82,7 @@ export default function MediaForm({ collection, collectionItem, field, domain, a
 
     return (
         <Form collection={ collection } action={ action } collectionItem={ collectionItem as IAllCollections }>
-            <MediaPreview src={ previewSrc } width={ imageMeasurements.width } height={ imageMeasurements.height } onDiscardFile={ discardFile }/>
+            <ImagePreview src={ previewSrc } width={ imageMeasurements.width } height={ imageMeasurements.height } onDiscardFile={ discardFile }/>
             <Label textContent={ label } isValid={ null }>
                 <input ref={ fileInputRef } type="file" name='file' accept={ accept } { ...props } onChange={ onFileInputchange }/>
             </Label>

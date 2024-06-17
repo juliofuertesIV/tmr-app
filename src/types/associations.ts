@@ -1,5 +1,4 @@
 import { IBrand, IContest, IContestState, IGenre, IManager, IManagerRole, IParam, ISocialMedia } from "."
-import { IMedia } from "./media"
 
 export type ICollectionsWithAssociations = IContest | IManager
 
