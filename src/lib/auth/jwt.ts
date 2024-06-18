@@ -1,6 +1,5 @@
 import { IManager } from "@/types";
 import { SignJWT, jwtVerify } from "jose";
-import { destroySession } from "./session";
 import { logoutManager } from "@/lib/fetch/get";
 
 const secretJWTKey = process.env.SECRET_JWT_KEY

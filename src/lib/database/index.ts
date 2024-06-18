@@ -152,8 +152,7 @@ export const Contest = sequelize.define('Contest', {
     },
     name: {
         type: DataTypes.STRING,
-        allowNull: false,
-        defaultValue: 'Sin nombre'
+        allowNull: false
     },
     domain: {
         type: DataTypes.STRING,

@@ -7,7 +7,7 @@ export {
     getHashAndSaltFromPassword,
     passwordsAreMatching,
     getEncryptedAndSignedJWT,
-    decryptJWT as decryptJWT,
+    decryptJWT,
     getSession,
     createSession,
     updateSession,
