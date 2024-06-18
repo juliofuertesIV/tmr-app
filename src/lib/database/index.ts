@@ -491,8 +491,8 @@ Media.hasOne(Inscription, { onDelete: 'CASCADE' })
 Contest.belongsToMany(Genre, { through: 'ContestGenres' })
 Genre.belongsToMany(Contest, { through: 'ContestGenres' })
 
-Contest.belongsToMany(Media, { through: 'ContestMedia', onDelete: 'CASCADE' })
-Media.belongsToMany(Contest, { through: 'ContestMedia', onDelete: 'CASCADE' })
+Contest.belongsToMany(Media, { through: 'ContestMedia' })
+Media.belongsToMany(Contest, { through: 'ContestMedia' })
 
 Contest.belongsToMany(Document, { through: 'ContestDocuments', onDelete: 'CASCADE' })
 Document.belongsToMany(Contest, { through: 'ContestDocuments', onDelete: 'CASCADE' })

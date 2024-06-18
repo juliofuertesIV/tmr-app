@@ -22,8 +22,8 @@ const headersByAssociationName = {
         description: 'Las redes sociales a las que está vinculado un concurso son pasos necesarios en el proceso de votación. Se requerira al usuario seguir a la cuenta asociada a la marca en las redes que estén marcadas.'
     },
     media: {
-        title: '',
-        description: ''
+        title: 'Imágenes',
+        description: 'Las imágenes que necesita el festival para funcionar: logo, banner y marco (tipo SVG) y el favicon (tipo ICO).'
     },
     role: {
         title: '',

@@ -13,7 +13,7 @@ export default function FormSubmit({ value = 'Enviar', pendingValue = 'Guardando
     const { pending } = useFormStatus()
 
     return <input 
-        className='bg-stone-300 text-stone-800 uppercase font-bold py-1 rounded-sm data-[pending="true"]:bg-orange-500'
+        className='bg-stone-300 text-stone-800 uppercase font-bold py-1 rounded-sm data-[pending="true"]:bg-orange-500 cursor-pointer hover:bg-stone-100'
         data-pending={ pending }
         type='submit'
         value={ pending ? pendingValue : value } 

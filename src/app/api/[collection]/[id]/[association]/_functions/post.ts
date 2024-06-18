@@ -28,7 +28,7 @@ export const createAssociationWithMedia = async ({ collection, association, id, 
             message: 'Fallo asociando elemento'
         })
 
-    if (!formData.get('file')) return await handleApiError({
+    if (!(formData.get('file') as File).size) return await handleApiError({
         error: new Error('No hay archivo.'),
         collection,
         route: `/api/${ collection }/${ id }/${ association }`,

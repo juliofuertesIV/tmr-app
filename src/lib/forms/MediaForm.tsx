@@ -8,7 +8,6 @@ import { useFormState } from 'react-dom'
 import { getMediaBoundAction, mediaElementAlreadyPresent } from './actions'
 import AdminFormFeedback from './feedback/FormFeedback'
 import ImagePreview from './inputs/media/ImagePreview'
-import Label from './label/Label'
 import FormSubmit from './feedback/FormSubmit'
 import NextImage from 'next/image'
 
@@ -26,12 +25,16 @@ export default function MediaForm({ collection, collectionItem, field, domain, .
     const [ file, setFile ] = useState<File | null>(null)
     const [ previewSrc, setPreviewSrc ] = useState<string | null>(null)
     const [ imageMeasurements, setImageMeasurements ] = useState<{ width: number, height: number }>({ width: 0, height: 0 })
+    
+    const boundAction = getMediaBoundAction({ collection, collectionItem, role })
+    const [ state, action ] = useFormState(boundAction, formInitialState)
 
     const fileInputRef = useRef<HTMLInputElement>(null)
 
     const emptyState = () => { 
         setFile(null)
         setPreviewSrc(null)
+        setImageMeasurements({ width: 0, height: 0 })
     }
 
     const manageFileInputChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -40,17 +43,6 @@ export default function MediaForm({ collection, collectionItem, field, domain, .
 
         const file = e.currentTarget.files[0]
         setFile(file)
-    }
-
-    const discardPreview = () => {
-        setFile(null)
-        setPreviewSrc(null)
-        
-        const input = fileInputRef.current
-
-        if (!input) throw new Error('Error resetting the input element. Files still in the form.')
-        
-        input.value = "" // reset file input 
     }
 
     useEffect(() => {
@@ -78,35 +70,57 @@ export default function MediaForm({ collection, collectionItem, field, domain, .
 
     }, [ file, field ])
 
-    const boundAction = getMediaBoundAction({ collection, collectionItem, role })
-    const [ state, action ] = useFormState(boundAction, formInitialState)
+    const alreadyPresentMedia = mediaElementAlreadyPresent(collectionItem, role)
 
-    const presentMedia = mediaElementAlreadyPresent(collectionItem, role)
+    useEffect(() => {
 
-    if (!!presentMedia) {
+        emptyState() // empties file, src and measurements when reloading
 
-        const { src, width, height, alt } = presentMedia
+    }, [ alreadyPresentMedia ])
+
+    if (!!alreadyPresentMedia) {
+
+        const { src, width, height, alt } = alreadyPresentMedia
+
         return (
-            <form action={ action }>
-            <AdminFormFeedback state={ state } />
-            <NextImage width={ parseInt(width) } height={ parseInt(height) } src={ src } alt={ alt }/>
-            <FormSubmit value='Eliminar'/>
-        </form>
+            <form 
+                className="flex flex-col justify-between w-full border border-neutral-600 bg-neutral-900"
+                action={ action }
+            >
+                <h3 className='bg-neutral-600 text-neutral-100 text-center uppercase'>{ label }</h3>
+                <AdminFormFeedback state={ state } />
+                <div className='w-full h-full flex-1 flex max-h-40 p-2'>
+                    <NextImage 
+                        className='max-w-full max-h-full h-full w-full object-contain'
+                        width={ parseInt(width) }
+                        height={ parseInt(height) }
+                        src={ src }
+                        alt={ alt }
+                    />
+                </div>
+                <FormSubmit value='Eliminar archivo' pendingValue='Eliminando...' />
+            </form>
         )
     }
 
     return (
-        <form action={ action }>
+        <form 
+            className="flex flex-col w-full border border-neutral-100 bg-neutral-800"
+            action={ action }
+        >
             <AdminFormFeedback state={ state } />
-            <ImagePreview src={ previewSrc } width={ imageMeasurements.width } height={ imageMeasurements.height } onDiscardFile={ discardPreview }/>
-            <Label textContent={ label } isValid={ null }>
+            <h3 className='bg-neutral-600 text-neutral-100 text-center uppercase'>{ label }</h3>
+            <div className='pb-2 px-2'>
                 <input ref={ fileInputRef } type="file" name='file' accept={ accept } { ...props } onChange={ manageFileInputChange }/>
-            </Label>
+            </div>
+            <div className='py-2 w-full h-full max-h-40 p-2'>
+                <ImagePreview src={ previewSrc } width={ imageMeasurements.width } height={ imageMeasurements.height }/>
+            </div>
             <input type="hidden" name="role" value={ role } />
             <input type="hidden" name="domain" value={ 'test-domain' } />
             <input type="hidden" name="width" value={ imageMeasurements.width } />
             <input type="hidden" name="height" value={ imageMeasurements.height } />
-            <FormSubmit/>
+            { !!file && <FormSubmit value='Subir archivo' pendingValue='Subiendo archivo...' /> }
         </form>
     )
 }

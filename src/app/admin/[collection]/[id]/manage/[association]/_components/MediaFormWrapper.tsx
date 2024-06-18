@@ -14,7 +14,7 @@ type Props = {
 export default function MediaFormWrapper({ collection, collectionItem, mediaFields } : Props) {   
 
     return (
-        <div>
+        <div className="grid grid-cols-2 gap-2">
             {
                 mediaFields.map((field, index) => 
                     <MediaForm

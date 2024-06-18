@@ -1,4 +1,4 @@
-import { disassociateItems } from "@/lib/fetch/delete"
+import { deleteMediaItem, disassociateItems } from "@/lib/fetch/delete"
 import { associateItems } from "@/lib/fetch/post"
 import { updateCollectionItem } from "@/lib/fetch/put"
 import { IAllCollections, ICollectionsWithMedia, IContest } from "@/types"
@@ -44,5 +44,5 @@ export const getMediaBoundAction = ({
 
     if (target === 'creation') return associateItems.bind(null, collection, (collectionItem as IAllCollections).id, 'media') 
 
-    return disassociateItems.bind(null, collection, (collectionItem as IAllCollections).id, 'media', (MediumId as string) )
+    return deleteMediaItem.bind(null, collection, (collectionItem as IAllCollections).id, (MediumId as string))
 }

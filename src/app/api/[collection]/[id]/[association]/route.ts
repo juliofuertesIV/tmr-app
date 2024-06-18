@@ -2,7 +2,6 @@ import { ICollectionNames } from "@/types";
 import { IAssociationNames } from "@/types/associations";
 import { createAssociation, createAssociationWithMedia } from "./_functions/post";
 import { getAssociation } from "./_functions/get";
-import { handleApiError } from "@/lib/errors";
 
 type Params = { params: { collection: ICollectionNames, id: string, association: IAssociationNames }}
 
