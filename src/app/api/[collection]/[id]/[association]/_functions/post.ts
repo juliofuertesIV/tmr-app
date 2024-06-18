@@ -18,7 +18,6 @@ export const createAssociationWithMedia = async ({ collection, association, id, 
     const { 
         AssociationTable,
         collectionItemIdField,
-        associationIdField 
     } = getAssociationModelByName(association)
 
     if (!collectionItemIdField || !AssociationTable) 
@@ -29,31 +28,49 @@ export const createAssociationWithMedia = async ({ collection, association, id, 
             message: 'Fallo asociando elemento'
         })
 
-    const { MediumId } = await createMedia({ formData, collection: collection as ICollectionsWithMediaNames })
+    if (!(formData.get('file') as File).size) return await handleApiError({
+        error: new Error('No hay archivo.'),
+        collection,
+        route: `/api/${ collection }/${ id }/${ association }`,
+        message: 'Fallo asociando elemento'
+    })
 
-    const payload = { [collectionItemIdField]: id, [associationIdField]: MediumId } // i. e. ContestId, ParamId
+    if (!formData.get('domain')) return await handleApiError({
+        route: 'create-media',
+        error: new Error('No hay domain en la formData.'),
+        message: 'Ausencia de domain.' 
+    })
+    
+    const { MediumId, transaction } = await createMedia({ formData, collection: collection as ICollectionsWithMediaNames })
 
-    try {
-        const data = await AssociationTable.create({ ...payload }).then(data => data)
-        return Response.json(
-            constructAPIResponse({
-                message: 'Elementos asociados correctamente.',
-                error: null,
-                success: true,
-                data
-            })
-        )
-    }
-    catch (error) {
+    const payload = { [collectionItemIdField]: id, MediumId } // i. e. ContestId, ParamId
+
+    const data = await AssociationTable.create({ ...payload }, { transaction })
+    .then(async (data) => {
+
+        await transaction.commit()
+
+        return data
+
+    })
+    .catch(async (error) => {
         return await handleApiError({
+            transaction,
             error,
             collection,
             route: `/api/${ collection }/${ id }/${ association }`,
             message: 'Fallo asociando elemento'
         })
-    }        
+    }) 
 
-
+    return Response.json(
+        constructAPIResponse({
+            message: 'Elementos asociados correctamente.',
+            error: null,
+            success: true,
+            data
+        })
+    )
 }
 
 export const createAssociation = async ({ collection, id, association , formData} : Props) => {

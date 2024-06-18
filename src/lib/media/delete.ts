@@ -8,39 +8,28 @@ export const deleteMedia = async ({ mediaId } : { mediaId: string }) => {
 
     const media = await Media.findOne({ where: { id: mediaId }})
     .then(data => data as unknown as IMedia) 
-    .catch(err => {
-        return Response.json(
-            constructAPIResponse({ 
-                message: 'Error recuperando la imagen de la base de datos.',
-                success: false,
-                error: err,
-                data: null
-            })
-        )
-    })
-
-    const transaction = await sequelize.transaction()
-
-    try { 
-        await Media.destroy({ where: { id: mediaId }, transaction }) 
-    } 
-    catch (error) {
-        // TO DO: Collection? Media?
+    .catch(async (error) => {
         return await handleApiError({
-            error, 
-            route: `/api/delete-media`
+            error,
+            message: '',
+            route: '/delete-media',
         })
-    }
+    })
+    
+    const transaction = await sequelize.transaction()
+    
+    await deleteFromCloudStorage({ src: (media as IMedia).src }) 
+    .catch(err => console.log(err)) // TO DO: NOT ROLLING BACK BECAUSE OF THIS
 
-    try { 
-        await deleteFromCloudStorage({ src: (media as IMedia).src }) 
-    } 
+    try {
+        await Media.destroy({ where: { id: mediaId }, transaction })
+    }
     catch (error) {
-        await transaction.rollback()
-        // TO DO: Collection? Media?
         return await handleApiError({
-            error, 
-            route: `/api/delete-media`
+            transaction,
+            error,
+            message: '',
+            route: '/delete-media',
         })
     }
 
@@ -54,4 +43,5 @@ export const deleteMedia = async ({ mediaId } : { mediaId: string }) => {
             data: null
         })
     )
+
 }

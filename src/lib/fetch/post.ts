@@ -24,25 +24,6 @@ export const addCollectionElement = async (
     return res
 }
 
-export const manageCollectionMedia = async (
-    collection: ICollectionNames,
-    elementId: string | number,
-    prevState: any,
-    formData: FormData
-) : Promise<IAPIResponse<null>> => {
-
-    const res = await fetch(`http://localhost:3000/api/${ collection }/${ elementId }/media`, {
-        method: "POST",
-        cache: 'no-cache',
-        body: formData
-    })
-    .then(async data => await data.json())
-    .catch(error => error)
-    
-    revalidateTag(collection)
-    return res
-}
-
 export const associateItems = async (
     collection: ICollectionNames,
     collectionItemId: string | number,
@@ -75,6 +56,7 @@ export const associateItems = async (
     .catch(error => error)
     
     revalidateTag(collection)
+    revalidateTag(association)
     return res
 
 }

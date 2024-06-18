@@ -135,7 +135,10 @@ export const contestsMediaFields : IMediaFormField[] = [
         name: 'favicon',
         multiple: false,
         accept: 'image/vnd.microsoft.icon'
-    },
+    }
+]
+
+export const contestDocumentFields = [
     {
         role: 'conditions',
         label: 'Bases del concurso',

@@ -1,6 +1,7 @@
-import { IAssociationNames } from "@/types/associations"
-import { getAssociationModelByName } from "../../../_utils"
+import { IAssociationNames, IAssociation, ICollectionsWithAssociations } from "@/types/associations"
+import { getAssociationModelByName, getModelByCollectionName } from "../../../_utils"
 import { ICollectionNames } from "@/types"
+import { constructAPIResponse } from "@/app/api/_utils"
 import { handleApiError } from "@/lib/errors"
 
 type Props = {
@@ -11,20 +12,36 @@ type Props = {
 
 export const getAssociation = async ({ collection, id, association } : Props) => {
     
-    const { AssociationTable, collectionItemIdField } = getAssociationModelByName(association)
+   const { AssociationModel, associationIdField, associationKey, options: associationOptions } = getAssociationModelByName(association)
+    const { Model, options } = getModelByCollectionName(collection)
 
-    if (!collectionItemIdField || !AssociationTable) {
+    try {
+
+        const item = await Model.findOne({ where: { id }, ...options }).then(data => data) as unknown as ICollectionsWithAssociations
+        const associationItems = await AssociationModel.findAll({ ...associationOptions }).then(data => data) as unknown as IAssociation[]
+    
+        const data = {
+            item, 
+            associationItems,
+            associationKey,
+            associationIdField,
+        } 
+    
+        return Response.json(constructAPIResponse({
+            message: 'OK',
+            success: true,
+            data,
+            error: null
+        }))
+
+    }
+    catch (error) {
         return await handleApiError({
-            error: new Error('Bad request. Cannot find collectionItemIdField or Association Table.'),
+            error,
+            message: 'Error fetching association',
+            route: '/collection/id/association',
             collection,
-            route: `/api/${ collection }/${ id }/${ association }`,
-            message: 'Fallo asociando elemento'
         })
     }
 
-    const data = await AssociationTable
-        .findAll({ where: { [collectionItemIdField]: id }})
-        .then(data => data)
-
-    return Response.json(data)    
 }

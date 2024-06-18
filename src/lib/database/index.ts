@@ -362,6 +362,11 @@ export const Inscription = sequelize.define('Inscription', {
     previousPosition: {
         type: DataTypes.INTEGER
     },
+    internalVoteQuantity: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        defaultValue: 0
+    }
     }, {
         paranoid: true,
         indexes: [
@@ -425,6 +430,23 @@ export const Media = sequelize.define('Media', {
     }
 })
 
+export const Document = sequelize.define('Document', {
+    id: {
+        type: DataTypes.UUID,
+        primaryKey: true,
+        defaultValue: DataTypes.UUIDV4,
+        allowNull: false,
+    },
+    role: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+    src: {
+        type: DataTypes.STRING,
+        allowNull: false
+    }
+})
+
 export const ContestParam = sequelize.define('ContestParams', {
 }, {
     timestamps: false
@@ -441,6 +463,11 @@ export const ContestSocial = sequelize.define('ContestSocial', {
 })
 
 export const ContestMedia = sequelize.define('ContestMedia', {
+}, {
+    timestamps: false
+})
+
+export const ContestDocument = sequelize.define('ContestDocuments', {
 }, {
     timestamps: false
 })
@@ -463,8 +490,11 @@ Media.hasOne(Inscription, { onDelete: 'CASCADE' })
 Contest.belongsToMany(Genre, { through: 'ContestGenres' })
 Genre.belongsToMany(Contest, { through: 'ContestGenres' })
 
-Contest.belongsToMany(Media, { through: 'ContestMedia', onDelete: 'CASCADE' })
-Media.belongsToMany(Contest, { through: 'ContestMedia', onDelete: 'CASCADE' })
+Contest.belongsToMany(Media, { through: 'ContestMedia' })
+Media.belongsToMany(Contest, { through: 'ContestMedia' })
+
+Contest.belongsToMany(Document, { through: 'ContestDocuments', onDelete: 'CASCADE' })
+Document.belongsToMany(Contest, { through: 'ContestDocuments', onDelete: 'CASCADE' })
 
 Manager.belongsTo(Role)
 Role.hasMany(Manager)

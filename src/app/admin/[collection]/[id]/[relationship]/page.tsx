@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import { ICollectionNames } from "@/types";
 import { getModelByCollectionName, getRelationshipModelByName } from "@/app/api/[collection]/_utils";
-import { ICollectionsWithAssociations, IRelationshipNames, IRelationships } from "@/types/associations";
+import { ICollectionsWithAssociations, IRelationshipNames, IRelationship } from "@/types/associations";
 import AssociationPageHeader from "../manage/[association]/_components/AssociationPageHeader";
 import AssociationManager from "../manage/[association]/_components/AssociationManager";
 
@@ -24,7 +24,7 @@ const getPageData = async ({ collection, id, relationship } : { collection: ICol
     const { Model, options } = getModelByCollectionName(collection)
 
     const item = await Model.findOne({ where: { id }, ...options }).then(data => data) as unknown as ICollectionsWithAssociations
-    const relationshipItems = await RelationshipModel.findAll({ order: [['name', 'ASC']]}).then(data => data) as unknown as IRelationships[]
+    const relationshipItems = await RelationshipModel.findAll({ order: [['name', 'ASC']]}).then(data => data) as unknown as IRelationship[]
 
     return { 
         item: JSON.parse(JSON.stringify(item)), 
@@ -36,7 +36,7 @@ export default async function AdminRelationshipPage({ params } : Props) {
     
     const { collection, id, relationship } = params
 
-    const { item, relationshipItems } = await getPageData({ collection, relationship, id }) as { item: ICollectionsWithAssociations, relationshipItems: IRelationships[] }
+    const { item, relationshipItems } = await getPageData({ collection, relationship, id }) as { item: ICollectionsWithAssociations, relationshipItems: IRelationship[] }
 
     const { relationshipIdFieldName } = getRelationshipModelByName(relationship)
 

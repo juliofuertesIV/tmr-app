@@ -4,7 +4,7 @@ import { formInitialState } from '@/lib/forms/feedback/state'
 import React, { useEffect, useRef, useState } from 'react'
 import { useFormState } from 'react-dom'
 import AssociationIcon from './AssociationIcon'
-import { IAssociationIdFieldnames, IAssociationKeys, IAssociationNames, IAssociations, ICollectionsWithAssociations, IRelationshipIdFieldnames, IRelationshipNames, IRelationships } from '@/types/associations'
+import { IAssociationIdFieldnames, IAssociationNames, IAssociation, ICollectionsWithAssociations, IRelationshipIdFieldnames, IRelationshipNames, IRelationship } from '@/types/associations'
 import { associateItems } from '@/lib/fetch/post'
 import { updateCollectionItem } from '@/lib/fetch/put'
 
@@ -12,7 +12,7 @@ type Props = {
     collection: ICollectionNames,
     collectionItem: ICollectionsWithAssociations,
     association: IAssociationNames | IRelationshipNames,
-    associationItem: IAssociations | IRelationships,
+    associationItem: IAssociation | IRelationship,
     associationIdField: IAssociationIdFieldnames | IRelationshipIdFieldnames,
     isCurrentlyAssociated: boolean,
     isRelationship: boolean

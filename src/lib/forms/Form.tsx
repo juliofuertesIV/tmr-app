@@ -29,8 +29,11 @@ export default function Form({
     children 
 } : Props) {
 
-    const boundAction = target === 'update' && !!collectionItem ? 
-        action.bind(null, collection, collectionItem.id) : action.bind(null, collection)
+    if (target === 'update' && !collectionItem) throw new Error('Cannot update a missing item.')
+ 
+    const boundAction = target === 'update' ? 
+        action.bind(null, collection, (collectionItem as IAllCollections).id) 
+        : action.bind(null, collection)
 
     const [state, formAction] = useFormState(boundAction, formInitialState)
 

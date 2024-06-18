@@ -4,11 +4,8 @@ export type ICollectionsWithMediaNames = 'contests' | 'inscriptions'
 
 export type IMediaRole = IContestMediaRole | 'inscriptions'
 
-export type IMediaTypes = 'image' | 'pdf'
-
 export type IMediaPayload = {
     file: File,
-    type: IMediaTypes,
     width: string,
     height: string,
     role: IMediaRole,
@@ -22,4 +19,10 @@ export type IMedia = {
     width: string,
     height: string,
     alt: string
+}
+
+export type IDocument = {
+    id: string,
+    role: IMediaRole
+    src: string
 }

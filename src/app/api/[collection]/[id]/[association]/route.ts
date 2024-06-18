@@ -18,10 +18,10 @@ export const POST = async (req: Request, { params } : Params) => {
 
     const formData = await req.formData()
 
-    if (formData.has('file')) {
+    if (association === 'media') 
         return await createAssociationWithMedia({ collection, association, id, formData })
-    }
 
-    return await createAssociation({ collection, id, association, formData })
+    else 
+        return await createAssociation({ collection, id, association, formData: formData })
     
 }

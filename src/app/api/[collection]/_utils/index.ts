@@ -1,4 +1,4 @@
-import { Brand, Contest, Media, Genre, Param, State, ContestParam, ContestGenre, ContestSocial, SocialMedia, Manager, Role, Log, Inscription } from "@/lib/database";
+import { Brand, Contest, Media, Genre, Param, State, ContestParam, ContestGenre, ContestSocial, SocialMedia, Manager, Role, Log, Inscription, ContestMedia } from "@/lib/database";
 import { ICollectionNames } from "@/types";
 import { IAssociationIdFieldnames, IAssociationKeys, IAssociationNames, IRelationshipIdFieldnames, IRelationshipNames } from "@/types/associations";
 import { ICollectionsWithMediaNames } from "@/types/media";
@@ -74,29 +74,47 @@ const associationByName = {
         AssociationModel: Param,
         associationKey: 'Params',
         collectionItemIdField: 'ContestId',
-        associationIdField: 'ParamId'
+        associationIdField: 'ParamId',
+        options: {
+            order: [['name', 'DESC']]
+        }
     },
     genres: {
         AssociationTable: ContestGenre,
         AssociationModel: Genre,
         associationKey: 'Genres',
         collectionItemIdField: 'ContestId',
-        associationIdField: 'GenreId'
+        associationIdField: 'GenreId',
+        options: {
+            order: [['name', 'DESC']]
+        }
     },
     social: {
         AssociationTable: ContestSocial,
         AssociationModel: SocialMedia,
         associationKey: 'SocialMedia',
         collectionItemIdField: 'ContestId',
-        associationIdField: 'SocialMediumId'
+        associationIdField: 'SocialMediumId',
+        options: {
+            order: [['name', 'DESC']]
+        }
     },
+    media: {
+        AssociationTable: ContestMedia,
+        AssociationModel: Media,
+        associationKey: 'Media',
+        collectionItemIdField: 'ContestId',
+        associationIdField: 'MediumId',
+        options: {}
+    }
 } as {
     [key in IAssociationNames]: {
         AssociationTable: ModelStatic<Model<any, any>> | null,
         AssociationModel: ModelStatic<Model<any, any>>,
         associationKey: IAssociationKeys,
         collectionItemIdField: string | null,
-        associationIdField: IAssociationIdFieldnames
+        associationIdField: IAssociationIdFieldnames,
+        options: FindOptions 
     }
 }
 
@@ -112,6 +130,10 @@ const relationshipByName = {
     role: {
         RelationshipModel: Role,
         relationshipIdFieldName: 'RoleId'
+    },
+    media: {
+        RelationshipModel: Media,
+        relationshipIdFieldName: 'MediumId'
     }
 } as {
     [key in IRelationshipNames]: {
