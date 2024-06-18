@@ -3,6 +3,7 @@
 import { IContest, IInscription, ICollectionNames, IAllCollections } from "@/types"
 import { IAdminData } from "@/types/admin"
 import { IAPIResponse } from "@/types/api"
+import { IAssociationIdFieldnames, IAssociationKeys, IAssociationNames, IAssociation, ICollectionsWithAssociations, IRelationship } from "@/types/associations"
 
 export const getCollectionElementById = async (collection: ICollectionNames, id: string) : Promise<IAPIResponse<IAllCollections>> => {
     
@@ -18,9 +19,35 @@ export const getCollectionElementById = async (collection: ICollectionNames, id:
     })
     .then(async (data) => await data.json())
     .catch(error => error)
+    
+    return res
+}
+
+
+export const getCollectionElementAndAssociationsById = async (collection: ICollectionNames, id: string, association: IAssociationNames) : Promise<IAPIResponse<{
+    item: ICollectionsWithAssociations, 
+    associationItems: IAssociation[] | IRelationship[],
+    associationKey: IAssociationKeys,
+    associationIdField: IAssociationIdFieldnames,
+}>> => {
+
+    const res = await fetch(`http://localhost:3000/api/${ collection }/${ id }/${ association }`, {
+        method: "GET",
+        cache: 'no-cache',
+        headers: {
+            "Content-Type": "application/json",
+        },
+        next: {
+            tags: [collection, association]
+        }
+    })
+    .then(async (data) => await data.json())
+    .catch(error => error)
 
     return res
 }
+
+
 
 export const getInscriptionsFromContestId = async (contestId: string) : Promise<IAPIResponse<{ contest: IContest, inscriptions: IInscription[] }>> => {
     

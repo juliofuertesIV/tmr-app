@@ -1,5 +1,5 @@
 import { IContest, ICollectionNames } from "@/types"
-import { IAssociationKeys, IAssociations, ICollectionsWithAssociations, IRelationships, IRelationshipIdFieldnames, IAssociationIdFieldnames } from "@/types/associations"
+import { IAssociationKeys, IAssociation, ICollectionsWithAssociations, IRelationship, IRelationshipIdFieldnames, IAssociationIdFieldnames } from "@/types/associations"
 
 export const determineIfItemIsAssociated = ({
     item,
@@ -8,7 +8,7 @@ export const determineIfItemIsAssociated = ({
     associationKey,
     associationIdField,
 } : {
-    item: IAssociations | IRelationships,
+    item: IAssociation | IRelationship,
     collectionItem: ICollectionsWithAssociations,
     collection: ICollectionNames,
     associationIdField: IRelationshipIdFieldnames | IAssociationIdFieldnames,
@@ -25,4 +25,4 @@ export const determineIfItemIsAssociated = ({
 
 export const itemIsContest = (item: ICollectionsWithAssociations, collection: ICollectionNames) : item is IContest => collection === 'contests'
 
-export const itemIsRelationship = (item: IAssociations | IRelationships, associationKey: IAssociationKeys | null) : item is IRelationships => !associationKey
+export const itemIsRelationship = (item: IAssociation | IRelationship, associationKey: IAssociationKeys | null) : item is IRelationship => !associationKey

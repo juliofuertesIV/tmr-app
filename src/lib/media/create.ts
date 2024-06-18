@@ -4,6 +4,7 @@ import { handleApiError } from "@/lib/errors"
 import { IMedia, IMediaPayload } from "@/types/media"
 import { ICollectionsWithMediaNames } from "@/types/media"
 import { deleteFromCloudStorage } from "../storage/gcp_storage"
+import { Transaction } from "sequelize"
 
 export const createMedia = async ({ 
     formData,
@@ -12,26 +13,13 @@ export const createMedia = async ({
     formData: FormData,
     collection: ICollectionsWithMediaNames
 }
-) : Promise<{ MediumId: string | null }> => {
-
-    if (!formData.has('file')) return { MediumId: null }
+) : Promise<{ MediumId: string | null, transaction: Transaction }> => {
 
     const payload = Object.fromEntries(formData) as IMediaPayload
 
-    const domain = formData.get('domain') as string
-
-    if (!domain) {
-        await handleApiError({
-            route: 'create-media',
-            error: new Error('No hay domain en la formData.'),
-            message: 'Ausencia de domain.' 
-        })
-        return { MediumId: null }
-    }
-
     const { src, width, height, role } = await uploadMedia({ 
         collection,
-        domain,
+        domain: formData.get('domain') as string,
         payload 
     }) 
 
@@ -48,7 +36,7 @@ export const createMedia = async ({
             transaction 
         }).then(data => data) as unknown as IMedia
 
-        return { MediumId: image.id } 
+        return { MediumId: image.id, transaction } 
     }
     catch (error) {
         await deleteFromCloudStorage({ src })
@@ -59,6 +47,6 @@ export const createMedia = async ({
             error,
             message: 'Fallo guardando el contenido multimedia en la DB.' 
         })
-        return { MediumId: null }
+        return { MediumId: null, transaction }
     }
 }

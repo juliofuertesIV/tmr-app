@@ -3,11 +3,11 @@
 import { ICollectionNames } from '@/types'
 import AssociationInput from './AssociationInput'
 import { determineIfItemIsAssociated, itemIsRelationship } from '../_utils'
-import { IAssociationNames, IAssociationKeys, IAssociations, ICollectionsWithAssociations, IRelationshipNames, IRelationshipIdFieldnames, IRelationships, IAssociationIdFieldnames } from '@/types/associations'
+import { IAssociationNames, IAssociationKeys, IAssociation, ICollectionsWithAssociations, IRelationshipNames, IRelationshipIdFieldnames, IRelationship, IAssociationIdFieldnames } from '@/types/associations'
 
 type Props = {
     collectionItem: ICollectionsWithAssociations,
-    associationItems: IAssociations[] | IRelationships[],
+    associationItems: IAssociation[] | IRelationship[],
     association: IAssociationNames | IRelationshipNames,
     associationKey: IAssociationKeys | null,
     associationIdField: IAssociationIdFieldnames | IRelationshipIdFieldnames,

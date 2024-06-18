@@ -17,23 +17,12 @@ export const POST = async (req: Request, { params } : Params) => {
 
     const { collection, id, association } = params
 
-    await req.formData()
-    .then(async (formData) => {
+    const formData = await req.formData()
 
-        if (formData.has('file')) {
-            return await createAssociationWithMedia({ collection, association, id, formData: formData })
-        }
-    
+    if (association === 'media') 
+        return await createAssociationWithMedia({ collection, association, id, formData })
+
+    else 
         return await createAssociation({ collection, id, association, formData: formData })
-    })
-    .catch(async (error) => {
-        console.log({ error })
-        return await handleApiError({
-            error,
-            message: 'Error parseando la formData',
-            route: 'collection/id/association',
-            collection
-        })
-    })
     
 }

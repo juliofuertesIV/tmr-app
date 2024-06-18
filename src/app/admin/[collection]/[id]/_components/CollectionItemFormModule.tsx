@@ -9,8 +9,6 @@ export default function CollectionItemFormModule({ collection, collectionItem, t
 
     const { action, fields } = getFormByCollectionName({ collection, actionTarget: 'update' })
 
-    const pdfMediaFields = getMediaFieldsByCollection({ collection }).filter(field => field.type === 'pdf')
-
     return (
         <div className="w-full max-w-xl">
             <Form 

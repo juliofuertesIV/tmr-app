@@ -1,26 +1,24 @@
 'use client'
 
-import MediaForm from "@/lib/forms/inputs/MediaForm"
+import MediaForm from "@/lib/forms/MediaForm"
 import { ICollectionsWithMedia } from "@/types"
-import { IFormAction, IMediaFormField } from "@/types/forms"
+import { IMediaFormField } from "@/types/forms"
 import { ICollectionsWithMediaNames } from "@/types/media"
 
 type Props = {
     collection: ICollectionsWithMediaNames,
-    collectionItem?: ICollectionsWithMedia,
+    collectionItem: ICollectionsWithMedia,
     mediaFields: IMediaFormField[],
-    action: IFormAction
 }
 
-export default function MediaFormWrapper({ collection, collectionItem, mediaFields, action } : Props) {   
+export default function MediaFormWrapper({ collection, collectionItem, mediaFields } : Props) {   
 
     return (
         <div>
             {
                 mediaFields.map((field, index) => 
-                    <MediaForm 
+                    <MediaForm
                         key={ index }
-                        action={ action }
                         collection={ collection }
                         collectionItem={ collectionItem }
                         field={ field }

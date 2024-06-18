@@ -1,9 +1,13 @@
 import { Metadata } from "next";
-import { IAllCollections, ICollectionNames } from "@/types";
+import { ICollectionNames, ICollectionsWithMedia } from "@/types";
 import { getAssociationModelByName, getModelByCollectionName } from "@/app/api/[collection]/_utils";
 import AssociationManager from "./_components/AssociationManager";
-import { IAssociationIdFieldnames, IAssociationKeys, IAssociationNames, IAssociations, ICollectionsWithAssociations } from "@/types/associations";
+import { IAssociationIdFieldnames, IAssociationKeys, IAssociationNames, IAssociation, ICollectionsWithAssociations } from "@/types/associations";
 import AssociationPageHeader from "./_components/AssociationPageHeader";
+import { getMediaFieldsByCollection } from "@/lib/forms/collection";
+import { ICollectionsWithMediaNames } from "@/types/media";
+import MediaFormWrapper from "./_components/MediaFormWrapper";
+import { getCollectionElementAndAssociationsById } from "@/lib/fetch/get";
 
 export const metadata: Metadata = {
     title: "Panel de administración TMR",
@@ -18,40 +22,32 @@ type Props = {
     }
 }
 
-const getPageData = async ({ 
-    collection,
-    id,
-    association 
-} : { 
-    collection: ICollectionNames,
-    id: string,
-    association: IAssociationNames 
-}) : Promise<{
-    item: ICollectionsWithAssociations,
-    associationIdField: IAssociationIdFieldnames,
-    associationKey: IAssociationKeys,
-    associationItems: IAssociations[]
-}> => {
-
-    const { AssociationModel, associationIdField, associationKey } = getAssociationModelByName(association)
-    const { Model, options } = getModelByCollectionName(collection)
-
-    const item = await Model.findOne({ where: { id }, ...options }).then(data => data) as unknown as ICollectionsWithAssociations
-    const associationItems = await AssociationModel.findAll({ order: [['name', 'ASC']]}).then(data => data) as unknown as IAssociations[]
-
-    return { 
-        item: JSON.parse(JSON.stringify(item)), 
-        associationItems: JSON.parse(JSON.stringify(associationItems)),
-        associationKey,
-        associationIdField,
-    }
-}
-
 export default async function AdminAssociationPage({ params } : Props) {
     
     const { collection, id, association } = params
 
-    const { item, associationItems, associationIdField, associationKey } = await getPageData({ collection, association, id })
+    const { data } = await getCollectionElementAndAssociationsById(collection, id, association)
+
+    if (!data) throw new Error('Error fetching shit.')
+
+    const { item, associationItems, associationIdField, associationKey } = data
+
+    if (association === 'media') {
+
+        const mediaFields = getMediaFieldsByCollection({ collection })
+
+        return (
+            <section className="w-full flex flex-col items-center">
+                <AssociationPageHeader association={ association } item={ item }/>
+                <MediaFormWrapper
+                    collection={ collection as ICollectionsWithMediaNames }
+                    collectionItem={ item as ICollectionsWithMedia }
+                    mediaFields={ mediaFields }
+                />
+            </section>
+        )
+
+    }
 
     return (
         <section className="w-full flex flex-col items-center">

@@ -2,16 +2,16 @@ import { IBrand, IContest, IContestState, IGenre, IManager, IManagerRole, IParam
 
 export type ICollectionsWithAssociations = IContest | IManager
 
-export type IAssociations = IParam | IGenre | ISocialMedia | IManagerRole
+export type IAssociation = IParam | IGenre | ISocialMedia | IManagerRole
 
-export type IRelationships = IBrand | IContestState
+export type IRelationship = IBrand | IContestState
 
 export type IRelationshipNames = 'brand' | 'state' 
 
-export type IAssociationNames = 'params' | 'genres' | 'social' 
+export type IAssociationNames = 'params' | 'genres' | 'social' | 'media'
 
-export type IAssociationKeys = 'Params' | 'Genres' | 'SocialMedia'
+export type IAssociationKeys = 'Params' | 'Genres' | 'SocialMedia' | 'Media'
 
-export type IAssociationIdFieldnames = 'ParamId' | 'GenreId' | 'SocialMediumId'
+export type IAssociationIdFieldnames = 'ParamId' | 'GenreId' | 'SocialMediumId' | 'MediumId'
 
 export type IRelationshipIdFieldnames = 'BrandId' | 'StateId'
