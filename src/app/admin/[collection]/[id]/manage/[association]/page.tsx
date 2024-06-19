@@ -1,8 +1,7 @@
 import { Metadata } from "next";
 import { ICollectionNames, ICollectionsWithMedia } from "@/types";
-import { getAssociationModelByName, getModelByCollectionName } from "@/app/api/[collection]/_utils";
 import AssociationManager from "./_components/AssociationManager";
-import { IAssociationIdFieldnames, IAssociationKeys, IAssociationNames, IAssociation, ICollectionsWithAssociations } from "@/types/associations";
+import { IAssociationNames } from "@/types/associations";
 import AssociationPageHeader from "./_components/AssociationPageHeader";
 import { getMediaFieldsByCollection } from "@/lib/forms/collection";
 import { ICollectionsWithMediaNames } from "@/types/media";

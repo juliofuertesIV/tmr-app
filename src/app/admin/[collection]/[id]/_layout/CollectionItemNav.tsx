@@ -12,7 +12,7 @@ const navItemsByCollectionName = {
         { name: 'Géneros', value: 'genres', association: true },
         { name: 'Configuración', value: 'params', association: true },
         { name: 'Imágenes', value: 'media', association: true },
-        { name: 'Footer', value: 'media', association: true },
+        { name: 'Footer', value: 'footer', association: true },
         { name: 'Estado', value: 'state', association: false },
     ],
     brands: [

@@ -1,6 +1,7 @@
 'use client'
 
 import { IAdminData } from '@/types/admin'
+import Link from 'next/link'
 
 export default function Dashboard({ data } : { data: IAdminData }) {
 
@@ -23,7 +24,9 @@ export default function Dashboard({ data } : { data: IAdminData }) {
                                     className='bg-neutral-600 text-neutral-100 px-4 rounded-sm text-center flex justify-between items-center border border-transparent hover:border-neutral-100 cursor-pointer'
                                     key={ `cts_${ index }`}
                                 >
-                                    <div>{ contest.name } </div>
+                                    <Link href={ `/admin/contests/${ contest.id }`}>
+                                        <div>{ contest.name } </div>
+                                    </Link>
                                     <div className='text-sm'>{ contest.createdAt.split('T')[0].slice(5).replace('-', '/') } a las { contest.createdAt.split('T')[1].slice(0, 8) }h.</div>
                                 </div>
                             )
@@ -43,7 +46,9 @@ export default function Dashboard({ data } : { data: IAdminData }) {
                                     className='bg-neutral-600 text-neutral-100 px-4 rounded-sm text-center flex justify-between items-center border border-transparent hover:border-neutral-100 cursor-pointer'
                                     key={ `ins_${ index }`}
                                 >
-                                    <div>{ inscription.name } ({ inscription.Contest.name }) </div>
+                                    <Link href={ `/admin/inscriptions/${ inscription.ContestId }/${ inscription.id }`}>
+                                        <div>{ inscription.name } ({ inscription.Contest.name }) </div>
+                                    </Link>
                                     <div className='text-sm'>{ inscription.createdAt.split('T')[0].slice(5).replace('-', '/') } a las { inscription.createdAt.split('T')[1].slice(0, 8) }h.</div>
                                 </div>
                             )
@@ -63,7 +68,9 @@ export default function Dashboard({ data } : { data: IAdminData }) {
                                     className='bg-neutral-600 text-neutral-100 px-4 rounded-sm text-center flex justify-between items-center border border-transparent hover:border-neutral-100 cursor-pointer'
                                     key={ `brd_${ index }`}
                                 >
-                                    <div>{ brand.name } </div>
+                                    <Link href={ `/admin/brands/${ brand.id }`}>
+                                        <div>{ brand.name } </div>
+                                    </Link>
                                     <div className='text-sm'>{ brand.createdAt.split('T')[0].slice(5).replace('-', '/') } a las { brand.createdAt.split('T')[1].slice(0, 8) }h.</div>
                                 </div>
                             )
