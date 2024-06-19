@@ -2,6 +2,8 @@ import { Metadata } from "next";
 import { ICollectionNames, IAllCollections } from "@/types";
 import { getCollection } from "@/lib/fetch/get";
 import CollectionTable from "@/lib/tables/CollectionTable";
+import CreationDialog from "../_dashboard/CreationDialog";
+import CreationModule from "./components/CreationModule";
 
 export const metadata: Metadata = {
     title: "Panel de administración TMR",
@@ -20,6 +22,7 @@ export default async function AdminElementPage({ params } : { params: { collecti
                 <header className="py-8">
                     <h1 className="capitalize">{ collection }</h1>
                 </header>
+                <CreationModule collection={ collection }/>
                 <CollectionTable collection={ collection } items={ items }/>
             </section>
         </div>
