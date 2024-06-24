@@ -3,6 +3,7 @@ import Dashboard from "./_dashboard/Dashboard";
 import { getDashboardData } from "../../lib/fetch/get";
 import { IAdminData } from "@/types/admin";
 import { IAPIResponse } from "@/types/api";
+import { testDatabaseConnection } from "@/lib/database";
 
 export const metadata: Metadata = {
     title: "Panel de administración TMR",
@@ -11,6 +12,8 @@ export const metadata: Metadata = {
 
 const getData = async () : Promise<IAPIResponse<IAdminData>> => {
 
+    await testDatabaseConnection()
+    
     const res = await getDashboardData()
 
     if (res.error) throw new Error(res.error.message)
@@ -19,7 +22,7 @@ const getData = async () : Promise<IAPIResponse<IAdminData>> => {
 } 
 
 export default async function AdminHome() {
-
+    
     const { data } = await getData() as { data: IAdminData }   
 
     return (

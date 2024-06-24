@@ -15,6 +15,10 @@ const sequelize = new Sequelize(dbName, dbUser, dbPass, {
     port: 3306
 });
 
+
+export const testDatabaseConnection = async () => await sequelize.authenticate()
+    .catch(error => { throw new Error(error) })
+
 export const Log = sequelize.define('Log', {
     id: {
         type: DataTypes.UUID,

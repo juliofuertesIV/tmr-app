@@ -2,9 +2,12 @@ import { cookies } from "next/headers";
 import LoginForm from "./_components/LoginForm";
 import { decryptJWT } from "@/lib/auth";
 import TMRLogo from "../admin/_layout/_design/TmrLogo";
+import { testDatabaseConnection } from "@/lib/database";
 
 export default async function LoginPage() {
 
+    await testDatabaseConnection()
+    
     const currentSession = cookies().get('session')
     
     const manager = currentSession ? await decryptJWT(currentSession?.value) : null
