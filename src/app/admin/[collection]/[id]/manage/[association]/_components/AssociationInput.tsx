@@ -63,6 +63,8 @@ export default function AssociationInput({
 
     const manageHoverState = (hovered: boolean) => setHovered(hovered)
 
+    if (association === 'media') return null
+
     return (
         <div 
             className="bg-neutral-300 text-neutral-800 rounded-sm px-4 py-1 cursor-pointer hover:bg-neutral-100 data-[active='true']:bg-green-400 data-[active='true']:text-neutral-900 data-[active='true']:hover:bg-red-400 data-[loading='true']:pointer-events-none data-[loading='true']:bg-orange-500 "
@@ -76,7 +78,7 @@ export default function AssociationInput({
         >  
             <div className='flex w-full justify-between items-center py-2'>
                 <div className='flex flex-col gap-1.5'>
-                    <p className='text-sm uppercase leading-none'>{ associationItem.name }</p>
+                    <p className='text-sm uppercase leading-none'>{ (associationItem as any).name }</p> { /* TO DO: FIX IMedia name absence*/ }
                     { description && <p className='text-xs leading-none'>{ description }</p> }
                 </div>
                 <AssociationIcon loading={ loading } checked={ isCurrentlyAssociated } hovered={ hovered }/>

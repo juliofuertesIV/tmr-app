@@ -16,3 +16,5 @@ export type IAssociationKeys = 'Params' | 'Genres' | 'SocialMedia' | 'Media'
 export type IAssociationIdFieldnames = 'ParamId' | 'GenreId' | 'SocialMediumId' | 'MediumId'
 
 export type IRelationshipIdFieldnames = 'BrandId' | 'StateId' | 'MediumId'
+
+
