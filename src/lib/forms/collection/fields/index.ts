@@ -8,6 +8,7 @@ import { addCollectionElement } from "@/lib/fetch/post";
 import { updateCollectionItem } from "@/lib/fetch/put";
 import { inscriptionFields } from "./inscriptions";
 import { ICollectionsWithMediaNames } from "@/types/media";
+import { sponsorFields } from "./sponsors";
 
 export const formsByCollectionName : IFormByCollectionName = {
     action: {
@@ -20,13 +21,15 @@ export const formsByCollectionName : IFormByCollectionName = {
         social: socialFields,
         genres: genreFields,
         inscriptions: inscriptionFields,
-        managers: managerFields
+        managers: managerFields,
+        sponsors: sponsorFields
     }
 } 
 
 export const mediaFieldsByCollectionName = {
     contests: contestsMediaFields,
-    inscriptions: []
+    inscriptions: [],
+    sponsors: []
 } as {
     [key in ICollectionsWithMediaNames]: IMediaFormField[]
 }

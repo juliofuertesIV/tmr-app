@@ -1,4 +1,4 @@
-import { Brand, Contest, Media, Genre, Param, State, ContestParam, ContestGenre, ContestSocial, SocialMedia, Manager, Role, Log, Inscription, ContestMedia } from "@/lib/database";
+import { Brand, Contest, Media, Genre, Param, State, ContestParam, ContestGenre, ContestSocial, SocialMedia, Manager, Role, Log, Inscription, ContestMedia, Sponsor } from "@/lib/database";
 import { ICollectionNames } from "@/types";
 import { IAssociationIdFieldnames, IAssociationKeys, IAssociationNames, IRelationshipIdFieldnames, IRelationshipNames } from "@/types/associations";
 import { ICollectionsWithMediaNames } from "@/types/media";
@@ -59,6 +59,13 @@ const modelsByCollectionName = {
         Model: Log,
         options: {
             order: [['createdAt', 'DESC']]
+        }
+    },
+    sponsors: {
+        Model: Sponsor,
+        options: {
+            include: [ Media ],
+            order: [['name', 'ASC']]
         }
     }
 } as { 

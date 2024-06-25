@@ -2,7 +2,7 @@ import { IMedia } from "./media"
 
 export type IAllCollections = IContest & IBrand & ISocialMedia & IGenre & IInscription & IManager
 
-export type ICollectionNames = 'contests' | 'brands' | 'social' | 'genres' | 'inscriptions' | 'managers'
+export type ICollectionNames = 'contests' | 'brands' | 'social' | 'genres' | 'inscriptions' | 'managers' | 'sponsors'
 
 export type ICollectionsWithMedia = IContest & IInscription
 
@@ -127,6 +127,13 @@ export type IInscription = {
     MediumId: string,
     Medium: IMedia,
     Contest: IContest,
+}
+
+export type ISponsor = {
+    id: string,
+    name: string,
+    Media: IMedia[],
+    MediumId: string
 }
 
 export type IContestParamIds = 'inscriptionIsPublic' | 'videoIsRequired' | 'cityIsRequired' | 'instagramIsRequired' | 'hasManyItems' | 'hasGenres' | 'hasRanking'

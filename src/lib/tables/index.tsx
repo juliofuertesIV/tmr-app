@@ -44,6 +44,11 @@ const tables : { [key in ICollectionNames]: ICollectionTable } = {
         associations: [
             { key: 'Role', field: 'name' }
         ],
+    },
+    sponsors: {
+        headers: ['Nombre'],
+        fields: ['name'],
+        associations: null
     }
 } 
 

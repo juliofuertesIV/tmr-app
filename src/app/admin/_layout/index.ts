@@ -47,6 +47,13 @@ export const adminNavItems : IAdminNavItem[] = [
         minimumRole: 2
     },
     { 
+        collection: 'sponsors', 
+        label: 'Sponsors',
+        Icon: Icon.tag,
+        isActive: (path: string) => path.includes('/admin/sponsors'),
+        minimumRole: 2
+    },
+    { 
         collection: 'genres', 
         label: 'Géneros',
         Icon: Icon.genres,
@@ -63,7 +70,7 @@ export const adminNavItems : IAdminNavItem[] = [
     { 
         collection: 'logs', 
         label: 'Logs',
-        Icon: Icon.users,
+        Icon: Icon.message,
         isActive: (path: string) => path.includes('/admin/logs'),
         minimumRole: 4
     },

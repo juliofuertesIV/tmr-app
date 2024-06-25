@@ -12,7 +12,7 @@ const navItemsByCollectionName = {
         { name: 'Géneros', value: 'genres', association: true },
         { name: 'Configuración', value: 'params', association: true },
         { name: 'Imágenes', value: 'media', association: true },
-        { name: 'Footer', value: 'footer', association: true },
+        { name: 'Sponsors', value: 'sponsors', association: false },
         { name: 'Estado', value: 'state', association: false },
     ],
     brands: [
@@ -30,6 +30,10 @@ const navItemsByCollectionName = {
     ],
     inscriptions: [
         { name: 'Información', value: '', association: false },
+    ],
+    sponsors: [
+        { name: 'Información', value: '', association: false },
+        { name: 'Imágenes', value: 'media', association: true },
     ]
 } as {
     [key in ICollectionNames]: { name: string, value: string, association: boolean }[]

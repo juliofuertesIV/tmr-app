@@ -6,6 +6,8 @@ import { BrandsIcon } from "./BrandsIcon";
 import { DashboardIcon } from "./DashboardIcon";
 import { InscriptionIcon } from "./InscriptionIcon";
 import { MusicNotesIcon } from "./MusicNotesIcon";
+import { MessageIcon } from "./MessageIcon";
+import { TagIcon } from "./TagIcon";
 
 export { 
     ContestIcon as contest,
@@ -15,5 +17,7 @@ export {
     LogOutIcon as logout,
     DashboardIcon as dashboard,
     InscriptionIcon as inscription,
-    MusicNotesIcon as genres
+    MusicNotesIcon as genres,
+    MessageIcon as message,
+    TagIcon as tag
 } 

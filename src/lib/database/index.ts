@@ -451,6 +451,19 @@ export const Document = sequelize.define('Document', {
     }
 })
 
+export const Sponsor = sequelize.define('Sponsor', {
+    id: {
+        type: DataTypes.UUID,
+        primaryKey: true,
+        defaultValue: DataTypes.UUIDV4,
+        allowNull: false,
+    },
+    name: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    }
+})
+
 export const ContestParam = sequelize.define('ContestParams', {
 }, {
     timestamps: false
@@ -490,6 +503,9 @@ State.hasMany(Contest)
 
 Inscription.belongsTo(Media, { onDelete: 'CASCADE' })
 Media.hasOne(Inscription, { onDelete: 'CASCADE' })
+
+Sponsor.belongsTo(Media, { onDelete: 'CASCADE' })
+Media.hasOne(Sponsor, { onDelete: 'CASCADE' })
 
 Contest.belongsToMany(Genre, { through: 'ContestGenres' })
 Genre.belongsToMany(Contest, { through: 'ContestGenres' })

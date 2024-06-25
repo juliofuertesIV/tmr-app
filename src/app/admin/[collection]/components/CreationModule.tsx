@@ -4,7 +4,7 @@ import { ICollectionNames } from '@/types'
 
 export default function CreationModule({ collection } : { collection: ICollectionNames }) {
 
-    const canAddToCollection = ['contests', 'brands', 'managers', 'genres'].includes(collection)
+    const canAddToCollection = ['contests', 'brands', 'managers', 'genres', 'sponsors'].includes(collection)
 
     if (!canAddToCollection) return null
 
