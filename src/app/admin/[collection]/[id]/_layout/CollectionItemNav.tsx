@@ -55,7 +55,7 @@ export default function CollectionItemNav({ collection, id } : { collection: ICo
     }
 
     const getHref = (item: any) => {
-        return !!item.association ? `/admin/${ collection }/${ id }/manage/${ item.value }` : `/admin/${ collection }/${ id }/${ item.value }`
+        return !!item.association ? `/admin/${ collection }/${ id }/associate/${ item.value }` : `/admin/${ collection }/${ id }/${ item.value }`
     }
 
     return (
