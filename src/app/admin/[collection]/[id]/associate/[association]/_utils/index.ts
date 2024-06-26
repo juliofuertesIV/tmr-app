@@ -1,5 +1,7 @@
-import { IContest, ICollectionNames } from "@/types"
-import { IAssociationKeys, IAssociation, ICollectionsWithAssociations, IRelationship, IRelationshipIdFieldnames, IAssociationIdFieldnames } from "@/types/associations"
+import { IContest, ICollectionNames, IInscription, ISponsor, IManager } from "@/types"
+import { IAssociationKeys, IAssociation, ICollectionsWithAssociations, IRelationship, IRelationshipIdFieldnames, IAssociationIdFieldnames, IContestRelationshipIdFields, IInscriptionRelationshipIdFields, ISponsorRelationshipIdFields, IMedialessRelationshipIdFieldnames, IMedialessAssociationIdFieldnames, IMedialessAssociationKeys, IMedialessRelationship, IMedialessAssociation, ICollectionsWithAssociationsNames, IManagerRelationshipIdFields } from "@/types/associations"
+
+// TO DO: Tidy up this mess   
 
 export const determineIfItemIsAssociated = ({
     item,
@@ -8,21 +10,34 @@ export const determineIfItemIsAssociated = ({
     associationKey,
     associationIdField,
 } : {
-    item: IAssociation | IRelationship,
+    item: IMedialessAssociation | IMedialessRelationship,
     collectionItem: ICollectionsWithAssociations,
-    collection: ICollectionNames,
-    associationIdField: IRelationshipIdFieldnames | IAssociationIdFieldnames,
-    associationKey: IAssociationKeys | null,
+    collection: ICollectionsWithAssociationsNames,
+    associationIdField: IMedialessRelationshipIdFieldnames | IMedialessAssociationIdFieldnames,
+    associationKey: IMedialessAssociationKeys | null,
     
 }) => {
-    
-    // TO DO: Tidy up this mess
-    if (!itemIsContest(collectionItem, collection)) return false;
-    
-    if (itemIsRelationship(item, associationKey)) return collectionItem[associationIdField as IRelationshipIdFieldnames] === item.id
-    return collectionItem[associationKey as IAssociationKeys]?.some(associatedItem => associatedItem.id === item.id)  
+
+    if (!associationKey) return checkRelationshipByCollectionName(item as IMedialessRelationship, collectionItem, associationIdField as IMedialessRelationshipIdFieldnames, collection)
+
+    return (collectionItem as IContest)[associationKey].some(associatedItem => associatedItem.id === item.id) // TO DO: only contests in many to many FOR NOW, ICollectionswithrelationships vs Icollectionswithassociations in the future
+}
+
+const checkRelationshipByCollectionName = (item: IMedialessRelationship, collectionItem: ICollectionsWithAssociations, associationIdField: IMedialessRelationshipIdFieldnames, collection: ICollectionsWithAssociationsNames) => {
+    return isCurrentRelationshipByCollection[collection](collectionItem, associationIdField, item)
 }
 
 export const itemIsContest = (item: ICollectionsWithAssociations, collection: ICollectionNames) : item is IContest => collection === 'contests'
-
+export const itemIsInscription = (item: ICollectionsWithAssociations, collection: ICollectionNames) : item is IInscription => collection === 'inscriptions'
+export const itemIsSponsor = (item: ICollectionsWithAssociations, collection: ICollectionNames) : item is ISponsor => collection === 'sponsors'
 export const itemIsRelationship = (item: IAssociation | IRelationship, associationKey: IAssociationKeys | null) : item is IRelationship => !associationKey
+
+const isCurrentRelationshipByCollection = {
+    contests: (collectionItem: IContest, field: IMedialessRelationshipIdFieldnames, item: IMedialessRelationship) => collectionItem[field as IContestRelationshipIdFields] === item.id,
+    inscriptions: (collectionItem: IInscription, field: IMedialessRelationshipIdFieldnames, item: IMedialessRelationship) => collectionItem[field as IInscriptionRelationshipIdFields] === item.id,
+    sponsors: (collectionItem: ISponsor, field: IMedialessRelationshipIdFieldnames, item: IMedialessRelationship) => collectionItem[field as ISponsorRelationshipIdFields] === item.id,
+    managers: (collectionItem: IManager, field: IMedialessRelationshipIdFieldnames, item: IMedialessRelationship) => collectionItem[field as IManagerRelationshipIdFields] === item.id,
+} as {
+    [key in ICollectionsWithAssociationsNames]: (collectionItem: ICollectionsWithAssociations, field: IMedialessRelationshipIdFieldnames, item: IMedialessRelationship) => boolean
+}
+

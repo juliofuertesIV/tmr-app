@@ -1,9 +1,12 @@
 import { Metadata } from "next";
-import { ICollectionNames } from "@/types";
+import { ICollectionsWithMedia } from "@/types";
 import { getModelByCollectionName, getRelationshipModelByName } from "@/app/api/[collection]/_utils";
-import { ICollectionsWithAssociations, IRelationshipNames, IRelationship } from "@/types/associations";
+import { ICollectionsWithAssociations, IRelationshipNames, IRelationship, IMedialessAssociationIdFieldnames, IMedialessAssociation, IMedialessRelationship, ICollectionsWithAssociationsNames } from "@/types/associations";
 import AssociationPageHeader from "../associate/[association]/_components/AssociationPageHeader";
 import AssociationManager from "../associate/[association]/_components/AssociationManager";
+import { getMediaFieldsByCollection } from "@/lib/forms/collection";
+import MediaFormWrapper from "../associate/[association]/_components/MediaFormWrapper";
+import { ICollectionsWithMediaNames } from "@/types/media";
 
 export const metadata: Metadata = {
     title: "Panel de administración TMR",
@@ -12,13 +15,13 @@ export const metadata: Metadata = {
 
 type Props = {
     params: { 
-        collection: ICollectionNames,
+        collection: ICollectionsWithAssociationsNames,
         id: string,
         relationship: IRelationshipNames
     }
 }
 
-const getPageData = async ({ collection, id, relationship } : { collection: ICollectionNames, id: string, relationship: IRelationshipNames }) => {
+const getPageData = async ({ collection, id, relationship } : { collection: ICollectionsWithAssociationsNames, id: string, relationship: IRelationshipNames }) => {
 
     const { RelationshipModel } = getRelationshipModelByName(relationship)
     const { Model, options } = getModelByCollectionName(collection)
@@ -40,6 +43,23 @@ export default async function AdminRelationshipPage({ params } : Props) {
 
     const { relationshipIdFieldName } = getRelationshipModelByName(relationship)
 
+    if (relationship === 'media') {
+
+        const mediaFields = getMediaFieldsByCollection({ collection })
+
+        return (
+            <section className="w-full flex flex-col items-center">
+                <AssociationPageHeader association={ relationship } item={ item }/>
+                <MediaFormWrapper
+                    collection={ collection as ICollectionsWithMediaNames }
+                    collectionItem={ item as ICollectionsWithMedia }
+                    mediaFields={ mediaFields }
+                />
+            </section>
+        )
+
+    }
+
     return (
         <section className="w-full flex flex-col items-center">
             <AssociationPageHeader association={ relationship } item={ item }/>
@@ -47,8 +67,8 @@ export default async function AdminRelationshipPage({ params } : Props) {
                 collection={ collection }
                 collectionItem={ item } 
                 association={ relationship }
-                associationIdField={ relationshipIdFieldName }
-                associationItems={ relationshipItems }
+                associationIdField={ relationshipIdFieldName as IMedialessAssociationIdFieldnames }
+                associationItems={ relationshipItems as IMedialessAssociation[] | IMedialessRelationship[] }
                 associationKey={ null }
             />
         </section>

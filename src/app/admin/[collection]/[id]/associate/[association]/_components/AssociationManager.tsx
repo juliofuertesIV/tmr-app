@@ -3,15 +3,15 @@
 import { ICollectionNames } from '@/types'
 import AssociationInput from './AssociationInput'
 import { determineIfItemIsAssociated, itemIsRelationship } from '../_utils'
-import { IAssociationNames, IAssociationKeys, IAssociation, ICollectionsWithAssociations, IRelationshipNames, IRelationshipIdFieldnames, IRelationship, IAssociationIdFieldnames } from '@/types/associations'
+import { ICollectionsWithAssociations, IMedialessAssociation, IMedialessRelationship, IMedialessRelationshipNames, IMedialessAssociationNames, IMedialessAssociationKeys, IMedialessAssociationIdFieldnames, IMedialessRelationshipIdFieldnames, ICollectionsWithAssociationsNames } from '@/types/associations'
 
 type Props = {
     collectionItem: ICollectionsWithAssociations,
-    associationItems: IAssociation[] | IRelationship[],
-    association: IAssociationNames | IRelationshipNames,
-    associationKey: IAssociationKeys | null,
-    associationIdField: IAssociationIdFieldnames | IRelationshipIdFieldnames,
-    collection: ICollectionNames
+    associationItems: IMedialessAssociation[] | IMedialessRelationship[],
+    association: IMedialessAssociationNames | IMedialessRelationshipNames,
+    associationKey: IMedialessAssociationKeys | null,
+    associationIdField: IMedialessAssociationIdFieldnames | IMedialessRelationshipIdFieldnames,
+    collection: ICollectionsWithAssociationsNames
 }
 
 export default function AssociationManager({ 
