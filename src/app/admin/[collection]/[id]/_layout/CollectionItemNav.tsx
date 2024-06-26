@@ -1,6 +1,7 @@
 'use client'
 
 import { ICollectionNames } from "@/types"
+import { IAssociationNames, IRelationshipNames } from "@/types/associations"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 
@@ -36,7 +37,7 @@ const navItemsByCollectionName = {
         { name: 'Imágenes', value: 'media', association: true },
     ]
 } as {
-    [key in ICollectionNames]: { name: string, value: string, association: boolean }[]
+    [key in ICollectionNames]: { name: string, value: IRelationshipNames | IAssociationNames | '', association: boolean }[]
 }
 
 export default function CollectionItemNav({ collection, id } : { collection: ICollectionNames, id: string | number }) {
