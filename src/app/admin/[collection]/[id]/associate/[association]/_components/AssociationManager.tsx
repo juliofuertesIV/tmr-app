@@ -1,6 +1,5 @@
 'use client'
 
-import { ICollectionNames } from '@/types'
 import AssociationInput from './AssociationInput'
 import { determineIfItemIsAssociated, itemIsRelationship } from '../_utils'
 import { ICollectionsWithAssociations, IMedialessAssociation, IMedialessRelationship, IMedialessRelationshipNames, IMedialessAssociationNames, IMedialessAssociationKeys, IMedialessAssociationIdFieldnames, IMedialessRelationshipIdFieldnames, ICollectionsWithAssociationsNames } from '@/types/associations'

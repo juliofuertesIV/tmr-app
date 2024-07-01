@@ -1,4 +1,4 @@
-import { IAssociationNames, ICollectionsWithAssociations, IRelationshipNames } from "@/types/associations";
+import { IAssociationNames, ICollectionsWithAssociations, ICollectionsWithAssociationsNames, IRelationshipNames } from "@/types/associations";
 
 const headersByAssociationName = {
     params: {
@@ -23,16 +23,25 @@ const headersByAssociationName = {
     },
     media: {
         title: 'Imágenes',
-        description: 'Las imágenes que necesita el festival para funcionar: logo, banner y marco (tipo SVG) y el favicon (tipo ICO).'
+        description: 'Las imágenes asociadas a esta colección de elementos.'
     },
     role: {
-        title: '',
-        description: ''
+        title: 'Roles',
+        description: 'El rol del usuario determina sus permisos dentro del panel de administración.'
+    },
+    sponsors: {
+        title: 'Sponsors',
+        description: 'Cada sponsor va asociado a una imagen que se mostrará en el footer del concurso.'
+    },
+    documents: {
+        title: 'Documentos',
+        description: 'Las bases del concurso, los avisos legales, etc. Formato .pdf'
     }
 }
 
 
-export default function AssociationPageHeader({ association, item } : { association: IAssociationNames | IRelationshipNames, item: ICollectionsWithAssociations }) {
+
+export default function AssociationPageHeader({ association, item, collection } : { association: IAssociationNames | IRelationshipNames, item: ICollectionsWithAssociations, collection: ICollectionsWithAssociationsNames }) {
     
     const { title, description } = headersByAssociationName[association]
     

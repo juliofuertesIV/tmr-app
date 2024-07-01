@@ -1,7 +1,7 @@
 import { Metadata } from "next";
-import { ICollectionNames, ICollectionsWithMedia } from "@/types";
+import { ICollectionsWithMedia } from "@/types";
 import AssociationManager from "./_components/AssociationManager";
-import { IAssociationNames } from "@/types/associations";
+import { IAssociationNames, ICollectionsWithAssociationsNames, IMedialessAssociation, IMedialessAssociationIdFieldnames, IMedialessAssociationKeys, IMedialessAssociationNames, IMedialessRelationshipIdFieldnames } from "@/types/associations";
 import AssociationPageHeader from "./_components/AssociationPageHeader";
 import { getMediaFieldsByCollection } from "@/lib/forms/collection";
 import { ICollectionsWithMediaNames } from "@/types/media";
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 
 type Props = {
     params: { 
-        collection: ICollectionNames,
+        collection: ICollectionsWithAssociationsNames,
         id: string,
         association: IAssociationNames 
     }
@@ -37,7 +37,7 @@ export default async function AdminAssociationPage({ params } : Props) {
 
         return (
             <section className="w-full flex flex-col items-center">
-                <AssociationPageHeader association={ association } item={ item }/>
+                <AssociationPageHeader association={ association } item={ item } collection={ collection }/>
                 <MediaFormWrapper
                     collection={ collection as ICollectionsWithMediaNames }
                     collectionItem={ item as ICollectionsWithMedia }
@@ -50,14 +50,14 @@ export default async function AdminAssociationPage({ params } : Props) {
 
     return (
         <section className="w-full flex flex-col items-center">
-            <AssociationPageHeader association={ association } item={ item }/>
+            <AssociationPageHeader association={ association } item={ item } collection={ collection }/>
             <AssociationManager 
                 collection={ collection }
                 collectionItem={ item } 
-                association={ association }
-                associationItems={ associationItems }
-                associationKey={ associationKey }
-                associationIdField={ associationIdField }
+                association={ association as IMedialessAssociationNames }
+                associationItems={ associationItems as IMedialessAssociation[] }
+                associationKey={ associationKey as IMedialessAssociationKeys }
+                associationIdField={ associationIdField as IMedialessAssociationIdFieldnames }
             />
         </section>
     )

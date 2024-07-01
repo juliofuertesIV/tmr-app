@@ -1,4 +1,4 @@
-import { IMedia } from "./media"
+import { IDocument, IMedia } from "./media"
 
 export type IAllCollections = IContest & IBrand & ISocialMedia & IGenre & IInscription & IManager
 
@@ -49,6 +49,8 @@ export type IContest = {
     SocialMedia: ISocialMedia[],
     Params: IParam[],
     Media: IMedia[],
+    Sponsors: ISponsor[],
+    Documents: IDocument[],
     createdAt: string,
     updatedAt: string
 }

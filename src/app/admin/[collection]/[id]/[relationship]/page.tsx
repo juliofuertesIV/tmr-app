@@ -23,11 +23,11 @@ type Props = {
 
 const getPageData = async ({ collection, id, relationship } : { collection: ICollectionsWithAssociationsNames, id: string, relationship: IRelationshipNames }) => {
 
-    const { RelationshipModel } = getRelationshipModelByName(relationship)
+    const { RelationshipModel, options: relationshipOptions } = getRelationshipModelByName(relationship)
     const { Model, options } = getModelByCollectionName(collection)
 
     const item = await Model.findOne({ where: { id }, ...options }).then(data => data) as unknown as ICollectionsWithAssociations
-    const relationshipItems = await RelationshipModel.findAll({ order: [['name', 'ASC']]}).then(data => data) as unknown as IRelationship[]
+    const relationshipItems = await RelationshipModel.findAll({ ...relationshipOptions }).then(data => data) as unknown as IRelationship[]
 
     return { 
         item: JSON.parse(JSON.stringify(item)), 

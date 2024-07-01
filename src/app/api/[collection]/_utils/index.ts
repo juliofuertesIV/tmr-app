@@ -1,4 +1,4 @@
-import { Brand, Contest, Media, Genre, Param, State, ContestParam, ContestGenre, ContestSocial, SocialMedia, Manager, Role, Log, Inscription, ContestMedia, Sponsor } from "@/lib/database";
+import { Brand, Contest, Media, Genre, Param, State, ContestParam, ContestGenre, ContestSocial, SocialMedia, Manager, Role, Log, Inscription, ContestMedia, Sponsor, ContestSponsor, ContestDocument, Document } from "@/lib/database";
 import { ICollectionNames } from "@/types";
 import { IAssociationIdFieldnames, IAssociationKeys, IAssociationNames, IRelationshipIdFieldnames, IRelationshipNames } from "@/types/associations";
 import { ICollectionsWithMediaNames } from "@/types/media";
@@ -24,8 +24,9 @@ const modelsByCollectionName = {
                     through: {
                         attributes: [],
                     }
-                }
-                
+                },
+                Document,
+                Sponsor
             ]
         } 
     },
@@ -113,6 +114,22 @@ const associationByName = {
         collectionItemIdField: 'ContestId',
         associationIdField: 'MediumId',
         options: {}
+    },
+    sponsors: {
+        AssociationTable: ContestSponsor,
+        AssociationModel: Sponsor,
+        associationKey: 'Sponsors',
+        collectionItemIdField: 'ContestId',
+        associationIdField: 'SponsorId',
+        options: { include: [ Media ]}
+    },
+    documents: {
+        AssociationTable: ContestDocument,
+        AssociationModel: Document,
+        associationKey: 'Documents',
+        collectionItemIdField: 'ContestId',
+        associationIdField: 'DocumentId',
+        options: {}
     }
 } as {
     [key in IAssociationNames]: {
@@ -128,24 +145,37 @@ const associationByName = {
 const relationshipByName = {
     brand: {
         RelationshipModel: Brand,
-        relationshipIdFieldName: 'BrandId'
+        relationshipIdFieldName: 'BrandId',
+        options: {
+            order: [[ 'name', 'ASC' ]]
+        }
     },
     state: {
         RelationshipModel: State,
-        relationshipIdFieldName: 'StateId'
+        relationshipIdFieldName: 'StateId',
+        options: {
+            order: [[ 'name', 'ASC' ]]
+        }
     },
     role: {
         RelationshipModel: Role,
-        relationshipIdFieldName: 'RoleId'
+        relationshipIdFieldName: 'RoleId',
+        options: {
+            order: [[ 'name', 'ASC' ]]
+        }
     },
     media: {
         RelationshipModel: Media,
-        relationshipIdFieldName: 'MediumId'
+        relationshipIdFieldName: 'MediumId',
+        options: {
+            order: [[ 'role', 'ASC' ]]
+        }
     }
 } as {
     [key in IRelationshipNames]: {
         RelationshipModel: ModelStatic<Model<any, any>>,
-        relationshipIdFieldName: IRelationshipIdFieldnames
+        relationshipIdFieldName: IRelationshipIdFieldnames,
+        options: FindOptions
     }
 }
 

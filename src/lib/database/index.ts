@@ -489,6 +489,11 @@ export const ContestDocument = sequelize.define('ContestDocuments', {
     timestamps: false
 })
 
+export const ContestSponsor = sequelize.define('ContestSponsors', {
+}, {
+    timestamps: false
+})
+
 Inscription.belongsTo(Contest)
 Contest.hasMany(Inscription)
 
@@ -515,6 +520,9 @@ Media.belongsToMany(Contest, { through: 'ContestMedia' })
 
 Contest.belongsToMany(Document, { through: 'ContestDocuments', onDelete: 'CASCADE' })
 Document.belongsToMany(Contest, { through: 'ContestDocuments', onDelete: 'CASCADE' })
+
+Contest.belongsToMany(Sponsor, { through: 'ContestSponsors', onDelete: 'CASCADE' })
+Sponsor.belongsToMany(Contest, { through: 'ContestSponsors', onDelete: 'CASCADE' })
 
 Manager.belongsTo(Role)
 Role.hasMany(Manager)
