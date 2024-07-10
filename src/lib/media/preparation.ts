@@ -31,7 +31,38 @@ export const prepareMediaFile = async ({
     const src = `https://storage.googleapis.com/${process.env.GCP_BUCKET}/${ domain }/${ collection }/${ filename }`
 
     if (!mediaPayloadIsValidLength({ bytes })) {
-        return { bytes, filename, src, error: new Error('La imagen es demasiado grande'), success: false }
+        return { bytes, filename, src, error: new Error('El archivo es demasiado grande'), success: false }
+    }
+
+    return { bytes, filename, src, error: null, success: true }
+}
+
+
+export const prepareFile = async ({ 
+    file,
+    domain,
+    collection 
+} : {
+    file: File,
+    domain: string,
+    collection: ICollectionsWithMediaNames
+}
+) : Promise<{ 
+    bytes: ArrayBuffer,
+    filename: string,
+    src: string,
+    error: Error | null,
+    success: boolean
+}> => {
+
+    const bytes = await file.arrayBuffer();
+
+    const filename = 'bases.pdf'
+
+    const src = `https://storage.googleapis.com/${process.env.GCP_BUCKET}/${ domain }/${ collection }/${ filename }`
+
+    if (!mediaPayloadIsValidLength({ bytes })) {
+        return { bytes, filename, src, error: new Error('El archivo es demasiado grande'), success: false }
     }
 
     return { bytes, filename, src, error: null, success: true }

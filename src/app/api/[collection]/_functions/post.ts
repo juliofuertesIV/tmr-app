@@ -1,14 +1,26 @@
 import { ICollectionNames } from "@/types"
 import { getModelByCollectionName } from "../_utils"
-import { Inscription } from "@/lib/database"
+import { Document, Inscription } from "@/lib/database"
 import { constructAPIResponse } from "../../_utils"
 import { handleApiError } from "@/lib/errors"
 import { ICreateInscriptionPayload } from "@/types/inscriptions"
 import { createMedia } from "@/lib/media/create"
 import { validateMedia } from "@/lib/media/validation"
 import { ICollectionsWithMediaNames } from "@/types/media"
+import { uploadDocument } from "@/lib/media/upload"
+import { Transaction } from "sequelize"
 
-export const addToCollection = async ({ collection, formData } : { collection: ICollectionNames, formData: FormData }) => {
+type ICollectionCreationPayload = {
+    collection: ICollectionNames,
+    formData: FormData
+}
+
+type ICollectionWithMediaCreationPayload = {
+    collection: ICollectionsWithMediaNames,
+    formData: FormData
+}
+
+export const addToCollection = async ({ collection, formData } : ICollectionCreationPayload) => {
 
     const { Model } = getModelByCollectionName(collection)
 
@@ -36,7 +48,7 @@ export const addToCollection = async ({ collection, formData } : { collection: I
     }
 }
 
-export const addToCollectionWithMedia = async ({ collection, formData } : { collection: ICollectionsWithMediaNames, formData: FormData }) => {
+export const addToCollectionWithMedia = async ({ collection, formData } : ICollectionWithMediaCreationPayload) => {
     
     const payload = Object.fromEntries(formData) as ICreateInscriptionPayload
 
@@ -45,17 +57,17 @@ export const addToCollectionWithMedia = async ({ collection, formData } : { coll
     }
     catch (error) {
         return await handleApiError({
-            collection: 'inscriptions',
+            collection,
             route: '/api/' + collection,
             error,
             message: 'Fallo validando el archivo.' 
         })
     }
 
-    const { MediumId } = await createMedia({ formData, collection }) as { MediumId: string }
+    const { MediumId, transaction } = await createMedia({ formData, collection }) as { MediumId: string, transaction: Transaction }
 
     try {
-        const inscription = await Inscription.create({ MediumId, ...payload })
+        const inscription = await Inscription.create({ MediumId, ...payload }, { transaction })
 
         return Response.json(
             constructAPIResponse({ 
@@ -71,7 +83,14 @@ export const addToCollectionWithMedia = async ({ collection, formData } : { coll
             collection,
             route: '/api/' + collection,
             error,
+            transaction,
             message: 'Fallo inscribiendo candidatura.' 
         })
     }
+}
+
+export const addDocument = async ({ collection, formData } : { collection: ICollectionsWithMediaNames, formData: FormData }) => {
+
+    
+
 }
