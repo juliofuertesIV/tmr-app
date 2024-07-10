@@ -12,7 +12,7 @@ export const createDocument = async ({
 } : { 
     formData: FormData,
     collection: ICollectionsWithMediaNames
-}) => {
+}) : Promise<{ DocumentId: string | null, transaction: Transaction }> => {
 
     const file = formData.get('file') as File
     const domain = formData.get('domain') as string

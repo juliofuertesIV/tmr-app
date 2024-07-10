@@ -49,10 +49,10 @@ export const updateInscriptionMedia = async ({ collection, formData, id } : Prop
 
     const payload = Object.fromEntries(formData) as IMediaPayload
     
-    const { file, type, domain } = payload 
+    const { file, domain } = payload 
 
     try {
-        validateMedia({ file, type })
+        validateMedia({ file, type: 'image' })
     }
     catch (error) {
         return await handleApiError({
