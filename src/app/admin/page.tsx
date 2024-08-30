@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import Dashboard from "./_dashboard/Dashboard";
+import ContestsDashboard from "./_dashboard/ContestsDashboard";
 import { getDashboardData } from "../../lib/fetch/get";
 import { IAdminData } from "@/types/admin";
 import { IAPIResponse } from "@/types/api";
@@ -25,11 +25,12 @@ const getData = async () : Promise<IAPIResponse<IAdminData>> => {
 
 export default async function AdminHome() {
     
-    const { data } = await getData() as { data: IAdminData }   
+    const { data } = await getData() as { data: IAdminData }
+    const { contests } = data
 
     return (
         <main className="min-h-screen w-full pt-20 bg-neutral-950">
-            <Dashboard data={ data }/>
+            <ContestsDashboard contests={ contests }/>
         </main>
     )
 }
