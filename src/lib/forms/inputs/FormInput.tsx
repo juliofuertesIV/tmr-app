@@ -32,7 +32,7 @@ export default function FormInput({ field, collectionItem } : { field: IFormFiel
     return (
         <Label textContent={ label } isValid={ isValid }>
             <RegularInput 
-                className="pl-2 w-full text-neutral-800"
+                className="pl-2 w-full bg-neutral-800 text-neutral-200 rounded-xl py-1"
                 name={ name }
                 type={ type }
                 onChange={ onInputChange }
