@@ -1,5 +1,5 @@
 import React from 'react'
-import AdminLoader from '../../_layout/_design/AdminLoader'
+import AdminLoader from '../../_layout/design/AdminLoader'
 
 export default function Loading() {
     return (

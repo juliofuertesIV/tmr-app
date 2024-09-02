@@ -2,10 +2,37 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+    font-family: 'SharpGrotesk';
+    font-weight: 400;
+    src: url('../fonts/SharpGroteskBook20.woff2') format('woff2');
+    font-display: swap;
+}
+@font-face {
+    font-family: 'SharpGroteskButton';
+    font-weight: 600;
+    src: url('../fonts/SharpGroteskBook20.woff2') format('woff2');
+    font-display: swap;
+}
+@font-face {
+    font-family: 'SharpGrotesk';
+    font-weight: 600;
+    src: url('../fonts/SharpGroteskSmBold20.woff2');
+    font-display: swap;
+}
+@font-face {
+    font-family: 'SharpGrotesk';
+    font-weight: 900;
+    src: url('../fonts/SharpGroteskBold20.woff2') format('woff2');
+    font-display: swap;
+}
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+  --ff-grotesk: 'SharpGrotesk';
+  --ff-grotesk-button: 'SharpGroteskButton';
 }
 
 @media (prefers-color-scheme: dark) {
@@ -18,6 +45,8 @@
 
 body {
   color: rgb(var(--foreground-rgb));
+  font-family: var(--ff-grotesk);
+  font-weight: 400;
   background: linear-gradient(
       to bottom,
       transparent,
@@ -27,7 +56,7 @@ body {
 }
 
 h1, h2, h3 {
-    @apply font-bold
+    @apply font-medium
 }
 
 h1 {

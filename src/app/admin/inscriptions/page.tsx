@@ -1,7 +1,7 @@
 import { getCollection } from "@/lib/fetch/get"
 import { IContest } from "@/types"
 import Link from "next/link"
-import { ArrowRightIcon } from "../_layout/_design/icons/ArrowRightIcon"
+import { ArrowRightIcon } from "../_layout/design/icons/ArrowRightIcon"
 
 export default async function InscriptionsPage() {
 

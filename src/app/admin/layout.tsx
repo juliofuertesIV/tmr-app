@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "../globals.css";
-import AdminMainNav from "./_layout/AdminMainNav";
+import AdminMainNav from "./_layout/nav/AdminMainNav";
 import { cookies } from "next/headers";
 import { decryptJWT } from "@/lib/auth";
 import { redirect } from "next/navigation";

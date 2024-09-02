@@ -1,7 +1,7 @@
-import Spinner from '@/app/admin/_layout/_design/Spinner'
-import { CheckIcon } from '@/app/admin/_layout/_design/icons/CheckIcon'
-import { CloseIcon } from '@/app/admin/_layout/_design/icons/CloseIcon'
-import { PlusIcon } from '@/app/admin/_layout/_design/icons/PlusIcon'
+import Spinner from '@/app/admin/_layout/design/Spinner'
+import { CheckIcon } from '@/app/admin/_layout/design/icons/CheckIcon'
+import { CloseIcon } from '@/app/admin/_layout/design/icons/CloseIcon'
+import { PlusIcon } from '@/app/admin/_layout/design/icons/PlusIcon'
 import React from 'react'
 
 type Props = {

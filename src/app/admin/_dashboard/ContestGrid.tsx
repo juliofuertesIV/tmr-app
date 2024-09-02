@@ -1,6 +1,7 @@
 import { IContest } from '@/types'
 import Link from 'next/link'
 import React from 'react'
+import { edit as Icon } from '../_layout/design/icons'
 
 export default function ContestGrid({ contests } : { contests: IContest[] }) {
 
@@ -22,12 +23,15 @@ export default function ContestGrid({ contests } : { contests: IContest[] }) {
                             className='p-4 bg-neutral-800 text-neutral-100 px-4 rounded-xl flex flex-col border border-transparent'
                             key={ `cts_${ index }`}
                         >
-                            <header className='text-xs'>
-                                { contest.Brand.name || 'No brand' } · { contest.year } 
+                            <header className='flex justify-between'>
+                                <p className='text-xs'>{ contest.Brand?.name || 'Sin branding' } · { contest.year }</p>
+                                <Link href={ `/admin/contests/${ contest.id }`}>
+                                    <Icon/>
+                                </Link>
                             </header>
-                            <Link href={ `/admin/contests/${ contest.id }`} className='font-bold text-xl'>
+                            <div className='font-semibold text-xl'>
                                 <div>{ contest.name } </div>
-                            </Link>
+                            </div>
                             <div className='flex gap-2 pt-2'>
                                 <div className=' flex px-2 py-1 border border-neutral-100 rounded-lg '>LONGEST ICON</div>
                                 <div className=' flex px-2 py-1 border border-neutral-100 rounded-lg '>LONG ICON</div>

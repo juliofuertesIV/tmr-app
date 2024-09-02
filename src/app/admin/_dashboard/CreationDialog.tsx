@@ -3,8 +3,8 @@
 import { ICollectionNames } from '@/types'
 import { getFormByCollectionName } from '../../../lib/forms/collection'
 import { useLayoutEffect, useRef, useState } from 'react'
-import { CircleAddIcon } from '../_layout/_design/icons/CircleAddIcon'
-import { CloseIcon } from '../_layout/_design/icons/CloseIcon'
+import { CircleAddIcon } from '../_layout/design/icons/CircleAddIcon'
+import { CloseIcon } from '../_layout/design/icons/CloseIcon'
 import Form from '@/lib/forms/Form'
 
 type Props = {

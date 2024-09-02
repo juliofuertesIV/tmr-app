@@ -1,9 +1,9 @@
 import Image from 'next/image'
 
-export default function TMRLogo() {
+export default function TMRLogo({ classname } : { classname: string }) {
   return (
         <Image 
-            className="w-full max-w-[300px] my-4"
+            className={ classname }
             src={ '/img/tmr_logo.png' }
             alt='TMR Logo'
             width={ 300 }
