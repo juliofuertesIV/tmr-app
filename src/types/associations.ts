@@ -1,11 +1,11 @@
 import { IBrand, IContest, IContestState, IGenre, IInscription, IManager, IManagerRole, IParam, ISocialMedia, ISponsor } from "."
-import { IDocument, IMedia } from "./media"
+import { IMedia } from "./media"
 
 export type ICollectionsWithAssociations = IContest | IManager | ISponsor | IInscription
 export type ICollectionsWithAssociationsNames = "contests" | "sponsors" | "inscriptions" | "managers"
 
-export type IAssociation = IParam | IGenre | ISocialMedia | IManagerRole | ISponsor | IMedia | IDocument
-export type IMedialessAssociation = Exclude<IAssociation, IMedia | IDocument>
+export type IAssociation = IParam | IGenre | ISocialMedia | IManagerRole | ISponsor | IMedia 
+export type IMedialessAssociation = Exclude<IAssociation, IMedia>
 
 export type IRelationship = IBrand | IContestState | IMedia
 export type IMedialessRelationship = Exclude<IRelationship, IMedia>

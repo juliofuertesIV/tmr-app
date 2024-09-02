@@ -193,6 +193,9 @@ export const Contest = sequelize.define('Contest', {
     metaPixelId: {
         type: DataTypes.STRING
     },
+    termsAndConditions: {
+        type: DataTypes.TEXT
+    },
     StateId: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -370,6 +373,11 @@ export const Inscription = sequelize.define('Inscription', {
         type: DataTypes.INTEGER,
         allowNull: false,
         defaultValue: 0
+    },
+    isStarred: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: false
     }
     }, {
         paranoid: true,
@@ -429,23 +437,6 @@ export const Media = sequelize.define('Media', {
         allowNull: false
     },
     alt: {
-        type: DataTypes.STRING,
-        allowNull: false
-    }
-})
-
-export const Document = sequelize.define('Document', {
-    id: {
-        type: DataTypes.UUID,
-        primaryKey: true,
-        defaultValue: DataTypes.UUIDV4,
-        allowNull: false,
-    },
-    role: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    src: {
         type: DataTypes.STRING,
         allowNull: false
     }
@@ -517,9 +508,6 @@ Genre.belongsToMany(Contest, { through: 'ContestGenres' })
 
 Contest.belongsToMany(Media, { through: 'ContestMedia' })
 Media.belongsToMany(Contest, { through: 'ContestMedia' })
-
-Contest.belongsToMany(Document, { through: 'ContestDocuments', onDelete: 'CASCADE' })
-Document.belongsToMany(Contest, { through: 'ContestDocuments', onDelete: 'CASCADE' })
 
 Contest.belongsToMany(Sponsor, { through: 'ContestSponsors', onDelete: 'CASCADE' })
 Sponsor.belongsToMany(Contest, { through: 'ContestSponsors', onDelete: 'CASCADE' })

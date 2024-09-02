@@ -1,4 +1,4 @@
-import { IDocument, IMedia } from "./media"
+import { IMedia } from "./media"
 
 export type IAllCollections = IContest & IBrand & ISocialMedia & IGenre & IInscription & IManager
 
@@ -41,6 +41,7 @@ export type IContest = {
     googleAnalyticsId: string | null,
     googleTagManagerId: string | null,
     metaPixelId: string | null,
+    termsAndConditions: string,
     StateId: string,
     BrandId: number,
     Brand: IBrand,
@@ -50,7 +51,6 @@ export type IContest = {
     Params: IParam[],
     Media: IMedia[],
     Sponsors: ISponsor[],
-    Documents: IDocument[],
     createdAt: string,
     updatedAt: string
 }

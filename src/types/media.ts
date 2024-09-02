@@ -1,4 +1,4 @@
-export type IContestMediaRole = 'frame' | 'banner' | 'logo' | 'favicon' | 'footerElement' | 'conditions'
+export type IContestMediaRole = 'frame' | 'banner' | 'logo' | 'favicon' | 'footerElement'
 
 export type ICollectionsWithMediaNames = 'contests' | 'inscriptions' | 'sponsors'
 
@@ -19,10 +19,4 @@ export type IMedia = {
     width: string,
     height: string,
     alt: string
-}
-
-export type IDocument = {
-    id: string,
-    role: IMediaRole
-    src: string
 }
