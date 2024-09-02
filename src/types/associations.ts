@@ -13,14 +13,14 @@ export type IMedialessRelationship = Exclude<IRelationship, IMedia>
 export type IRelationshipNames = 'brand' | 'state' | 'media'
 export type IMedialessRelationshipNames = Exclude<IRelationshipNames, 'media'>
 
-export type IAssociationNames = 'params' | 'genres' | 'social' | 'media' | 'sponsors' | 'documents'
-export type IMedialessAssociationNames = Exclude<IAssociationNames, 'media' | 'documents'>
+export type IAssociationNames = 'params' | 'genres' | 'social' | 'media' | 'sponsors'
+export type IMedialessAssociationNames = Exclude<IAssociationNames, 'media'>
 
-export type IAssociationKeys = 'Params' | 'Genres' | 'SocialMedia' | 'Media' | 'Sponsors' | 'Documents'
-export type IMedialessAssociationKeys = Exclude<IAssociationKeys, "Media" | "Documents">
+export type IAssociationKeys = 'Params' | 'Genres' | 'SocialMedia' | 'Media' | 'Sponsors'
+export type IMedialessAssociationKeys = Exclude<IAssociationKeys, "Media">
 
-export type IAssociationIdFieldnames = 'ParamId' | 'GenreId' | 'SocialMediumId' | 'MediumId' | 'SponsorId' | 'DocumentId'
-export type IMedialessAssociationIdFieldnames = Exclude<IAssociationIdFieldnames, 'MediumId' | 'DocumentId'>
+export type IAssociationIdFieldnames = 'ParamId' | 'GenreId' | 'SocialMediumId' | 'MediumId' | 'SponsorId'
+export type IMedialessAssociationIdFieldnames = Exclude<IAssociationIdFieldnames, 'MediumId'>
 
 export type IRelationshipIdFieldnames = 'BrandId' | 'StateId' | 'MediumId' | 'RoleId'
 export type IMedialessRelationshipIdFieldnames = Exclude<IRelationshipIdFieldnames, 'MediumId'>

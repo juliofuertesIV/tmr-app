@@ -475,11 +475,6 @@ export const ContestMedia = sequelize.define('ContestMedia', {
     timestamps: false
 })
 
-export const ContestDocument = sequelize.define('ContestDocuments', {
-}, {
-    timestamps: false
-})
-
 export const ContestSponsor = sequelize.define('ContestSponsors', {
 }, {
     timestamps: false

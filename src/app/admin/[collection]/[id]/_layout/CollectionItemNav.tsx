@@ -14,7 +14,6 @@ const navItemsByCollectionName = {
         { name: 'Configuración', value: 'params', association: true },
         { name: 'Imágenes', value: 'media', association: true },
         { name: 'Sponsors', value: 'sponsors', association: true },
-        { name: 'Documentos', value: 'documents', association: true },
         { name: 'Estado', value: 'state', association: false },
     ],
     brands: [

@@ -32,10 +32,6 @@ const headersByAssociationName = {
     sponsors: {
         title: 'Sponsors',
         description: 'Cada sponsor va asociado a una imagen que se mostrará en el footer del concurso.'
-    },
-    documents: {
-        title: 'Documentos',
-        description: 'Las bases del concurso, los avisos legales, etc. Formato .pdf'
     }
 }
 

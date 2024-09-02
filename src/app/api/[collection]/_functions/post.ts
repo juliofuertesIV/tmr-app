@@ -1,13 +1,12 @@
 import { ICollectionNames } from "@/types"
 import { getModelByCollectionName } from "../_utils"
-import { Document, Inscription } from "@/lib/database"
+import { Inscription } from "@/lib/database"
 import { constructAPIResponse } from "../../_utils"
 import { handleApiError } from "@/lib/errors"
 import { ICreateInscriptionPayload } from "@/types/inscriptions"
 import { createMedia } from "@/lib/media/create"
 import { validateMedia } from "@/lib/media/validation"
 import { ICollectionsWithMediaNames } from "@/types/media"
-import { uploadDocument } from "@/lib/media/upload"
 import { Transaction } from "sequelize"
 
 type ICollectionCreationPayload = {
@@ -87,10 +86,4 @@ export const addToCollectionWithMedia = async ({ collection, formData } : IColle
             message: 'Fallo inscribiendo candidatura.' 
         })
     }
-}
-
-export const addDocument = async ({ collection, formData } : { collection: ICollectionsWithMediaNames, formData: FormData }) => {
-
-    
-
 }

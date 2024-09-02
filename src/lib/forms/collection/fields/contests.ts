@@ -138,14 +138,3 @@ export const contestFooterField : IMediaFormField[] = [
         accept: 'image/svg+xml'
     },
 ]
-
-export const contestDocumentFields = [
-    {
-        role: 'conditions',
-        label: 'Bases del concurso',
-        type: 'pdf',
-        name: 'conditions',
-        multiple: false,
-        accept: 'application/pdf'
-    },
-]
