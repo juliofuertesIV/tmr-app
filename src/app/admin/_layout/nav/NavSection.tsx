@@ -3,26 +3,31 @@
 import React, { useState } from 'react'
 import { IAdminNavSection } from '.'
 import NavItem from './NavItem'
+import { arrowdown as ArrowIcon } from '../design/icons'
 
 export default function NavSection({ section, path } : { section: IAdminNavSection, path: string }) {
 
     const [ open, setIsOpen ] = useState<boolean>(false)
 
-    console.log({ open, label: section.label })
-
     const { Icon } = section
 
     return (
-        <div className='p-2 py-1'>
+        <div>
             <div 
                 className='flex gap-2 items-center cursor-pointer' 
                 onClick={ () => setIsOpen(!open) }
             >
                 <Icon className='max-w-8'/>
-                <p>{ section.label }</p>
+                <p className='hidden lg:block'>{ section.label }</p>
+                <p 
+                    data-open={ open }
+                    className='block lg:hidden data-[open="true"]:rotate-180 transition-transform'
+                >
+                    <ArrowIcon/>
+                </p>
             </div>
             <div
-                className='data-[show="false"]:max-h-0 max-h-64 transition-all overflow-hidden data-[show="false"]:py-0 pt-2'
+                className='data-[show="false"]:max-h-0 max-h-64 transition-all overflow-hidden data-[show="false"]:py-0 pt-2 lg:pl-6'
                 data-show={ open }
             >
             {
@@ -31,7 +36,6 @@ export default function NavSection({ section, path } : { section: IAdminNavSecti
                 })
             }
             </div>
-
         </div>
     )
 }

@@ -1,7 +1,7 @@
 import { getCollection } from "@/lib/fetch/get"
 import { IContest } from "@/types"
 import Link from "next/link"
-import { ArrowRightIcon } from "../_layout/design/icons/ArrowRightIcon"
+import { ArrowRight } from "../_layout/design/icons/components/ArrowRight"
 
 export default async function InscriptionsPage() {
 
@@ -23,7 +23,7 @@ export default async function InscriptionsPage() {
                                     href={ `/admin/inscriptions/${contest.id.toString()}` }
                                 >
                                     <span>{ contest.name } ({ contest.year })</span>
-                                    <span><ArrowRightIcon/></span>
+                                    <span><ArrowRight/></span>
                                 </Link>
                             )
                         })

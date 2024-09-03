@@ -1,7 +1,7 @@
 'use server'
 
 import { IContest, IInscription, ICollectionNames, IAllCollections } from "@/types"
-import { IAdminData } from "@/types/admin"
+import { IDashboardData } from "@/types/admin"
 import { IAPIResponse } from "@/types/api"
 import { IAssociationIdFieldnames, IAssociationKeys, IAssociationNames, IAssociation, ICollectionsWithAssociations, IRelationship } from "@/types/associations"
 
@@ -86,7 +86,7 @@ export const getCollection = async (collection: ICollectionNames) : Promise<IAPI
     return res
 }
 
-export const getDashboardData = async () : Promise<IAPIResponse<IAdminData>> => {
+export const getDashboardData = async () : Promise<IAPIResponse<IDashboardData>> => {
     
     const res = await fetch(`http://localhost:3000/api/admin`, {
         method: "GET",

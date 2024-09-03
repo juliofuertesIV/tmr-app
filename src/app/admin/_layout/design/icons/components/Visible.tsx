@@ -1,0 +1,11 @@
+import React, { SVGProps } from 'react'
+
+export function Visible(props: SVGProps<SVGSVGElement>) {
+    return (
+<svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg" { ...props }>
+<path d="M10.762 13.0001C10.762 13.5558 10.9828 14.0887 11.3757 14.4816C11.7687 14.8746 12.3016 15.0953 12.8573 15.0953C13.413 15.0953 13.9459 14.8746 14.3388 14.4816C14.7318 14.0887 14.9525 13.5558 14.9525 13.0001C14.9525 12.4444 14.7318 11.9114 14.3388 11.5185C13.9459 11.1256 13.413 10.9048 12.8573 10.9048C12.3016 10.9048 11.7687 11.1256 11.3757 11.5185C10.9828 11.9114 10.762 12.4444 10.762 13.0001Z" stroke="currentColor" stroke-width="2.16071" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M22.2859 13.0001C19.7716 17.1905 16.6287 19.2858 12.8573 19.2858C9.08585 19.2858 5.943 17.1905 3.42871 13.0001C5.943 8.80959 9.08585 6.71436 12.8573 6.71436C16.6287 6.71436 19.7716 8.80959 22.2859 13.0001Z" stroke="currentColor" stroke-width="2.16071" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+
+    )
+}

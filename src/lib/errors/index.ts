@@ -50,7 +50,7 @@ export const logError = async ({
 } : {
     error: unknown,
     route: string,
-    collection?: ICollectionNames | null       
+    collection?: ICollectionNames | null,
 }) => {
     
     const log = {
@@ -70,7 +70,7 @@ export const handleApiError = async ({
     route,
     message,
     collection,
-    transaction
+    transaction,
 } : {
     error: unknown,
     route: string,

@@ -46,8 +46,7 @@ export const Log = sequelize.define('Log', {
     },
     collection: {
         type: DataTypes.STRING
-    },
-    // UserId to blame
+    }
 })
 
 export const Role = sequelize.define('Role', {
@@ -491,6 +490,9 @@ SocialMedia.belongsToMany(Contest, { through: 'ContestSocial'})
 
 Contest.belongsTo(State)
 State.hasMany(Contest)
+
+Log.belongsTo(Manager)
+Manager.hasMany(Log)
 
 Inscription.belongsTo(Media, { onDelete: 'CASCADE' })
 Media.hasOne(Inscription, { onDelete: 'CASCADE' })

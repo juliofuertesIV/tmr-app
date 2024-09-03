@@ -1,6 +1,6 @@
 import Image from 'next/image'
 
-export default function TMRLogo({ classname } : { classname: string }) {
+export default function TMRLogo({ classname } : { classname?: string }) {
   return (
         <Image 
             className={ classname }

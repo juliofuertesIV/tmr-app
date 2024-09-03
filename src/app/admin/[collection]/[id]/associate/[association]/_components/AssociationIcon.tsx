@@ -1,7 +1,7 @@
 import Spinner from '@/app/admin/_layout/design/Spinner'
-import { CheckIcon } from '@/app/admin/_layout/design/icons/CheckIcon'
-import { CloseIcon } from '@/app/admin/_layout/design/icons/CloseIcon'
-import { PlusIcon } from '@/app/admin/_layout/design/icons/PlusIcon'
+import { Check } from '@/app/admin/_layout/design/icons/components/Check'
+import { Close } from '@/app/admin/_layout/design/icons/components/Close'
+
 import React from 'react'
 
 type Props = {
@@ -10,7 +10,7 @@ type Props = {
     hovered: boolean,
 }
 
-export default function AssociationIcon({ loading, checked, hovered } : Props) {
+export default function Association({ loading, checked, hovered } : Props) {
 
     if (loading) {
         return (
@@ -20,7 +20,7 @@ export default function AssociationIcon({ loading, checked, hovered } : Props) {
         )
     }
 
-    if (checked && hovered) return <CloseIcon/> 
+    if (checked && hovered) return <Close/> 
 
-    if (checked) return <CheckIcon/>
+    if (checked) return <Check/>
 }

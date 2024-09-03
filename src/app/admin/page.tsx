@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import ContestsDashboard from "./_dashboard/ContestsDashboard";
 import { getDashboardData } from "../../lib/fetch/get";
-import { IAdminData } from "@/types/admin";
+import { IDashboardData } from "@/types/admin";
 import { IAPIResponse } from "@/types/api";
 import { sequelize, testDatabaseConnection } from "@/lib/database";
 
@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     description: "El buen admin panel"
 };
 
-const getData = async () : Promise<IAPIResponse<IAdminData>> => {
+const getData = async () : Promise<IAPIResponse<IDashboardData>> => {
 
     await testDatabaseConnection()
     
@@ -25,11 +25,11 @@ const getData = async () : Promise<IAPIResponse<IAdminData>> => {
 
 export default async function AdminHome() {
     
-    const { data } = await getData() as { data: IAdminData }
+    const { data } = await getData() as { data: IDashboardData }
     const { contests } = data
 
     return (
-        <main className="min-h-screen w-full pt-20 bg-neutral-950">
+        <main className="min-h-screen w-full">
             <ContestsDashboard contests={ contests }/>
         </main>
     )

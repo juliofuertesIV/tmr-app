@@ -28,14 +28,12 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
 
     const manager = await getManagerSession();
 
-    if (!manager) {
-        redirect('/login')
-    }
+    if (!manager) { redirect('/login') }
 
     return (
         <html lang="en">
             <body className={ inter.className }>
-                <main className="flex">
+                <main className="flex bg-neutral-950 lg:py-12 py-6">
                     <AdminMainNav manager={ manager }/>
                     { children }
                 </main>

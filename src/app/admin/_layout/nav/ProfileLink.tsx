@@ -5,9 +5,9 @@ import { profile as Icon } from '../design/icons'
 
 export default function ProfileLink({ manager } : { manager: IManager }) {
   return (
-    <Link href={ `/admin/profile/${ manager.id }`} className='flex p-2 gap-2 items-center'>
+    <Link href={ `/admin/profile/${ manager.id }`} className='flex gap-2 items-center'>
         <Icon className='max-w-8'/>        
-        <p>Mi perfil</p>
+        <p className='hidden lg:block'>Mi perfil</p>
     </Link>
   )
 }

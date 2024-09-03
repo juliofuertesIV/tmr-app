@@ -42,11 +42,12 @@ export type IContest = {
     googleTagManagerId: string | null,
     metaPixelId: string | null,
     termsAndConditions: string,
-    StateId: string,
+    StateId: IContestStateIds,
     BrandId: number,
     Brand: IBrand,
     State: IContestState,
     Genres: IGenre[],
+    Inscriptions: IInscription[],
     SocialMedia: ISocialMedia[],
     Params: IParam[],
     Media: IMedia[],
@@ -103,6 +104,7 @@ export type ILog = {
     digest?: number,
     route: string,
     collection?: ICollectionNames,
+    ManagerId: string,
     createdAt: Date,
 }
 
