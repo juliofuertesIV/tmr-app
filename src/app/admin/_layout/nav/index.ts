@@ -25,13 +25,13 @@ export const adminNavSections : IAdminNavSection[] = [
             { 
                 collection: 'logs', 
                 label: 'Logs',
-                isActive: (path: string) => path.includes('/admin/logs'),
+                isActive: (path: string) => path.includes('/admin/logs') && !path.includes('/logs/'),
                 minimumRole: 3
             },
             { 
                 collection: 'managers', 
                 label: 'Usuarios',
-                isActive: (path: string) => path.includes('/admin/managers'),
+                isActive: (path: string) => path.includes('/admin/managers') && !path.includes('/managers/'),
                 minimumRole: 3
             },
         ]
@@ -44,25 +44,25 @@ export const adminNavSections : IAdminNavSection[] = [
             { 
                 collection: 'brands', 
                 label: 'Marcas',
-                isActive: (path: string) => path.includes('/admin/brands'),
+                isActive: (path: string) => path.includes('/admin/brands') && !path.includes('/brands/'),
                 minimumRole: 2
             },
             { 
                 collection: 'social', 
-                label: 'Redes sociales',
-                isActive: (path: string) => path.includes('/admin/social'),
+                label: 'RRSS',
+                isActive: (path: string) => path.includes('/admin/social') && !path.includes('/social/'),
                 minimumRole: 2
             },
             { 
                 collection: 'sponsors', 
                 label: 'Sponsors',
-                isActive: (path: string) => path.includes('/admin/sponsors'),
+                isActive: (path: string) => path.includes('/admin/sponsors') && !path.includes('/sponsors/'),
                 minimumRole: 2
             },
             { 
                 collection: 'genres', 
                 label: 'Géneros',
-                isActive: (path: string) => path.includes('/admin/genres'),
+                isActive: (path: string) => path.includes('/admin/genres') && !path.includes('/genres/'),
                 minimumRole: 2
             },
         ]

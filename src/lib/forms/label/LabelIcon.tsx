@@ -1,5 +1,5 @@
 import React from 'react'
-import { alert as AlertIcon, check as Check} from '@/app/admin/_layout/design/icons'
+import { alert as AlertIcon, check as CheckIcon } from '@/app/admin/_layout/design/icons'
 
 export default function Label({ isValid } : { isValid: boolean | null }) {
 

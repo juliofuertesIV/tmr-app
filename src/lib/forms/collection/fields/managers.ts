@@ -5,6 +5,7 @@ export const managerFields : IFormField[] = [
         {
             name: 'name',
             label: 'Nombre del usuario',
+            instructions: null,
             validationMethod: isValidString,
             processingMethod: processBasicTextInput,
             testAgainst: null,
@@ -14,6 +15,7 @@ export const managerFields : IFormField[] = [
         {
             name: 'email',
             label: 'E-mail',
+            instructions: null,
             validationMethod: isValidEmail,
             processingMethod: processBasicTextInput,
             testAgainst: null,
@@ -23,6 +25,7 @@ export const managerFields : IFormField[] = [
         {
             name: 'password',
             label: 'Contraseña',
+            instructions: null,
             validationMethod: isValidString,
             processingMethod: processBasicTextInput,
             testAgainst: null,
@@ -32,6 +35,7 @@ export const managerFields : IFormField[] = [
         {
             name: 'RoleId',
             label: 'Rol',
+            instructions: null,
             type: 'radio',
             validationMethod: null,
             processingMethod: null,

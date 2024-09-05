@@ -71,6 +71,10 @@ h3 {
     @apply text-xl
 }
 
+section.admin-page-content {
+    @apply flex flex-col min-h-screen py-6 pl-4 lg:py-12 lg:pl-8
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;

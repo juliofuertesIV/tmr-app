@@ -33,7 +33,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
     return (
         <html lang="en">
             <body className={ inter.className }>
-                <main className="flex bg-neutral-950 lg:py-12 py-6">
+                <main className="admin-page-main flex bg-neutral-950">
                     <AdminMainNav manager={ manager }/>
                     { children }
                 </main>

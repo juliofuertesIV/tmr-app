@@ -17,7 +17,7 @@ export default function AdminMainNav({ manager } : { manager: IManager }) {
     const sectionsByRole = adminNavSections.filter(item => item.minimumRole <= manager.RoleId)
 
     return (
-        <nav className="flex flex-col max-w-fit lg:pl-6 pl-4">
+        <nav className="flex flex-col max-w-fit lg:pl-6 pl-4 lg:py-12 py-6">
             <Link 
                className='data-[active="true"]:pointer-events-none min-h-24'
                href={ '/admin' }

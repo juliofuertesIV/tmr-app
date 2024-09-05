@@ -20,16 +20,18 @@ export default function ContestsDashboard({ contests } : { contests: IContest[] 
     const filteredContests = view === 'active' ? activeContests : inactiveContests
 
     return (
-        <section className="w-full grid gap-4 max-w-6xl mx-auto px-4">
+        <section className="admin-page-content">
             <header className='pl-4 pb-4 col-span-2'>
                 <h1 className='pb-4'>CONCURSOS</h1>
                 <DashboardNav onViewChange={ onViewChange } currentView={ view }/>
             </header>
-            <div className='col-span-2 rounded-md w-full min-h-40'>
-                {
-                    view === 'crear' ? 
-                    <ContestCreation/> : <ContestGrid contests={ filteredContests }/>
-                }
+            <div className='flex flex-wrap'>
+                <div className='rounded-md w-full max-w-fit min-h-40'>
+                    {
+                        view === 'crear' ? 
+                        <ContestCreation/> : <ContestGrid contests={ filteredContests }/>
+                    }
+                </div>
             </div>
         </section>
     ) 

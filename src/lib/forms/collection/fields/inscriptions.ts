@@ -5,6 +5,7 @@ export const inscriptionFields : IFormField[] = [
     {
         name: 'name',
         label: 'Nombre artístico',
+        instructions: null,
         validationMethod: isValidString,
         processingMethod: processBasicTextInput,
         testAgainst: null,
@@ -14,6 +15,7 @@ export const inscriptionFields : IFormField[] = [
     {
         name: 'description',
         label: 'Descripción',
+        instructions: null,
         validationMethod: isValidString,
         processingMethod: processBasicTextInput,
         testAgainst: null,
@@ -23,6 +25,7 @@ export const inscriptionFields : IFormField[] = [
     {
         name: 'contactName',
         label: 'Nombre de contacto',
+        instructions: null,
         validationMethod: isValidString,
         processingMethod: processBasicTextInput,
         testAgainst: null,
@@ -32,6 +35,7 @@ export const inscriptionFields : IFormField[] = [
     {
         name: 'phone',
         label: 'Teléfono de contacto',
+        instructions: null,
         validationMethod: isValidString,
         processingMethod: processBasicTextInput,
         testAgainst: null,
@@ -41,6 +45,7 @@ export const inscriptionFields : IFormField[] = [
     {
         name: 'email',
         label: 'Email de contacto',
+        instructions: null,
         validationMethod: isValidEmail,
         processingMethod: processBasicTextInput,
         testAgainst: null,
@@ -50,6 +55,7 @@ export const inscriptionFields : IFormField[] = [
     {
         name: 'file',
         label: 'Imagen',
+        instructions: null,
         validationMethod: null,
         processingMethod: null,
         testAgainst: null,

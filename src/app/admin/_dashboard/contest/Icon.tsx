@@ -69,8 +69,6 @@ export default function Icon({ role, contest } : { role: IContestIconRole, conte
 
     const { Icon, data, className } = getContentByRole(role, contest)
 
-    console.log({ Icon, data: data != null })
-
     return (
         <div className={ 'flex gap-2 justify-between items-center px-2 py-1 border border-neutral-100 rounded-lg ' + `text-${ className }` } >
             <Icon/>

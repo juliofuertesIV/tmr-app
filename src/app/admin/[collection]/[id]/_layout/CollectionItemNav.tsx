@@ -60,21 +60,19 @@ export default function CollectionItemNav({ collection, id } : { collection: ICo
     }
 
     return (
-        <header className=" pt-3 pb-4 mx-auto mb-8 w-full">
-            <ul className="w-full flex flex-wrap gap-2 px-4 items-center justify-center">
-                { 
-                    getNavItemsByCollectionName().map((item, index) => 
-                        <Link
-                            className="bg-neutral-800 px-4 py-1 rounded-sm w-fit text-center data-[active='true']:bg-neutral-500 data-[active='true']:text-neutral-50 data-[active='true']:pointer-events-none hover:bg-neutral-600 uppercase text-sm"
-                            href={ getHref(item) }
-                            key={ index }
-                            data-active={ isActive(item.value) }
-                        >
-                            <li>{ item.name }</li>
-                        </Link>
-                    ) 
-                }
-            </ul>
-        </header>
+        <menu className="w-full flex flex-wrap gap-4 items-center pt-2 pb-4">
+            { 
+                getNavItemsByCollectionName().map((item, index) => 
+                    <Link
+                        className="text-lg w-fit text-neutral-400 decoration-green-400 underline-offset-4 data-[active='true']:underline data-[active='true']:text-neutral-50 data-[active='true']:pointer-events-none hover:text-neutral-50"
+                        href={ getHref(item) }
+                        key={ index }
+                        data-active={ isActive(item.value) }
+                    >
+                        <li>{ item.name }</li>
+                    </Link>
+                ) 
+            }
+        </menu>
     )
 }

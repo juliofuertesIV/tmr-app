@@ -5,6 +5,7 @@ export const genreFields : IFormField[] = [
     {
         name: 'name',
         label: 'Nombre del género',
+        instructions: null,
         validationMethod: isValidString,
         processingMethod: processBasicTextInput,
         testAgainst: null,

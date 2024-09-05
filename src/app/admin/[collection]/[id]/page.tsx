@@ -16,12 +16,5 @@ export default async function AdminElementPage({ params } : { params: { collecti
 
     if (!item) throw new Error('No se ha encontrado el elemento en la base de datos.')
 
-    return (
-        <section className="w-full flex flex-col items-center">
-            <header className="text-center max-w-2xl mb-8">
-                <h1 className="uppercase">Editar información básica</h1>
-            </header>
-            <CollectionItemFormModule collection={ collection } collectionItem={ item } target={ 'update' }/>
-        </section>
-    )
+    return <CollectionItemFormModule collection={ collection } collectionItem={ item } target={ 'update' }/>
 }

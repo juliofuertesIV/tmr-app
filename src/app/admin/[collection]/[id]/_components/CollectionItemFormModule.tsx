@@ -1,7 +1,7 @@
 'use client'
 
 import Form from "@/lib/forms/Form"
-import { getFormByCollectionName, getMediaFieldsByCollection } from "@/lib/forms/collection"
+import { getFormByCollectionName } from "@/lib/forms/collection"
 import { ICollectionNames, IAllCollections } from "@/types"
 import { IActionTarget } from "@/types/forms"
 

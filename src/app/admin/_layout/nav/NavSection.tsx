@@ -21,7 +21,7 @@ export default function NavSection({ section, path } : { section: IAdminNavSecti
                 <p className='hidden lg:block'>{ section.label }</p>
                 <p 
                     data-open={ open }
-                    className='block lg:hidden data-[open="true"]:rotate-180 transition-transform'
+                    className='data-[open="true"]:rotate-180 transition-transform'
                 >
                     <ArrowIcon/>
                 </p>

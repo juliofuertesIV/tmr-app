@@ -1,5 +1,6 @@
 import { ICollectionNames } from "@/types";
 import CollectionItemNav from "./_layout/CollectionItemNav";
+import { getCollectionElementById } from "@/lib/fetch/get";
 
 type Props = {
     params: {
@@ -9,16 +10,22 @@ type Props = {
     children: React.ReactNode
 }
 
-export default function Layout({ params, children } : Props) {
+export default async function Layout({ params, children } : Props) {
 
+    
     const { collection, id } = params
 
+    const { data: item } = await getCollectionElementById(collection, id)
+
+    if (!item) throw new Error(`No se encuentra item en '${ collection }' con la ID: ${ id }`)
+
     return (
-        <div className="h-screen flex flex-col w-full relative bg-neutral-950 overflow-hidden">
+        <section className="admin-page-content">
+            <header>
+                <h1>{ item.name } { collection === 'contests' && <span className="font-thin">{ item.year }</span>}</h1>
+            </header>
             <CollectionItemNav collection={ collection } id={ id }/>
-            <div className="bg-neutral-950 flex flex-col justify-start items-center w-full min-h-fit overflow-y-scroll pb-12">
-                { children }
-            </div>
-        </div>
+            { children }
+        </section>
     )
 }

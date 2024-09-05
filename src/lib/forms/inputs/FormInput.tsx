@@ -1,6 +1,6 @@
 import React, { ChangeEvent, useState } from 'react'
 import { RegularInput } from '@/lib/forms/inputs/by_type/RegularInput'
-import { IFormField, IMediaFormField } from '@/types/forms'
+import { IFormField } from '@/types/forms'
 import { validateInput } from '@/lib/forms/validation'
 import Label from '../label/Label'
 import { IAllCollections } from '@/types'
@@ -10,7 +10,7 @@ export default function FormInput({ field, collectionItem } : { field: IFormFiel
     const [ value, setValue ] = useState<string | null>(null)
     const [ isValid, setIsValid ] = useState<boolean | null>(null)
 
-    const { name, type, label, validationMethod, processingMethod, testAgainst } = field
+    const { name, type, label, validationMethod, processingMethod, testAgainst, instructions } = field
 
     const onInputChange = (e: ChangeEvent<HTMLInputElement>) => {
         
@@ -38,6 +38,7 @@ export default function FormInput({ field, collectionItem } : { field: IFormFiel
                 onChange={ onInputChange }
                 defaultValue={ defaultValue }
             />
+            <small className='text-neutral-300'>{ instructions }</small>
         </Label>
     )
 }

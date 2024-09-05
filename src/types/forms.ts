@@ -19,6 +19,7 @@ export type IActionTarget = 'creation' | 'update'
 export type IFormField = {
     name: string,
     label: string,
+    instructions: string | null,
     type: HTMLInputTypeAttribute,
     validationMethod: ((value: string, valueToTestAgainst: string | null) => boolean) | null,
     processingMethod: ((value: string) => string) | null,

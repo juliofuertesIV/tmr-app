@@ -5,6 +5,7 @@ export const contestFields : IFormField[] = [
     {
         name: 'name',
         label: 'Nombre del concurso',
+        instructions: 'Este es el nombre oficial del concurso. Ej: Bravavisión',
         type: 'text',
         validationMethod: isValidString,
         processingMethod: processBasicTextInput,
@@ -14,6 +15,7 @@ export const contestFields : IFormField[] = [
     {
         name: 'domain',
         label: 'Dominio',
+        instructions: 'Ej: bravavision.bravamadrid.com',
         type: 'text',
         validationMethod: isValidDomain,
         processingMethod: extractSubdomain,
@@ -23,6 +25,7 @@ export const contestFields : IFormField[] = [
     {
         name: 'year',
         label: 'Año de la edición',
+        instructions: 'Ej: 2024',
         type: 'number',
         validationMethod: null,
         processingMethod: null,
@@ -32,6 +35,7 @@ export const contestFields : IFormField[] = [
     {
         name: 'metaUrl',
         label: 'URL del concurso',
+        instructions: 'Ej: https://bravavision.bravamadrid.com',
         type: 'text',
         validationMethod: isValidUrl,
         processingMethod: processBasicTextInput,
@@ -41,6 +45,7 @@ export const contestFields : IFormField[] = [
     {
         name: 'metaTitle',
         label: 'Meta título de la web',
+        instructions: 'Ej: Bravavisión | Brava Madrid',
         type: 'text',
         validationMethod: isValidString,
         processingMethod: processBasicTextInput,
@@ -50,6 +55,7 @@ export const contestFields : IFormField[] = [
     {
         name: 'metaDescription',
         label: 'Meta descripción de la web',
+        instructions: 'Ej: El concurso de artistas de Brava Madrid.',
         type: 'text',
         validationMethod: isValidString,
         processingMethod: processBasicTextInput,
@@ -59,6 +65,7 @@ export const contestFields : IFormField[] = [
     {
         name: 'postmarkToken',
         label: 'Token de Postmark',   
+        instructions: 'Ej: ...',
         type: 'text',
         validationMethod: null,
         processingMethod: null,
@@ -68,6 +75,7 @@ export const contestFields : IFormField[] = [
     {
         name: 'postmarkSenderAddress',
         label: 'Dirección de envío de Postmark',
+        instructions: 'Ej: bravavision@bravamadrid.com',
         type: 'text',
         validationMethod: null,
         processingMethod: null,
@@ -77,6 +85,7 @@ export const contestFields : IFormField[] = [
     {
         name: 'metaPixelId',
         label: 'ID del Píxel de Meta',
+        instructions: null,
         type: 'text',
         validationMethod: null,
         processingMethod: null,
@@ -86,6 +95,7 @@ export const contestFields : IFormField[] = [
     {
         name: 'googleTagManagerId',
         label: 'ID de Google Tag Manager',
+        instructions: null,
         type: 'text',
         validationMethod: null,
         processingMethod: null,
@@ -95,6 +105,7 @@ export const contestFields : IFormField[] = [
     {
         name: 'googleAnalyticsId',
         label: 'ID de Google Analytics',
+        instructions: null,
         type: 'text',
         validationMethod: null,
         processingMethod: null,
