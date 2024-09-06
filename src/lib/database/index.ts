@@ -169,7 +169,8 @@ export const Contest = sequelize.define('Contest', {
         type: DataTypes.STRING,
     },
     metaUrl: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
+        allowNull: false
     },
     metaTitle: {
         type: DataTypes.STRING
@@ -209,8 +210,8 @@ export const Contest = sequelize.define('Contest', {
         }
     ],
     hooks: {
-        beforeCreate: record => {
-            record.dataValues.domain = extractSubdomain(record.dataValues.domain)
+        beforeValidate: record => {
+            record.dataValues.domain = extractSubdomain(record.dataValues.metaUrl)
         }
     }
 });

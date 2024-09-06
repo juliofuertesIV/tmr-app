@@ -26,6 +26,7 @@ export type IFormField = {
     testAgainst: string | null,
     requiredForItemCreation: boolean,
     options?: { name: string, value: string }[],
+    readonly?: boolean
 }
 
 export type IMediaFormField = {

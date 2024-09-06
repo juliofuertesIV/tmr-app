@@ -19,7 +19,7 @@ export default function AdminMainNav({ manager } : { manager: IManager }) {
     return (
         <nav className="flex flex-col max-w-fit lg:pl-6 pl-4 lg:py-12 py-6">
             <Link 
-               className='data-[active="true"]:pointer-events-none min-h-24'
+               className='opacity-75 data-[active="true"]:pointer-events-none data-[active="true"]:opacity-100 min-h-24 hover:opacity-100'
                href={ '/admin' }
                data-active={ pathname === '/admin' }
             >

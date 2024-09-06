@@ -75,6 +75,11 @@ section.admin-page-content {
     @apply flex flex-col min-h-screen py-6 pl-4 lg:py-12 lg:pl-8
 }
 
+a.tmr-link, button.tmr-link {
+    @apply text-neutral-400 data-[active="true"]:text-neutral-100 data-[active="true"]:underline decoration-green-600 underline-offset-4 hover:text-neutral-100 cursor-pointer
+}
+
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;

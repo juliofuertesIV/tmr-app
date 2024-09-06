@@ -64,7 +64,7 @@ export default function CollectionItemNav({ collection, id } : { collection: ICo
             { 
                 getNavItemsByCollectionName().map((item, index) => 
                     <Link
-                        className="text-lg w-fit text-neutral-400 decoration-green-400 underline-offset-4 data-[active='true']:underline data-[active='true']:text-neutral-50 data-[active='true']:pointer-events-none hover:text-neutral-50"
+                        className="text-lg tmr-link"
                         href={ getHref(item) }
                         key={ index }
                         data-active={ isActive(item.value) }

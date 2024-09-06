@@ -21,6 +21,12 @@ type ICollectionWithMediaCreationPayload = {
 
 export const addToCollection = async ({ collection, formData } : ICollectionCreationPayload) => {
 
+    console.log('HEY!')
+    console.log('HEY!')
+    console.log('HEY!')
+    console.log('HEY!')
+    console.log('HEY!')
+
     const { Model } = getModelByCollectionName(collection)
 
     const payload = Object.fromEntries(formData)
@@ -38,6 +44,7 @@ export const addToCollection = async ({ collection, formData } : ICollectionCrea
         )
     }
     catch (error) {
+
         return await handleApiError({
             error, 
             collection,

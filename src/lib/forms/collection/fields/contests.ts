@@ -15,10 +15,21 @@ export const contestFields : IFormField[] = [
     {
         name: 'domain',
         label: 'Dominio',
-        instructions: 'Ej: bravavision.bravamadrid.com',
+        instructions: 'Para uso interno. Extraído de la URL del concurso.',
         type: 'text',
         validationMethod: isValidDomain,
         processingMethod: extractSubdomain,
+        testAgainst: null,
+        requiredForItemCreation: false,
+        readonly: true
+    },
+    {
+        name: 'metaUrl',
+        label: 'URL del concurso',
+        instructions: 'Ej: https://bravavision.bravamadrid.com',
+        type: 'text',
+        validationMethod: isValidUrl,
+        processingMethod: processBasicTextInput,
         testAgainst: null,
         requiredForItemCreation: true
     },
@@ -31,16 +42,6 @@ export const contestFields : IFormField[] = [
         processingMethod: null,
         testAgainst: null,
         requiredForItemCreation: true
-    },
-    {
-        name: 'metaUrl',
-        label: 'URL del concurso',
-        instructions: 'Ej: https://bravavision.bravamadrid.com',
-        type: 'text',
-        validationMethod: isValidUrl,
-        processingMethod: processBasicTextInput,
-        testAgainst: null,
-        requiredForItemCreation: false
     },
     {
         name: 'metaTitle',
