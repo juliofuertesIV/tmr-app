@@ -1,4 +1,4 @@
-import { extractSubdomain } from "@/lib/forms/validation/functions";
+import { extractedSubdomainString } from "@/lib/forms/validation/functions";
 import { DataTypes } from "sequelize";
 import { Sequelize } from 'sequelize'
 
@@ -211,7 +211,14 @@ export const Contest = sequelize.define('Contest', {
     ],
     hooks: {
         beforeValidate: record => {
-            record.dataValues.domain = extractSubdomain(record.dataValues.metaUrl)
+
+            if (!record.dataValues.metaUrl) return 
+            
+            const parsedDomain = extractedSubdomainString(record.dataValues.metaUrl)
+
+            if (parsedDomain === record.dataValues.domain) return
+            
+            record.dataValues.domain = parsedDomain
         }
     }
 });

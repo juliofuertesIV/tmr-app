@@ -1,4 +1,4 @@
-import { extractSubdomain, isValidDomain, isValidString, isValidUrl, processBasicTextInput } from "@/lib/forms/validation/functions"
+import { extractedSubdomainString, isValidDomain, isValidString, isValidUrl, processBasicTextInput } from "@/lib/forms/validation/functions"
 import { IFormField, IMediaFormField } from "@/types/forms"
 
 export const contestFields : IFormField[] = [
@@ -18,7 +18,7 @@ export const contestFields : IFormField[] = [
         instructions: 'Para uso interno. Extraído de la URL del concurso.',
         type: 'text',
         validationMethod: isValidDomain,
-        processingMethod: extractSubdomain,
+        processingMethod: extractedSubdomainString,
         testAgainst: null,
         requiredForItemCreation: false,
         readonly: true

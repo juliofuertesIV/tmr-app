@@ -43,18 +43,20 @@ export const parseError = (error: unknown) : IAPIError => {
     }
 }
 
-export const logError = async ({
+export const createLog = async ({
     error,
     route,
-    collection
+    collection,
+    type = 'error'
 } : {
     error: unknown,
     route: string,
     collection?: ICollectionNames | null,
+    type?: string
 }) => {
     
     const log = {
-        type: 'error', 
+        type, 
         message: error instanceof Error ? error.message : 'Error desconocido',
         route,
         collection
@@ -81,7 +83,7 @@ export const handleApiError = async ({
 
     if (!!transaction) await transaction.rollback()
 
-    await logError({ error, collection, route })
+    await createLog({ error, collection, route, type: 'error' })
 
     return Response.json(
         constructAPIResponse({ 

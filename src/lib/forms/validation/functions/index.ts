@@ -20,15 +20,9 @@ export const isValidDomain = (value: string) => {
     return subdomainRegexp.test(value)
 }
 
-export const extractSubdomain = (value: string) => {
-
-    console.log('ATTEMPTING TO EXTRACT SUBDOMAIN')
-    console.log('ATTEMPTING TO EXTRACT SUBDOMAIN')
-    console.log('ATTEMPTING TO EXTRACT SUBDOMAIN')
-    console.log('ATTEMPTING TO EXTRACT SUBDOMAIN')
-    console.log('ATTEMPTING TO EXTRACT SUBDOMAIN')
-    console.log('ATTEMPTING TO EXTRACT SUBDOMAIN')
+export const extractedSubdomainString = (value: string) => {
     
+
     if (value.includes('www.')) throw new Error('Subdominio mal formado. Incluye "www" y no debería.')
 
     const domainString = value.replace('https://', '')
