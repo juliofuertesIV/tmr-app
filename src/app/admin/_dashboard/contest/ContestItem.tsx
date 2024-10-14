@@ -28,11 +28,11 @@ export default function ContestItem({ contest } : { contest: IContest }) {
 
     return (
         <article   
-            className='p-4 bg-neutral-800 text-neutral-100 px-4 rounded-xl flex flex-col border border-transparent'
+            className='p-4 bg-neutral-800 text-neutral-100 px-4 rounded-xl flex flex-col border-transparent border-2 hover:border-green-600 transition-colors'
         >
             <header className='flex justify-between'>
                 <p className='text-xs'>{ contest.Brand?.name || 'Sin branding' } · { contest.year }</p>
-                <Link href={ `/admin/contests/${ contest.id }`}>
+                <Link href={ `/admin/contests/${ contest.id }`} className='hover:text-green-400'>
                     <EditIcon/>
                 </Link>
             </header>
