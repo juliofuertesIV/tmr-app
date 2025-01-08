@@ -4,7 +4,7 @@ import { getCollectionElementById } from "@/lib/fetch/get";
 import CollectionItemFormModule from "./_components/CollectionItemFormModule";
 
 export const metadata: Metadata = {
-    title: "Panel de administración TMR",
+    title: "TMR | Perfil",
     description: "El buen admin panel"
 };
 
