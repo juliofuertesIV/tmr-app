@@ -1,8 +1,8 @@
-export type IContestMediaRole = 'frame' | 'banner' | 'logo' | 'favicon' | 'footerElement'
+export type IContestMediaRole = 'frame' | 'banner' | 'logo' | 'favicon' | 'footerElement' 
 
-export type ICollectionsWithMediaNames = 'contests' | 'inscriptions' | 'sponsors'
+export type ICollectionsWithMediaNames = 'contests' | 'inscriptions' | 'sponsors' | 'managers'
 
-export type IMediaRole = IContestMediaRole | 'inscriptions' | 'sponsors'
+export type IMediaRole = IContestMediaRole | 'inscriptions' | 'sponsors' | 'profilePic'
 
 export type IMediaPayload = {
     file: File,

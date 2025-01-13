@@ -1,6 +1,6 @@
 import { Brand, Contest, Genre, Inscription, Media, Param, SocialMedia, State } from "@/lib/database"
 import { constructAPIResponse } from "../_utils"
-import { IBrand, IContest, IInscription } from "@/types"
+import { IContest } from "@/types"
 import { IDashboardData } from "@/types/admin"
 
 export const GET = async () => {

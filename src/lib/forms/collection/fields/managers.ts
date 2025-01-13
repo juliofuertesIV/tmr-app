@@ -31,20 +31,5 @@ export const managerFields : IFormField[] = [
             testAgainst: null,
             type: 'password',
             requiredForItemCreation: true
-        },
-        {
-            name: 'RoleId',
-            label: 'Rol',
-            instructions: null,
-            type: 'radio',
-            validationMethod: null,
-            processingMethod: null,
-            testAgainst: null,
-            options: [ 
-                { name: 'Colaborador', value: "1" },
-                { name: 'Editor', value: "2" },
-                { name: 'Admin', value: "3" },
-            ],
-            requiredForItemCreation: true
-        },
+        }
     ]

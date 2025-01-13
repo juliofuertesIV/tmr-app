@@ -6,9 +6,26 @@ import { getHashAndSaltFromPassword } from '../../../../lib/auth'
 
 export const GET = async () => {
     
+    await sequelize.drop()
+    
+    await sequelize.sync({ force: true })
+    .then(() => {
+        return Response.json({ message: 'OK!', success: true, error: null, payload: { manager, addedGenres, addedParams, addedStates, addedBrands, addedSocial }})
+    })
+    .catch((error) => {
+        return Response.json(
+            constructAPIResponse({ 
+                message: "Creación de la DB da error.",
+                success: true,
+                error,
+                data: null
+            })
+        )
+    })
+
     let addedGenres, addedStates, addedParams, addedBrands, addedSocial, addedRoles, manager
 
-    try {    
+/*     try {    
         addedParams = await Param.bulkCreate(params)
         addedStates = await State.bulkCreate(states)
         addedGenres = await Genre.bulkCreate(genres)
@@ -25,10 +42,10 @@ export const GET = async () => {
                 data: null
             })
         )
-    }
+    } */
 
 
-    const managerCreationPayload = getManagerCreationPayload({ ...superAdmin })
+ /*    const managerCreationPayload = getManagerCreationPayload({ ...superAdmin })
 
     const transaction = await sequelize.transaction()
 
@@ -47,8 +64,8 @@ export const GET = async () => {
             })
         )
     }    
-    
-    return Response.json({ message: 'OK!', success: true, error: null, payload: { manager, addedGenres, addedParams, addedStates, addedBrands, addedSocial }})
+     */
+    return Response.json({ message: 'Database models not created!', success: false, error: null, payload: { manager, addedGenres, addedParams, addedStates, addedBrands, addedSocial }})
 }
 
 const getManagerCreationPayload = (

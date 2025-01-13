@@ -74,7 +74,6 @@ export const createAssociationWithMedia = async ({ collection, association, id, 
 }
 
 export const createAssociation = async ({ collection, id, association, formData} : Props) => {
-
     
     const associationId = formData.get('associationId') as string
 

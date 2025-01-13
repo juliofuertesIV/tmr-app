@@ -29,7 +29,8 @@ export const formsByCollectionName : IFormByCollectionName = {
 export const mediaFieldsByCollectionName = {
     contests: contestsMediaFields,
     inscriptions: [],
-    sponsors: []
+    sponsors: [],
+    managers: []
 } as {
     [key in ICollectionsWithMediaNames]: IMediaFormField[]
 }

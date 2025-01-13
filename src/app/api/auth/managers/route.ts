@@ -5,9 +5,9 @@ import { handleApiError } from "@/lib/errors"
 
 export const POST = async (req: Request) => {
 
-    const requestPayload = await req.json()
+    const formData = await req.formData()
 
-    const managerCreationPayload = getManagerCreationPayload({ ...requestPayload })
+    const managerCreationPayload = getManagerCreationPayload({ formData })
 
     try {
         const data = await Manager.create({ ...managerCreationPayload })
@@ -32,19 +32,37 @@ export const POST = async (req: Request) => {
 
 
 const getManagerCreationPayload = (
-    { name, email, password, RoleId } : 
-    { name: string, email: string, password: string, RoleId: 1 | 2 | 3 | 4 }
-) => {
+    { formData } : 
+    { formData: FormData }
+) : { name: string, email: string, hash: string, salt: string } => {
 
+    if (!isValidFormData(formData)) {
+        throw new Error('invalid form data')
+    }
+
+    const name = formData.get('name') as string
+    const email = formData.get('email') as string
+    const password = formData.get('password') as string
+    
     const { hash, salt } = getHashAndSaltFromPassword(password)
-
+    
     const manager = {
         name,
         email,
         hash,
-        salt,
-        RoleId
+        salt
     }
 
     return manager
+}
+
+const isValidFormData = (formData: FormData) => {
+
+    Array.from(formData.entries()).forEach(entry => {
+        const isValid = !!entry && (typeof entry === 'string')
+        if (!isValid) {
+            return false
+        }
+    })
+    return true
 }

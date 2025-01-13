@@ -2,7 +2,7 @@
 
 import { HTMLProps } from "react"
 
-export function RegularInput(props: HTMLProps<HTMLInputElement>) {
+export function InputWithProps(props: HTMLProps<HTMLInputElement>) {
 
     return (
         <input { ...props } />

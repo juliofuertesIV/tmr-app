@@ -12,7 +12,9 @@ export const addCollectionElement = async (
     formData: FormData
 ) : Promise<IAPIResponse<null>> => {
 
-    const res = await fetch(`http://localhost:3000/api/${ collection }`, {
+    const creationAPIUrl = collection === 'managers' ? `http://localhost:3000/api/auth/managers` : `http://localhost:3000/api/${ collection }`
+
+    const res = await fetch(creationAPIUrl, {
         method: "POST",
         cache: 'no-cache',
         body: formData

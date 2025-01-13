@@ -83,6 +83,11 @@ export const Manager = sequelize.define('Manager', {
     email: {
         type: DataTypes.STRING,
         allowNull: false
+    },
+    RoleId: {
+        type: DataTypes.NUMBER,
+        allowNull: false,
+        defaultValue: 1
     }
 })
 
