@@ -7,7 +7,7 @@ export default function CollectionGrid({ items, collection } : { items: IAllColl
   return (
     <div className="flex flex-wrap w-full gap-4">
         { 
-            items.map((item, index) => {
+            items?.map((item, index) => {
                 return (
                     <div className='flex gap-2 items-center justify-between w-fit p-4 bg-neutral-800 rounded-xl text-lg' key={ index }>
                         <p className='text-nowrap'>{ item.name }</p>
