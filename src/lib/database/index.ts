@@ -44,6 +44,9 @@ export const Log = sequelize.define('Log', {
         type: DataTypes.STRING,
         allowNull: false
     },
+    blame: {
+        type: DataTypes.STRING
+    },
     collection: {
         type: DataTypes.STRING
     }
@@ -261,6 +264,8 @@ export const SocialMedia = sequelize.define('SocialMedia', {
         type: DataTypes.STRING,
         allowNull: false
     }
+}, {
+    timestamps: false
 })
 
 export const Genre = sequelize.define('Genres', {
@@ -477,7 +482,7 @@ export const ContestGenre = sequelize.define('ContestGenres', {
     timestamps: false
 })
 
-export const ContestSocial = sequelize.define('ContestSocial', {
+export const ContestSocial = sequelize.define('ContestSocials', {
 }, {
     timestamps: false
 })
@@ -498,14 +503,11 @@ Contest.hasMany(Inscription)
 Contest.belongsToMany(Param, { through: 'ContestParams'})
 Param.belongsToMany(Contest, { through: 'ContestParams'})
 
-Contest.belongsToMany(SocialMedia, { through: 'ContestSocial'})
-SocialMedia.belongsToMany(Contest, { through: 'ContestSocial'})
+Contest.belongsToMany(SocialMedia, { through: 'ContestSocials'})
+SocialMedia.belongsToMany(Contest, { through: 'ContestSocials'})
 
 Contest.belongsTo(State)
 State.hasMany(Contest)
-
-Log.belongsTo(Manager)
-Manager.hasMany(Log)
 
 Inscription.belongsTo(Media, { onDelete: 'CASCADE' })
 Media.hasOne(Inscription, { onDelete: 'CASCADE' })
@@ -519,14 +521,14 @@ Genre.belongsToMany(Contest, { through: 'ContestGenres' })
 Contest.belongsToMany(Media, { through: 'ContestMedia' })
 Media.belongsToMany(Contest, { through: 'ContestMedia' })
 
-Contest.belongsToMany(Sponsor, { through: 'ContestSponsors', onDelete: 'CASCADE' })
-Sponsor.belongsToMany(Contest, { through: 'ContestSponsors', onDelete: 'CASCADE' })
+Contest.belongsToMany(Sponsor, { through: 'ContestSponsors' })
+Sponsor.belongsToMany(Contest, { through: 'ContestSponsors' })
 
 Manager.belongsTo(Role)
 Role.hasMany(Manager)
 
-Contest.belongsToMany(Manager, { through: 'ManagerContests', onDelete: 'CASCADE' })
-Manager.belongsToMany(Contest, { through: 'ManagerContests', onDelete: 'CASCADE' })
+Contest.belongsToMany(Manager, { through: 'ManagerContests' })
+Manager.belongsToMany(Contest, { through: 'ManagerContests' })
 
 Voter.belongsTo(Contest)
 Contest.hasMany(Voter)

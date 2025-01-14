@@ -104,7 +104,7 @@ export type ILog = {
     digest?: number,
     route: string,
     collection?: ICollectionNames,
-    ManagerId: string,
+    blame: string,
     createdAt: Date,
 }
 
