@@ -28,8 +28,7 @@ export default function ContestsDashboard({ contests } : { contests: IContest[] 
             <div className='flex flex-wrap'>
                 <div className='rounded-md w-full max-w-fit min-h-40'>
                     {
-                        view === 'crear' ? 
-                        <ContestCreation/> : <ContestGrid contests={ filteredContests }/>
+                        view === 'crear' ? <ContestCreation/> : <ContestGrid contests={ filteredContests }/>
                     }
                 </div>
             </div>

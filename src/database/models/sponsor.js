@@ -11,10 +11,13 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
         Sponsor.belongsToMany(models.Contest, { through: 'ContestSponsors' })
+        Sponsor.belongsTo(models.Media, { onDelete: 'CASCADE' })
     }
   }
   Sponsor.init({
-    name: DataTypes.STRING
+    name: { 
+        type: Sequelize.STRING
+    },
   }, {
     sequelize,
     modelName: 'Sponsor',

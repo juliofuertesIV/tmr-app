@@ -13,6 +13,9 @@ export const getCollectionItemById = async ({ collection, id } : Props) => {
 
     try {
         const data = await Model.findOne({ where: { id }, ...options }).then(data => data)
+
+        console.log({ data })
+
         return Response.json(
             constructAPIResponse({ 
                 message: 'OK',
