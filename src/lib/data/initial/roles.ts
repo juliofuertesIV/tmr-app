@@ -1,4 +1,4 @@
-export const roles = [
+const roles = [
     {
         id: 1,
         name: 'Colaborador',
@@ -16,3 +16,5 @@ export const roles = [
         name: 'Super Admin'
     }
 ]
+
+export default roles

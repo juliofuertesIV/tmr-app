@@ -5,6 +5,8 @@ import AdminMainNav from "./_layout/nav/AdminMainNav";
 import { cookies } from "next/headers";
 import { decryptJWT } from "@/lib/auth";
 import { redirect } from "next/navigation";
+import { Manager } from "@/lib/database";
+import { IManager } from "@/types";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -14,21 +16,31 @@ export const metadata: Metadata = {
 };
 
 
-async function getManagerSession() {
+async function getManagerById() {
+    const id = await getManagerIdBySession()
+
+    return await Manager.findOne({ where: { id }}).then(data => data)
+}
+
+async function getManagerIdBySession() : Promise<string | null> {
 
     const currentSession = cookies().get('session');
     
-    const manager = currentSession ? await decryptJWT(currentSession?.value) : null;
+    const manager = currentSession ? 
+        await decryptJWT(currentSession?.value).then(data => data) 
+        : null;
 
-    return manager;
+    return manager?.id || null;
 }
 
 
 export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
 
-    const manager = await getManagerSession();
+    const manager = await getManagerById() as IManager | null;
 
-    if (!manager) { redirect('/login') }
+    if (!manager) { 
+        return redirect('/login') 
+    }
 
     return (
         <html lang="en">

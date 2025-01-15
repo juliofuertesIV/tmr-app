@@ -1,4 +1,4 @@
-export const params = [
+const params = [
     {
         id: 'inscriptionIsPublic',
         name: 'Inscripción pública',
@@ -35,3 +35,5 @@ export const params = [
         description: 'El ranking se muestra públicamente en una página específica y en la cabecera de las cards.'
     }
 ]
+
+export default params

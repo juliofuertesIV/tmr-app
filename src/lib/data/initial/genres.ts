@@ -1,4 +1,4 @@
-export const genres = [
+const genres = [
     {
         name: 'Pop'
     },
@@ -15,3 +15,5 @@ export const genres = [
         name: 'Rap'
     }
 ]
+
+export default genres

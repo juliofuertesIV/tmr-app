@@ -1,4 +1,4 @@
-export const states = [
+const states = [
     {
         id: 'inscriptionOnly',
         name: 'Inscripción activada',
@@ -25,3 +25,5 @@ export const states = [
         description: 'El concurso devuelve una pantalla sin información, informando solamente de que no está activo.'
     }
 ]
+
+export default states

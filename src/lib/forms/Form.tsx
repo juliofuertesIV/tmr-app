@@ -25,7 +25,6 @@ export default function Form({
     collection,
     collectionItem,
     target,
-    domain,
     children 
 } : Props) {
 

@@ -1,4 +1,4 @@
-export const social = [
+const social = [
     {
         id: 'ig',
         name: 'Instagram',
@@ -10,3 +10,5 @@ export const social = [
         icon: 'tiktok'
     }
 ]
+
+export default social

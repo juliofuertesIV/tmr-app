@@ -13,6 +13,9 @@ module.exports = {
         name: {
           type: Sequelize.STRING
         },
+        MediumId: {
+            type: Sequelize.UUID
+          },
         createdAt: {
           allowNull: false,
           type: Sequelize.DATE

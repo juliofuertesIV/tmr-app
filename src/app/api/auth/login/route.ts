@@ -19,13 +19,24 @@ export const POST = async (request: NextRequest) => {
     .catch(error => {
         return Response.json(
             constructAPIResponse({
-                message: 'No se encuentra un manager con ese email.',
+                message: 'Error buscando al manager en la base de datos.',
                 error,
                 data: null,
                 success: false
             })
         )
     }) as unknown as IManager
+
+    if (!manager) {
+        return Response.json(
+            constructAPIResponse({
+                message: 'Not found!',
+                error: new Error('No se encuentra un manager con ese email.'),
+                data: null,
+                success: false
+            })
+        )        
+    }
 
     if (!passwordsAreMatching({ hash: manager.hash, salt: manager.salt, inputPassword: password })) { 
         return Response.json(

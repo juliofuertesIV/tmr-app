@@ -2,15 +2,30 @@ import { cookies } from "next/headers";
 import LoginForm from "./_components/LoginForm";
 import { decryptJWT } from "@/lib/auth";
 import TMRLogo from "../admin/_layout/design/TmrLogo";
-import { testDatabaseConnection } from "@/lib/database";
+import { Manager, testDatabaseConnection } from "@/lib/database";
+import { IManager } from "@/types";
+
+async function getManagerById() {
+    const id = await getManagerIdBySession()
+
+    return await Manager.findOne({ where: { id }}).then(data => data)
+}
+
+async function getManagerIdBySession() : Promise<string | null> {
+
+    const currentSession = cookies().get('session');
+    
+    const manager = currentSession ? 
+        await decryptJWT(currentSession?.value).then(data => data) 
+        : null;
+
+    return manager?.id || null;
+}
+
 
 export default async function LoginPage() {
-
-    await testDatabaseConnection()
     
-    const currentSession = cookies().get('session')
-    
-    const manager = currentSession ? await decryptJWT(currentSession?.value) : null
+    const manager = await getManagerById() as IManager | null;
 
     return (
         <section className="w-full h-full min-h-screen">
