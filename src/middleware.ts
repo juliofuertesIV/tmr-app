@@ -7,8 +7,6 @@ export const middleware = async (req: NextRequest) => {
 
     if (sessionToken) {
 
-        console.log({ adminName: process.env.SUPERDAMIN_NAME })
-
         const manager = await decryptJWT(sessionToken.value) 
 
         if (!manager) {

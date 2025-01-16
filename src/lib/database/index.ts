@@ -2,9 +2,9 @@ import { extractedSubdomainString } from "@/lib/forms/validation/functions";
 import { DataTypes } from "sequelize";
 import { Sequelize } from 'sequelize'
 
-const dbName = process.env.DATABASE_NAME as string
-const dbUser = process.env.DATABASE_USER as string
-const dbPass = process.env.DATABASE_PASSWORD as string
+const dbName = process.env.DB_NAME_DEV as string
+const dbUser = process.env.DB_USERNAME_DEV as string
+const dbPass = process.env.DB_PASSWORD_DEV as string
 
 const mariadb = require('mysql2')
 
@@ -14,7 +14,6 @@ const sequelize = new Sequelize(dbName, dbUser, dbPass, {
     dialectModule: mariadb,
     port: 3306
 });
-
 
 export const testDatabaseConnection = async () => await sequelize.authenticate()
     .catch(error => { throw new Error(error) })

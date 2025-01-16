@@ -4,7 +4,10 @@ import { IContest } from '@/types'
 import { useState } from 'react'
 import DashboardNav from './DashboardNav'
 import ContestGrid from './ContestGrid'
-import ContestCreation from './ContestCreation'
+import React, { Suspense } from 'react';
+
+// Dynamically import the ContestCreation component
+const ContestCreation = React.lazy(() => import('./ContestCreation'));
 
 export default function ContestsDashboard({ contests } : { contests: IContest[] }) {
 
