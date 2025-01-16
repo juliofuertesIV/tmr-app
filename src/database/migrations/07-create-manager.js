@@ -31,7 +31,6 @@ module.exports = {
           },
           MediumId: {
             type: Sequelize.UUID,
-            allowNull: false,
             references: {
               model: 'Media', // Referencing the Media table
               key: 'id',
