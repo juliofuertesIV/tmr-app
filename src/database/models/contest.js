@@ -69,14 +69,6 @@ module.exports = (sequelize, DataTypes) => {
     },
     termsAndConditions: {
       type: DataTypes.TEXT,
-    },
-    StateId: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      defaultValue: 'hidden',
-    },
-    BrandId: {
-        type: DataTypes.INTEGER,
     }
   }, {
     sequelize,

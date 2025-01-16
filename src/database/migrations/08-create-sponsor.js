@@ -14,8 +14,12 @@ module.exports = {
           type: Sequelize.STRING
         },
         MediumId: {
-            type: Sequelize.UUID
-          },
+            type: Sequelize.UUID,
+            references: {
+                model: 'Media',
+                key: 'id'
+            }
+        },
         createdAt: {
           allowNull: false,
           type: Sequelize.DATE

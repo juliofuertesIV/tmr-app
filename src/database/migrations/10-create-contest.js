@@ -56,10 +56,18 @@ module.exports = {
       StateId: {
         type: Sequelize.STRING,
         allowNull: false,
+        references: {
+            model: 'States',
+            key: 'id'
+        },
         defaultValue: 'hidden',
       },
       BrandId: {
         type: Sequelize.INTEGER,
+        references: {
+            model: 'Brands',
+            key: 'id'
+        }
       },
       createdAt: {
         allowNull: false,

@@ -29,10 +29,23 @@ module.exports = {
               isEmail: true,
             },
           },
+          MediumId: {
+            type: Sequelize.UUID,
+            allowNull: false,
+            references: {
+              model: 'Media', // Referencing the Media table
+              key: 'id',
+            },
+            onDelete: 'CASCADE',
+          },
           RoleId: {
             type: Sequelize.INTEGER,
             allowNull: false,
             defaultValue: 1,
+            references: {
+              model: 'Roles', // Referencing the Roles table
+              key: 'id',
+            }
           },
           createdAt: {
             allowNull: false,

@@ -23,6 +23,8 @@ export type IManager = {
     Contests: IContest[],
     RoleId: IManagerRoleId,
     Role: IManagerRole,
+    MediumId: string,
+    Media: IMedia[],
     createdAt: string,
     updatedAt: string
 }
@@ -129,7 +131,7 @@ export type IInscription = {
     tiktok?: string,
     twitter?: string,
     MediumId: string,
-    Medium: IMedia,
+    Media: IMedia[],
     Contest: IContest,
 }
 

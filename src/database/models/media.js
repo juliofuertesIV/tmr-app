@@ -4,13 +4,11 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Media extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
         Media.belongsToMany(models.Contest, { through: 'ContestMedia' })
+        Media.hasOne(models.Manager, { onDelete: 'CASCADE', foreignKey: 'MediumId' })
+        Media.hasOne(models.Inscription, { onDelete: 'CASCADE', foreignKey: 'MediumId' })
+        Media.hasOne(models.Sponsor, { onDelete: 'CASCADE', foreignKey: 'MediumId' })
     }
   }
   Media.init({
