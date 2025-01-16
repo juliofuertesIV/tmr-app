@@ -1,25 +1,10 @@
 'use strict';
 
+const roles = require('./data/roles')
+
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.bulkInsert('Roles', [
-        {
-            id: 1,
-            name: 'Colaborador',
-        },
-        {
-            id: 2,
-            name: 'Editor'
-        },
-        {
-            id: 3,
-            name: 'Admin'
-        },
-        {
-            id: 4,
-            name: 'Super Admin'
-        }
-    ]);
+    await queryInterface.bulkInsert('Roles', roles);
   },
 
   down: async (queryInterface, Sequelize) => {
