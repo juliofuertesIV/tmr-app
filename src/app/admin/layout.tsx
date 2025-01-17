@@ -19,7 +19,16 @@ export const metadata: Metadata = {
 async function getManagerById() {
     const id = await getManagerIdBySession()
 
-    return await Manager.findOne({ where: { id }}).then(data => data)
+    return await Manager.findOne({ where: { id }})
+    .then(data => data)
+    .catch((error) => {
+
+        if (error = "SequelizeConnectionRefusedError") {
+            console.log('ERROR CONECTANDO A LA BASE DE DATOS.')
+        }
+        throw new Error('Error en la base de datos: ' + error + '. ' + JSON.stringify(error))
+    }) 
+
 }
 
 async function getManagerIdBySession() : Promise<string | null> {
