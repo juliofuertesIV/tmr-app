@@ -5,8 +5,9 @@ module.exports = (sequelize, DataTypes) => {
   class Inscription extends Model {
     static associate(models) {
       Inscription.belongsTo(models.Contest, { foreignKey: 'ContestId' });
-      Inscription.belongsTo(models.Media, { onDelete: 'CASCADE' })
-      Inscription.hasMany(models.Vote)
+      Inscription.belongsTo(models.Media, { onDelete: 'CASCADE' });
+      Inscription.hasMany(models.Vote);
+      Inscription.belongsToMany(models.Tag, { through: 'InscriptionTags' });
     }
   }
 
