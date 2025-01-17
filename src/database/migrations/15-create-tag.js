@@ -7,16 +7,15 @@ module.exports = {
       id: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        primaryKey: true,
-        unique: true,
+        autoIncrement: true,
+        primaryKey: true
       },
       name: {
         type: Sequelize.STRING,
-        unique: true,
         allowNull: false,
       },
       TagTypeId: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
         references: {
             model: 'TagTypes',
             key: 'id'
@@ -24,9 +23,18 @@ module.exports = {
         allowNull: false
       },
     });
+
+    await queryInterface.addIndex('Tags', ['name', 'TagTypeId'], {
+      unique: true,
+    });
   },
 
   async down(queryInterface, Sequelize) {
+
+    await queryInterface.removeIndex('Tags', ['name', 'TagTypeId'], {
+      unique: true
+    })
+
     await queryInterface.dropTable('Tags');
   },
 };

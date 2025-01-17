@@ -1,0 +1,61 @@
+module.exports = [
+  
+  // Countries
+  { name: "España", TagTypeId: "country" },
+  { name: "Andorra", TagTypeId: "country" },
+  { name: "Portugal", TagTypeId: "country" },
+  { name: "Francia", TagTypeId: "country" },
+  { name: "Italia", TagTypeId: "country" },
+  { name: "Alemania", TagTypeId: "country" },
+  { name: "Reino Unido", TagTypeId: "country" },
+  { name: "Suiza", TagTypeId: "country" },
+  { name: "Bélgica", TagTypeId: "country" },
+  { name: "Países Bajos", TagTypeId: "country" },
+  { name: "Otros", TagTypeId: "country" },
+
+  // Genders
+  { name: "Masculino", TagTypeId: "gender" },
+  { name: "Femenino", TagTypeId: "gender" },
+  { name: "Mixto", TagTypeId: "gender" },
+  { name: "Otros", TagTypeId: "gender" },
+
+  // Genres
+  { name: "Pop", TagTypeId: "genre" },
+  { name: "Rock", TagTypeId: "genre" },
+  { name: "Electrónica", TagTypeId: "genre" },
+  { name: "Reguetón", TagTypeId: "genre" },
+  { name: "Hip-hop", TagTypeId: "genre" },
+  { name: "Jazz", TagTypeId: "genre" },
+  { name: "Clásica", TagTypeId: "genre" },
+  { name: "Indie", TagTypeId: "genre" },
+  { name: "Flamenco", TagTypeId: "genre" },
+  { name: "Trap", TagTypeId: "genre" },
+  { name: "Metal", TagTypeId: "genre" },
+  { name: "Blues", TagTypeId: "genre" },
+  { name: "R&B", TagTypeId: "genre" },
+  { name: "Folk", TagTypeId: "genre" },
+  { name: "Punk", TagTypeId: "genre" },
+  { name: "Salsa", TagTypeId: "genre" },
+  { name: "Bachata", TagTypeId: "genre" },
+  { name: "Country", TagTypeId: "genre" },
+  { name: "Ska", TagTypeId: "genre" },
+  { name: "Techno", TagTypeId: "genre" },
+  { name: "Otro", TagTypeId: "genre" },
+
+  // Languages
+  { name: "Español", TagTypeId: "language" },
+  { name: "Catalán", TagTypeId: "language" },
+  { name: "Valenciano", TagTypeId: "language" },
+  { name: "Balear", TagTypeId: "language" },
+  { name: "Gallego", TagTypeId: "language" },
+  { name: "Vasco", TagTypeId: "language" },
+  { name: "Inglés", TagTypeId: "language" },
+  { name: "Alemán", TagTypeId: "language" },
+  { name: "Francés", TagTypeId: "language" },
+  { name: "Italiano", TagTypeId: "language" },
+  { name: "Portugués", TagTypeId: "language" },
+  { name: "Ruso", TagTypeId: "language" },
+  { name: "Chino", TagTypeId: "language" },
+  { name: "Japonés", TagTypeId: "language" },
+  { name: "Árabe", TagTypeId: "language" }
+];
