@@ -10,7 +10,6 @@ module.exports = {
           model: 'Contests', // Referencing the Contests table
           key: 'id',
         },
-        onDelete: 'CASCADE',
       },
       SponsorId: {
         type: Sequelize.INTEGER,
@@ -19,7 +18,6 @@ module.exports = {
           model: 'Sponsors', // Referencing the Sponsors table
           key: 'id',
         },
-        onDelete: 'CASCADE',
       },
       createdAt: {
         allowNull: false,

@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
         Sponsor.belongsToMany(models.Contest, { through: 'ContestSponsors' })
-        Sponsor.belongsTo(models.Media, { onDelete: 'CASCADE', foreignKey: 'MediumId' })
+        Sponsor.belongsTo(models.Media, { foreignKey: 'MediumId' })
     }
   }
   Sponsor.init({

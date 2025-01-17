@@ -109,6 +109,12 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
+    
+    await queryInterface.removeIndex('Inscriptions', ['instagram', 'video', 'ContestId', 'year'], {
+      unique: true
+    })
+
     await queryInterface.dropTable('Inscriptions');
+    
   },
 };

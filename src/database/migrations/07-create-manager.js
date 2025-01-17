@@ -35,7 +35,6 @@ module.exports = {
               model: 'Media', // Referencing the Media table
               key: 'id',
             },
-            onDelete: 'CASCADE',
           },
           RoleId: {
             type: Sequelize.INTEGER,

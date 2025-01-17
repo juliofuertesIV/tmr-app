@@ -10,7 +10,6 @@ module.exports = {
           model: 'Contests', // Referencing the Contests table
           key: 'id',
         },
-        onDelete: 'CASCADE',
       },
       SocialMediumId: {
         type: Sequelize.STRING,
@@ -19,7 +18,6 @@ module.exports = {
           model: 'SocialMedia', // Referencing the SocialMedia table
           key: 'id',
         },
-        onDelete: 'CASCADE',
       },
       createdAt: {
         allowNull: false,

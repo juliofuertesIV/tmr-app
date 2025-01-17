@@ -4,7 +4,7 @@ const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Tag extends Model {
     static associate(models) {
-        Tag.belongsToMany(models.Inscription, { through: 'InscriptionTags'})
+        Tag.belongsToMany(models.Inscription, { through: 'InscriptionTags' })
         Tag.belongsTo(models.TagType)
     }
   }

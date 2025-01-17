@@ -10,7 +10,6 @@ module.exports = {
           model: 'Contests', // Referencing the Contests table
           key: 'id',
         },
-        onDelete: 'CASCADE',
       },
       ParamId: {
         type: Sequelize.STRING,
@@ -19,7 +18,6 @@ module.exports = {
           model: 'Params', // Referencing the Params table
           key: 'id',
         },
-        onDelete: 'CASCADE',
       },
       createdAt: {
         allowNull: false,

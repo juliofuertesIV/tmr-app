@@ -10,7 +10,6 @@ module.exports = {
           model: 'Contests', // Referencing the Contests table
           key: 'id',
         },
-        onDelete: 'CASCADE',
       },
       ManagerId: {
         type: Sequelize.UUID,
@@ -19,7 +18,6 @@ module.exports = {
           model: 'Managers', // Referencing the Managers table
           key: 'id',
         },
-        onDelete: 'CASCADE',
       },
       createdAt: {
         allowNull: false,

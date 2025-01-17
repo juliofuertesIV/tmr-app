@@ -77,8 +77,6 @@ export const createAssociation = async ({ collection, id, association, formData}
     
     const associationId = formData.get('associationId') as string
 
-    console.log({ association, collection, associationId })
-
     if (!associationId) {
         return await handleApiError({
             error: new Error('No associationId field in formData'),

@@ -12,14 +12,7 @@ export default async function AdminElementPage({ params } : { params: { collecti
     
     const { collection, id } = params
 
-    
-
     const { data: item } = await getCollectionElementById(collection, id)
-
-    const result = await getCollectionElementById(collection, id)
-    console.log({ result })
-
-    
 
     if (!item) throw new Error('No se ha encontrado el elemento en la base de datos.')
 

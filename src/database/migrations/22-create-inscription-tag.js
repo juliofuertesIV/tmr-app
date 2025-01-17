@@ -10,7 +10,6 @@ module.exports = {
           model: 'Inscriptions', // Referencing the Inscriptions table
           key: 'id',
         },
-        onDelete: 'CASCADE',
       },
       TagId: {
         type: Sequelize.INTEGER,
@@ -19,7 +18,6 @@ module.exports = {
           model: 'Tags', // Referencing the Tags table
           key: 'id',
         },
-        onDelete: 'CASCADE',
       },
       createdAt: {
         allowNull: false,
