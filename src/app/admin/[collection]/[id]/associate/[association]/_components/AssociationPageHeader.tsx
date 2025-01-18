@@ -1,4 +1,4 @@
-import { IAssociationNames, ICollectionsWithAssociations, IRelationshipNames } from "@/types/associations";
+import { IAssociationNames, ICollectionsWithAssociations, ICollectionsWithAssociationsNames, IRelationshipNames } from "@/types/associations";
 
 const headersByAssociationName = {
     params: {
@@ -37,7 +37,7 @@ const headersByAssociationName = {
 
 
 
-export default function AssociationPageHeader({ association, item } : { association: IAssociationNames | IRelationshipNames, item: ICollectionsWithAssociations }) {
+export default function AssociationPageHeader({ collection, association, item } : { collection: ICollectionsWithAssociationsNames, association: IAssociationNames | IRelationshipNames, item: ICollectionsWithAssociations }) {
     
     const { title, description } = headersByAssociationName[association]
     
