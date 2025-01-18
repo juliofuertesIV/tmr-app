@@ -72,11 +72,6 @@ module.exports = (sequelize, DataTypes) => {
     previousPosition: {
       type: DataTypes.INTEGER,
     },
-    internalVoteQuantity: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      defaultValue: 0,
-    },
     isStarred: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
