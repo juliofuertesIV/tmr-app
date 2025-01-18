@@ -5,6 +5,7 @@ const { v4: uuidv4 } = require('uuid');
 const faker = require('faker');
 
 const contestId = 'f003d9eb-e15e-420e-b3a8-178b96d01325'; // The dummy contest ID used in the up method
+const mediaId = 'test-media'
 
 module.exports = {
     up: async (queryInterface) => {
@@ -24,12 +25,10 @@ module.exports = {
             },
         ]);
 
-        const mediaId = 'test-media'
-
         await queryInterface.bulkInsert('Media', [
             {
                 id: mediaId,
-                src: 'test-media.jpeg',
+                src: 'https://soyunacaca.net/whaat/test-media.jpeg',
                 width: 500,
                 height: 500,
                 alt: 'Test image for dummy data'
@@ -83,13 +82,20 @@ module.exports = {
     async down(queryInterface) {
         await queryInterface.bulkDelete(
             'Voters',
-            { email: Array.from({ length: 20 }, (_, i) => `voter${i + 1}@example.com`) },
+            { ContestId: contestId },
             {}
         );
 
         await queryInterface.bulkDelete(
             'Inscriptions',
             { ContestId: contestId },
+            {}
+        );
+
+        
+        await queryInterface.bulkDelete(
+            'Media',
+            { id: mediaId },
             {}
         );
 

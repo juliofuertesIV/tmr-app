@@ -118,3 +118,77 @@ export const updateInscriptionMedia = async ({ collection, formData, id } : Prop
         })
     )
 }
+
+export const updateManagerMedia = async ({ collection, formData, id } : Props) => {
+
+    const payload = Object.fromEntries(formData) as IMediaPayload
+    
+    const { file } = payload 
+
+    try {
+        validateMedia({ file, type: 'image' })
+    }
+    catch (error) {
+        return await handleApiError({
+            collection: 'managers',
+            route: '/api/' + collection,
+            error,
+            message: 'Fallo validando el archivo.' 
+        })
+    }
+    
+    const transaction = await sequelize.transaction()
+
+    const inscription = await Inscription.findOne({ where: { id }, include: [ Media ]})
+        .then(data => data)
+        .catch(async (error) => {
+            return await handleApiError({
+                message: 'No se encontró la inscripción en la DB',
+                error,
+                route: '/managers/id',
+                collection: 'managers'
+            })
+        }) as unknown as IInscription
+
+    const { MediumId: newMediumId } = await createMedia({ formData, collection: 'managers' })
+        .then(data => data)
+        .catch(async (error) => {
+            return await handleApiError({
+                error, 
+                collection,
+                route: `/api/${ collection }/${ id }`
+            })
+        }) as { MediumId: string } 
+
+
+    const affectedRows = await Inscription.update({ MediumId: newMediumId }, { where: { id }, transaction })
+        .then(data => data)
+        .catch(async (error) => {
+            return await handleApiError({
+                message: 'Error updating incription media ID',
+                error, 
+                collection,
+                route: `/api/${ collection }/${ id }`
+            })
+        })
+
+    try {
+        deleteFromCloudStorage({ src: inscription.Medium.src })
+    }
+    catch (error) {
+        return await handleApiError({
+            error, 
+            collection,
+            route: `/api/${ collection }/${ id }`
+        })
+    }
+
+    return Response.json(
+        constructAPIResponse({
+            message: 'Actualizado correctamente',
+            error: null,
+            data: affectedRows,
+            success: true
+        })
+    )
+}

@@ -131,7 +131,7 @@ export type IInscription = {
     tiktok?: string,
     twitter?: string,
     MediumId: string,
-    Media: IMedia[],
+    Medium: IMedia,
     Contest: IContest,
 }
 
