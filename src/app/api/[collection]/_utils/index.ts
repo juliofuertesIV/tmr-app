@@ -46,7 +46,7 @@ const modelsByCollectionName = {
     managers: {
         Model: Manager,
         options: {
-            include: [ Role ]
+            include: [ Role, Media ]
         }
     },
     inscriptions: {

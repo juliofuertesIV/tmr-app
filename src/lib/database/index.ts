@@ -526,6 +526,9 @@ Sponsor.belongsToMany(Contest, { through: 'ContestSponsors' })
 Manager.belongsTo(Role)
 Role.hasMany(Manager)
 
+Manager.belongsTo(Media)
+Media.hasOne(Manager)
+
 Contest.belongsToMany(Manager, { through: 'ManagerContests' })
 Manager.belongsToMany(Contest, { through: 'ManagerContests' })
 

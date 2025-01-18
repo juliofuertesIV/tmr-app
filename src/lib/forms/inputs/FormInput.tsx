@@ -40,7 +40,7 @@ export default function FormInput({ field, collectionItem } : { field: IFormFiel
                 data-readonly={ !!readonly }
                 readOnly={ !!readonly }
             />
-            <small className='text-neutral-300'>{ instructions }</small>
+            <small className='text-neutral-400'>{ instructions }</small>
         </Label>
     )
 }

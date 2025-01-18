@@ -24,7 +24,7 @@ export type IManager = {
     RoleId: IManagerRoleId,
     Role: IManagerRole,
     MediumId: string,
-    Media: IMedia[],
+    Medium: IMedia,
     createdAt: string,
     updatedAt: string
 }

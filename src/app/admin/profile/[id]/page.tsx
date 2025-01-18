@@ -1,6 +1,9 @@
 import { getCollectionElementById } from "@/lib/fetch/get";
 import { IManager } from "@/types";
 import { Metadata } from "next";
+import Header from "../_components/Header";
+import Form from "@/lib/forms/Form";
+import ProfileEditionModule from "../_components/ProfileEditionModule";
 
 export const metadata: Metadata = {
     title: "Panel de administración TMR | Perfil",
@@ -15,9 +18,8 @@ export default async function ProfilePage({ params } : { params: { id: string }}
 
     return (
         <section className="admin-page-content">
-            <h1>{ manager.name }</h1>
-            <p className="italic uppercase text-sm">{ manager.Role.name }</p>
-            <p>{ manager.email }</p>
+            <Header manager={ manager }/>
+            <ProfileEditionModule manager={ manager }/>
         </section>
     )
 }

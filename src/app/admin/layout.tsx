@@ -5,8 +5,9 @@ import AdminMainNav from "./_layout/nav/AdminMainNav";
 import { cookies } from "next/headers";
 import { decryptJWT } from "@/lib/auth";
 import { redirect } from "next/navigation";
-import { Manager } from "@/lib/database";
+import { Manager, Media } from "@/lib/database";
 import { IManager } from "@/types";
+import { getCollectionElementById } from "@/lib/fetch/get";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,16 +20,12 @@ export const metadata: Metadata = {
 async function getManagerById() {
     const id = await getManagerIdBySession()
 
-    return await Manager.findOne({ where: { id }})
-    .then(data => data)
-    .catch((error) => {
+    if (!id) throw new Error('No manager id found.')
 
-        if (error = "SequelizeConnectionRefusedError") {
-            console.log('ERROR CONECTANDO A LA BASE DE DATOS.')
-        }
-        throw new Error('Error en la base de datos: ' + error + '. ' + JSON.stringify(error))
-    }) 
+    const { data: manager } = await getCollectionElementById('managers', id)
 
+    return manager
+    
 }
 
 async function getManagerIdBySession() : Promise<string | null> {
