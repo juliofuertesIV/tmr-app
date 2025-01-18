@@ -1,18 +1,7 @@
 import { IContest } from '@/types'
 import Link from 'next/link'
 import React from 'react'
-import { 
-    edit as EditIcon,
-    stats as StatsIcon,
-    openContest as OpenIcon,
-    closedContest as ClosedIcon,
-    visible as VisibleIcon,
-    hidden as Hiddenicon,
-    verify as VerifyIcon,
-    contestants as ContestantsIcon,
-    openInscription as OpenInscriptionsIcon,
-    closedInscription as ClosedInscriptionsIcon
-} from '../../_layout/design/icons'
+import { edit as EditIcon } from '../../_layout/design/icons'
 import Icon, { IContestIconRole } from './Icon'
 
 export default function ContestItem({ contest } : { contest: IContest }) {
