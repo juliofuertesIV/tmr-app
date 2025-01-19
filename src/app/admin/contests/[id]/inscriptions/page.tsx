@@ -1,7 +1,6 @@
 import { Metadata } from "next";
 import { Contest, Inscription, Media } from '@/database/models';
 import { IContest, IInscription } from "@/types";
-import FilteredList from "./_components/FilteredList";
 
 export const metadata: Metadata = {
     title: "Panel de administración TMR",
