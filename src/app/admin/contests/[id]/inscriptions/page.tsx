@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import { Contest, Inscription, Media } from '@/database/models';
 import { IContest, IInscription } from "@/types";
+import FilteredList from "./_components/FilteredList";
 
 export const metadata: Metadata = {
     title: "Panel de administración TMR",
@@ -23,8 +24,6 @@ const getData = async ({ contestId } : { contestId: string }) => {
         return null
     })
 
-    console.log({ inscriptions })
-
     return { contest, inscriptions }
 }
 
@@ -36,34 +35,25 @@ export default async function AdminElementPage({ params } : { params: { id: stri
 
     if (!contest) throw new Error('No se ha encontrado el concurso en la base de datos.')
 
-    if (inscriptions instanceof Error) throw new Error('Error recuperando las inscripciones.')
+    if (!inscriptions) throw new Error('Error recuperando las inscripciones.')
 
-
-    return (
-        <section className="admin-page-content">
-            <header className="py-8">
-                <h1 className="uppercase">INSCRIPCIONES DE { contest.name }</h1>
-            </header>
-
+        return (
             <div className="flex flex-col gap-2 w-full">
-            {
-                inscriptions?.map((inscription, index) => {
-
-                    return (
-                        <div 
-                            className="border-2 bg-neutral-800 px-4 w-full"
-                            key={ index }
-                        >
-                            <div className="flex items-center gap-2 py-2">
-                                <div className="font-bold">{ inscription.name }</div>
-                                <div className="uppercase italic text-sm">({ inscription.city })</div>
+                {
+                    inscriptions.map((inscription, index) => {
+                        return (
+                            <div
+                                className="border-2 bg-neutral-800 px-4 w-full"
+                                key={index}
+                            >
+                                <div className="flex items-center gap-2 py-2">
+                                    <div className="font-bold">{inscription.name}</div>
+                                    <div className="uppercase italic text-sm">({inscription.city})</div>
+                                </div>
                             </div>
-                            
-                        </div>
-                    )
-                })
-            }
+                        );
+                    })
+                }
             </div>
-        </section>
-    )
+        );
 }
