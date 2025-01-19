@@ -1,5 +1,7 @@
 'use strict';
 
+import { extractedSubdomainString } from "@/lib/forms/validation/functions"
+
 const { Model } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
@@ -79,7 +81,10 @@ module.exports = (sequelize, DataTypes) => {
     ],
     hooks: {
       beforeValidate: (record) => {
-        if (!record.dataValues.metaUrl) return;        const parsedDomain = extractedSubdomainString(record.dataValues.metaUrl);        if (parsedDomain === record.dataValues.domain) return;        record.dataValues.domain = parsedDomain;
+        if (!record.dataValues.metaUrl) return; 
+        const parsedDomain = extractedSubdomainString(record.dataValues.metaUrl);
+        if (parsedDomain === record.dataValues.domain) return;
+        record.dataValues.domain = parsedDomain;
       },
     },
   });  return Contest;

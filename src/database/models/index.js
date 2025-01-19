@@ -8,6 +8,12 @@ const sequelize = new Sequelize({ ...config })// Models Import (Static import fo
 
 const Brand = require('./brand')(sequelize, DataTypes);
 const Contest = require('./contest')(sequelize, DataTypes);
+const ContestParam = require('./contestparam')(sequelize, DataTypes);
+const ContestGenre = require('./contestgenre')(sequelize, DataTypes);
+const ContestSocial = require('./contestsocial')(sequelize, DataTypes);
+const ContestMedia = require('./contestmedia')(sequelize, DataTypes);
+const ContestSponsor = require('./contestsponsor')(sequelize, DataTypes);
+const ContestManager = require('./contestmanager')(sequelize, DataTypes);
 const Genre = require('./genre')(sequelize, DataTypes);
 const Inscription = require('./inscription')(sequelize, DataTypes);
 const Log = require('./log')(sequelize, DataTypes);
@@ -24,7 +30,31 @@ const TMRVote = require('./tmrvote')(sequelize, DataTypes);
 const Vote = require('./vote')(sequelize, DataTypes);
 const Voter = require('./voter')(sequelize, DataTypes);
 
-const models = [ Brand, Contest, Genre, Inscription, Log, Manager, Media, Param, Role, SocialMedia, Sponsor, State, TagType, Tag, TMRVote, Vote, Voter ]
+const models = [ 
+  Brand,
+  Contest,
+  ContestParam,
+  ContestGenre,
+  ContestSocial,
+  ContestMedia,
+  ContestSponsor,
+  ContestManager,
+  Genre,
+  Inscription,
+  Log,
+  Manager,
+  Media,
+  Param,
+  Role,
+  SocialMedia,
+  Sponsor,
+  State,
+  TagType,
+  Tag,
+  TMRVote,
+  Vote,
+  Voter 
+]
 
 models.forEach((model) => {
   if (model.associate) {
@@ -34,24 +64,30 @@ models.forEach((model) => {
 
 // Export the models to use them directly
 export {
-    Brand,
-    Contest,
-    Genre,
-    Inscription,
-    Log,
-    Manager,
-    Media,
-    Param,
-    Role,
-    SocialMedia,
-    Sponsor,
-    State,
-    TagType,
-    Tag,
-    TMRVote,
-    Vote,
-    Voter,
-    sequelize, // Export sequelize instance if needed elsewhere
+  Brand,
+  Contest,
+  ContestParam,
+  ContestGenre,
+  ContestSocial,
+  ContestMedia,
+  ContestSponsor,
+  ContestManager,
+  Genre,
+  Inscription,
+  Log,
+  Manager,
+  Media,
+  Param,
+  Role,
+  SocialMedia,
+  Sponsor,
+  State,
+  TagType,
+  Tag,
+  TMRVote,
+  Vote,
+  Voter,
+  sequelize, // Export sequelize instance if needed elsewhere
     // Sequelize, // Export Sequelize itself for additional use
 };
 /* 
