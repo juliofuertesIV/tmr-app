@@ -22,9 +22,7 @@ if (process.env.NODE_ENV !== 'production') {
       dialect: 'mysql',
       dialectModule: mariadb,
     },
-  };
-
-module.exports = {
+  };module.exports = {
   development: {
     username: process.env.DB_USERNAME_DEV,
     password: process.env.DB_PASSWORD_DEV,

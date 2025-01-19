@@ -1,7 +1,6 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
+
+const { Model } = require('sequelize')
 
 module.exports = (sequelize, DataTypes) => {
   class TMRVote extends Model {
@@ -11,12 +10,10 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Vote.belongsTo(models.Inscription, { foreignKey: 'ContestantId' });
-      Vote.belongsTo(models.Manager, { foreignKey: 'ManagerId' });
+      TMRVote.belongsTo(models.Inscription, { foreignKey: 'ContestantId' });
+      TMRVote.belongsTo(models.Manager, { foreignKey: 'ManagerId' });
     }
-  }
-
-  TMRVote.init({
+  }  TMRVote.init({
     id: {
       type: DataTypes.UUID,
       primaryKey: true,
@@ -24,14 +21,14 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
     },
     weight: {
-        type: Sequelize.INTEGER,
+        type: DataTypes.INTEGER,
         allowNull: false,
         defaultValue: 1
     },
   }, {
     sequelize,
-    modelName: 'Voter',
+    modelName: 'TMRVote',
     paranoid: true
   });
-  return Voter;
+  return TMRVote;
 }

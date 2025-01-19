@@ -1,5 +1,6 @@
 'use strict';
-const { Model } = require('sequelize');
+
+const { Model } = require('sequelize')
 
 module.exports = (sequelize, DataTypes) => {
   class Log extends Model {
@@ -10,9 +11,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // Define associations if needed in the future
     }
-  }
-
-  Log.init({
+  }  Log.init({
     id: {
       type: DataTypes.UUID,
       primaryKey: true,
@@ -47,7 +46,5 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'Log',
     timestamps: true, // Includes createdAt and updatedAt
-  });
-
-  return Log;
+  });  return Log;
 };

@@ -1,5 +1,6 @@
 'use strict';
-const { Model } = require('sequelize');
+
+const { Model } = require('sequelize')
 
 module.exports = (sequelize, DataTypes) => {
   class Inscription extends Model {
@@ -9,9 +10,7 @@ module.exports = (sequelize, DataTypes) => {
       Inscription.hasMany(models.Vote);
       Inscription.belongsToMany(models.Tag, { through: 'InscriptionTags' });
     }
-  }
-
-  Inscription.init({
+  }  Inscription.init({
     id: {
       type: DataTypes.UUID,
       primaryKey: true,
@@ -92,7 +91,5 @@ module.exports = (sequelize, DataTypes) => {
         record.dataValues.year = new Date().getUTCFullYear();
       },
     },
-  });
-
-  return Inscription;
+  });  return Inscription;
 };

@@ -1,9 +1,5 @@
-import { Sequelize, Model, ModelStatic } from 'sequelize';
-
-export const sequelize: Sequelize;
-export const SequelizeInstance: typeof Sequelize;
-
-// Add individual model exports
+import { Sequelize, Model, ModelStatic } from 'sequelize';export const sequelize: Sequelize;
+export const SequelizeInstance: typeof Sequelize;// Add individual model exports
 export const Brand: ModelStatic<Model>;
 export const Contest: ModelStatic<Model>;
 export const Genre: ModelStatic<Model>;
@@ -28,36 +24,3 @@ export const ContestParam: ModelStatic<Model>;
 export const ContestSocial: ModelStatic<Model>;
 export const ContestSponsor: ModelStatic<Model>;
 export const InscriptionTag: ModelStatic<Model>;
-
-// You can also export a default object if needed
-declare const db: {
-  sequelize: Sequelize;
-  SequelizeInstance: typeof Sequelize;
-  Brand: ModelStatic<Model>;
-  Contest: ModelStatic<Model>;
-  Genre: ModelStatic<Model>;
-  Inscription: ModelStatic<Model>;
-  Log: ModelStatic<Model>;
-  Manager: ModelStatic<Model>;
-  Media: ModelStatic<Model>;
-  Param: ModelStatic<Model>;
-  Role: ModelStatic<Model>;
-  SocialMedia: ModelStatic<Model>;
-  Sponsor: ModelStatic<Model>;
-  State: ModelStatic<Model>;
-  TagType: ModelStatic<Model>;
-  Tag: ModelStatic<Model>;
-  TMRVote: ModelStatic<Model>;
-  Vote: ModelStatic<Model>;
-  Voter: ModelStatic<Model>;
-  ContestGenre: ModelStatic<Model>;
-  ContestManager: ModelStatic<Model>;
-  ContestMedia: ModelStatic<Model>;
-  ContestParam: ModelStatic<Model>;
-  ContestSocial: ModelStatic<Model>;
-  ContestSponsor: ModelStatic<Model>;
-  InscriptionTag: ModelStatic<Model>;
-  // Add other models here as needed
-};
-
-export default db;

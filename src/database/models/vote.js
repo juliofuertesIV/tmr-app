@@ -1,7 +1,6 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
+
+const { Model } = require('sequelize')
 
 module.exports = (sequelize, DataTypes) => {
   class Vote extends Model {
@@ -15,4 +14,31 @@ module.exports = (sequelize, DataTypes) => {
       Vote.belongsTo(models.Voter, { foreignKey: 'VoterId' });
     }
   }
+
+  Vote.init({
+    ContestantId: {
+      type: DataTypes.UUID,
+      allowNull: false,
+      references: {
+        model: 'Inscriptions',
+        key: 'id',
+      },
+      primaryKey: true,
+    },
+    VoterId: {
+      type: DataTypes.UUID,
+      allowNull: false,
+      references: {
+        model: 'Voters',
+        key: 'id',
+      },
+      primaryKey: true,
+    }
+  }, {
+    sequelize,
+    modelName: 'Vote',
+    paranoid: true
+  })
+
+  return Vote
 }

@@ -1,7 +1,6 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
+
+const { Model } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
   class Contest extends Model {
@@ -18,9 +17,7 @@ module.exports = (sequelize, DataTypes) => {
         Contest.belongsTo(models.State)
         Contest.hasMany(models.Inscription)
       }
-  }
-
-  Contest.init({
+  }  Contest.init({
     id: {
       type: DataTypes.UUID,
       primaryKey: true,
@@ -82,16 +79,8 @@ module.exports = (sequelize, DataTypes) => {
     ],
     hooks: {
       beforeValidate: (record) => {
-        if (!record.dataValues.metaUrl) return;
-
-        const parsedDomain = extractedSubdomainString(record.dataValues.metaUrl);
-
-        if (parsedDomain === record.dataValues.domain) return;
-
-        record.dataValues.domain = parsedDomain;
+        if (!record.dataValues.metaUrl) return;        const parsedDomain = extractedSubdomainString(record.dataValues.metaUrl);        if (parsedDomain === record.dataValues.domain) return;        record.dataValues.domain = parsedDomain;
       },
     },
-  });
-
-  return Contest;
+  });  return Contest;
 };

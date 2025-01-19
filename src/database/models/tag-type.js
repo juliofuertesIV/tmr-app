@@ -1,4 +1,5 @@
 'use strict';
+
 const { Model } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
@@ -6,9 +7,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
         TagType.hasMany(models.Tag)
     }
-  }
-
-  TagType.init({
+  }  TagType.init({
     id: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -24,7 +23,5 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'TagType',
     timestamps: false, // Disable createdAt and updatedAt
-  });
-
-  return TagType;
+  });  return TagType;
 };

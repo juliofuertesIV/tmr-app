@@ -11,15 +11,11 @@ module.exports = [
   { name: "Suiza", TagTypeId: "country" },
   { name: "Bélgica", TagTypeId: "country" },
   { name: "Países Bajos", TagTypeId: "country" },
-  { name: "Otros", TagTypeId: "country" },
-
-  // Genders
+  { name: "Otros", TagTypeId: "country" },  // Genders
   { name: "Masculino", TagTypeId: "gender" },
   { name: "Femenino", TagTypeId: "gender" },
   { name: "Mixto", TagTypeId: "gender" },
-  { name: "Otros", TagTypeId: "gender" },
-
-  // Genres
+  { name: "Otros", TagTypeId: "gender" },  // Genres
   { name: "Pop", TagTypeId: "genre" },
   { name: "Rock", TagTypeId: "genre" },
   { name: "Electrónica", TagTypeId: "genre" },
@@ -40,9 +36,7 @@ module.exports = [
   { name: "Country", TagTypeId: "genre" },
   { name: "Ska", TagTypeId: "genre" },
   { name: "Techno", TagTypeId: "genre" },
-  { name: "Otro", TagTypeId: "genre" },
-
-  // Languages
+  { name: "Otro", TagTypeId: "genre" },  // Languages
   { name: "Español", TagTypeId: "language" },
   { name: "Catalán", TagTypeId: "language" },
   { name: "Valenciano", TagTypeId: "language" },

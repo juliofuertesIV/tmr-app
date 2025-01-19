@@ -7,9 +7,7 @@ module.exports = (sequelize, DataTypes) => {
       Tag.belongsToMany(models.Inscription, { through: 'InscriptionTags' });
       Tag.belongsTo(models.TagType, { foreignKey: 'TagTypeId' });
     }
-  }
-
-  Tag.init({
+  }  Tag.init({
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -34,7 +32,5 @@ module.exports = (sequelize, DataTypes) => {
         fields: ['name', 'TagTypeId'], // Enforce the unique combination of name and TagTypeId
       },
     ],
-  });
-
-  return Tag;
+  });  return Tag;
 };

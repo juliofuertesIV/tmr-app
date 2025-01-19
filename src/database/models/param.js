@@ -1,5 +1,6 @@
 'use strict';
-const { Model } = require('sequelize');
+
+const { Model } = require('sequelize')
 
 module.exports = (sequelize, DataTypes) => {
   class Param extends Model {
@@ -10,9 +11,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
         Param.belongsToMany(models.Contest, { through: 'ContestParams'})
     }
-  }
-
-  Param.init({
+  }  Param.init({
     id: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -30,7 +29,5 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'Param',
     timestamps: false, // Disable createdAt and updatedAt
-  });
-
-  return Param;
+  });  return Param;
 };

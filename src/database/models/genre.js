@@ -1,4 +1,5 @@
 'use strict';
+
 const { Model } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
@@ -10,9 +11,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
         Genre.belongsToMany(models.Contest, { through: 'ContestGenres' })
     }
-  }
-
-  Genre.init({
+  }  Genre.init({
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -27,7 +26,5 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'Genre',
     timestamps: false, // Disable createdAt and updatedAt
-  });
-
-  return Genre;
+  });  return Genre;
 };

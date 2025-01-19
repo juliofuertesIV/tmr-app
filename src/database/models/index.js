@@ -1,42 +1,36 @@
 'use strict';
 
-// Models Import (Static import for individual models)
-import Brand from './brand';
-import Contest from './contest';
-import Genre from './genre';
-import Inscription from './inscription';
-import Log from './log';
-import Manager from './manager';
-import Media from './media';
-import Param from './param';
-import Role from './role';
-import SocialMedia from './social-media';
-import Sponsor from './sponsor';
-import State from './state';
-import TagType from './tag-type';
-import Tag from './tag';
-import TMRVote from './tmrvote';
-import Vote from './vote';
-import Voter from './voter';
-
-const Sequelize = require('sequelize');
-const process = require('process');
+const Sequelize = require('sequelize')
+const { DataTypes } = Sequelize
 const env = process.env.NODE_ENV || 'development';
 const config = require('../config/config.js')[env];
-const db = {};
+const sequelize = new Sequelize({ ...config })// Models Import (Static import for individual models)
 
-const sequelize = new Sequelize({ ...config });
+const Brand = require('./brand')(sequelize, DataTypes);
+const Contest = require('./contest')(sequelize, DataTypes);
+const Genre = require('./genre')(sequelize, DataTypes);
+const Inscription = require('./inscription')(sequelize, DataTypes);
+const Log = require('./log')(sequelize, DataTypes);
+const Manager = require('./manager')(sequelize, DataTypes);
+const Media = require('./media')(sequelize, DataTypes);
+const Param = require('./param')(sequelize, DataTypes);
+const Role = require('./role')(sequelize, DataTypes);
+const SocialMedia = require('./social-media')(sequelize, DataTypes);
+const Sponsor = require('./sponsor')(sequelize, DataTypes);
+const State = require('./state')(sequelize, DataTypes);
+const TagType = require('./tag-type')(sequelize, DataTypes);
+const Tag = require('./tag')(sequelize, DataTypes);
+const TMRVote = require('./tmrvote')(sequelize, DataTypes);
+const Vote = require('./vote')(sequelize, DataTypes);
+const Voter = require('./voter')(sequelize, DataTypes);
 
-/* Object.keys(db).forEach(modelName => {
-  if (db[modelName].associate) {
-    db[modelName].associate(db);
+const models = [ Brand, Contest, Genre, Inscription, Log, Manager, Media, Param, Role, SocialMedia, Sponsor, State, TagType, Tag, TMRVote, Vote, Voter ]
+
+models.forEach((model) => {
+  if (model.associate) {
+      model.associate(sequelize.models);
   }
 });
- */
-db.sequelize = sequelize;
-db.Sequelize = Sequelize;
-
-
 
 // Export the models to use them directly
 export {
@@ -58,7 +52,7 @@ export {
     Vote,
     Voter,
     sequelize, // Export sequelize instance if needed elsewhere
-    Sequelize, // Export Sequelize itself for additional use
+    // Sequelize, // Export Sequelize itself for additional use
 };
 /* 
 module.exports = db; // Named export
