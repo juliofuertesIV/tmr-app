@@ -1,5 +1,5 @@
 import { constructAPIResponse } from "@/app/api/_utils"
-import { Log } from "@/lib/database"
+import { Log } from '@/database/models'
 import { ICollectionNames } from "@/types"
 import { IAPIError, IErrorTypes } from "@/types/api"
 import { ConnectionRefusedError, Transaction, ValidationError } from "sequelize"

@@ -1,4 +1,4 @@
-import { Log, Manager, Role } from "@/lib/database"
+import { Log, Manager, Role } from '@/database/models'
 import { createSession, passwordsAreMatching } from "@/lib/auth"
 import { NextRequest } from "next/server"
 import { IManager } from "@/types"

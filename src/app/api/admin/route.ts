@@ -1,4 +1,4 @@
-import { Brand, Contest, Genre, Inscription, Media, Param, SocialMedia, State } from "@/lib/database"
+import { Brand, Contest, Genre, Inscription, Media, Param, SocialMedia, State } from '@/database/models'
 import { constructAPIResponse } from "../_utils"
 import { IContest } from "@/types"
 import { IDashboardData } from "@/types/admin"

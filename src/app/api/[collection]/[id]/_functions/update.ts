@@ -1,5 +1,5 @@
 import { getModelByCollectionName } from "../../_utils"
-import { Inscription, Media, sequelize } from "@/lib/database"
+import { Inscription, Media, sequelize } from '@/database/models'
 import { constructAPIResponse } from "@/app/api/_utils"
 import { handleApiError } from "@/lib/errors"
 import { validateMedia } from "@/lib/media/validation"

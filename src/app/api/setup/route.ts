@@ -1,9 +1,11 @@
 
 import { superAdmin } from '@/lib/data/initial/managers'
-import { sequelize, Manager } from '@/lib/database'
+import { sequelize, Manager } from '@/database/models'
 import { constructAPIResponse } from '../_utils'
 import { getHashAndSaltFromPassword } from '../../../lib/auth'
 import { IManager } from '@/types'
+import { Model } from 'sequelize'
+
 
 export const GET = async () => {
     
@@ -24,11 +26,10 @@ export const GET = async () => {
         )
     }
 
-    
     let manager;
 
     try {
-        manager = await Manager.create({ ...managerCreationPayload }, { transaction }) as unknown as IManager
+        manager = await (Manager as ModelStatic<Model<any, any>>).create({ ...managerCreationPayload }, { transaction }) as unknown as IManager
         await transaction.commit()
     }
     catch (error) {

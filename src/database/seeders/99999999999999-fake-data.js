@@ -53,7 +53,6 @@ module.exports = {
             verified: faker.datatype.boolean(),
             discarded: false,
             previousPosition: faker.datatype.number({ min: 1, max: 10 }),
-            internalVoteQuantity: faker.datatype.number({ min: 0, max: 100 }),
             isStarred: faker.datatype.boolean(),
             MediumId: mediaId,
             ContestId: contestId,

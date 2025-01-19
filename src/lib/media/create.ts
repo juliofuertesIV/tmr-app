@@ -1,4 +1,4 @@
-import { Media, sequelize } from "@/lib/database"
+import { Media, sequelize } from '@/database/models'
 import { uploadMedia } from "@/lib/media/upload"
 import { handleApiError } from "@/lib/errors"
 import { IMedia, IMediaPayload } from "@/types/media"

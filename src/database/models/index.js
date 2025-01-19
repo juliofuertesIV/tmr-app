@@ -1,43 +1,66 @@
 'use strict';
 
-const fs = require('fs');
-const path = require('path');
+// Models Import (Static import for individual models)
+import Brand from './brand';
+import Contest from './contest';
+import Genre from './genre';
+import Inscription from './inscription';
+import Log from './log';
+import Manager from './manager';
+import Media from './media';
+import Param from './param';
+import Role from './role';
+import SocialMedia from './social-media';
+import Sponsor from './sponsor';
+import State from './state';
+import TagType from './tag-type';
+import Tag from './tag';
+import TMRVote from './tmrvote';
+import Vote from './vote';
+import Voter from './voter';
+
 const Sequelize = require('sequelize');
 const process = require('process');
-const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
-const config = require(__dirname + '../config/config.json')[env];
+const config = require('../config/config.js')[env];
 const db = {};
 
-let sequelize;
-if (config.use_env_variable) {
-  sequelize = new Sequelize(process.env[config.use_env_variable], config);
-} else {
-  sequelize = new Sequelize(config.database, config.username, config.password, config);
-}
+const sequelize = new Sequelize({ ...config });
 
-fs
-  .readdirSync(__dirname)
-  .filter(file => {
-    return (
-      file.indexOf('.') !== 0 &&
-      file !== basename &&
-      file.slice(-3) === '.js' &&
-      file.indexOf('.test.js') === -1
-    );
-  })
-  .forEach(file => {
-    const model = require(path.join(__dirname, file))(sequelize, Sequelize.DataTypes);
-    db[model.name] = model;
-  });
-
-Object.keys(db).forEach(modelName => {
+/* Object.keys(db).forEach(modelName => {
   if (db[modelName].associate) {
     db[modelName].associate(db);
   }
 });
-
+ */
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
-module.exports = db;
+
+
+// Export the models to use them directly
+export {
+    Brand,
+    Contest,
+    Genre,
+    Inscription,
+    Log,
+    Manager,
+    Media,
+    Param,
+    Role,
+    SocialMedia,
+    Sponsor,
+    State,
+    TagType,
+    Tag,
+    TMRVote,
+    Vote,
+    Voter,
+    sequelize, // Export sequelize instance if needed elsewhere
+    Sequelize, // Export Sequelize itself for additional use
+};
+/* 
+module.exports = db; // Named export
+module.exports.default = db; // Default export for TypeScript
+ */

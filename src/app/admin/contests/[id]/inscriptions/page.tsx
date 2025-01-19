@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { Contest, Inscription, Media } from "@/lib/database";
+import { Contest, Inscription, Media } from '@/database/models';
 import { IContest, IInscription } from "@/types";
 
 export const metadata: Metadata = {

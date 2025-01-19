@@ -1,6 +1,6 @@
 import { ICollectionNames } from "@/types"
 import { getModelByCollectionName } from "../_utils"
-import { Inscription } from "@/lib/database"
+import { Inscription } from '@/database/models'
 import { constructAPIResponse } from "../../_utils"
 import { handleApiError } from "@/lib/errors"
 import { ICreateInscriptionPayload } from "@/types/inscriptions"

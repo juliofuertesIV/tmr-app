@@ -1,4 +1,4 @@
-import { extractedSubdomainString } from "@/lib/forms/validation/functions";
+/* import { extractedSubdomainString } from "@/lib/forms/validation/functions";
 import { DataTypes } from "sequelize";
 import { Sequelize } from 'sequelize'
 
@@ -544,4 +544,4 @@ Inscription.hasMany(Vote)
 Vote.belongsTo(Voter)
 Voter.hasMany(Vote)
 
-export { sequelize }
+export { sequelize } */

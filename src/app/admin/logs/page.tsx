@@ -1,4 +1,4 @@
-import { Log } from '@/lib/database'
+import { Log } from '@/database/models'
 import { ILog } from '@/types'
 import React from 'react'
 

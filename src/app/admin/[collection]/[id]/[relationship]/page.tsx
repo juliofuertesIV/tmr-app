@@ -49,7 +49,7 @@ export default async function AdminRelationshipPage({ params } : Props) {
 
         return (
             <section className="w-full flex flex-col items-center">
-                <AssociationPageHeader association={ relationship } item={ item }/>
+                <AssociationPageHeader collection={ collection } association={ relationship } item={ item }/>
                 <MediaFormWrapper
                     collection={ collection as ICollectionsWithMediaNames }
                     collectionItem={ item as ICollectionsWithMedia }
@@ -62,7 +62,7 @@ export default async function AdminRelationshipPage({ params } : Props) {
 
     return (
         <section className="w-full flex flex-col items-center">
-            <AssociationPageHeader association={ relationship } item={ item }/>
+            <AssociationPageHeader collection={ collection } association={ relationship } item={ item }/>
             <AssociationManager 
                 collection={ collection }
                 collectionItem={ item } 

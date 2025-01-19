@@ -2,7 +2,7 @@ import { cookies } from "next/headers";
 import LoginForm from "./_components/LoginForm";
 import { decryptJWT } from "@/lib/auth";
 import TMRLogo from "../admin/_layout/design/TmrLogo";
-import { Manager, testDatabaseConnection } from "@/lib/database";
+import { Manager } from '@/database/models';
 import { IManager } from "@/types";
 
 async function getManagerById() {
