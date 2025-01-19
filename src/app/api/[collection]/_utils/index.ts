@@ -172,7 +172,7 @@ const relationshipByName = {
 
 export const collectionHasMedia = (
     collection: ICollectionNames | ICollectionsWithMediaNames
-) : collection is ICollectionsWithMediaNames => collection === 'contests' || collection === 'inscriptions'
+) : collection is ICollectionsWithMediaNames => collection === 'contests' || collection === 'inscriptions' || collection == 'managers' || collection == 'sponsors'
 
 export const collectionCreationIncludesMedia = (
     collection: ICollectionNames | ICollectionsWithMediaNames
