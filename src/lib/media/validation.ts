@@ -1,6 +1,9 @@
 const validImageTypes = ['image/jpeg', 'image/png', 'image/svg+xml', 'image/webp', 'image/vnd.microsoft.icon']
 
-export const mediaPayloadIsValidType = ({ file } : { file: File }) => {
+export const mediaPayloadIsValidType = ({ file } : { file: File | null }) => {
+
+    if (!file) return false
+
     return validImageTypes.some(imageType => imageType === file.type)
 }
 
@@ -12,7 +15,9 @@ export const mediaPayloadIsValidLength = ({ bytes } : { bytes: ArrayBuffer }) =>
     return bytes.byteLength < byteLimit;
 }
 
-export const validateMedia = async ({ file, type } : { file: File, type: 'image' }) => {
+export const validateMedia = async ({ file, type } : { file: File | null, type: 'image' }) => {
+
+    if (!file) throw new Error('No file found!')
 
     const validType = mediaPayloadIsValidType({ file })
     if (!validType) throw new Error(`Tipo de archivo incorrecto. Tipo esperado: ${ type }. Tipo recibido: ${ file.type }` )
