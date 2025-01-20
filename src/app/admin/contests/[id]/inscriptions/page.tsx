@@ -1,6 +1,5 @@
 import { Metadata } from "next";
 import { Contest, Inscription, Media } from '@/database/models';
-import { IContest, IInscription } from "@/types";
 
 export const metadata: Metadata = {
     title: "Panel de administración TMR",
@@ -10,15 +9,15 @@ export const metadata: Metadata = {
 const getData = async ({ contestId } : { contestId: string }) => {
 
     const contest = await Contest.findOne({ where: { id: contestId }})
-    .then((data: IContest | null) => data) 
-    .catch((error: unknown) => {
+    .then(data => data) 
+    .catch(error => {
         console.log(error);
         throw new Error(error as string)
     })
 
     const inscriptions = await Inscription.findAll({ where: { ContestId: contestId }, include: [ Media ]})
-    .then((data: IInscription[] | null) => data)
-    .catch((error: unknown) => {
+    .then(data => data)
+    .catch(error => {
         console.log(error);
         throw new Error(error as string)
     })
