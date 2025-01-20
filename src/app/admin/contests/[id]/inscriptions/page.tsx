@@ -10,17 +10,17 @@ export const metadata: Metadata = {
 const getData = async ({ contestId } : { contestId: string }) => {
 
     const contest = await Contest.findOne({ where: { id: contestId }})
-    .then(data => data as unknown as IContest) 
-    .catch(error => {
+    .then((data: IContest | null) => data) 
+    .catch((error: unknown) => {
         console.log(error);
-        return null
+        throw new Error(error as string)
     })
 
     const inscriptions = await Inscription.findAll({ where: { ContestId: contestId }, include: [ Media ]})
-    .then(data => data as unknown as IInscription[])
-    .catch(error => {
+    .then((data: IInscription[] | null) => data)
+    .catch((error: unknown) => {
         console.log(error);
-        return null
+        throw new Error(error as string)
     })
 
     return { contest, inscriptions }
@@ -37,22 +37,24 @@ export default async function AdminElementPage({ params } : { params: { id: stri
     if (!inscriptions) throw new Error('Error recuperando las inscripciones.')
 
         return (
-            <div className="flex flex-col gap-2 w-full">
-                {
-                    inscriptions.map((inscription, index) => {
-                        return (
-                            <div
-                                className="border-2 bg-neutral-800 px-4 w-full"
-                                key={index}
-                            >
-                                <div className="flex items-center gap-2 py-2">
-                                    <div className="font-bold">{inscription.name}</div>
-                                    <div className="uppercase italic text-sm">({inscription.city})</div>
+            <section className="admin-page-content">
+                <div className="flex flex-col gap-2 w-full">
+                    {
+                        inscriptions.map((inscription, index) => {
+                            return (
+                                <div
+                                    className="border-2 bg-neutral-800 px-4 w-full"
+                                    key={index}
+                                >
+                                    <div className="flex items-center gap-2 py-2">
+                                        <div className="font-bold">{inscription.name}</div>
+                                        <div className="uppercase italic text-sm">({inscription.city})</div>
+                                    </div>
                                 </div>
-                            </div>
-                        );
-                    })
-                }
-            </div>
+                            );
+                        })
+                    }
+                </div>
+            </section>
         );
 }
