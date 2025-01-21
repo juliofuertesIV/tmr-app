@@ -1,4 +1,4 @@
-import { ICollectionsWithMediaNames } from "@/types/media";
+import { ICollectionsWithMediaNames, ICollectionsWithMediumNames } from "@/types/media";
 import { mediaPayloadIsValidLength } from "./validation";
 import path from "path";
 import { IMediaPayload } from "@/types/media";
@@ -21,7 +21,7 @@ export const prepareMediaFile = async ({
 } : {
     payload: IMediaPayload,
     domain: string,
-    collection: ICollectionsWithMediaNames
+    collection: ICollectionsWithMediaNames | ICollectionsWithMediumNames
 }
 ) : Promise<{ 
     bytes: ArrayBuffer,
@@ -32,6 +32,10 @@ export const prepareMediaFile = async ({
 }> => {
 
     const { file } = payload
+
+    if (!file) {
+        return { bytes: new ArrayBuffer(), filename: '', src: '', error: new Error('El archivo es demasiado grande'), success: false }
+    }
 
     const bytes = await file.arrayBuffer();
 

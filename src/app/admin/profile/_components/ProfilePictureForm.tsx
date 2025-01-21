@@ -5,7 +5,7 @@ import AdminFormFeedback from '@/lib/forms/feedback/FormFeedback';
 import FormSubmit from '@/lib/forms/feedback/FormSubmit';
 import { ICollectionsWithMedium, IManager } from '@/types';
 import { formInitialState } from '@/types/forms';
-import React, { ChangeEvent, MutableRefObject, useEffect, useState } from 'react'
+import React, { ChangeEvent, MutableRefObject, useEffect, useRef, useState } from 'react'
 import { useFormState } from 'react-dom';
 
 type Props = { 
@@ -18,12 +18,13 @@ export default function ProfilePictureForm({ inputRef, manager } : Props) {
     const boundAction = getMediumBoundAction({ collection: 'managers', collectionItem: manager as ICollectionsWithMedium })
     const [ state, action ] = useFormState(boundAction, formInitialState)
     const [ file, setFile ] = useState<File | null>(null)
-    const [ imageMeasurements, setImageMeasurements ] = useState<{ width: number, height: number }>({ width: 0, height: 0 })
+    const [ imageMeasurements, setImageMeasurements ] = useState<{ width: number | null, height: number | null }>({ width: null, height: null })
 
+    const formRef = useRef<HTMLFormElement>(null)
 
     const emptyState = () => { 
         setFile(null)
-        setImageMeasurements({ width: 0, height: 0 })
+        setImageMeasurements({ width: null, height: null })
     }
 
     const manageFileInputChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -37,8 +38,6 @@ export default function ProfilePictureForm({ inputRef, manager } : Props) {
     useEffect(() => {
 
         if (!file) return 
-
-        console.log({ file })
 
         const reader = new FileReader();
 
@@ -60,8 +59,18 @@ export default function ProfilePictureForm({ inputRef, manager } : Props) {
 
     }, [ file ])
 
+    useEffect(() => {
+
+        if (!imageMeasurements.height && !imageMeasurements.width) return 
+
+        formRef.current?.submit()
+        
+
+    }, [ imageMeasurements ])
+
     return (
-        <form 
+        <form
+            ref={ formRef } 
             className="hidden"
             action={ action }
         >
@@ -71,8 +80,8 @@ export default function ProfilePictureForm({ inputRef, manager } : Props) {
             </div>
             <input type="hidden" name="role" value={ 'profilePic' } />
             <input type="hidden" name="domain" value={ 'test-domain' } />
-            <input type="hidden" name="width" value={ imageMeasurements.width } />
-            <input type="hidden" name="height" value={ imageMeasurements.height } />
+            <input type="hidden" name="width" value={ imageMeasurements.width || '' } />
+            <input type="hidden" name="height" value={ imageMeasurements.height || '' } />
             { !!file && <FormSubmit value='Subir archivo' pendingValue='Subiendo archivo...' /> }
         </form>
     )

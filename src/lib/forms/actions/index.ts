@@ -32,7 +32,7 @@ export const getMediumBoundAction = ({
     collection: ICollectionsWithMediumNames,
     collectionItem: ICollectionsWithMedium
 }) => {
- 
+
     return updateCollectionItem.bind(null, collection, collectionItem.id)
 }
 

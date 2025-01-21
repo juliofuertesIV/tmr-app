@@ -4,7 +4,7 @@ import { constructAPIResponse } from "@/app/api/_utils"
 import { handleApiError } from "@/lib/errors"
 import { validateMedia } from "@/lib/media/validation"
 import { IMediaPayload } from "@/types/media"
-import { createMedia } from "@/lib/media/create"
+import { createMedia, createMedium } from "@/lib/media/create"
 import { ICollectionNames, IInscription } from "@/types"
 import { deleteFromCloudStorage } from "@/lib/storage/gcp_storage"
 
@@ -150,7 +150,7 @@ export const updateManagerMedia = async ({ collection, formData, id } : Props) =
             })
         }) as unknown as IInscription
 
-    const { MediumId: newMediumId } = await createMedia({ formData, collection: 'managers' })
+    const { MediumId: newMediumId } = await createMedium({ formData, collection: 'managers' })
         .then(data => data)
         .catch(async (error) => {
             return await handleApiError({

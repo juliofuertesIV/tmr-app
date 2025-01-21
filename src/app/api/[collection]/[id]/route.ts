@@ -24,12 +24,11 @@ export const PUT = async (req: Request, { params } : RouteParams) => {
 
     const formData = await req.formData()
 
-    if (collection === 'inscriptions' && formData.has('file')) {
+    if (collection === 'inscriptions'  && formData.has('file')) {
         return await updateInscriptionMedia({ collection, id, formData })
     }
 
     if (collection === 'managers' && formData.has('file')) {
-        //TO DO
         return await updateManagerMedia({ collection, id, formData })
     }
     

@@ -9,12 +9,21 @@ export const metadata: Metadata = {
     description: "El buen admin panel"
 };
 
+const getData = async ({ id } : { id: string }) => {
+
+    const { data: manager } = await getCollectionElementById("managers", id) as { data: IManager }
+
+    if (!manager) throw new Error('No manager found with this id.')
+
+    return manager
+}
+
 export default async function ProfilePage({ params } : { params: { id: string }}) {
 
     const { id } = params
 
-    const { data: manager } = await getCollectionElementById("managers", id) as { data: IManager }
-
+    const manager = await getData({ id })
+    
     return (
         <section className="admin-page-content">
             <Header manager={ manager }/>
