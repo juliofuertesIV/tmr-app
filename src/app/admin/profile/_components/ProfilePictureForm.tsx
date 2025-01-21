@@ -15,6 +15,7 @@ type Props = {
 
 export default function ProfilePictureForm({ inputRef, manager } : Props) {
 
+    //GET MEDIUM BOUND ACTION!!
     const boundAction = getMediaBoundAction({ collection: 'managers', collectionItem: manager as ICollectionsWithMedia, role: 'profilePic' })
     const [ state, action ] = useFormState(boundAction, formInitialState)
     const [ file, setFile ] = useState<File | null>(null)
