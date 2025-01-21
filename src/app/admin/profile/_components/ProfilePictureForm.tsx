@@ -1,9 +1,9 @@
 'use client'
 
-import { getMediaBoundAction } from '@/lib/forms/actions';
+import { getMediumBoundAction } from '@/lib/forms/actions';
 import AdminFormFeedback from '@/lib/forms/feedback/FormFeedback';
 import FormSubmit from '@/lib/forms/feedback/FormSubmit';
-import { ICollectionsWithMedia, IManager } from '@/types';
+import { ICollectionsWithMedium, IManager } from '@/types';
 import { formInitialState } from '@/types/forms';
 import React, { ChangeEvent, MutableRefObject, useEffect, useState } from 'react'
 import { useFormState } from 'react-dom';
@@ -15,8 +15,7 @@ type Props = {
 
 export default function ProfilePictureForm({ inputRef, manager } : Props) {
 
-    //GET MEDIUM BOUND ACTION!!
-    const boundAction = getMediaBoundAction({ collection: 'managers', collectionItem: manager as ICollectionsWithMedia, role: 'profilePic' })
+    const boundAction = getMediumBoundAction({ collection: 'managers', collectionItem: manager as ICollectionsWithMedium })
     const [ state, action ] = useFormState(boundAction, formInitialState)
     const [ file, setFile ] = useState<File | null>(null)
     const [ imageMeasurements, setImageMeasurements ] = useState<{ width: number, height: number }>({ width: 0, height: 0 })
@@ -39,6 +38,8 @@ export default function ProfilePictureForm({ inputRef, manager } : Props) {
 
         if (!file) return 
 
+        console.log({ file })
+
         const reader = new FileReader();
 
         const updateImageMeasurements = (src: string) => {
@@ -48,7 +49,7 @@ export default function ProfilePictureForm({ inputRef, manager } : Props) {
         }
 
         reader.addEventListener("load", () => {
-                const src = reader.result as string // convert image file to base64 string
+                const src = reader.result as string
                 if (!src) throw new Error('Error leyendo la imagen.')
 
                 updateImageMeasurements(src) 
