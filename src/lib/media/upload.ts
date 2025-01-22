@@ -12,7 +12,7 @@ type Props = {
 
 export const uploadMedia = async ({ 
     collection,
-    domain,
+    domain: domain,
     payload 
 } : Props
 ) : Promise<{
@@ -30,7 +30,7 @@ export const uploadMedia = async ({
         bytes,
         filename,
         src 
-    } = await prepareMediaFile({ payload, domain, collection })
+    } = await prepareMediaFile({ payload, domain: domain, collection })
 
     if (!success) {
         await handleApiError({
@@ -45,7 +45,7 @@ export const uploadMedia = async ({
         bytes,
         filename,
         collection,
-        domain 
+        domain: domain 
     })
     .catch(async (error) => {
         return await handleApiError({

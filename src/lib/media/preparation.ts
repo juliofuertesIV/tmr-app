@@ -2,17 +2,7 @@ import { ICollectionsWithMediaNames, ICollectionsWithMediumNames } from "@/types
 import { mediaPayloadIsValidLength } from "./validation";
 import path from "path";
 import { IMediaPayload } from "@/types/media";
-import { ICollectionNames } from "@/types";
 
-export const produceFileName = (fileName: string) => crypto.randomUUID() + "-" + new Date().getTime() + path.extname(fileName);
-
-const getMediaFileSrc = ({domain, collection, filename } : { domain: string, collection: ICollectionNames, filename: string }) => {
-
-    if (collection === 'managers') 
-        return `https://storage.googleapis.com/${process.env.GCP_BUCKET}/managers/${ collection }/${ filename }`
-
-    return `https://storage.googleapis.com/${process.env.GCP_BUCKET}/${ domain }/${ collection }/${ filename }`
-}
 
 export const prepareMediaFile = async ({ 
     payload,
@@ -34,7 +24,7 @@ export const prepareMediaFile = async ({
     const { file } = payload
 
     if (!file) {
-        return { bytes: new ArrayBuffer(), filename: '', src: '', error: new Error('El archivo es demasiado grande'), success: false }
+        return { bytes: new ArrayBuffer(), filename: '', src: '', error: new Error('No hay archivo.'), success: false }
     }
 
     const bytes = await file.arrayBuffer();
@@ -49,3 +39,27 @@ export const prepareMediaFile = async ({
 
     return { bytes, filename, src, error: null, success: true }
 }
+
+
+const getMediaFileSrc = ({ domain, collection, filename } : { domain: string, collection: ICollectionsWithMediaNames | ICollectionsWithMediumNames, filename: string }) => {
+
+    const folder = getFolderByCollectionName({ collection, domain })
+
+    return `https://storage.googleapis.com/${process.env.GCP_BUCKET}/${ folder }/${ filename }`
+}
+
+
+export const getFolderByCollectionName = ({ collection, domain } : { collection: ICollectionsWithMediaNames | ICollectionsWithMediumNames, domain: string }) : string => {
+
+    if (collection === 'inscriptions') return `${ domain }/inscriptions`
+    
+    if (collection === 'contests') return `${ domain }/contest`
+    
+    if (collection === 'managers') return 'managers'
+
+    if (collection === 'sponsors') return 'sponsors'
+    
+    return domain
+}
+
+export const produceFileName = (fileName: string) => crypto.randomUUID() + "-" + new Date().getTime() + path.extname(fileName);
