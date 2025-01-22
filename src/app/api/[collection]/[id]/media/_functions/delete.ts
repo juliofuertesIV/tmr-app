@@ -4,12 +4,8 @@ import { deleteMedia } from "@/lib/media/delete"
 import { ICollectionsWithMediaNames } from "@/types/media"
 
 export const deleteAssociatedMedia = async ({
-    collection,
-    id,
     formData
 } : {
-    collection: ICollectionsWithMediaNames,
-    id: string,
     formData: FormData
 }) => {
 

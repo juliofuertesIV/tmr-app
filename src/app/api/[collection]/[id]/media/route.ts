@@ -35,10 +35,8 @@ export const PUT = async (req: Request, { params } : Params) => {
 
 export const DELETE = async (req: Request, { params } : Params) => {
     
-    const { collection, id } = params
-
     const formData = await req.formData()
 
-    return await deleteAssociatedMedia({ collection: collection as ICollectionsWithMediaNames, id, formData })
+    return await deleteAssociatedMedia({ formData })
 
 }
