@@ -2,7 +2,6 @@ import { ICollectionNames } from "@/types";
 import { getAssociation } from "../[association]/_functions/get";
 import { createAssociationWithMedia, updateAssociatedMedia } from "./_functions";
 import { ICollectionsWithMediaNames } from "@/types/media";
-import { deleteMedia } from "@/lib/media/delete";
 import { deleteAssociatedMedia } from "./_functions/delete";
 
 
