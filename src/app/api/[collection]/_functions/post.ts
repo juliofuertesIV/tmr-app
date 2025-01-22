@@ -5,7 +5,7 @@ import { constructAPIResponse } from "../../_utils"
 import { handleApiError } from "@/lib/errors"
 import { ICreateInscriptionPayload } from "@/types/inscriptions"
 import { createMedia } from "@/lib/media/create"
-import { validateMedia } from "@/lib/media/validation"
+import { validateMediaFormData, validateMedia } from "@/lib/media/validation"
 import { ICollectionsWithMediaNames } from "@/types/media"
 import { Transaction } from "sequelize"
 
@@ -64,10 +64,26 @@ export const addToCollectionWithMedia = async ({ collection, formData } : IColle
         })
     }
 
+    try {
+        validateMediaFormData({ formData })
+    }
+    catch (error) {
+        return await handleApiError({
+            collection,
+            route: '/api/' + collection,
+            error,
+            message: 'Fallo validando los campos del archivo.' 
+        })
+    }    
+
     const { MediumId, transaction } = await createMedia({ formData, collection }) as { MediumId: string, transaction: Transaction }
+
+    console.log({ MediumId })
 
     try {
         const inscription = await Inscription.create({ MediumId, ...payload }, { transaction })
+
+        console.log({ inscription })
 
         return Response.json(
             constructAPIResponse({ 

@@ -1,4 +1,4 @@
-import { isValidEmail, isValidString, processBasicTextInput } from "@/lib/forms/validation/functions"
+import { isValidEmail, isValidString, isValidUrl, processBasicTextInput } from "@/lib/forms/validation/functions"
 import { IFormField } from "@/types/forms"
 
 export const inscriptionFields : IFormField[] = [
@@ -52,6 +52,66 @@ export const inscriptionFields : IFormField[] = [
         type: 'tel',
         requiredForItemCreation: true
     },
+    {
+        name: 'city',
+        label: 'Ciudad',
+        instructions: null,
+        validationMethod: isValidString,
+        processingMethod: processBasicTextInput,
+        testAgainst: null,
+        type: 'text',
+        requiredForItemCreation: true
+    },
+    {
+        name: 'genre',
+        label: 'Género',
+        instructions: null,
+        validationMethod: isValidString,
+        processingMethod: processBasicTextInput,
+        testAgainst: null,
+        type: 'text',
+        requiredForItemCreation: true
+    },
+    {
+        name: 'video',
+        label: 'Enlace de YouTube',
+        instructions: null,
+        validationMethod: isValidUrl,
+        processingMethod: null,
+        testAgainst: null,
+        type: 'text',
+        requiredForItemCreation: true
+    },
+    {
+        name: 'instagram',
+        label: 'Instagram',
+        instructions: null,
+        validationMethod: isValidUrl,
+        processingMethod: null,
+        testAgainst: null,
+        type: 'text',
+        requiredForItemCreation: true
+    },
+    {
+        name: 'spotify',
+        label: 'Spotify',
+        instructions: null,
+        validationMethod: isValidUrl,
+        processingMethod: null,
+        testAgainst: null,
+        type: 'text',
+        requiredForItemCreation: true
+    },
+    {
+        name: 'tiktok',
+        label: 'Tiktok',
+        instructions: null,
+        validationMethod: isValidUrl,
+        processingMethod: null,
+        testAgainst: null,
+        type: 'text',
+        requiredForItemCreation: false
+    },    
     {
         name: 'file',
         label: 'Imagen',

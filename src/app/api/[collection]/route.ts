@@ -20,11 +20,10 @@ export const POST = async (req: Request, { params } : { params: { collection: IC
 
     const creationIncludesMedia = collectionCreationIncludesMedia(collection)
 
-    if (creationIncludesMedia && formData.has('file')) 
-        return await addToCollectionWithMedia({ 
-            collection: collection as ICollectionsWithMediaNames, 
-            formData 
-        })
-    else 
-        return await addToCollection({ collection, formData })
+    if (!creationIncludesMedia) return await addToCollection({ collection, formData })
+
+    return await addToCollectionWithMedia({ 
+        collection: collection as ICollectionsWithMediaNames, 
+        formData 
+    })
 }

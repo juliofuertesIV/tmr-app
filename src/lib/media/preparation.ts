@@ -23,6 +23,8 @@ export const prepareMediaFile = async ({
 
     const { file } = payload
 
+    console.log({ file })
+
     if (!file) {
         return { bytes: new ArrayBuffer(), filename: '', src: '', error: new Error('No hay archivo.'), success: false }
     }

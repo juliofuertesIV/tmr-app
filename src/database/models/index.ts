@@ -31,9 +31,6 @@ import configData from '../config/config.js'
 
 const env = process.env.NODE_ENV || 'development';
 const config = configData[env] as Options
-
-console.log({ configData })
-
 const sequelize = new Sequelize({ ...config })
 
 const Brand = BrandModel(sequelize, DataTypes)

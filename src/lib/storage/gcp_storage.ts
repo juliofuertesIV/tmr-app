@@ -17,9 +17,9 @@ export async function uploadToGoogleCloudStorage({
     const buffer = Buffer.from(bytes)
     
     const storage = new Storage({
-        projectId: process.env.PROJECT_ID,
+        projectId: process.env.GCP_PROJECT_ID,
         credentials: {
-            client_email: process.env.CLIENT_EMAIL,
+            client_email: process.env.GCP_CLIENT_EMAIL,
             private_key: process.env.GCP_PRIVATE_KEY
         }
     });
@@ -48,9 +48,9 @@ export const deleteFromCloudStorage = async ({ src } : { src: string }) => {
     const fileName = src.replace('https://storage.googleapis.com/concursos_tmr_media/', '')
 
     const storage = new Storage({
-        projectId: process.env.PROJECT_ID,
+        projectId: process.env.GCP_PROJECT_ID,
         credentials: {
-            client_email: process.env.CLIENT_EMAIL,
+            client_email: process.env.GCP_CLIENT_EMAIL,
             private_key: process.env.GCP_PRIVATE_KEY
         }
     });
