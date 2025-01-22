@@ -1,6 +1,13 @@
 'use strict';
 
-import { extractedSubdomainString } from "@/lib/forms/validation/functions"
+const extractedSubdomainString = (value) => {
+    
+    if (value.includes('www.')) throw new Error('Subdominio mal formado. Incluye "www" y no debería.')
+
+    const domainString = value.replace('https://', '')
+
+    return [domainString.split('.')[0], domainString.split('.')[1]].join('-')
+}
 
 const { Model } = require('sequelize');
 
@@ -87,5 +94,6 @@ module.exports = (sequelize, DataTypes) => {
         record.dataValues.domain = parsedDomain;
       },
     },
-  });  return Contest;
+  });  
+  return Contest;
 };

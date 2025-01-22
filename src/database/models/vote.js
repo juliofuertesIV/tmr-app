@@ -10,8 +10,8 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Vote.belongsTo(models.Inscription, { foreignKey: 'ContestantId' });
-      Vote.belongsTo(models.Voter, { foreignKey: 'VoterId' });
+      Vote.belongsTo(models.Inscription, { foreignKey: 'ContestantId', onDelete: 'CASCADE' });
+      Vote.belongsTo(models.Voter, { foreignKey: 'VoterId', onDelete: 'CASCADE' });
     }
   }
 

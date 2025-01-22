@@ -4,13 +4,9 @@ const { Model } = require('sequelize')
 
 module.exports = (sequelize, DataTypes) => {
   class ContestManager extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
+    
     static associate(models) {
-      ContestManager.belongsTo(models.Manager, { foreignKey: 'ManagerId' });
+      ContestManager.belongsTo(models.Manager, { foreignKey: 'ManagerId', onDelete: 'CASCADE' });
       ContestManager.belongsTo(models.Contest, { foreignKey: 'ContestId' });
     }
   }

@@ -2,10 +2,11 @@ import { cookies } from "next/headers";
 import LoginForm from "./_components/LoginForm";
 import { decryptJWT } from "@/lib/auth";
 import TMRLogo from "../admin/_layout/design/TmrLogo";
-import { Manager } from '@/database/models';
 import { IManager } from "@/types";
+import { Manager } from "@/database/models";
 
 async function getManagerById() {
+
     const id = await getManagerIdBySession()
 
     return await Manager.findOne({ where: { id }}).then(data => data)
@@ -14,10 +15,12 @@ async function getManagerById() {
 async function getManagerIdBySession() : Promise<string | null> {
 
     const currentSession = cookies().get('session');
-    
+
     const manager = currentSession ? 
         await decryptJWT(currentSession?.value).then(data => data) 
         : null;
+
+    console.log({ manager })    
 
     return manager?.id || null;
 }

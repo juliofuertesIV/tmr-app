@@ -5,7 +5,6 @@ import AdminMainNav from "./_layout/nav/AdminMainNav";
 import { cookies } from "next/headers";
 import { decryptJWT } from "@/lib/auth";
 import { redirect } from "next/navigation";
-import { Manager, Media } from '@/database/models';
 import { IManager } from "@/types";
 import { getCollectionElementById } from "@/lib/fetch/get";
 

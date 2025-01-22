@@ -11,8 +11,8 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      InscriptionTag.belongsTo(models.Tag, { foreignKey: 'TagId' });
-      InscriptionTag.belongsTo(models.Inscription, { foreignKey: 'InscriptionId' });
+      InscriptionTag.belongsTo(models.Tag, { foreignKey: 'TagId', onDelete: 'CASCADE' });
+      InscriptionTag.belongsTo(models.Inscription, { foreignKey: 'InscriptionId', onDelete: 'CASCADE' });
     }
   }
 

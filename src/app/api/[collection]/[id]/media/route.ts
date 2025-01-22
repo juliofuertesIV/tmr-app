@@ -32,7 +32,7 @@ export const PUT = async (req: Request, { params } : Params) => {
     return await updateAssociatedMedia({ collection: collection as ICollectionsWithMediaNames, id, formData })    
 }
 
-export const DELETE = async (req: Request, { params } : Params) => {
+export const DELETE = async (req: Request) => {
     
     const formData = await req.formData()
 
