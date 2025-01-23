@@ -40,7 +40,7 @@ export const updateCollectionItem = async ({ collection, formData, id } : Props)
             transaction,
             error, 
             collection,
-            route: `/api/${ collection }/${ id }`
+            route: `/api/collections/${ collection }/${ id }`
         })
     }
 }
@@ -82,7 +82,7 @@ export const updateInscriptionMedia = async ({ collection, formData, id } : Prop
             return await handleApiError({
                 error, 
                 collection,
-                route: `/api/${ collection }/${ id }`
+                route: `/api/collections/${ collection }/${ id }`
             })
         }) as { MediumId: string } 
 
@@ -94,7 +94,7 @@ export const updateInscriptionMedia = async ({ collection, formData, id } : Prop
                 message: 'Error updating incription media ID',
                 error, 
                 collection,
-                route: `/api/${ collection }/${ id }`
+                route: `/api/collections/${ collection }/${ id }`
             })
         })
 
@@ -105,7 +105,7 @@ export const updateInscriptionMedia = async ({ collection, formData, id } : Prop
         return await handleApiError({
             error, 
             collection,
-            route: `/api/${ collection }/${ id }`
+            route: `/api/collections/${ collection }/${ id }`
         })
     }
 
@@ -156,7 +156,7 @@ export const updateManagerMedia = async ({ collection, formData, id } : Props) =
             return await handleApiError({
                 error, 
                 collection,
-                route: `/api/${ collection }/${ id }`
+                route: `/api/collections/${ collection }/${ id }`
             })
         }) as { MediumId: string } 
 
@@ -168,7 +168,7 @@ export const updateManagerMedia = async ({ collection, formData, id } : Props) =
                 message: 'Error updating incription media ID',
                 error, 
                 collection,
-                route: `/api/${ collection }/${ id }`
+                route: `/api/collections/${ collection }/${ id }`
             })
         })
 
@@ -179,7 +179,7 @@ export const updateManagerMedia = async ({ collection, formData, id } : Props) =
         return await handleApiError({
             error, 
             collection,
-            route: `/api/${ collection }/${ id }`
+            route: `/api/collections/${ collection }/${ id }`
         })
     }
 

@@ -23,7 +23,7 @@ export const deleteAssociation = async ({
             return await handleApiError({
                 message: 'No se han encontrado asociaciones para esta colección.',
                 collection,
-                route: `/api/${ collection }/${ id }/${ association }/${ associationId }`,
+                route: `/api/collections/${ collection }/${ id }/${ association }/${ associationId }`,
                 error: new Error('No collectionItemIdField or AssociationTable found')
             })
         }
@@ -46,7 +46,7 @@ export const deleteAssociation = async ({
         await handleApiError({
             error,
             collection,
-            route: `/api/${ collection }/${ id }/${ association }/${ associationId }`,
+            route: `/api/collections/${ collection }/${ id }/${ association }/${ associationId }`,
             message: 'Fallo eliminando la asociación'
         })
     }

@@ -21,6 +21,18 @@ export const createAndUploadMedia = async ({ formData } : { formData: FormData }
             filename,
             bytes 
         } = validatedPayload
+
+
+        console.log({
+            role,
+            alt,
+            width,
+            height,
+            src,
+            folder,
+            filename,
+            bytes
+        })
         
         let mediaInsertion;
     
@@ -34,12 +46,13 @@ export const createAndUploadMedia = async ({ formData } : { formData: FormData }
     
         try {
             await uploadToGoogleCloudStorage({ bytes, folder, filename })
+            await transaction.commit()
         }
         catch (error) {
             await transaction.rollback()
-            
             throw new Error(error as string)
         }
+
 
     return {        
         width,

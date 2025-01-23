@@ -27,12 +27,16 @@ export const validateFile = async ({ formData } : { formData: FormData }) => {
             collection = validatedFormData.collection
             domain = validatedFormData.domain
 
-            const storageStrings = getFileGCPStorageSrc({ domain, collection, file }) // get GCP folder destination
+        }
+        catch (error) {
+            throw new Error(error as string)
+        }
 
+        try {
+            const storageStrings = getFileGCPStorageSrc({ domain, collection, file }) // get GCP folder destination
             src = storageStrings.src
             filename = storageStrings.filename
             folder = storageStrings.folder
-
         }
         catch (error) {
             throw new Error(error as string)

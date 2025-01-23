@@ -126,7 +126,7 @@ export const createAssociationWithMedia = async ({
             transaction,
             error,
             collection,
-            route: `/api/${ collection }/${ id }/media`,
+            route: `/api/collections/${ collection }/${ id }/media`,
             message: 'Fallo asociando elemento'
         })
     }) 
@@ -169,7 +169,7 @@ const checkForPayloadErrors = ({
         return {
             error: new Error('No hay archivo.'),
             collection,
-            route: `/api/${ collection }/${ id }/${ association }`,
+            route: `/api/collections/${ collection }/${ id }/${ association }`,
             message: 'Fallo asociando elemento'
         }
 

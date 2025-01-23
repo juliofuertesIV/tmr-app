@@ -67,6 +67,10 @@ const modelsByCollectionName = {
             include: [ Media ],
             order: [['name', 'ASC']]
         }
+    },
+    media: {
+        Model: Media,
+        options: {}
     }
 } as { 
     [key in ICollectionNames]: { 

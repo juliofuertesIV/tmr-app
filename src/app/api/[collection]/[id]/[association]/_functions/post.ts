@@ -20,7 +20,7 @@ export const createAssociation = async ({ collection, id, association, formData}
         return await handleApiError({
             error: new Error('No associationId field in formData'),
             collection,
-            route: `/api/${ collection }/${ id }/${ association }`,
+            route: `/api/collections/${ collection }/${ id }/${ association }`,
             message: 'Fallo asociando elemento'
         })
     }
@@ -35,7 +35,7 @@ export const createAssociation = async ({ collection, id, association, formData}
         return await handleApiError({
             error: new Error('Bad request. Cannot find collectionItemIdField or Association Table.'),
             collection,
-            route: `/api/${ collection }/${ id }/${ association }`,
+            route: `/api/collections/${ collection }/${ id }/${ association }`,
             message: 'Fallo asociando elemento'
         })
 
@@ -56,7 +56,7 @@ export const createAssociation = async ({ collection, id, association, formData}
         return await handleApiError({
             error,
             collection,
-            route: `/api/${ collection }/${ id }/${ association }`,
+            route: `/api/collections/${ collection }/${ id }/${ association }`,
             message: 'Fallo asociando elemento'
         })
     }

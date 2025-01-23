@@ -22,7 +22,8 @@ export const formsByCollectionName : IFormByCollectionName = {
         genres: genreFields,
         inscriptions: inscriptionFields,
         managers: managerFields,
-        sponsors: sponsorFields
+        sponsors: sponsorFields,
+        media: []
     }
 } 
 

@@ -12,7 +12,15 @@ export const addCollectionElement = async (
     formData: FormData
 ) : Promise<IAPIResponse<null>> => {
 
-    const creationAPIUrl = collection === 'managers' ? `http://localhost:3000/api/auth/managers` : `http://localhost:3000/api/${ collection }`
+    let creationAPIUrl;
+
+    creationAPIUrl = collection === 'managers' ? `http://localhost:3000/api/auth/managers` : `http://localhost:3000/api/${ collection }`
+
+    if (collection === 'media') {
+        creationAPIUrl = `http://localhost:3000/api/media`
+    }
+
+    console.log({ creationAPIUrl })
 
     const res = await fetch(creationAPIUrl, {
         method: "POST",

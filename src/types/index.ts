@@ -2,7 +2,7 @@ import { IMedia } from "./media"
 
 export type IAllCollections = IContest & IBrand & ISocialMedia & IGenre & IInscription & IManager
 
-export type ICollectionNames = 'contests' | 'brands' | 'social' | 'genres' | 'inscriptions' | 'managers' | 'sponsors' 
+export type ICollectionNames = 'contests' | 'brands' | 'social' | 'genres' | 'inscriptions' | 'managers' | 'sponsors' | 'media'
 
 export type ICollectionsWithMedia = IContest
 
