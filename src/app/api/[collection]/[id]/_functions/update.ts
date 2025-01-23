@@ -2,7 +2,7 @@ import { getModelByCollectionName } from "../../_utils"
 import { Inscription, Media, sequelize } from '@/database/models'
 import { constructAPIResponse } from "@/app/api/_utils"
 import { handleApiError } from "@/lib/errors"
-import { validateMedia } from "@/lib/media/validation"
+import { validateFileTypeAndSize } from "@/lib/media/validate/functions"
 import { IMediaPayload } from "@/types/media"
 import { createMedia, createMedium } from "@/lib/media/create"
 import { ICollectionNames, IInscription } from "@/types"
@@ -52,7 +52,7 @@ export const updateInscriptionMedia = async ({ collection, formData, id } : Prop
     const { file, domain } = payload 
 
     try {
-        validateMedia({ file, type: 'image' })
+        validateFileTypeAndSize({ file, type: 'image' })
     }
     catch (error) {
         return await handleApiError({
@@ -126,7 +126,7 @@ export const updateManagerMedia = async ({ collection, formData, id } : Props) =
     const { file } = payload 
 
     try {
-        validateMedia({ file, type: 'image' })
+        validateFileTypeAndSize({ file, type: 'image' })
     }
     catch (error) {
         return await handleApiError({

@@ -18,6 +18,10 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
+      filename: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
       width: {
         type: Sequelize.INTEGER,
         allowNull: false,

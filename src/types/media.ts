@@ -6,7 +6,7 @@ export type ICollectionsWithMediumNames = 'inscriptions' | 'sponsors' | 'manager
 export type IMediaRole = IContestMediaRole | 'inscriptions' | 'sponsors' | 'profilePic'
 
 export type IMediaPayload = {
-    file: File | null,
+    file: File,
     width: string,
     height: string,
     role: IMediaRole,

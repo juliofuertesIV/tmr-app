@@ -4,13 +4,11 @@ const bucketName = process.env.GCP_BUCKET as string
 
 export async function uploadToGoogleCloudStorage({ 
     bytes,
-    collection,
-    domain,
+    folder,
     filename 
 } : { 
     bytes: ArrayBuffer,
-    collection: string,
-    domain: string,
+    folder: string,
     filename: string 
 }) {
     
@@ -28,7 +26,7 @@ export async function uploadToGoogleCloudStorage({
 
     await new Promise((resolve, reject) => {
 
-        const blob = bucket.file(`${ domain }/${ collection }/${filename}`)
+        const blob = bucket.file(`${ folder }/${filename}`)
         const blobStream = blob.createWriteStream({ resumable: false })
 
         blobStream

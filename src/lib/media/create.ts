@@ -1,27 +1,32 @@
 import { Media, sequelize } from '@/database/models'
 import { uploadMedia } from "@/lib/media/upload"
 import { handleApiError } from "@/lib/errors"
-import { ICollectionsWithMediumNames, IMedia, IMediaPayload } from "@/types/media"
+import { ICollectionsWithMediumNames, IMedia, IMediaPayload, IMediaRole } from "@/types/media"
 import { ICollectionsWithMediaNames } from "@/types/media"
 import { deleteFromCloudStorage } from "../storage/gcp_storage"
 import { Transaction } from "sequelize"
 
 export const createMedia = async ({ 
     formData,
+    width,
+    height,
+    role,
     collection,
+    domain,
 } : { 
     formData: FormData,
-    collection: ICollectionsWithMediaNames
+    width: string,
+    height: string,
+    role: IMediaRole,
+    src: string,
+    collection: ICollectionsWithMediaNames,
+    domain: string
 }
 ) : Promise<{ MediumId: string | null, transaction: Transaction }> => {
 
     const payload = Object.fromEntries(formData) as IMediaPayload
 
-    const { src, width, height, role } = await uploadMedia({ 
-        collection,
-        domain: formData.get('domain') as string,
-        payload 
-    }) 
+    const { src } = await uploadMedia({ collection, domain, payload }) 
 
     const transaction = await sequelize.transaction()
 

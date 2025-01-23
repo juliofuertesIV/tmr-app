@@ -5,7 +5,7 @@ import { constructAPIResponse } from "../../_utils"
 import { handleApiError } from "@/lib/errors"
 import { ICreateInscriptionPayload } from "@/types/inscriptions"
 import { createMedia } from "@/lib/media/create"
-import { validateMediaFormData, validateMedia } from "@/lib/media/validation"
+import { validateMediaFormDataFields, validateFileTypeAndSize } from "@/lib/media/validate/functions"
 import { ICollectionsWithMediaNames } from "@/types/media"
 import { Transaction } from "sequelize"
 
@@ -53,7 +53,7 @@ export const addToCollectionWithMedia = async ({ collection, formData } : IColle
     const payload = Object.fromEntries(formData) as ICreateInscriptionPayload
 
     try {
-        validateMedia({ file: payload.file, type: 'image' })
+        validateFileTypeAndSize({ file: payload.file, type: 'image' })
     }
     catch (error) {
         return await handleApiError({
@@ -65,7 +65,7 @@ export const addToCollectionWithMedia = async ({ collection, formData } : IColle
     }
 
     try {
-        validateMediaFormData({ formData })
+        validateMediaFormDataFields({ formData })
     }
     catch (error) {
         return await handleApiError({
