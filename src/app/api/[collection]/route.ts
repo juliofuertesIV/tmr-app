@@ -1,9 +1,8 @@
 
 import { ICollectionNames } from '@/types'
 import { getCollectionByName } from './_functions/get'
-import { addToCollection, addToCollectionWithMedia } from './_functions/post'
-import { collectionCreationIncludesMedia } from './_utils'
-import { ICollectionsWithMediaNames } from '@/types/media'
+import { addToCollection, addInscription } from './_functions/post'
+import { ICollectionsWithMediaNames, ICollectionsWithMediumNames } from '@/types/media'
 
 export const GET = async (req: Request, { params } : { params: { collection: ICollectionNames | ICollectionsWithMediaNames }}) => {
 
@@ -18,12 +17,10 @@ export const POST = async (req: Request, { params } : { params: { collection: IC
 
     const formData = await req.formData()
 
-    const creationIncludesMedia = collectionCreationIncludesMedia(collection)
+    if (collection === 'inscriptions') {
+        return await addInscription({ collection: 'inscriptions' as ICollectionsWithMediumNames, formData })
+    }
 
-    if (!creationIncludesMedia) return await addToCollection({ collection, formData })
-
-    return await addToCollectionWithMedia({ 
-        collection: collection as ICollectionsWithMediaNames, 
-        formData 
-    })
+    return await addToCollection({ collection, formData })
+    
 }

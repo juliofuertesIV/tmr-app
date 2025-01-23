@@ -4,10 +4,8 @@ import { Inscription } from '@/database/models'
 import { constructAPIResponse } from "../../_utils"
 import { handleApiError } from "@/lib/errors"
 import { ICreateInscriptionPayload } from "@/types/inscriptions"
-import { createMedia } from "@/lib/media/create"
-import { validateMediaFormDataFields, validateFileTypeAndSize } from "@/lib/media/validate/functions"
-import { ICollectionsWithMediaNames } from "@/types/media"
-import { Transaction } from "sequelize"
+import { ICollectionsWithMediumNames } from "@/types/media"
+import { createAndUploadMedia } from "../../media/_functions"
 
 type ICollectionCreationPayload = {
     collection: ICollectionNames,
@@ -15,7 +13,7 @@ type ICollectionCreationPayload = {
 }
 
 type ICollectionWithMediaCreationPayload = {
-    collection: ICollectionsWithMediaNames,
+    collection: ICollectionsWithMediumNames,
     formData: FormData
 }
 
@@ -48,49 +46,33 @@ export const addToCollection = async ({ collection, formData } : ICollectionCrea
     }
 }
 
-export const addToCollectionWithMedia = async ({ collection, formData } : ICollectionWithMediaCreationPayload) => {
+export const addInscription = async ({ collection, formData } : ICollectionWithMediaCreationPayload) => {
     
     const payload = Object.fromEntries(formData) as ICreateInscriptionPayload
 
+    let createdMedium;
+
     try {
-        validateFileTypeAndSize({ file: payload.file, type: 'image' })
+        createdMedium = await createAndUploadMedia({ formData })
     }
     catch (error) {
-        return await handleApiError({
-            collection,
-            route: '/api/' + collection,
+        return handleApiError({
             error,
-            message: 'Fallo validando el archivo.' 
+            route: '/api/media'
         })
     }
 
-    try {
-        validateMediaFormDataFields({ formData })
-    }
-    catch (error) {
-        return await handleApiError({
-            collection,
-            route: '/api/' + collection,
-            error,
-            message: 'Fallo validando los campos del archivo.' 
-        })
-    }    
-
-    const { MediumId, transaction } = await createMedia({ formData, collection }) as { MediumId: string, transaction: Transaction }
-
-    console.log({ MediumId })
+    const { MediumId, transaction } = createdMedium
 
     try {
         const inscription = await Inscription.create({ MediumId, ...payload }, { transaction })
-
-        console.log({ inscription })
 
         return Response.json(
             constructAPIResponse({ 
                 message: "Candidatura inscrita correctamente.",
                 success: true,
                 error: null,
-                data: { inscription } 
+                data: inscription 
             })
         )
     }

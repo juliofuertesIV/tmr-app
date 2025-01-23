@@ -46,7 +46,6 @@ export const createAndUploadMedia = async ({ formData } : { formData: FormData }
     
         try {
             await uploadToGoogleCloudStorage({ bytes, folder, filename })
-            await transaction.commit()
         }
         catch (error) {
             await transaction.rollback()
@@ -61,6 +60,7 @@ export const createAndUploadMedia = async ({ formData } : { formData: FormData }
         role,
         src,
         filename,
-        MediumId
+        MediumId,
+        transaction
     }        
 }

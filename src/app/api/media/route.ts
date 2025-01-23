@@ -37,9 +37,11 @@ export const POST = async (req: Request) => {
         role,
         src,
         filename,
-        MediumId
+        MediumId,
+        transaction
     } = createdMedium
         
+    await transaction.commit()
 
     return Response.json({
         message: 'File created and uploaded!',
