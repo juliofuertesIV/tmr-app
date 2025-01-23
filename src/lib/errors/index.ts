@@ -71,17 +71,13 @@ export const handleApiError = async ({
     error,
     route,
     message,
-    collection,
-    transaction,
+    collection
 } : {
     error: unknown,
     route: string,
     message?: string,
     collection?: ICollectionNames,
-    transaction?: Transaction
 }) => {
-
-    if (!!transaction) await transaction.rollback()
 
     await createLog({ error, collection, route, type: 'error' })
 

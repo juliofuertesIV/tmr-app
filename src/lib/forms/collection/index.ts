@@ -16,8 +16,6 @@ export const getFormByCollectionName : FormByCollectionName = ({ collection, act
 
     const action = formsByCollectionName.action[actionTarget]
 
-    console.log({ action, collection })
-
     const allFields = formsByCollectionName.fields[collection]
 
     if (actionTarget === 'creation') {

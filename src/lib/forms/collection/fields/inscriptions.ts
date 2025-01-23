@@ -111,15 +111,5 @@ export const inscriptionFields : IFormField[] = [
         testAgainst: null,
         type: 'text',
         requiredForItemCreation: false
-    },    
-    {
-        name: 'file',
-        label: 'Imagen',
-        instructions: null,
-        validationMethod: null,
-        processingMethod: null,
-        testAgainst: null,
-        type: 'file',
-        requiredForItemCreation: true
-    },
+    }
 ]

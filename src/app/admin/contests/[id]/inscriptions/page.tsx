@@ -1,5 +1,7 @@
 import { Metadata } from "next";
 import { Contest, Inscription, Media } from '@/database/models';
+import { IContest, IInscription } from "@/types";
+import Image from "next/image";
 
 export const metadata: Metadata = {
     title: "Panel de administración TMR",
@@ -16,13 +18,13 @@ const getData = async ({ contestId } : { contestId: string }) => {
     })
 
     const inscriptions = await Inscription.findAll({ where: { ContestId: contestId }, include: [ Media ]})
-    .then(data => data)
+    .then(data => data) 
     .catch(error => {
         console.log(error);
         throw new Error(error as string)
     })
 
-    return { contest, inscriptions }
+    return { contest, inscriptions } as unknown as { contest: IContest | null, inscriptions: IInscription[] }
 }
 
 export default async function AdminElementPage({ params } : { params: { id: string }}) {
@@ -42,12 +44,22 @@ export default async function AdminElementPage({ params } : { params: { id: stri
                         inscriptions.map((inscription, index) => {
                             return (
                                 <div
-                                    className="border-2 bg-neutral-800 px-4 w-full"
+                                    className="border-2 bg-neutral-800 p-2 px-4 w-full max-w-lg flex justify-between"
                                     key={index}
                                 >
-                                    <div className="flex items-center gap-2 py-2">
-                                        <div className="font-bold">{inscription.name}</div>
-                                        <div className="uppercase italic text-sm">({inscription.city})</div>
+                                    <div className="flex flex-col gap-2 py-2 h-full justify-center">
+                                        <div className="font-bold text-xl">{ inscription.name }</div>
+                                        <div className="italic text-sm">({ inscription.city })</div>
+                                        <div className="uppercase italic text-sm">{ inscription.genre }</div>
+                                    </div>
+                                    <div className="flex w-full max-w-24 max-h-24 rounded-full overflow-hidden border-2 border-neutral-950 bg-neutral-900">
+                                        <Image
+                                            className="flex max-w-full max-h-full object-cover"
+                                            src={ inscription.Medium.src }
+                                            width={ parseInt(inscription.Medium.width) }
+                                            height={ parseInt(inscription.Medium.height) }
+                                            alt={ inscription.Medium.alt }
+                                        />
                                     </div>
                                 </div>
                             );
