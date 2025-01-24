@@ -42,19 +42,7 @@ export const associateItems = async (
     formData: FormData
 ) : Promise<IAPIResponse<null>> => {
 
-    /* TO DO: VALIDATE if (association === 'states') {
-        await fetch(`http://localhost:3000/api/validate/${ collection }/${ collectionItemId }`, {
-            method: 'GET',
-            cache: 'no-cache'
-        })
-        .then(async res => await res.json())
-        .then((data: IAPIResponse<null>) => {
-            if (!data.success) {
-                throw new Error(data.error?.message)
-            }
-        })
-        .catch(error => { throw new Error(error) })
-    } */
+    // TO DO: VALIDATE if (association === 'states') { // ACTUALLY UPDATE CONTEST STATE separate function
 
     const res = await fetch(`http://localhost:3000/api/${ collection }/${ collectionItemId }/${ association }`, {
         method: "POST",
@@ -67,6 +55,27 @@ export const associateItems = async (
     
     revalidateTag(collection)
     revalidateTag(association)
+    return res
+
+}
+
+export const addMediaToItem = async (
+    collection: ICollectionNames,
+    id: string | number,
+    prevState: any,
+    formData: FormData
+) : Promise<IAPIResponse<null>> => {
+
+    const res = await fetch(`http://localhost:3000/api/${ collection }/${ id }/medium`, {
+        method: "POST",
+        cache: 'no-cache',
+        body: formData,
+    })
+    .then(data => data)
+    .then(async data => await data.json())
+    .catch(error => error)
+    
+    revalidateTag(collection)
     return res
 
 }
