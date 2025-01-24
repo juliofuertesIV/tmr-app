@@ -8,8 +8,7 @@ export const deleteMedia = async ({ formData } : { formData: FormData }) => {
     if (!mediaId) throw new Error('No media id found.')
 
     try {
-        await deleteMediaInStorageAndDatabase({ mediaId }) // TO DO: ON DELETE CASCADE
-
+        await deleteMediaInStorageAndDatabase({ MediumId: mediaId }) // TO DO: ON DELETE CASCADE
     } catch (error) {
 
         return await handleApiError({
