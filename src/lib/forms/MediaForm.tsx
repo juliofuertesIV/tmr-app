@@ -7,7 +7,7 @@ import React, { ChangeEvent, HTMLProps, useEffect, useRef, useState } from 'reac
 import { useFormState } from 'react-dom'
 import { getMediaBoundAction, mediaElementAlreadyPresent } from './actions'
 import AdminFormFeedback from './feedback/FormFeedback'
-import ImagePreview from './inputs/media/ImagePreview'
+import MediaInputPreview from './inputs/media/MediaInputPreview'
 import FormSubmit from './feedback/FormSubmit'
 import NextImage from 'next/image'
 
@@ -114,7 +114,7 @@ export default function MediaForm({ collection, collectionItem, field, domain, .
                 <input ref={ fileInputRef } type="file" name='file' accept={ accept } { ...props } onChange={ manageFileInputChange }/>
             </div>
             <div className='py-2 w-full h-full max-h-40 p-2'>
-                <ImagePreview src={ previewSrc } width={ imageMeasurements.width } height={ imageMeasurements.height }/>
+                <MediaInputPreview src={ previewSrc } width={ imageMeasurements.width } height={ imageMeasurements.height }/>
             </div>
             <input type="hidden" name="role" value={ role } />
             <input type="hidden" name="domain" value={ 'test-domain' } />

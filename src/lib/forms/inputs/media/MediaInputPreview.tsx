@@ -9,18 +9,20 @@ type Props = {
     height: number
 }
 
-export default function ImagePreview({ 
+export default function MediaInputPreview({ 
     src,
     width,
     height,
 } : Props) {
 
-    const previewRef = useRef<HTMLImageElement>(null)
+    // const previewRef = useRef<HTMLImageElement>(null)
+
+    if (!src) return null
 
     return (
         <Image
             className='w-full max-w-full max-h-full object-contain'
-            ref={ previewRef }
+            // ref={ previewRef }
             src={ src ? src : '/img/no-image-placeholder.svg' }
             width={ width }
             height={ height }
