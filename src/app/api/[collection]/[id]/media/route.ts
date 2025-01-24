@@ -2,7 +2,7 @@ import { ICollectionNames } from "@/types";
 import { getAssociation } from "../[association]/_functions/get";
 import { createAssociationWithMedia, updateAssociatedMedia } from "./_functions";
 import { ICollectionsWithMediaNames } from "@/types/media";
-import { deleteAssociatedMedia } from "./_functions/delete";
+import { deleteMedia } from "./_functions/delete";
 
 
 type Params = { params: { collection: ICollectionNames, id: string }}
@@ -36,6 +36,6 @@ export const DELETE = async (req: Request) => {
     
     const formData = await req.formData()
 
-    return await deleteAssociatedMedia({ formData })
+    return await deleteMedia({ formData })
 
 }

@@ -14,12 +14,6 @@ export const uploadMedia = async ({
 } : Props
 ) => {
 
-    console.log({
-        filename,
-        folder,
-        bytes
-    })
-
     await uploadToGoogleCloudStorage({ 
         bytes,
         filename,

@@ -24,7 +24,7 @@ export const POST = async (req: Request) => {
         createdMedium = await createAndUploadMedia({ formData })
     }
     catch (error) {
-        return handleApiError({
+        return await handleApiError({
             error,
             route: '/api/media'
         })

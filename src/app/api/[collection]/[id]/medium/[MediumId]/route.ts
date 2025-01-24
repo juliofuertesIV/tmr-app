@@ -1,15 +1,34 @@
 
 import { handleApiError } from "@/lib/errors";
-import { addMediaToCollectionItem, deleteCollectionItemMedia } from "../_functions";
+import { addMediaToCollectionItem, getCollectionItemMediumById } from "../_functions";
 import { ICollectionsWithMediumNames } from "@/types/media";
 import { constructAPIResponse } from "@/app/api/_utils";
+import { deleteMediaInStorageAndDatabase } from "@/lib/media/delete";
 
 type Params = { params: { collection: ICollectionsWithMediumNames, id: string, MediumId: string }}
 
 export const GET = async (req: Request, { params } : Params) => {
 
-    const { collection, id } = params
+    const { collection, id, MediumId } = params
 
+    const medium = await getCollectionItemMediumById(collection, id)
+    .then(data => data)
+    .catch(async error => {
+        return await handleApiError({
+            error,
+            route: `/api/${ collection }/[id]/medium/[MediumId]`
+
+        })
+    })
+
+    return Response.json(
+        constructAPIResponse({
+            message: 'Retrieved.',
+            success: true,
+            error: null,
+            data: medium
+        })
+    )
 }
 
 export const PUT = async (req: Request, { params } : Params) => {
@@ -17,10 +36,10 @@ export const PUT = async (req: Request, { params } : Params) => {
     const { collection, id, MediumId } = params
 
     try {
-        await deleteCollectionItemMedia({ MediumId })
+        await deleteMediaInStorageAndDatabase({ MediumId })
     }
     catch (error) {
-        return handleApiError({
+        return await handleApiError({
             error,
             route: `/api/${ collection }/[id]/medium/[MediumId]`
         })
@@ -31,7 +50,7 @@ export const PUT = async (req: Request, { params } : Params) => {
     try {
         await addMediaToCollectionItem({ collection, id, formData })    
     } catch (error) {
-        return handleApiError({
+        return await handleApiError({
             error,
             route: `/api/${ collection }/[id]/medium/ (PUT)`
         }) 
@@ -52,10 +71,10 @@ export const DELETE = async (req: Request, { params } : Params) => {
     const { collection, MediumId } = params
 
     try {
-        await deleteCollectionItemMedia({ MediumId })
+        await deleteMediaInStorageAndDatabase({ MediumId })
     }
     catch (error) {
-        return handleApiError({
+        return await handleApiError({
             error,
             route: `/api/${ collection }/[id]/medium/[MediumId]`
         })
@@ -70,3 +89,4 @@ export const DELETE = async (req: Request, { params } : Params) => {
         })
     )
 }
+

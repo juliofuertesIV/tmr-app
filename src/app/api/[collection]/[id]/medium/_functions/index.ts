@@ -1,9 +1,21 @@
 import { createAndUploadMedia } from "@/app/api/media/_functions"
-import { Media } from "@/database/models"
-import { createMedia } from "@/lib/media/create"
-import { ICollectionsWithMediaNames, ICollectionsWithMediumNames } from "@/types/media"
+import { ICollectionsWithMediumNames } from "@/types/media"
 import { getModelByCollectionName } from "../../../_utils"
-import { where } from "sequelize"
+import { ICollectionsWithMedium } from "@/types"
+
+export const getCollectionItemMediumById = async (collection: ICollectionsWithMediumNames, id: string) => {
+    
+    const { Model } = getModelByCollectionName(collection);
+
+    const collectionItem = await Model.findOne({ where: { id } })
+    .then(data => data)
+    .catch(error => {
+        throw new Error(error as string);
+    }) as unknown as ICollectionsWithMedium;
+
+    return collectionItem.Medium;
+}
+
 
 export const updateCollectionItemMedium = ({ 
     collection,
@@ -16,11 +28,6 @@ export const updateCollectionItemMedium = ({
     
 }
 
-export const deleteCollectionItemMedia = async ({ MediumId } : { MediumId: string }) => {
-
-    return await Media.destroy({ where: { id: MediumId }})
-
-}
 
 export const addMediaToCollectionItem = async ({ formData, collection, id } : { formData: FormData, collection: ICollectionsWithMediumNames, id: string }) => {
 
@@ -41,7 +48,6 @@ export const addMediaToCollectionItem = async ({ formData, collection, id } : { 
         await Model.update({ MediumId }, { where: { id }, transaction })
     } catch (error) {
         throw new Error(error as string)
-    }
-    
+    }   
 
 }

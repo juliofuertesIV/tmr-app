@@ -1,14 +1,6 @@
-import { ICollectionNames, ICollectionsWithMedia } from "@/types"
-import { ICollectionsWithMediaNames } from "@/types/media"
-import { getAssociationModelByName } from "../../../_utils"
-import { IAssociationNames } from "@/types/associations"
-import { Model, ModelStatic } from "sequelize"
-import { handleApiError } from "@/lib/errors"
-import { constructAPIResponse } from "@/app/api/_utils"
-import { createMedia } from "@/lib/media/create"
-import { deleteMedia } from "@/lib/media/delete"
 
-export const findMediumIdByRole = ({ 
+
+/* export const findMediumIdByRole = ({ 
     collectionItem,
     role } : {
     collectionItem: ICollectionsWithMedia,
@@ -23,7 +15,9 @@ export const findMediumIdByRole = ({
 
     return currentMediaId
 }
+ */
 
+/* 
 export const getCurrentMediaId = async ({
     collectionItem,
     formData,
@@ -42,6 +36,9 @@ export const getCurrentMediaId = async ({
 
 }
 
+ */
+
+/* 
 export const updateAssociatedMedia = async ({ 
     collection,
     id,
@@ -55,7 +52,7 @@ export const updateAssociatedMedia = async ({
     const role = formData.get('role') as string | null
     const mediaId = formData.get('currentMediumId') as string | null
 
-    if (!role || !mediaId) return handleApiError({
+    if (!role || !mediaId) return await handleApiError({
         error: 'No role or id found',
         route: '/api/media',
         collection,
@@ -76,8 +73,8 @@ export const updateAssociatedMedia = async ({
         formData
     })
 }
-
-
+ */
+/* 
 
 export const createAssociationWithMedia = async ({ 
         collection,
@@ -140,7 +137,11 @@ export const createAssociationWithMedia = async ({
         })
     )
 }
+ */
 
+
+
+/* 
 const checkForPayloadErrors = ({ 
     formData,
     collection,
@@ -181,4 +182,4 @@ const checkForPayloadErrors = ({
         }
 
     return { error: null }
-}
+} */
