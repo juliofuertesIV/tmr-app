@@ -128,10 +128,10 @@ const associationByName = {
     }
 } as {
     [key in IAssociationNames]: {
-        AssociationTable: ModelStatic<Model<any, any>> | null,
+        AssociationTable: ModelStatic<Model<any, any>>,
         AssociationModel: ModelStatic<Model<any, any>>,
         associationKey: IAssociationKeys,
-        collectionItemIdField: string | null,
+        collectionItemIdField: string,
         associationIdField: IAssociationIdFieldnames,
         options: FindOptions 
     }

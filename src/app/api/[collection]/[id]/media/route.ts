@@ -1,18 +1,9 @@
-import { ICollectionNames } from "@/types";
-import { getAssociation } from "../[association]/_functions/get";
-import { createAssociationWithMedia, updateAssociatedMedia } from "./_functions";
 import { ICollectionsWithMediaNames } from "@/types/media";
-import { deleteMedia } from "./_functions/delete";
+import { constructAPIResponse } from "@/app/api/_utils";
+import { createAndAssociateMedia } from "../_functions/media";
+import { handleApiError } from "@/lib/errors";
 
-
-type Params = { params: { collection: ICollectionNames, id: string }}
-
-export const GET = async (req: Request, { params } : Params) => {
-
-    const { collection, id } = params
-
-    return await getAssociation({ collection, association: 'media', id })
-}
+type Params = { params: { collection: ICollectionsWithMediaNames, id: string }}
 
 export const POST = async (req: Request, { params } : Params) => {
 
@@ -20,22 +11,23 @@ export const POST = async (req: Request, { params } : Params) => {
 
     const formData = await req.formData()
 
-    return await createAssociationWithMedia({ collection, id, formData })    
+    try {
+        await createAndAssociateMedia({ formData, collectionItemId: id })
+    } catch (error) {
+        return await handleApiError({
+            error,
+            route: `/api/${ collection }/[id]/media`
+        })
+    }
+
+    return Response.json(
+        constructAPIResponse({
+            message: 'Elements associated.',
+            success: true,
+            error: null,
+            data: null
+        })
+
+    )
 }
 
-export const PUT = async (req: Request, { params } : Params) => {
-
-    const { collection, id } = params
-
-    const formData = await req.formData()
-
-    return await updateAssociatedMedia({ collection: collection as ICollectionsWithMediaNames, id, formData })    
-}
-
-export const DELETE = async (req: Request) => {
-    
-    const formData = await req.formData()
-
-    return await deleteMedia({ formData })
-
-}
