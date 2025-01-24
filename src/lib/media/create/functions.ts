@@ -41,3 +41,4 @@ export const createMediumInDatabase = async ({
     return { MediumId: createdMedia.id, transaction } 
 }
 
+

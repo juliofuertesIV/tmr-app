@@ -80,6 +80,27 @@ export const addMediaToItem = async (
 
 }
 
+export const associateMediaToItem = async (
+    collection: ICollectionNames,
+    id: string | number,
+    prevState: any,
+    formData: FormData
+) : Promise<IAPIResponse<null>> => {
+
+    const res = await fetch(`http://localhost:3000/api/${ collection }/${ id }/media`, {
+        method: "POST",
+        cache: 'no-cache',
+        body: formData,
+    })
+    .then(data => data)
+    .then(async data => await data.json())
+    .catch(error => error)
+    
+    revalidateTag(collection)
+    return res
+
+}
+
 export const login = async (
     prevState: any,
     formData: FormData

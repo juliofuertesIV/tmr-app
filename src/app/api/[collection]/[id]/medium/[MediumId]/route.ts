@@ -43,27 +43,3 @@ export const PUT = async (req: Request, { params } : Params) => {
     )
 }
 
-export const DELETE = async (req: Request, { params } : Params) => {
-    
-    const { collection, MediumId } = params
-
-    try {
-        await deleteMediaInStorageAndDatabase({ MediumId })
-    }
-    catch (error) {
-        return await handleApiError({
-            error,
-            route: `/api/${ collection }/[id]/medium/[MediumId]`
-        })
-    }
-
-    return Response.json(
-        constructAPIResponse({
-            message: 'Image deleted',
-            success: true,
-            error: null,
-            data: null
-        })
-    )
-}
-

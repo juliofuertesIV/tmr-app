@@ -31,10 +31,9 @@ export const deleteMediaItem = async (
     collectionItemId: string | number,
     mediaId: string | number,
     prevState: any,
-    formData: FormData
 ) : Promise<IAPIResponse<null>> => {
 
-    const res = await fetch(`http://localhost:3000/api/${ collection }/${ collectionItemId }/media/${ mediaId }`, {
+    const res = await fetch(`http://localhost:3000/api/media/${ mediaId }`, {
         method: "DELETE",
         cache: 'no-cache'
     })
