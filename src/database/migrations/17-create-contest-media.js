@@ -8,7 +8,7 @@ module.exports = {
         allowNull: false,
         references: {
           model: 'Contests', // Referencing the Contests table
-          key: 'id',
+          key: 'id'
         },
       },
       MediumId: {
@@ -16,7 +16,7 @@ module.exports = {
         allowNull: false,
         references: {
           model: 'Media', // Referencing the Media table
-          key: 'id',
+          key: 'id'
         },
       },
       createdAt: {

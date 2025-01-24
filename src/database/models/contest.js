@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
         Contest.belongsToMany(models.Param, { through: 'ContestParams'})
         Contest.belongsToMany(models.Genre, { through: 'ContestGenres' });
-        Contest.belongsToMany(models.Media, { through: 'ContestMedia' });
+        Contest.belongsToMany(models.Media, { through: 'ContestMedia', onDelete: 'CASCADE' });
         Contest.belongsToMany(models.SocialMedia, { through: 'ContestSocials' });
         Contest.belongsToMany(models.Sponsor, { through: 'ContestSponsors' });
         Contest.belongsToMany(models.Manager, { through: 'ManagerContests' });

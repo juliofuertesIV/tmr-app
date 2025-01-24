@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       ContestMedia.belongsTo(models.Media, { foreignKey: 'MediumId', onDelete: 'CASCADE' });
-      ContestMedia.belongsTo(models.Contest, { foreignKey: 'ContestId' });
+      ContestMedia.belongsTo(models.Contest, { foreignKey: 'ContestId', onDelete: 'CASCADE' });
     }
   }
 
