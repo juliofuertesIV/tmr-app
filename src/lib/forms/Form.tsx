@@ -14,6 +14,7 @@ type Props = {
     fields?: IFormField[],
     collection: ICollectionNames,
     collectionItem?: IAllCollections,
+    MediumId?: string,
     domain?: string,
     target?: IActionTarget,
     children?: ReactNode
@@ -24,15 +25,19 @@ export default function Form({
     fields,
     collection,
     collectionItem,
+    MediumId,
     target,
     children 
 } : Props) {
 
     if (target === 'update' && !collectionItem) throw new Error('Cannot update a missing item.')
- 
-    const boundAction = target === 'update' ? 
-        action.bind(null, collection, (collectionItem as IAllCollections).id) 
-        : action.bind(null, collection)
+
+    let boundAction;
+
+    if (target === 'update') boundAction = action.bind(null, collection, (collectionItem as IAllCollections).id)
+    if (target === 'addMedia') boundAction = action.bind(null, collection, (collectionItem as IAllCollections).id)
+    if (target === 'deleteMedia') boundAction = action.bind(null, collection, MediumId as string)
+    else boundAction = action.bind(null, collection)
 
     const [state, formAction] = useFormState(boundAction, formInitialState)
 

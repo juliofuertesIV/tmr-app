@@ -3,7 +3,7 @@
 import { ICollectionNames } from "@/types"
 import { IAPIResponse } from "@/types/api"
 import { IAssociationNames } from "@/types/associations"
-import { ICollectionsWithMediaNames } from "@/types/media"
+import { ICollectionsWithMediaNames, ICollectionsWithMediumNames } from "@/types/media"
 import { revalidateTag } from "next/cache"
 
 export const deleteCollectionItem = async (collection: ICollectionNames, itemId: string, prevState: any, formData: FormData) : Promise<IAPIResponse<null>> => {
@@ -27,8 +27,7 @@ export const deleteCollectionItem = async (collection: ICollectionNames, itemId:
 }
 
 export const deleteMediaItem = async (
-    collection: ICollectionsWithMediaNames,
-    collectionItemId: string | number,
+    collection: ICollectionsWithMediaNames | ICollectionsWithMediumNames,
     mediaId: string | number,
     prevState: any,
 ) : Promise<IAPIResponse<null>> => {

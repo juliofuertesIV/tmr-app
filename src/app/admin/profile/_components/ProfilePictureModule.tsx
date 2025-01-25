@@ -2,15 +2,17 @@
 
 import React, { useRef } from 'react'
 import { Profile as ProfileIcon } from '../../_layout/design/icons/components/Profile'
-import Image from 'next/image'
 import { IManager } from '@/types'
 import ProfilePictureForm from './ProfilePictureForm'
+import ProfileCurrentMedium from './ProfileCurrentMedium'
 
 export default function ProfilePictureModule({ manager } : { manager: IManager }) {
 
     const fileInputRef = useRef<HTMLInputElement | null>(null)
+    const deleteMediaFormRef = useRef<HTMLFormElement | null>(null)
 
     const activateFileInput = () => fileInputRef.current?.click()
+    const deleteCurrentMedia = () => deleteMediaFormRef.current?.requestSubmit()
 
     if (!manager.Medium) {
         return (
@@ -23,18 +25,9 @@ export default function ProfilePictureModule({ manager } : { manager: IManager }
         )
     }
 
-    const { src, width, height, alt } = manager.Medium
-
     return (
-        <div className='w-full h-full max-w-24 max-h-24 flex my-4'>
-            <div className='rounded-full border-2 border-gray-400 bg-gray-800 w-full h-full flex justify-center items-center relative'>
-                <Image 
-                    src={ src } 
-                    width={ parseInt(width) } 
-                    height={ parseInt(height) } 
-                    alt={ alt }
-                />
-            </div>
+        <div className='w-full h-full max-w-24 max-h-24 flex my-4' onClick={ () => deleteCurrentMedia() }>
+            <ProfileCurrentMedium manager={ manager } deleteMediaFormRef={ deleteMediaFormRef }/>
         </div>
     )
 }

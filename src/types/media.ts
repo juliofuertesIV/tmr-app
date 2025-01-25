@@ -19,5 +19,6 @@ export type IMedia = {
     src: string,
     width: string,
     height: string,
-    alt: string
+    alt: string,
+    filename: string
 }

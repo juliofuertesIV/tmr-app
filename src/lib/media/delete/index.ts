@@ -5,25 +5,30 @@ import { IMedia } from "@/types/media"
 
 export const deleteMediaInStorageAndDatabase = async ({ MediumId } : { MediumId: string }) => {
 
-    const media = await Media.findOne({ where: { id: MediumId }})
-    .then(data => data as unknown as IMedia) 
-    .catch(async (error) => { throw new Error(error as string) })
+    let media;
     
-    const transaction = await sequelize.transaction()
-    
-    try { 
-        await Media.destroy({ where: { id: MediumId }, transaction }) 
+    try {
+        media = await Media.findOne({ where: { id: MediumId }})
+        .then(data => data as unknown as IMedia) 
     }
-    catch (error) {  throw new Error(error as string) }
-
-    try { 
-        await deleteFromCloudStorage({ src: media.src }) 
-    }
-    catch (error) { 
-        await transaction.rollback()
+    catch(error) { 
         throw new Error(error as string) 
-    } 
+    }
 
-    await transaction.commit()
+    try {
+        await sequelize.transaction(async (t) => {
+    
+        console.log('TRANSACTION STARTEDDD')
+        console.log('TRANSACTION STARTEDDD')
+        console.log('TRANSACTION STARTEDDD')
+        console.log('TRANSACTION STARTEDDD')
 
+        await Media.destroy({ where: { id: MediumId }, transaction: t }).catch(err => console.log(err))
+        await deleteFromCloudStorage({ filename: media.filename }) 
+        })
+    } catch (error) {
+        console.log({ error })
+        throw new Error(error as string)
+    }
 }
+ 

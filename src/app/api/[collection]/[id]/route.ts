@@ -1,5 +1,5 @@
 import { ICollectionNames } from "@/types";
-import { updateCollectionItem, updateInscriptionMedia, updateManagerMedia } from "./_functions/update";
+import { updateCollectionItem } from "./_functions/update";
 import { deleteCollectionItem } from "./_functions/delete";
 import { getCollectionItemById } from "./_functions/get";
 
@@ -23,14 +23,6 @@ export const PUT = async (req: Request, { params } : RouteParams) => {
     const { collection, id } = params
 
     const formData = await req.formData()
-
-    if (collection === 'inscriptions'  && formData.has('file')) {
-        return await updateInscriptionMedia({ collection, id, formData })
-    }
-
-    if (collection === 'managers' && formData.has('file')) {
-        return await updateManagerMedia({ collection, id, formData })
-    }
     
     return await updateCollectionItem({ collection, id, formData })
 }

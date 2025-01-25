@@ -41,9 +41,7 @@ export async function uploadToGoogleCloudStorage({
 
 
 
-export const deleteFromCloudStorage = async ({ src } : { src: string }) => {
-
-    const fileName = src.replace('https://storage.googleapis.com/concursos_tmr_media/', '')
+export const deleteFromCloudStorage = async ({ filename } : { filename: string }) => {
 
     const storage = new Storage({
         projectId: process.env.GCP_PROJECT_ID,
@@ -53,5 +51,16 @@ export const deleteFromCloudStorage = async ({ src } : { src: string }) => {
         }
     });
 
-    await storage.bucket(bucketName).file(fileName).delete()
+    try {
+        console.log('DELETING FROM STORAGE!!!')
+        console.log('DELETING FROM STORAGE!!!')
+        console.log('DELETING FROM STORAGE!!!')
+        console.log('DELETING FROM STORAGE!!!')
+        console.log('DELETING FROM STORAGE!!!')
+        console.log('DELETING FROM STORAGE!!!')
+        await storage.bucket(bucketName).file(filename).delete()
+    }
+    catch (error) {
+        console.log(error)
+    }
 }

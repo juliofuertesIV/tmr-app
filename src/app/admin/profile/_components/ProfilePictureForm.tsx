@@ -1,8 +1,7 @@
 'use client'
 
-import { getMediumBoundAction } from '@/lib/forms/actions';
+import { getAddMediumBoundAction } from '@/lib/forms/actions';
 import AdminFormFeedback from '@/lib/forms/feedback/FormFeedback';
-import FormSubmit from '@/lib/forms/feedback/FormSubmit';
 import { ICollectionsWithMedium, IManager } from '@/types';
 import { formInitialState } from '@/types/forms';
 import React, { ChangeEvent, MutableRefObject, useEffect, useRef, useState } from 'react'
@@ -15,16 +14,19 @@ type Props = {
 
 export default function ProfilePictureForm({ inputRef, manager } : Props) {
 
-    const boundAction = getMediumBoundAction({ collection: 'managers', collectionItem: manager as ICollectionsWithMedium })
+    const boundAction = getAddMediumBoundAction({ collection: 'managers', collectionItem: manager as ICollectionsWithMedium })
+
     const [ state, action ] = useFormState(boundAction, formInitialState)
+    
     const [ file, setFile ] = useState<File | null>(null)
-    const [ imageMeasurements, setImageMeasurements ] = useState<{ width: number | null, height: number | null }>({ width: null, height: null })
+    
+    const [ imageSize, setImageSize ] = useState<{ width: number | null, height: number | null }>({ width: null, height: null })
 
     const formRef = useRef<HTMLFormElement>(null)
 
     const emptyState = () => { 
         setFile(null)
-        setImageMeasurements({ width: null, height: null })
+        setImageSize({ width: null, height: null })
     }
 
     const manageFileInputChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -44,7 +46,7 @@ export default function ProfilePictureForm({ inputRef, manager } : Props) {
         const updateImageMeasurements = (src: string) => {
             const image = new Image()
             image.src = src
-            image.addEventListener('load', () => setImageMeasurements({ width: image.width, height: image.height })) 
+            image.addEventListener('load', () => setImageSize({ width: image.width, height: image.height })) 
         }
 
         reader.addEventListener("load", () => {
@@ -61,28 +63,25 @@ export default function ProfilePictureForm({ inputRef, manager } : Props) {
 
     useEffect(() => {
 
-        if (!imageMeasurements.height && !imageMeasurements.width) return 
+        if (!imageSize.height && !imageSize.width) return 
 
-        formRef.current?.submit()
+        formRef.current?.requestSubmit()
         
-
-    }, [ imageMeasurements ])
+    }, [ imageSize ])
 
     return (
         <form
             ref={ formRef } 
-            className="hidden"
             action={ action }
         >
             <AdminFormFeedback state={ state } />
-            <div className='pb-2 px-2'>
-                <input ref={ inputRef } type="file" name='file' accept={ 'image' } onChange={ manageFileInputChange }/>
-            </div>
+            
+            <input className="hidden" ref={ inputRef } type="file" name='file' accept={ 'image' } onChange={ (e) => manageFileInputChange(e) }/>
             <input type="hidden" name="role" value={ 'profilePic' } />
-            <input type="hidden" name="domain" value={ 'test-domain' } />
-            <input type="hidden" name="width" value={ imageMeasurements.width || '' } />
-            <input type="hidden" name="height" value={ imageMeasurements.height || '' } />
-            { !!file && <FormSubmit value='Subir archivo' pendingValue='Subiendo archivo...' /> }
+            <input type="hidden" name="alt" value={ 'Profile picture of ' + manager.name } />
+            <input type="hidden" name="width" value={ imageSize.width || '' } />
+            <input type="hidden" name="height" value={ imageSize.height || '' } />
+            <input type="hidden" name="collection" value={ 'managers' } />
         </form>
     )
 }

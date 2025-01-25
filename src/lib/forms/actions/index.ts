@@ -1,6 +1,6 @@
 import { deleteMediaItem } from "@/lib/fetch/delete"
-import { associateItems } from "@/lib/fetch/post"
-import { updateCollectionItem } from "@/lib/fetch/put"
+import { addMediaToItem, associateItems } from "@/lib/fetch/post"
+import { updateCollectionItemMedium } from "@/lib/fetch/put"
 import { ICollectionsWithMedia, ICollectionsWithMedium, IContest } from "@/types"
 import { IActionTarget } from "@/types/forms"
 import { ICollectionsWithMediaNames, ICollectionsWithMediumNames, IMedia, IMediaRole } from "@/types/media"
@@ -25,15 +25,28 @@ export const mediaElementAlreadyPresent = (collectionItem: IContest, role: IMedi
     return item
 }
 
-export const getMediumBoundAction = ({
+export const getAddMediumBoundAction = ({
     collection,
     collectionItem
 }: {
     collection: ICollectionsWithMediumNames,
-    collectionItem: ICollectionsWithMedium
+    collectionItem: ICollectionsWithMedium,
 }) => {
 
-    return updateCollectionItem.bind(null, collection, collectionItem.id)
+    return addMediaToItem.bind(null, collection, collectionItem.id)
+}
+
+export const getUpdateMediumBoundAction = ({
+    collection,
+    collectionItem,
+    MediumId
+}: {
+    collection: ICollectionsWithMediumNames,
+    collectionItem: ICollectionsWithMedium,
+    MediumId: string
+}) => {
+
+    return updateCollectionItemMedium.bind(null, collection, collectionItem.id, MediumId)
 }
 
 export const getMediaBoundAction = ({ 

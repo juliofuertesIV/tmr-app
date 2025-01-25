@@ -51,6 +51,8 @@ export const addMediaToCollectionItem = async ({ formData, collection, id } : { 
     } catch (error) {
         throw new Error(error as string)
     }   
+
+    await transaction.commit()
 }
 
 export const createAndAssociateMedia = async ({ formData, collectionItemId } : { formData: FormData, collectionItemId: string }) => {
