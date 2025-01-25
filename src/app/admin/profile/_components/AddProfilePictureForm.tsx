@@ -1,18 +1,18 @@
 'use client'
 
 import { getAddMediumBoundAction } from '@/lib/forms/actions';
-import AdminFormFeedback from '@/lib/forms/feedback/FormFeedback';
 import { ICollectionsWithMedium, IManager } from '@/types';
 import { formInitialState } from '@/types/forms';
 import React, { ChangeEvent, MutableRefObject, useEffect, useRef, useState } from 'react'
 import { useFormState } from 'react-dom';
+import ProfilePlaceholder from './ProfilePlaceholder';
 
 type Props = { 
     manager: IManager,
     inputRef: MutableRefObject<HTMLInputElement | null>;
 }
 
-export default function ProfilePictureForm({ inputRef, manager } : Props) {
+export default function AddProfilePictureForm({ inputRef, manager } : Props) {
 
     const boundAction = getAddMediumBoundAction({ collection: 'managers', collectionItem: manager as ICollectionsWithMedium })
 
@@ -70,12 +70,8 @@ export default function ProfilePictureForm({ inputRef, manager } : Props) {
     }, [ imageSize ])
 
     return (
-        <form
-            ref={ formRef } 
-            action={ action }
-        >
-            <AdminFormFeedback state={ state } />
-            
+        <form ref={ formRef } action={ action } className='flex w-full'>
+            <ProfilePlaceholder/>
             <input className="hidden" ref={ inputRef } type="file" name='file' accept={ 'image' } onChange={ (e) => manageFileInputChange(e) }/>
             <input type="hidden" name="role" value={ 'profilePic' } />
             <input type="hidden" name="alt" value={ 'Profile picture of ' + manager.name } />
