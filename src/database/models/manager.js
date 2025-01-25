@@ -5,8 +5,8 @@ const { Model } = require('sequelize')
 module.exports = (sequelize, DataTypes) => {
   class Manager extends Model {
     static associate(models) {
-        Manager.belongsToMany(models.Contest, { through: 'ManagerContests' })
-        Manager.belongsTo(models.Media, { foreignKey: 'MediumId' })
+        Manager.belongsToMany(models.Contest, { through: 'ManagerContests', })
+        Manager.belongsTo(models.Media, { foreignKey: 'MediumId', onDelete: 'SET NULL' })
         Manager.belongsTo(models.Role)
     }
   }
