@@ -4,6 +4,7 @@ import { deleteCollectionItem } from "./_functions/delete";
 import { getCollectionItemById } from "./_functions/get";
 import { handleApiError } from "@/lib/errors";
 import { constructAPIResponse } from "../../_utils";
+import { NextRequest } from "next/server";
 
 type RouteParams = {
     params: {
@@ -12,7 +13,7 @@ type RouteParams = {
     }
 }
 
-export const GET = async (req: Request, { params } : RouteParams) => {
+export const GET = async (req: NextRequest, { params } : RouteParams) => {
 
     const { collection, id } = params
     
@@ -20,7 +21,7 @@ export const GET = async (req: Request, { params } : RouteParams) => {
 
 }
 
-export const PUT = async (req: Request, { params } : RouteParams) => {
+export const PUT = async (req: NextRequest, { params } : RouteParams) => {
 
     const { collection, id } = params
 
@@ -32,6 +33,7 @@ export const PUT = async (req: Request, { params } : RouteParams) => {
     catch (error) {
         return await handleApiError({
             error,
+            req,
             message: 'Unable to get FormData.',
             route: `/api/${ collection }/[id]`
         })
@@ -58,7 +60,7 @@ export const PUT = async (req: Request, { params } : RouteParams) => {
     )
 }
 
-export const DELETE = async (req: Request, { params } : RouteParams) => {
+export const DELETE = async (req: NextRequest, { params } : RouteParams) => {
 
     const { collection, id } = params
 

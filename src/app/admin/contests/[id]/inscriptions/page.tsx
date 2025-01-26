@@ -13,14 +13,12 @@ const getData = async ({ contestId } : { contestId: string }) => {
     const contest = await Contest.findOne({ where: { id: contestId }})
     .then(data => data) 
     .catch(error => {
-        console.log(error);
         throw new Error(error as string)
     })
 
     const inscriptions = await Inscription.findAll({ where: { ContestId: contestId }, include: [ Media ]})
     .then(data => data) 
     .catch(error => {
-        console.log(error);
         throw new Error(error as string)
     })
 

@@ -18,11 +18,13 @@ export const deleteMediaInStorageAndDatabase = async ({ MediumId } : { MediumId:
     try {
         await sequelize.transaction(async (t) => {
 
-            await Media.destroy({ where: { id: MediumId }, transaction: t }).catch(err => console.log(err))
-            await deleteFromCloudStorage({ filename: media.filename }) 
+            await Media.destroy({ where: { id: MediumId }, transaction: t })
+            .catch(err => {
+                throw new Error(err as string)
+            })
+            await deleteFromCloudStorage({ filename: media.filename })  
         })
     } catch (error) {
-        console.log({ error })
         throw new Error(error as string)
     }
 }

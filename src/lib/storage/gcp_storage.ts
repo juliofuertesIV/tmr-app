@@ -52,9 +52,9 @@ export const deleteFromCloudStorage = async ({ filename } : { filename: string }
     });
 
     try {
-        await storage.bucket(bucketName).file(filename).delete()
+        await storage.bucket(bucketName).file(filename).delete() // TO DO:  get collection/filename or doesn't work, and check if it's domain/collection/filename? folder?
     }
     catch (error) {
-        console.log(error)
+        throw new Error(error as string)
     }
 }

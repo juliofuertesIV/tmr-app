@@ -22,18 +22,6 @@ export const createAndUploadMedia = async ({ formData } : { formData: FormData }
             bytes 
         } = validatedPayload
 
-
-        console.log({
-            role,
-            alt,
-            width,
-            height,
-            src,
-            folder,
-            filename,
-            bytes
-        })
-        
         let mediaInsertion;
     
         try {

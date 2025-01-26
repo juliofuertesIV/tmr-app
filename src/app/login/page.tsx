@@ -20,8 +20,6 @@ async function getManagerIdBySession() : Promise<string | null> {
         await decryptJWT(currentSession?.value).then(data => data) 
         : null;
 
-    console.log({ manager })    
-
     return manager?.id || null;
 }
 

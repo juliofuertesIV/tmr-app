@@ -43,8 +43,6 @@ export default function MediaInput({
 
     }, [ file ])
 
-    console.log({ imageMeasurements })
-
     const emptyState = () => { 
         setFile(null)
         setImageMeasurements({ width: 0, height: 0 })

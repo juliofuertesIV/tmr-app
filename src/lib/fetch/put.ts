@@ -52,15 +52,6 @@ export const updateManagerProfile = async (
     formData: FormData
 ) : Promise<IAPIResponse<null>> => {
 
-    console.log({ id })
-    console.log({ formData })
-    console.log({ id })
-    console.log({ formData })
-    console.log({ id })
-    console.log({ formData })
-    console.log({ id })
-    console.log({ formData })
-
     const res = await fetch(`http://localhost:3000/api/auth/managers/${ id }`, {
         method: "PUT",
         cache: 'no-cache',

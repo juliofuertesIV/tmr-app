@@ -20,8 +20,6 @@ export const addCollectionElement = async (
         creationAPIUrl = `http://localhost:3000/api/media`
     }
 
-    console.log({ creationAPIUrl })
-
     const res = await fetch(creationAPIUrl, {
         method: "POST",
         cache: 'no-cache',
