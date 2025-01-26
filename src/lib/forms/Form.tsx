@@ -16,7 +16,7 @@ type Props = {
     collectionItem?: IAllCollections,
     MediumId?: string,
     domain?: string,
-    target?: IActionTarget,
+    target: IActionTarget,
     children?: ReactNode
 }
 
@@ -34,16 +34,19 @@ export default function Form({
 
     let boundAction;
 
-    if (target === 'update') boundAction = action.bind(null, collection, (collectionItem as IAllCollections).id)
-    if (target === 'addMedia') boundAction = action.bind(null, collection, (collectionItem as IAllCollections).id)
-    if (target === 'deleteMedia') boundAction = action.bind(null, collection, MediumId as string)
-    else boundAction = action.bind(null, collection)
+    if (target == 'update') boundAction = action.bind(null, collection, (collectionItem as IAllCollections).id)
+    if (target == 'addMedia') boundAction = action.bind(null, collection, (collectionItem as IAllCollections).id)
+    if (target == 'updateMedia') boundAction = action.bind(null, collection, (collectionItem as IAllCollections).id, MediumId)
+    if (target == 'deleteMedia') boundAction = action.bind(null, collection, MediumId as string)
+    if (target == 'creation') boundAction = action.bind(null, collection)
+
+    if (!boundAction) throw new Error('Action not found.')
 
     const [state, formAction] = useFormState(boundAction, formInitialState)
 
     return (
         <form 
-            className="flex flex-col gap-2 w-full"
+            className="flex flex-col gap-2 w-full max-w-xl"
             action={ formAction }
         >
             <AdminFormFeedback state={ state } />

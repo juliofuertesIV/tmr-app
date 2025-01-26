@@ -5,7 +5,7 @@ import { Close as CloseIcon } from '@/app/admin/_layout/design/icons/components/
 import { IManager } from '@/types'
 import { useFormStatus } from 'react-dom'
 
-export default function CurrentProfilePicture({ manager } : { manager: IManager }) {
+export default function CurrentProfilePicture({ manager, clickAction } : { manager: IManager, clickAction: () => void | undefined }) {
 
     const { src, width, height, alt } = manager.Medium
 
@@ -29,8 +29,8 @@ export default function CurrentProfilePicture({ manager } : { manager: IManager 
     } 
 
     return (
-        <div className='rounded-full border-2 border-gray-400 bg-gray-800 w-full h-full flex justify-center items-center overflow-hidden relative group cursor-pointer'>
-            <div className='absolute text-xl bg-black group-hover:flex hidden'>
+        <div className='rounded-full border-2 border-gray-400 bg-gray-800 w-full h-full flex justify-center items-center overflow-hidden relative group cursor-pointer' onClick={ () => clickAction() }>
+            <div className='absolute text-xl bg-black rounded-full w-10 h-10 justify-center items-center group-hover:flex hidden'>
                 <CloseIcon/>
             </div>
             <Image 

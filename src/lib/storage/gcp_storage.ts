@@ -52,12 +52,6 @@ export const deleteFromCloudStorage = async ({ filename } : { filename: string }
     });
 
     try {
-        console.log('DELETING FROM STORAGE!!!')
-        console.log('DELETING FROM STORAGE!!!')
-        console.log('DELETING FROM STORAGE!!!')
-        console.log('DELETING FROM STORAGE!!!')
-        console.log('DELETING FROM STORAGE!!!')
-        console.log('DELETING FROM STORAGE!!!')
         await storage.bucket(bucketName).file(filename).delete()
     }
     catch (error) {

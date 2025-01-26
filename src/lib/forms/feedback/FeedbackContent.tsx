@@ -10,9 +10,9 @@ export default function FeedbackContent({ formState } : { formState: IAPIRespons
     if (error) {
 
         return (
-            <div className="px-4 py-1 text-sm w-full rounded-md bg-red-400">    
-                <p>
-                    { formState.message }
+            <div className="px-4 py-2 text-sm w-full rounded-md bg-red-900 text-neutral-100">
+                <p className="text-base pb-1 font-semibold">
+                    Error: { formState.message }
                 </p>
                 <div className='flex flex-col gap-1'>
                     {
@@ -28,7 +28,7 @@ export default function FeedbackContent({ formState } : { formState: IAPIRespons
     }
 
     return (
-        <div className="px-4 py-1 text-sm w-full rounded-md bg-green-400">
+        <div className="px-4 py-2 text-sm w-full rounded-md bg-green-400 text-neutral-900">
             <p>{ formState.message }</p>
         </div>
     )

@@ -3,6 +3,7 @@
 import { IAPIResponse } from '@/types/api'
 import React, { useEffect, useState } from 'react'
 import FeedbackContent from './FeedbackContent'
+import { Close } from '@/app/admin/_layout/design/icons/components/Close'
 
 export default function AdminFormFeedback({ state } : { state: IAPIResponse<any> }) {
 
@@ -15,12 +16,16 @@ export default function AdminFormFeedback({ state } : { state: IAPIResponse<any>
 
     }, [ state ])
 
+    const closeFeedbackForm = () => setFormState(null)
+
     if (!formState) return null
 
     return (
-        <div className='fixed top-2 left-0 mx-auto w-full justify-center items-center flex z-50'>
-            <div className='text-neutral-900 w-fit mx-auto py-1 text-center rounded-md'>
-                <button type='button' role='button' className='bg-white text-black px-2 py-1 rounded-md text-sm' onClick={ () => setFormState(null) }>CERRAR</button>
+        <div className='fixed left-0 animate-dropdown mx-auto w-full justify-center px-4 items-center flex z-50 cursor-pointer' onClick={ () => closeFeedbackForm() }>
+            <div className='text-neutral-900 w-full lg:max-w-md mx-auto py-1 text-center rounded-md relative group'>
+                <div className='text-neutral-100 top-2 right-2 absolute opacity-0 group-hover:opacity-100 transition-opacity'>
+                    <Close/>
+                </div>
                 <FeedbackContent formState={ formState }/>
             </div>
         </div>

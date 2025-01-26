@@ -2,27 +2,33 @@
 
 import { getAddMediumBoundAction } from '@/lib/forms/actions';
 import { ICollectionsWithMedium, IManager } from '@/types';
-import { formInitialState } from '@/types/forms';
 import React, { ChangeEvent, MutableRefObject, useEffect, useRef, useState } from 'react'
 import { useFormState } from 'react-dom';
 import ProfilePlaceholder from './ProfilePlaceholder';
+import AdminFormFeedback from '@/lib/forms/feedback/FormFeedback';
+import { formInitialState } from '@/lib/forms/feedback/state';
+import { deleteMediaItem } from '@/lib/fetch/delete';
+import CurrentProfilePicture from './CurrentProfilePicture';
 
 type Props = { 
     manager: IManager,
     inputRef: MutableRefObject<HTMLInputElement | null>;
+    formRef: MutableRefObject<HTMLFormElement | null>;
+    clickAction: () => void | undefined;
 }
 
-export default function AddProfilePictureForm({ inputRef, manager } : Props) {
+export default function ProfilePictureForm({ inputRef, manager, formRef, clickAction } : Props) {
 
-    const boundAction = getAddMediumBoundAction({ collection: 'managers', collectionItem: manager as ICollectionsWithMedium })
+    const creationBoundAction = getAddMediumBoundAction({ collection: 'managers', collectionItem: manager as ICollectionsWithMedium })
+    const deletionBoundAction = deleteMediaItem.bind(null, 'managers', manager.MediumId)
+
+    const boundAction = manager.MediumId ? deletionBoundAction : creationBoundAction
 
     const [ state, action ] = useFormState(boundAction, formInitialState)
     
     const [ file, setFile ] = useState<File | null>(null)
     
     const [ imageSize, setImageSize ] = useState<{ width: number | null, height: number | null }>({ width: null, height: null })
-
-    const formRef = useRef<HTMLFormElement>(null)
 
     const emptyState = () => { 
         setFile(null)
@@ -67,11 +73,16 @@ export default function AddProfilePictureForm({ inputRef, manager } : Props) {
 
         formRef.current?.requestSubmit()
         
-    }, [ imageSize ])
+    }, [ imageSize, formRef ])
 
     return (
         <form ref={ formRef } action={ action } className='flex w-full'>
-            <ProfilePlaceholder/>
+            <AdminFormFeedback state={ state } />
+            { 
+                manager.MediumId ? 
+                <CurrentProfilePicture manager={ manager } clickAction={ clickAction }/> 
+                : <ProfilePlaceholder clickAction={ clickAction }/> 
+            }
             <input className="hidden" ref={ inputRef } type="file" name='file' accept={ 'image' } onChange={ (e) => manageFileInputChange(e) }/>
             <input type="hidden" name="role" value={ 'profilePic' } />
             <input type="hidden" name="alt" value={ 'Profile picture of ' + manager.name } />

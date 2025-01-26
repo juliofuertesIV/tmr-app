@@ -22,7 +22,7 @@ export const POST = async (req: Request, { params } : Params) => {
 
     return Response.json(
         constructAPIResponse({
-            message: 'Image added',
+            message: 'Image added!',
             success: true,
             error: null,
             data: null

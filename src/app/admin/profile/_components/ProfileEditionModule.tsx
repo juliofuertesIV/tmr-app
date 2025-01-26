@@ -11,6 +11,12 @@ export default function ProfileEditionModule({ manager } : { manager: IManager }
     const { fields, action } = getFormByCollectionName({ collection: 'managers', actionTarget: 'update' })
 
     return (
-        <Form collection='managers' collectionItem={ manager as IAllCollections } action={ action } fields={ fields }/>
+        <Form 
+            collection='managers'
+            collectionItem={ manager as IAllCollections }
+            action={ action }
+            fields={ fields }
+            target='update'
+        />
     )
 }

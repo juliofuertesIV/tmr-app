@@ -24,7 +24,7 @@ export const managerFields : IFormField[] = [
         },
         {
             name: 'password',
-            label: 'Contraseña',
+            label: 'Nueva contraseña',
             instructions: null,
             validationMethod: isValidString,
             processingMethod: processBasicTextInput,
@@ -34,7 +34,7 @@ export const managerFields : IFormField[] = [
         },
         { 
             name: "confirmPassword",
-            label: "Repetir contraseña",
+            label: "Repetir nueva contraseña",
             instructions: "Vuelve a escribir tu nueva contraseña.",
             type: 'text',
             validationMethod: isValidString,
