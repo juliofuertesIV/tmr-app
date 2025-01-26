@@ -1,28 +1,13 @@
 import { deleteMediaItem } from "@/lib/fetch/delete"
-import { addMediaToItem, associateItems } from "@/lib/fetch/post"
+import { addMediaToItem, associateItems, associateMediaToItem } from "@/lib/fetch/post"
 import { updateCollectionItemMedium } from "@/lib/fetch/put"
 import { ICollectionsWithMedia, ICollectionsWithMedium, IContest } from "@/types"
-import { IActionTarget } from "@/types/forms"
 import { ICollectionsWithMediaNames, ICollectionsWithMediumNames, IMedia, IMediaRole } from "@/types/media"
 
-const getActionTargetByCollectionAndCollectionItem = ({ 
-    collectionItem,
-    role
-}: {
-    collectionItem: ICollectionsWithMedia,
-    role: IMediaRole
-}) : { target: IActionTarget, MediumId?: string } => {
-    
-    const associatedMedium = collectionItem.Media.find((medium: IMedia) => medium.role === role)
-    
-    if (!associatedMedium) return { target: 'creation'}
-    
-    return { target: 'update', MediumId: associatedMedium.id }
-}
+export const getCurrentMediumId = (collectionItem: IContest, role: IMediaRole) => {
 
-export const mediaElementAlreadyPresent = (collectionItem: IContest, role: IMediaRole) => {
-    const item = collectionItem.Media.find((medium: IMedia) => medium.role === role)
-    return item
+    const mediumId = collectionItem.Media.find((medium: IMedia) => medium.role === role)?.id
+    return mediumId || null
 }
 
 export const getAddMediumBoundAction = ({
@@ -49,7 +34,7 @@ export const getUpdateMediumBoundAction = ({
     return updateCollectionItemMedium.bind(null, collection, collectionItem.id, MediumId)
 }
 
-export const getMediaBoundAction = ({ 
+export const getAssociatedMediaBoundAction = ({ 
     collection,
     collectionItem,
     role
@@ -59,21 +44,19 @@ export const getMediaBoundAction = ({
     role: IMediaRole
 }) => {
 
-    const { target, MediumId } = getActionTargetByCollectionAndCollectionItem({ collectionItem, role })
-
-    if (target === 'creation') {
-        return associateItems.bind(
+    const associatedMediumId = getCurrentMediumId(collectionItem, role)
+    
+    if (!associatedMediumId) return (
+        associateMediaToItem.bind(
             null,
             collection, 
-            collectionItem.id,
-            'media'
-        ) 
-    }
-
+            collectionItem.id
+        )
+    ) 
+    
     return deleteMediaItem.bind(
         null,
         collection,
-        collectionItem.id,
-        MediumId as string
+        associatedMediumId
     )
 }

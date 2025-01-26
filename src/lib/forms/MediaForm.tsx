@@ -5,7 +5,7 @@ import { IMediaFormField, formInitialState } from '@/types/forms'
 import { ICollectionsWithMediaNames } from '@/types/media'
 import React, { ChangeEvent, HTMLProps, useEffect, useRef, useState } from 'react'
 import { useFormState } from 'react-dom'
-import { getMediaBoundAction, mediaElementAlreadyPresent } from './actions'
+import { getAssociatedMediaBoundAction, getCurrentMediumId } from './actions'
 import AdminFormFeedback from './feedback/FormFeedback'
 import MediaInputPreview from './inputs/media/MediaInputPreview'
 import FormSubmit from './feedback/FormSubmit'
@@ -26,7 +26,7 @@ export default function MediaForm({ collection, collectionItem, field, domain, .
     const [ previewSrc, setPreviewSrc ] = useState<string | null>(null)
     const [ imageMeasurements, setImageMeasurements ] = useState<{ width: number, height: number }>({ width: 0, height: 0 })
     
-    const boundAction = getMediaBoundAction({ collection, collectionItem, role })
+    const boundAction = getAssociatedMediaBoundAction({ collection, collectionItem, role })
     const [ state, action ] = useFormState(boundAction, formInitialState)
 
     const fileInputRef = useRef<HTMLInputElement>(null)
@@ -70,7 +70,7 @@ export default function MediaForm({ collection, collectionItem, field, domain, .
 
     }, [ file, field ])
 
-    const alreadyPresentMedia = mediaElementAlreadyPresent(collectionItem, role)
+    const alreadyPresentMedia = collectionItem.Media.find(media => media.role === role) || null
 
     useEffect(() => {
 
