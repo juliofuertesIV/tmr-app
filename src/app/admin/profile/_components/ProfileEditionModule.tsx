@@ -4,11 +4,12 @@ import { getFormByCollectionName } from '@/lib/forms/collection'
 import Form from '@/lib/forms/Form'
 import { IAllCollections, IManager } from '@/types'
 import React from 'react'
+import NewPasswordInputs from './NewPasswordInputs'
 
 
 export default function ProfileEditionModule({ manager } : { manager: IManager }) {
 
-    const { fields, action } = getFormByCollectionName({ collection: 'managers', actionTarget: 'update' })
+    const { fields, action } = getFormByCollectionName({ collection: 'managers', actionTarget: 'updateManager' })
 
     return (
         <Form 
@@ -16,7 +17,9 @@ export default function ProfileEditionModule({ manager } : { manager: IManager }
             collectionItem={ manager as IAllCollections }
             action={ action }
             fields={ fields }
-            target='update'
-        />
+            target='updateManager'
+        >
+            <NewPasswordInputs/>
+        </Form>
     )
 }

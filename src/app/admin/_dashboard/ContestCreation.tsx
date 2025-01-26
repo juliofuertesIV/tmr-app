@@ -9,7 +9,7 @@ export default function ContestCreation() {
 
     return (
         <div className='p-4 max-w-lg'>
-            <Form collection={ 'contests' } action={ action } fields={ fields }/>
+            <Form collection={ 'contests' } action={ action } fields={ fields } target="creation"/>
         </div>
     )
 }

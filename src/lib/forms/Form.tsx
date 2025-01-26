@@ -34,7 +34,10 @@ export default function Form({
 
     let boundAction;
 
+    console.log({ target })
+
     if (target == 'update') boundAction = action.bind(null, collection, (collectionItem as IAllCollections).id)
+    if (target == 'updateManager') boundAction = action.bind(null, (collectionItem as IAllCollections).id)
     if (target == 'addMedia') boundAction = action.bind(null, collection, (collectionItem as IAllCollections).id)
     if (target == 'updateMedia') boundAction = action.bind(null, collection, (collectionItem as IAllCollections).id, MediumId)
     if (target == 'deleteMedia') boundAction = action.bind(null, collection, MediumId as string)

@@ -5,7 +5,7 @@ import { socialFields } from "./social";
 import { genreFields } from "./genres";
 import { managerFields } from "./managers";
 import { addCollectionElement, addMediaToItem } from "@/lib/fetch/post";
-import { updateCollectionItem, updateCollectionItemMedium } from "@/lib/fetch/put";
+import { updateCollectionItem, updateCollectionItemMedium, updateManagerProfile } from "@/lib/fetch/put";
 import { inscriptionFields } from "./inscriptions";
 import { ICollectionsWithMediaNames } from "@/types/media";
 import { sponsorFields } from "./sponsors";
@@ -18,6 +18,7 @@ export const formsByCollectionName : IFormByCollectionName = {
         addMedia: addMediaToItem,
         deleteMedia: deleteMediaItem,
         updateMedia: updateCollectionItemMedium,
+        updateManager: updateManagerProfile
     },
     fields: {
         contests: contestFields,

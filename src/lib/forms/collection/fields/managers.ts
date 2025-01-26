@@ -21,25 +21,5 @@ export const managerFields : IFormField[] = [
             testAgainst: null,
             type: 'text',
             requiredForItemCreation: true 
-        },
-        {
-            name: 'password',
-            label: 'Nueva contraseña',
-            instructions: null,
-            validationMethod: isValidString,
-            processingMethod: processBasicTextInput,
-            testAgainst: null,
-            type: 'password',
-            requiredForItemCreation: true
-        },
-        { 
-            name: "confirmPassword",
-            label: "Repetir nueva contraseña",
-            instructions: "Vuelve a escribir tu nueva contraseña.",
-            type: 'text',
-            validationMethod: isValidString,
-            processingMethod: processBasicTextInput,
-            testAgainst: null,
-            requiredForItemCreation: false
         }
     ]

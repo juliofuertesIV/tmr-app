@@ -25,7 +25,6 @@ export const updateCollectionItem = async (
     return res
 }
 
-
 export const updateCollectionItemMedium = async (
     collection: ICollectionsWithMediumNames,
     id: string,
@@ -47,3 +46,30 @@ export const updateCollectionItemMedium = async (
     return res
 }
 
+export const updateManagerProfile = async (
+    id: string,
+    prevState: any,
+    formData: FormData
+) : Promise<IAPIResponse<null>> => {
+
+    console.log({ id })
+    console.log({ formData })
+    console.log({ id })
+    console.log({ formData })
+    console.log({ id })
+    console.log({ formData })
+    console.log({ id })
+    console.log({ formData })
+
+    const res = await fetch(`http://localhost:3000/api/auth/managers/${ id }`, {
+        method: "PUT",
+        cache: 'no-cache',
+        body: formData
+    })
+    .then(async data => data.json())
+    .catch(error => error)
+    
+    revalidateTag('managers')
+
+    return res
+}
