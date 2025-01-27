@@ -16,7 +16,7 @@ export default function InscriptionForm() {
           <h4>Create media and inscription.</h4>
         </header>
         <div>
-            <Form action={ action } collection='inscriptions' fields={ fields }>
+            <Form action={ action } collection='inscriptions' fields={ fields } target='creation'>
                 <MediaInput
                     role='inscriptions'
                     alt='Inscription media for this band.'

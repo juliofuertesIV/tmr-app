@@ -1,6 +1,7 @@
-import { deleteMediaItem } from "@/lib/fetch/delete"
-import { addMediaToItem, associateItems, associateMediaToItem } from "@/lib/fetch/post"
-import { updateCollectionItemMedium } from "@/lib/fetch/put"
+
+import { deleteMediaItem } from "@/lib/fetch/delete/media"
+import { addMediaToItem, associateMediaToItem } from "@/lib/fetch/post/media"
+import { updateCollectionItemMedium } from "@/lib/fetch/put/media"
 import { ICollectionsWithMedia, ICollectionsWithMedium, IContest } from "@/types"
 import { ICollectionsWithMediaNames, ICollectionsWithMediumNames, IMedia, IMediaRole } from "@/types/media"
 

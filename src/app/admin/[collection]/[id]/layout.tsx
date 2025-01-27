@@ -1,6 +1,6 @@
 import { ICollectionNames } from "@/types";
 import CollectionItemNav from "./_layout/CollectionItemNav";
-import { getCollectionElementById } from "@/lib/fetch/get";
+import { getCollectionElementById } from "@/lib/fetch/get/collections";
 
 type Props = {
     params: {

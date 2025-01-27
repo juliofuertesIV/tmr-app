@@ -14,7 +14,7 @@ export default function CreateInscriptionForm({ contest } : Props) {
 
     return (
         <div>
-            <Form collection="inscriptions" action={ action } fields={ fields }>
+            <Form collection="inscriptions" action={ action } fields={ fields } target="creation">
                 <input type="hidden" value={ new Date().getFullYear() } name="year"/>
                 <input type="hidden" value={ contest.id } name="ContestId"/>
                 <input type="hidden" value={ contest.domain } name="domain"/>

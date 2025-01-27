@@ -1,6 +1,6 @@
 import { IManager } from "@/types";
 import { SignJWT, jwtVerify } from "jose";
-import { logoutManager } from "@/lib/fetch/get";
+import { logoutManager } from "../fetch/get/auth";
 
 const secretJWTKey = process.env.SECRET_JWT_KEY
 

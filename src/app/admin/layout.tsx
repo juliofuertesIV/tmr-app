@@ -6,7 +6,7 @@ import { cookies } from "next/headers";
 import { decryptJWT } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import { IManager } from "@/types";
-import { getCollectionElementById } from "@/lib/fetch/get";
+import { getCollectionElementById } from "@/lib/fetch/get/collections";
 
 const inter = Inter({ subsets: ["latin"] });
 

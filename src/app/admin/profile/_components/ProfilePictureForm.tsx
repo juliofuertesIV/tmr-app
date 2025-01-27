@@ -2,12 +2,12 @@
 
 import { getAddMediumBoundAction } from '@/lib/forms/actions';
 import { ICollectionsWithMedium, IManager } from '@/types';
-import React, { ChangeEvent, MutableRefObject, useEffect, useRef, useState } from 'react'
+import React, { ChangeEvent, MutableRefObject, useEffect, useState } from 'react'
 import { useFormState } from 'react-dom';
 import ProfilePlaceholder from './ProfilePlaceholder';
 import AdminFormFeedback from '@/lib/forms/feedback/FormFeedback';
 import { formInitialState } from '@/lib/forms/feedback/state';
-import { deleteMediaItem } from '@/lib/fetch/delete';
+import { deleteMediaItem } from '@/lib/fetch/delete/media';
 import CurrentProfilePicture from './CurrentProfilePicture';
 
 type Props = { 

@@ -4,12 +4,15 @@ import { brandFields } from "./brands";
 import { socialFields } from "./social";
 import { genreFields } from "./genres";
 import { managerFields } from "./managers";
-import { addCollectionElement, addMediaToItem } from "@/lib/fetch/post";
-import { updateCollectionItem, updateCollectionItemMedium, updateManagerProfile } from "@/lib/fetch/put";
 import { inscriptionFields } from "./inscriptions";
 import { ICollectionsWithMediaNames } from "@/types/media";
 import { sponsorFields } from "./sponsors";
-import { deleteMediaItem } from "@/lib/fetch/delete";
+import { addCollectionElement } from "@/lib/fetch/post/collections";
+import { updateCollectionItem } from "@/lib/fetch/put/collections";
+import { addMediaToItem } from "@/lib/fetch/post/media";
+import { deleteMediaItem } from "@/lib/fetch/delete/media";
+import { updateCollectionItemMedium } from "@/lib/fetch/put/media";
+import { updateManagerProfile } from "@/lib/fetch/put/managers";
 
 export const formsByCollectionName : IFormByCollectionName = {
     action: {

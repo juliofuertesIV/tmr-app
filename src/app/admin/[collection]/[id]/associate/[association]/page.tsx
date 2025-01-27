@@ -6,7 +6,7 @@ import AssociationPageHeader from "./_components/AssociationPageHeader";
 import { getMediaFieldsByCollection } from "@/lib/forms/collection";
 import { ICollectionsWithMediaNames } from "@/types/media";
 import MediaFormWrapper from "./_components/MediaFormWrapper";
-import { getCollectionElementAndAssociationsById } from "@/lib/fetch/get";
+import { getCollectionElementAndAssociationsById } from "@/lib/fetch/get/collections";
 
 export const metadata: Metadata = {
     title: "Panel de administración TMR",

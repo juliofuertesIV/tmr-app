@@ -1,8 +1,8 @@
 import { Metadata } from "next";
 import { ICollectionNames, IAllCollections } from "@/types";
-import { getCollection } from "@/lib/fetch/get";
 import CreationModule from "./_components/CreationModule";
 import CollectionGrid from "./_components/CollectionGrid";
+import { getCollection } from "@/lib/fetch/get/collections";
 
 export const metadata: Metadata = {
     title: "Panel de administración TMR",
@@ -21,7 +21,6 @@ export default async function AdminElementPage({ params } : { params: { collecti
                 <h1 className="capitalize">{ collection }</h1>
             </header>
             <CreationModule collection={ collection }/>
-            {/* <CollectionTable collection={ collection } items={ items }/> */}
             <CollectionGrid items={ items } collection={ collection }/>
         </section>
     )

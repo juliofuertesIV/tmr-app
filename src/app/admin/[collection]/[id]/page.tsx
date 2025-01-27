@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import { ICollectionNames } from "@/types";
-import { getCollectionElementById } from "@/lib/fetch/get";
 import CollectionItemFormModule from "./_components/CollectionItemFormModule";
+import { getCollectionElementById } from "@/lib/fetch/get/collections";
 
 export const metadata: Metadata = {
     title: "TMR | Perfil",

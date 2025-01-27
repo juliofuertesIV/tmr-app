@@ -16,23 +16,13 @@ export default function StandaloneMediaManager() {
           <h4>Create standalone media.</h4>
         </header>
         <div>
-            <Form action={ action } collection='media'>
+            <Form action={ action } collection='media' target='addMedia'>
                 <MediaInput
                     role='managers'
                     alt='Alt text'
                     domain='battleofthebands.com'
                     collection='managers'
                 />
-                {/* 
-                    <input type="file" name="file"/>
-                    <input type="hidden" name="role" value={ 'managers' } />
-                    <input type="hidden" name="alt" value={ 'Inscription image for battleofthebands.com' } />
-                    <input type="hidden" name="width" value={ '500' } />
-                    <input type="hidden" name="height" value={ '500' } />
-                    <input type="hidden" name="year" value={ '2025' } />
-                    <input type="hidden" name="collection" value={ 'managers' } />
-                    <input type="hidden" name="domain" value={ 'battleofthebands.com' } /> 
-                */}
             </Form>
           </div>
       </section>

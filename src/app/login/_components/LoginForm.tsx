@@ -6,8 +6,8 @@ import { useEffect } from "react"
 import FormSubmit from "@/lib/forms/feedback/FormSubmit"
 import { useRouter } from "next/navigation"
 import { IManager } from "@/types"
-import { login } from "@/lib/fetch/post"
 import AdminFormFeedback from "@/lib/forms/feedback/FormFeedback"
+import { login } from '@/lib/fetch/post/auth'
 
 export default function LoginForm({ manager } : { manager: IManager | null }) {
 

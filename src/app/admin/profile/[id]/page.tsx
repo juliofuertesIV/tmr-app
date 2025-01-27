@@ -1,9 +1,9 @@
-import { getCollectionElementById } from "@/lib/fetch/get";
 import { IManager } from "@/types";
 import { Metadata } from "next";
 import Header from "../_components/Header";
 import ProfileEditionModule from "../_components/ProfileEditionModule";
 import ContestList from "../_components/ContestList";
+import { getCollectionElementById } from "@/lib/fetch/get/collections";
 
 export const metadata: Metadata = {
     title: "Panel de administración TMR | Perfil",

@@ -59,7 +59,7 @@ export default function CreationDialog({ collection }: Props) {
                         </button>
                     </header>
                     <div className='p-4'>
-                        <Form collection={ collection } action={ action } fields={ fields }/>
+                        <Form collection={ collection } action={ action } fields={ fields } target='creation'/>
                     </div>
                 </div>
             </dialog>
