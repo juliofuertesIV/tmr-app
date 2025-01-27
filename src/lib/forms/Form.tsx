@@ -34,6 +34,14 @@ export default function Form({
 
     let boundAction;
 
+    /* 
+    
+        TO DO:  
+        Types of property '__return_type__' are incompatible.
+        Type 'Promise<Response | Media[]>' is not assignable to type 'void | Response | Promise<void | Response>'.
+        
+    */
+
     if (target == 'update') boundAction = action.bind(null, collection, (collectionItem as IAllCollections).id)
     if (target == 'updateManager') boundAction = action.bind(null, (collectionItem as IAllCollections).id)
     if (target == 'addMedia') boundAction = action.bind(null, collection, (collectionItem as IAllCollections).id)
