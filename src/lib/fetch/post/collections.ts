@@ -49,5 +49,25 @@ export const associateItems = async (
     revalidateTag(collection)
     revalidateTag(association)
     return res
+}
+
+export const addInscription = async (
+    contestId: string,
+    prevState: any,
+    formData: FormData
+) : Promise<IAPIResponse<null>> => {
+
+    const res = await fetch(`http://localhost:3000/api/inscriptions`, {
+        method: "POST",
+        cache: 'no-cache',
+        body: formData,
+    })
+    .then(data => data)
+    .then(async data => await data.json())
+    .catch(error => error)
+    
+    revalidateTag('inscriptions')
+    revalidateTag('contests')
+    return res
 
 }

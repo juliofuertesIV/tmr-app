@@ -1,5 +1,6 @@
 
 import { deleteMediaItem } from "@/lib/fetch/delete/media"
+import { addInscription } from "@/lib/fetch/post/collections"
 import { addMediaToItem, associateMediaToItem } from "@/lib/fetch/post/media"
 import { updateCollectionItemMedium } from "@/lib/fetch/put/media"
 import { ICollectionsWithMedia, ICollectionsWithMedium, IContest } from "@/types"
@@ -20,6 +21,15 @@ export const getAddMediumBoundAction = ({
 }) => {
 
     return addMediaToItem.bind(null, collection, collectionItem.id)
+}
+
+export const getAddInscriptionBoundAction = ({
+    contestId,
+}: {
+    contestId: string
+}) => {
+
+    return addInscription.bind(null, contestId)
 }
 
 export const getUpdateMediumBoundAction = ({

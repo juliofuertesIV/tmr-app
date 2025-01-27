@@ -1,33 +1,36 @@
 'use client'
 
 import Image from 'next/image'
-import React, { useRef } from 'react'
+import React from 'react'
 
 type Props = {
     src: string | null,
     width: number,
-    height: number
+    height: number,
+    classname?: string,
 }
 
 export default function MediaInputPreview({ 
     src,
     width,
     height,
+    classname
 } : Props) {
 
-    // const previewRef = useRef<HTMLImageElement>(null)
-
-    if (!src) return null
+    if (!src) return (
+        <div className={ classname }></div>
+    )
 
     return (
-        <Image
-            className='w-full max-w-full max-h-full object-contain'
-            // ref={ previewRef }
-            src={ src ? src : '/img/no-image-placeholder.svg' }
-            width={ width }
-            height={ height }
-            alt={ '' }
-        />
+        <div className={ classname }>
+            <Image
+                className='w-full max-w-full max-h-full object-cover'
+                src={ src ? src : '/img/no-image-placeholder.svg' }
+                width={ width }
+                height={ height }
+                alt={ '' }
+            />
+        </div>
     ) 
 }
 

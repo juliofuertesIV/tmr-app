@@ -2,21 +2,28 @@
 
 import { ICollectionsWithMediaNames, ICollectionsWithMediumNames } from '@/types/media'
 import React, { ChangeEvent, useEffect, useState } from 'react'
+import MediaInputPreview from './inputs/media/MediaInputPreview'
+import Label from './label/Label'
 
 export default function MediaInput({ 
     role,
     alt,
     domain,
-    collection
+    collection,
+    hasPreview,
+    previewClassname
     
 } : { 
     role: string,
     alt: string,
     domain?: string,
-    collection: ICollectionsWithMediaNames | ICollectionsWithMediumNames
+    collection: ICollectionsWithMediaNames | ICollectionsWithMediumNames,
+    hasPreview?: boolean,
+    previewClassname?: string
 }) {
 
     const [ file, setFile ] = useState<File | null>(null)
+    const [ fileSrc, setFileSrc ] = useState<string | null>(null)
     const [ imageMeasurements, setImageMeasurements ] = useState<{ width: number, height: number }>({ width: 0, height: 0 })
 
     useEffect(() => {
@@ -35,6 +42,7 @@ export default function MediaInput({
                 const src = reader.result as string // convert image file to base64 string
                 if (!src) throw new Error('Error leyendo la imagen.')
 
+                setFileSrc(src)
                 updateImageMeasurements(src)
             },
             false
@@ -45,6 +53,7 @@ export default function MediaInput({
 
     const emptyState = () => { 
         setFile(null)
+        setFileSrc(null)
         setImageMeasurements({ width: 0, height: 0 })
     }
 
@@ -56,11 +65,22 @@ export default function MediaInput({
         setFile(file)
     }
 
+    console.log({ file, fileSrc, imageMeasurements })
+
     return (
         <>
-            <label>
+            { 
+                !!hasPreview && 
+                <MediaInputPreview 
+                    src={ fileSrc }
+                    width={ imageMeasurements.width }
+                    height={ imageMeasurements.height } 
+                    classname={ previewClassname }
+                />
+            }
+            <Label textContent={ 'Elige una imagen' } isValid={ null }>
                 <input type="file" name="file" onChange={ (e) => manageFileInputChange(e) }/>
-            </label>
+            </Label>
             <input type="hidden" name="role" value={ role }/>
             <input type="hidden" name="width" value={ imageMeasurements.width }/>
             <input type="hidden" name="height" value={ imageMeasurements.height }/>

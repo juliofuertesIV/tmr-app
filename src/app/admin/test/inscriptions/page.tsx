@@ -1,20 +1,23 @@
-import { Contest } from '@/database/models'
-import { IContest } from '@/types'
-import React from 'react'
 
-const getContestByDomain = async (domain: string) => {
-    return await Contest.findOne({ where: { domain }})
-    .then(data => data)
-    .catch(error => { throw new Error(error as string)}) as unknown as IContest | null
-}
+import { getContestByDomain } from '@/lib/fetch/get/contests'
+import InscriptionForm from '@/lib/forms/collection/components/InscriptionForm'
+import React from 'react'
 
 export default async function TestInscriptionsPage() {
 
-    const contest = await getContestByDomain('battleofthebands.com')
-    
-    return (
-        <div>
+    const { data: contest } = await getContestByDomain('battleofthebands-com')
 
-        </div>
+    if (!contest) throw new Error('No contest found!')
+    
+
+    return (
+        <section className='admin-page-content'>
+            <header>
+                <p>Gestionar inscripciones para</p>
+                <h1>{ contest.name } ({ contest.year })</h1>
+            </header>
+            <hr className='my-4 max-w-xl'/>
+            <InscriptionForm contestId={ contest.id } domain={ contest.domain }/>
+        </section>
     )
 }
