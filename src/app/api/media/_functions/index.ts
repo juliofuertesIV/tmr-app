@@ -25,7 +25,7 @@ export const createAndUploadMedia = async ({ formData } : { formData: FormData }
         let mediaInsertion;
     
         try {
-            mediaInsertion = await createMediumInDatabase({ width, height, alt, role, src, filename })
+            mediaInsertion = await createMediumInDatabase({ width, height, alt, role, src, folder, filename })
         } catch (error) {
             throw new Error(error as string)
         }

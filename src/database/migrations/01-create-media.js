@@ -22,6 +22,10 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
+      folder: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
       width: {
         type: Sequelize.INTEGER,
         allowNull: false,

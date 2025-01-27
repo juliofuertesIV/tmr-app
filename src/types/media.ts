@@ -15,10 +15,11 @@ export type IMediaPayload = {
 
 export type IMedia = {
     id: string,
-    role: IMediaRole
-    src: string,
+    alt: string,
     width: string,
     height: string,
-    alt: string,
-    filename: string
+    role: IMediaRole
+    folder: string
+    filename: string,
+    src: string,
 }

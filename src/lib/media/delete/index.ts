@@ -2,7 +2,6 @@ import { Media, sequelize } from '@/database/models'
 import { deleteFromCloudStorage } from '@/lib/storage/gcp_storage'
 import { IMedia } from "@/types/media"
 
-
 export const deleteMediaInStorageAndDatabase = async ({ MediumId } : { MediumId: string }) => {
 
     let media;
@@ -22,7 +21,7 @@ export const deleteMediaInStorageAndDatabase = async ({ MediumId } : { MediumId:
             .catch(err => {
                 throw new Error(err as string)
             })
-            await deleteFromCloudStorage({ filename: media.filename })  
+            await deleteFromCloudStorage({ filename: media.filename, folder: media.folder })  
         })
     } catch (error) {
         throw new Error(error as string)

@@ -30,6 +30,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
     },
+    folder: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
     width: {
       type: DataTypes.INTEGER,
       allowNull: false,

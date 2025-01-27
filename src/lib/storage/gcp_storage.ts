@@ -39,9 +39,7 @@ export async function uploadToGoogleCloudStorage({
     .catch(error => error)
 }
 
-
-
-export const deleteFromCloudStorage = async ({ filename } : { filename: string }) => {
+export const deleteFromCloudStorage = async ({ folder, filename } : { folder: string, filename: string }) => {
 
     const storage = new Storage({
         projectId: process.env.GCP_PROJECT_ID,
@@ -52,7 +50,7 @@ export const deleteFromCloudStorage = async ({ filename } : { filename: string }
     });
 
     try {
-        await storage.bucket(bucketName).file(filename).delete() // TO DO:  get collection/filename or doesn't work, and check if it's domain/collection/filename? folder?
+        await storage.bucket(bucketName).file(`${ folder }/${ filename }`).delete()
     }
     catch (error) {
         throw new Error(error as string)

@@ -8,6 +8,7 @@ export const createMediumInDatabase = async ({
     role,
     alt,
     filename,
+    folder,
     src
 } : { 
     width: string,
@@ -15,6 +16,7 @@ export const createMediumInDatabase = async ({
     role: IMediaRole,
     alt: string,
     filename: string,
+    folder: string,
     src: string
 }
 ) : Promise<{ MediumId: string | null, transaction: Transaction }> => {
@@ -29,7 +31,8 @@ export const createMediumInDatabase = async ({
             alt,
             role,
             src,
-            filename
+            filename,
+            folder
         }, { 
             transaction 
         }).then(data => data) as unknown as IMedia
