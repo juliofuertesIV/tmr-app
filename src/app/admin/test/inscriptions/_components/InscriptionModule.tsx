@@ -5,7 +5,7 @@ import Form from '../../../../../lib/forms/Form';
 import { getFormByCollectionName } from '@/lib/forms/collection';
 import MediaInput from '@/lib/forms/MediaInput';
 
-export default function InscriptionForm() {
+export default function InscriptionModule() {
 
     const { action, fields } = getFormByCollectionName({ collection: 'inscriptions', actionTarget: 'creation' })
 
