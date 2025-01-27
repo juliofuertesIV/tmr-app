@@ -21,3 +21,20 @@ export const getContestInscriptions = async (contestId: string) : Promise<IAPIRe
     return res
 }
 
+export const getInscriptionById = async (id: string) : Promise<IAPIResponse<IInscription>> => {
+   
+    const res = await fetch(`http://localhost:3000/api/inscriptions/${ id }`, {
+        method: "GET",
+        cache: 'no-cache',
+        headers: {
+            "Content-Type": "application/json",
+        },
+        next: {
+            tags: ['inscriptions']
+        }
+    })
+    .then(async (data) => await data.json())
+    .catch(error => error)
+
+    return res
+}

@@ -14,7 +14,7 @@ export default function InscriptionForm({ contestId, domain } : { contestId: str
 
     const [ state, formAction ] = useFormState(boundAction, formInitialState)
 
-    const { fields } = getFormByCollectionName({ collection: 'inscriptions', actionTarget: 'creation' })
+    const { fields } = getFormByCollectionName({ collection: 'inscriptions', actionTarget: 'update' })
 
     return (
         <div className='max-w-xl'>
