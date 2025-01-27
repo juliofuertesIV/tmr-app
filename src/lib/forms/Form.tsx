@@ -42,6 +42,7 @@ export default function Form({
         
     */
 
+    //TO DO: get boundFormAction from Props
     if (target == 'update') boundAction = action.bind(null, collection, (collectionItem as IAllCollections).id)
     if (target == 'updateManager') boundAction = action.bind(null, (collectionItem as IAllCollections).id)
     if (target == 'addMedia') boundAction = action.bind(null, collection, (collectionItem as IAllCollections).id)
