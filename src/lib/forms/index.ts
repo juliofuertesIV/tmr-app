@@ -1,18 +1,18 @@
 import { ICollectionNames } from "@/types"
-import { CreationBoundFormAction, getBoundFormAction, UpdateBoundFormAction } from "./actions"
+import { GetCreationBoundFormAction, getBoundFormAction, GetUpdateBoundFormAction } from "./actions"
 import { IActionTarget, IFormField } from "@/types/forms"
 import { getFieldsByCollectionAndActionTarget } from "./fields"
 
 type FormSchemasByCollection = {
     [key in ICollectionNames]: {
         getFields: ({ collection, actionTarget }: { collection: ICollectionNames; actionTarget: IActionTarget; }) => IFormField[],
-        getAction: ({ actionTarget }: { actionTarget: IActionTarget }) => CreationBoundFormAction | UpdateBoundFormAction
+        getAction: ({ actionTarget }: { actionTarget: IActionTarget }) => GetCreationBoundFormAction | GetUpdateBoundFormAction
     }
 }
 
 type FormSchema = {
     fields: IFormField[],
-    action: CreationBoundFormAction | UpdateBoundFormAction,
+    getBoundAction: GetCreationBoundFormAction | GetUpdateBoundFormAction,
 }
 
 const collectionsFormSchema : FormSchemasByCollection = {
@@ -54,32 +54,33 @@ export const getFormSchema = ({ collection, actionTarget } : { collection: IColl
 
     return {
         fields: collectionsFormSchema[collection].getFields({ collection, actionTarget }),
-        action: collectionsFormSchema[collection].getAction({ actionTarget }),
+        getBoundAction: collectionsFormSchema[collection].getAction({ actionTarget }),
     }
 }
 
 export function formSchemaActionIsUpdateAction (
-    action: CreationBoundFormAction | UpdateBoundFormAction,
+    action: GetCreationBoundFormAction | GetUpdateBoundFormAction,
     actionTarget: IActionTarget
-) : action is UpdateBoundFormAction {
+) : action is GetUpdateBoundFormAction {
 
     return actionTarget === 'update'
 }
 
 
-
 /* 
 
+
 TEST
+
 
 const schema = getFormSchema({ collection: 'contests', actionTarget: 'update' })
 
 
-if (formSchemaActionIsUpdateAction(schema.action, 'update')) {
+if (formSchemaActionIsUpdateAction(schema.getBoundAction, 'update')) {
 
     var contestId = 'asdfasdfad'
 
-    schema.action({ id: contestId })
+    const boundAction = schema.getBoundAction({ id: contestId })
 
 }
  */

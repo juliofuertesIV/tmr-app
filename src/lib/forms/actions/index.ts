@@ -6,11 +6,11 @@ import { ICollectionNames } from "@/types";
 import { IActionTarget } from "@/types/forms";
 import { IAPIResponse } from "@/types/api";
 
-export type CreationBoundFormAction = (prevState: any, formData: FormData) => Promise<IAPIResponse<null>>
-export type UpdateBoundFormAction = ({ id }: { id: string; }) => (prevState: any, formData: FormData) => Promise<IAPIResponse<null>>
+export type GetCreationBoundFormAction = (prevState: any, formData: FormData) => Promise<IAPIResponse<null>>
+export type GetUpdateBoundFormAction = ({ id }: { id: string; }) => (prevState: any, formData: FormData) => Promise<IAPIResponse<null>>
 
-type CreationFormActionByCollection = { [key in ICollectionNames]: () => CreationBoundFormAction }
-type UpdateFormActionByCollection = { [key in ICollectionNames]: UpdateBoundFormAction }
+type CreationFormActionByCollection = { [key in ICollectionNames]: () => GetCreationBoundFormAction }
+type UpdateFormActionByCollection = { [key in ICollectionNames]: GetUpdateBoundFormAction }
 type FormsByActionTarget = { [key in IActionTarget]: CreationFormActionByCollection | UpdateFormActionByCollection }
 
 const creation : CreationFormActionByCollection = {
@@ -47,7 +47,7 @@ export const getBoundFormAction = ({
         collection: ICollectionNames,
         actionTarget: IActionTarget 
     }
-) : CreationBoundFormAction | UpdateBoundFormAction => {
+) : GetCreationBoundFormAction | GetUpdateBoundFormAction => {
 
     return formActionsByActionTarget[actionTarget][collection]
 
