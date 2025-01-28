@@ -14,10 +14,17 @@ export const GET = async (req: NextRequest, { params } : RouteParams) => {
 
     const { domain } = params
 
-    let contest; 
     try {
-        contest = await Contest.findOne({ where: { domain }, include: [ Inscription ]})
+        const contest = await Contest.findOne({ where: { domain }, include: [ Inscription ]})  
         
+        return Response.json(
+            constructAPIResponse({
+                message: 'Found!',
+                success: true,
+                error: null,
+                data: contest
+            })
+        ) 
     }
     catch (error) {
         return await handleApiError({
@@ -25,20 +32,6 @@ export const GET = async (req: NextRequest, { params } : RouteParams) => {
             route: '/api/contests/domain/[domain]'
         })
     }
-
-    if (!contest) {
-        return await handleApiError({
-            error: new Error('No contest found.'),
-            route: '/api/contests/domain/[domain]'
-        })
-    }
     
-    return Response.json(
-        constructAPIResponse({
-            message: 'Found!',
-            success: true,
-            error: null,
-            data: contest
-        })
-    )
+    
 }

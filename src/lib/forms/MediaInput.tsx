@@ -1,6 +1,6 @@
 'use client'
 
-import { ICollectionsWithMediaNames, ICollectionsWithMediumNames } from '@/types/media'
+import { ICollectionsWithMediaNames, ICollectionsWithMediumNames, IMediaRole } from '@/types/media'
 import React, { ChangeEvent, useEffect, useState } from 'react'
 import MediaInputPreview from './inputs/media/MediaInputPreview'
 import Label from './label/Label'
@@ -14,7 +14,7 @@ export default function MediaInput({
     previewClassname
     
 } : { 
-    role: string,
+    role: IMediaRole,
     alt: string,
     domain?: string,
     collection: ICollectionsWithMediaNames | ICollectionsWithMediumNames,

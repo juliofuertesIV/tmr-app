@@ -37,11 +37,11 @@ export default function Form({
             action={ formAction }
         >
             <AdminFormFeedback state={ state } />
+            { children }
             { 
                 fields?.map((field, index) => 
                     <FormInput key={ index } field={ field } collectionItem={ collectionItem }/>) 
             }
-            { children }
             <FormSubmit/>
         </form>
     )
