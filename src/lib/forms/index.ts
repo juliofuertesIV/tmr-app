@@ -15,42 +15,42 @@ type FormSchema = {
     getBoundAction: GetCreationBoundFormAction | GetUpdateBoundFormAction,
 }
 
-const collectionsFormSchema : FormSchemasByCollection = {
-    brands: {
-        getFields: ({ collection, actionTarget } : { collection: ICollectionNames, actionTarget: IActionTarget }) => getFieldsByCollectionAndActionTarget({ collection, actionTarget }),
-        getAction: ({ actionTarget } : { actionTarget: IActionTarget }) => getBoundFormAction({ collection: 'brands', actionTarget })
-    },
-    contests: {
-        getFields: ({ collection, actionTarget } : { collection: ICollectionNames, actionTarget: IActionTarget }) => getFieldsByCollectionAndActionTarget({ collection, actionTarget }),
-        getAction: ({ actionTarget } : { actionTarget: IActionTarget }) => getBoundFormAction({ collection: 'contests', actionTarget })
-    },
-    genres: {
-        getFields: ({ collection, actionTarget } : { collection: ICollectionNames, actionTarget: IActionTarget }) => getFieldsByCollectionAndActionTarget({ collection, actionTarget }),
-        getAction: ({ actionTarget } : { actionTarget: IActionTarget }) => getBoundFormAction({ collection: 'genres', actionTarget })
-    },
-    inscriptions: {
-        getFields: ({ collection, actionTarget } : { collection: ICollectionNames, actionTarget: IActionTarget }) => getFieldsByCollectionAndActionTarget({ collection, actionTarget }),
-        getAction: ({ actionTarget } : { actionTarget: IActionTarget }) => getBoundFormAction({ collection: 'contests', actionTarget })
-    },
-    managers: {
-        getFields: ({ collection, actionTarget } : { collection: ICollectionNames, actionTarget: IActionTarget }) => getFieldsByCollectionAndActionTarget({ collection, actionTarget }),
-        getAction: ({ actionTarget } : { actionTarget: IActionTarget }) => getBoundFormAction({ collection: 'contests', actionTarget })
-    },
-    social: {
-        getFields: ({ collection, actionTarget } : { collection: ICollectionNames, actionTarget: IActionTarget }) => getFieldsByCollectionAndActionTarget({ collection, actionTarget }),
-        getAction: ({ actionTarget } : { actionTarget: IActionTarget }) => getBoundFormAction({ collection: 'social', actionTarget })
-    },
-    sponsors: {
-        getFields: ({ collection, actionTarget } : { collection: ICollectionNames, actionTarget: IActionTarget }) => getFieldsByCollectionAndActionTarget({ collection, actionTarget }),
-        getAction: ({ actionTarget } : { actionTarget: IActionTarget }) => getBoundFormAction({ collection: 'sponsors', actionTarget })
-    },
-    media: {
-        getFields: ({ collection, actionTarget } : { collection: ICollectionNames, actionTarget: IActionTarget }) => getFieldsByCollectionAndActionTarget({ collection, actionTarget }),
-        getAction: ({ actionTarget } : { actionTarget: IActionTarget }) => getBoundFormAction({ collection: 'media', actionTarget })
-    }
-}
-
 export const getFormSchema = ({ collection, actionTarget } : { collection: ICollectionNames, actionTarget: IActionTarget }) : FormSchema => {
+
+    const collectionsFormSchema : FormSchemasByCollection = {
+        brands: {
+            getFields: ({ collection, actionTarget } : { collection: ICollectionNames, actionTarget: IActionTarget }) => getFieldsByCollectionAndActionTarget({ collection, actionTarget }),
+            getAction: ({ actionTarget } : { actionTarget: IActionTarget }) => getBoundFormAction({ collection: 'brands', actionTarget })
+        },
+        contests: {
+            getFields: ({ collection, actionTarget } : { collection: ICollectionNames, actionTarget: IActionTarget }) => getFieldsByCollectionAndActionTarget({ collection, actionTarget }),
+            getAction: ({ actionTarget } : { actionTarget: IActionTarget }) => getBoundFormAction({ collection: 'contests', actionTarget })
+        },
+        genres: {
+            getFields: ({ collection, actionTarget } : { collection: ICollectionNames, actionTarget: IActionTarget }) => getFieldsByCollectionAndActionTarget({ collection, actionTarget }),
+            getAction: ({ actionTarget } : { actionTarget: IActionTarget }) => getBoundFormAction({ collection: 'genres', actionTarget })
+        },
+        inscriptions: {
+            getFields: ({ collection, actionTarget } : { collection: ICollectionNames, actionTarget: IActionTarget }) => getFieldsByCollectionAndActionTarget({ collection, actionTarget }),
+            getAction: ({ actionTarget } : { actionTarget: IActionTarget }) => getBoundFormAction({ collection: 'contests', actionTarget })
+        },
+        managers: {
+            getFields: ({ collection, actionTarget } : { collection: ICollectionNames, actionTarget: IActionTarget }) => getFieldsByCollectionAndActionTarget({ collection, actionTarget }),
+            getAction: ({ actionTarget } : { actionTarget: IActionTarget }) => getBoundFormAction({ collection: 'contests', actionTarget })
+        },
+        social: {
+            getFields: ({ collection, actionTarget } : { collection: ICollectionNames, actionTarget: IActionTarget }) => getFieldsByCollectionAndActionTarget({ collection, actionTarget }),
+            getAction: ({ actionTarget } : { actionTarget: IActionTarget }) => getBoundFormAction({ collection: 'social', actionTarget })
+        },
+        sponsors: {
+            getFields: ({ collection, actionTarget } : { collection: ICollectionNames, actionTarget: IActionTarget }) => getFieldsByCollectionAndActionTarget({ collection, actionTarget }),
+            getAction: ({ actionTarget } : { actionTarget: IActionTarget }) => getBoundFormAction({ collection: 'sponsors', actionTarget })
+        },
+        media: {
+            getFields: ({ collection, actionTarget } : { collection: ICollectionNames, actionTarget: IActionTarget }) => getFieldsByCollectionAndActionTarget({ collection, actionTarget }),
+            getAction: ({ actionTarget } : { actionTarget: IActionTarget }) => getBoundFormAction({ collection: 'media', actionTarget })
+        }
+    }   
 
     return {
         fields: collectionsFormSchema[collection].getFields({ collection, actionTarget }),
