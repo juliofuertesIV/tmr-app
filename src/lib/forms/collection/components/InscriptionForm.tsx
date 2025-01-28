@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import { getAddInscriptionBoundAction } from '../../actions'
+import { getAddInscriptionBoundAction } from '../../actions/collections/collections'
 import { useFormState } from 'react-dom'
 import { formInitialState } from '../../feedback/state'
 import { getFormByCollectionName } from '..'

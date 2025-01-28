@@ -1,25 +1,29 @@
 import { isValidString, processBasicTextInput } from "@/lib/forms/validation/functions"
-import { IFormField } from "@/types/forms"
+import { IActionTarget, IFormField } from "@/types/forms"
 
-export const socialFields : IFormField[] = [
+export const genreFields : { [key in IActionTarget]: IFormField[] } = {
+    creation: [
         {
             name: 'name',
-            label: 'Nombre de la red social',
+            label: 'Nombre del género',
             instructions: null,
             validationMethod: isValidString,
             processingMethod: processBasicTextInput,
             testAgainst: null,
             type: 'text',
-            requiredForItemCreation: true
-        },
-        {
-            name: 'icon',
-            label: 'Ruta del icono',
-            instructions: null,
-            validationMethod: isValidString,
-            processingMethod: processBasicTextInput,
-            testAgainst: null,
-            type: 'text',
-            requiredForItemCreation: true
+            requiredForItemCreation: true 
         }
-    ]
+    ],
+    update: [
+        {
+            name: 'name',
+            label: 'Nombre del género',
+            instructions: null,
+            validationMethod: isValidString,
+            processingMethod: processBasicTextInput,
+            testAgainst: null,
+            type: 'text',
+            requiredForItemCreation: true 
+        }
+    ],
+}

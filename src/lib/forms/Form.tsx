@@ -10,7 +10,7 @@ import { ReactNode } from 'react'
 import { formInitialState } from './feedback/state'
 
 type Props = {
-    action: IFormAction,
+    boundAction: IFormAction,
     fields?: IFormField[],
     collection: ICollectionNames,
     collectionItem?: IAllCollections,
@@ -21,36 +21,13 @@ type Props = {
 }
 
 export default function Form({ 
-    action,
+    boundAction,
     fields,
     collection,
     collectionItem,
-    MediumId,
     target,
     children 
 } : Props) {
-
-    if (target === 'update' && !collectionItem) throw new Error('Cannot update a missing item.')
-
-    let boundAction;
-
-    /* 
-    
-        TO DO:  
-        Types of property '__return_type__' are incompatible.
-        Type 'Promise<Response | Media[]>' is not assignable to type 'void | Response | Promise<void | Response>'.
-        
-    */
-
-    //TO DO: get boundFormAction from Props
-    if (target == 'creation') boundAction = action.bind(null, collection)
-    if (target == 'addMedia') boundAction = action.bind(null, collection, (collectionItem as IAllCollections).id)
-    if (target == 'update') boundAction = action.bind(null, collection, (collectionItem as IAllCollections).id)
-    if (target == 'updateManager') boundAction = action.bind(null, (collectionItem as IAllCollections).id)
-    if (target == 'updateMedia') boundAction = action.bind(null, collection, (collectionItem as IAllCollections).id, MediumId)
-    if (target == 'deleteMedia') boundAction = action.bind(null, collection, MediumId as string)
-
-    if (!boundAction) throw new Error('Action not found.')
 
     const [state, formAction] = useFormState(boundAction, formInitialState)
 

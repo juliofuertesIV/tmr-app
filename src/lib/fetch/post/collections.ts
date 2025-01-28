@@ -5,17 +5,13 @@ import { IAPIResponse } from "@/types/api"
 import { IAssociationNames } from "@/types/associations"
 import { revalidateTag } from "next/cache"
 
-export const addCollectionElement = async (
+export const addCollectionItem = async (
     collection: ICollectionNames,
     prevState: any,
     formData: FormData
 ) : Promise<IAPIResponse<null>> => {
 
-    //TO DO: Separate manager routes
-
-    const creationAPIUrl = collection === 'managers' ? `http://localhost:3000/api/auth/managers` : `http://localhost:3000/api/${ collection }`
-
-    const res = await fetch(creationAPIUrl, {
+    const res = await fetch(`http://localhost:3000/api/${ collection }`, {
         method: "POST",
         cache: 'no-cache',
         body: formData
@@ -52,7 +48,6 @@ export const associateItems = async (
 }
 
 export const addInscription = async (
-    contestId: string,
     prevState: any,
     formData: FormData
 ) : Promise<IAPIResponse<null>> => {

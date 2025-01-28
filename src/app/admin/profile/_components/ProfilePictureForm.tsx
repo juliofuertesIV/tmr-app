@@ -1,6 +1,6 @@
 'use client'
 
-import { getAddMediumBoundAction } from '@/lib/forms/actions';
+import { getAddMediumBoundAction } from '@/lib/forms/actions/collections/collections';
 import { ICollectionsWithMedium, IManager } from '@/types';
 import React, { ChangeEvent, MutableRefObject, useEffect, useState } from 'react'
 import { useFormState } from 'react-dom';
