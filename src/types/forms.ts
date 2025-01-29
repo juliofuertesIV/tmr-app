@@ -25,6 +25,10 @@ export type IFormField = {
     processingMethod: ((value: string) => string) | null,
     testAgainst: string | null,
     requiredForItemCreation: boolean,
+    media?: {
+        role: IMediaRole,
+        accept: string,
+    }, // TO DO: INTEGRATE
     options?: { name: string, value: string }[],
     readonly?: boolean
 }
