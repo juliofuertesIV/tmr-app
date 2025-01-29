@@ -1,13 +1,12 @@
 'use client'
 
-import { getAddMediumBoundAction } from '@/lib/forms/schema/actions/collections/collections';
-import { ICollectionsWithMedium, IManager } from '@/types';
+import { getAddMediumBoundAction, getDeleteMediumBoundAction } from '@/lib/forms/schema/actions/collections/collections';
+import { IManager } from '@/types';
 import React, { ChangeEvent, MutableRefObject, useEffect, useState } from 'react'
 import { useFormState } from 'react-dom';
 import ProfilePlaceholder from './ProfilePlaceholder';
 import AdminFormFeedback from '@/lib/forms/feedback/FormFeedback';
 import { formInitialState } from '@/lib/forms/feedback/state';
-import { deleteMediaItem } from '@/lib/fetch/delete/media';
 import CurrentProfilePicture from './CurrentProfilePicture';
 
 type Props = { 
@@ -19,15 +18,13 @@ type Props = {
 
 export default function ProfilePictureForm({ inputRef, manager, formRef, clickAction } : Props) {
 
-    const creationBoundAction = getAddMediumBoundAction({ collection: 'managers', collectionItem: manager as ICollectionsWithMedium })
-    const deletionBoundAction = deleteMediaItem.bind(null, 'managers', manager.MediumId)
+    const creationBoundAction = getAddMediumBoundAction({ collection: 'managers', collectionItemId: manager.id })
+    const deletionBoundAction = getDeleteMediumBoundAction({ collection: 'managers', mediumId: manager.MediumId })
 
     const boundAction = manager.MediumId ? deletionBoundAction : creationBoundAction
 
     const [ state, action ] = useFormState(boundAction, formInitialState)
-    
     const [ file, setFile ] = useState<File | null>(null)
-    
     const [ imageSize, setImageSize ] = useState<{ width: number | null, height: number | null }>({ width: null, height: null })
 
     const emptyState = () => { 
@@ -88,7 +85,7 @@ export default function ProfilePictureForm({ inputRef, manager, formRef, clickAc
             <input type="hidden" name="alt" value={ 'Profile picture of ' + manager.name } />
             <input type="hidden" name="width" value={ imageSize.width || '' } />
             <input type="hidden" name="height" value={ imageSize.height || '' } />
-            <input type="hidden" name="collection" value={ 'managers' } />
+            <input type="hidden" name="collection" value={ 'managers' } /> { /* WHY HERE? Should be able to get it by API route or somewhere else */}
         </form>
     )
 }
