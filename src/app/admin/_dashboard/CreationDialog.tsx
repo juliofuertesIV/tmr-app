@@ -1,11 +1,11 @@
 'use client'
 
 import { ICollectionNames } from '@/types'
-import { getFormByCollectionName } from '../../../lib/forms/collection'
 import { useLayoutEffect, useRef, useState } from 'react'
 import { CircleAdd } from '../_layout/design/icons/components/CircleAdd'
 import { Close } from '../_layout/design/icons/components/Close'
 import Form from '@/lib/forms/Form'
+import { getFormSchema } from '@/lib/forms'
 
 type Props = {
     collection: ICollectionNames,
@@ -37,7 +37,8 @@ export default function CreationDialog({ collection }: Props) {
 
     const onManageDialog = (dialogState: DialogState) => setDialog(dialogState)
 
-    const { action, fields } = getFormByCollectionName({ collection, actionTarget: 'creation' })
+    const { bindCreationAction, fields } = getFormSchema({ collection, actionTarget: 'creation' })
+    const boundAction = bindCreationAction()
 
     return (
         <>
@@ -59,7 +60,7 @@ export default function CreationDialog({ collection }: Props) {
                         </button>
                     </header>
                     <div className='p-4'>
-                        <Form collection={ collection } action={ action } fields={ fields } target='creation'/>
+                        <Form boundAction={ boundAction } fields={ fields }/>
                     </div>
                 </div>
             </dialog>

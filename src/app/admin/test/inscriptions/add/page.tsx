@@ -3,17 +3,11 @@ import { getContestByDomain } from '@/lib/fetch/get/contests'
 import React from 'react'
 import InscriptionCreationModule from '../_components/InscriptionCreationModule'
 
-const getContest = async () => {
-
-    const { data: contest } = await getContestByDomain('battleofthebands.com')
-
-    return contest
-
-}
-
+const getContest = async () => await getContestByDomain('battleofthebands.com')
+    
 export default async function TestAddInscriptionsPage() {
 
-    const contest = await getContest()
+    const { data: contest } = await getContest()
     
     if (!contest) return null    
 

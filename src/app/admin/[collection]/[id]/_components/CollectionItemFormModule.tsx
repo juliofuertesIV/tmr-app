@@ -1,18 +1,15 @@
 'use client'
 
-import { formSchemaActionIsUpdateAction, getFormSchema } from "@/lib/forms"
+import { getFormSchema } from "@/lib/forms"
 import Form from "@/lib/forms/Form"
 import { ICollectionNames, IAllCollections } from "@/types"
 import { IActionTarget } from "@/types/forms"
 
 export default function CollectionItemFormModule({ collection, collectionItem, target } : { collection: ICollectionNames, collectionItem: IAllCollections, target: IActionTarget }) {
 
-    const { getBoundAction, fields } = getFormSchema({ collection, actionTarget: 'update' })
+    const { bindUpdateAction, fields } = getFormSchema({ collection, actionTarget: 'update' })
 
-    if (!formSchemaActionIsUpdateAction(getBoundAction, 'update'))
-        throw new Error('Error generating bound action in form!')
-
-    const boundAction = getBoundAction({ id: collectionItem.id })
+    const boundAction = bindUpdateAction({ id: collectionItem.id })
 
     return (
         <div className="w-full max-w-xl">

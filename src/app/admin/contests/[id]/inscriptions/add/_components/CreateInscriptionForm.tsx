@@ -2,7 +2,7 @@
 
 import { IContest } from "@/types"
 import Form from "@/lib/forms/Form"
-import { getFormByCollectionName } from "@/lib/forms/collection"
+import { getFormSchema } from "@/lib/forms"
 
 type Props = {
     contest: IContest
@@ -10,11 +10,13 @@ type Props = {
 
 export default function CreateInscriptionForm({ contest } : Props) {
 
-    const { fields, action } = getFormByCollectionName({ collection: 'inscriptions', actionTarget: 'creation' })
+    const { bindCreationAction, fields } = getFormSchema({ collection: 'inscriptions', actionTarget: 'creation' })
+
+    const boundAction = bindCreationAction()
 
     return (
         <div>
-            <Form collection="inscriptions" action={ action } fields={ fields } target="creation">
+            <Form boundAction={ boundAction } fields={ fields }>
                 <input type="hidden" value={ new Date().getFullYear() } name="year"/>
                 <input type="hidden" value={ contest.id } name="ContestId"/>
                 <input type="hidden" value={ contest.domain } name="domain"/>

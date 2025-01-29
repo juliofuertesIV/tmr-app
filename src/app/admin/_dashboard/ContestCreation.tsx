@@ -1,15 +1,17 @@
 'use client'
 
-import { getFormByCollectionName } from "@/lib/forms/collection"
 import Form from "@/lib/forms/Form"
+import { getFormSchema } from "@/lib/forms"
 
 export default function ContestCreation() {
 
-    const { action, fields } = getFormByCollectionName({ collection: 'contests', actionTarget: 'creation' })
+    const { bindCreationAction, fields } = getFormSchema({ collection: 'contests', actionTarget: 'creation' })
+
+    const boundAction = bindCreationAction()
 
     return (
         <div className='p-4 max-w-lg'>
-            <Form collection={ 'contests' } action={ action } fields={ fields } target="creation"/>
+            <Form collection={ 'contests' } boundAction={ boundAction } fields={ fields } target="creation"/>
         </div>
     )
 }

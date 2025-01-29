@@ -2,19 +2,15 @@
 
 import React from 'react';
 import Form from '../../../../../lib/forms/Form';
-import { getFormByCollectionName } from '@/lib/forms/collection';
 import MediaInput from '@/lib/forms/MediaInput';
-import { formSchemaActionIsUpdateAction, getFormSchema } from '@/lib/forms';
+import { getFormSchema } from '@/lib/forms';
 import { IInscription } from '@/types';
 
 export default function InscriptionEditionModule({ inscription } : { inscription: IInscription }) {
 
-    const { fields, getBoundAction } = getFormSchema({ collection: 'inscriptions', actionTarget: 'update' })
+    const { bindUpdateAction, fields } = getFormSchema({ collection: 'inscriptions', actionTarget: 'update' })
 
-    if (!formSchemaActionIsUpdateAction(getBoundAction, 'update'))
-      throw new Error('Error getting bound update action!')
-
-    const boundAction = getBoundAction({ id: inscription.id })
+    const boundAction = bindUpdateAction({ id: inscription.id })
 
     return (
       <section className='w-full'>
@@ -23,7 +19,7 @@ export default function InscriptionEditionModule({ inscription } : { inscription
           <h4>Create media and inscription.</h4>
         </header>
         <div>
-            <Form boundAction={ boundAction } collection='inscriptions' fields={ fields } target='creation'>
+            <Form boundAction={ boundAction } fields={ fields }>
                 <MediaInput
                     role='inscriptions'
                     alt='Inscription media for this band.'

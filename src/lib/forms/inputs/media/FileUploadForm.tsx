@@ -1,4 +1,4 @@
-'use client'
+/* 'use client'
 
 import { IContest } from "@/types"
 import { IMediaFormField, formInitialState } from "@/types/forms"
@@ -128,3 +128,4 @@ export default function FileUploadForm({ collectionElement, mediaField, showData
         </form>
     )
 }
+ */

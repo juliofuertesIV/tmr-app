@@ -3,16 +3,15 @@
 import React from 'react';
 import Form from '../../../../../lib/forms/Form';
 import MediaInput from '@/lib/forms/MediaInput';
-import { formSchemaActionIsUpdateAction, getFormSchema } from '@/lib/forms';
+import { getFormSchema } from '@/lib/forms';
 import { IContest } from '@/types';
 import InscriptionContestInputFields from './InscriptionContestInputFields';
 
 export default function InscriptionCreationModule({ contest } : { contest: IContest }) {
 
-    const { fields, getBoundAction } = getFormSchema({ collection: 'inscriptions', actionTarget: 'creation' })
+    const { bindCreationAction, fields } = getFormSchema({ collection: 'inscriptions', actionTarget: 'creation' })
 
-    if (formSchemaActionIsUpdateAction(getBoundAction, 'creation'))
-      throw new Error('Error getting creation bound action!')
+    const boundAction = bindCreationAction()
 
     return (
       <section className='w-full'>
@@ -21,7 +20,7 @@ export default function InscriptionCreationModule({ contest } : { contest: ICont
           <h4>Create media and inscription.</h4>
         </header>
         <div>
-            <Form boundAction={ getBoundAction } collection='inscriptions' fields={ fields } target='creation'>
+            <Form boundAction={ boundAction } fields={ fields } >
                 <MediaInput
                     role='inscriptions'
                     alt='Inscription media for this band.'

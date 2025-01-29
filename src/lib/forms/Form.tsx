@@ -12,20 +12,14 @@ import { formInitialState } from './feedback/state'
 type Props = {
     boundAction: IFormAction,
     fields?: IFormField[],
-    collection: ICollectionNames,
     collectionItem?: IAllCollections,
-    MediumId?: string,
-    domain?: string,
-    target: IActionTarget,
     children?: ReactNode
 }
 
 export default function Form({ 
     boundAction,
     fields,
-    collection,
     collectionItem,
-    target,
     children 
 } : Props) {
 

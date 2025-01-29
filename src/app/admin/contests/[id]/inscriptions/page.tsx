@@ -1,7 +1,6 @@
 import { Metadata } from "next";
-import { Contest, Inscription, Media } from '@/database/models';
-import { IContest, IInscription } from "@/types";
 import Image from "next/image";
+import { getContestInscriptions } from "@/lib/fetch/get/inscriptions";
 
 export const metadata: Metadata = {
     title: "Panel de administración TMR",
@@ -10,26 +9,21 @@ export const metadata: Metadata = {
 
 const getData = async ({ contestId } : { contestId: string }) => {
 
-    const contest = await Contest.findOne({ where: { id: contestId }})
-    .then(data => data) 
-    .catch(error => {
-        throw new Error(error as string)
-    })
+    const { data } = await getContestInscriptions(contestId)
 
-    const inscriptions = await Inscription.findAll({ where: { ContestId: contestId }, include: [ Media ]})
-    .then(data => data) 
-    .catch(error => {
-        throw new Error(error as string)
-    })
+    if (!data) throw new Error('Error en los datos devueltos por el servidor.')
 
-    return { contest, inscriptions } as unknown as { contest: IContest | null, inscriptions: IInscription[] }
+    const { contest, inscriptions } = data
+
+    return { contest, inscriptions }
+
 }
 
 export default async function AdminElementPage({ params } : { params: { id: string }}) {
     
     const { id: contestId } = params
 
-    const { contest, inscriptions } = await getData({ contestId })
+    const { contest, inscriptions } = await getData({ contestId }) 
 
     if (!contest) throw new Error('No se ha encontrado el concurso en la base de datos.')
 

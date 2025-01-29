@@ -1,20 +1,19 @@
-'use client'
+/* 'use client'
 
 import React from 'react'
-import { getAddInscriptionBoundAction } from '../../actions/collections/collections'
 import { useFormState } from 'react-dom'
 import { formInitialState } from '../../feedback/state'
-import { getFormByCollectionName } from '..'
 import FormInput from '../../inputs/FormInput'
 import MediaInput from '../../MediaInput'
+import { getFormSchema } from '../..'
 
 export default function InscriptionForm({ contestId, domain } : { contestId: string, domain: string }) {
 
-    const boundAction = getAddInscriptionBoundAction({ contestId })
-
     const [ state, formAction ] = useFormState(boundAction, formInitialState)
 
-    const { fields } = getFormByCollectionName({ collection: 'inscriptions', actionTarget: 'update' })
+    const { bindUpdateAction, fields } = getFormSchema({ collection: 'inscriptions', actionTarget: 'update' })
+
+    const boundAction = bindUpdateAction({ id: contestId })
 
     return (
         <div className='max-w-xl'>
@@ -22,7 +21,7 @@ export default function InscriptionForm({ contestId, domain } : { contestId: str
                 <MediaInput 
                     collection='inscriptions'
                     domain={ domain }
-                    role='incription'
+                    role='inscriptions'
                     alt='Inscription image.'
                     hasPreview={ true }
                     previewClassname='aspect-video max-w-lg m-4 border-2 border-neutral-200'
@@ -39,3 +38,4 @@ export default function InscriptionForm({ contestId, domain } : { contestId: str
         </div>
     )
 }
+ */

@@ -1,4 +1,4 @@
-import { ICollectionNames } from "@/types"
+/* import { ICollectionNames } from "@/types"
 import { IActionTarget, IFormAction, IFormField, IMediaFormField } from "@/types/forms"
 import { collectionHasMedia } from "@/app/api/[collection]/_utils"
 import { formsByCollectionName, mediaFieldsByCollectionName } from "../fields"
@@ -37,4 +37,4 @@ export const getFormByCollectionAndTarget = ({ collection, actionTarget } : { co
 
     const action = null
 
-}
+} */
