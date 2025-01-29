@@ -1,8 +1,6 @@
-import { IActionTarget, IFormByCollectionName, IMediaFormField } from "@/types/forms";
+import { IActionTarget, IMediaFormField } from "@/types/forms";
 import { contestFields, contestsMediaFields } from "./collections/contests";
 import { ICollectionsWithMediaNames } from "@/types/media";
-import { addCollectionItem } from "@/lib/fetch/post/collections";
-import { updateCollectionItem } from "@/lib/fetch/put/collections";
 import { ICollectionNames } from "@/types";
 import { brandFields } from "./collections/brands";
 import { socialFields } from "./collections/social";
@@ -14,31 +12,10 @@ import { sponsorFields } from "./collections/sponsors";
 
 export const getFieldsByCollectionAndActionTarget = ({ collection, actionTarget } : { collection: ICollectionNames, actionTarget: IActionTarget }) => {
     
-    if (collection == 'media') return [] // TO DO: GET MEDIA OUT OF COLLECTIONS
+    if (collection == 'media') return [] // TO DO
 
     return fieldsByCollectionName[collection][actionTarget]
 }
-
-export const formsByCollectionName : IFormByCollectionName = {
-    action: {
-        creation: addCollectionItem,
-        update: updateCollectionItem,
-        //addMedia: addMediaToItem,
-        //deleteMedia: deleteMediaItem,
-        //updateMedia: updateCollectionItemMedium,
-        //updateManager: updateManagerProfile
-    },
-    fields: {
-        contests: [],
-        brands: [],
-        social: [],
-        genres: [],
-        inscriptions: [],
-        managers: [],
-        sponsors: [],
-        media: []
-    }
-} 
 
 const fieldsByCollectionName = {
     contests: contestFields,

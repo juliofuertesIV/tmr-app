@@ -1,7 +1,7 @@
 'use client'
 
 import { IContest } from "@/types"
-import Form from "@/lib/forms/Form"
+import Form from "@/lib/forms/components/Form"
 import { getFormSchema } from "@/lib/forms"
 
 type Props = {

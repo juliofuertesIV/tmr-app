@@ -1,13 +1,13 @@
 'use client'
 
 import { useFormState } from 'react-dom'
-import { IActionTarget, IFormAction, IFormField } from '@/types/forms'
-import { ICollectionNames, IAllCollections } from '@/types'
-import AdminFormFeedback from './feedback/FormFeedback'
+import { IFormAction, IFormField } from '@/types/forms'
+import { IAllCollections } from '@/types'
+import AdminFormFeedback from '../feedback/FormFeedback'
 import FormInput from './inputs/FormInput'
 import FormSubmit from '@/lib/forms/feedback/FormSubmit'
 import { ReactNode } from 'react'
-import { formInitialState } from './feedback/state'
+import { formInitialState } from '../feedback/state'
 
 type Props = {
     boundAction: IFormAction,

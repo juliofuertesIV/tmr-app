@@ -4,7 +4,7 @@ import { ICollectionNames } from '@/types'
 import { useLayoutEffect, useRef, useState } from 'react'
 import { CircleAdd } from '../_layout/design/icons/components/CircleAdd'
 import { Close } from '../_layout/design/icons/components/Close'
-import Form from '@/lib/forms/Form'
+import Form from '@/lib/forms/components/Form'
 import { getFormSchema } from '@/lib/forms'
 
 type Props = {

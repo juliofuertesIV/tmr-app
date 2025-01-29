@@ -1,6 +1,6 @@
 'use client'
 
-import Form from "@/lib/forms/Form"
+import Form from "@/lib/forms/components/Form"
 import { getFormSchema } from "@/lib/forms"
 
 export default function ContestCreation() {

@@ -5,11 +5,11 @@ import { IMediaFormField, formInitialState } from '@/types/forms'
 import { ICollectionsWithMediaNames } from '@/types/media'
 import React, { ChangeEvent, HTMLProps, useEffect, useRef, useState } from 'react'
 import { useFormState } from 'react-dom'
-import { getAssociatedMediaBoundAction } from './actions/collections/collections'
-import AdminFormFeedback from './feedback/FormFeedback'
+import AdminFormFeedback from '../feedback/FormFeedback'
 import MediaInputPreview from './inputs/media/MediaInputPreview'
-import FormSubmit from './feedback/FormSubmit'
+import FormSubmit from '../feedback/FormSubmit'
 import NextImage from 'next/image'
+import { getAssociationBoundInput as bindAssociationAction } from '../schema/actions/collections/collections'
 
 type Props = {
     field: IMediaFormField,
@@ -26,7 +26,7 @@ export default function MediaForm({ collection, collectionItem, field, domain, .
     const [ previewSrc, setPreviewSrc ] = useState<string | null>(null)
     const [ imageMeasurements, setImageMeasurements ] = useState<{ width: number, height: number }>({ width: 0, height: 0 })
     
-    const boundAction = getAssociatedMediaBoundAction({ collection, collectionItem, role })
+    const boundAction = bindAssociationAction({ collection, collectionItemId: collectionItem.id, association: 'media' })
     const [ state, action ] = useFormState(boundAction, formInitialState)
 
     const fileInputRef = useRef<HTMLInputElement>(null)

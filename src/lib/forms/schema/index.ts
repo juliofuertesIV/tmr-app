@@ -1,7 +1,7 @@
 import { ICollectionNames } from "@/types";
 import { IActionTarget, IFormField } from "@/types/forms";
-import { GetCreationBoundFormAction, getCreationBoundFormActionByCollection, GetUpdateBoundFormAction, getUpdateBoundFormActionByCollection } from "../actions";
-import { getFieldsByCollectionAndActionTarget } from "../fields";
+import { GetCreationBoundFormAction, getCreationBoundFormActionByCollection, GetUpdateBoundFormAction, getUpdateBoundFormActionByCollection } from "./actions";
+import { getFieldsByCollectionAndActionTarget } from "./fields";
 
 type FormSchemasByCollection = {
     [key in ICollectionNames]: {

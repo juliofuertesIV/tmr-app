@@ -1,6 +1,6 @@
 'use client'
 import { InputWithProps } from '@/lib/forms/inputs/by_type/InputWithProps'
-import Label from '@/lib/forms/label/Label'
+import Label from '@/lib/forms/components/label/Label'
 import React, { ChangeEvent, useState } from 'react'
 
 export default function NewPasswordInputs() {

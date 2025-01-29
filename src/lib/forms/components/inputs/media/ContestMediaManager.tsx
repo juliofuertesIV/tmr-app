@@ -1,7 +1,5 @@
-import { IContest } from '@/types'
+/* import { IContest } from '@/types'
 import React from 'react'
-import { getMediaFieldsByCollection } from '../../collection'
-import FileUploadForm from './FileUploadForm'
 
 
 export default function ContestMediaManager({ contest } : { contest: IContest }) {
@@ -18,3 +16,4 @@ export default function ContestMediaManager({ contest } : { contest: IContest })
         </div>
     )
 }
+ */

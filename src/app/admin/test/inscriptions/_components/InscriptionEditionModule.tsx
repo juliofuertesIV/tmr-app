@@ -1,8 +1,8 @@
 'use client'
 
 import React from 'react';
-import Form from '../../../../../lib/forms/Form';
-import MediaInput from '@/lib/forms/MediaInput';
+import Form from '../../../../../lib/forms/components/Form';
+import MediaInput from '@/lib/forms/components/MediaInput';
 import { getFormSchema } from '@/lib/forms';
 import { IInscription } from '@/types';
 

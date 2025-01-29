@@ -1,9 +1,10 @@
 import React, { ChangeEvent, useState } from 'react'
-import { InputWithProps } from '@/lib/forms/inputs/by_type/InputWithProps'
 import { IFormField } from '@/types/forms'
 import { validateInput } from '@/lib/forms/validation'
-import Label from '../label/Label'
 import { IAllCollections } from '@/types'
+
+import { InputWithProps } from './by_type/InputWithProps'
+import Label from '../label/Label'
 
 export default function FormInput({ field, collectionItem } : { field: IFormField, collectionItem?: IAllCollections }) {
 

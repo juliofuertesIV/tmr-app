@@ -1,7 +1,7 @@
 'use client'
 
 import { getFormSchema } from "@/lib/forms"
-import Form from "@/lib/forms/Form"
+import Form from "@/lib/forms/components/Form"
 import { ICollectionNames, IAllCollections } from "@/types"
 import { IActionTarget } from "@/types/forms"
 

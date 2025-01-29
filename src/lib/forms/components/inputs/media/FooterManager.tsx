@@ -1,4 +1,4 @@
-'use client'
+/* 'use client'
 
 import { IMediaFormField } from '@/types/forms'
 import { deleteContestMediaItem } from '@/lib/fetch/delete'
@@ -48,3 +48,4 @@ export default function FooterManager({ contest } : { contest: IContest }) {
         </div>
     )
 }
+ */

@@ -1,6 +1,6 @@
 'use client'
 
-import Form from '@/lib/forms/Form'
+import Form from '@/lib/forms/components/Form'
 import { IAllCollections, IManager } from '@/types'
 import React from 'react'
 import NewPasswordInputs from './NewPasswordInputs'
