@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Form from '../../../../../lib/forms/components/Form';
-import MediaInput from '@/lib/forms/components/MediaInput';
+import MediaInput from '@/lib/forms/components/media/MediaInput';
 import { getFormSchema } from '@/lib/forms';
 import { IInscription } from '@/types';
 import InscriptionContestInputFields from './InscriptionContestInputFields';

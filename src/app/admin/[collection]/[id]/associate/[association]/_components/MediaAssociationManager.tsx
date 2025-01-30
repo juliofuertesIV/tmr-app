@@ -1,7 +1,7 @@
 import React from 'react'
 import { IContest } from '@/types'
 import { getMediaFieldsByCollection } from '@/lib/forms/collection'
-import MediaForm from '@/lib/forms/components/MediaForm'
+import MediaForm from '@/lib/forms/components/media/MediumStandaloneForm'
 
 export default function MediaAssociationManager({ collectionItem } : { collectionItem: IContest }) {
 

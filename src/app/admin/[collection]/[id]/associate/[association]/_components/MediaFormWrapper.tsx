@@ -1,6 +1,6 @@
 'use client'
 
-import MediaForm from "@/lib/forms/components/MediaForm"
+import MediaForm from "@/lib/forms/components/media/MediumStandaloneForm"
 import { ICollectionsWithMedia } from "@/types"
 import { IMediaFormField } from "@/types/forms"
 import { ICollectionsWithMediaNames } from "@/types/media"

@@ -95,7 +95,7 @@ export const inscriptionFields : { [key in IActionTarget]: IFormField[] } = {
             processingMethod: processBasicTextInput,
             testAgainst: null,
             type: 'text',
-            element: Input.Base,
+            element: Input.Select,
             required: true
         },
         {
@@ -144,6 +144,22 @@ export const inscriptionFields : { [key in IActionTarget]: IFormField[] } = {
         }
     ],    
     update: [
+        {
+            name: 'file',
+            label: 'Elige una imagen',
+            instructions: 'La imagen debe pesar menos de 2mb.',
+            validationMethod: null,
+            processingMethod: null,
+            testAgainst: null,
+            type: 'file',
+            element: Input.Base,
+            media: {
+                role: 'inscriptions',
+                accept: 'image/*',
+                previewClassname: 'flex h-full w-full aspect-video border-2 border-neutral-100 rounded-md'
+            },
+            required: true
+        },
         {
             name: 'name',
             label: 'Nombre artístico',
@@ -218,7 +234,7 @@ export const inscriptionFields : { [key in IActionTarget]: IFormField[] } = {
             processingMethod: processBasicTextInput,
             testAgainst: null,
             type: 'text',
-            element: Input.Base,
+            element: Input.Select,
             required: true
         },
         {

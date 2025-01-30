@@ -1,8 +1,8 @@
 'use client'
 
 import React, { ChangeEvent, useEffect, useState } from 'react'
-import MediaInputPreview from './inputs/media/MediaInputPreview'
-import Label from './label/Label'
+import MediaInputPreview from '../inputs/media/MediaInputPreview'
+import Label from '../label/Label'
 import { IMediaRole } from '@/types/media'
 
 type Props = {
