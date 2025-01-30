@@ -62,6 +62,41 @@ module.exports = {
         },
         defaultValue: 'hidden',
       },
+      FooterId: {
+        type: Sequelize.UUID,
+        references: {
+            model: 'Footers',
+            key: 'id'
+        },
+      },
+      LogoId: {
+        type: Sequelize.UUID,
+        references: {
+            model: 'Media',
+            key: 'id'
+        },
+      },
+      FrameId: {
+        type: Sequelize.UUID,
+        references: {
+            model: 'Media',
+            key: 'id'
+        },
+      },
+      BannerId: {
+        type: Sequelize.UUID,
+        references: {
+            model: 'Media',
+            key: 'id'
+        },
+      },
+      FaviconId: {
+        type: Sequelize.UUID,
+        references: {
+            model: 'Media',
+            key: 'id'
+        },
+      },
       BrandId: {
         type: Sequelize.INTEGER,
         references: {

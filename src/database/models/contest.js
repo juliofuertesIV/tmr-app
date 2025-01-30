@@ -16,15 +16,19 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
         Contest.belongsToMany(models.Param, { through: 'ContestParams'})
         Contest.belongsToMany(models.Genre, { through: 'ContestGenres' });
-        Contest.belongsToMany(models.Media, { through: 'ContestMedia', onDelete: 'CASCADE' });
         Contest.belongsToMany(models.SocialMedia, { through: 'ContestSocials' });
         Contest.belongsToMany(models.Sponsor, { through: 'ContestSponsors' });
         Contest.belongsToMany(models.Manager, { through: 'ManagerContests' });
-        Contest.hasMany(models.Voter)
-        Contest.hasMany(models.Voter)
-        Contest.belongsTo(models.Brand)
-        Contest.belongsTo(models.State)
-        Contest.hasMany(models.Inscription)
+        Contest.hasMany(models.Voter);
+        Contest.hasMany(models.Voter);
+        Contest.belongsTo(models.Brand);
+        Contest.belongsTo(models.State);
+        Contest.belongsTo(models.Footer);
+        Contest.belongsTo(models.Media, { foreignKey: 'LogoId', onDelete: 'SET NULL' });
+        Contest.belongsTo(models.Media, { foreignKey: 'BannerId', onDelete: 'SET NULL' });
+        Contest.belongsTo(models.Media, { foreignKey: 'FrameId', onDelete: 'SET NULL' });
+        Contest.belongsTo(models.Media, { foreignKey: 'FaviconId', onDelete: 'SET NULL' });
+        Contest.hasMany(models.Inscription);
       }
   }  Contest.init({
     id: {
@@ -92,7 +96,8 @@ module.exports = (sequelize, DataTypes) => {
         const parsedDomain = extractedSubdomainString(record.dataValues.metaUrl);
         if (parsedDomain === record.dataValues.domain) return;
         record.dataValues.domain = parsedDomain;
-      },
+
+      }
     },
   });  
   return Contest;
