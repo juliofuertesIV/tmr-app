@@ -30,18 +30,7 @@ export default function MediumStandaloneForm({ inputRef, collection, collectionI
     const [ file, setFile ] = useState<File | null>(null)
     const [ imageSize, setImageSize ] = useState<{ width: number | null, height: number | null }>({ width: null, height: null })
 
-/*     const emptyState = () => { 
-        setFile(null)
-        setImageSize({ width: null, height: null })
-    }
-
-    const manageFileInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-
-        if (!e.currentTarget.files) return emptyState()
-
-        const file = e.currentTarget.files[0]
-        setFile(file)
-    } */
+    const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => manageMediaInputChange({ e, setFile, setImageSize })
 
     useEffect(() => {
 
@@ -79,7 +68,7 @@ export default function MediumStandaloneForm({ inputRef, collection, collectionI
         <form ref={ formRef } action={ action } className='flex w-full'>
             <AdminFormFeedback state={ state } />
             <MediaInputPreview collectionItem={ collectionItem } clickAction={ clickAction }/>
-            <input className="hidden" ref={ inputRef } type="file" name='file' accept={ 'image' } onChange={ (e) => manageMediaInputChange({ e, setFile, setImageSize }) }/>
+            <input className="hidden" ref={ inputRef } type="file" name='file' accept={ 'image' } onChange={ (e) => onChangeInput(e) }/>
             <input type="hidden" name="role" value={ role } />
             <input type="hidden" name="alt" value={ 'Picture of ' + collectionItem.name } />
             <input type="hidden" name="width" value={ imageSize.width || '' } />
