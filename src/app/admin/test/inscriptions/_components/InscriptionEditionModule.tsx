@@ -5,6 +5,7 @@ import Form from '../../../../../lib/forms/components/Form';
 import MediaInput from '@/lib/forms/components/MediaInput';
 import { getFormSchema } from '@/lib/forms';
 import { IInscription } from '@/types';
+import InscriptionContestInputFields from './InscriptionContestInputFields';
 
 export default function InscriptionEditionModule({ inscription } : { inscription: IInscription }) {
 
@@ -23,9 +24,8 @@ export default function InscriptionEditionModule({ inscription } : { inscription
                 <MediaInput
                     role='inscriptions'
                     alt='Inscription media for this band.'
-                    domain='battleofthebands.com' 
-                    collection='inscriptions'
                 /> 
+                <InscriptionContestInputFields contest={ inscription.Contest }/>
             </Form>
           </div>
       </section>

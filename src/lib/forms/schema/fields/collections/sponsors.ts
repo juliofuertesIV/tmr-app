@@ -1,6 +1,6 @@
-
+import * as Input from '@/lib/forms/components/inputs/type'
+import { isValidString, processBasicTextInput } from '@/lib/forms/validation/functions';
 import { IActionTarget, IFormField } from "@/types/forms";
-import { isValidString, processBasicTextInput } from "../../validation/functions";
 
 export const sponsorFields : { [key in IActionTarget]: IFormField[] } = { 
     creation: [
@@ -12,7 +12,8 @@ export const sponsorFields : { [key in IActionTarget]: IFormField[] } = {
             validationMethod: isValidString,
             processingMethod: processBasicTextInput,
             testAgainst: null,
-            requiredForItemCreation: true
+            element: Input.Base,
+            required: true
         },
     ],
     update: [
@@ -24,7 +25,8 @@ export const sponsorFields : { [key in IActionTarget]: IFormField[] } = {
             validationMethod: isValidString,
             processingMethod: processBasicTextInput,
             testAgainst: null,
-            requiredForItemCreation: true
+            element: Input.Base,
+            required: true
         },
     ]
 }

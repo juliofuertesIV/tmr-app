@@ -1,4 +1,4 @@
-import { HTMLInputTypeAttribute } from "react"
+import { HTMLInputTypeAttribute, HTMLProps } from "react"
 import { ICollectionNames } from "."
 import { IAPIResponse } from "./api"
 import { IAssociationNames } from "./associations"
@@ -24,10 +24,12 @@ export type IFormField = {
     validationMethod: ((value: string, valueToTestAgainst: string | null) => boolean) | null,
     processingMethod: ((value: string) => string) | null,
     testAgainst: string | null,
-    requiredForItemCreation: boolean,
+    element: (props: HTMLProps<HTMLInputElement & HTMLSelectElement & HTMLTextAreaElement>) => JSX.Element,
+    required: boolean,
     media?: {
         role: IMediaRole,
         accept: string,
+        previewClassname?: React.ComponentProps<'div'>['className'];
     }, // TO DO: INTEGRATE
     options?: { name: string, value: string }[],
     readonly?: boolean

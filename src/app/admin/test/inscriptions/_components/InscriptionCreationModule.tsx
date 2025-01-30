@@ -2,7 +2,6 @@
 
 import React from 'react';
 import Form from '../../../../../lib/forms/components/Form';
-import MediaInput from '@/lib/forms/components/MediaInput';
 import { getFormSchema } from '@/lib/forms';
 import { IContest } from '@/types';
 import InscriptionContestInputFields from './InscriptionContestInputFields';
@@ -21,12 +20,6 @@ export default function InscriptionCreationModule({ contest } : { contest: ICont
         </header>
         <div>
             <Form boundAction={ boundAction } fields={ fields } >
-                <MediaInput
-                    role='inscriptions'
-                    alt='Inscription media for this band.'
-                    domain={ contest.domain } 
-                    collection='inscriptions'
-                />
                 <InscriptionContestInputFields contest={ contest }/>
             </Form>
           </div>

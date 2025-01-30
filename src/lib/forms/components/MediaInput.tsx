@@ -1,26 +1,22 @@
 'use client'
 
-import { ICollectionsWithMediaNames, ICollectionsWithMediumNames, IMediaRole } from '@/types/media'
 import React, { ChangeEvent, useEffect, useState } from 'react'
 import MediaInputPreview from './inputs/media/MediaInputPreview'
 import Label from './label/Label'
+import { IMediaRole } from '@/types/media'
+
+type Props = {
+    role: IMediaRole,
+    alt: string,
+    previewClassname?: React.ComponentProps<'div'>['className'];
+}
 
 export default function MediaInput({ 
     role,
     alt,
-    domain,
-    collection,
-    hasPreview,
     previewClassname
     
-} : { 
-    role: IMediaRole,
-    alt: string,
-    domain?: string,
-    collection: ICollectionsWithMediaNames | ICollectionsWithMediumNames,
-    hasPreview?: boolean,
-    previewClassname?: string
-}) {
+} : Props) {
 
     const [ file, setFile ] = useState<File | null>(null)
     const [ fileSrc, setFileSrc ] = useState<string | null>(null)
@@ -65,28 +61,26 @@ export default function MediaInput({
         setFile(file)
     }
 
-    console.log({ file, fileSrc, imageMeasurements })
+    console.log({ previewClassname })
 
     return (
         <>
-            { 
-                !!hasPreview && 
-                <MediaInputPreview 
-                    src={ fileSrc }
-                    width={ imageMeasurements.width }
-                    height={ imageMeasurements.height } 
-                    classname={ previewClassname }
-                />
-            }
+            <MediaInputPreview 
+                src={ fileSrc }
+                width={ imageMeasurements.width }
+                height={ imageMeasurements.height } 
+                classname={ previewClassname }
+            />
             <Label textContent={ 'Elige una imagen' } isValid={ null }>
-                <input type="file" name="file" onChange={ (e) => manageFileInputChange(e) }/>
+                <input className='text-sm' type="file" name="file" onChange={ (e) => manageFileInputChange(e) }/>
+                <small className='pt-1'>Elige un archivo menor de 2mb.</small>
             </Label>
             <input type="hidden" name="role" value={ role }/>
             <input type="hidden" name="width" value={ imageMeasurements.width }/>
             <input type="hidden" name="height" value={ imageMeasurements.height }/>
             <input type="hidden" name="alt" value={ alt }/>
-            <input type="hidden" name="domain" value={ domain }/>
-            <input type="hidden" name="collection" value={ collection }/>
+{/*         <input type="hidden" name="domain" value={ domain }/>
+            <input type="hidden" name="collection" value={ collection }/> */}
         </>
     )
 }

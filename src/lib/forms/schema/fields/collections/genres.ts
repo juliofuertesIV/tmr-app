@@ -1,3 +1,4 @@
+import * as Input from '@/lib/forms/components/inputs/type'
 import { isValidString, processBasicTextInput } from "@/lib/forms/validation/functions"
 import { IActionTarget, IFormField } from "@/types/forms"
 
@@ -11,7 +12,8 @@ export const genreFields : { [key in IActionTarget]: IFormField[] } = {
             processingMethod: processBasicTextInput,
             testAgainst: null,
             type: 'text',
-            requiredForItemCreation: true 
+            element: Input.Base,
+            required: true 
         }
     ],
     update: [
@@ -23,7 +25,8 @@ export const genreFields : { [key in IActionTarget]: IFormField[] } = {
             processingMethod: processBasicTextInput,
             testAgainst: null,
             type: 'text',
-            requiredForItemCreation: true 
+            element: Input.Base,
+            required: true 
         }
     ],
 }

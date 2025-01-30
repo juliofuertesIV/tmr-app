@@ -18,14 +18,22 @@ export default function MediaInputPreview({
 } : Props) {
 
     if (!src) return (
-        <div className={ classname }></div>
+        <div className={ classname }>
+            <Image
+                className='w-full max-w-full max-h-full object-cover'
+                src={ '/img/no-image-placeholder.svg' }
+                width={ width }
+                height={ height }
+                alt={ '' }
+            />
+        </div>
     )
 
     return (
         <div className={ classname }>
             <Image
                 className='w-full max-w-full max-h-full object-cover'
-                src={ src ? src : '/img/no-image-placeholder.svg' }
+                src={ src }
                 width={ width }
                 height={ height }
                 alt={ '' }

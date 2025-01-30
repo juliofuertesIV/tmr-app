@@ -1,3 +1,4 @@
+import * as Input from '@/lib/forms/components/inputs/type'
 import { isValidEmail, isValidString, processBasicTextInput } from "@/lib/forms/validation/functions"
 import { IActionTarget, IFormField } from "@/types/forms"
 
@@ -11,7 +12,8 @@ export const managerFields : { [key in IActionTarget]: IFormField[] } = {
             processingMethod: processBasicTextInput,
             testAgainst: null,
             type: 'text',
-            requiredForItemCreation: true
+            element: Input.Base,
+            required: true
         },
         {
             name: 'email',
@@ -21,7 +23,8 @@ export const managerFields : { [key in IActionTarget]: IFormField[] } = {
             processingMethod: processBasicTextInput,
             testAgainst: null,
             type: 'text',
-            requiredForItemCreation: true 
+            element: Input.Base,
+            required: true 
         }
     ],
     update: [
@@ -33,7 +36,8 @@ export const managerFields : { [key in IActionTarget]: IFormField[] } = {
             processingMethod: processBasicTextInput,
             testAgainst: null,
             type: 'text',
-            requiredForItemCreation: true
+            element: Input.Base,
+            required: true
         },
         {
             name: 'email',
@@ -43,7 +47,8 @@ export const managerFields : { [key in IActionTarget]: IFormField[] } = {
             processingMethod: processBasicTextInput,
             testAgainst: null,
             type: 'text',
-            requiredForItemCreation: true 
+            element: Input.Base,
+            required: true 
         }
     ]
 }

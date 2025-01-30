@@ -1,3 +1,4 @@
+import * as Input from '@/lib/forms/components/inputs/type'
 import { isValidSocialProfile, isValidString, isValidUrl, processBasicTextInput } from "@/lib/forms/validation/functions"
 import { IActionTarget, IFormField } from "@/types/forms"
 
@@ -10,8 +11,9 @@ export const brandFields : { [key in IActionTarget]: IFormField[] } = {
             validationMethod: isValidString,
             processingMethod: processBasicTextInput,
             testAgainst: null,
-            type: 'text',
-            requiredForItemCreation: true
+            element: Input.Base,
+            required: true,
+            type: 'text'
         },
         {
             name: 'website',
@@ -20,8 +22,9 @@ export const brandFields : { [key in IActionTarget]: IFormField[] } = {
             validationMethod: isValidUrl,
             processingMethod: processBasicTextInput,
             testAgainst: null,
-            type: 'text',
-            requiredForItemCreation: true
+            element: Input.Base,
+            required: true,
+            type: 'text'
         },
         {
             name: 'instagramProfile',
@@ -30,8 +33,9 @@ export const brandFields : { [key in IActionTarget]: IFormField[] } = {
             validationMethod: isValidSocialProfile,
             processingMethod: processBasicTextInput,
             testAgainst: 'instagram',
-            type: 'text',
-            requiredForItemCreation: true,
+            element: Input.Base,
+            required: true,
+            type: 'text'
         },
         {
             name: 'tiktokProfile',
@@ -40,8 +44,9 @@ export const brandFields : { [key in IActionTarget]: IFormField[] } = {
             validationMethod: isValidSocialProfile,
             processingMethod: processBasicTextInput,
             testAgainst: 'tiktok',
-            type: 'text', 
-            requiredForItemCreation: true,
+            element: Input.Base,
+            required: true,
+            type: 'text',
         }
     ],    
     update: [
@@ -52,8 +57,9 @@ export const brandFields : { [key in IActionTarget]: IFormField[] } = {
             validationMethod: isValidString,
             processingMethod: processBasicTextInput,
             testAgainst: null,
-            type: 'text',
-            requiredForItemCreation: true
+            element: Input.Base,
+            required: true,
+            type: 'text'
         },
         {
             name: 'website',
@@ -62,8 +68,9 @@ export const brandFields : { [key in IActionTarget]: IFormField[] } = {
             validationMethod: isValidUrl,
             processingMethod: processBasicTextInput,
             testAgainst: null,
-            type: 'text',
-            requiredForItemCreation: true
+            element: Input.Base,
+            required: true,
+            type: 'text'
         },
         {
             name: 'instagramProfile',
@@ -72,8 +79,9 @@ export const brandFields : { [key in IActionTarget]: IFormField[] } = {
             validationMethod: isValidSocialProfile,
             processingMethod: processBasicTextInput,
             testAgainst: 'instagram',
-            type: 'text',
-            requiredForItemCreation: true,
+            element: Input.Base,
+            required: true,
+            type: 'text'
         },
         {
             name: 'tiktokProfile',
@@ -82,8 +90,9 @@ export const brandFields : { [key in IActionTarget]: IFormField[] } = {
             validationMethod: isValidSocialProfile,
             processingMethod: processBasicTextInput,
             testAgainst: 'tiktok',
-            type: 'text', 
-            requiredForItemCreation: true,
+            element: Input.Base,
+            required: true,
+            type: 'text',
         },
         {
             name: 'backgroundColor',
@@ -92,8 +101,9 @@ export const brandFields : { [key in IActionTarget]: IFormField[] } = {
             validationMethod: null,
             processingMethod: null,
             testAgainst: null,
-            type: 'color', 
-            requiredForItemCreation: false,
+            element: Input.Base,
+            required: true,
+            type: 'color',
         },
         {
             name: 'foregroundColor',
@@ -102,8 +112,9 @@ export const brandFields : { [key in IActionTarget]: IFormField[] } = {
             validationMethod: null,
             processingMethod: null,
             testAgainst: null,
-            type: 'color',
-            requiredForItemCreation: false,
+            element: Input.Base,
+            required: true,
+            type: 'color'
         },
         {
             name: 'accentColor',
@@ -112,8 +123,9 @@ export const brandFields : { [key in IActionTarget]: IFormField[] } = {
             validationMethod: null,
             processingMethod: null,
             testAgainst: null,
-            type: 'color',
-            requiredForItemCreation: false,
+            element: Input.Base,
+            required: true,
+            type: 'color'
         }
     ]
 }

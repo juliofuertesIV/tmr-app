@@ -1,3 +1,4 @@
+import * as Input from '@/lib/forms/components/inputs/type'
 import { extractedSubdomainString, isValidDomain, isValidString, isValidUrl, processBasicTextInput } from "@/lib/forms/validation/functions"
 import { IActionTarget, IFormField, IMediaFormField } from "@/types/forms"
 
@@ -11,7 +12,8 @@ export const contestFields : { [key in IActionTarget]: IFormField[] } = {
             validationMethod: isValidString,
             processingMethod: processBasicTextInput,
             testAgainst: null,
-            requiredForItemCreation: true
+            element: Input.Base,
+            required: true
         },
         {
             name: 'metaUrl',
@@ -21,7 +23,8 @@ export const contestFields : { [key in IActionTarget]: IFormField[] } = {
             validationMethod: isValidUrl,
             processingMethod: processBasicTextInput,
             testAgainst: null,
-            requiredForItemCreation: true
+            element: Input.Base,
+            required: true
         },
         {
             name: 'year',
@@ -31,7 +34,8 @@ export const contestFields : { [key in IActionTarget]: IFormField[] } = {
             validationMethod: null,
             processingMethod: null,
             testAgainst: null,
-            requiredForItemCreation: true
+            element: Input.Base,
+            required: true
         },        
     ],
     update: [
@@ -43,7 +47,8 @@ export const contestFields : { [key in IActionTarget]: IFormField[] } = {
             validationMethod: isValidString,
             processingMethod: processBasicTextInput,
             testAgainst: null,
-            requiredForItemCreation: true
+            element: Input.Base,
+            required: true
         },
         {
             name: 'domain',
@@ -53,8 +58,9 @@ export const contestFields : { [key in IActionTarget]: IFormField[] } = {
             validationMethod: isValidDomain,
             processingMethod: extractedSubdomainString,
             testAgainst: null,
-            requiredForItemCreation: false,
-            readonly: true
+            element: Input.Base,
+            readonly: true,
+            required: true
         },
         {
             name: 'metaUrl',
@@ -64,7 +70,8 @@ export const contestFields : { [key in IActionTarget]: IFormField[] } = {
             validationMethod: isValidUrl,
             processingMethod: processBasicTextInput,
             testAgainst: null,
-            requiredForItemCreation: true
+            element: Input.Base,
+            required: true
         },
         {
             name: 'year',
@@ -74,7 +81,8 @@ export const contestFields : { [key in IActionTarget]: IFormField[] } = {
             validationMethod: null,
             processingMethod: null,
             testAgainst: null,
-            requiredForItemCreation: true
+            element: Input.Base,
+            required: true
         },
         {
             name: 'metaTitle',
@@ -84,7 +92,8 @@ export const contestFields : { [key in IActionTarget]: IFormField[] } = {
             validationMethod: isValidString,
             processingMethod: processBasicTextInput,
             testAgainst: null,
-            requiredForItemCreation: false
+            element: Input.Base,
+            required: true
         },
         {
             name: 'metaDescription',
@@ -94,7 +103,8 @@ export const contestFields : { [key in IActionTarget]: IFormField[] } = {
             validationMethod: isValidString,
             processingMethod: processBasicTextInput,
             testAgainst: null,
-            requiredForItemCreation: false
+            element: Input.Base,
+            required: true
         },    
         {
             name: 'postmarkToken',
@@ -104,7 +114,8 @@ export const contestFields : { [key in IActionTarget]: IFormField[] } = {
             validationMethod: null,
             processingMethod: null,
             testAgainst: null,
-            requiredForItemCreation: false
+            element: Input.Base,
+            required: true
         },
         {
             name: 'postmarkSenderAddress',
@@ -114,7 +125,8 @@ export const contestFields : { [key in IActionTarget]: IFormField[] } = {
             validationMethod: null,
             processingMethod: null,
             testAgainst: null,
-            requiredForItemCreation: false
+            element: Input.Base,
+            required: true
         },
         {
             name: 'metaPixelId',
@@ -124,7 +136,8 @@ export const contestFields : { [key in IActionTarget]: IFormField[] } = {
             validationMethod: null,
             processingMethod: null,
             testAgainst: null,
-            requiredForItemCreation: false
+            element: Input.Base,
+            required: true
         },
         {
             name: 'googleTagManagerId',
@@ -134,7 +147,8 @@ export const contestFields : { [key in IActionTarget]: IFormField[] } = {
             validationMethod: null,
             processingMethod: null,
             testAgainst: null,
-            requiredForItemCreation: false
+            element: Input.Base,
+            required: true
         },
         {
             name: 'googleAnalyticsId',
@@ -144,7 +158,8 @@ export const contestFields : { [key in IActionTarget]: IFormField[] } = {
             validationMethod: null,
             processingMethod: null,
             testAgainst: null,
-            requiredForItemCreation: false
+            element: Input.Base,
+            required: true
         }
     ]
 }
