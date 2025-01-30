@@ -1,6 +1,5 @@
 import React, { ChangeEvent } from "react"
 
-
 export const emptyMediaFormState = ({ 
     setFile,
     setImageSize 
@@ -14,7 +13,6 @@ export const emptyMediaFormState = ({
 
     setFile(null)
     setImageSize({ width: null, height: null })
-
 }
 
 export const manageMediaInputChange = ({ 
