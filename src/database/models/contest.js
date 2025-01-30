@@ -96,7 +96,6 @@ module.exports = (sequelize, DataTypes) => {
         const parsedDomain = extractedSubdomainString(record.dataValues.metaUrl);
         if (parsedDomain === record.dataValues.domain) return;
         record.dataValues.domain = parsedDomain;
-
       }
     },
   });  

@@ -9,7 +9,7 @@ export const DELETE = async (req: Request, { params } : Params) => {
 
     const { collection, id, association, associationId } = params
 
-    if (association === 'media') return await deleteMediaInStorageAndDatabase({ mediaId: associationId })
+    if (association === 'media') return await deleteMediaInStorageAndDatabase({ MediumId: associationId })
     else return await deleteAssociation({ collection, id, association, associationId })
 
 }
