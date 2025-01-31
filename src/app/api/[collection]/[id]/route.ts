@@ -1,10 +1,10 @@
 import { ICollectionNames } from "@/types";
 import { updateCollectionItem } from "./_functions/update";
 import { deleteCollectionItem } from "./_functions/delete";
-import { getCollectionItemById } from "./_functions/get";
 import { handleApiError } from "@/lib/errors";
 import { constructAPIResponse } from "../../_utils";
 import { NextRequest } from "next/server";
+import { getCollectionItemById } from "./_functions/get";
 
 type RouteParams = {
     params: {
@@ -17,8 +17,24 @@ export const GET = async (req: NextRequest, { params } : RouteParams) => {
 
     const { collection, id } = params
     
-    return await getCollectionItemById({ collection, id })
-
+    try {
+        const collectionItem = await getCollectionItemById({ collection, id })
+        return Response.json(
+            constructAPIResponse({
+                message: 'Fetched.',
+                success: true,
+                error: null,
+                data: collectionItem
+            })
+        )
+    }
+    catch (error) {
+        return handleApiError({
+            error: error as string,
+            message: 'Not found.',
+            route: `/api/${collection}/${id}`
+        })
+    }
 }
 
 export const PUT = async (req: NextRequest, { params } : RouteParams) => {

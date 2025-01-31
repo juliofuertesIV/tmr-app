@@ -12,25 +12,9 @@ export const getCollectionItemById = async ({ collection, id } : Props) => {
     const { Model, options } = getModelByCollectionName(collection)
 
     try {
-        const data = await Model.findOne({ where: { id }, ...options }).then(data => data)
-
-        return Response.json(
-            constructAPIResponse({ 
-                message: 'OK',
-                success: true,
-                error: null,
-                data
-            })
-        )
+        return await Model.findOne({ where: { id }, ...options }).then(data => data)
     }
     catch (error) {
-        return Response.json(
-            constructAPIResponse({ 
-                message: 'Failed to fetch',
-                success: false,
-                error,
-                data: null 
-            })
-        )
+        throw new Error(error as string)
     }
 }

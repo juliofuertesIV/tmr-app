@@ -1,6 +1,8 @@
 import { handleApiError } from "@/lib/errors";
 import { constructAPIResponse } from "../../_utils";
 import { NextRequest } from "next/server";
+import { getCollectionItemById } from "../../[collection]/[id]/_functions/get";
+import { Contest } from "@/database/models";
 
 type RouteParams = {
     params: {
@@ -8,12 +10,30 @@ type RouteParams = {
     }
 }
 
+//TO DO: SECURE THIS
+
 export const GET = async (req: NextRequest, { params } : RouteParams) => {
 
     const { id } = params
     
-    return await getContestById({ id })
+    try {
+        const contest = await Contest.findOne({ where: { id }}).then(data => data)
 
+        return Response.json(
+            constructAPIResponse({
+                message: 'Fetched',
+                success: true,
+                error: null,
+                data: contest
+            })
+        )
+    }
+    catch (error) {
+        return handleApiError({
+            error: error as string,
+            route: '/api/contests/[id]'
+        })
+    }
 }
 
 export const PUT = async (req: NextRequest, { params } : RouteParams) => {

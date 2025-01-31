@@ -14,35 +14,40 @@ export const GET = async (req: Request, { params } : RouteParams) => {
 
     const { id } = params
 
-    let inscription;
-
     try {
-        inscription = await Inscription.findOne({ where: { id }}).then(data => data)
+        const inscription = await Inscription.findOne({ where: { id }}).then(data => data)
+
+        return Response.json(
+            constructAPIResponse({
+                message: 'Fetched.',
+                success: true,
+                error: null,
+                data: inscription
+            })
+        )
     } catch (error)  {
         return await handleApiError({
             error,
             route: '/api/inscriptions/[id]'
         })
     }
-
-    return Response.json(
-        constructAPIResponse({
-            message: 'Fetched.',
-            success: true,
-            error: null,
-            data: inscription
-        })
-    )
 }
 
 export const POST = async (req: Request) => {
 
     const formData = await req.formData()
     
-    let inscription;
-
     try {
-        inscription = await addInscription({ formData }) 
+        const inscription = await addInscription({ formData }) 
+
+        return Response.json(
+            constructAPIResponse({ 
+                message: "Candidatura inscrita correctamente.",
+                success: true,
+                error: null,
+                data: inscription 
+            })
+        )
     }
     catch (error) {
         return await handleApiError({
@@ -52,13 +57,4 @@ export const POST = async (req: Request) => {
             message: 'Fallo inscribiendo candidatura.' 
         })
     }
-
-    return Response.json(
-        constructAPIResponse({ 
-            message: "Candidatura inscrita correctamente.",
-            success: true,
-            error: null,
-            data: inscription 
-        })
-    )
 }

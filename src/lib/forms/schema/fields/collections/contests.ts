@@ -48,7 +48,7 @@ export const contestFields : { [key in IActionTarget]: IFormField[] } = {
             processingMethod: processBasicTextInput,
             testAgainst: null,
             element: Input.Base,
-            required: true
+            required: false
         },
         {
             name: 'domain',
@@ -60,7 +60,7 @@ export const contestFields : { [key in IActionTarget]: IFormField[] } = {
             testAgainst: null,
             element: Input.Base,
             readonly: true,
-            required: true
+            required: false
         },
         {
             name: 'metaUrl',
@@ -71,7 +71,7 @@ export const contestFields : { [key in IActionTarget]: IFormField[] } = {
             processingMethod: processBasicTextInput,
             testAgainst: null,
             element: Input.Base,
-            required: true
+            required: false
         },
         {
             name: 'year',
@@ -82,7 +82,7 @@ export const contestFields : { [key in IActionTarget]: IFormField[] } = {
             processingMethod: null,
             testAgainst: null,
             element: Input.Base,
-            required: true
+            required: false
         },
         {
             name: 'metaTitle',
@@ -93,7 +93,7 @@ export const contestFields : { [key in IActionTarget]: IFormField[] } = {
             processingMethod: processBasicTextInput,
             testAgainst: null,
             element: Input.Base,
-            required: true
+            required: false
         },
         {
             name: 'metaDescription',
@@ -104,7 +104,7 @@ export const contestFields : { [key in IActionTarget]: IFormField[] } = {
             processingMethod: processBasicTextInput,
             testAgainst: null,
             element: Input.Base,
-            required: true
+            required: false
         },    
         {
             name: 'postmarkToken',
@@ -115,7 +115,7 @@ export const contestFields : { [key in IActionTarget]: IFormField[] } = {
             processingMethod: null,
             testAgainst: null,
             element: Input.Base,
-            required: true
+            required: false
         },
         {
             name: 'postmarkSenderAddress',
@@ -126,7 +126,7 @@ export const contestFields : { [key in IActionTarget]: IFormField[] } = {
             processingMethod: null,
             testAgainst: null,
             element: Input.Base,
-            required: true
+            required: false
         },
         {
             name: 'metaPixelId',
@@ -137,7 +137,7 @@ export const contestFields : { [key in IActionTarget]: IFormField[] } = {
             processingMethod: null,
             testAgainst: null,
             element: Input.Base,
-            required: true
+            required: false
         },
         {
             name: 'googleTagManagerId',
@@ -148,7 +148,7 @@ export const contestFields : { [key in IActionTarget]: IFormField[] } = {
             processingMethod: null,
             testAgainst: null,
             element: Input.Base,
-            required: true
+            required: false
         },
         {
             name: 'googleAnalyticsId',
@@ -159,43 +159,7 @@ export const contestFields : { [key in IActionTarget]: IFormField[] } = {
             processingMethod: null,
             testAgainst: null,
             element: Input.Base,
-            required: true
+            required: false
         }
     ]
 }
-
-export const contestsMediaFields : IMediaFormField[] = [
-    {
-        role: 'logo',
-        label: 'Logotipo',
-        name: 'logo',
-        accept: 'image/svg+xml'
-    },
-    {
-        role: 'banner',
-        label: 'Banner',
-        name: 'banner',
-        accept: 'image/svg+xml'
-    },
-    {
-        role: 'frame',
-        label: 'Marco',
-        name: 'frame',
-        accept: 'image/svg+xml'
-    },
-    {
-        role: 'favicon',
-        label: 'Favicon',
-        name: 'favicon',
-        accept: 'image/vnd.microsoft.icon'
-    }
-]
-
-export const contestFooterField : IMediaFormField[] = [
-    {
-        role: 'footerElement',
-        label: 'Elemento de footer',
-        name: 'footer',
-        accept: 'image/svg+xml'
-    },
-]

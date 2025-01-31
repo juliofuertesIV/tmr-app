@@ -21,7 +21,7 @@ export default function ContestItem({ contest } : { contest: IContest }) {
         >
             <header className='flex justify-between'>
                 <p className='text-xs'>{ contest.Brand?.name || 'Sin branding' } · { contest.year }</p>
-                <Link href={ `/admin/contests/${ contest.id }`} className='hover:text-green-400'>
+                <Link href={ `/admin/contests/${ contest.id }/edit`} className='hover:text-green-400'>
                     <EditIcon/>
                 </Link>
             </header>

@@ -13,10 +13,16 @@ export const POST = async (req: Request) => {
 
     const formData = await req.formData()
     
-    let inscription;
-
     try {
-        inscription = await addInscription({ formData }) 
+        const inscription = await addInscription({ formData }) 
+        return Response.json(
+            constructAPIResponse({ 
+                message: "Candidatura inscrita correctamente.",
+                success: true,
+                error: null,
+                data: inscription 
+            })
+        )
     }
     catch (error) {
         return await handleApiError({
@@ -26,13 +32,4 @@ export const POST = async (req: Request) => {
             message: 'Fallo inscribiendo candidatura.' 
         })
     }
-
-    return Response.json(
-        constructAPIResponse({ 
-            message: "Candidatura inscrita correctamente.",
-            success: true,
-            error: null,
-            data: inscription 
-        })
-    )
 }

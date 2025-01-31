@@ -1,6 +1,5 @@
-import { IActionTarget, IMediaFormField } from "@/types/forms";
-import { contestFields, contestsMediaFields } from "./collections/contests";
-import { ICollectionsWithMediaNames } from "@/types/media";
+import { IActionTarget } from "@/types/forms";
+import { contestFields } from "./collections/contests";
 import { ICollectionNames } from "@/types";
 import { brandFields } from "./collections/brands";
 import { socialFields } from "./collections/social";
@@ -27,7 +26,7 @@ const fieldsByCollectionName = {
     sponsors: sponsorFields,
     media: []
 }
-
+/* 
 export const mediaFieldsByCollectionName = {
     contests: contestsMediaFields,
     inscriptions: [],
@@ -36,4 +35,4 @@ export const mediaFieldsByCollectionName = {
 } as {
     [key in ICollectionsWithMediaNames]: IMediaFormField[]
 }
-
+ */

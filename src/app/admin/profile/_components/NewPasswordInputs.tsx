@@ -1,5 +1,4 @@
 'use client'
-import { InputWithProps } from '@/lib/forms/inputs/by_type/InputWithProps'
 import Label from '@/lib/forms/components/label/Label'
 import React, { ChangeEvent, useState } from 'react'
 
@@ -34,7 +33,7 @@ export default function NewPasswordInputs() {
     return (
         <>
             <Label textContent={ "Nueva contraseña" } isValid={ isNewPasswordValid }>
-                <InputWithProps 
+                <input
                     className="pl-2 w-full bg-neutral-800 text-neutral-200 rounded-xl py-1 data-[readonly='true']:text-neutral-500 data-[readonly='true']:cursor-not-allowed"
                     name={ 'password' }
                     type={ 'password' }
@@ -44,15 +43,14 @@ export default function NewPasswordInputs() {
                 <small className='text-neutral-400'>Elige una nueva contraseña</small>
             </Label>
             <Label textContent={ "Confirma tu nueva contraseña" } isValid={ isConfirmedPassword }>
-                <InputWithProps 
+                <input
                     className="pl-2 w-full bg-neutral-800 text-neutral-200 rounded-xl py-1 data-[readonly='true']:text-neutral-500 data-[readonly='true']:cursor-not-allowed"
                     type={ 'password' }
                     onChange={ onChangeConfirmNewPassword }
                     required={ !!newPassword }
                 />
                 <small className='text-neutral-400'>Repite tu nueva contraseña</small>
-            </Label>    
-        
+            </Label>
         </>
     )
 }
