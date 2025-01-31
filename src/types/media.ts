@@ -1,5 +1,4 @@
-export type IContestMediaRole = 'frame' | 'banner' | 'logo' | 'favicon' | 'footerElement' 
-
+export type IContestMediaRole = 'frame' | 'banner' | 'logo' | 'favicon' 
 export type ICollectionsWithMediaNames = 'contests'
 export type ICollectionsWithMediumNames = 'inscriptions' | 'sponsors' | 'managers'
 
