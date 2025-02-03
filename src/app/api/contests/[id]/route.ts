@@ -3,6 +3,7 @@ import { constructAPIResponse } from "../../_utils";
 import { NextRequest } from "next/server";
 import { getCollectionItemById } from "../../[collection]/[id]/_functions/get";
 import { Contest } from "@/database/models";
+import { deleteContest, updateContest } from "./_functions";
 
 type RouteParams = {
     params: {
@@ -79,6 +80,23 @@ export const DELETE = async (req: NextRequest, { params } : RouteParams) => {
 
     const { id } = params
 
-    return await deleteContest({ id })
+    try {
+        await deleteContest({ id })
+    }
+    catch (error) {
+        return await handleApiError({
+            error,
+            route: '/api/contests/[id]'
+        })
+    }
+
+    return Response.json(
+        constructAPIResponse({
+            message: 'Deleted ok.',
+            success: true,
+            error: null,
+            data: null
+        })
+    )
 
 }

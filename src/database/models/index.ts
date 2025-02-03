@@ -103,6 +103,8 @@ export {
     ContestMedia,
     ContestSponsor,
     ContestManager,
+    Footer,
+    FooterMedia,
     Genre,
     Inscription,
     Log,

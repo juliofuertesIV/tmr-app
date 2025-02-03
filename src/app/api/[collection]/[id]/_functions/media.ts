@@ -18,19 +18,6 @@ export const getCollectionItemMediumById = async (collection: ICollectionsWithMe
     return collectionItem.Medium;
 }
 
-
-export const updateCollectionItemMedium = ({ 
-    collection,
-    collectionItemId,
-    MediumId } : { 
-    collection: ICollectionsWithMediumNames,
-    collectionItemId: string | number,
-    MediumId: string
-    }) => {
-    
-}
-
-
 export const addMediaToCollectionItem = async ({ formData, collection, id } : { formData: FormData, collection: ICollectionsWithMediumNames, id: string }) => {
 
     let createdMedia;

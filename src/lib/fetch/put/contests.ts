@@ -1,6 +1,5 @@
 'use server'
     
-import { ICollectionNames } from "@/types"
 import { IAPIResponse } from "@/types/api"
 import { revalidateTag } from "next/cache"
 

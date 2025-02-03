@@ -1,4 +1,4 @@
-import { Brand, Contest, Media, Genre, Param, State, ContestParam, ContestGenre, ContestSocial, SocialMedia, Manager, Role, Log, Inscription, ContestMedia, Sponsor, ContestSponsor } from '@/database/models';
+import { Brand, Contest, Media, FooterMedia, Genre, Param, State, ContestParam, ContestGenre, ContestSocial, SocialMedia, Manager, Role, Log, Inscription, ContestMedia, Sponsor, ContestSponsor } from '@/database/models';
 import { ICollectionNames } from "@/types";
 import { IAssociationIdFieldnames, IAssociationKeys, IAssociationNames, IRelationshipIdFieldnames, IRelationshipNames } from "@/types/associations";
 import { ICollectionsWithMediaNames } from "@/types/media";
@@ -111,10 +111,10 @@ const associationByName = {
         }
     },
     media: {
-        AssociationTable: ContestMedia,
+        AssociationTable: FooterMedia,
         AssociationModel: Media,
         associationKey: 'Media',
-        collectionItemIdField: 'ContestId',
+        collectionItemIdField: 'FooterId',
         associationIdField: 'MediumId',
         options: {}
     },

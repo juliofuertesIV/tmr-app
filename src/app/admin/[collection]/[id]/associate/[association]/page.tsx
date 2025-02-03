@@ -1,11 +1,7 @@
 import { Metadata } from "next";
-import { ICollectionsWithMedia } from "@/types";
 import AssociationManager from "./_components/AssociationManager";
-import { IAssociationNames, ICollectionsWithAssociationsNames, IMedialessAssociation, IMedialessAssociationIdFieldnames, IMedialessAssociationKeys, IMedialessAssociationNames, IMedialessRelationshipIdFieldnames } from "@/types/associations";
+import { IAssociationNames, ICollectionsWithAssociationsNames, IMedialessAssociation, IMedialessAssociationIdFieldnames, IMedialessAssociationKeys, IMedialessAssociationNames } from "@/types/associations";
 import AssociationPageHeader from "./_components/AssociationPageHeader";
-import { getMediaFieldsByCollection } from "@/lib/forms/collection";
-import { ICollectionsWithMediaNames } from "@/types/media";
-import MediaFormWrapper from "./_components/MediaFormWrapper";
 import { getCollectionElementAndAssociationsById } from "@/lib/fetch/get/collections";
 
 export const metadata: Metadata = {
@@ -31,7 +27,7 @@ export default async function AdminAssociationPage({ params } : Props) {
 
     const { item, associationItems, associationIdField, associationKey } = data
 
-    if (association === 'media') {
+/*     if (association === 'media') {
 
         const mediaFields = getMediaFieldsByCollection({ collection })
 
@@ -46,7 +42,7 @@ export default async function AdminAssociationPage({ params } : Props) {
             </section>
         )
 
-    }
+    } */
 
     return (
         <section className="w-full flex flex-col items-center">
