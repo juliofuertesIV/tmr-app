@@ -1,45 +1,43 @@
 
-import { handleApiError } from '@/lib/errors'
-import { addInscription } from '../_functions'
-import { constructAPIResponse } from '../../_utils'
+import { constructAPIResponse } from '@/app/api/_utils'
 import { Inscription } from '@/database/models'
+import { handleApiError } from '@/lib/errors'
+import { addInscriptionToContest } from './_functions'
 
-type RouteParams = {
-    params: {
-        id: string
-    }
+type Params = {
+    params: { id: string }
 }
 
-export const GET = async (req: Request, { params } : RouteParams) => {
+export const GET = async (req: Request, { params } : Params) => {
 
     const { id } = params
-
+    
     try {
-        const inscription = await Inscription.findOne({ where: { id }}).then(data => data)
-
+        const inscriptions = await Inscription.findAll({ where: { ContestId: id }}).then(data => data)
         return Response.json(
             constructAPIResponse({
-                message: 'Fetched.',
+                message: 'Inscriptions found.',
                 success: true,
                 error: null,
-                data: inscription
+                data: inscriptions
             })
         )
-    } catch (error)  {
+    }
+    catch (error) {
         return await handleApiError({
             error,
-            route: '/api/inscriptions/[id]'
+            route: '/api/contests/[id]/inscriptions'
         })
     }
 }
 
-export const POST = async (req: Request) => {
+export const POST = async (req: Request, { params } : Params) => {
 
+    const { id } = params
     const formData = await req.formData()
     
     try {
-        const inscription = await addInscription({ formData }) 
-
+        const inscription = await addInscriptionToContest({ formData, ContestId: id }) 
         return Response.json(
             constructAPIResponse({ 
                 message: "Candidatura inscrita correctamente.",
