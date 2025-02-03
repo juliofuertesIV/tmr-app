@@ -9,7 +9,7 @@ type ICollectionTable = {
     }[] | null
 }
 
-const tables : { [key in ICollectionNames]: ICollectionTable } = {
+const tables : { [key in Exclude<ICollectionNames, "media">]: ICollectionTable } = {
     contests: {
         headers: ['Nombre', 'Año', 'Marca', 'Estado'],
         fields: ['name', 'year'],
@@ -52,6 +52,6 @@ const tables : { [key in ICollectionNames]: ICollectionTable } = {
     }
 } 
 
-export const getTableByCollectionName = (collection: ICollectionNames) : ICollectionTable => {
+export const getTableByCollectionName = (collection: Exclude<ICollectionNames, "media">) : ICollectionTable => {
     return tables[collection]
 }
