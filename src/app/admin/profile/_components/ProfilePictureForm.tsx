@@ -81,7 +81,7 @@ export default function ProfilePictureForm({ inputRef, manager, formRef, clickAc
                 : <ProfilePlaceholder clickAction={ clickAction }/> 
             }
             <input className="hidden" ref={ inputRef } type="file" name='file' accept={ 'image' } onChange={ (e) => manageFileInputChange(e) }/>
-            <input type="hidden" name="role" value={ 'profilePic' } />
+            <input type="hidden" name="role" value={ 'profile' } />
             <input type="hidden" name="alt" value={ 'Profile picture of ' + manager.name } />
             <input type="hidden" name="width" value={ imageSize.width || '' } />
             <input type="hidden" name="height" value={ imageSize.height || '' } />

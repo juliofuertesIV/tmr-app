@@ -30,16 +30,9 @@ export type IFormField = {
         role: IMediaRole,
         accept: string,
         previewClassname?: React.ComponentProps<'div'>['className'];
-    }, // TO DO: INTEGRATE
+    },
     options?: { name: string, value: string }[],
     readonly?: boolean
-}
-
-export type IMediaFormField = {
-    role: IMediaRole,
-    label: string,
-    name: string,
-    accept: string
 }
 
 export type IFormAction = (...args: any) => Promise<IAPIResponse<any>>
@@ -49,10 +42,3 @@ export type IFormEditionAction = (collection: ICollectionNames, id: string, prev
 export type IAssociationAction = (collection: ICollectionNames, collectionItemId: string | number, association: IAssociationNames, prevState: any, formData: FormData) => Promise<IAPIResponse<any>>
 
 export type IDissociationAction = (collection: ICollectionNames, collectionItemId: string | number, association: IAssociationNames, associationId: string | number, prevState: any, formData: FormData) => Promise<IAPIResponse<any>>
-
-export const formInitialState : IAPIResponse<any> = {
-    success: false,
-    message: '',
-    error: null,
-    data: null
-} 

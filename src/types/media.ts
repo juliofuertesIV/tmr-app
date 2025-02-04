@@ -1,8 +1,17 @@
-export type IContestMediaRole = 'frame' | 'banner' | 'logo' | 'favicon' 
-export type ICollectionsWithMediaNames = 'contests'
-export type ICollectionsWithMediumNames = 'inscriptions' | 'sponsors' | 'managers'
+import { IContest, IInscription, IManager, ISponsor } from "."
+import { IFooter } from "./collections"
 
-export type IMediaRole = IContestMediaRole | 'inscriptions' | 'sponsors' | 'profilePic'
+export type IContestMediaRole = 'frame' | 'banner' | 'logo' | 'favicon' 
+
+export type ICollectionsWithMediaNames = 'footers'
+
+export type ICollectionsWithMediumNames = 'inscriptions' | 'sponsors' | 'managers' | 'contests'
+
+export type ICollectionsWithMedia = IFooter
+
+export type ICollectionsWithMedium = IInscription & IManager & ISponsor & IContest
+
+export type IMediaRole = IContestMediaRole | 'inscriptions' | 'sponsors' | 'profile'
 
 export type IMediaPayload = {
     file: File,
