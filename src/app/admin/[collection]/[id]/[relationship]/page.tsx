@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { getModelByCollectionName, getRelationshipModelByName } from "@/app/api/[collection]/_utils";
+import { getModelByCollectionName, getRelationshipModelByName } from "@/app/api/protected/[collection]/_utils";
 import { ICollectionsWithAssociations, IRelationshipNames, IRelationship, IMedialessAssociationIdFieldnames, IMedialessAssociation, IMedialessRelationship, ICollectionsWithAssociationsNames } from "@/types/associations";
 import AssociationPageHeader from "../associate/[association]/_components/AssociationPageHeader";
 import AssociationManager from "../associate/[association]/_components/AssociationManager";

@@ -1,4 +1,4 @@
-import { createAndUploadMedia } from "@/app/api/media/_functions"
+import { createAndUploadMedia } from "@/app/api/protected/media/_functions"
 import { Contest } from "@/database/models"
 import { IContestMediaRole } from "@/types/media"
 

@@ -1,4 +1,4 @@
-import { getModelByCollectionName } from "@/app/api/[collection]/_utils"
+import { getModelByCollectionName } from "@/app/api/protected/[collection]/_utils"
 import { constructAPIResponse } from "@/app/api/_utils"
 import { IContest, ICollectionNames } from "@/types"
 

@@ -19,7 +19,7 @@ export const createMediumInDatabase = async ({
     folder: string,
     src: string
 }
-) : Promise<{ MediumId: string | null, transaction: Transaction }> => {
+) : Promise<{ MediumId: string, transaction: Transaction }> => {
 
     const transaction = await sequelize.transaction()
     let createdMedia;

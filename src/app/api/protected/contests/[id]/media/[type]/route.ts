@@ -1,18 +1,29 @@
+
 import { constructAPIResponse } from "@/app/api/_utils";
 import { createAndUploadMedia } from "@/app/api/protected/media/_functions";
 import { Contest } from "@/database/models";
 import { handleApiError } from "@/lib/errors";
-import { deleteMediaInStorageAndDatabase } from "@/lib/media/delete";
-import { IContestMediaRole } from "@/types/media";
 import { NextRequest } from "next/server";
-import { addMediaToContest } from "./_functions";
 
+type IContestMediaTypes = 'frame' | 'logo' | 'favicon' | 'banner'
 
-type Params = {
+type Params = { 
     params: {
         id: string,
-        type: IContestMediaRole
+        type: IContestMediaTypes
     }
+}
+
+const getForeignKeyByType = (type: IContestMediaTypes) => {
+
+    const foreignKeysByType = {
+        frame: 'FrameId',
+        favicon: 'FaviconId',
+        logo: 'LogoId',
+        banner: 'BannerId'
+    } as { [key in IContestMediaTypes]: string }
+
+    return foreignKeysByType[type]
 }
 
 export const POST = async (req: NextRequest, { params } : Params) => {
@@ -22,7 +33,8 @@ export const POST = async (req: NextRequest, { params } : Params) => {
     const formData = await req.formData()
 
     try {
-        await addMediaToContest({ id, type, formData })
+        const { MediumId } = await createAndUploadMedia({ formData })
+        await Contest.update({ [getForeignKeyByType(type)]: MediumId }, { where: { id }})
     }
     catch (error) {
         return handleApiError({
@@ -33,10 +45,12 @@ export const POST = async (req: NextRequest, { params } : Params) => {
 
     return Response.json(
         constructAPIResponse({
-            message: 'Updated ok.',
+            message: 'Updated OK.',
             success: true,
             error: null,
             data: null
         })
     )
+
+
 }
