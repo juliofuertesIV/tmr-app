@@ -9,7 +9,7 @@ export const updateManagerProfile = async (
     formData: FormData
 ) : Promise<IAPIResponse<null>> => {
 
-    const res = await fetch(`http://localhost:3000/api/auth/managers/${ id }`, {
+    const res = await fetch(`http://localhost:3000/api/protected/auth/managers/${ id }`, {
         method: "PUT",
         cache: 'no-cache',
         body: formData

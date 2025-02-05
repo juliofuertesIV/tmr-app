@@ -18,8 +18,8 @@ export default function ContestsDashboard({ contests } : { contests: IContest[] 
     const contestIsActive = (contest: IContest) => 
         contest.StateId === 'inscriptionOnly' || contest.StateId ==='open' || contest.StateId === 'endedInscription' 
     
-    const activeContests = contests.filter(contest => contestIsActive(contest)) 
-    const inactiveContests = contests.filter(contest => !contestIsActive(contest)) 
+    const activeContests = contests?.filter(contest => contestIsActive(contest))
+    const inactiveContests = contests?.filter(contest => !contestIsActive(contest)) 
     const filteredContests = view === 'active' ? activeContests : inactiveContests
 
     return (

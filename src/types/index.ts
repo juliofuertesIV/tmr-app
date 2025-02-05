@@ -1,12 +1,11 @@
+import { ITag } from "./collections"
 import { IMedia } from "./media"
 
-export type IAllCollections = IContest & IBrand & ISocialMedia & IGenre & IInscription & IManager
+export type IAllCollections = IBrand & ISocialMedia & IGenre & IManager & ITag
 
-export type ICollectionNames = 'contests' | 'brands' | 'social' | 'genres' | 'inscriptions' | 'managers' | 'sponsors' | 'media'
+export type ICollectionNames = 'brands' | 'social' | 'genres' | 'managers' | 'sponsors' | 'tags' 
 
-export type ICollectionsWithMedia = IContest
-
-export type ICollectionsWithMedium = IInscription & IManager & ISponsor
+export type ICollectionsWithMedium = IInscription & IManager & ISponsor & IContest
 
 export type IManagerRoleId = 1 | 2 | 3 | 4
 

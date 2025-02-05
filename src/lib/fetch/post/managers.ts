@@ -8,7 +8,7 @@ export const addManager = async (
     formData: FormData
 ) : Promise<IAPIResponse<null>> => {
 
-    const res = await fetch('http://localhost:3000/api/auth/managers', {
+    const res = await fetch('http://localhost:3000/api/protected/auth/managers', {
         method: "POST",
         cache: 'no-cache',
         body: formData

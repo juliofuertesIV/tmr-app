@@ -7,7 +7,7 @@ import { IAssociation, IAssociationIdFieldnames, IAssociationKeys, IAssociationN
 
 export const getCollection = async (collection: ICollectionNames) : Promise<IAPIResponse<IAllCollections[]>> => {
     
-    const res = await fetch(`http://localhost:3000/api/${ collection }`, {
+    const res = await fetch(`http://localhost:3000/api/protected/${ collection }`, {
         method: "GET",
         cache: 'no-cache',
         headers: {
@@ -25,7 +25,7 @@ export const getCollection = async (collection: ICollectionNames) : Promise<IAPI
 
 export const getCollectionElementById = async (collection: ICollectionNames, id: string) : Promise<IAPIResponse<IAllCollections>> => {
     
-    const res = await fetch(`http://localhost:3000/api/${ collection }/${ id }`, {
+    const res = await fetch(`http://localhost:3000/api/protected/${ collection }/${ id }`, {
         method: "GET",
         cache: 'no-cache',
         headers: {
@@ -49,7 +49,7 @@ export const getCollectionElementAndAssociationsById = async (collection: IColle
     associationIdField: IAssociationIdFieldnames,
 }>> => {
 
-    const res = await fetch(`http://localhost:3000/api/${ collection }/${ id }/${ association }`, {
+    const res = await fetch(`http://localhost:3000/api/protected/${ collection }/${ id }/${ association }`, {
         method: "GET",
         cache: 'no-cache',
         headers: {

@@ -27,7 +27,7 @@ export const POST = async (req: NextRequest, { params } : Params) => {
     catch (error) {
         return handleApiError({
             error,
-            route: '/api/contests/media/[type]'
+            route: '/api/protected/contests/media/[type]'
         })
     }
 

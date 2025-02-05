@@ -32,7 +32,7 @@ export const GET = async (req: NextRequest, { params } : RouteParams) => {
         return handleApiError({
             error: error as string,
             message: 'Not found.',
-            route: `/api/${collection}/${id}`
+            route: `/api/protected/${collection}/${id}`
         })
     }
 }

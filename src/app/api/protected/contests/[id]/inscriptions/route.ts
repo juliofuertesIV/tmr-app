@@ -26,7 +26,7 @@ export const GET = async (req: Request, { params } : Params) => {
     catch (error) {
         return await handleApiError({
             error,
-            route: '/api/contests/[id]/inscriptions'
+            route: '/api/protected/contests/[id]/inscriptions'
         })
     }
 }

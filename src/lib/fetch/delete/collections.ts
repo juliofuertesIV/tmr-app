@@ -8,7 +8,7 @@ export const deleteCollectionItem = async (collection: ICollectionNames, itemId:
     
     const payload = Object.fromEntries(formData)
 
-    const res = await fetch(`http://localhost:3000/api/${ collection }/${ itemId }`, {
+    const res = await fetch(`http://localhost:3000/api/protected/${ collection }/${ itemId }`, {
         method: "DELETE",
         cache: 'no-cache',
         body: JSON.stringify(payload),

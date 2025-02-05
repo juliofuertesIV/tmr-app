@@ -65,6 +65,12 @@ export const adminNavSections : IAdminNavSection[] = [
                 isActive: (path: string) => path.includes('/admin/genres') && !path.includes('/genres/'),
                 minimumRole: 2
             },
+            { 
+                collection: 'tags', 
+                label: 'Etiquetas',
+                isActive: (path: string) => path.includes('/admin/tags') && !path.includes('/tags/'),
+                minimumRole: 2
+            },
         ]
     }
 ]

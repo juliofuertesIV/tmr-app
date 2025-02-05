@@ -5,7 +5,7 @@ import { IAPIResponse } from "@/types/api"
 
 export const getContests = async () : Promise<IAPIResponse<IContest[]>> => {
 
-    const res = await fetch(`http://localhost:3000/api/contests/`, {
+    const res = await fetch(`http://localhost:3000/api/protected/contests/`, {
         method: "GET",
         cache: 'no-cache',
         headers: {
@@ -23,7 +23,7 @@ export const getContests = async () : Promise<IAPIResponse<IContest[]>> => {
 
 export const getContestByDomain = async (domain: string) : Promise<IAPIResponse<IContest | null>> => {
     
-    const res = await fetch(`http://localhost:3000/api/contests/domain/${ domain }`, {
+    const res = await fetch(`http://localhost:3000/api/protected/contests/domain/${ domain }`, {
         method: "GET",
         cache: 'no-cache',
         headers: {

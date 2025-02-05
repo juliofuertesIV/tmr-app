@@ -25,7 +25,7 @@ export const POST = async (req: Request) => {
         return await handleApiError({
             error, 
             collection: 'managers',
-            route: `/api/auth/managers`
+            route: `/api/protected/auth/managers`
         })
     }
 }

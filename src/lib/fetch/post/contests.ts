@@ -8,7 +8,7 @@ export const addContest = async (
     formData: FormData
 ) : Promise<IAPIResponse<null>> => {
 
-    const res = await fetch(`http://localhost:3000/api/contests`, {
+    const res = await fetch(`http://localhost:3000/api/protected/contests`, {
         method: "POST",
         cache: 'no-cache',
         body: formData

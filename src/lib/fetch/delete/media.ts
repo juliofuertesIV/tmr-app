@@ -32,7 +32,7 @@ export const disassociateItems = async (
     formData: FormData
 ) : Promise<IAPIResponse<null>> => {
 
-    const res = await fetch(`http://localhost:3000/api/${ collection }/${ collectionItemId }/${ association }/${ associationItemId }`, {
+    const res = await fetch(`http://localhost:3000/api/protected/${ collection }/${ collectionItemId }/${ association }/${ associationItemId }`, {
         method: "DELETE",
         cache: 'no-cache'
     })

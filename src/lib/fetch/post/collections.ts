@@ -11,7 +11,7 @@ export const addCollectionItem = async (
     formData: FormData
 ) : Promise<IAPIResponse<null>> => {
 
-    const res = await fetch(`http://localhost:3000/api/${ collection }`, {
+    const res = await fetch(`http://localhost:3000/api/protected/${ collection }`, {
         method: "POST",
         cache: 'no-cache',
         body: formData
@@ -33,7 +33,7 @@ export const associateItems = async (
 
     // TO DO: VALIDATE if (association === 'states') { // ACTUALLY UPDATE CONTEST STATE separate function
 
-    const res = await fetch(`http://localhost:3000/api/${ collection }/${ collectionItemId }/${ association }`, {
+    const res = await fetch(`http://localhost:3000/api/protected/${ collection }/${ collectionItemId }/${ association }`, {
         method: "POST",
         cache: 'no-cache',
         body: formData,

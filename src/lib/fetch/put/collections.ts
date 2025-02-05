@@ -11,7 +11,7 @@ export const updateCollectionItem = async (
     formData: FormData
 ) : Promise<IAPIResponse<null>> => {
 
-    const res = await fetch(`http://localhost:3000/api/${ collection }/${ id }`, {
+    const res = await fetch(`http://localhost:3000/api/protected/${ collection }/${ id }`, {
         method: "PUT",
         cache: 'no-cache',
         body: formData

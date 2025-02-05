@@ -1,15 +1,67 @@
-import { getCollectionByName } from "../[collection]/_functions/get"
-import { addToCollection } from "../[collection]/_functions/post"
+import { Brand, Contest, Genre, Media, Param, SocialMedia, Sponsor, State } from "@/database/models"
+import { constructAPIResponse } from "../../_utils"
+import { handleApiError } from "@/lib/errors"
+import { Inscription } from "@/database/models/"
 
 export const GET = async (req: Request) => {
     
-    return await getCollectionByName({ collection: 'contests' })
+    let contests
+
+    try {
+        contests = await Contest.findAll({
+            include: [
+                Inscription,
+                Brand,
+                State,
+                Genre,
+                SocialMedia,
+                Param,
+                Media,
+                Sponsor
+            ]
+        }
+        ).then(data => data)
+    }
+    catch (error) {
+        return await handleApiError({
+            error,
+            route: '/api/protected/contests'
+        })
+    }
+
+    return Response.json(
+        constructAPIResponse({
+            message: 'Fetched ok.',
+            success: true,
+            error: null,
+            data: contests
+        })
+    )
 }
 
 export const POST = async (req: Request) => {
 
     const formData = await req.formData()
 
-    return await addToCollection({ collection: 'contests', formData })
+    let createdContest; 
+
+    try {
+        await Contest.create({ ...Object.fromEntries(formData)})
+        .then(data => createdContest = data)
+    } 
+    catch (error) {
+        return await handleApiError({
+            error,
+            route: '/api/protected/contests'
+        })
+    }
     
+    return Response.json(
+        constructAPIResponse({
+            message: 'Created ok.',
+            success: true,
+            error: null,
+            data: createdContest
+        })
+    )
 }

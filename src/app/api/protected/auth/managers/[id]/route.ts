@@ -31,7 +31,7 @@ export const PUT = async (req: Request, { params } : Params) => {
         return await handleApiError({
             error, 
             collection: 'managers',
-            route: `/api/auth/managers`
+            route: `/api/protected/auth/managers`
         })
     }
 }

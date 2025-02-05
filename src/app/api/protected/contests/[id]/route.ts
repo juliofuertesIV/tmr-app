@@ -10,8 +10,6 @@ type RouteParams = {
     }
 }
 
-//TO DO: SECURE THIS
-
 export const GET = async (req: NextRequest, { params } : RouteParams) => {
 
     const { id } = params
@@ -31,7 +29,7 @@ export const GET = async (req: NextRequest, { params } : RouteParams) => {
     catch (error) {
         return handleApiError({
             error: error as string,
-            route: '/api/contests/[id]'
+            route: '/api/protected/contests/[id]'
         })
     }
 }
@@ -50,7 +48,7 @@ export const PUT = async (req: NextRequest, { params } : RouteParams) => {
             error,
             req,
             message: 'Unable to get FormData.',
-            route: `/api/contests/[id]`
+            route: `/api/protected/contests/[id]`
         })
     }
 
@@ -85,7 +83,7 @@ export const DELETE = async (req: NextRequest, { params } : RouteParams) => {
     catch (error) {
         return await handleApiError({
             error,
-            route: '/api/contests/[id]'
+            route: '/api/protected/contests/[id]'
         })
     }
 

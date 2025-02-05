@@ -13,7 +13,9 @@ export default async function AdminElementPage({ params } : { params: { collecti
     
     const { collection } = params
 
-    const { data: items } = await getCollection(collection) as { data: IAllCollections[] }
+    const { data: items } = await getCollection(collection) 
+
+    if (!items) return null
 
     return (
         <section className="admin-page-content">

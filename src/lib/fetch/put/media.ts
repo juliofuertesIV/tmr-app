@@ -12,7 +12,7 @@ export const updateCollectionItemMedium = async (
     formData: FormData
 ) : Promise<IAPIResponse<null>> => {
     
-    const res = await fetch(`http://localhost:3000/api/${ collection }/${ id }/medium/${ MediumId }`, {
+    const res = await fetch(`http://localhost:3000/api/protected/${ collection }/${ id }/medium/${ MediumId }`, {
         method: "PUT",
         cache: 'no-cache',
         body: formData

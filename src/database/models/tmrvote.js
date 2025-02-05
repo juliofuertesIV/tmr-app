@@ -14,12 +14,6 @@ module.exports = (sequelize, DataTypes) => {
       TMRVote.belongsTo(models.Manager, { foreignKey: 'ManagerId' });
     }
   }  TMRVote.init({
-    id: {
-      type: DataTypes.UUID,
-      primaryKey: true,
-      defaultValue: DataTypes.UUIDV4,
-      allowNull: false,
-    },
     weight: {
         type: DataTypes.INTEGER,
         allowNull: false,

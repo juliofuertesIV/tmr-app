@@ -11,7 +11,7 @@ export const addMediaToItem = async (
     formData: FormData
 ) : Promise<IAPIResponse<null>> => {
 
-    const res = await fetch(`http://localhost:3000/api/${ collection }/${ id }/medium`, {
+    const res = await fetch(`http://localhost:3000/api/protected/${ collection }/${ id }/medium`, {
         method: "POST",
         cache: 'no-cache',
         body: formData,
@@ -32,7 +32,7 @@ export const associateMediaToItem = async (
     formData: FormData
 ) : Promise<IAPIResponse<null>> => {
 
-    const res = await fetch(`http://localhost:3000/api/${ collection }/${ id }/media`, {
+    const res = await fetch(`http://localhost:3000/api/protected/${ collection }/${ id }/media`, {
         method: "POST",
         cache: 'no-cache',
         body: formData,
