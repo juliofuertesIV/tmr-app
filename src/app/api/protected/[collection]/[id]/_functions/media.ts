@@ -1,7 +1,7 @@
 import { createAndUploadMedia } from "@/app/api/protected/media/_functions"
 import { ICollectionsWithMediumNames } from "@/types/media"
 import { ICollectionsWithMedium } from "@/types"
-import { getAssociationModelByName, getModelByCollectionName } from "../../_utils";
+import { getAssociationModelByName, getModelByCollectionName } from "../../../contests/[id]/[association]/_utils";
 import { deleteMediaInStorageAndDatabase } from "@/lib/media/delete";
 
 export const getCollectionItemMediumById = async (collection: ICollectionsWithMediumNames, id: string) => {

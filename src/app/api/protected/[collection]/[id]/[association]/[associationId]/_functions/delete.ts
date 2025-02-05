@@ -1,4 +1,4 @@
-import { getAssociationModelByName } from "@/app/api/protected/[collection]/_utils"
+import { getAssociationModelByName } from "@/app/api/protected/contests/[id]/[association]/_utils"
 import { ICollectionNames } from "@/types"
 import { IAssociationNames } from "@/types/associations"
 

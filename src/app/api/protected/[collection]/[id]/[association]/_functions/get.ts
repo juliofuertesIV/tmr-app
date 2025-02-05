@@ -1,5 +1,5 @@
 import { IAssociationNames, IAssociation, ICollectionsWithAssociations } from "@/types/associations"
-import { getAssociationModelByName, getModelByCollectionName } from "../../../_utils"
+import { getAssociationModelByName, getModelByCollectionName } from "../../../../contests/[id]/[association]/_utils"
 import { ICollectionNames } from "@/types"
 
 type Props = {

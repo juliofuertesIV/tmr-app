@@ -1,5 +1,5 @@
 import { ICollectionNames } from "@/types"
-import { getModelByCollectionName } from "../../_utils"
+import { getModelByCollectionName } from "../../../contests/[id]/[association]/_utils"
 
 type Props = {
     collection: ICollectionNames,

@@ -25,6 +25,17 @@ export const managerFields : { [key in IActionTarget]: IFormField[] } = {
             type: 'text',
             element: Input.Base,
             required: true 
+        },
+        {
+            name: 'password',
+            label: 'Contraseña',
+            instructions: null,
+            validationMethod: isValidString,
+            processingMethod: processBasicTextInput,
+            testAgainst: null,
+            type: 'text',
+            element: Input.Base,
+            required: true 
         }
     ],
     update: [

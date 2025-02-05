@@ -1,6 +1,5 @@
 'use server'
 
-import { IContest } from "@/types"
 import { IAPIResponse } from "@/types/api"
 import { IContestAssociationNames } from "@/types/associations"
 import { revalidateTag } from "next/cache"
@@ -35,7 +34,6 @@ export const associateItemToContest = async (
         cache: 'no-cache',
         body: formData,
     })
-    .then(data => data)
     .then(async data => await data.json())
     .catch(error => error)
     

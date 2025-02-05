@@ -1,4 +1,4 @@
-import { getModelByCollectionName } from "../../_utils"
+import { getModelByCollectionName } from "../../../contests/[id]/[association]/_utils"
 import { sequelize } from '@/database/models'
 import { constructAPIResponse } from "@/app/api/_utils"
 import { handleApiError } from "@/lib/errors"

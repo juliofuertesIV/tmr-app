@@ -3,7 +3,7 @@
 import { IContest, IInscription } from "@/types"
 import { IAPIResponse } from "@/types/api"
 
-export const getContestInscriptions = async (contestId: string) : Promise<IAPIResponse<{ contest: IContest, inscriptions: IInscription[] }>> => {
+export const getContestInscriptions = async (contestId: string) : Promise<IAPIResponse<IContest | null>> => {
     
     const res = await fetch(`http://localhost:3000/api/protected/contests/${ contestId }/inscriptions`, {
         method: "GET",

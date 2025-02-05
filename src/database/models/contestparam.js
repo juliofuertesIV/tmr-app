@@ -36,8 +36,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, {
     sequelize,
-    modelName: 'ContestParam',
-    paranoid: true
+    modelName: 'ContestParam'
   })
 
   return ContestParam

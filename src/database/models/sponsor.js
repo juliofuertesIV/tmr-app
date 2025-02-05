@@ -1,6 +1,6 @@
 'use strict';
 
-const { Model } = require('sequelize')
+const { Model, Sequelize } = require('sequelize')
 
 module.exports = (sequelize, DataTypes) => {
   class Sponsor extends Model {
@@ -15,6 +15,10 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Sponsor.init({
+    id: {
+        type: DataTypes.UUID,
+        primaryKey: true,
+    },
     name: { 
         type: DataTypes.STRING
     },

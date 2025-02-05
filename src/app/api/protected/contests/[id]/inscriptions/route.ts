@@ -1,6 +1,6 @@
 
 import { constructAPIResponse } from '@/app/api/_utils'
-import { Inscription } from '@/database/models'
+import { Contest, Inscription, Media } from '@/database/models'
 import { handleApiError } from '@/lib/errors'
 import { addInscriptionToContest } from './_functions'
 
@@ -13,13 +13,18 @@ export const GET = async (req: Request, { params } : Params) => {
     const { id } = params
     
     try {
-        const inscriptions = await Inscription.findAll({ where: { ContestId: id }}).then(data => data)
+        const data = await Contest.findOne({ 
+            where: { id }, 
+            include: {
+                model: Inscription,
+                include: [ Media ]
+            }}).then(data => data)
         return Response.json(
             constructAPIResponse({
                 message: 'Inscriptions found.',
                 success: true,
                 error: null,
-                data: inscriptions
+                data
             })
         )
     }
@@ -49,7 +54,6 @@ export const POST = async (req: Request, { params } : Params) => {
     }
     catch (error) {
         return await handleApiError({
-            collection: 'inscriptions',
             route: '/api/inscriptions',
             error,
             message: 'Fallo inscribiendo candidatura.' 

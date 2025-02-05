@@ -1,35 +1,10 @@
-import { Brand, Contest, Media, FooterMedia, Genre, Param, State, ContestParam, ContestGenre, ContestSocial, SocialMedia, Manager, Role, Log, Inscription, ContestMedia, Sponsor, ContestSponsor } from '@/database/models';
+import { Brand, Contest, Media, Genre, Param, State, ContestParam, ContestGenre, ContestSocial, SocialMedia, Manager, Role, Log, Sponsor, Tag } from '@/database/models';
 import { ICollectionNames } from "@/types";
-import { IAssociationIdFieldnames, IAssociationKeys, IAssociationNames, IRelationshipIdFieldnames, IRelationshipNames } from "@/types/associations";
-import { ICollectionsWithMediaNames } from "@/types/media";
+import { IContestAssociationIdFieldNames, IContestAssociationKeys, IContestAssociationNames, IRelationshipIdFieldnames, IRelationshipNames } from "@/types/associations";
 import { FindOptions, Model, ModelStatic } from "sequelize";
 
 const modelsByCollectionName = {
-    contests: {
-        Model: Contest,
-        options: {
-            include: [
-                State, 
-                Genre,
-                Brand,
-                SocialMedia,
-                { 
-                    model: Param,
-                    attributes: ['id', 'name', 'description'],
-                    through: { 
-                        attributes: [] }
-                }, {
-                    model: Media,
-                    attributes: ['id', 'src', 'role', 'width', 'height', 'alt'],
-                    through: {
-                        attributes: [],
-                    }
-                },
-                Sponsor
-            ]
-        } 
-    },
-    brands: {
+   brands: {
         Model: Brand,
         options: {
             include: [ Contest ]
@@ -49,12 +24,6 @@ const modelsByCollectionName = {
             include: [ Role, Media ]
         }
     },
-    inscriptions: {
-        Model: Inscription,
-        options: {
-            include: [ Media ]
-        }
-    },
     logs: {
         Model: Log,
         options: {
@@ -68,9 +37,11 @@ const modelsByCollectionName = {
             order: [['name', 'ASC']]
         }
     },
-    media: {
-        Model: Media,
-        options: {}
+    tags: {
+        Model: Tag,
+        options: {
+            order: [['name', 'ASC']]
+        }
     }
 } as { 
     [key in ICollectionNames]: { 
@@ -84,7 +55,6 @@ const associationByName = {
         AssociationTable: ContestParam,
         AssociationModel: Param,
         associationKey: 'Params',
-        collectionItemIdField: 'ContestId',
         associationIdField: 'ParamId',
         options: {
             order: [['name', 'DESC']]
@@ -94,7 +64,6 @@ const associationByName = {
         AssociationTable: ContestGenre,
         AssociationModel: Genre,
         associationKey: 'Genres',
-        collectionItemIdField: 'ContestId',
         associationIdField: 'GenreId',
         options: {
             order: [['name', 'DESC']]
@@ -104,35 +73,17 @@ const associationByName = {
         AssociationTable: ContestSocial,
         AssociationModel: SocialMedia,
         associationKey: 'SocialMedia',
-        collectionItemIdField: 'ContestId',
         associationIdField: 'SocialMediumId',
         options: {
             order: [['name', 'DESC']]
         }
-    },
-    media: {
-        AssociationTable: FooterMedia,
-        AssociationModel: Media,
-        associationKey: 'Media',
-        collectionItemIdField: 'FooterId',
-        associationIdField: 'MediumId',
-        options: {}
-    },
-    sponsors: {
-        AssociationTable: ContestSponsor,
-        AssociationModel: Sponsor,
-        associationKey: 'Sponsors',
-        collectionItemIdField: 'ContestId',
-        associationIdField: 'SponsorId',
-        options: { include: [ Media ]}
     }
 } as {
-    [key in IAssociationNames]: {
+    [key in IContestAssociationNames]: {
         AssociationTable: ModelStatic<Model<any, any>>,
         AssociationModel: ModelStatic<Model<any, any>>,
-        associationKey: IAssociationKeys,
-        collectionItemIdField: string,
-        associationIdField: IAssociationIdFieldnames,
+        associationKey: IContestAssociationKeys,
+        associationIdField: IContestAssociationIdFieldNames,
         options: FindOptions 
     }
 }
@@ -174,16 +125,6 @@ const relationshipByName = {
     }
 }
 
-export const collectionHasMedia = (
-    collection: ICollectionNames | ICollectionsWithMediaNames
-) : collection is ICollectionsWithMediaNames => collection === 'contests' || collection === 'inscriptions' || collection == 'managers' || collection == 'sponsors'
-
-export const collectionCreationIncludesMedia = (
-    collection: ICollectionNames | ICollectionsWithMediaNames
-) : collection is ICollectionsWithMediaNames => collection === 'inscriptions'
-
 export const getModelByCollectionName = (collection: ICollectionNames) => modelsByCollectionName[collection]
-
-export const getAssociationModelByName = (association: IAssociationNames) => associationByName[association]
 
 export const getRelationshipModelByName = (relationship: IRelationshipNames) => relationshipByName[relationship]

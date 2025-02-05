@@ -5,7 +5,7 @@ import { constructAPIResponse } from "../_utils";
 
 export const GET = async (req: NextRequest) => {
 
-    const data = await Contest.findAll({ attributes: ['name', 'metaUrl', 'domain']}).then(data => data)
+    const data = await Contest.findAll({ attributes: ['domain']}).then(data => data)
     .catch(error => {
         return handleApiError({
             error,
@@ -16,7 +16,7 @@ export const GET = async (req: NextRequest) => {
 
     return Response.json(
         constructAPIResponse({ 
-            message: 'Domains fetched ok.',
+            message: 'Domains fetched ok. Route to be secured soon.',
             success: true,
             error: null,
             data

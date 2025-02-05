@@ -9,13 +9,9 @@ export const metadata: Metadata = {
 
 const getData = async ({ contestId } : { contestId: string }) => {
 
-    const { data } = await getContestInscriptions(contestId)
+    const data = await getContestInscriptions(contestId)
 
-    if (!data) throw new Error('Error en los datos devueltos por el servidor.')
-
-    const { contest, inscriptions } = data
-
-    return { contest, inscriptions }
+    return data
 
 }
 
@@ -23,11 +19,11 @@ export default async function AdminElementPage({ params } : { params: { id: stri
     
     const { id: contestId } = params
 
-    const { contest, inscriptions } = await getData({ contestId }) 
+    const { data: contest } = await getData({ contestId }) 
 
     if (!contest) throw new Error('No se ha encontrado el concurso en la base de datos.')
 
-    if (!inscriptions) throw new Error('Error recuperando las inscripciones.')
+        const { Inscriptions: inscriptions } = contest
 
         return (
             <section className="admin-page-content">

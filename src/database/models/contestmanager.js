@@ -32,8 +32,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, {
     sequelize,
-    modelName: 'ContestManager',
-    paranoid: true
+    modelName: 'ContestManager'
   })
 
   return ContestManager

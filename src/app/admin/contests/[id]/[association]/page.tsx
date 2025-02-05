@@ -17,20 +17,40 @@ type Props = {
     }
 }
 
+const getData = async ({ id, association } : { id: string, association: IContestAssociationNames }) => {
+
+    try { 
+        const { data, error } = await getContestAndAssociation({ id, association })
+
+        return { contest: data?.contest, associationItems: data?.associationItems, error }
+    }
+    catch (error) {
+        throw new Error(error as string)
+    }
+
+}
+
 export default async function AdminAssociationPage({ params } : Props) {
     
     const { id, association } = params
 
     const { associationKey, associationIdField } = getAssociationKeyAndIdFieldByName({ associationName: association })
 
-    const { data } = await getContestAndAssociation({ id, association })
+    const { contest, associationItems, error } = await getData({ id, association })
 
-    if (!data) throw new Error('Error fetching shit.')
+    if (error) return (
+        <section className="admin-page-content">
+            <div>
+                <h1>Error :\</h1>
+                <p>{ error.message }</p>
+            </div>
+        </section>
+    )
 
-    const { contest, associationItems } = data
+    if (!contest || !associationItems) return null
 
     return (
-        <section className="w-full flex flex-col items-center">
+        <section className="admin-page-content">
             <ContestAssociationPageHeader association={ association } contest={ contest }/>
             <ContestAssociationManager 
                 contest={ contest } 

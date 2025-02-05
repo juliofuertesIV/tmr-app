@@ -1,4 +1,4 @@
-import { getAssociationModelByName } from "../../../_utils"
+import { getAssociationModelByName } from "../../../../contests/[id]/[association]/_utils"
 import { ICollectionNames } from "@/types"
 import { IAssociationNames } from "@/types/associations"
 

@@ -3,7 +3,7 @@ import { Contest } from "@/database/models";
 import { handleApiError } from "@/lib/errors";
 import { IContestAssociationNames } from "@/types/associations";
 import { NextRequest } from "next/server";
-import { getAssociationModelByName } from "./_functions";
+import { createContestAssociation, getAssociationModelByName } from "./_functions";
 
 type RouteParams = {
     params: {
@@ -22,13 +22,6 @@ export const GET = async (req: NextRequest, { params } : RouteParams) => {
     let associationItems;
 
     try {
-
-        console.log('TRYING TO GET CONTESTSSSS')
-        console.log('TRYING TO GET CONTESTSSSS')
-        console.log('TRYING TO GET CONTESTSSSS')
-        console.log('TRYING TO GET CONTESTSSSS')
-        console.log('TRYING TO GET CONTESTSSSS')
-
         contest = await Contest.findOne({ where: { id }, include: [ AssociationModel ]})
         associationItems = await AssociationModel.findAll()
     }
@@ -49,3 +42,31 @@ export const GET = async (req: NextRequest, { params } : RouteParams) => {
         })
     )
 }
+
+export const POST = async (req: NextRequest, { params } : RouteParams) => {
+
+    const { id, association } = params
+    
+    try {
+        const formData = await req.formData()
+        await createContestAssociation({ id, association, formData })
+    }
+    catch (error) {
+        return await handleApiError({
+            error,
+            message: 'Unable to make association.',
+            route: '/api/protected/contests/[id]/' + association,
+            req
+        })
+    }
+
+    return Response.json(
+        constructAPIResponse({
+            message: 'Associated.',
+            success: true,
+            error: null,
+            data: null
+        })
+    )
+}
+

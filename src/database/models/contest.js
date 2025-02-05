@@ -17,7 +17,6 @@ module.exports = (sequelize, DataTypes) => {
         Contest.belongsToMany(models.Param, { through: 'ContestParams'})
         Contest.belongsToMany(models.Genre, { through: 'ContestGenres' });
         Contest.belongsToMany(models.SocialMedia, { through: 'ContestSocials' });
-        Contest.belongsToMany(models.Sponsor, { through: 'ContestSponsors' });
         Contest.belongsToMany(models.Manager, { through: 'ManagerContests' });
         Contest.hasMany(models.Voter);
         Contest.hasMany(models.Voter);

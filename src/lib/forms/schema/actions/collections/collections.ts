@@ -1,8 +1,8 @@
 import { deleteMediaItem } from "@/lib/fetch/delete/media"
-import { addCollectionItem, associateItems } from "@/lib/fetch/post/collections"
+import { addCollectionItem } from "@/lib/fetch/post/collections"
 import { addMediaToItem } from "@/lib/fetch/post/media"
 import { updateCollectionItem } from "@/lib/fetch/put/collections"
-import { ICollectionNames, ICollectionsWithMedium } from "@/types"
+import { ICollectionNames } from "@/types"
 import { IAssociationNames } from "@/types/associations"
 import { ICollectionsWithMediaNames, ICollectionsWithMediumNames } from "@/types/media"
 
@@ -20,7 +20,7 @@ export const getAddCollectionItemBoundAction = ({
     collection: ICollectionNames, 
 }) => addCollectionItem.bind(null, collection)
 
-export const getAssociationBoundInput = ({ 
+/* export const getAssociationBoundInput = ({ 
     collection,
     collectionItemId,
     association
@@ -29,7 +29,7 @@ export const getAssociationBoundInput = ({
     collectionItemId: string,
     association: IAssociationNames
 }) => associateItems.bind(null, collection, collectionItemId, association)
-
+ */
 export const getAddMediumBoundAction = ({ 
     collection,
     collectionItemId
