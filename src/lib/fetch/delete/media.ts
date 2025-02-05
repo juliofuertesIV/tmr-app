@@ -22,23 +22,3 @@ export const deleteMediaItem = async (
     revalidateTag(collection)
     return res    
 }
-
-export const disassociateItems = async (
-    collection: ICollectionNames,
-    collectionItemId: string | number,
-    association: IAssociationNames,
-    associationItemId: string | number,
-    prevState: any,
-    formData: FormData
-) : Promise<IAPIResponse<null>> => {
-
-    const res = await fetch(`http://localhost:3000/api/protected/${ collection }/${ collectionItemId }/${ association }/${ associationItemId }`, {
-        method: "DELETE",
-        cache: 'no-cache'
-    })
-    .then(async data => await data.json())
-    .catch(error => error)
-    
-    revalidateTag(collection)
-    return res
-}

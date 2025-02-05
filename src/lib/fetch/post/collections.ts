@@ -2,7 +2,6 @@
 
 import { ICollectionNames } from "@/types"
 import { IAPIResponse } from "@/types/api"
-import { IAssociationNames } from "@/types/associations"
 import { revalidateTag } from "next/cache"
 
 export const addCollectionItem = async (
@@ -20,30 +19,6 @@ export const addCollectionItem = async (
     .catch(error => error)
     
     revalidateTag(collection)
-    return res
-}
-
-export const associateItems = async (
-    collection: ICollectionNames,
-    collectionItemId: string | number,
-    association: IAssociationNames,
-    prevState: any,
-    formData: FormData
-) : Promise<IAPIResponse<null>> => {
-
-    // TO DO: VALIDATE if (association === 'states') { // ACTUALLY UPDATE CONTEST STATE separate function
-
-    const res = await fetch(`http://localhost:3000/api/protected/${ collection }/${ collectionItemId }/${ association }`, {
-        method: "POST",
-        cache: 'no-cache',
-        body: formData,
-    })
-    .then(data => data)
-    .then(async data => await data.json())
-    .catch(error => error)
-    
-    revalidateTag(collection)
-    revalidateTag(association)
     return res
 }
 

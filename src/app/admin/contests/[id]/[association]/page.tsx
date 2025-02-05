@@ -1,8 +1,9 @@
 import { Metadata } from "next";
-import AssociationManager from "./_components/AssociationManager";
-import { IAssociationNames, ICollectionsWithAssociationsNames, IContestAssociationIdFieldnames, IContestAssociationNames, IMedialessAssociation, IMedialessAssociationIdFieldnames, IMedialessAssociationKeys, IMedialessAssociationNames } from "@/types/associations";
-import AssociationPageHeader from "./_components/AssociationPageHeader";
-//import { getCollectionElementAndAssociationsById } from "@/lib/fetch/get/collections";
+import ContestAssociationManager from "./_components/ContestAssociationManager";
+import { IContestAssociationIdFieldNames, IContestAssociationKeys, IContestAssociationNames, IContestAssociations } from "@/types/associations";
+import ContestAssociationPageHeader from "./_components/ContestAssociationPageHeader";
+import { getContestAndAssociation } from "@/lib/fetch/get/contests";
+import { getAssociationKeyAndIdFieldByName } from "./_functions";
 
 export const metadata: Metadata = {
     title: "Panel de administración TMR",
@@ -20,22 +21,23 @@ export default async function AdminAssociationPage({ params } : Props) {
     
     const { id, association } = params
 
-    const { data } = await getCollectionElementAndAssociationsById(id, association)
+    const { associationKey, associationIdField } = getAssociationKeyAndIdFieldByName({ associationName: association })
+
+    const { data } = await getContestAndAssociation({ id, association })
 
     if (!data) throw new Error('Error fetching shit.')
 
-    const { item, associationItems, associationIdField, associationKey } = data
+    const { contest, associationItems } = data
 
     return (
         <section className="w-full flex flex-col items-center">
-            <AssociationPageHeader association={ association } item={ item } collection={ collection }/>
-            <AssociationManager 
-                collection={ collection }
-                collectionItem={ item } 
-                association={ association as IMedialessAssociationNames }
-                associationItems={ associationItems as IMedialessAssociation[] }
-                associationKey={ associationKey as IMedialessAssociationKeys }
-                associationIdField={ associationIdField as IMedialessAssociationIdFieldnames }
+            <ContestAssociationPageHeader association={ association } contest={ contest }/>
+            <ContestAssociationManager 
+                contest={ contest } 
+                association={ association as IContestAssociationNames }
+                associationItems={ associationItems }
+                associationKey={ associationKey as IContestAssociationKeys }
+                associationIdField={ associationIdField as IContestAssociationIdFieldNames }
             />
         </section>
     )

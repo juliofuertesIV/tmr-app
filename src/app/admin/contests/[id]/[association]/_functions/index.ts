@@ -1,30 +1,55 @@
-import { IContest, ICollectionNames, IInscription, ISponsor, IManager } from "@/types"
-import { IAssociationKeys, IAssociation, ICollectionsWithAssociations, IRelationship, IRelationshipIdFieldnames, IAssociationIdFieldnames, IContestRelationshipIdFields, IInscriptionRelationshipIdFields, ISponsorRelationshipIdFields, IMedialessRelationshipIdFieldnames, IMedialessAssociationIdFieldnames, IMedialessAssociationKeys, IMedialessRelationship, IMedialessAssociation, ICollectionsWithAssociationsNames, IManagerRelationshipIdFields } from "@/types/associations"
+import { IContest } from "@/types"
+import { IContestAssociations, IContestAssociationKeys, IContestAssociationIdFieldNames, IContestAssociationNames } from "@/types/associations"
+
+export const determineIfItemIsAssociatedToContest = ({
+    item,
+    contest,
+    associationKey
+} : {
+    item: IContestAssociations,
+    contest: IContest,
+    associationKey: IContestAssociationKeys
+    
+}) => contest[associationKey].some(associatedItem => associatedItem.id === item.id)
+
+
+export const getAssociationKeyAndIdFieldByName = ({ 
+    associationName 
+} : { 
+    associationName: IContestAssociationNames 
+}) => {
+
+    const associationKeysAndIdFields : { 
+        [key in IContestAssociationNames]: { 
+            associationKey: IContestAssociationKeys,
+            associationIdField: IContestAssociationIdFieldNames 
+        }} = {
+        params: {
+            associationKey: 'Params',
+            associationIdField: 'ParamId'
+        },
+        genres: {
+            associationKey: 'Genres',
+            associationIdField: 'GenreId'
+        },
+        social: {
+            associationKey: 'SocialMedia',
+            associationIdField: 'SocialMediumId'
+        }
+    }
+
+    return associationKeysAndIdFields[associationName]
+}
 
 // TO DO: Tidy up this mess   
 
-
-export const determineIfItemIsAssociated = ({
-    item,
-    collectionItem,
-    collection,
-    associationKey,
-    associationIdField,
-} : {
-    item: IMedialessAssociation | IMedialessRelationship,
+/* 
+const checkRelationshipByCollectionName = (
+    item: IMedialessRelationship,
     collectionItem: ICollectionsWithAssociations,
-    collection: ICollectionsWithAssociationsNames,
-    associationIdField: IMedialessRelationshipIdFieldnames | IMedialessAssociationIdFieldnames,
-    associationKey: IMedialessAssociationKeys | null,
-    
-}) => {
-
-    if (!associationKey) return checkRelationshipByCollectionName(item as IMedialessRelationship, collectionItem, associationIdField as IMedialessRelationshipIdFieldnames, collection)
-
-    return (collectionItem as IContest)[associationKey].some(associatedItem => associatedItem.id === item.id) // TO DO: only contests in many to many FOR NOW, ICollectionswithrelationships vs Icollectionswithassociations in the future
-}
-
-const checkRelationshipByCollectionName = (item: IMedialessRelationship, collectionItem: ICollectionsWithAssociations, associationIdField: IMedialessRelationshipIdFieldnames, collection: ICollectionsWithAssociationsNames) => {
+    associationIdField: IMedialessRelationshipIdFieldnames,
+    collection: ICollectionsWithAssociationsNames
+) => {
     return isCurrentRelationshipByCollection[collection](collectionItem, associationIdField, item)
 }
 
@@ -42,3 +67,4 @@ const isCurrentRelationshipByCollection = {
     [key in ICollectionsWithAssociationsNames]: (collectionItem: ICollectionsWithAssociations, field: IMedialessRelationshipIdFieldnames, item: IMedialessRelationship) => boolean
 }
 
+ */

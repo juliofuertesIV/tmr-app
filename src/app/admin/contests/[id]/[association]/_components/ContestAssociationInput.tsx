@@ -1,40 +1,28 @@
-import { IContestState, ICollectionNames, IParam } from '@/types'
+import { IContestState, IParam, IContest } from '@/types'
 import { formInitialState } from '@/lib/forms/feedback/state'
 import React, { useEffect, useRef, useState } from 'react'
 import { useFormState } from 'react-dom'
 import AssociationIcon from './AssociationIcon'
-import { IAssociationIdFieldnames, IAssociationNames, IAssociation, ICollectionsWithAssociations, IRelationshipIdFieldnames, IRelationshipNames, IRelationship } from '@/types/associations'
-import { associateItems } from '@/lib/fetch/post/collections'
-import { disassociateItems } from '@/lib/fetch/delete/media'
-import { updateCollectionItem } from '@/lib/fetch/put/collections'
+import { IContestAssociationNames, IContestAssociations, IContestAssociationKeys } from '@/types/associations'
+import { disassociateItemsFromContest } from '@/lib/fetch/delete/contests'
+import { associateItemToContest } from '@/lib/fetch/post/contests'
+import { determineIfItemIsAssociatedToContest } from '../_functions'
 
 type Props = {
-    collection: ICollectionNames,
-    collectionItem: ICollectionsWithAssociations,
-    association: IAssociationNames | IRelationshipNames,
-    associationItem: IAssociation | IRelationship,
-    associationIdField: IAssociationIdFieldnames | IRelationshipIdFieldnames,
-    isCurrentlyAssociated: boolean,
-    isRelationship: boolean
+    contest: IContest,
+    association: IContestAssociationNames,
+    associationItem: IContestAssociations,
+    associationKey: IContestAssociationKeys
 }
 
-export default function AssociationInput({ 
-    collection,
-    collectionItem,
-    associationItem,
-    associationIdField,
-    isCurrentlyAssociated,
-    isRelationship,
-    association,
+export default function ContestAssociationInput({ contest, associationItem, association, associationKey } : Props) {
+
+    const isCurrentlyAssociated = determineIfItemIsAssociatedToContest({ item: associationItem, contest, associationKey })
     
-} : Props) {
+    const boundAssociationAction = associateItemToContest.bind(null, contest.id, association)
+    const boundDissociationAction = disassociateItemsFromContest.bind(null, contest.id, association, associationItem.id)
 
-
-    const boundAssociationAction = associateItems.bind(null, collection, collectionItem.id, association as IAssociationNames)
-    const boundDissociationAction = disassociateItems.bind(null, collection, collectionItem.id, association as IAssociationNames, associationItem.id)
-    const boundRelationshipAction = updateCollectionItem.bind(null, collection, collectionItem.id)
-
-    const boundAction = isRelationship ? boundRelationshipAction : (isCurrentlyAssociated ? boundDissociationAction : boundAssociationAction)
+    const boundAction = isCurrentlyAssociated ? boundDissociationAction : boundAssociationAction
 
     const [ state, formAction ] = useFormState(boundAction, formInitialState)
     const [ loading, setLoading ] = useState<boolean>(false)
@@ -63,14 +51,12 @@ export default function AssociationInput({
 
     const manageHoverState = (hovered: boolean) => setHovered(hovered)
 
-    if (association === 'media') return null
-
     return (
         <div 
             className="bg-neutral-300 text-neutral-800 rounded-sm px-4 py-1 cursor-pointer hover:bg-neutral-100 data-[active='true']:bg-green-400 data-[active='true']:text-neutral-900 data-[active='true']:hover:bg-red-400 data-[loading='true']:pointer-events-none data-[loading='true']:bg-orange-500 "
             data-active={ isCurrentlyAssociated }
             data-loading={ loading }
-            style={{ pointerEvents: isCurrentlyAssociated && isRelationship ? 'none' : (loading ? 'none' : 'auto') }}
+            style={{ pointerEvents: loading ? 'none' : 'auto' }}
             onClick={ onClickItem }
             onMouseEnter={ () => manageHoverState(true) }
             onMouseOver={ () => manageHoverState(true) }
@@ -84,8 +70,7 @@ export default function AssociationInput({
                 <AssociationIcon loading={ loading } checked={ isCurrentlyAssociated } hovered={ hovered }/>
             </div>
             <form action={ formAction } ref={ form }>
-                { /* TO DO: ALL WITH VARIABLE associationkey */ }
-                <input type="hidden" name={ isRelationship ? associationIdField : "associationId" } value={ associationItem.id }/>
+                <input type="hidden" name={ "associationItemId" } value={ associationItem.id }/>
             </form>
         </div>            
     )

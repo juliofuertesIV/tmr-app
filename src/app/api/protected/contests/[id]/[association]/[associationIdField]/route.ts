@@ -1,13 +1,14 @@
-import { IContestAssociationIdFieldnames } from "@/types/associations";
+import { IContestAssociationIdFieldNames } from "@/types/associations";
 import { NextRequest } from "next/server";
-import { createContestAssociation, deleteContestAssociation } from "./_functions";
+import { createContestAssociation } from "../_functions";
 import { handleApiError } from "@/lib/errors";
 import { constructAPIResponse } from "@/app/api/_utils";
+import { deleteContestAssociation } from "./_functions";
 
 type Params = {
     params: {
         id: string,
-        associationIdField: IContestAssociationIdFieldnames
+        associationIdField: IContestAssociationIdFieldNames
     }
 }
 

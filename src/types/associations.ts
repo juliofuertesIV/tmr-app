@@ -21,15 +21,14 @@ export type IMedialessRelationshipNames = Exclude<IRelationshipNames, 'media'>
 export type IAssociationNames = 'params' | 'genres' | 'social' | 'media' | 'sponsors' // TO DO: REMOVE MEDIA
 export type IMedialessAssociationNames = Exclude<IAssociationNames, 'media'>
 
-export type IContestAssociationKeys = 'Params' | 'Genres' | 'SocialMedia' | 'Sponsors'
 
 export type IRelationshipKeys = 'Media' | 'Genres' | 'Brands'  // TO DO: REMOVE MEDIA
 export type IMedialessRelationshipKeys = Exclude<IRelationshipKeys, 'Media'>
 
-
-export type IContestAssociations = IParam | IGenre | ISocialMedia | ISponsor
-export type IContestAssociationNames = 'params' | 'genres' | 'social' | 'sponsors'
-export type IContestAssociationIdFieldnames = 'ParamId' | 'GenreId' | 'SocialMediumId' | 'SponsorId' 
+export type IContestAssociations = IParam | IGenre | ISocialMedia 
+export type IContestAssociationNames = 'params' | 'genres' | 'social' 
+export type IContestAssociationKeys = 'Params' | 'Genres' | 'SocialMedia' 
+export type IContestAssociationIdFieldNames = 'ParamId' | 'GenreId' | 'SocialMediumId'
 
 export type IRelationshipIdFieldnames = 'BrandId' | 'StateId' | 'MediumId' | 'RoleId' | 'LogoId' | 'FrameId' | 'BannerId' | 'FaviconId' // TO DO: REMOVE MEDIA
 export type IMedialessRelationshipIdFieldnames = Exclude<IRelationshipIdFieldnames, 'MediumId'>

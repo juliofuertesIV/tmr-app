@@ -20,7 +20,7 @@ const headersByAssociationName = {
     }
 }
 
-export default function AssociationPageHeader({ association, contest } : { association: IContestAssociationNames, contest: IContest }) {
+export default function ContestAssociationPageHeader({ association, contest } : { association: IContestAssociationNames, contest: IContest }) {
     
     const { title, description } = headersByAssociationName[association]
     
