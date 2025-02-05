@@ -1,16 +1,16 @@
 'use strict';
 
-const { Model } = require('sequelize')
+const { Model, Sequelize } = require('sequelize')
 
 module.exports = (sequelize, DataTypes) => {
-  class FooterMedia extends Model {
+  class FooterSponsor extends Model {
     static associate(models) {
-      FooterMedia.belongsTo(models.Footer, { foreignKey: 'FooterId', onDelete: 'CASCADE' });
-      FooterMedia.belongsTo(models.Media, { foreignKey: 'MediumId' });
+      FooterSponsor.belongsTo(models.Footer, { foreignKey: 'FooterId', onDelete: 'CASCADE' });
+      FooterSponsor.belongsTo(models.Sponsor, { foreignKey: 'SponsorId', onDelete: 'CASCADE' });
     }
   }
 
-  FooterMedia.init({
+  FooterSponsor.init({
     FooterId: {
       type: DataTypes.UUID,
       allowNull: false,
@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       primaryKey: true,
     },
-    MediumId: {
+    SponsorId: {
       type: DataTypes.UUID,
       allowNull: false,
       references: {
@@ -28,12 +28,17 @@ module.exports = (sequelize, DataTypes) => {
         key: 'id',
       },
       primaryKey: true,
+    },
+    order: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        unique: true
     }
   }, {
     sequelize,
-    modelName: 'FooterMedia',
+    modelName: 'FooterSponsor',
     paranoid: true
   })
 
-  return FooterMedia
+  return FooterSponsor
 }

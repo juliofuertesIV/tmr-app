@@ -2,7 +2,7 @@
 
 import { IAllCollections, ICollectionNames } from "@/types"
 import { IAPIResponse } from "@/types/api"
-import { IAssociation, IAssociationIdFieldnames, IAssociationKeys, IAssociationNames, ICollectionsWithAssociations, IRelationship } from "@/types/associations"
+import { IAssociation, IAssociationNames, ICollectionsWithAssociations, IRelationship } from "@/types/associations"
 
 
 export const getCollection = async (collection: ICollectionNames) : Promise<IAPIResponse<IAllCollections[]>> => {
@@ -41,7 +41,7 @@ export const getCollectionElementById = async (collection: ICollectionNames, id:
     return res
 }
 
-
+/* 
 export const getCollectionElementAndAssociationsById = async (collection: ICollectionNames, id: string, association: IAssociationNames) : Promise<IAPIResponse<{
     item: ICollectionsWithAssociations, 
     associationItems: IAssociation[] | IRelationship[],
@@ -64,3 +64,4 @@ export const getCollectionElementAndAssociationsById = async (collection: IColle
 
     return res
 }
+ */

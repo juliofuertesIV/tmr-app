@@ -2,22 +2,27 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('ContestSponsors', {
-      ContestId: {
+    await queryInterface.createTable('FooterSponsors', {
+      FooterId: {
         type: Sequelize.UUID,
         allowNull: false,
         references: {
-          model: 'Contests', // Referencing the Contests table
+          model: 'Footers', // Referencing the Footers table
           key: 'id',
         },
       },
       SponsorId: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.UUID,
         allowNull: false,
         references: {
           model: 'Sponsors', // Referencing the Sponsors table
           key: 'id',
         },
+      },
+      order: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        unique: true
       },
       createdAt: {
         allowNull: false,
@@ -31,6 +36,6 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('ContestSponsors');
+    await queryInterface.dropTable('FooterSponsors');
   },
 };
