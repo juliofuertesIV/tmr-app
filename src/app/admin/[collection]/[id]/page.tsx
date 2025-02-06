@@ -16,5 +16,5 @@ export default async function AdminElementPage({ params } : { params: { collecti
 
     if (!item) throw new Error('No se ha encontrado el elemento en la base de datos.')
 
-    return <CollectionItemFormModule collection={ collection } collectionItem={ item } target={ 'update' }/>
+    return <CollectionItemFormModule collection={ collection } collectionItem={ item } />
 }

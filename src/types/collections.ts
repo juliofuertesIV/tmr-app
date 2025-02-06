@@ -60,5 +60,5 @@ export type ITag = {
 export type ITagType = {
     id: string,
     name: string,
-    Tags: ITag
+    Tags: ITag[]
 }

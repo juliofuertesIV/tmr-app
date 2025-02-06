@@ -8,8 +8,8 @@ import { IAPIResponse } from "@/types/api";
 export type GetCreationBoundFormAction = () => (prevState: any, formData: FormData) => Promise<IAPIResponse<null>>
 export type GetUpdateBoundFormAction = ({ id }: { id: string; }) => (prevState: any, formData: FormData) => Promise<IAPIResponse<null>>
 
-type CreationFormActionByCollection = { [key in ICollectionNames]: GetCreationBoundFormAction }
-type UpdateFormActionByCollection = { [key in ICollectionNames]: GetUpdateBoundFormAction }
+type CreationFormActionByCollection = { [key in ICollectionNames | 'contests' | 'inscriptions']: GetCreationBoundFormAction }
+type UpdateFormActionByCollection = { [key in ICollectionNames | 'contests' | 'inscriptions']: GetUpdateBoundFormAction }
 
 const creation : CreationFormActionByCollection = {
     contests: () => getAddContestBoundAction(),
@@ -17,9 +17,10 @@ const creation : CreationFormActionByCollection = {
     managers: () => getAddManagerBoundAction(),
     brands: () => getAddCollectionItemBoundAction({ collection: 'brands' }),
     genres: () => getAddCollectionItemBoundAction({ collection: 'genres' }),
-    media: () => getAddCollectionItemBoundAction({ collection: 'media' }),
     social: () => getAddCollectionItemBoundAction({ collection: 'social' }),
     sponsors: () => getAddCollectionItemBoundAction({ collection: 'sponsors' }),
+    tagtypes: () => null,
+    tags: () => null
 }
 
 const update : UpdateFormActionByCollection = {
@@ -28,15 +29,16 @@ const update : UpdateFormActionByCollection = {
     managers: ({ id } : { id: string }) => getUpdateManagerProfileBoundAction({ id }),
     brands: ({ id } : { id: string }) => getUpdateCollectionItemBoundAction({ collection: 'brands', id: id }),
     genres: ({ id } : { id: string }) => getUpdateCollectionItemBoundAction({ collection: 'genres', id: id }),
-    media: ({ id } : { id: string }) => getUpdateCollectionItemBoundAction({ collection: 'media', id: id }),
     social: ({ id } : { id: string }) => getUpdateCollectionItemBoundAction({ collection: 'social', id: id }),
     sponsors: ({ id } : { id: string }) => getUpdateCollectionItemBoundAction({ collection: 'sponsors', id: id }),
+    tagtypes: () => null,
+    tags: () => null
 }
 
 export const getCreationBoundFormActionByCollection = ({ 
         collection,
     } : { 
-        collection: ICollectionNames
+        collection: ICollectionNames | 'contests' | 'inscriptions'
     }
 ) : GetCreationBoundFormAction => {
 
@@ -47,7 +49,7 @@ export const getCreationBoundFormActionByCollection = ({
 export const getUpdateBoundFormActionByCollection = ({ 
     collection,
 } : { 
-    collection: ICollectionNames,
+    collection: ICollectionNames | 'contests' | 'inscriptions',
 }
 ) : GetUpdateBoundFormAction => {
 

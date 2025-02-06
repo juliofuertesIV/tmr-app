@@ -9,10 +9,8 @@ import { managerFields } from "./collections/managers";
 import { sponsorFields } from "./collections/sponsors";
 
 
-export const getFieldsByCollectionAndActionTarget = ({ collection, actionTarget } : { collection: ICollectionNames, actionTarget: IActionTarget }) => {
+export const getFieldsByCollectionAndActionTarget = ({ collection, actionTarget } : { collection: ICollectionNames | 'contests' | 'inscriptions', actionTarget: IActionTarget }) => {
     
-    if (collection == 'media') return [] // TO DO
-
     return fieldsByCollectionName[collection][actionTarget]
 }
 
@@ -24,15 +22,6 @@ const fieldsByCollectionName = {
     inscriptions: inscriptionFields,
     managers: managerFields,
     sponsors: sponsorFields,
-    media: []
+    tags: { creation: [], update: [] },
+    tagtypes: { creation: [], update: [] }
 }
-/* 
-export const mediaFieldsByCollectionName = {
-    contests: contestsMediaFields,
-    inscriptions: [],
-    sponsors: [],
-    managers: []
-} as {
-    [key in ICollectionsWithMediaNames]: IMediaFormField[]
-}
- */

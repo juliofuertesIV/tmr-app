@@ -11,7 +11,6 @@ type Props = {
 }
 
 export default async function Layout({ params, children } : Props) {
-
     
     const { collection, id } = params
 
@@ -22,7 +21,7 @@ export default async function Layout({ params, children } : Props) {
     return (
         <section className="admin-page-content">
             <header>
-                <h1>{ item.name } { collection === 'contests' && <span className="font-thin">{ item.year }</span>}</h1>
+                <h1>{ item.name }</h1>
             </header>
             <CollectionItemNav collection={ collection } id={ id }/>
             { children }

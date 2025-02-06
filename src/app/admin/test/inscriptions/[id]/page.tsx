@@ -1,12 +1,12 @@
 
-import { getInscriptionById } from '@/lib/fetch/get/inscriptions'
+import { getInscriptionByIdAndContestId } from '@/lib/fetch/get/inscriptions'
 import React from 'react'
 
 export default async function TestEditInscriptionsPage({ params } : { params: { id: string }}) {
 
     const { id } = params
 
-    const { data: inscription } = await getInscriptionById(id)
+    const { data: inscription } = await getInscriptionByIdAndContestId(id)
 
     if (!inscription) return (
         <section className='admin-page-content'>

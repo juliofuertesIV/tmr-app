@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Image from "next/image";
 import { getContestInscriptions } from "@/lib/fetch/get/inscriptions";
+import Link from "next/link";
 
 export const metadata: Metadata = {
     title: "Panel de administración TMR",
@@ -15,7 +16,7 @@ const getData = async ({ contestId } : { contestId: string }) => {
 
 }
 
-export default async function AdminElementPage({ params } : { params: { id: string }}) {
+export default async function ContestInscriptionsPage({ params } : { params: { id: string }}) {
     
     const { id: contestId } = params
 
@@ -36,7 +37,11 @@ export default async function AdminElementPage({ params } : { params: { id: stri
                                     key={index}
                                 >
                                     <div className="flex flex-col gap-2 py-2 h-full justify-center">
-                                        <div className="font-bold text-xl">{ inscription.name }</div>
+                                        <Link 
+                                            href={ `/admin/contests/${ contestId }/inscriptions/${ inscription.id }` }
+                                        >
+                                            <div className="font-bold text-xl">{ inscription.name }</div>
+                                        </Link>
                                         <div className="italic text-sm">({ inscription.city })</div>
                                         <div className="uppercase italic text-sm">{ inscription.genre }</div>
                                     </div>

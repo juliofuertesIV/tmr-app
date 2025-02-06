@@ -15,8 +15,7 @@ export const GET = async (req: Request) => {
                 State,
                 Genre,
                 SocialMedia,
-                Param,
-                Media
+                Param
             ]
         }
         ).then(data => data)

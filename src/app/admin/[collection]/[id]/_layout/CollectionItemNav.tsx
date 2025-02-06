@@ -1,21 +1,10 @@
 'use client'
 
 import { ICollectionNames } from "@/types"
-import { IAssociationNames, IContestRelationshipNames } from "@/types/associations"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 
 const navItemsByCollectionName = {
-    contests: [
-        { name: 'Información', value: '', association: false },
-        { name: 'Branding', value: 'brand', association: false },
-        { name: 'Redes sociales', value: 'social', association: true },
-        { name: 'Géneros', value: 'genres', association: true },
-        { name: 'Configuración', value: 'params', association: true },
-        { name: 'Imágenes', value: 'media', association: true },
-        { name: 'Sponsors', value: 'sponsors', association: true },
-        { name: 'Estado', value: 'state', association: false },
-    ],
     brands: [
         { name: 'Información', value: '', association: false },
     ],
@@ -29,15 +18,15 @@ const navItemsByCollectionName = {
         { name: 'Información', value: '', association: false },
         { name: 'Rol', value: 'role', association: false },
     ],
-    inscriptions: [
-        { name: 'Información', value: '', association: false },
-    ],
     sponsors: [
         { name: 'Información', value: '', association: false },
         { name: 'Imágenes', value: 'media', association: false },
+    ],
+    tagtypes: [
+        { name: 'Información', value: '', association: false },
     ]
 } as {
-    [key in ICollectionNames]: { name: string, value: IContestRelationshipNames | IAssociationNames | '', association: boolean }[]
+    [key in ICollectionNames]: { name: string, value: 'media' | 'role' | '', association: boolean }[]
 }
 
 export default function CollectionItemNav({ collection, id } : { collection: ICollectionNames, id: string | number }) {

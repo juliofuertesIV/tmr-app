@@ -21,8 +21,6 @@ export default async function ContestMediaPage({ params } : { params: { id: stri
 
     if (!contest) throw new Error('No contest found!')
 
-    console.log({ contest })
-
     return (
         <section className="w-full flex flex-col">
             <AssociationPageHeader collection={ 'contests' } association={ 'media' } item={ contest }/>

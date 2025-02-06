@@ -66,7 +66,7 @@ export const adminNavSections : IAdminNavSection[] = [
                 minimumRole: 2
             },
             { 
-                collection: 'tags', 
+                collection: 'tagtypes', 
                 label: 'Etiquetas',
                 isActive: (path: string) => path.includes('/admin/tags') && !path.includes('/tags/'),
                 minimumRole: 2

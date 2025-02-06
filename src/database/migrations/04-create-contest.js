@@ -75,6 +75,7 @@ module.exports = {
             model: 'Media',
             key: 'id'
         },
+        onDelete: 'SET NULL'
       },
       FrameId: {
         type: Sequelize.UUID,
@@ -82,6 +83,7 @@ module.exports = {
             model: 'Media',
             key: 'id'
         },
+        onDelete: 'SET NULL'
       },
       BannerId: {
         type: Sequelize.UUID,
@@ -89,6 +91,7 @@ module.exports = {
             model: 'Media',
             key: 'id'
         },
+        onDelete: 'SET NULL'
       },
       FaviconId: {
         type: Sequelize.UUID,
@@ -96,13 +99,15 @@ module.exports = {
             model: 'Media',
             key: 'id'
         },
+        onDelete: 'SET NULL'
       },
       BrandId: {
         type: Sequelize.INTEGER,
         references: {
             model: 'Brands',
             key: 'id'
-        }
+        },
+        onDelete: 'SET NULL'
       },
       createdAt: {
         allowNull: false,

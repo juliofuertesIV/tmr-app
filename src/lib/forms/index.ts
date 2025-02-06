@@ -1,7 +1,7 @@
 import { ICollectionNames } from "@/types"
-import { GetCreationBoundFormAction, GetUpdateBoundFormAction } from "./schema/actions"
+import { GetCreationBoundFormAction, getCreationBoundFormActionByCollection, GetUpdateBoundFormAction, getUpdateBoundFormActionByCollection } from "./schema/actions"
 import { IActionTarget, IFormField } from "@/types/forms"
-import { formSchemasByCollection } from "./schema"
+import { getFieldsByCollectionAndActionTarget } from "./schema/fields"
 
 type FormSchema = {
     fields: IFormField[],
@@ -13,13 +13,13 @@ export const getFormSchema = ({
     collection,
     actionTarget 
 } : { 
-    collection: ICollectionNames,
+    collection: ICollectionNames | 'contests' | 'inscriptions',
     actionTarget: IActionTarget 
 }) : FormSchema => {
 
     return {
-        fields: formSchemasByCollection[collection].getFields({ collection, actionTarget }),
-        bindCreationAction: formSchemasByCollection[collection].getItemCreationActionByCollection({ collection }),
-        bindUpdateAction: formSchemasByCollection[collection].getItemUpdateActionByCollection({ collection }),
+        fields: getFieldsByCollectionAndActionTarget({ collection, actionTarget }),
+        bindCreationAction: getCreationBoundFormActionByCollection({ collection }),
+        bindUpdateAction: getUpdateBoundFormActionByCollection({ collection }),
     }
 }

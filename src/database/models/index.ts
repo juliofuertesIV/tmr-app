@@ -8,7 +8,6 @@ import ContestModel from './contest.js';
 import ContestParamModel from './contestparam.js';
 import ContestGenreModel from './contestgenre.js';
 import ContestSocialModel from './contestsocial.js';
-import ContestMediaModel from './contestmedia.js';
 import ContestManagerModel from './contestmanager.js';
 import FooterModel from './footer.js';
 import FooterSponsorModel from './footersponsor.js';
@@ -39,7 +38,6 @@ const Contest = ContestModel(sequelize, DataTypes)
 const ContestParam = ContestParamModel(sequelize, DataTypes)
 const ContestGenre = ContestGenreModel(sequelize, DataTypes)
 const ContestSocial = ContestSocialModel(sequelize, DataTypes)
-const ContestMedia = ContestMediaModel(sequelize, DataTypes)
 const ContestManager = ContestManagerModel(sequelize, DataTypes)
 const Footer = FooterModel(sequelize, DataTypes)
 const FooterSponsor = FooterSponsorModel(sequelize, DataTypes)
@@ -65,7 +63,6 @@ const models = [
     ContestParam,
     ContestGenre,
     ContestSocial,
-    ContestMedia,
     ContestManager,
     Footer,
     FooterSponsor,
@@ -97,7 +94,6 @@ export {
     ContestParam,
     ContestGenre,
     ContestSocial,
-    ContestMedia,
     ContestManager,
     Footer,
     FooterSponsor,

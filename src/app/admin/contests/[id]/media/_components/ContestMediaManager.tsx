@@ -13,25 +13,25 @@ const contestMediaFields : {
         label: 'Elige un logo',
         instructions: 'Elige un archivo menor de 2mb.',
         role: 'logo',
-        previewClassName: 'aspect-square rounded-sm'
+        previewClassName: 'aspect-video rounded-sm w-full h-fit'
     },
     {
         label: 'Elige un marco',
         instructions: 'Elige un archivo menor de 2mb.',
         role: 'frame',
-        previewClassName: 'aspect-square rounded-sm'
+        previewClassName: 'aspect-square rounded-sm w-full h-fit'
     },
     {
         label: 'Elige un banner',
         instructions: 'Elige un archivo menor de 2mb.',
         role: 'banner',
-        previewClassName: 'aspect-square rounded-sm'
+        previewClassName: 'rounded-sm w-full h-full'
     },
     {
         label: 'Elige un favicon',
         instructions: 'Elige un archivo menor de 2mb.',
         role: 'favicon',
-        previewClassName: 'aspect-square rounded-sm'
+        previewClassName: 'aspect-square rounded-sm w-10 h-10'
     },
 ]
 

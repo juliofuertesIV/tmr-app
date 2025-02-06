@@ -21,9 +21,9 @@ export const getContestInscriptions = async (contestId: string) : Promise<IAPIRe
     return res
 }
 
-export const getInscriptionById = async (id: string) : Promise<IAPIResponse<IInscription>> => {
+export const getInscriptionByIdAndContestId = async (contestId: string, id: string) : Promise<IAPIResponse<IInscription>> => {
    
-    const res = await fetch(`http://localhost:3000/api/inscriptions/${ id }`, {
+    const res = await fetch(`http://localhost:3000/api/protected/contests/${ contestId }/inscriptions/${ id }`, {
         method: "GET",
         cache: 'no-cache',
         headers: {

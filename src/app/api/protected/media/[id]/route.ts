@@ -10,28 +10,13 @@ type Params = {
 
 export const DELETE = async (req: Request, { params } : Params) => {
 
-    console.log('DELETING')
-    console.log('DELETING')
-    console.log('DELETING')
-    console.log('DELETING')
-    console.log('DELETING')
-    console.log('DELETING')
-
     const { id } = params
 
     try {
         await deleteMediaInStorageAndDatabase({ MediumId: id })
     }
     catch (error) {
-        
-        console.log({ error })
-        console.log({ error })
-        console.log({ error })
-        console.log({ error })
-        console.log({ error })
-        console.log({ error })
-
-        return await handleApiError({
+            return await handleApiError({
             error,
             route: '/api/media/[id]'
         })

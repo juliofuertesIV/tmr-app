@@ -2,7 +2,7 @@
 
 import { useFormState } from 'react-dom'
 import { IFormAction, IFormField } from '@/types/forms'
-import { IAllCollections } from '@/types'
+import { IAllCollections, } from '@/types'
 import AdminFormFeedback from '../feedback/FormFeedback'
 import FormInput from './inputs/FormInput'
 import FormSubmit from '@/lib/forms/feedback/FormSubmit'

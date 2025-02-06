@@ -1,6 +1,6 @@
 
 import { handleApiError } from '@/lib/errors'
-import { Inscription } from '@/database/models'
+import { Contest, Inscription } from '@/database/models'
 import { updateInscription } from '../_functions'
 import { constructAPIResponse } from '@/app/api/_utils'
 
@@ -16,8 +16,17 @@ export const GET = async (req: Request, { params } : RouteParams) => {
 
     const { inscriptionId } = params
 
+    console.log('GET INSCRIPTION BY IDDDD')
+    console.log('GET INSCRIPTION BY IDDDD')
+    console.log('GET INSCRIPTION BY IDDDD')
+    console.log('GET INSCRIPTION BY IDDDD')
+    console.log('GET INSCRIPTION BY IDDDD')
+    console.log('GET INSCRIPTION BY IDDDD')
+    console.log('GET INSCRIPTION BY IDDDD')
+    console.log('GET INSCRIPTION BY IDDDD')
+
     try {
-        const inscription = await Inscription.findOne({ where: { id: inscriptionId }}).then(data => data)
+        const inscription = await Inscription.findOne({ where: { id: inscriptionId }, include: [ Contest ]}).then(data => data)
 
         return Response.json(
             constructAPIResponse({
@@ -46,7 +55,6 @@ export const PUT = async (req: Request, { params } : RouteParams) => {
     }
     catch (error) {
         return await handleApiError({
-            collection: 'inscriptions',
             route: '/api/inscriptions',
             error,
             message: 'Fallo inscribiendo candidatura.' 
@@ -83,7 +91,6 @@ export const DELETE = async (req: Request, { params } : RouteParams) => {
     }
     catch (error) {
         return await handleApiError({
-            collection: 'inscriptions',
             route: '/api/inscriptions',
             error,
             message: 'Fallo eliminando candidatura.' 

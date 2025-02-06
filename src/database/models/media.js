@@ -5,7 +5,10 @@ const { Model } = require('sequelize')
 module.exports = (sequelize, DataTypes) => {
   class Media extends Model {
     static associate(models) {
-        Media.belongsToMany(models.Contest, { through: 'ContestMedia', onDelete: 'CASCADE' })
+        Media.hasOne(models.Contest, { as: 'Logo', foreignKey: 'LogoId', onDelete: 'CASCADE' })
+        Media.hasOne(models.Contest, { as: 'Frame', foreignKey: 'FrameId', onDelete: 'CASCADE' })
+        Media.hasOne(models.Contest, { as: 'Banner', foreignKey: 'BannerId', onDelete: 'CASCADE' })
+        Media.hasOne(models.Contest, { as: 'Favicon', foreignKey: 'FaviconId', onDelete: 'CASCADE' })
         Media.hasOne(models.Manager, { foreignKey: 'MediumId' })
         Media.hasOne(models.Inscription, { foreignKey: 'MediumId' })
         Media.hasOne(models.Sponsor, { foreignKey: 'MediumId' })

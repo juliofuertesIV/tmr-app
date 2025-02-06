@@ -26,8 +26,6 @@ export const GET = async (req: NextRequest, { params } : RouteParams) => {
         })
         .then(data => data)
 
-        console.log({ contest })
-
         return Response.json(
             constructAPIResponse({
                 message: 'Fetched',
