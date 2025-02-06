@@ -14,9 +14,9 @@ export default async function Layout({ params, children } : Props) {
 
     const { id } = params
 
-    const { data: contest } = await getContestById({ id }) 
+    const { data: contest, error } = await getContestById({ id }) 
 
-    if (!contest) throw new Error(`No se encuentra concurso con la ID: ${ id }`)
+    if (!!error || !contest) throw new Error(`${ error ? error.message : 'Unknown error' }`)
 
     return (
         <section className="admin-page-content">

@@ -23,10 +23,10 @@ module.exports = (sequelize, DataTypes) => {
         Contest.belongsTo(models.Brand);
         Contest.belongsTo(models.State);
         Contest.belongsTo(models.Footer);
-        Contest.belongsTo(models.Media, { foreignKey: 'LogoId', onDelete: 'SET NULL' });
-        Contest.belongsTo(models.Media, { foreignKey: 'BannerId', onDelete: 'SET NULL' });
-        Contest.belongsTo(models.Media, { foreignKey: 'FrameId', onDelete: 'SET NULL' });
-        Contest.belongsTo(models.Media, { foreignKey: 'FaviconId', onDelete: 'SET NULL' });
+        Contest.belongsTo(models.Media, { as: 'Logo', foreignKey: 'LogoId', onDelete: 'SET NULL' });
+        Contest.belongsTo(models.Media, { as: 'Banner', foreignKey: 'BannerId', onDelete: 'SET NULL' });
+        Contest.belongsTo(models.Media, { as: 'Frame', foreignKey: 'FrameId', onDelete: 'SET NULL' });
+        Contest.belongsTo(models.Media, { as: 'Favicon', foreignKey: 'FaviconId', onDelete: 'SET NULL' });
         Contest.hasMany(models.Inscription);
       }
   }  Contest.init({

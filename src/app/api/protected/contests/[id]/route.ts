@@ -1,6 +1,6 @@
 import { handleApiError } from "@/lib/errors";
 import { NextRequest } from "next/server";
-import { Contest } from "@/database/models";
+import { Contest, Media } from "@/database/models";
 import { deleteContest, updateContest } from "./_functions";
 import { constructAPIResponse } from "@/app/api/_utils";
 
@@ -15,7 +15,18 @@ export const GET = async (req: NextRequest, { params } : RouteParams) => {
     const { id } = params
     
     try {
-        const contest = await Contest.findOne({ where: { id }}).then(data => data)
+        const contest = await Contest.findOne({ 
+            where: { id },
+            include: [
+                { model: Media, as: 'Logo' },
+                { model: Media, as: 'Frame' },
+                { model: Media, as: 'Banner' },
+                { model: Media, as: 'Favicon' },
+            ],
+        })
+        .then(data => data)
+
+        console.log({ contest })
 
         return Response.json(
             constructAPIResponse({

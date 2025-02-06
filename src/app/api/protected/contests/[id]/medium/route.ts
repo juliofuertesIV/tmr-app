@@ -18,18 +18,22 @@ export const POST = async (req: NextRequest, { params } : RouteParams) => {
 
     const formData = await req.formData()
 
-    const role = formData.get('mediaRole') as IContestMediaRole
+    const role = formData.get('role') as IContestMediaRole
 
     if (!role) return handleApiError({
-        error: new Error('Field mediaRole not found in FormData'),
+        error: new Error('Field role not found in FormData'),
         route: '/api/protected/contests/media/[type]'
     })
 
     try {
-        const { MediumId } = await createAndUploadMedia({ formData })
-        await Contest.update({ [getMediumForeignKeyByType(role)]: MediumId }, { where: { id }})
+        const { MediumId, transaction } = await createAndUploadMedia({ formData })
+        
+        await Contest.update({ [getMediumForeignKeyByType(role)]: MediumId }, { where: { id }, transaction })
+
+        await transaction.commit()
     }
     catch (error) {
+        
         return handleApiError({
             error,
             route: '/api/protected/contests/media/[type]'

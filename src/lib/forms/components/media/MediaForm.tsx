@@ -128,7 +128,7 @@ export default function MediaForm({ collectionItem, collection, previewClassName
             <AdminFormFeedback state={ state } />
             <MediumPreview className={ previewClassName } medium={ currentMedium as IMedia | null } onClick={ clickAction }/> 
             <input className="hidden" ref={ inputRef } type="file" name='file' accept={ 'image' } onChange={ (e) => manageFileInputChange(e) }/>
-            <input type="hidden" name="role" value={ 'profile' } />
+            <input type="hidden" name="role" value={ role } />
             <input type="hidden" name="alt" value={ 'Picture of ' + collectionItem.name } />
             <input type="hidden" name="width" value={ imageSize.width || '' } />
             <input type="hidden" name="height" value={ imageSize.height || '' } />

@@ -1,5 +1,4 @@
 import { Metadata } from "next";
-import { IContest } from "@/types";
 import AssociationPageHeader from "@/app/admin/[collection]/[id]/associate/[association]/_components/AssociationPageHeader";
 import ContestMediaManager from "./_components/ContestMediaManager";
 import { getContestById } from "@/lib/fetch/get/contests";
@@ -21,6 +20,8 @@ export default async function ContestMediaPage({ params } : { params: { id: stri
     const { data: contest } = await getPageData({ id }) 
 
     if (!contest) throw new Error('No contest found!')
+
+    console.log({ contest })
 
     return (
         <section className="w-full flex flex-col">
