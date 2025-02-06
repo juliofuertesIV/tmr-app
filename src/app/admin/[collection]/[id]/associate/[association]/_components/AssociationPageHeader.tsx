@@ -1,4 +1,3 @@
-import { IAssociationNames, ICollectionsWithAssociations, ICollectionsWithAssociationsNames, IRelationshipNames } from "@/types/associations";
 
 const headersByAssociationName = {
     params: {
@@ -37,13 +36,12 @@ const headersByAssociationName = {
 
 
 
-export default function AssociationPageHeader({ collection, association, item } : { collection: ICollectionsWithAssociationsNames, association: IAssociationNames | IRelationshipNames, item: ICollectionsWithAssociations }) {
+export default function AssociationPageHeader({ collection, association, item } : { collection: ICollectionsWithAssociationsNames, association: IAssociationNames | IContestRelationshipNames, item: ICollectionsWithAssociations }) {
     
     const { title, description } = headersByAssociationName[association]
     
     return (
         <header className="text-center max-w-2xl mb-8">
-            <h1 className="mb-4 uppercase">{ title } de { item.name }</h1>
             <p className="text-justify">{ description }</p>
         </header>
     )

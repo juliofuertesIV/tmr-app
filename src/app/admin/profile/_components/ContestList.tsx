@@ -15,9 +15,6 @@ export default function ContestList({ manager } : { manager: IManager }) {
         </div>
     )
 
-
-
-
     return (
         <div>
             <header>

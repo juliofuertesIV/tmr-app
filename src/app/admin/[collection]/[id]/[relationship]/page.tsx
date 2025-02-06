@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { getModelByCollectionName, getRelationshipModelByName } from "@/app/api/protected/contests/[id]/[association]/_utils";
-import { ICollectionsWithAssociations, IRelationshipNames, IRelationship, IMedialessAssociationIdFieldnames, IMedialessAssociation, IMedialessRelationship, ICollectionsWithAssociationsNames } from "@/types/associations";
+import { ICollectionsWithAssociations, IContestRelationshipNames, IContestRelationship, IMedialessAssociationIdFieldnames, IMedialessAssociation, IMedialessRelationship, ICollectionsWithAssociationsNames } from "@/types/associations";
 import AssociationPageHeader from "../associate/[association]/_components/AssociationPageHeader";
 import AssociationManager from "../associate/[association]/_components/AssociationManager";
 
@@ -13,17 +13,17 @@ type Props = {
     params: { 
         collection: ICollectionsWithAssociationsNames,
         id: string,
-        relationship: IRelationshipNames
+        relationship: IContestRelationshipNames
     }
 }
 
-const getPageData = async ({ collection, id, relationship } : { collection: ICollectionsWithAssociationsNames, id: string, relationship: IRelationshipNames }) => {
+const getPageData = async ({ collection, id, relationship } : { collection: ICollectionsWithAssociationsNames, id: string, relationship: IContestRelationshipNames }) => {
 
     const { RelationshipModel, options: relationshipOptions } = getRelationshipModelByName(relationship)
     const { Model, options } = getModelByCollectionName(collection)
 
     const item = await Model.findOne({ where: { id }, ...options }).then(data => data) as unknown as ICollectionsWithAssociations
-    const relationshipItems = await RelationshipModel.findAll({ ...relationshipOptions }).then(data => data) as unknown as IRelationship[]
+    const relationshipItems = await RelationshipModel.findAll({ ...relationshipOptions }).then(data => data) as unknown as IContestRelationship[]
 
     return { 
         item: JSON.parse(JSON.stringify(item)), 

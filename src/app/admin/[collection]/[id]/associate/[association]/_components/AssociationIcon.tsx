@@ -10,7 +10,7 @@ type Props = {
     hovered: boolean,
 }
 
-export default function Association({ loading, checked, hovered } : Props) {
+export default function AssociationIcon({ loading, checked, hovered } : Props) {
 
     if (loading) {
         return (

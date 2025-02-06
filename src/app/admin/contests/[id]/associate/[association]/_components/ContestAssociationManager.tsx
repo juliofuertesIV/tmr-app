@@ -1,7 +1,7 @@
 'use client'
 
+import { IContestAssociationIdFieldNames, IContestAssociationKeys, IContestAssociationNames, IContestAssociations } from '@/types/contests'
 import ContestAssociationInput from './ContestAssociationInput'
-import { IContestAssociations, IContestAssociationKeys, IContestAssociationIdFieldNames, IContestAssociationNames } from '@/types/associations'
 import { IContest } from '@/types'
 
 type Props = {
@@ -20,7 +20,7 @@ export default function ContestAssociationManager({
 } : Props) {
     
     return (
-        <div className=" flex flex-col gap-2 w-full max-w-2xl mx-auto">
+        <div className="flex flex-col gap-2 w-full max-w-2xl">
             {
                 associationItems.map((item, index) => {
 

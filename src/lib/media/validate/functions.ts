@@ -1,4 +1,4 @@
-import { ICollectionsWithMediaNames, ICollectionsWithMediumNames, IMediaRole } from "@/types/media"
+import { IMediaRole } from "@/types/media"
 
 type MediaCreationPayload = {
     file: File,
@@ -6,7 +6,7 @@ type MediaCreationPayload = {
     height: string,
     role: IMediaRole,
     alt: string,
-    collection: ICollectionsWithMediaNames | ICollectionsWithMediumNames,
+    collection: 'contests' | 'managers' | 'inscriptions' | 'sponsors',
     domain: string | null
 }
 

@@ -1,5 +1,5 @@
 import { ContestGenre, ContestParam, ContestSocial, Genre, Param, SocialMedia } from "@/database/models"
-import { IContestAssociationIdFieldNames, IContestAssociationNames } from "@/types/associations"
+import { IContestAssociationIdFieldNames, IContestAssociationNames } from "@/types/contests"
 
 import { Model, ModelStatic } from "sequelize"
 

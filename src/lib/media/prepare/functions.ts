@@ -1,11 +1,10 @@
-import { ICollectionsWithMediaNames, ICollectionsWithMediumNames } from "@/types/media";
 import path from "path";
 
 export const getFolderByCollectionName = ({ 
     collection,
     domain 
 } : { 
-    collection: ICollectionsWithMediaNames | ICollectionsWithMediumNames,
+    collection: 'contests' | 'managers' | 'inscriptions' | 'sponsors',
     domain: string | null
 }) : { 
     folder: string | null,

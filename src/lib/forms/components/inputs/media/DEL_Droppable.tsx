@@ -1,4 +1,4 @@
-import { DragEvent, MouseEvent, useState } from "react"
+/* import { DragEvent, MouseEvent, useState } from "react"
 
 type Props = {
     onSetFile: (event: DragEvent) => void,
@@ -39,3 +39,4 @@ export default function Droppable({ onSetFile, onClickDroppable } : Props) {
         </div>
     )
 }
+ */

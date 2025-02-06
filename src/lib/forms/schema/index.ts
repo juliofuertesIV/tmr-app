@@ -4,12 +4,18 @@ import { GetCreationBoundFormAction, getCreationBoundFormActionByCollection, Get
 import { getFieldsByCollectionAndActionTarget } from "./fields";
 
 type FormSchemasByCollection = {
-    [key in ICollectionNames]: {
+    [key in ICollectionNames | 'contests' | 'inscriptions' | 'media']: {
         getFields: ({ collection, actionTarget }: { collection: ICollectionNames; actionTarget: IActionTarget; }) => IFormField[],
         getItemCreationActionByCollection: ({ collection } : { collection: ICollectionNames }) => GetCreationBoundFormAction
         getItemUpdateActionByCollection: ({ collection } : { collection: ICollectionNames }) => GetUpdateBoundFormAction
     }
 }
+
+/* 
+TO DO: 
+export const getContestFormSchema;
+export const getAddInscriptionFormSchemaByCollectionParams; 
+*/
 
 export const formSchemasByCollection : FormSchemasByCollection = {
     brands: {

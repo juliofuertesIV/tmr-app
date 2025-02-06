@@ -3,7 +3,6 @@ import { IFormField } from '@/types/forms'
 import { validateInput } from '@/lib/forms/validation'
 import { IAllCollections } from '@/types'
 import Label from '../label/Label'
-import MediaInput from '../media/MediaInput'
 
 export default function FormInput({ field, collectionItem } : { field: IFormField, collectionItem?: IAllCollections }) {
 
@@ -31,13 +30,15 @@ export default function FormInput({ field, collectionItem } : { field: IFormFiel
 
     const InputElement = element
 
-    if (field.media) return ( 
+/*     if (field.media) return ( 
         <MediaInput 
             role={ field.media.role } 
             alt={ 'Alt text for image.' } 
             previewClassname={ field.media.previewClassname }
+            collection={ collection } SPECIFIC FOR MEDIA
+            domain={ domain } SPECIFIC FOR MEDIA
         /> 
-    )
+    ) */
 
     return (
         <Label textContent={ label } isValid={ isValid }>

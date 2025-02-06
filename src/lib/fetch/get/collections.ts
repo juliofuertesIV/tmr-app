@@ -2,7 +2,7 @@
 
 import { IAllCollections, ICollectionNames } from "@/types"
 import { IAPIResponse } from "@/types/api"
-import { IAssociation, IAssociationNames, ICollectionsWithAssociations, IRelationship } from "@/types/associations"
+import { IAssociation, IAssociationNames, ICollectionsWithAssociations, IContestRelationship } from "@/types/associations"
 
 
 export const getCollection = async (collection: ICollectionNames) : Promise<IAPIResponse<IAllCollections[]>> => {

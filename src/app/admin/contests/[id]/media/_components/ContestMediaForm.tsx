@@ -1,19 +1,25 @@
 'use client'
 
 import React, { ChangeEvent, useEffect, useState } from 'react'
-import MediaInputPreview from '../inputs/media/MediaInputPreview'
-import Label from '../label/Label'
 import { IMediaRole } from '@/types/media'
+import Label from '@/lib/forms/components/label/Label';
+import MediaInputPreview from '@/lib/forms/components/inputs/media/MediaInputPreview';
 
 type Props = {
+    label: string,
+    instructions: string,
     role: IMediaRole,
     alt: string,
+    domain: string,
     previewClassname?: React.ComponentProps<'div'>['className'];
 }
 
-export default function MediaInput({ 
+export default function ContestMediaForm({ 
+    label,
+    instructions,
     role,
     alt,
+    domain,
     previewClassname
     
 } : Props) {
@@ -61,26 +67,23 @@ export default function MediaInput({
         setFile(file)
     }
 
-    console.log({ previewClassname })
-
     return (
-        <>
-            <MediaInputPreview 
+        <form>
+            <h2>{ label }</h2>
+            <MediaInputPreview
                 src={ fileSrc }
                 width={ imageMeasurements.width }
                 height={ imageMeasurements.height } 
                 classname={ previewClassname }
             />
-            <Label textContent={ 'Elige una imagen' } isValid={ null }>
-                <input className='text-sm' type="file" name="file" onChange={ (e) => manageFileInputChange(e) }/>
-                <small className='pt-1'>Elige un archivo menor de 2mb.</small>
-            </Label>
+            <input className='text-sm' hidden type="file" name="file" onChange={ (e) => manageFileInputChange(e) }/>
+            <small className='pt-1'>{ instructions }</small>
             <input type="hidden" name="role" value={ role }/>
             <input type="hidden" name="width" value={ imageMeasurements.width }/>
             <input type="hidden" name="height" value={ imageMeasurements.height }/>
             <input type="hidden" name="alt" value={ alt }/>
-{/*         <input type="hidden" name="domain" value={ domain }/>
-            <input type="hidden" name="collection" value={ collection }/> */}
-        </>
+            <input type="hidden" name="domain" value={ domain }/>
+            <input type="hidden" name="collection" value={ 'contests' }/> 
+        </form>
     )
 }

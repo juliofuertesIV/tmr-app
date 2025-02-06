@@ -1,5 +1,5 @@
 import { IContest, ICollectionNames, IInscription, ISponsor, IManager } from "@/types"
-import { IAssociationKeys, IAssociation, ICollectionsWithAssociations, IRelationship, IRelationshipIdFieldnames, IAssociationIdFieldnames, IContestRelationshipIdFields, IInscriptionRelationshipIdFields, ISponsorRelationshipIdFields, IMedialessRelationshipIdFieldnames, IMedialessAssociationIdFieldnames, IMedialessAssociationKeys, IMedialessRelationship, IMedialessAssociation, ICollectionsWithAssociationsNames, IManagerRelationshipIdFields } from "@/types/associations"
+import { IAssociationKeys, IAssociation, ICollectionsWithAssociations, IContestRelationship, IRelationshipIdFieldnames, IAssociationIdFieldnames, IContestRelationshipIdFields, IInscriptionRelationshipIdFields, ISponsorRelationshipIdFields, IMedialessRelationshipIdFieldnames, IMedialessAssociationIdFieldnames, IMedialessAssociationKeys, IMedialessRelationship, IMedialessAssociation, ICollectionsWithAssociationsNames, IManagerRelationshipIdFields } from "@/types/associations"
 
 // TO DO: Tidy up this mess   
 
@@ -31,7 +31,7 @@ const checkRelationshipByCollectionName = (item: IMedialessRelationship, collect
 export const itemIsContest = (item: ICollectionsWithAssociations, collection: ICollectionNames) : item is IContest => collection === 'contests'
 export const itemIsInscription = (item: ICollectionsWithAssociations, collection: ICollectionNames) : item is IInscription => collection === 'inscriptions'
 export const itemIsSponsor = (item: ICollectionsWithAssociations, collection: ICollectionNames) : item is ISponsor => collection === 'sponsors'
-export const itemIsRelationship = (item: IAssociation | IRelationship, associationKey: IAssociationKeys | null) : item is IRelationship => !associationKey
+export const itemIsRelationship = (item: IAssociation | IContestRelationship, associationKey: IAssociationKeys | null) : item is IContestRelationship => !associationKey
 
 const isCurrentRelationshipByCollection = {
     contests: (collectionItem: IContest, field: IMedialessRelationshipIdFieldnames, item: IMedialessRelationship) => collectionItem[field as IContestRelationshipIdFields] === item.id,

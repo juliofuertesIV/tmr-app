@@ -1,5 +1,5 @@
 import { IContest } from "@/types"
-import { IContestAssociations, IContestAssociationKeys, IContestAssociationIdFieldNames, IContestAssociationNames } from "@/types/associations"
+import { IContestAssociationIdFieldNames, IContestAssociationKeys, IContestAssociationNames, IContestAssociations } from "@/types/contests"
 
 export const determineIfItemIsAssociatedToContest = ({
     item,
@@ -16,13 +16,13 @@ export const determineIfItemIsAssociatedToContest = ({
 export const getAssociationKeyAndIdFieldByName = ({ 
     associationName 
 } : { 
-    associationName: IContestAssociationNames 
+    associationName: IContestAssociationNames
 }) => {
 
     const associationKeysAndIdFields : { 
         [key in IContestAssociationNames]: { 
             associationKey: IContestAssociationKeys,
-            associationIdField: IContestAssociationIdFieldNames 
+            associationIdField: IContestAssociationIdFieldNames
         }} = {
         params: {
             associationKey: 'Params',

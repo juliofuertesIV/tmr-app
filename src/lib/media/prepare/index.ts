@@ -1,4 +1,3 @@
-import { ICollectionsWithMediaNames, ICollectionsWithMediumNames } from "@/types/media"
 import { getFolderByCollectionName, produceFileName } from "./functions"
 
 export const getFileGCPStorageSrc = ({ 
@@ -7,7 +6,7 @@ export const getFileGCPStorageSrc = ({
     file 
 } : { 
     domain: string | null,
-    collection: ICollectionsWithMediaNames | ICollectionsWithMediumNames,
+    collection: 'contests' | 'managers' | 'inscriptions' | 'sponsors',
     file: File 
 }) => {
 

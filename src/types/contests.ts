@@ -6,7 +6,6 @@ export type IContestParamIds = 'inscriptionIsPublic' | 'videoIsRequired' | 'city
 
 export type IContestStateIds = 'inscriptionOnly' | 'open' | 'endedInscription' | 'ended' | 'hidden'
 
-
 export type IContest = {
     id: string,
     name: string,
@@ -40,9 +39,20 @@ export type IContest = {
     updatedAt: string
 }
 
-
 export type IContestState = {
     name: string, 
     id: IContestStateIds,
     description: string
 }
+
+export type IContestAssociations = IParam | IGenre | ISocialMedia 
+export type IContestAssociationNames = 'params' | 'genres' | 'social' 
+export type IContestAssociationKeys = 'Params' | 'Genres' | 'SocialMedia' 
+export type IContestAssociationIdFieldNames = 'ParamId' | 'GenreId' | 'SocialMediumId'
+
+export type IContestRelationship = IBrand | IContestState 
+export type IContestRelationshipNames = 'brands' | 'states' 
+export type IContestRelationshipKeys = 'Brand' | 'State'  
+export type IContestRelationshipIdFields = 'BrandId' | 'StateId'
+
+export type IContestMediaFieldNames = 'LogoId' | 'FrameId' | 'BannerId' | 'FaviconId'

@@ -1,6 +1,6 @@
 import { Brand, Contest, Media, Genre, Param, State, ContestParam, ContestGenre, ContestSocial, SocialMedia, Manager, Role, Log, Sponsor, Tag } from '@/database/models';
 import { ICollectionNames } from "@/types";
-import { IContestAssociationIdFieldNames, IContestAssociationKeys, IContestAssociationNames, IRelationshipIdFieldnames, IRelationshipNames } from "@/types/associations";
+import { IContestAssociationIdFieldNames, IContestAssociationKeys, IContestAssociationNames } from '@/types/contests';
 import { FindOptions, Model, ModelStatic } from "sequelize";
 
 const modelsByCollectionName = {
@@ -49,7 +49,7 @@ const modelsByCollectionName = {
         options: FindOptions 
     }
 }
-
+/* 
 const associationByName = {
     params: {
         AssociationTable: ContestParam,
@@ -86,45 +86,7 @@ const associationByName = {
         associationIdField: IContestAssociationIdFieldNames,
         options: FindOptions 
     }
-}
-
-const relationshipByName = {
-    brand: {
-        RelationshipModel: Brand,
-        relationshipIdFieldName: 'BrandId',
-        options: {
-            order: [[ 'name', 'ASC' ]]
-        }
-    },
-    state: {
-        RelationshipModel: State,
-        relationshipIdFieldName: 'StateId',
-        options: {
-            order: [[ 'name', 'ASC' ]]
-        }
-    },
-    role: {
-        RelationshipModel: Role,
-        relationshipIdFieldName: 'RoleId',
-        options: {
-            order: [[ 'name', 'ASC' ]]
-        }
-    },
-    media: {
-        RelationshipModel: Media,
-        relationshipIdFieldName: 'MediumId',
-        options: {
-            order: [[ 'role', 'ASC' ]]
-        }
-    }
-} as {
-    [key in IRelationshipNames]: {
-        RelationshipModel: ModelStatic<Model<any, any>>,
-        relationshipIdFieldName: IRelationshipIdFieldnames,
-        options: FindOptions
-    }
-}
+} */
 
 export const getModelByCollectionName = (collection: ICollectionNames) => modelsByCollectionName[collection]
 
-export const getRelationshipModelByName = (relationship: IRelationshipNames) => relationshipByName[relationship]

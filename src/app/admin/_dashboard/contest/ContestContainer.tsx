@@ -4,7 +4,7 @@ import React from 'react'
 import { edit as EditIcon } from '../../_layout/design/icons'
 import Icon, { IContestIconRole } from './Icon'
 
-export default function ContestItem({ contest } : { contest: IContest }) {
+export default function ContestContainer({ contest } : { contest: IContest }) {
 
     const contestIcons : { role: IContestIconRole }[] = [
         { role: 'stats' },
@@ -21,7 +21,7 @@ export default function ContestItem({ contest } : { contest: IContest }) {
         >
             <header className='flex justify-between'>
                 <p className='text-xs'>{ contest.Brand?.name || 'Sin branding' } · { contest.year }</p>
-                <Link href={ `/admin/contests/${ contest.id }/edit`} className='hover:text-green-400'>
+                <Link href={ `/admin/contests/${ contest.id }`} className='hover:text-green-400'>
                     <EditIcon/>
                 </Link>
             </header>

@@ -1,10 +1,9 @@
+
 import { deleteMediaItem } from "@/lib/fetch/delete/media"
 import { addCollectionItem } from "@/lib/fetch/post/collections"
 import { addMediaToItem } from "@/lib/fetch/post/media"
 import { updateCollectionItem } from "@/lib/fetch/put/collections"
 import { ICollectionNames } from "@/types"
-import { IAssociationNames } from "@/types/associations"
-import { ICollectionsWithMediaNames, ICollectionsWithMediumNames } from "@/types/media"
 
 export const getUpdateCollectionItemBoundAction = ({ 
     collection,
@@ -34,7 +33,7 @@ export const getAddMediumBoundAction = ({
     collection,
     collectionItemId
 } : { 
-    collection: ICollectionNames, 
+    collection: 'contests' | 'managers' | 'sponsors' | 'inscriptions',
     collectionItemId: string
 }) => addMediaToItem.bind(null, collection, collectionItemId)
 
@@ -42,7 +41,7 @@ export const getDeleteMediumBoundAction = ({
     collection,
     mediumId
 } : { 
-    collection: ICollectionsWithMediaNames | ICollectionsWithMediumNames
+    collection: 'contests' | 'managers' | 'sponsors' | 'inscriptions'
     mediumId: string
 }) => deleteMediaItem.bind(null, collection, mediumId)
 

@@ -1,41 +1,20 @@
 import { IBrand, IContest, IContestState, IGenre, IInscription, IManager, IManagerRole, IParam, ISocialMedia, ISponsor } from "."
+import { IFooter } from "./collections"
 import { IMedia } from "./media"
 
 // ADD TAGS
-
+/* 
 export type ICollectionsWithRelationships = IContest | IManager | ISponsor | IInscription
 export type ICollectionsWithRelationshipNames = "contests" | "sponsors" | "inscriptions" | "managers"
 
-export type ICollectionsWithAssociations = IContest | IManager | ISponsor | IInscription
-export type ICollectionsWithAssociationsNames = "contests" | "sponsors" | "inscriptions" | "managers"
-
-export type IAssociation = IParam | IGenre | ISocialMedia | IManagerRole | ISponsor | IMedia 
-export type IMedialessAssociation = Exclude<IAssociation, IMedia> // TO DO: REMOVE MEDIA
-
-export type IRelationship = IBrand | IContestState | IMedia
-export type IMedialessRelationship = Exclude<IRelationship, IMedia>
-
-export type IRelationshipNames = 'brand' | 'state' | 'media'
-export type IMedialessRelationshipNames = Exclude<IRelationshipNames, 'media'>
-
-export type IAssociationNames = 'params' | 'genres' | 'social' | 'sponsors' // TO DO: REMOVE MEDIA
-export type IMedialessAssociationNames = Exclude<IAssociationNames, 'media'>
+export type ICollectionsWithAssociations = IContest | IManager | IFooter | IInscription
+export type ICollectionsWithAssociationsNames = "contests" | "footers" | "inscriptions" | "managers"
+ */
 
 
-export type IRelationshipKeys = 'Media' | 'Genres' | 'Brands'  // TO DO: REMOVE MEDIA
-export type IMedialessRelationshipKeys = Exclude<IRelationshipKeys, 'Media'>
+/* export type IRelationshipIdFieldnames = 'BrandId' | 'StateId' | 'RoleId'
 
-export type IContestAssociations = IParam | IGenre | ISocialMedia 
-export type IContestAssociationNames = 'params' | 'genres' | 'social' 
-export type IContestAssociationKeys = 'Params' | 'Genres' | 'SocialMedia' 
-export type IContestAssociationIdFieldNames = 'ParamId' | 'GenreId' | 'SocialMediumId'
-export type IContestMediaFieldNames = 'LogoId' | 'FrameId' | 'BannerId' | 'FaviconId'
-
-
-export type IRelationshipIdFieldnames = 'BrandId' | 'StateId' | 'RoleId'
-
-export type IContestRelationshipIdFields = Exclude<IRelationshipIdFieldnames, "MediumId" | "RoleId">
 export type IInscriptionRelationshipIdFields = Exclude<IRelationshipIdFieldnames, "BrandId" | "StateId" | "RoleId">
 export type ISponsorRelationshipIdFields = Exclude<IRelationshipIdFieldnames, "BrandId" | "StateId" | "RoleId">
 export type IManagerRelationshipIdFields = Exclude<IRelationshipIdFieldnames, "BrandId" | "StateId" | "MediumId">
-
+ */

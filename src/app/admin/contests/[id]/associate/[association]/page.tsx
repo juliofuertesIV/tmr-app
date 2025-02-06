@@ -1,9 +1,9 @@
 import { Metadata } from "next";
 import ContestAssociationManager from "./_components/ContestAssociationManager";
-import { IContestAssociationIdFieldNames, IContestAssociationKeys, IContestAssociationNames, IContestAssociations } from "@/types/associations";
 import ContestAssociationPageHeader from "./_components/ContestAssociationPageHeader";
 import { getContestAndAssociation } from "@/lib/fetch/get/contests";
 import { getAssociationKeyAndIdFieldByName } from "./_functions";
+import { IContestAssociationIdFieldNames, IContestAssociationKeys, IContestAssociationNames } from "@/types/contests";
 
 export const metadata: Metadata = {
     title: "Panel de administración TMR",
@@ -50,7 +50,7 @@ export default async function AdminAssociationPage({ params } : Props) {
     if (!contest || !associationItems) return null
 
     return (
-        <section className="admin-page-content">
+        <>
             <ContestAssociationPageHeader association={ association } contest={ contest }/>
             <ContestAssociationManager 
                 contest={ contest } 
@@ -59,6 +59,6 @@ export default async function AdminAssociationPage({ params } : Props) {
                 associationKey={ associationKey as IContestAssociationKeys }
                 associationIdField={ associationIdField as IContestAssociationIdFieldNames }
             />
-        </section>
+        </>
     )
 }

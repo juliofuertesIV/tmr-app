@@ -1,11 +1,10 @@
 'use server'
 
-import { ICollectionNames } from "@/types"
 import { IAPIResponse } from "@/types/api"
 import { revalidateTag } from "next/cache"
 
 export const addMediaToItem = async (
-    collection: ICollectionNames,
+    collection: 'contests' | 'managers' | 'sponsors' | 'inscriptions',
     id: string | number,
     prevState: any,
     formData: FormData
@@ -26,7 +25,7 @@ export const addMediaToItem = async (
 }
 
 export const associateMediaToItem = async (
-    collection: ICollectionNames,
+    collection: 'contests' | 'managers' | 'sponsors' | 'inscriptions',
     id: string | number,
     prevState: any,
     formData: FormData

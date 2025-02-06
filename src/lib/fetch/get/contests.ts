@@ -2,7 +2,25 @@
 
 import { IContest } from "@/types"
 import { IAPIResponse } from "@/types/api"
-import { IContestAssociationNames, IContestAssociations } from "@/types/associations"
+import { IContestAssociationNames, IContestAssociations } from "@/types/contests"
+
+export const getContestById = async ({ id }: { id: string }) : Promise<IAPIResponse<IContest>> => {
+
+    const res = await fetch(`http://localhost:3000/api/protected/contests/${ id }`, {
+        method: "GET",
+        cache: 'no-cache',
+        headers: {
+            "Content-Type": "application/json",
+        },
+        next: {
+            tags: ['contests']
+        }
+    })
+    .then(async (data) => await data.json())
+    .catch(error => error)
+    
+    return res
+}
 
 export const getContests = async () : Promise<IAPIResponse<IContest[]>> => {
 

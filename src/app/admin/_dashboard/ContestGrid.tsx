@@ -1,6 +1,6 @@
 import { IContest } from '@/types'
 import React from 'react'
-import ContestItem from './contest/ContestItem'
+import ContestContainer from './contest/ContestContainer'
 
 export default function ContestGrid({ contests } : { contests: IContest[] }) {
 
@@ -16,7 +16,7 @@ export default function ContestGrid({ contests } : { contests: IContest[] }) {
         <section className='w-full grid gap-4 p-4 lg:grid-cols-2'>
             {
                 contests.map((contest, index) => 
-                    <ContestItem key={ index } contest={ contest }/>
+                    <ContestContainer key={ index } contest={ contest }/>
                 )
             }
         </section>
