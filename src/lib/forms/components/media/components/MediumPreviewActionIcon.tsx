@@ -1,15 +1,14 @@
+import { CircleAddIcon } from '@/app/admin/_layout/design/icons/components/CircleAdd'
+import { TrashBinIcon } from '@/app/admin/_layout/design/icons/components/TrashBin'
 import React from 'react'
-import { Profile as AddIcon } from '@/app/admin/_layout/design/icons/components/Profile'
 
-export default function MediumPreviewActionIcon({ hasMedium, pending } : { hasMedium: boolean, pending: boolean }) {
+export default function MediumPreviewActionIcon({ hasMedium } : { hasMedium: boolean }) {
 
-    if (pending) return null
-
-    const Icon = hasMedium ? AddIcon : AddIcon // TO DO: oh well
+    const Icon = hasMedium ? TrashBinIcon : CircleAddIcon 
 
     return (
-        <div className='absolute justify-center items-center w-full h-full hidden group-data-[pending="true"]:flex'>
-            <Icon className='group-hover:brightness-150 text-gray-400 transition-all'/>
+        <div className='absolute justify-center items-center w-full h-full hidden group-hover:flex group-data-[pending="true"]:hidden'>
+            <Icon className='group-hover:brightness-150 text-gray-400 transition-all text-3xl'/>
         </div>
     )
 }
