@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import React from 'react'
-import { Cog as CogIcon } from '@/app/admin/_layout/design/icons/components/Cog' 
-import { Close as CloseIcon } from '@/app/admin/_layout/design/icons/components/Close' 
+import { CogIcon as CogIcon } from '@/app/admin/_layout/design/icons/components/Cog' 
+import { CloseIcon as CloseIcon } from '@/app/admin/_layout/design/icons/components/Close' 
 import { useFormStatus } from 'react-dom'
 import { IMedia } from '@/types/media'
 

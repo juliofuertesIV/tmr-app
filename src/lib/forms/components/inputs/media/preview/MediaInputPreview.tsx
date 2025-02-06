@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import React from 'react'
-import { Cog as CogIcon } from '@/app/admin/_layout/design/icons/components/Cog' 
+import { CogIcon as CogIcon } from '@/app/admin/_layout/design/icons/components/Cog' 
 import { ICollectionsWithMedium } from '@/types'
 import { useFormStatus } from 'react-dom'
 

@@ -1,4 +1,4 @@
-import { Edit} from '@/app/admin/_layout/design/icons/components/Edit'
+import { EditIcon} from '@/app/admin/_layout/design/icons/components/Edit'
 import { ICollectionNames, IAllCollections } from '@/types'
 import Link from 'next/link'
 import React from 'react'
@@ -42,7 +42,7 @@ export default function CollectionTableRow({ collection, fields, associations, i
                     href={ `${collection}/${item.id}` } 
                     className="flex w-full items-center justify-center text-xl hover:text-green-500"
                 >
-                    <Edit/>
+                    <EditIcon/>
                 </Link>
             </td>    
         </tr>

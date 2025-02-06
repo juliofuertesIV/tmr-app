@@ -1,5 +1,5 @@
 import React from 'react'
-import { Profile as ProfileIcon } from '@/app/admin/_layout/design/icons/components/Profile'
+import { ProfileIcon as ProfileIcon } from '@/app/admin/_layout/design/icons/components/Profile'
 import { useFormStatus } from 'react-dom'
 
 export default function MediumPlaceholder({ className, clickAction } : { className?: string, clickAction: () => void | undefined }) {
