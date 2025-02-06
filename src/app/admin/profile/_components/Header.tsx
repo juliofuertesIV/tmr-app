@@ -12,8 +12,8 @@ export default function Header({ manager } : { manager: IManager }) {
             <div className='flex flex-col'>
               <p className="italic uppercase text-sm">{ manager.Role.name }</p>
             </div>
-            <div className='my-4'>
-                <MediaForm collectionItem={ manager } collection='managers' role='profile' previewClassName='rounded-full max-w-24 max-h-24 min-h-24 min-w-24'/>
+            <div className='my-4 max-w-24 max-h-24'>
+                <MediaForm collectionItem={ manager } collection='managers' role='profile' previewClassName='rounded-full aspect-square'/>
             </div>
         </header>
   )
