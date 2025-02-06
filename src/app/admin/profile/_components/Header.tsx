@@ -2,7 +2,7 @@
 
 import { IManager } from '@/types'
 import React from 'react'
-import ProfilePictureModule from './ProfilePictureModule'
+import MediaForm from '@/lib/forms/components/media/MediaForm'
 
 export default function Header({ manager } : { manager: IManager }) {
 
@@ -12,7 +12,9 @@ export default function Header({ manager } : { manager: IManager }) {
             <div className='flex flex-col'>
               <p className="italic uppercase text-sm">{ manager.Role.name }</p>
             </div>
-            <ProfilePictureModule manager={ manager }/>
+            <div className='my-4'>
+                <MediaForm collectionItem={ manager } collection='managers' role='profile' previewClassName='rounded-full max-w-24 max-h-24 min-h-24 min-w-24'/>
+            </div>
         </header>
   )
 }

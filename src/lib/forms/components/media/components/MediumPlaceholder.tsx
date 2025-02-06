@@ -16,7 +16,7 @@ export default function MediumPlaceholder({ className, clickAction } : { classNa
     }
     
     return (
-        <div className={`border-2 border-gray-400 bg-gray-800 w-full h-full flex justify-center items-center ${ className } group`} onClick={ () => clickAction() }>
+        <div className={`border-2 border-gray-400 bg-gray-800 w-full h-full flex justify-center items-center ${ className } cursor-pointer group`} onClick={ () => clickAction() }>
             <ProfileIcon className='group-hover:brightness-150 text-gray-400 transition-all'/>
         </div>
     )
