@@ -7,8 +7,7 @@ import { useFormState } from 'react-dom';
 import AdminFormFeedback from '@/lib/forms/feedback/FormFeedback';
 import { formInitialState } from '@/lib/forms/feedback/state';
 import { IMedia, IMediaRole } from '@/types/media';
-import CurrentMediumPreview from './components/CurrentMediumPreview';
-import MediumPlaceholder from './components/MediumPlaceholder';
+import MediumPreview from './components/MediumPreview';
 
 type Props = { 
     collectionItem: IContest | IManager | ISponsor | IInscription,
@@ -125,13 +124,9 @@ export default function MediaForm({ collectionItem, collection, previewClassName
     }, [ imageSize, formRef ])
 
     return (
-        <form ref={ formRef } action={ action } className='flex w-full'>
+        <form ref={ formRef } action={ action } className='flex w-full h-full'>
             <AdminFormFeedback state={ state } />
-            { 
-                currentMedium ? 
-                <CurrentMediumPreview className={ previewClassName } medium={ currentMedium as IMedia } clickAction={ clickAction }/> 
-                : <MediumPlaceholder className={ previewClassName } clickAction={ clickAction }/> 
-            }
+            <MediumPreview className={ previewClassName } medium={ currentMedium as IMedia | null } onClick={ clickAction }/> 
             <input className="hidden" ref={ inputRef } type="file" name='file' accept={ 'image' } onChange={ (e) => manageFileInputChange(e) }/>
             <input type="hidden" name="role" value={ 'profile' } />
             <input type="hidden" name="alt" value={ 'Picture of ' + collectionItem.name } />
