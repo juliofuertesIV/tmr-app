@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import Image from "next/image";
 import { getContestInscriptions } from "@/lib/fetch/get/inscriptions";
 import Link from "next/link";
+import AdminInscriptionCard from "./_components/AdminInscriptionCard";
 
 export const metadata: Metadata = {
     title: "Panel de administración TMR",
@@ -10,9 +11,11 @@ export const metadata: Metadata = {
 
 const getData = async ({ contestId } : { contestId: string }) => {
 
-    const data = await getContestInscriptions(contestId)
+    const res = await getContestInscriptions(contestId)
 
-    return data
+    console.log({ res })
+
+    return res
 
 }
 
@@ -20,42 +23,16 @@ export default async function ContestInscriptionsPage({ params } : { params: { i
     
     const { id: contestId } = params
 
-    const { data: contest } = await getData({ contestId }) 
+    const { data: inscriptions } = await getData({ contestId }) 
 
-    if (!contest) throw new Error('No se ha encontrado el concurso en la base de datos.')
-
-        const { Inscriptions: inscriptions } = contest
+    if (!inscriptions) throw new Error('No se ha encontrado el concurso en la base de datos.')
 
         return (
-            <section className="admin-page-content">
-                <div className="flex flex-col gap-2 w-full">
+            <section>
+                <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 w-full max-w-7xl">
                     {
                         inscriptions.map((inscription, index) => {
-                            return (
-                                <div
-                                    className="border-2 bg-neutral-800 p-2 px-4 w-full max-w-lg flex justify-between"
-                                    key={index}
-                                >
-                                    <div className="flex flex-col gap-2 py-2 h-full justify-center">
-                                        <Link 
-                                            href={ `/admin/contests/${ contestId }/inscriptions/${ inscription.id }` }
-                                        >
-                                            <div className="font-bold text-xl">{ inscription.name }</div>
-                                        </Link>
-                                        <div className="italic text-sm">({ inscription.city })</div>
-                                        <div className="uppercase italic text-sm">{ inscription.genre }</div>
-                                    </div>
-                                    <div className="flex w-full max-w-24 max-h-24 rounded-full overflow-hidden border-2 border-neutral-950 bg-neutral-900">
-                                        <Image
-                                            className="flex max-w-full max-h-full object-cover"
-                                            src={ inscription.Medium.src }
-                                            width={ parseInt(inscription.Medium.width) }
-                                            height={ parseInt(inscription.Medium.height) }
-                                            alt={ inscription.Medium.alt }
-                                        />
-                                    </div>
-                                </div>
-                            );
+                            return <AdminInscriptionCard inscription={ inscription } key={ index }/>
                         })
                     }
                 </div>

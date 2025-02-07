@@ -1,6 +1,6 @@
 
 import { constructAPIResponse } from '@/app/api/_utils'
-import { Contest, Inscription, Media } from '@/database/models'
+import { Contest, Inscription, Media, Tag } from '@/database/models'
 import { handleApiError } from '@/lib/errors'
 import { addInscriptionToContest } from './_functions'
 import { NextRequest } from 'next/server'
@@ -14,12 +14,13 @@ export const GET = async (req: NextRequest, { params } : Params) => {
     const { id } = params
     
     try {
-        const data = await Contest.findOne({ 
-            where: { id }, 
-            include: {
-                model: Inscription,
-                include: [ Media ]
-            }}).then(data => data)
+        const data = await Inscription.findAll({ 
+            where: { ContestId: id }, 
+            include: [ Contest, Media, Tag ],
+        }).then(data => data)
+
+        console.log({ data })
+
         return Response.json(
             constructAPIResponse({
                 message: 'Inscriptions found.',

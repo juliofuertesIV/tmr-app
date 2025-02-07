@@ -15,7 +15,7 @@ module.exports = {
         await queryInterface.bulkInsert('Footers', [
             {
                 id: footerId,
-                name: 'Battle of the Bands 2025'
+                name: 'Battle of the Bands 2025',
             }
         ])
 
@@ -38,7 +38,7 @@ module.exports = {
         await queryInterface.bulkInsert('Media', [
             {
                 id: mediaId,
-                src: 'https://soyunacaca.net/whaat/test-media.jpeg',
+                src: '/img/no-image-placeholder.svg',
                 width: 500,
                 height: 500,
                 alt: 'Test image for dummy data'
@@ -49,7 +49,7 @@ module.exports = {
         const inscriptions = Array.from({ length: 10 }).map(() => ({
             id: uuidv4(),
             name: faker.company.companyName(),
-            description: faker.lorem.sentence(),
+            description: faker.lorem.paragraph(),
             year: 2025,
             city: faker.address.city(),
             genre: faker.music.genre(),
@@ -59,7 +59,7 @@ module.exports = {
             tiktok: faker.internet.userName(),
             contactName: faker.name.findName(),
             email: faker.internet.email(),
-            phone: faker.phone.phoneNumber(),
+            phone: '666-666-666',
             verified: faker.datatype.boolean(),
             discarded: false,
             previousPosition: faker.datatype.number({ min: 1, max: 10 }),
@@ -112,6 +112,11 @@ module.exports = {
             'Contests',
             { id: contestId },
             {}
+        );
+
+        await queryInterface.bulkDelete(
+            'Footers',
+            { id: footerId }
         );
     }
 };

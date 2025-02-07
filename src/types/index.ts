@@ -105,6 +105,7 @@ export type IInscription = {
     twitter?: string,
     MediumId: string,
     Medium: IMedia,
+    ContestId: string,
     Contest: IContest,
 }
 

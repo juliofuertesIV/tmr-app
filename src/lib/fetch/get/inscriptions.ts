@@ -1,9 +1,10 @@
 'use server'
 
-import { IContest, IInscription } from "@/types"
+import { IInscription } from "@/types"
 import { IAPIResponse } from "@/types/api"
+import { IContest } from "@/types/contests"
 
-export const getContestInscriptions = async (contestId: string) : Promise<IAPIResponse<IContest | null>> => {
+export const getContestInscriptions = async (contestId: string) : Promise<IAPIResponse<IInscription[] | null>> => {
     
     const res = await fetch(`http://localhost:3000/api/protected/contests/${ contestId }/inscriptions`, {
         method: "GET",
