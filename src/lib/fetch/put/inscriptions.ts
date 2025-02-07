@@ -9,7 +9,7 @@ export const updateInscription = async (
     formData: FormData
 ) : Promise<IAPIResponse<null>> => {
 
-    const res = await fetch(`http://localhost:3000/api/inscriptions/${ id }`, {
+    const res = await fetch(`http://localhost:3000/api/protected/inscriptions/${ id }`, {
         method: "PUT",
         cache: 'no-cache',
         body: formData

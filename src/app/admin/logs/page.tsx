@@ -1,4 +1,5 @@
 import { Log } from '@/database/models'
+import manager from '@/database/models/manager'
 import { ILog } from '@/types'
 import React from 'react'
 
@@ -25,13 +26,14 @@ export default async function LogPage() {
             <header className="py-8">
                 <h1 className="capitalize">Logs</h1>
             </header>
-            <table className='table font-sans'>
+            <table className='table font-sans w-full max-w-7xl'>
                 <thead className='table-header-group'>
                     <tr className='table-row'>
                         <th className='table-cell border border-neutral-700 px-4'>Tipo</th>
                         <th className='table-cell border border-neutral-700 px-4'>Mensaje</th>
                         <th className='table-cell border border-neutral-700 px-4'>Ruta</th>
                         <th className='table-cell border border-neutral-700 px-4'>Causa</th>
+                        <th className='table-cell border border-neutral-700 px-4'>Blame</th>
                         <th className='table-cell border border-neutral-700 px-4'>Colección</th>
                         <th className='table-cell border border-neutral-700 px-4'>Fecha</th>
                     </tr>
@@ -41,12 +43,13 @@ export default async function LogPage() {
                         logs.map((log, index) => {
                             return (
                                 <tr className='table-row odd:bg-neutral-900' key={ index }>
-                                    <td className='table-cell border border-neutral-700 px-4 text-center'>{ log.type }</td>
-                                    <td className='table-cell border border-neutral-700 px-4 text-center'>{ log.message }</td>
-                                    <td className='table-cell border border-neutral-700 px-4 text-center'>{ log.route }</td>
-                                    <td className='table-cell border border-neutral-700 px-4 text-center'>{ log.errorCause || "N/A" }</td>
-                                    <td className='table-cell border border-neutral-700 px-4 text-center'>{ log.collection || "N/A" }</td>
-                                    <td className='table-cell border border-neutral-700 px-4 text-center'>{ `${log.createdAt.toLocaleDateString()} ${log.createdAt.toLocaleTimeString()}` }</td>
+                                    <td className='table-cell border border-neutral-700 px-4 text-center whitespace-nowrap overflow-hidden text-ellipsis max-w-32'>{ log.type }</td>
+                                    <td className='table-cell border border-neutral-700 px-4 text-center whitespace-nowrap overflow-hidden text-ellipsis max-w-32'>{ log.message }</td>
+                                    <td className='table-cell border border-neutral-700 px-4 text-center whitespace-nowrap overflow-hidden text-ellipsis max-w-32'>{ log.route }</td>
+                                    <td className='table-cell border border-neutral-700 px-4 text-center whitespace-nowrap overflow-hidden text-ellipsis max-w-32'>{ log.errorCause || "N/A" }</td>
+                                    <td className='table-cell border border-neutral-700 px-4 text-center whitespace-nowrap overflow-hidden text-ellipsis max-w-32'>{ log.Manager?.name || "N/A" }</td>
+                                    <td className='table-cell border border-neutral-700 px-4 text-center whitespace-nowrap overflow-hidden text-ellipsis max-w-32'>{ log.collection || "N/A" }</td>
+                                    <td className='table-cell border border-neutral-700 px-4 text-center whitespace-nowrap overflow-hidden text-ellipsis max-w-32'>{ `${log.createdAt.toLocaleDateString()} ${log.createdAt.toLocaleTimeString()}` }</td>
                                 </tr>
                             )
                         })

@@ -145,22 +145,6 @@ export const inscriptionFields : { [key in IActionTarget]: IFormField[] } = {
     ],    
     update: [
         {
-            name: 'file',
-            label: 'Elige una imagen',
-            instructions: 'La imagen debe pesar menos de 2mb.',
-            validationMethod: null,
-            processingMethod: null,
-            testAgainst: null,
-            type: 'file',
-            element: Input.Base,
-            media: {
-                role: 'inscriptions',
-                accept: 'image/*',
-                previewClassname: 'flex h-full w-full aspect-video border-2 border-neutral-100 rounded-md'
-            },
-            required: true
-        },
-        {
             name: 'name',
             label: 'Nombre artístico',
             instructions: null,
@@ -169,7 +153,7 @@ export const inscriptionFields : { [key in IActionTarget]: IFormField[] } = {
             testAgainst: null,
             type: 'text',
             element: Input.Base,
-            required: true
+            required: false
         },
         {
             name: 'description',
@@ -180,7 +164,7 @@ export const inscriptionFields : { [key in IActionTarget]: IFormField[] } = {
             testAgainst: null,
             type: 'text',
             element: Input.Base,
-            required: true
+            required: false
         },
         {
             name: 'contactName',
@@ -191,7 +175,7 @@ export const inscriptionFields : { [key in IActionTarget]: IFormField[] } = {
             testAgainst: null,
             type: 'text',
             element: Input.Base,
-            required: true
+            required: false
         },
         {
             name: 'phone',
@@ -202,7 +186,7 @@ export const inscriptionFields : { [key in IActionTarget]: IFormField[] } = {
             testAgainst: null,
             type: 'tel',
             element: Input.Base,
-            required: true
+            required: false
         },
         {
             name: 'email',
@@ -213,7 +197,7 @@ export const inscriptionFields : { [key in IActionTarget]: IFormField[] } = {
             testAgainst: null,
             type: 'tel',
             element: Input.Base,
-            required: true
+            required: false
         },
         {
             name: 'city',
@@ -224,7 +208,7 @@ export const inscriptionFields : { [key in IActionTarget]: IFormField[] } = {
             testAgainst: null,
             type: 'text',
             element: Input.Base,
-            required: true
+            required: false
         },
         {
             name: 'genre',
@@ -235,7 +219,7 @@ export const inscriptionFields : { [key in IActionTarget]: IFormField[] } = {
             testAgainst: null,
             type: 'text',
             element: Input.Select,
-            required: true
+            required: false
         },
         {
             name: 'video',
@@ -246,7 +230,7 @@ export const inscriptionFields : { [key in IActionTarget]: IFormField[] } = {
             testAgainst: null,
             type: 'text',
             element: Input.Base,
-            required: true
+            required: false
         },
         {
             name: 'instagram',
@@ -257,7 +241,7 @@ export const inscriptionFields : { [key in IActionTarget]: IFormField[] } = {
             testAgainst: null,
             type: 'text',
             element: Input.Base,
-            required: true
+            required: false
         },
         {
             name: 'spotify',
@@ -268,7 +252,7 @@ export const inscriptionFields : { [key in IActionTarget]: IFormField[] } = {
             testAgainst: null,
             type: 'text',
             element: Input.Base,
-            required: true
+            required: false
         },
         {
             name: 'tiktok',

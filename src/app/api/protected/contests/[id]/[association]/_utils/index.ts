@@ -1,4 +1,4 @@
-import { Brand, Contest, Media, Genre, SocialMedia, Manager, Role, Log, Sponsor, Tag, TagType } from '@/database/models';
+import { Brand, Contest, Media, Genre, SocialMedia, Manager, Role, Log, Sponsor, Tag, TagType, Inscription } from '@/database/models';
 import { ICollectionNames } from "@/types";
 import { FindOptions, Model, ModelStatic } from "sequelize";
 
@@ -12,6 +12,12 @@ const modelsByCollectionName = {
     social: {
         Model: SocialMedia,
         options: {}
+    },
+    inscriptions: {
+        Model: Inscription,
+        options: {
+            include: [Contest]
+        }
     },
     genres: {
         Model: Genre,

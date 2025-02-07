@@ -79,7 +79,7 @@ export type ILog = {
     digest?: number,
     route: string,
     collection?: ICollectionNames,
-    blame: string,
+    Manager?: IManager,
     createdAt: Date,
 }
 

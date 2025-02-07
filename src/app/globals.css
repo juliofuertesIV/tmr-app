@@ -73,7 +73,7 @@ h3 {
 }
 
 section.admin-page-content {
-    @apply flex flex-col w-full min-h-screen py-8 lg:py-10 pl-8 lg:pl-12
+    @apply flex flex-col w-full min-h-screen py-8 lg:py-10 pl-8 lg:pl-12 lg:pr-8 pr-4
 }
 
 a.tmr-link, button.tmr-link {

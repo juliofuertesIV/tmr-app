@@ -1,4 +1,4 @@
-
+/* 
 import { handleApiError } from '@/lib/errors'
 import { Contest, Inscription } from '@/database/models'
 import { updateInscription } from '../_functions'
@@ -51,7 +51,7 @@ export const PUT = async (req: NextRequest, { params } : RouteParams) => {
             req,
             route: '/api/inscriptions',
             error,
-            message: 'Fallo inscribiendo candidatura.' 
+            message: 'Fallo editando candidatura.' 
         })
     }
 
@@ -92,3 +92,4 @@ export const DELETE = async (req: NextRequest, { params } : RouteParams) => {
         })
     }
 }
+ */
