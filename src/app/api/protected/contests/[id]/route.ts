@@ -1,6 +1,6 @@
 import { handleApiError } from "@/lib/errors";
 import { NextRequest } from "next/server";
-import { Contest, Media } from "@/database/models";
+import { Contest, Footer, Media } from "@/database/models";
 import { deleteContest, updateContest } from "./_functions";
 import { constructAPIResponse } from "@/app/api/_utils";
 
@@ -22,6 +22,7 @@ export const GET = async (req: NextRequest, { params } : RouteParams) => {
                 { model: Media, as: 'Frame' },
                 { model: Media, as: 'Banner' },
                 { model: Media, as: 'Favicon' },
+                Footer
             ],
         })
         .then(data => data)
@@ -37,7 +38,8 @@ export const GET = async (req: NextRequest, { params } : RouteParams) => {
     }
     catch (error) {
         return handleApiError({
-            error: error as string,
+            req,
+            error,
             route: '/api/protected/contests/[id]'
         })
     }
@@ -54,8 +56,8 @@ export const PUT = async (req: NextRequest, { params } : RouteParams) => {
     }
     catch (error) {
         return await handleApiError({
-            error,
             req,
+            error,
             message: 'Unable to get FormData.',
             route: `/api/protected/contests/[id]`
         })
@@ -66,6 +68,7 @@ export const PUT = async (req: NextRequest, { params } : RouteParams) => {
     }
     catch (error) {
         return await handleApiError({
+            req,
             error,
             message: 'Unable to update item.',
             route: `/api/contest/[id]`
@@ -91,6 +94,7 @@ export const DELETE = async (req: NextRequest, { params } : RouteParams) => {
     }
     catch (error) {
         return await handleApiError({
+            req,
             error,
             route: '/api/protected/contests/[id]'
         })

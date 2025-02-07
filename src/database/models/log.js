@@ -10,6 +10,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // Define associations if needed in the future
+      Log.belongsTo(models.Manager)
     }
   }  Log.init({
     id: {

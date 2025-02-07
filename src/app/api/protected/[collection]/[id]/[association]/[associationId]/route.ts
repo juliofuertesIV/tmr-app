@@ -1,12 +1,12 @@
 import { ICollectionNames } from "@/types";
-import { IAssociationNames } from "@/types/associations";
 import { deleteAssociation } from "./_functions/delete";
 import { constructAPIResponse } from "@/app/api/_utils";
 import { handleApiError } from "@/lib/errors";
+import { NextRequest } from "next/server";
 
-type Params = { params: { collection: ICollectionNames, id: string, association: IAssociationNames, associationId: string }}
+type Params = { params: { collection: ICollectionNames, id: string, association: string, associationId: string }}
 
-export const DELETE = async (req: Request, { params } : Params) => {
+export const DELETE = async (req: NextRequest, { params } : Params) => {
 
     const { collection, id, association, associationId } = params
 
@@ -14,6 +14,7 @@ export const DELETE = async (req: Request, { params } : Params) => {
         await deleteAssociation({ collection, id, association, associationId })
     } catch (error) {
         return await handleApiError({
+            req,
             error,
             collection,
             route: `/api/collections/${ collection }/${ id }/${ association }/${ associationId }`,

@@ -29,7 +29,8 @@ export const GET = async (req: NextRequest, { params } : RouteParams) => {
         )
     }
     catch (error) {
-        return handleApiError({
+        return await handleApiError({
+            req,
             error: error as string,
             message: 'Not found.',
             route: `/api/protected/${collection}/${id}`
@@ -48,8 +49,8 @@ export const PUT = async (req: NextRequest, { params } : RouteParams) => {
     }
     catch (error) {
         return await handleApiError({
-            error,
             req,
+            error,
             message: 'Unable to get FormData.',
             route: `/api/${ collection }/[id]`
         })
@@ -60,6 +61,7 @@ export const PUT = async (req: NextRequest, { params } : RouteParams) => {
     }
     catch (error) {
         return await handleApiError({
+            req,
             error,
             message: 'Unable to update item.',
             route: `/api/${ collection }/[id]`
@@ -85,6 +87,7 @@ export const DELETE = async (req: NextRequest, { params } : RouteParams) => {
     }
     catch (error) {
         return await handleApiError({
+            req,
             error,
             message: 'Error deleting element',
             route: `/api/${ collection }/[id]`

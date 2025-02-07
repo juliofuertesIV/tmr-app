@@ -1,12 +1,12 @@
 import { ICollectionNames } from "@/types";
-import { IAssociationNames } from "@/types/associations";
 import { createAssociation } from "./_functions/post";
 import { handleApiError } from "@/lib/errors";
 import { constructAPIResponse } from "@/app/api/_utils";
+import { NextRequest } from "next/server";
 
-type Params = { params: { collection: ICollectionNames, id: string, association: IAssociationNames }}
+type Params = { params: { collection: ICollectionNames, id: string, association: string }}
 
-export const POST = async (req: Request, { params } : Params) => {
+export const POST = async (req: NextRequest, { params } : Params) => {
 
     const { collection, id, association } = params
 
@@ -16,6 +16,7 @@ export const POST = async (req: Request, { params } : Params) => {
     }
     catch (error) {
         return await handleApiError({
+            req,
             error,
             route: `/api/${ collection }/[id]/${ association }`
         })

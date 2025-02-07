@@ -9,7 +9,12 @@ module.exports = {
         allowNull: false,
         defaultValue: Sequelize.UUIDV4,
         primaryKey: true,
-      }
+      },
+      name: {
+        type: Sequelize.STRING,
+        unique: true,
+        allowNull: false,
+    },
     });
   },
 

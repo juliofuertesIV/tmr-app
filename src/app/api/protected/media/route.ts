@@ -1,12 +1,14 @@
 import { Media } from "@/database/models"
 import { handleApiError } from "@/lib/errors"
 import { createAndUploadMedia } from "./_functions"
+import { NextRequest } from "next/server"
 
-export const GET = async (req: Request) => { 
+export const GET = async (req: NextRequest) => { 
 
     return await Media.findAll()
                 .then(data => data)
                 .catch(err => handleApiError({ 
+                        req,
                         error: err, 
                         route: 'api/media' 
                     })
@@ -14,7 +16,7 @@ export const GET = async (req: Request) => {
     
 }
 
-export const POST = async (req: Request) => {
+export const POST = async (req: NextRequest) => {
 
     const formData = await req.formData()
 
@@ -25,6 +27,7 @@ export const POST = async (req: Request) => {
     }
     catch (error) {
         return await handleApiError({
+            req,
             error,
             route: '/api/media'
         })

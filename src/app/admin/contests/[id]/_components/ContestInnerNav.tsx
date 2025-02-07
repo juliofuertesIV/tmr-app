@@ -11,6 +11,7 @@ const navItems = [
     { name: 'Configuración', value: 'params', isAssociation: true },
     { name: 'Imágenes', value: 'media', isAssociation: false },
     { name: 'Estado', value: 'states', isAssociation: false },
+    { name: 'Footer', value: 'footer', isAssociation: false },
     { name: 'Gestionar inscripciones', value: 'inscriptions', isAssociation: false },
 ]
 

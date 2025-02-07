@@ -7,7 +7,8 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
         Manager.belongsToMany(models.Contest, { through: 'ManagerContests', })
         Manager.belongsTo(models.Media, { foreignKey: 'MediumId', onDelete: 'SET NULL' })
-        Manager.belongsTo(models.Role)
+        Manager.belongsTo(models.Role),
+        Manager.hasMany(models.Log)
     }
   }
   Manager.init({

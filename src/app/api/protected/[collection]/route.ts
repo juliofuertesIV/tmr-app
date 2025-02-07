@@ -4,8 +4,9 @@ import { getCollectionByName } from './_functions/get'
 import { addToCollection } from './_functions/post'
 import { handleApiError } from '@/lib/errors'
 import { constructAPIResponse } from '../../_utils'
+import { NextRequest } from 'next/server'
 
-export const GET = async (req: Request, { params } : { params: { collection: ICollectionNames }}) => {
+export const GET = async (req: NextRequest, { params } : { params: { collection: ICollectionNames }}) => {
 
     const { collection } = params
     
@@ -22,13 +23,14 @@ export const GET = async (req: Request, { params } : { params: { collection: ICo
     }
     catch (error) {
         return await handleApiError({
+            req,
             error, 
             route: `/api/${ collection }`
         })
     }
 }
 
-export const POST = async (req: Request, { params } : { params: { collection: ICollectionNames }}) => {
+export const POST = async (req: NextRequest, { params } : { params: { collection: ICollectionNames }}) => {
 
     const { collection } = params
 
@@ -48,6 +50,7 @@ export const POST = async (req: Request, { params } : { params: { collection: IC
     }
     catch (error) {
         return await handleApiError({
+            req,
             error, 
             collection,
             route: `/api/${ collection }`

@@ -2,8 +2,9 @@ import { Manager } from '@/database/models'
 import { constructAPIResponse } from "../../../_utils"
 import { getHashAndSaltFromPassword } from "../../../../../lib/auth/crypto"
 import { handleApiError } from "@/lib/errors"
+import { NextRequest } from 'next/server'
 
-export const POST = async (req: Request) => {
+export const POST = async (req: NextRequest) => {
 
     const formData = await req.formData()
 
@@ -23,6 +24,7 @@ export const POST = async (req: Request) => {
     }
     catch (error) {
         return await handleApiError({
+            req,
             error, 
             collection: 'managers',
             route: `/api/protected/auth/managers`

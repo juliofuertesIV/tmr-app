@@ -1,4 +1,5 @@
-import { ITag, ITagType } from "./collections"
+import { ITagType } from "./collections"
+import { IContest } from "./contests"
 import { IMedia } from "./media"
 
 export type IAllCollections = IBrand & ISocialMedia & IGenre & IManager & ITagType & IContest & IInscription
@@ -26,39 +27,6 @@ export type IManager = {
     Role: IManagerRole,
     MediumId: string,
     Medium: IMedia,
-    createdAt: string,
-    updatedAt: string
-}
-
-export type IContest = {
-    id: string,
-    name: string,
-    domain: string,
-    year: number | string,
-    bannerHref: string | null,
-    metaUrl: string | null,
-    metaTitle: string | null,
-    metaDescription: string | null,
-    postmarkToken: string | null,
-    postmarkSenderAddress: string | null,
-    googleAnalyticsId: string | null,
-    googleTagManagerId: string | null,
-    metaPixelId: string | null,
-    termsAndConditions: string,
-    StateId: IContestStateIds,
-    BrandId: number,
-    BannerId: string,
-    FrameId: string,
-    LogoId: string,
-    FaviconId: string,
-    Brand: IBrand,
-    State: IContestState,
-    Genres: IGenre[],
-    Inscriptions: IInscription[],
-    SocialMedia: ISocialMedia[],
-    Params: IParam[],
-    Media: IMedia[],
-    Sponsors: ISponsor[],
     createdAt: string,
     updatedAt: string
 }

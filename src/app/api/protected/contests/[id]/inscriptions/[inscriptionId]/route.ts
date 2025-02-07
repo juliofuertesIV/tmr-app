@@ -3,6 +3,7 @@ import { handleApiError } from '@/lib/errors'
 import { Contest, Inscription } from '@/database/models'
 import { updateInscription } from '../_functions'
 import { constructAPIResponse } from '@/app/api/_utils'
+import { NextRequest } from 'next/server'
 
 
 type RouteParams = {
@@ -12,18 +13,9 @@ type RouteParams = {
     }
 }
 
-export const GET = async (req: Request, { params } : RouteParams) => {
+export const GET = async (req: NextRequest, { params } : RouteParams) => {
 
     const { inscriptionId } = params
-
-    console.log('GET INSCRIPTION BY IDDDD')
-    console.log('GET INSCRIPTION BY IDDDD')
-    console.log('GET INSCRIPTION BY IDDDD')
-    console.log('GET INSCRIPTION BY IDDDD')
-    console.log('GET INSCRIPTION BY IDDDD')
-    console.log('GET INSCRIPTION BY IDDDD')
-    console.log('GET INSCRIPTION BY IDDDD')
-    console.log('GET INSCRIPTION BY IDDDD')
 
     try {
         const inscription = await Inscription.findOne({ where: { id: inscriptionId }, include: [ Contest ]}).then(data => data)
@@ -38,13 +30,14 @@ export const GET = async (req: Request, { params } : RouteParams) => {
         )
     } catch (error)  {
         return await handleApiError({
+            req,
             error,
             route: '/api/inscriptions/[id]'
         })
     }
 }
 
-export const PUT = async (req: Request, { params } : RouteParams) => {
+export const PUT = async (req: NextRequest, { params } : RouteParams) => {
 
     const formData = await req.formData()
 
@@ -55,6 +48,7 @@ export const PUT = async (req: Request, { params } : RouteParams) => {
     }
     catch (error) {
         return await handleApiError({
+            req,
             route: '/api/inscriptions',
             error,
             message: 'Fallo inscribiendo candidatura.' 
@@ -73,7 +67,7 @@ export const PUT = async (req: Request, { params } : RouteParams) => {
 }
 
 
-export const DELETE = async (req: Request, { params } : RouteParams) => {
+export const DELETE = async (req: NextRequest, { params } : RouteParams) => {
 
     const { inscriptionId } = params
     
@@ -91,6 +85,7 @@ export const DELETE = async (req: Request, { params } : RouteParams) => {
     }
     catch (error) {
         return await handleApiError({
+            req,
             route: '/api/inscriptions',
             error,
             message: 'Fallo eliminando candidatura.' 

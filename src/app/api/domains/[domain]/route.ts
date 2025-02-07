@@ -28,6 +28,7 @@ export const GET = async (req: NextRequest, { params } : RouteParams) => {
     }
     catch (error) {
         return await handleApiError({
+            req,
             error,
             route: '/api/protected/contests/domain/[domain]'
         })

@@ -18,7 +18,7 @@ export const validateFile = async ({ formData } : { formData: FormData }) => {
         bytes;
 
         try {
-            const validatedFormData = validateMediaFormDataFields({ formData }) // checks for file, role, alt, width, height
+            const validatedFormData = validateMediaFormDataFields({ formData }) // checks for file, role, alt, width, height 
             file = validatedFormData.file
             role = validatedFormData.role
             alt = validatedFormData.alt

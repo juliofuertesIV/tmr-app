@@ -21,6 +21,7 @@ export const POST = async (req: NextRequest, { params } : RouteParams) => {
     const role = formData.get('role') as IContestMediaRole
 
     if (!role) return handleApiError({
+        req,
         error: new Error('Field role not found in FormData'),
         route: '/api/protected/contests/media/[type]'
     })
@@ -35,6 +36,7 @@ export const POST = async (req: NextRequest, { params } : RouteParams) => {
     catch (error) {
         
         return handleApiError({
+            req,
             error,
             route: '/api/protected/contests/media/[type]'
         })

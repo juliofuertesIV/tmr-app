@@ -13,6 +13,7 @@ type Props = {
     collectionItem: IContest | IManager | ISponsor | IInscription,
     collection: 'contests' | 'managers' | 'inscriptions' | 'sponsors',
     domain?: string,
+    accepts?: string,
     previewClassName?: string,
     role: IMediaRole
 }
@@ -54,7 +55,7 @@ const getForeignKeyAndFieldIdByRole = (role: IMediaRole) => {
 
 }
 
-export default function MediaForm({ collectionItem, collection, previewClassName, role, domain } : Props) {
+export default function MediaForm({ collectionItem, collection, previewClassName, role, domain, accepts } : Props) {
 
     const inputRef = useRef<HTMLInputElement | null>(null)
     const formRef = useRef<HTMLFormElement | null>(null)
@@ -127,7 +128,14 @@ export default function MediaForm({ collectionItem, collection, previewClassName
         <form ref={ formRef } action={ action } className='flex w-full h-full'>
             <AdminFormFeedback state={ state } />
             <MediumPreview className={ previewClassName } medium={ currentMedium as IMedia | null } onClick={ clickAction }/> 
-            <input className="hidden" ref={ inputRef } type="file" name='file' accept={ 'image' } onChange={ (e) => manageFileInputChange(e) }/>
+            <input 
+                className="hidden" 
+                ref={ inputRef } 
+                type="file" 
+                name='file' 
+                accept={ 'image' /* TO DO: ACCEPTS */ } 
+                onChange={ (e) => manageFileInputChange(e) }
+            />
             <input type="hidden" name="role" value={ role } />
             <input type="hidden" name="alt" value={ 'Picture of ' + collectionItem.name } />
             <input type="hidden" name="width" value={ imageSize.width || '' } />

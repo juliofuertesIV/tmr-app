@@ -41,7 +41,6 @@ export default async function ContestRelationshipPage({ params } : Props) {
         // TO DO: Header (description)
         <ContestRelationshipManager
             contest={ contest }
-            relationship={ relationship }
             relationshipIdField={ relationshipIdFieldName }
             relationshipItems={ relationshipItems }
         />

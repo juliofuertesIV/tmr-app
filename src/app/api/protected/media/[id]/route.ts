@@ -1,6 +1,7 @@
 import { handleApiError } from "@/lib/errors"
 import { constructAPIResponse } from "../../../_utils"
 import { deleteMediaInStorageAndDatabase } from "@/lib/media/delete"
+import { NextRequest } from "next/server"
 
 type Params = { 
     params: {
@@ -8,7 +9,7 @@ type Params = {
     }
 }
 
-export const DELETE = async (req: Request, { params } : Params) => {
+export const DELETE = async (req: NextRequest, { params } : Params) => {
 
     const { id } = params
 
@@ -17,8 +18,9 @@ export const DELETE = async (req: Request, { params } : Params) => {
     }
     catch (error) {
             return await handleApiError({
-            error,
-            route: '/api/media/[id]'
+                req,
+                error,
+                route: '/api/media/[id]'
         })
     }
 

@@ -1,9 +1,10 @@
-import { Brand, Contest, Genre, Media, Param, SocialMedia, Sponsor, State } from "@/database/models"
+import { Brand, Contest, Genre, Param, SocialMedia, State } from "@/database/models"
 import { constructAPIResponse } from "../../_utils"
 import { handleApiError } from "@/lib/errors"
 import { Inscription } from "@/database/models/"
+import { NextRequest } from "next/server"
 
-export const GET = async (req: Request) => {
+export const GET = async (req: NextRequest) => {
     
     let contests
 
@@ -22,6 +23,7 @@ export const GET = async (req: Request) => {
     }
     catch (error) {
         return await handleApiError({
+            req,
             error,
             route: '/api/protected/contests'
         })
@@ -37,7 +39,7 @@ export const GET = async (req: Request) => {
     )
 }
 
-export const POST = async (req: Request) => {
+export const POST = async (req: NextRequest) => {
 
     const formData = await req.formData()
 
@@ -49,6 +51,7 @@ export const POST = async (req: Request) => {
     } 
     catch (error) {
         return await handleApiError({
+            req,
             error,
             route: '/api/protected/contests'
         })

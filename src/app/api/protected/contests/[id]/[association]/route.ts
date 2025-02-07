@@ -1,9 +1,9 @@
 import { constructAPIResponse } from "@/app/api/_utils";
 import { Contest } from "@/database/models";
 import { handleApiError } from "@/lib/errors";
-import { IContestAssociationNames } from "@/types/associations";
 import { NextRequest } from "next/server";
 import { createContestAssociation, getAssociationModelByName } from "./_functions";
+import { IContestAssociationNames } from "@/types/contests";
 
 type RouteParams = {
     params: {
@@ -27,6 +27,7 @@ export const GET = async (req: NextRequest, { params } : RouteParams) => {
     }
     catch (error) {
         return handleApiError({
+            req,
             error,
             message: 'Error fetching.',
             route: `/api/contests/[id]/${ association }`
@@ -53,10 +54,10 @@ export const POST = async (req: NextRequest, { params } : RouteParams) => {
     }
     catch (error) {
         return await handleApiError({
+            req,
             error,
             message: 'Unable to make association.',
-            route: '/api/protected/contests/[id]/' + association,
-            req
+            route: '/api/protected/contests/[id]/' + association
         })
     }
 

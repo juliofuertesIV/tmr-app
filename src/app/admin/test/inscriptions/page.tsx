@@ -1,12 +1,11 @@
 
 import { getContestByDomain } from '@/lib/fetch/get/contests'
-import InscriptionForm from '@/lib/forms/collection/components/InscriptionForm'
 import Link from 'next/link'
 import React from 'react'
 
 export default async function TestInscriptionsPage() {
 
-    const { data: contest } = await getContestByDomain('battleofthebands-com')
+    const { data: contest } = await getContestByDomain('contest-battleofthebands')
 
     if (!contest) throw new Error('No contest found!')
     

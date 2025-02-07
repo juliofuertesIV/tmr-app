@@ -8,6 +8,7 @@ export const GET = async (req: NextRequest) => {
     const data = await Contest.findAll({ attributes: ['domain']}).then(data => data)
     .catch(error => {
         return handleApiError({
+            req,
             error,
             route: '/api/domains',
             message: 'Error getting domain.'

@@ -2,12 +2,13 @@ import { constructAPIResponse } from '@/app/api/_utils'
 import { Manager } from '@/database/models'
 import { getHashAndSaltFromPassword } from '@/lib/auth'
 import { handleApiError } from "@/lib/errors"
+import { NextRequest } from 'next/server'
 
 type Params = {
     params: { id: string }
 }
 
-export const PUT = async (req: Request, { params } : Params) => {
+export const PUT = async (req: NextRequest, { params } : Params) => {
 
     const formData = await req.formData()
 
@@ -29,6 +30,7 @@ export const PUT = async (req: Request, { params } : Params) => {
     }
     catch (error) {
         return await handleApiError({
+            req,
             error, 
             collection: 'managers',
             route: `/api/protected/auth/managers`

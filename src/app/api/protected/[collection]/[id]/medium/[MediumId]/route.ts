@@ -4,10 +4,11 @@ import { ICollectionsWithMediumNames } from "@/types/media";
 import { constructAPIResponse } from "@/app/api/_utils";
 import { deleteMediaInStorageAndDatabase } from "@/lib/media/delete";
 import { addMediaToCollectionItem } from "../../_functions/media";
+import { NextRequest } from "next/server";
 
 type Params = { params: { collection: ICollectionsWithMediumNames, id: string, MediumId: string }}
 
-export const PUT = async (req: Request, { params } : Params) => {
+export const PUT = async (req: NextRequest, { params } : Params) => {
 
     const { collection, id, MediumId } = params
 
@@ -18,6 +19,7 @@ export const PUT = async (req: Request, { params } : Params) => {
         await addMediaToCollectionItem({ collection, id, formData })    
     } catch (error) {
         return await handleApiError({
+            req,
             error,
             route: `/api/${ collection }/[id]/medium/ (PUT)`
         }) 
@@ -28,6 +30,7 @@ export const PUT = async (req: Request, { params } : Params) => {
     }
     catch (error) {
         return await handleApiError({
+            req,
             error,
             route: `/api/${ collection }/[id]/medium/[MediumId]`
         })

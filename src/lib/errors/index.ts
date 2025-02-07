@@ -3,7 +3,7 @@ import { Log } from '@/database/models'
 import { ICollectionNames } from "@/types"
 import { IAPIError, IErrorTypes } from "@/types/api"
 import { NextRequest } from "next/server"
-import { ConnectionRefusedError, Transaction, ValidationError } from "sequelize"
+import { ConnectionRefusedError, ValidationError } from "sequelize"
 
 export const parseError = (error: unknown) : IAPIError => {
 
@@ -49,18 +49,19 @@ export const createLog = async ({
     route,
     collection,
     type = 'error',
-    blame
+    ManagerId 
 } : {
     error: unknown,
     route: string,
     collection?: ICollectionNames | null,
     type?: string,
-    blame?: string
+    ManagerId: string | null
 }) => {
     
     const log = {
         type, 
         message: error instanceof Error ? error.message : 'Error desconocido',
+        ManagerId,
         route,
         collection
     }
@@ -81,7 +82,7 @@ export const handleApiError = async ({
     route: string,
     message?: string,
     collection?: ICollectionNames,
-    req?: NextRequest
+    req: NextRequest
 }) => {
 
     let manager, blame;
@@ -94,7 +95,7 @@ export const handleApiError = async ({
         blame = manager.id
     }
 
-    await createLog({ error, collection, route, type: 'error', blame })
+    await createLog({ error, collection, route, type: 'error', ManagerId: manager?.id || null })
 
     return Response.json(
         constructAPIResponse({ 

@@ -11,25 +11,25 @@ const contestMediaFields : {
 }[] = [
     {
         label: 'Elige un logo',
-        instructions: 'Elige un archivo menor de 2mb.',
+        instructions: 'Elige un archivo menor de 2mb. Formato .png, .svg, .webp',
         role: 'logo',
         previewClassName: 'aspect-video rounded-sm w-full h-fit'
     },
     {
         label: 'Elige un marco',
-        instructions: 'Elige un archivo menor de 2mb.',
+        instructions: 'Elige un archivo menor de 2mb. Formato .png, .svg, .webp',
         role: 'frame',
         previewClassName: 'aspect-square rounded-sm w-full h-fit'
     },
     {
         label: 'Elige un banner',
-        instructions: 'Elige un archivo menor de 2mb.',
+        instructions: 'Elige un archivo menor de 2mb. Relación de aspecto: 1200x1630. Aceptamos .png, .svg, .webp',
         role: 'banner',
         previewClassName: 'rounded-sm w-full h-full'
     },
     {
         label: 'Elige un favicon',
-        instructions: 'Elige un archivo menor de 2mb.',
+        instructions: 'Elige un archivo menor de 2mb. Formato .ico',
         role: 'favicon',
         previewClassName: 'aspect-square rounded-sm w-10 h-10'
     },

@@ -1,15 +1,5 @@
 'use client'
 
-import { 
-    IMedialessAssociation, 
-    IMedialessRelationship, 
-    IMedialessRelationshipIdFieldnames, 
-    ICollectionsWithRelationships, 
-    ICollectionsWithRelationshipNames, 
-    IContestRelationshipNames, 
-    IMedialessRelationshipKeys 
-} from '@/types/associations'
-
 type Props = {
     collectionItem: ICollectionsWithRelationships,
     relationshipItems: IMedialessAssociation[] | IMedialessRelationship[],

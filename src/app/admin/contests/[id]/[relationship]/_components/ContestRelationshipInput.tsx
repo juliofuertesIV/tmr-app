@@ -1,9 +1,9 @@
 import { formInitialState } from '@/lib/forms/feedback/state'
 import React, { useEffect, useRef, useState } from 'react'
 import { useFormState } from 'react-dom'
-import { IContest, IContestRelationship, IContestRelationshipIdFields, IContestRelationshipNames } from '@/types/contests'
+import { IContest, IContestRelationship, IContestRelationshipIdFields } from '@/types/contests'
 import { updateContest } from '@/lib/fetch/put/contests'
-import AssociationIcon from '@/app/admin/[collection]/[id]/associate/[association]/_components/AssociationIcon'
+import AssociationIcon from '@/app/admin/_layout/design/icons/AssociationIcon'
 
 type Props = {
     contest: IContest,

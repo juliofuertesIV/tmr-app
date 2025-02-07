@@ -5,9 +5,9 @@ import { IManager } from "@/types"
 import { constructAPIResponse } from "../../../_utils"
 import { handleApiError } from "@/lib/errors"
 
-export const POST = async (request: NextRequest) => {
+export const POST = async (req: NextRequest) => {
 
-    const formData = await request.formData()
+    const formData = await req.formData()
     const { email, password } = Object.fromEntries(formData) as { email: string, password: string }
 
     const manager = await Manager.findOne({ 
@@ -69,6 +69,7 @@ export const POST = async (request: NextRequest) => {
     }
     catch (error) {
         return await handleApiError({
+            req,
             message: 'Error generando sesión.',
             error, 
             route: `/api/login`

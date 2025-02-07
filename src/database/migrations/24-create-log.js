@@ -34,6 +34,13 @@ module.exports = {
       collection: {
         type: Sequelize.STRING,
       },
+      ManagerId: {
+        type: Sequelize.UUID,
+        references: {
+            model: 'Managers',
+            key: 'id'
+        }
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

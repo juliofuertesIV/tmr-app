@@ -1,8 +1,8 @@
-import { IContestAssociationNames } from "@/types/associations";
 import { NextRequest } from "next/server";
 import { handleApiError } from "@/lib/errors";
 import { constructAPIResponse } from "@/app/api/_utils";
 import { deleteContestAssociation } from "./_functions";
+import { IContestAssociationNames } from "@/types/contests";
 
 type Params = {
     params: {
@@ -21,10 +21,10 @@ export const DELETE = async (req: NextRequest, { params } : Params) => {
     }
     catch (error) {
         return await handleApiError({
+            req,
             error,
             message: 'Unable to make dissociation.',
             route: '/api/protected/contests/[id]/' + association,
-            req
         })
     }
     

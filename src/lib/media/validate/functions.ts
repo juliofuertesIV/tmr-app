@@ -48,7 +48,7 @@ export const validateFileTypeAndSize = async ({
 }
 
 
-export const mediaPayloadIsValidType = ({ file } : { file: File }) => {
+export const mediaPayloadIsValidType = ({ file } : { file: File }) => { // TO DO: Accept here type against media role
 
     const validImageTypes = ['image/jpeg', 'image/png', 'image/svg+xml', 'image/webp', 'image/vnd.microsoft.icon']
 

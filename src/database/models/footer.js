@@ -19,6 +19,11 @@ module.exports = (sequelize, DataTypes) => {
         defaultValue: DataTypes.UUIDV4,
         allowNull: false,
     },
+    name: {
+        type: DataTypes.STRING,
+        unique: true,
+        allowNull: false,
+    },
   }, {
     sequelize,
     modelName: 'Footer',

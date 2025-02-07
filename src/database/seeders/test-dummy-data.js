@@ -6,20 +6,30 @@ const faker = require('faker');
 
 const contestId = 'f003d9eb-e15e-420e-b3a8-178b96d01325'; // The dummy contest ID used in the up method
 const mediaId = 'test-media'
+const footerId = uuidv4()
 
 module.exports = {
     up: async (queryInterface) => {
-        // Create a Contest
+        // Create a Footer
+
+        await queryInterface.bulkInsert('Footers', [
+            {
+                id: footerId,
+                name: 'Battle of the Bands 2025'
+            }
+        ])
+
         await queryInterface.bulkInsert('Contests', [
             {
                 id: contestId,
-                name: 'Battle of the Bands 2025',
-                domain: 'battleofthebands.com',
+                name: 'Battle of the Bands',
+                domain: 'contest.battleofthebands.com',
                 year: 2025,
                 metaUrl: 'https://battleofthebands.com',
                 metaTitle: 'Battle of the Bands',
                 metaDescription: 'The ultimate band contest of the year.',
                 StateId: 'open',
+                FooterId: footerId,
                 createdAt: new Date(),
                 updatedAt: new Date(),
             },

@@ -27,23 +27,6 @@ export default async function AdminAssociationPage({ params } : Props) {
 
     const { item, associationItems, associationIdField, associationKey } = data
 
-/*     if (association === 'media') {
-
-        const mediaFields = getMediaFieldsByCollection({ collection })
-
-        return (
-            <section className="w-full flex flex-col items-center">
-                <AssociationPageHeader association={ association } item={ item } collection={ collection }/>
-                <MediaFormWrapper
-                    collection={ collection as ICollectionsWithMediaNames }
-                    collectionItem={ item as ICollectionsWithMedia }
-                    mediaFields={ mediaFields }
-                />
-            </section>
-        )
-
-    } */
-
     return (
         <section className="w-full flex flex-col items-center">
             <AssociationPageHeader association={ association } item={ item } collection={ collection }/>
