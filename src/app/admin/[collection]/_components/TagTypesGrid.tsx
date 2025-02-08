@@ -2,6 +2,7 @@ import { IAllCollections, ICollectionNames } from '@/types'
 import React from 'react'
 import { edit as Icon } from '../../_layout/design/icons/'
 import Link from 'next/link'
+import { CircleAddIcon } from '../../_layout/design/icons/components/CircleAdd'
 
 export default function TagTypesGrid({ items: tagTypes, collection } : { items: IAllCollections[], collection: ICollectionNames }) {
   return (
@@ -14,16 +15,24 @@ export default function TagTypesGrid({ items: tagTypes, collection } : { items: 
                             <h3>{ tagType.name }</h3>
                             <Link href={ `/admin/${ collection }/${ tagType.id }`} className='ml-4 p-2 rounded-xl bg-neutral-200 text-neutral-800'><Icon/></Link>
                         </header>
-                        <div className='flex flex-wrap gap-2'>
+                        <div className='flex flex-wrap gap-2 min-h-16 items-center'>
                         {
                             tagType.Tags?.map((tag, tagIndex) => {
                                 return (
-                                    <div className='w-fit bg-neutral-400 px-2 py-1 rounded-md text-neutral-900' key={ 't_' + tagIndex }>
-                                        <p>{ tag.name }</p>
-                                    </div>
+                                    <Link key={ 't_' + tagIndex } href={ `/admin/tags/${ tag.id }`} className='group'>
+                                        <div 
+                                            className='w-fit bg-neutral-400 px-2 py-1 rounded-md text-neutral-900 group-hover:bg-neutral-200 group-hover:text-neutral-950 cursor-pointer transition-all'
+                                        >
+                                            <p>{ tag.name }</p>
+                                        </div>
+                                    </Link>
                                 )
                             })
                         }
+                        <button 
+                            className='flex items-center gap-1 leading-none bg-green-600 text-neutral-900 rounded-md px-2 py-2 hover:bg-green-500'>
+                                Añadir <CircleAddIcon className='text-xl'/>
+                            </button>
                         </div>
                     </article>
                 )

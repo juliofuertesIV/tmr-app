@@ -7,6 +7,8 @@ import { genreFields } from "./collections/genres";
 import { inscriptionFields } from "./collections/inscriptions";
 import { managerFields } from "./collections/managers";
 import { sponsorFields } from "./collections/sponsors";
+import { tagFields } from "./collections/tags";
+import { tagtypeFields } from "./collections/tagtypes";
 
 
 export const getFieldsByCollectionAndActionTarget = ({ collection, actionTarget } : { collection: ICollectionNames | 'contests' | 'inscriptions', actionTarget: IActionTarget }) => {
@@ -22,6 +24,6 @@ const fieldsByCollectionName = {
     inscriptions: inscriptionFields,
     managers: managerFields,
     sponsors: sponsorFields,
-    tags: { creation: [], update: [] },
-    tagtypes: { creation: [], update: [] }
+    tags: tagFields,
+    tagtypes: tagtypeFields
 }

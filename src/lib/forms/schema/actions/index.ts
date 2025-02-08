@@ -19,8 +19,8 @@ const creation : CreationFormActionByCollection = {
     genres: () => getAddCollectionItemBoundAction({ collection: 'genres' }),
     social: () => getAddCollectionItemBoundAction({ collection: 'social' }),
     sponsors: () => getAddCollectionItemBoundAction({ collection: 'sponsors' }),
-    tagtypes: () => null,
-    tags: () => null
+    tagtypes: () => getAddCollectionItemBoundAction({ collection: 'tagtypes' }),
+    tags: () => getAddCollectionItemBoundAction({ collection: 'tags' })
 }
 
 const update : UpdateFormActionByCollection = {
@@ -31,8 +31,8 @@ const update : UpdateFormActionByCollection = {
     genres: ({ id } : { id: string }) => getUpdateCollectionItemBoundAction({ collection: 'genres', id: id }),
     social: ({ id } : { id: string }) => getUpdateCollectionItemBoundAction({ collection: 'social', id: id }),
     sponsors: ({ id } : { id: string }) => getUpdateCollectionItemBoundAction({ collection: 'sponsors', id: id }),
-    tagtypes: () => null,
-    tags: () => null
+    tagtypes: ({ id } : { id: string }) => getUpdateCollectionItemBoundAction({ collection: 'tagtypes', id: id }),
+    tags: ({ id } : { id: string }) => getUpdateCollectionItemBoundAction({ collection: 'tags', id: id })
 }
 
 export const getCreationBoundFormActionByCollection = ({ 

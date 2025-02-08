@@ -24,6 +24,9 @@ const navItemsByCollectionName = {
     ],
     tagtypes: [
         { name: 'Información', value: '', association: false },
+    ],
+    tags: [
+        { name: 'Información', value: '', association: false },
     ]
 } as {
     [key in ICollectionNames]: { name: string, value: 'media' | 'role' | '', association: boolean }[]

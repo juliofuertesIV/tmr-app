@@ -4,7 +4,7 @@ import { IMedia } from "./media"
 
 export type IAllCollections = IBrand & ISocialMedia & IGenre & IManager & ITagType & IContest & IInscription
 
-export type ICollectionNames = 'brands' | 'social' | 'genres' | 'managers' | 'sponsors' | 'tagtypes' 
+export type ICollectionNames = 'brands' | 'social' | 'genres' | 'managers' | 'sponsors' | 'tagtypes' | 'tags'
 
 export type ICollectionsWithMedium = IInscription & IManager & ISponsor & IContest
 
