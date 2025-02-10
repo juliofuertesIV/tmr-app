@@ -3,7 +3,7 @@ import { Metadata } from "next";
 import Header from "../_components/Header";
 import ProfileEditionModule from "../_components/ProfileEditionModule";
 import ContestList from "../_components/ContestList";
-import { getCollectionElementById } from "@/lib/fetch/get/collections";
+import { getCollectionItemById } from "@/lib/fetch/get/collections";
 
 export const metadata: Metadata = {
     title: "Panel de administración TMR | Perfil",
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 const getData = async ({ id } : { id: string }) => {
 
-    const { data: manager } = await getCollectionElementById("managers", id) as { data: IManager }
+    const { data: manager } = await getCollectionItemById("managers", id) as { data: IManager }
 
     if (!manager) throw new Error('No manager found with this id.')
 

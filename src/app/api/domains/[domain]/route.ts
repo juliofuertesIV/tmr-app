@@ -1,4 +1,4 @@
-import { constructAPIResponse } from "@/app/api/_utils";
+import { constructAPIResponse } from "@/app/api/_functions";
 import { Contest } from "@/database/models";
 import { Inscription } from "@/database/models";
 import { handleApiError } from "@/lib/errors";

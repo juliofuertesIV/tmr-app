@@ -1,7 +1,7 @@
 
 import { handleApiError } from "@/lib/errors";
 import { ICollectionsWithMediumNames } from "@/types/media";
-import { constructAPIResponse } from "@/app/api/_utils";
+import { constructAPIResponse } from "@/app/api/_functions";
 import { deleteMediaInStorageAndDatabase } from "@/lib/media/delete";
 import { addMediaToCollectionItem } from "../../_functions/media";
 import { NextRequest } from "next/server";

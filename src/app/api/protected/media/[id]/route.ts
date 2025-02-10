@@ -1,5 +1,5 @@
 import { handleApiError } from "@/lib/errors"
-import { constructAPIResponse } from "../../../_utils"
+import { constructAPIResponse } from "../../../_functions"
 import { deleteMediaInStorageAndDatabase } from "@/lib/media/delete"
 import { NextRequest } from "next/server"
 

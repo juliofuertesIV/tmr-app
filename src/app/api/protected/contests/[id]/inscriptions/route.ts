@@ -1,5 +1,5 @@
 
-import { constructAPIResponse } from '@/app/api/_utils'
+import { constructAPIResponse } from '@/app/api/_functions'
 import { Contest, Inscription, Media, Tag } from '@/database/models'
 import { handleApiError } from '@/lib/errors'
 import { addInscriptionToContest } from './_functions'
@@ -18,8 +18,6 @@ export const GET = async (req: NextRequest, { params } : Params) => {
             where: { ContestId: id }, 
             include: [ Contest, Media, Tag ],
         }).then(data => data)
-
-        console.log({ data })
 
         return Response.json(
             constructAPIResponse({

@@ -2,12 +2,12 @@
 
 import { IAPIResponse } from "@/types/api"
 import { cookies } from "next/headers"
+import { NextResponse } from "next/server"
 
 export const login = async (
     prevState: any,
     formData: FormData
-) : Promise<IAPIResponse<null>> => {
-
+) : Promise<IAPIResponse<IAPIResponse<{ data: string }>>> => {
 
     const res = await fetch(`http://localhost:3000/api/login`, {
         method: "POST",
@@ -20,7 +20,7 @@ export const login = async (
 
         if (response.success) {
             
-            const { session } = response.data
+            const { data: session } = response
             
             cookies().set(
                 'session',
@@ -41,3 +41,15 @@ export const login = async (
     return res
 
 } 
+
+export const logoutManager = async () : Promise<NextResponse> => {
+
+    const res = await fetch(`http://localhost:3000/api/protected/auth/logout`, {
+        method: "POST",
+        cache: 'no-cache'
+    })
+    .then(data => data)
+    .catch(error => error)
+
+    return res
+}

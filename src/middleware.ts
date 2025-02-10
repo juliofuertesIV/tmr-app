@@ -1,39 +1,27 @@
-import { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { decryptJWT } from "./lib/auth";
-import { IManager } from "./types";
-import { RequestCookie } from "next/dist/compiled/@edge-runtime/cookies";
 
 export const middleware = async (req: NextRequest) => {
     
-    const sessionToken = req.cookies.get('session') 
-    
-    const manager = await getManagerFromCookies(sessionToken)
+    const sessionToken = req.cookies.get('session');
+    const decryptedManager = sessionToken ? await decryptJWT(sessionToken.value) : null;
 
-    const { allowed, redirect } = checkIfAllowedByRouteName(req.url, manager)
+    const isAdminRoute = req.nextUrl.pathname.startsWith('/admin');
+    const isApiProtectedRoute = req.nextUrl.pathname.startsWith('/api/protected');
 
-    if (!allowed) {
+    if (!decryptedManager) {
+        if (isApiProtectedRoute) {
+            return NextResponse.json({ success: false, message: 'Not allowed.' }, { status: 401 });
+        }
 
-        if (redirect) return Response.redirect(new URL(redirect as string, req.url))
-        else return Response.json('Not allowed.')
-    }
-    
-}
-
-const checkIfAllowedByRouteName = (routeName: string, manager: IManager | null) : { allowed: boolean, redirect: string | null } => {
-
-    if (!!manager) return {
-        allowed: true,
-        redirect: null,
+        if (isAdminRoute) {
+            return NextResponse.redirect(new URL('/login', req.url));
+        }
     }
 
-    return {
-        allowed: false,
-        redirect: '/login',
-    }
-}
-
-const getManagerFromCookies = async (sessionToken: RequestCookie | undefined) => sessionToken ? await decryptJWT(sessionToken.value) : null
+    return NextResponse.next();
+};
 
 export const config = {
-    matcher: ['/admin', '/admin/:path*', '/api/protected/:path'], // :path* gives logging loop 
-}
+    matcher: ['/admin/:path*', /* '/api/protected/:path*' */], // TO DO: Fix API calls to include cookies
+};

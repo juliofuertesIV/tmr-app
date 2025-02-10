@@ -1,8 +1,7 @@
 'use server'
 
-import { IContest } from "@/types"
 import { IAPIResponse } from "@/types/api"
-import { IContestAssociationNames, IContestAssociations } from "@/types/contests"
+import { IContest, IContestAssociationNames, IContestAssociations } from "@/types/contests"
 
 export const getContestById = async ({ id }: { id: string }) : Promise<IAPIResponse<IContest>> => {
 

@@ -1,5 +1,5 @@
 import { Manager } from '@/database/models'
-import { constructAPIResponse } from "../../../_utils"
+import { constructAPIResponse } from "../../../_functions"
 import { getHashAndSaltFromPassword } from "../../../../../lib/auth/crypto"
 import { handleApiError } from "@/lib/errors"
 import { NextRequest } from 'next/server'

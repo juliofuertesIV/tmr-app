@@ -2,26 +2,22 @@
 
 import { formInitialState } from '@/lib/forms/feedback/state'
 import { useFormState } from "react-dom"
-import { useEffect } from "react"
 import FormSubmit from "@/lib/forms/feedback/FormSubmit"
-import { useRouter } from "next/navigation"
-import { IManager } from "@/types"
 import AdminFormFeedback from "@/lib/forms/feedback/FormFeedback"
 import { login } from '@/lib/fetch/post/auth'
+import { useEffect } from 'react'
 
-export default function LoginForm({ manager } : { manager: IManager | null }) {
+export default function LoginForm() {
 
     const [ state, formAction ] = useFormState(login, formInitialState)
 
-    const router = useRouter()
-
     useEffect(() => {
 
-        const navigateToAdminPage = () => router.push('/admin')
-
-        if (!!manager) navigateToAdminPage() 
+        if (!state.success) return
         
-    }, [ router, manager ])
+        window.location.href = '/admin' // TO DO: What the fuck
+
+    }, [ state ])
 
     return (
         <form 

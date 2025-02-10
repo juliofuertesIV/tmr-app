@@ -22,7 +22,7 @@ export const getCollection = async (collection: ICollectionNames) : Promise<IAPI
     return res
 }
 
-export const getCollectionElementById = async (collection: ICollectionNames, id: string) : Promise<IAPIResponse<IAllCollections>> => {
+export const getCollectionItemById = async (collection: ICollectionNames, id: string) : Promise<IAPIResponse<IAllCollections>> => {
     
     const res = await fetch(`http://localhost:3000/api/protected/${ collection }/${ id }`, {
         method: "GET",

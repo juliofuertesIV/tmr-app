@@ -1,11 +1,11 @@
 import { Brand, Contest, Genre, Param, SocialMedia, State } from "@/database/models"
-import { constructAPIResponse } from "../../_utils"
+import { constructAPIResponse } from "../../_functions"
 import { handleApiError } from "@/lib/errors"
 import { Inscription } from "@/database/models/"
 import { NextRequest } from "next/server"
 
 export const GET = async (req: NextRequest) => {
-    
+
     let contests
 
     try {

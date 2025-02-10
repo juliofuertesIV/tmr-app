@@ -1,7 +1,7 @@
 import { Contest } from "@/database/models";
 import { handleApiError } from "@/lib/errors";
 import { NextRequest } from "next/server";
-import { constructAPIResponse } from "../_utils";
+import { constructAPIResponse } from "../_functions";
 
 export const GET = async (req: NextRequest) => {
 

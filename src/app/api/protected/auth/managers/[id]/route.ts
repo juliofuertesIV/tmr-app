@@ -1,4 +1,4 @@
-import { constructAPIResponse } from '@/app/api/_utils'
+import { constructAPIResponse } from '@/app/api/_functions'
 import { Manager } from '@/database/models'
 import { getHashAndSaltFromPassword } from '@/lib/auth'
 import { handleApiError } from "@/lib/errors"

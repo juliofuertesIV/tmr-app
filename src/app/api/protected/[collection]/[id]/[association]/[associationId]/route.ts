@@ -1,6 +1,6 @@
 import { ICollectionNames } from "@/types";
 import { deleteAssociation } from "./_functions/delete";
-import { constructAPIResponse } from "@/app/api/_utils";
+import { constructAPIResponse } from "@/app/api/_functions";
 import { handleApiError } from "@/lib/errors";
 import { NextRequest } from "next/server";
 

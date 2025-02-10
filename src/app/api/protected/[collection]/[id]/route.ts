@@ -2,7 +2,7 @@ import { ICollectionNames } from "@/types";
 import { updateCollectionItem } from "./_functions/update";
 import { deleteCollectionItem } from "./_functions/delete";
 import { handleApiError } from "@/lib/errors";
-import { constructAPIResponse } from "../../../_utils";
+import { constructAPIResponse } from "../../../_functions";
 import { NextRequest } from "next/server";
 import { getCollectionItemById } from "./_functions/get";
 
@@ -19,6 +19,7 @@ export const GET = async (req: NextRequest, { params } : RouteParams) => {
     
     try {
         const collectionItem = await getCollectionItemById({ collection, id })
+
         return Response.json(
             constructAPIResponse({
                 message: 'Fetched.',

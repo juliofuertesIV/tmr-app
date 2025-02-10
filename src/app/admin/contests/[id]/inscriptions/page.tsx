@@ -13,8 +13,6 @@ const getData = async ({ contestId } : { contestId: string }) => {
 
     const res = await getContestInscriptions(contestId)
 
-    console.log({ res })
-
     return res
 
 }

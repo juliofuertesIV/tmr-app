@@ -1,31 +1,49 @@
 'use client'
 
-import { logoutManager } from "@/lib/fetch/get/auth"
-import FormSubmit from "@/lib/forms/feedback/FormSubmit"
-import { formInitialState } from "@/lib/forms/feedback/state"
-import { useEffect } from "react"
-import { useFormState } from "react-dom"
+import { useState } from "react";
 
-export default function LogoutForm({ onSuccess } : { onSuccess: () => void }) {
+const redirectToLoginPage = () => window.location.href = "/login";  
 
-    const boundAction = logoutManager
+export default function LogoutForm() {
+    
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState("");
 
-    const [ state, action ] = useFormState(boundAction, formInitialState)
+    const handleLogout = async (e: React.FormEvent) => {
+            
+        e.preventDefault();
+        setLoading(true);
+        setError("");
 
-    useEffect(() => {
+        try {
+            const response = await fetch("/api/protected/auth/logout", { method: "POST" });
 
-        if (!state.success) return
+            if (!response.ok) throw new Error("Logout fallido.");
 
-        onSuccess();
+            redirectToLoginPage()
 
-    }, [ state, onSuccess ])
+        } catch (err: any) {
+            setError(err.message);
+        } finally {
+            setLoading(false);
+        }
+    };
 
     return (
-        <form 
-            action={ action }
-            className="flex flex-col gap-4 w-full max-w-md"
-        >
-            <FormSubmit value="Cerrar sesión" pendingValue="Cerrando sesión"/>
-        </form>
-    )
+        <div className="flex flex-col items-center justify-center min-h-screen">
+            <h1 className="text-2xl font-semibold">Confirmar cierre de sesión</h1>
+
+            {error && <p className="text-red-500">{error}</p>}
+
+            <form onSubmit={ handleLogout } className="mt-4">
+                <button
+                    type="submit"
+                    disabled={loading}
+                    className="bg-red-500 text-white px-4 py-2 rounded"
+                >
+                    { loading ? "Cerrando sesión..." : "Cerrar sesión" }
+                </button>
+            </form>
+        </div>
+    );
 }

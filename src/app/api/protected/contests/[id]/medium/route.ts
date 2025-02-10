@@ -4,7 +4,7 @@ import { createAndUploadMedia } from "../../../media/_functions"
 import { getMediumForeignKeyByType } from "./_functions"
 import { Contest } from "@/database/models"
 import { handleApiError } from "@/lib/errors"
-import { constructAPIResponse } from "@/app/api/_utils"
+import { constructAPIResponse } from "@/app/api/_functions"
 
 type RouteParams = {
     params: {

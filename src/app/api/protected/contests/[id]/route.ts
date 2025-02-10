@@ -2,7 +2,7 @@ import { handleApiError } from "@/lib/errors";
 import { NextRequest } from "next/server";
 import { Contest, Footer, Media } from "@/database/models";
 import { deleteContest, updateContest } from "./_functions";
-import { constructAPIResponse } from "@/app/api/_utils";
+import { constructAPIResponse } from "@/app/api/_functions";
 
 type RouteParams = {
     params: {

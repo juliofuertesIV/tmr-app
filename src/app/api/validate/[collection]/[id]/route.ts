@@ -1,5 +1,5 @@
 import { getModelByCollectionName } from "@/app/api/protected/contests/[id]/[association]/_utils"
-import { constructAPIResponse } from "@/app/api/_utils"
+import { constructAPIResponse } from "@/app/api/_functions"
 import { IContest, ICollectionNames } from "@/types"
 
 export const GET = async (req: Request, { params } : { params: { collection: ICollectionNames, id: string }}) => {

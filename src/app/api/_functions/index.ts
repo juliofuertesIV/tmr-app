@@ -1,7 +1,7 @@
 import { Contest, Manager } from "@/database/models"
 import { decryptJWT } from "@/lib/auth"
 import { parseError } from "@/lib/errors"
-import { ICollectionNames, IContest, IManager, IManagerRoleId } from "@/types"
+import { IManager, IManagerRoleId } from "@/types"
 import { IAPIResponse } from "@/types/api"
 import { NextRequest } from "next/server"
 
@@ -99,7 +99,4 @@ export const checkRequestAgainstManagerProfile = async ({
     }
 }
 
-const protectedCollections : ICollectionNames[] = ['contests', 'brands', 'social', 'genres', 'inscriptions', 'managers', 'sponsors', 'media']
-
-export const isInProtectedCollection = (collection: ICollectionNames) => protectedCollections.includes(collection)
 

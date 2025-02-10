@@ -1,4 +1,4 @@
-import { constructAPIResponse, getManagerInCookies } from "@/app/api/_utils"
+import { constructAPIResponse, getManagerInCookies } from "@/app/api/_functions"
 import { Log } from '@/database/models'
 import { ICollectionNames } from "@/types"
 import { IAPIError, IErrorTypes } from "@/types/api"

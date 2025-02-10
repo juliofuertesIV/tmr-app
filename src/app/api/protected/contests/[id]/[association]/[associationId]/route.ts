@@ -1,6 +1,6 @@
 import { NextRequest } from "next/server";
 import { handleApiError } from "@/lib/errors";
-import { constructAPIResponse } from "@/app/api/_utils";
+import { constructAPIResponse } from "@/app/api/_functions";
 import { deleteContestAssociation } from "./_functions";
 import { IContestAssociationNames } from "@/types/contests";
 

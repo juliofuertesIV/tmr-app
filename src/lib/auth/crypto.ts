@@ -18,6 +18,6 @@ export const passwordsAreMatching = ({ hash, salt, inputPassword } : { hash: str
         .toString('hex')
 
     const passwordsMatch = hash === inputHash
-    
+
     return passwordsMatch
 }

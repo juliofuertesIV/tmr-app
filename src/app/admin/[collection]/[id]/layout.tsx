@@ -1,6 +1,6 @@
 import { ICollectionNames } from "@/types";
 import CollectionItemNav from "./_layout/CollectionItemNav";
-import { getCollectionElementById } from "@/lib/fetch/get/collections";
+import { getCollectionItemById } from "@/lib/fetch/get/collections";
 
 type Props = {
     params: {
@@ -14,7 +14,7 @@ export default async function Layout({ params, children } : Props) {
     
     const { collection, id } = params
 
-    const { data: item } = await getCollectionElementById(collection, id)
+    const { data: item } = await getCollectionItemById(collection, id)
 
     if (!item) throw new Error(`No se encuentra item en '${ collection }' con la ID: ${ id }`)
 

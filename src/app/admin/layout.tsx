@@ -2,11 +2,9 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "../globals.css";
 import AdminMainNav from "./_layout/nav/AdminMainNav";
-import { cookies } from "next/headers";
-import { decryptJWT } from "@/lib/auth";
-import { redirect } from "next/navigation";
-import { IManager } from "@/types";
-import { getCollectionElementById } from "@/lib/fetch/get/collections";
+import { getSession } from "@/lib/auth";
+import { FindOptions } from "sequelize";
+import { IManager, IManagerRoleId } from "@/types";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,37 +14,32 @@ export const metadata: Metadata = {
 };
 
 
-async function getManagerById() {
-    const id = await getManagerIdBySession()
+async function getManager() {
 
-    if (!id) return redirect('/login') 
+    const managerOptions : FindOptions = {
+        attributes: ['id', 'name', 'email', 'RoleId'],
+    }
 
-    const { data: manager } = await getCollectionElementById('managers', id)
+    const decryptedManager = await getSession().then(data => data)
 
-    return manager
+/*     .then(async (data) => {
+
+        if (!data) return redirect('/login')
+
+        return await Manager.findOne({ ...managerOptions, where: { id: data.id }}).then(data => data)
+    })
+    .catch(error => {
+        throw new Error(error as string)
+    })
+ */
+    return decryptedManager
     
 }
-
-async function getManagerIdBySession() : Promise<string | null> {
-
-    const currentSession = cookies().get('session');
-    
-    const manager = currentSession ? 
-        await decryptJWT(currentSession?.value).then(data => data) 
-        : null;
-
-    return manager?.id || null;
-}
-
 
 export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
 
-    const manager = await getManagerById() as IManager | null;
-
-    if (!manager) { 
-        return redirect('/login') 
-    }
-
+    const manager = await getManager() as unknown as IManager
+    
     return (
         <html lang="en">
             <body className={ inter.className }>

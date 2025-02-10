@@ -1,14 +1,23 @@
-import { NextRequest } from "next/server"
-import { constructAPIResponse } from "../../../_utils"
+// src/app/api/auth/logout/route.ts
+import { NextResponse, NextRequest } from "next/server";
 
-export const GET = async (request: NextRequest) => {
+export async function POST(req: NextRequest): Promise<NextResponse> {
+    
+    const response = new NextResponse(
+        JSON.stringify({ success: true }),
+        {
+        status: 200,
+        headers: { "Content-Type": "application/json" },
+        }
+    );
 
-    return Response.json(
-        constructAPIResponse({
-            message: 'Logout correcto.',
-            data: { session: "", expires: new Date(Date.now())},
-            error: null,
-            success: true
-        })
-    )
+    // Clear the session cookie
+    response.cookies.set("session", "", {
+        path: "/",
+        maxAge: 0, // Expire immediately
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+    });
+
+    return response;
 }

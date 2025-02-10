@@ -15,6 +15,13 @@ export type IManagerRole = {
     name: string
 }
 
+export type DecryptedJWTManager = {
+    id: string,
+    name: string,
+    email: string,
+    RoleId: IManagerRoleId
+}
+
 export type IManager = {
     id: string,
     name: string,
