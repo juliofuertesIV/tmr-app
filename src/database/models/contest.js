@@ -10,6 +10,7 @@ const extractedSubdomainString = (value) => {
 }
 
 const { Model } = require('sequelize');
+const { Media } = require('.');
 
 module.exports = (sequelize, DataTypes) => {
   class Contest extends Model {
@@ -89,6 +90,23 @@ module.exports = (sequelize, DataTypes) => {
         unique: true,
       },
     ],
+    scopes: {
+      admin: {
+        order: [['createdAt', 'DESC']],
+        include: [ 
+            Inscription,
+            Brand,
+            State,
+            SocialMedia,
+            Param,
+            Genre, 
+            { model: Media, as: 'Logo' },
+            { model: Media, as: 'Banner' },
+            { model: Media, as: 'Frame' },
+            { model: Media, as: 'Favicon' },
+        ]
+      }
+    },
     hooks: {
       beforeValidate: (record) => {
         if (!record.dataValues.metaUrl) return; 
