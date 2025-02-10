@@ -14,7 +14,7 @@ export type IFormByCollectionName = {
     }
 }
 
-export type IActionTarget = 'creation' | 'update' //| 'addMedia' | 'updateMedia' | 'deleteMedia' | 'updateManager'
+export type IActionTarget = 'creation' | 'update' | 'delete' //| 'addMedia' | 'updateMedia' | 'deleteMedia' | 'updateManager'
 
 export type IFormField = {
     name: string,

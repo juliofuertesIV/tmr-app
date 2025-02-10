@@ -1,4 +1,5 @@
 
+import { deleteCollectionItem } from "@/lib/fetch/delete/collections"
 import { deleteMediaItem } from "@/lib/fetch/delete/media"
 import { addCollectionItem } from "@/lib/fetch/post/collections"
 import { addMediaToItem } from "@/lib/fetch/post/media"
@@ -18,6 +19,15 @@ export const getAddCollectionItemBoundAction = ({
 } : { 
     collection: ICollectionNames, 
 }) => addCollectionItem.bind(null, collection)
+
+export const getDeleteCollectionItemBoundAction = ({ 
+    collection,
+    id
+} : { 
+    collection: ICollectionNames | 'contests' | 'inscriptions', 
+    id: string 
+}) => deleteCollectionItem.bind(null, collection, id)
+
 
 /* export const getAssociationBoundInput = ({ 
     collection,

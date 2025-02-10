@@ -2,7 +2,7 @@ import { Log, Manager, Role } from '@/database/models'
 import { createSession, passwordsAreMatching } from "@/lib/auth"
 import { NextRequest } from "next/server"
 import { IManager } from "@/types"
-import { constructAPIResponse } from "../../../_utils"
+import { constructAPIResponse } from "../_utils"
 import { handleApiError } from "@/lib/errors"
 
 export const POST = async (req: NextRequest) => {

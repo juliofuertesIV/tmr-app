@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import { ICollectionNames } from "@/types";
 import CollectionItemFormModule from "./_components/CollectionItemFormModule";
 import { getCollectionElementById } from "@/lib/fetch/get/collections";
+import DeleteItemDialog from "./_components/DeleteItemDialog";
 
 export const metadata: Metadata = {
     title: "TMR | Perfil",
@@ -16,5 +17,10 @@ export default async function AdminElementPage({ params } : { params: { collecti
 
     if (!item) throw new Error('No se ha encontrado el elemento en la base de datos.')
 
-    return <CollectionItemFormModule collection={ collection } collectionItem={ item } />
+    return (
+        <>
+            <CollectionItemFormModule collection={ collection } collectionItem={ item } />
+            <DeleteItemDialog collection={ collection } collectionItem={ item }/>
+        </>
+    )
 }

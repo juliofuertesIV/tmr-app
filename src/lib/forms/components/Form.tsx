@@ -2,18 +2,20 @@
 
 import { useFormState } from 'react-dom'
 import { IFormAction, IFormField } from '@/types/forms'
-import { IAllCollections, } from '@/types'
+import { IAllCollections, ICollectionNames, } from '@/types'
 import AdminFormFeedback from '../feedback/FormFeedback'
 import FormInput from './inputs/FormInput'
 import FormSubmit from '@/lib/forms/feedback/FormSubmit'
-import { ReactNode } from 'react'
+import { ReactNode, useRef } from 'react'
 import { formInitialState } from '../feedback/state'
 
 type Props = {
     boundAction: IFormAction,
-    fields?: IFormField[],
-    collectionItem?: IAllCollections,
+    fields: IFormField[],
     children?: ReactNode
+    collection?: ICollectionNames | "contest" | "inscriptions",
+    domain?: string,
+    collectionItem?: IAllCollections,
 }
 
 export default function Form({ 
@@ -23,7 +25,11 @@ export default function Form({
     children 
 } : Props) {
 
+    const formRef = useRef<HTMLFormElement | null>(null)
+
     const [state, formAction] = useFormState(boundAction, formInitialState)
+
+    if (state.success) formRef.current?.reset()
 
     return (
         <form 
@@ -31,11 +37,11 @@ export default function Form({
             action={ formAction }
         >
             <AdminFormFeedback state={ state } />
-            { children }
             { 
                 fields?.map((field, index) => 
                     <FormInput key={ index } field={ field } collectionItem={ collectionItem }/>) 
             }
+            { children }
             <FormSubmit/>
         </form>
     )

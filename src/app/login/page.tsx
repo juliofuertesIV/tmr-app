@@ -16,9 +16,7 @@ async function getManagerIdBySession() : Promise<string | null> {
 
     const currentSession = cookies().get('session');
 
-    const manager = currentSession ? 
-        await decryptJWT(currentSession?.value).then(data => data) 
-        : null;
+    const manager = currentSession ? await decryptJWT(currentSession?.value).then(data => data) : null;
 
     return manager?.id || null;
 }

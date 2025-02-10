@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 async function getManagerById() {
     const id = await getManagerIdBySession()
 
-    if (!id) throw new Error('No manager id found.')
+    if (!id) return redirect('/login') 
 
     const { data: manager } = await getCollectionElementById('managers', id)
 

@@ -1,5 +1,5 @@
 import { ICollectionNames } from "@/types"
-import { GetCreationBoundFormAction, getCreationBoundFormActionByCollection, GetUpdateBoundFormAction, getUpdateBoundFormActionByCollection } from "./schema/actions"
+import { GetCreationBoundFormAction, getCreationBoundFormActionByCollection, getDeleteBoundFormActionByCollection, GetDeleteFormAction, GetUpdateBoundFormAction, getUpdateBoundFormActionByCollection } from "./schema/actions"
 import { IActionTarget, IFormField } from "@/types/forms"
 import { getFieldsByCollectionAndActionTarget } from "./schema/fields"
 
@@ -7,6 +7,7 @@ type FormSchema = {
     fields: IFormField[],
     bindCreationAction: GetCreationBoundFormAction,
     bindUpdateAction: GetUpdateBoundFormAction,
+    bindDeleteAction: GetDeleteFormAction
 }
 
 export const getFormSchema = ({ 
@@ -21,5 +22,6 @@ export const getFormSchema = ({
         fields: getFieldsByCollectionAndActionTarget({ collection, actionTarget }),
         bindCreationAction: getCreationBoundFormActionByCollection({ collection }),
         bindUpdateAction: getUpdateBoundFormActionByCollection({ collection }),
+        bindDeleteAction: getDeleteBoundFormActionByCollection({ collection })
     }
 }

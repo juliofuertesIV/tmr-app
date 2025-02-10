@@ -9,7 +9,7 @@ export const login = async (
 ) : Promise<IAPIResponse<null>> => {
 
 
-    const res = await fetch(`http://localhost:3000/api/protected/auth/login`, {
+    const res = await fetch(`http://localhost:3000/api/login`, {
         method: "POST",
         cache: 'no-cache',
         body: formData

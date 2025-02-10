@@ -13,6 +13,8 @@ import { tagtypeFields } from "./collections/tagtypes";
 
 export const getFieldsByCollectionAndActionTarget = ({ collection, actionTarget } : { collection: ICollectionNames | 'contests' | 'inscriptions', actionTarget: IActionTarget }) => {
     
+    if (actionTarget === 'delete') return []
+
     return fieldsByCollectionName[collection][actionTarget]
 }
 

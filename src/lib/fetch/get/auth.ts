@@ -8,11 +8,9 @@ export const logoutManager = async () : Promise<IAPIResponse<any>> => {
         method: "GET",
         cache: 'no-cache'
     })
-    .then(async (data) => {
-        const res = await data.json()
-        return res
-    })
+    .then(async (data) => data)
     .catch(error => error)
+
 
     return res
 }
