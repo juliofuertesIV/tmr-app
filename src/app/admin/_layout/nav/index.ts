@@ -1,6 +1,7 @@
 import * as Icon from '../design/icons'
 import { CollectionNames, ManagerRoleId } from "@/types"
 import { SVGProps } from "react"
+import { JSX } from 'react'
 
 export type IAdminNavItem = {
     collection: CollectionNames | 'logs' | null,
