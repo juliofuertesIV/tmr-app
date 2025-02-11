@@ -1,5 +1,5 @@
 import LoginForm from "./_components/LoginForm";
-import TMRLogo from "../admin/_layout/design/TmrLogo";
+import TMRLogo from "../admin/(dashboard)/_layout/design/TmrLogo";
 import { getSession } from "@/lib/auth";
 import { redirect } from "next/navigation";
 

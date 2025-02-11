@@ -13,7 +13,7 @@ type RouteParams = {
     }
 }
 
-export const GET = async (req: NextRequest, { params } : RouteParams) => {
+/* export const GET = async (req: NextRequest, { params } : RouteParams) => {
 
     const { collection, id } = params
     
@@ -37,7 +37,7 @@ export const GET = async (req: NextRequest, { params } : RouteParams) => {
             route: `/api/protected/${collection}/${id}`
         })
     }
-}
+} */
 
 export const PUT = async (req: NextRequest, { params } : RouteParams) => {
 

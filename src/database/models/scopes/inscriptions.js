@@ -4,8 +4,6 @@ const getScopes = (models) => {
 
     const { Contest, Media, Tag } = models
 
-    console.log({ Contest, Media, Tag })
-
     return {
         list: {
             order: [["createdAt", "DESC"]],
