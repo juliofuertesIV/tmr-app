@@ -1,13 +1,13 @@
 'use client'
 
 import { getAddMediumBoundAction, getDeleteMediumBoundAction } from '@/lib/forms/schema/actions/collections/collections';
-import { IContest, Inscription, Manager, Sponsor } from '@/types';
-import React, { ChangeEvent, useEffect, useRef, useState } from 'react'
-import { useFormState } from 'react-dom';
+import { Inscription, Manager, Sponsor } from '@/types';
+import React, { ChangeEvent, useActionState, useEffect, useRef, useState } from 'react'
 import AdminFormFeedback from '@/lib/forms/feedback/FormFeedback';
 import { formInitialState } from '@/lib/forms/feedback/state';
 import { IMedia, IMediaRole } from '@/types/media';
 import MediumPreview from './components/MediumPreview';
+import { IContest } from '@/types/contests';
 
 type Props = { 
     collectionItem: IContest | Manager | Sponsor | Inscription,
@@ -74,7 +74,7 @@ export default function MediaForm({ collectionItem, collection, previewClassName
     const deletionBoundAction = getDeleteMediumBoundAction({ collection, mediumId: currentMediumId as string })
 
     const boundAction = currentMediumId ? deletionBoundAction : creationBoundAction
-    const [ state, action ] = useFormState(boundAction, formInitialState)
+    const [ state, action ] = useActionState(boundAction, formInitialState)
 
     const [ file, setFile ] = useState<File | null>(null)
     const [ imageSize, setImageSize ] = useState<{ width: number | null, height: number | null }>({ width: null, height: null })

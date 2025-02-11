@@ -1,6 +1,7 @@
 'use server'
 
 import { Contest } from "@/database/models"
+import { IContest } from "@/types/contests"
 
 export type ContestScope = 'basic' | 'admin' | 'public'
 
@@ -10,7 +11,7 @@ export const getAllContestsFromDatabase = async ({ scope } : { scope: ContestSco
     .then(data => data)
     .catch(error => { throw new Error(error as string )})
 
-    return contests
+    return contests as unknown as IContest[]
 }
 
 export const getContestFromDatabaseById = async ({ id, scope } : { id: string, scope: ContestScope }) => {
@@ -18,5 +19,5 @@ export const getContestFromDatabaseById = async ({ id, scope } : { id: string, s
     .then(data => data)
     .catch(error => { throw new Error(error as string )})
 
-    return contest
+    return contest as unknown as IContest
 }

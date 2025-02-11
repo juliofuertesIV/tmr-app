@@ -1,4 +1,4 @@
-import { IContest } from '@/types'
+
 import React from 'react'
 import { 
     stats as StatsIcon,
@@ -11,6 +11,7 @@ import {
     openInscription as OpenInscriptionsIcon,
     closedInscription as ClosedInscriptionsIcon
 } from '../../_layout/design/icons'
+import { IContest } from '@/types/contests'
 
 export type IContestIconRole = 'stats' | 'open' | 'visible' | 'verify' | 'contestants' | 'inscription'
 
@@ -19,7 +20,7 @@ const getContentByRole = (role: IContestIconRole, contest: IContest) => {
         stats: (contest: IContest) => { 
             return { 
                 Icon: StatsIcon,
-                data: contest.Inscriptions.length,
+                data: contest.Inscriptions?.length,
                 className: '',
                 toolTip: '???'
             }
@@ -27,7 +28,7 @@ const getContentByRole = (role: IContestIconRole, contest: IContest) => {
         contestants: (contest: IContest) => { 
             return { 
                 Icon: ContestantsIcon,
-                data: contest.Inscriptions.length,
+                data: contest.Inscriptions?.length,
                 className: '',
                 toolTip: 'Número de inscripciones'
             }
@@ -35,9 +36,9 @@ const getContentByRole = (role: IContestIconRole, contest: IContest) => {
         verify: (contest: IContest) => { 
             return { 
                 Icon: VerifyIcon,
-                data: contest.Inscriptions.filter(inscription => inscription.verified === false).length || null,
-                className: contest.Inscriptions.filter(inscription => inscription.verified === false).length ? '' : 'neutral-400',
-                toolTip: contest.Inscriptions.filter(inscription => inscription.verified === false).length ? 'Participantes por verificar' : 'Nadie por verificar'
+                data: contest.Inscriptions?.filter(inscription => inscription.verified === false).length || null,
+                className: contest.Inscriptions?.filter(inscription => inscription.verified === false).length ? '' : 'neutral-400',
+                toolTip: contest.Inscriptions?.filter(inscription => inscription.verified === false).length ? 'Participantes por verificar' : 'Nadie por verificar'
             }
         },
         open: (contest: IContest) => { 

@@ -4,6 +4,8 @@ const getScopes = (models) => {
 
     const { Contest, Media, Role } = models
 
+    console.log({ Contest, Media, Role })
+    
     return {
         list: {
             order: [["name", "DESC"]],

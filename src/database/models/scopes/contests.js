@@ -4,16 +4,15 @@ const getScopes = (models) => {
 
     const { Brand, State, SocialMedia, Param, Genre, Media } = models
 
+    console.log({ Brand, State, SocialMedia, Param, Genre, Media })
+
     return {
       basic: {
         order: [["createdAt", "DESC"]],
         include: [
-          { model: models.Inscription, attributes: ["id", "verified"] },
+          { model: models.Inscription.scope('basic') },
           Brand,
           State,
-          SocialMedia,
-          Param,
-          Genre,
         ],
       },
       admin: {

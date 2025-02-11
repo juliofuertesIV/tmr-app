@@ -4,6 +4,8 @@ const getScopes = (models) => {
 
     const { Contest, Media, Tag } = models
 
+    console.log({ Contest, Media, Tag })
+
     return {
         list: {
             order: [["createdAt", "DESC"]],
@@ -19,7 +21,9 @@ const getScopes = (models) => {
             include: [ Media, Contest, Tag ],
             attributes: { exclude: ["contactName, phone, email"] }
         },
-
+        basic: {
+            attributes: ["id", "verified"]
+        }
     };
   };
   

@@ -8,7 +8,12 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function getSession() {
     
-    const session = cookies().get("session")?.value;
+    const session = await cookies()
+    .then(data => {
+        return data ?
+        data.get('session')?.value 
+        : null
+    })
 
     if (!session) return null;
 
@@ -53,7 +58,8 @@ export async function updateSession(request: NextRequest) {
 }
 
 export async function destroySession() {
-    // Destroy the session    
-    cookies().set("session", "", { expires: new Date(0) });
+    // Destroy the session
+    (await cookies()).set('session', "")
+        
 }
  

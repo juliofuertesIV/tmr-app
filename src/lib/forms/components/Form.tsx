@@ -1,12 +1,11 @@
 'use client'
 
-import { useFormState } from 'react-dom'
 import { IFormAction, IFormField } from '@/types/forms'
 import { AllCollections, CollectionNames, } from '@/types'
 import AdminFormFeedback from '../feedback/FormFeedback'
 import FormInput from './inputs/FormInput'
 import FormSubmit from '@/lib/forms/feedback/FormSubmit'
-import { ReactNode, useRef } from 'react'
+import { ReactNode, useActionState, useRef } from 'react'
 import { formInitialState } from '../feedback/state'
 
 type Props = {
@@ -27,7 +26,7 @@ export default function Form({
 
     const formRef = useRef<HTMLFormElement | null>(null)
 
-    const [state, formAction] = useFormState(boundAction, formInitialState)
+    const [state, formAction] = useActionState(boundAction, formInitialState)
 
     if (state.success) formRef.current?.reset()
 

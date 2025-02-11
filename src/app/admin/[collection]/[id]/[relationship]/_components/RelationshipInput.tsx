@@ -1,16 +1,14 @@
-import { CollectionNames } from '@/types'
+import { AllCollections, CollectionNames } from '@/types'
 import { formInitialState } from '@/lib/forms/feedback/state'
-import React, { useEffect, useRef, useState } from 'react'
-import { useFormState } from 'react-dom'
-import { ICollectionsWithAssociations, IMedialessRelationship, IMedialessRelationshipIdFieldnames, IMedialessRelationshipNames } from '@/types/associations'
+import React, { useActionState, useEffect, useRef, useState } from 'react'
 import { updateCollectionItem } from '@/lib/fetch/put/collections'
 
 type Props = {
     collection: CollectionNames,
-    collectionItem: ICollectionsWithAssociations,
+    collectionItem: AllCollections,
     /* relationship: IMedialessRelationshipNames, */
-    relationshipItem: IMedialessRelationship,
-    relationshipIdField: IMedialessRelationshipIdFieldnames,
+    relationshipItem: AllCollections,
+    relationshipIdField: string,
     isCurrentlyAssociated: boolean,
 }
 
@@ -27,7 +25,7 @@ export default function RelationshipInput({
 
     const boundAction = updateCollectionItem.bind(null, collection, collectionItem.id)
 
-    const [ state, formAction ] = useFormState(boundAction, formInitialState)
+    const [ state, formAction ] = useActionState(boundAction, formInitialState)
     const [ loading, setLoading ] = useState<boolean>(false)
     const [ hovered, setHovered ] = useState<boolean>(false)
 

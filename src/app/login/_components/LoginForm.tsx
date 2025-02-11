@@ -1,15 +1,14 @@
 'use client'
 
 import { formInitialState } from '@/lib/forms/feedback/state'
-import { useFormState } from "react-dom"
 import FormSubmit from "@/lib/forms/feedback/FormSubmit"
 import AdminFormFeedback from "@/lib/forms/feedback/FormFeedback"
 import { login } from '@/lib/fetch/post/auth'
-import { useEffect } from 'react'
+import { useActionState, useEffect } from 'react'
 
 export default function LoginForm() {
 
-    const [ state, formAction ] = useFormState(login, formInitialState)
+    const [ state, formAction ] = useActionState(login, formInitialState)
 
     useEffect(() => {
 
