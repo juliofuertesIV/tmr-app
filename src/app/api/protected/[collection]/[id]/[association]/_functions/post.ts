@@ -1,9 +1,9 @@
 import { getAssociationModelByName } from "../../../../contests/[id]/[association]/_utils"
-import { ICollectionNames } from "@/types"
+import { CollectionNames } from "@/types"
 import { IAssociationNames } from "@/types/associations"
 
 type Props = {
-    collection: ICollectionNames,
+    collection: CollectionNames,
     id: string,
     association: IAssociationNames,
     formData: FormData

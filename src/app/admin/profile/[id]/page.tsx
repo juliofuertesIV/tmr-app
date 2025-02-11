@@ -1,9 +1,8 @@
-import { IManager } from "@/types";
 import { Metadata } from "next";
 import Header from "../_components/Header";
 import ProfileEditionModule from "../_components/ProfileEditionModule";
 import ContestList from "../_components/ContestList";
-import { getCollectionItemById } from "@/lib/fetch/get/collections";
+import { getManagerFromDatabaseById } from "@/lib/database/functions/managers";
 
 export const metadata: Metadata = {
     title: "Panel de administración TMR | Perfil",
@@ -12,9 +11,9 @@ export const metadata: Metadata = {
 
 const getData = async ({ id } : { id: string }) => {
 
-    const { data: manager } = await getCollectionItemById("managers", id) as { data: IManager }
-
-    if (!manager) throw new Error('No manager found with this id.')
+    const manager = await getManagerFromDatabaseById({ id, scope: 'detailed' })
+    .then(data => JSON.parse(JSON.stringify(data)))
+    .catch(error => { throw new Error(error as string) })
 
     return manager
 }

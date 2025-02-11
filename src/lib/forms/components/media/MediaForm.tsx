@@ -1,7 +1,7 @@
 'use client'
 
 import { getAddMediumBoundAction, getDeleteMediumBoundAction } from '@/lib/forms/schema/actions/collections/collections';
-import { IContest, IInscription, IManager, ISponsor } from '@/types';
+import { IContest, Inscription, Manager, Sponsor } from '@/types';
 import React, { ChangeEvent, useEffect, useRef, useState } from 'react'
 import { useFormState } from 'react-dom';
 import AdminFormFeedback from '@/lib/forms/feedback/FormFeedback';
@@ -10,7 +10,7 @@ import { IMedia, IMediaRole } from '@/types/media';
 import MediumPreview from './components/MediumPreview';
 
 type Props = { 
-    collectionItem: IContest | IManager | ISponsor | IInscription,
+    collectionItem: IContest | Manager | Sponsor | Inscription,
     collection: 'contests' | 'managers' | 'inscriptions' | 'sponsors',
     domain?: string,
     accepts?: string,

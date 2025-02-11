@@ -1,6 +1,6 @@
 import { addMediaToItem, associateMediaToItem } from "@/lib/fetch/post/media"
 import { updateCollectionItemMedium } from "@/lib/fetch/put/media"
-import { ICollectionsWithMedia, ICollectionsWithMedium, IContest } from "@/types"
+import { ICollectionsWithMedia, CollectionsWithMedium, IContest } from "@/types"
 import { ICollectionsWithMediaNames, ICollectionsWithMediumNames, IMedia, IMediaRole } from "@/types/media"
 
 export const getCurrentMediumId = (collectionItem: IContest, role: IMediaRole) => {
@@ -14,7 +14,7 @@ export const getAddMediumBoundAction = ({
     collectionItem
 }: {
     collection: ICollectionsWithMediumNames,
-    collectionItem: ICollectionsWithMedium,
+    collectionItem: CollectionsWithMedium,
 }) => {
 
     return addMediaToItem.bind(null, collection, collectionItem.id)
@@ -26,7 +26,7 @@ export const getUpdateMediumBoundAction = ({
     MediumId
 }: {
     collection: ICollectionsWithMediumNames,
-    collectionItem: ICollectionsWithMedium,
+    collectionItem: CollectionsWithMedium,
     MediumId: string
 }) => {
 

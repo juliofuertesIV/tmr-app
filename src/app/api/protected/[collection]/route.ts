@@ -1,12 +1,12 @@
 
-import { ICollectionNames } from '@/types'
+import { CollectionNames } from '@/types'
 import { getCollectionByName } from './_functions/get'
 import { addToCollection } from './_functions/post'
 import { handleApiError } from '@/lib/errors'
 import { constructAPIResponse } from '../../_functions'
 import { NextRequest } from 'next/server'
 
-export const GET = async (req: NextRequest, { params } : { params: { collection: ICollectionNames }}) => {
+export const GET = async (req: NextRequest, { params } : { params: { collection: CollectionNames }}) => {
 
     const { collection } = params
     
@@ -30,7 +30,7 @@ export const GET = async (req: NextRequest, { params } : { params: { collection:
     }
 }
 
-export const POST = async (req: NextRequest, { params } : { params: { collection: ICollectionNames }}) => {
+export const POST = async (req: NextRequest, { params } : { params: { collection: CollectionNames }}) => {
 
     const { collection } = params
 

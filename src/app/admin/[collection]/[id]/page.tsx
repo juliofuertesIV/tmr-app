@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { ICollectionNames } from "@/types";
+import { CollectionNames } from "@/types";
 import CollectionItemFormModule from "./_components/CollectionItemFormModule";
 import { getCollectionItemById } from "@/lib/fetch/get/collections";
 import DeleteItemDialog from "./_components/DeleteItemDialog";
@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     description: "El buen admin panel"
 };
 
-export default async function AdminElementPage({ params } : { params: { collection: ICollectionNames, id: string }}) {
+export default async function AdminElementPage({ params } : { params: { collection: CollectionNames, id: string }}) {
     
     const { collection, id } = params
 

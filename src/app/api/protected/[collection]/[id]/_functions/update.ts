@@ -1,11 +1,11 @@
 import { getModelByCollectionName } from "../../../contests/[id]/[association]/_utils"
 import { sequelize } from '@/database/models'
-import { ICollectionNames } from "@/types"
+import { CollectionNames } from "@/types"
 
 
 type Props = {
     formData: FormData,
-    collection: ICollectionNames,
+    collection: CollectionNames,
     id: string
 }
 

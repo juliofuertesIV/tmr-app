@@ -1,6 +1,6 @@
 import { constructAPIResponse, getManagerInCookies } from "@/app/api/_functions"
 import { Log } from '@/database/models'
-import { ICollectionNames } from "@/types"
+import { CollectionNames } from "@/types"
 import { IAPIError, IErrorTypes } from "@/types/api"
 import { NextRequest } from "next/server"
 import { ConnectionRefusedError, ValidationError } from "sequelize"
@@ -53,7 +53,7 @@ export const createLog = async ({
 } : {
     error: unknown,
     route: string,
-    collection?: ICollectionNames | null,
+    collection?: CollectionNames | null,
     type?: string,
     ManagerId: string | null
 }) => {
@@ -81,7 +81,7 @@ export const handleApiError = async ({
     error: unknown,
     route: string,
     message?: string,
-    collection?: ICollectionNames,
+    collection?: CollectionNames,
     req: NextRequest
 }) => {
 

@@ -1,7 +1,7 @@
-import { IBrand, IContest } from "."
+import { Brand, IContest } from "."
 
 export type IDashboardData = {
     contests: IContest[],
-    brands: IBrand[],
+    brands: Brand[],
     inscriptions: any[]
 }

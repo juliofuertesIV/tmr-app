@@ -1,5 +1,5 @@
 import { Brand, Contest, Media, Genre, SocialMedia, Manager, Role, Log, Sponsor, Tag, TagType, Inscription } from '@/database/models';
-import { ICollectionNames } from "@/types";
+import { CollectionNames } from "@/types";
 import { FindOptions, Model, ModelStatic } from "sequelize";
 
 const modelsByCollectionName = {
@@ -56,11 +56,11 @@ const modelsByCollectionName = {
         }
     }
 } as { 
-    [key in ICollectionNames]: { 
+    [key in CollectionNames]: { 
         Model: ModelStatic<Model<any, any>>,
         options: FindOptions 
     }
 }
 
-export const getModelByCollectionName = (collection: ICollectionNames) => modelsByCollectionName[collection]
+export const getModelByCollectionName = (collection: CollectionNames) => modelsByCollectionName[collection]
 

@@ -1,4 +1,3 @@
-import Link from "next/link";
 import ContestInnerNav from "./_components/ContestInnerNav";
 import { getContestById } from "@/lib/fetch/get/contests";
 

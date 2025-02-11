@@ -1,5 +1,5 @@
 import { getAssociationModelByName } from "@/app/api/protected/contests/[id]/[association]/_utils"
-import { ICollectionNames } from "@/types"
+import { CollectionNames } from "@/types"
 import { IAssociationNames } from "@/types/associations"
 
 export const deleteAssociation = async ({ 
@@ -8,7 +8,7 @@ export const deleteAssociation = async ({
     id,
     associationId 
 } : {
-    collection: ICollectionNames,
+    collection: CollectionNames,
     association: IAssociationNames,
     id: string,
     associationId: string

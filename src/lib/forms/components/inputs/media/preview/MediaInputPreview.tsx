@@ -1,10 +1,10 @@
 import Image from 'next/image'
 import React from 'react'
 import { CogIcon as CogIcon } from '@/app/admin/_layout/design/icons/components/Cog' 
-import { ICollectionsWithMedium } from '@/types'
+import { CollectionsWithMedium } from '@/types'
 import { useFormStatus } from 'react-dom'
 
-export default function MediaInputPreview({ collectionItem, clickAction } : { collectionItem: ICollectionsWithMedium, clickAction: () => void | undefined }) {
+export default function MediaInputPreview({ collectionItem, clickAction } : { collectionItem: CollectionsWithMedium, clickAction: () => void | undefined }) {
 
     const { src, width, height, alt } = collectionItem.Medium
 

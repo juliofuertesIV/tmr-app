@@ -1,10 +1,10 @@
 import React, { ChangeEvent, useState } from 'react'
 import { IFormField } from '@/types/forms'
 import { validateInput } from '@/lib/forms/validation'
-import { IAllCollections } from '@/types'
+import { AllCollections } from '@/types'
 import Label from '../label/Label'
 
-export default function FormInput({ field, collectionItem } : { field: IFormField, collectionItem?: IAllCollections }) {
+export default function FormInput({ field, collectionItem } : { field: IFormField, collectionItem?: AllCollections }) {
 
     const [ value, setValue ] = useState<string | null>(null)
     const [ isValid, setIsValid ] = useState<boolean | null>(null)

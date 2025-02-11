@@ -1,10 +1,10 @@
-import { IAllCollections, ICollectionNames } from '@/types'
+import { AllCollections, CollectionNames } from '@/types'
 import React from 'react'
 import { edit as Icon } from '../../_layout/design/icons/'
 import Link from 'next/link'
 import { CircleAddIcon } from '../../_layout/design/icons/components/CircleAdd'
 
-export default function TagTypesGrid({ items: tagTypes, collection } : { items: IAllCollections[], collection: ICollectionNames }) {
+export default function TagTypesGrid({ items: tagTypes, collection } : { items: AllCollections[], collection: CollectionNames }) {
   return (
     <div className="flex flex-col w-full gap-4 max-w-2xl">
         { 

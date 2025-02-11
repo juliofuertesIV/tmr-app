@@ -1,6 +1,6 @@
 'use client'
 
-import { IAllCollections, ICollectionNames } from '@/types'
+import { AllCollections, CollectionNames } from '@/types'
 import { useLayoutEffect, useRef, useState } from 'react'
 import Form from '@/lib/forms/components/Form'
 import { getFormSchema } from '@/lib/forms'
@@ -9,12 +9,12 @@ import FormSubmit from '@/lib/forms/feedback/FormSubmit'
 import { TrashBinIcon } from '@/app/admin/_layout/design/icons/components/TrashBin'
 
 type Props = {
-    collection: ICollectionNames | 'contests' | 'inscriptions',
-    collectionItem: IAllCollections
+    collection: CollectionNames | 'contests' | 'inscriptions',
+    collectionItem: AllCollections
 }
 
 type DialogState = {
-    collection: ICollectionNames | 'contests' | 'inscriptions' | null,
+    collection: CollectionNames | 'contests' | 'inscriptions' | null,
     isOpen: boolean
 }
 

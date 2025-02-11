@@ -2,7 +2,7 @@
 
 import { useFormState } from 'react-dom'
 import { IFormAction, IFormField } from '@/types/forms'
-import { IAllCollections, ICollectionNames, } from '@/types'
+import { AllCollections, CollectionNames, } from '@/types'
 import AdminFormFeedback from '../feedback/FormFeedback'
 import FormInput from './inputs/FormInput'
 import FormSubmit from '@/lib/forms/feedback/FormSubmit'
@@ -13,9 +13,9 @@ type Props = {
     boundAction: IFormAction,
     fields: IFormField[],
     children?: ReactNode
-    collection?: ICollectionNames | "contest" | "inscriptions",
+    collection?: CollectionNames | "contest" | "inscriptions",
     domain?: string,
-    collectionItem?: IAllCollections,
+    collectionItem?: AllCollections,
 }
 
 export default function Form({ 

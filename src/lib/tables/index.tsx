@@ -1,4 +1,4 @@
-import { ICollectionNames } from "@/types";
+import { CollectionNames } from "@/types";
 
 type ICollectionTable = {
     headers: string[],
@@ -9,7 +9,7 @@ type ICollectionTable = {
     }[] | null
 }
 
-const tables : { [key in Exclude<ICollectionNames, "media">]: ICollectionTable } = {
+const tables : { [key in Exclude<CollectionNames, "media">]: ICollectionTable } = {
     contests: {
         headers: ['Nombre', 'Año', 'Marca', 'Estado'],
         fields: ['name', 'year'],
@@ -52,6 +52,6 @@ const tables : { [key in Exclude<ICollectionNames, "media">]: ICollectionTable }
     }
 } 
 
-export const getTableByCollectionName = (collection: Exclude<ICollectionNames, "media">) : ICollectionTable => {
+export const getTableByCollectionName = (collection: Exclude<CollectionNames, "media">) : ICollectionTable => {
     return tables[collection]
 }

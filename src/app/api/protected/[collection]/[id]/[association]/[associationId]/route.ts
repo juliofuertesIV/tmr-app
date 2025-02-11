@@ -1,10 +1,10 @@
-import { ICollectionNames } from "@/types";
+import { CollectionNames } from "@/types";
 import { deleteAssociation } from "./_functions/delete";
 import { constructAPIResponse } from "@/app/api/_functions";
 import { handleApiError } from "@/lib/errors";
 import { NextRequest } from "next/server";
 
-type Params = { params: { collection: ICollectionNames, id: string, association: string, associationId: string }}
+type Params = { params: { collection: CollectionNames, id: string, association: string, associationId: string }}
 
 export const DELETE = async (req: NextRequest, { params } : Params) => {
 

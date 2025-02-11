@@ -1,4 +1,4 @@
-import { ICollectionNames } from "."
+import { CollectionNames } from "."
 
 export type ILogTypes = 'error' | 'login'
 
@@ -9,7 +9,7 @@ export type ILog = {
     errorCause?: string,
     digest?: number,
     route: string,
-    collection?: ICollectionNames,
+    collection?: CollectionNames,
     blame: string,
     createdAt: Date,
 }

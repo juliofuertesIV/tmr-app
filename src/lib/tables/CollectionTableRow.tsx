@@ -1,11 +1,11 @@
 import { EditIcon} from '@/app/admin/_layout/design/icons/components/Edit'
-import { ICollectionNames, IAllCollections } from '@/types'
+import { CollectionNames, AllCollections } from '@/types'
 import Link from 'next/link'
 import React from 'react'
 
 type Props = {
-    collection: ICollectionNames,
-    item: IAllCollections,
+    collection: CollectionNames,
+    item: AllCollections,
     fields: string[],
     associations: { key: string, field: string }[] | null
 }
@@ -22,7 +22,7 @@ export default function CollectionTableRow({ collection, fields, associations, i
                         className="border border-neutral-600 text-center"
                         key={ index }
                     >
-                        {  (item as any)[field as keyof IAllCollections] }
+                        {  (item as any)[field as keyof AllCollections] }
                     </td>
                 ) // TO DO: Fields only text, fields with associations types
             }

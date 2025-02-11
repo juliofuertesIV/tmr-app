@@ -1,11 +1,11 @@
 'use server'
     
-import { ICollectionNames } from "@/types"
+import { CollectionNames } from "@/types"
 import { IAPIResponse } from "@/types/api"
 import { revalidateTag } from "next/cache"
 
 export const updateCollectionItem = async (
-    collection: ICollectionNames,
+    collection: CollectionNames,
     id: string,
     prevState: any,
     formData: FormData

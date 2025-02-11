@@ -1,4 +1,4 @@
-import { ICollectionNames } from '@/types'
+import { CollectionNames } from '@/types'
 import { formInitialState } from '@/lib/forms/feedback/state'
 import React, { useEffect, useRef, useState } from 'react'
 import { useFormState } from 'react-dom'
@@ -6,7 +6,7 @@ import { ICollectionsWithAssociations, IMedialessRelationship, IMedialessRelatio
 import { updateCollectionItem } from '@/lib/fetch/put/collections'
 
 type Props = {
-    collection: ICollectionNames,
+    collection: CollectionNames,
     collectionItem: ICollectionsWithAssociations,
     /* relationship: IMedialessRelationshipNames, */
     relationshipItem: IMedialessRelationship,

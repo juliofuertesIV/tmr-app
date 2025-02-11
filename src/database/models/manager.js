@@ -1,5 +1,6 @@
 'use strict';
 
+const { getScopes } = require('./scopes/managers')
 const { Model } = require('sequelize')
 
 module.exports = (sequelize, DataTypes) => {
@@ -39,6 +40,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, {
     sequelize,
+    scopes: getScopes(sequelize.models),
+    defaultScope: getScopes(sequelize.models).list,
     modelName: 'Manager',
   });
   return Manager;

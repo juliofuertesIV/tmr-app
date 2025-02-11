@@ -1,8 +1,10 @@
 'use strict';
 
-const { Model } = require('sequelize')
+const { getScopes } = require('./scopes/inscriptions')
+const { Model } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
+
   class Inscription extends Model {
     static associate(models) {
       Inscription.belongsTo(models.Contest, { foreignKey: 'ContestId' });
@@ -80,6 +82,8 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'Inscription',
     paranoid: true,
+    scopes: getScopes(sequelize.models),
+    defaultScope: getScopes(sequelize.models).public,
     indexes: [
       {
         fields: ['instagram', 'video', 'ContestId', 'year'],

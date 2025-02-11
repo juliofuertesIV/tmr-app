@@ -2,16 +2,16 @@ import { ITagType } from "./collections"
 import { IContest } from "./contests"
 import { IMedia } from "./media"
 
-export type IAllCollections = IBrand & ISocialMedia & IGenre & IManager & ITagType & IContest & IInscription
+export type AllCollections = Brand & SocialMedia & Genre & Manager & ITagType & IContest & Inscription
 
-export type ICollectionNames = 'brands' | 'social' | 'genres' | 'managers' | 'sponsors' | 'tagtypes' | 'tags'
+export type CollectionNames = 'brands' | 'social' | 'genres' | 'managers' | 'sponsors' | 'tagtypes' | 'tags'
 
-export type ICollectionsWithMedium = IInscription & IManager & ISponsor & IContest
+export type CollectionsWithMedium = Inscription & Manager & Sponsor & IContest
 
-export type IManagerRoleId = 1 | 2 | 3 | 4
+export type ManagerRoleId = 1 | 2 | 3 | 4
 
-export type IManagerRole = {
-    id: IManagerRoleId,
+export type ManagerRole = {
+    id: ManagerRoleId,
     name: string
 }
 
@@ -19,10 +19,10 @@ export type DecryptedJWTManager = {
     id: string,
     name: string,
     email: string,
-    RoleId: IManagerRoleId
+    RoleId: ManagerRoleId
 }
 
-export type IManager = {
+export type Manager = {
     id: string,
     name: string,
     email: string,
@@ -30,15 +30,15 @@ export type IManager = {
     salt: string,
     emailVerified: boolean,
     Contests: IContest[],
-    RoleId: IManagerRoleId,
-    Role: IManagerRole,
+    RoleId: ManagerRoleId,
+    Role: ManagerRole,
     MediumId: string,
     Medium: IMedia,
     createdAt: string,
     updatedAt: string
 }
 
-export type IBrand = {
+export type Brand = {
     id: string | number,
     name: string,
     backgroundColor: string,
@@ -51,24 +51,24 @@ export type IBrand = {
     updatedAt: string
 }
 
-export type IParam = {
-    id: IContestParamIds,
+export type Param = {
+    id: ContestParamIds,
     name: string,
     description?: string
 }
 
-export type IContestState = {
+export type ContestState = {
     name: string, 
-    id: IContestStateIds,
+    id: ContestStateIds,
     description: string
 }
 
-export type IGenre = {
+export type Genre = {
     id: string,
     name: string
 }
 
-export type ISocialMedia = {
+export type SocialMedia = {
     id: string,
     name: string,
     icon: string,
@@ -76,21 +76,21 @@ export type ISocialMedia = {
     updatedAt: string
 }
 
-export type ILogTypes = 'error' | 'login'
+export type LogTypes = 'error' | 'login'
 
-export type ILog = {
+export type Log = {
     id?: string,
     type: string,
     message: string,
     errorCause?: string,
     digest?: number,
     route: string,
-    collection?: ICollectionNames,
-    Manager?: IManager,
+    collection?: CollectionNames,
+    Manager?: Manager,
     createdAt: Date,
 }
 
-export type IInscription = {
+export type Inscription = {
     id: string,
     name: string,
     year: number,
@@ -116,13 +116,13 @@ export type IInscription = {
     Contest: IContest,
 }
 
-export type ISponsor = {
+export type Sponsor = {
     id: string,
     name: string,
     Media: IMedia[],
     MediumId: string
 }
 
-export type IContestParamIds = 'inscriptionIsPublic' | 'videoIsRequired' | 'cityIsRequired' | 'instagramIsRequired' | 'hasManyItems' | 'hasGenres' | 'hasRanking'
+export type ContestParamIds = 'inscriptionIsPublic' | 'videoIsRequired' | 'cityIsRequired' | 'instagramIsRequired' | 'hasManyItems' | 'hasGenres' | 'hasRanking'
 
-export type IContestStateIds = 'inscriptionOnly' | 'open' | 'endedInscription' | 'ended' | 'hidden'
+export type ContestStateIds = 'inscriptionOnly' | 'open' | 'endedInscription' | 'ended' | 'hidden'

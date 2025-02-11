@@ -2,7 +2,8 @@
 
 import { getFormSchema } from '@/lib/forms'
 import Form from '@/lib/forms/components/Form'
-import { IAllCollections, IContest } from '@/types'
+import { AllCollections } from '@/types'
+import { IContest } from '@/types/contests'
 import React from 'react'
 
 export default function ContestEditionModule({ contest } : { contest: IContest }) {
@@ -15,7 +16,7 @@ export default function ContestEditionModule({ contest } : { contest: IContest }
 
     return (
         <div>
-            <Form collectionItem={ contest as IAllCollections } boundAction={ boundAction } fields={ fields }/>
+            <Form collectionItem={ contest as AllCollections } boundAction={ boundAction } fields={ fields }/>
         </div>
     )
 }

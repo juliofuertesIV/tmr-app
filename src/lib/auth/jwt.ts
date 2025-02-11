@@ -1,4 +1,4 @@
-import { DecryptedJWTManager, IManager } from "@/types";
+import { DecryptedJWTManager, Manager } from "@/types";
 import { SignJWT, jwtVerify } from "jose";
 
 const secretJWTKey = process.env.SECRET_JWT_KEY

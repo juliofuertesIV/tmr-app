@@ -1,7 +1,7 @@
 'use server'
 
 import { getEncryptedAndSignedJWT } from "@/lib/auth";
-import { IManager } from "@/types";
+import { Manager } from "@/types";
 import { cookies } from "next/headers";
 import { decryptJWT } from "./jwt";
 import { NextRequest, NextResponse } from "next/server";
@@ -15,7 +15,7 @@ export async function getSession() {
     return await decryptJWT(session);
 }
 
-export const createSession = async ({ manager } : { manager: IManager }) => {
+export const createSession = async ({ manager } : { manager: Manager }) => {
     
     const expires = new Date(Date.now() + 172800000); // 48h
 

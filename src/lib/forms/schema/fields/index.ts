@@ -1,6 +1,6 @@
 import { IActionTarget } from "@/types/forms";
 import { contestFields } from "./collections/contests";
-import { ICollectionNames } from "@/types";
+import { CollectionNames } from "@/types";
 import { brandFields } from "./collections/brands";
 import { socialFields } from "./collections/social";
 import { genreFields } from "./collections/genres";
@@ -11,7 +11,7 @@ import { tagFields } from "./collections/tags";
 import { tagtypeFields } from "./collections/tagtypes";
 
 
-export const getFieldsByCollectionAndActionTarget = ({ collection, actionTarget } : { collection: ICollectionNames | 'contests' | 'inscriptions', actionTarget: IActionTarget }) => {
+export const getFieldsByCollectionAndActionTarget = ({ collection, actionTarget } : { collection: CollectionNames | 'contests' | 'inscriptions', actionTarget: IActionTarget }) => {
     
     if (actionTarget === 'delete') return []
 

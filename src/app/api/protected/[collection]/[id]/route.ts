@@ -1,4 +1,4 @@
-import { ICollectionNames } from "@/types";
+import { CollectionNames } from "@/types";
 import { updateCollectionItem } from "./_functions/update";
 import { deleteCollectionItem } from "./_functions/delete";
 import { handleApiError } from "@/lib/errors";
@@ -8,7 +8,7 @@ import { getCollectionItemById } from "./_functions/get";
 
 type RouteParams = {
     params: {
-        collection: ICollectionNames,
+        collection: CollectionNames,
         id: string
     }
 }

@@ -1,6 +1,6 @@
 'use client'
 
-import { ICollectionNames } from '@/types'
+import { CollectionNames } from '@/types'
 import { useLayoutEffect, useRef, useState } from 'react'
 import { CircleAddIcon } from '../_layout/design/icons/components/CircleAdd'
 import { CloseIcon } from '../_layout/design/icons/components/Close'
@@ -8,11 +8,11 @@ import Form from '@/lib/forms/components/Form'
 import { getFormSchema } from '@/lib/forms'
 
 type Props = {
-    collection: ICollectionNames,
+    collection: CollectionNames,
 }
 
 type DialogState = {
-    collection: ICollectionNames | null,
+    collection: CollectionNames | null,
     isOpen: boolean
 }
 

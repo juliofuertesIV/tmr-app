@@ -1,10 +1,10 @@
 'use client'
 
-import { IContest } from '@/types'
 import { useState } from 'react'
 import DashboardNav from './DashboardNav'
 import ContestGrid from './ContestGrid'
 import React, { Suspense } from 'react';
+import { IContest } from '@/types/contests';
 
 // Dynamically import the ContestCreation component
 const ContestCreation = React.lazy(() => import('./ContestCreation'));

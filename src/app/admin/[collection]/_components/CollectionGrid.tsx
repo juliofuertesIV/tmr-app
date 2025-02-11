@@ -1,9 +1,9 @@
-import { IAllCollections, ICollectionNames } from '@/types'
+import { AllCollections, CollectionNames } from '@/types'
 import React from 'react'
 import { edit as Icon } from '../../_layout/design/icons/'
 import Link from 'next/link'
 
-export default function CollectionGrid({ items, collection } : { items: IAllCollections[], collection: ICollectionNames }) {
+export default function CollectionGrid({ items, collection } : { items: AllCollections[], collection: CollectionNames }) {
   return (
     <div className="flex flex-wrap w-full gap-4">
         { 

@@ -1,4 +1,4 @@
-import { IContest, IInscription, IManager, ISponsor } from "."
+import { IContest, Inscription, Manager, Sponsor } from "."
 import { IFooter } from "./collections"
 
 export type IContestMediaRole = 'frame' | 'banner' | 'logo' | 'favicon' 
@@ -9,7 +9,7 @@ export type ICollectionsWithMediumNames = 'inscriptions' | 'sponsors' | 'manager
 
 export type ICollectionsWithMedia = IFooter
 
-export type ICollectionsWithMedium = IInscription & IManager & ISponsor & IContest
+export type ICollectionsWithMedium = Inscription & Manager & Sponsor & IContest
 
 export type IMediaRole = IContestMediaRole | 'inscriptions' | 'sponsors' | 'profile'
 

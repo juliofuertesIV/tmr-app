@@ -1,13 +1,13 @@
 'use client'
 
 import Form from '@/lib/forms/components/Form'
-import { IAllCollections, IManager } from '@/types'
+import { AllCollections, Manager } from '@/types'
 import React from 'react'
 import NewPasswordInputs from './NewPasswordInputs'
 import { getFormSchema } from '@/lib/forms'
 
 
-export default function ProfileEditionModule({ manager } : { manager: IManager }) {
+export default function ProfileEditionModule({ manager } : { manager: Manager }) {
 
     const { bindUpdateAction, fields } = getFormSchema({ collection: 'managers', actionTarget: 'update' })
 
@@ -15,7 +15,7 @@ export default function ProfileEditionModule({ manager } : { manager: IManager }
 
     return (
         <Form 
-            collectionItem={ manager as IAllCollections }
+            collectionItem={ manager as AllCollections }
             boundAction={ boundAction }
             fields={ fields }
         >

@@ -1,10 +1,10 @@
-import { ICollectionNames } from "@/types";
+import { CollectionNames } from "@/types";
 import CollectionItemNav from "./_layout/CollectionItemNav";
 import { getCollectionItemById } from "@/lib/fetch/get/collections";
 
 type Props = {
     params: {
-        collection: ICollectionNames,
+        collection: CollectionNames,
         id: string
     },
     children: React.ReactNode

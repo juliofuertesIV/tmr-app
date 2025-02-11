@@ -1,8 +1,8 @@
-import { IContest, IManager } from '@/types'
+import { IContest, Manager } from '@/types'
 import Link from 'next/link'
 import React from 'react'
 
-export default function ContestList({ manager } : { manager: IManager }) {
+export default function ContestList({ manager } : { manager: Manager }) {
 
     const contests = manager.Contests
 

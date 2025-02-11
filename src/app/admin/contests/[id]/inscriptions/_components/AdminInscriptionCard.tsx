@@ -1,9 +1,9 @@
-import { IInscription } from '@/types'
+import { Inscription } from '@/types'
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react'
 
-export default function AdminInscriptionCard({ inscription } : { inscription: IInscription }) {
+export default function AdminInscriptionCard({ inscription } : { inscription: Inscription }) {
 
     const { 
         id, 

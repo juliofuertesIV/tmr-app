@@ -1,7 +1,7 @@
 import { Contest, Manager } from "@/database/models"
 import { decryptJWT } from "@/lib/auth"
 import { parseError } from "@/lib/errors"
-import { IManager, IManagerRoleId } from "@/types"
+import { Manager as ManagerType, ManagerRoleId } from "@/types"
 import { IAPIResponse } from "@/types/api"
 import { NextRequest } from "next/server"
 
@@ -42,7 +42,7 @@ export const checkRequestAgainstManagerRole = async ({
     minimumRole 
 } : { 
     req: NextRequest, 
-    minimumRole: IManagerRoleId 
+    minimumRole: ManagerRoleId 
 }) => {
 
     const manager = await getManagerInCookies(req)
@@ -69,7 +69,7 @@ export const checkRequestAgainstManagerContest = async ({
     if (manager.RoleId < 2) 
         throw new Error('Permission denied. Your manager role does not allow you to do this.')
 
-    const editor = await Manager.findOne({ where: { id: manager.id }, include: [Contest]}).then(data => data) as unknown as IManager | null
+    const editor = await Manager.findOne({ where: { id: manager.id }, include: [Contest]}).then(data => data) as unknown as ManagerType | null
 
     if (!editor) 
         throw new Error('Error finding this manager on database.')

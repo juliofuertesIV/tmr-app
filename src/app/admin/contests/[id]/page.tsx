@@ -1,6 +1,6 @@
 import React from 'react'
 import ContestEditionModule from './_components/ContestEditionModule'
-import { getContestById } from '@/lib/fetch/get/contests'
+import { getContestFromDatabaseById } from '@/lib/database/functions/contests'
 
 type Props = {
     params: {
@@ -8,13 +8,23 @@ type Props = {
     }
 }
 
+const getData = async ({ id } : { id: string }) => {
+
+    const contest = await getContestFromDatabaseById({ 
+        id, 
+        scope: 'admin' 
+    })
+    .then(data => JSON.parse(JSON.stringify(data)))
+    .catch(error => { throw new Error(error as string)})
+
+    return contest
+}
+
 export default async function ContestPage({ params } : Props) {
 
     const { id } = params 
 
-    const { data: contest } = await getContestById({ id })
-
-    if (!contest) throw new Error('Error fetching contest!')
+    const contest = await getData({ id })
 
     return <ContestEditionModule contest={ contest }/>
 }

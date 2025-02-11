@@ -2,9 +2,9 @@
 
 import { getFormSchema } from "@/lib/forms"
 import Form from "@/lib/forms/components/Form"
-import { IAllCollections, IInscription } from "@/types"
+import { AllCollections, Inscription } from "@/types"
 
-export default function EditInscriptionModule({ inscription } : { inscription: IInscription }) {
+export default function EditInscriptionModule({ inscription } : { inscription: Inscription }) {
     
     const { fields, bindUpdateAction } = getFormSchema({ collection: 'inscriptions', actionTarget: 'update' })
 
@@ -14,7 +14,7 @@ export default function EditInscriptionModule({ inscription } : { inscription: I
     return (
         <section>
             { /* TO DO: ADD MEDIA FORM */ }
-            <Form fields={ fields } boundAction={ boundAction } collectionItem={ inscription as IAllCollections }/>
+            <Form fields={ fields } boundAction={ boundAction } collectionItem={ inscription as AllCollections }/>
         </section>
     )
 

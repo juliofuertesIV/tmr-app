@@ -3,14 +3,14 @@
 import React from 'react'
 import TMRLogo from '../design/TmrLogo'
 import { usePathname } from 'next/navigation'
-import { IManager } from '@/types'
+import { Manager } from '@/types'
 import { adminNavSections } from '.'
 import NavSection from './NavSection'
 import Link from 'next/link'
 import LogoutLink from './LogoutLink'
 import ProfileLink from './ProfileLink'
 
-export default function AdminMainNav({ manager } : { manager: IManager }) {
+export default function AdminMainNav({ manager } : { manager: Manager }) {
 
     const pathname = usePathname()
 

@@ -1,4 +1,4 @@
-import { IContest, ICollectionNames, IInscription, ISponsor, IManager } from "@/types"
+import { IContest, CollectionNames, Inscription, Sponsor, Manager } from "@/types"
 import { IAssociationKeys, IAssociation, ICollectionsWithAssociations, IContestRelationship, IRelationshipIdFieldnames, IAssociationIdFieldnames, IContestRelationshipIdFields, IInscriptionRelationshipIdFields, ISponsorRelationshipIdFields, IMedialessRelationshipIdFieldnames, IMedialessAssociationIdFieldnames, IMedialessAssociationKeys, IMedialessRelationship, IMedialessAssociation, ICollectionsWithAssociationsNames, IManagerRelationshipIdFields } from "@/types/associations"
 
 // TO DO: Tidy up this mess   
@@ -28,16 +28,16 @@ const checkRelationshipByCollectionName = (item: IMedialessRelationship, collect
     return isCurrentRelationshipByCollection[collection](collectionItem, associationIdField, item)
 }
 
-export const itemIsContest = (item: ICollectionsWithAssociations, collection: ICollectionNames) : item is IContest => collection === 'contests'
-export const itemIsInscription = (item: ICollectionsWithAssociations, collection: ICollectionNames) : item is IInscription => collection === 'inscriptions'
-export const itemIsSponsor = (item: ICollectionsWithAssociations, collection: ICollectionNames) : item is ISponsor => collection === 'sponsors'
+export const itemIsContest = (item: ICollectionsWithAssociations, collection: CollectionNames) : item is IContest => collection === 'contests'
+export const itemIsInscription = (item: ICollectionsWithAssociations, collection: CollectionNames) : item is Inscription => collection === 'inscriptions'
+export const itemIsSponsor = (item: ICollectionsWithAssociations, collection: CollectionNames) : item is Sponsor => collection === 'sponsors'
 export const itemIsRelationship = (item: IAssociation | IContestRelationship, associationKey: IAssociationKeys | null) : item is IContestRelationship => !associationKey
 
 const isCurrentRelationshipByCollection = {
     contests: (collectionItem: IContest, field: IMedialessRelationshipIdFieldnames, item: IMedialessRelationship) => collectionItem[field as IContestRelationshipIdFields] === item.id,
-    inscriptions: (collectionItem: IInscription, field: IMedialessRelationshipIdFieldnames, item: IMedialessRelationship) => collectionItem[field as IInscriptionRelationshipIdFields] === item.id,
-    sponsors: (collectionItem: ISponsor, field: IMedialessRelationshipIdFieldnames, item: IMedialessRelationship) => collectionItem[field as ISponsorRelationshipIdFields] === item.id,
-    managers: (collectionItem: IManager, field: IMedialessRelationshipIdFieldnames, item: IMedialessRelationship) => collectionItem[field as IManagerRelationshipIdFields] === item.id,
+    inscriptions: (collectionItem: Inscription, field: IMedialessRelationshipIdFieldnames, item: IMedialessRelationship) => collectionItem[field as IInscriptionRelationshipIdFields] === item.id,
+    sponsors: (collectionItem: Sponsor, field: IMedialessRelationshipIdFieldnames, item: IMedialessRelationship) => collectionItem[field as ISponsorRelationshipIdFields] === item.id,
+    managers: (collectionItem: Manager, field: IMedialessRelationshipIdFieldnames, item: IMedialessRelationship) => collectionItem[field as IManagerRelationshipIdFields] === item.id,
 } as {
     [key in ICollectionsWithAssociationsNames]: (collectionItem: ICollectionsWithAssociations, field: IMedialessRelationshipIdFieldnames, item: IMedialessRelationship) => boolean
 }

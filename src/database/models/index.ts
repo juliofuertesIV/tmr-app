@@ -33,29 +33,30 @@ const env = process.env.NODE_ENV || 'development';
 const config = configData[env] as Options
 const sequelize = new Sequelize({ ...config })
 
+// TO DO: order in which this is called affects scopes
+const Media = MediaModel(sequelize, DataTypes)
 const Brand = BrandModel(sequelize, DataTypes)
-const Contest = ContestModel(sequelize, DataTypes)
+const Footer = FooterModel(sequelize, DataTypes)
+const State = StateModel(sequelize, DataTypes)
 const ContestParam = ContestParamModel(sequelize, DataTypes)
 const ContestGenre = ContestGenreModel(sequelize, DataTypes)
 const ContestSocial = ContestSocialModel(sequelize, DataTypes)
 const ContestManager = ContestManagerModel(sequelize, DataTypes)
-const Footer = FooterModel(sequelize, DataTypes)
 const FooterSponsor = FooterSponsorModel(sequelize, DataTypes)
 const Genre = GenreModel(sequelize, DataTypes)
-const Inscription = InscriptionModel(sequelize, DataTypes)
 const Log = LogModel(sequelize, DataTypes)
-const Manager = ManagerModel(sequelize, DataTypes)
-const Media = MediaModel(sequelize, DataTypes)
 const Param = ParamModel(sequelize, DataTypes)
 const Role = RoleModel(sequelize, DataTypes)
 const SocialMedia = SocialMediaModel(sequelize, DataTypes)
 const Sponsor = SponsorModel(sequelize, DataTypes)
-const State = StateModel(sequelize, DataTypes)
 const TagType = TagTypeModel(sequelize, DataTypes)
 const Tag = TagModel(sequelize, DataTypes)
 const TMRVote = TMRVoteModel(sequelize, DataTypes)
-const Vote = VoteModel(sequelize, DataTypes)
 const Voter = VoterModel(sequelize, DataTypes)
+const Vote = VoteModel(sequelize, DataTypes)
+const Inscription = InscriptionModel(sequelize, DataTypes)
+const Contest = ContestModel(sequelize, DataTypes)
+const Manager = ManagerModel(sequelize, DataTypes)
 
 const models = [
     Brand,

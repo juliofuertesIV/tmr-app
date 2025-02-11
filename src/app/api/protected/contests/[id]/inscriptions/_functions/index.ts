@@ -1,7 +1,7 @@
 import { createAndUploadMedia } from "@/app/api/protected/media/_functions";
 import { Inscription } from "@/database/models";
 import { deleteMediaInStorageAndDatabase } from "@/lib/media/delete";
-import { IInscription } from "@/types";
+import { Inscription } from "@/types";
 
 export const addInscriptionToContest = async ({ formData, ContestId } : { formData: FormData, ContestId: string }) => {
     
@@ -54,7 +54,7 @@ export const updateInscription = async ({ formData, id } : { formData: FormData,
 
 export const updateInscriptionMedia = async ({ formData, id } : { formData: FormData, id: string }) => {
 
-    const inscription = await Inscription.findOne({ where: { id }}).then(data => data) as IInscription
+    const inscription = await Inscription.findOne({ where: { id }}).then(data => data) as Inscription
 
     if (!inscription) throw new Error('No inscription found with this id.')
 

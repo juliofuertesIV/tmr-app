@@ -1,18 +1,18 @@
 import * as Icon from '../design/icons'
-import { ICollectionNames, IManagerRoleId } from "@/types"
+import { CollectionNames, ManagerRoleId } from "@/types"
 import { SVGProps } from "react"
 
 export type IAdminNavItem = {
-    collection: ICollectionNames | 'logs' | null,
+    collection: CollectionNames | 'logs' | null,
     label: string,
     isActive: (path: string) => boolean,
-    minimumRole: IManagerRoleId
+    minimumRole: ManagerRoleId
 }
 
 export type IAdminNavSection = {
     label: string,
     Icon: (props: SVGProps<SVGSVGElement>) => JSX.Element,
-    minimumRole: IManagerRoleId,
+    minimumRole: ManagerRoleId,
     items?: IAdminNavItem[]
 }
 

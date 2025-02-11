@@ -2,16 +2,16 @@ import { getAddCollectionItemBoundAction, getDeleteCollectionItemBoundAction, ge
 import { getAddManagerBoundAction, getUpdateManagerProfileBoundAction } from "./collections/managers";
 import { getAddInscriptionBoundAction, getUpdateInscriptionBoundAction } from "./collections/inscriptions";
 import { getAddContestBoundAction, getUpdateContestBoundAction } from "./collections/contests";
-import { ICollectionNames } from "@/types";
+import { CollectionNames } from "@/types";
 import { IAPIResponse } from "@/types/api";
 
 export type GetCreationBoundFormAction = () => (prevState: any, formData: FormData) => Promise<IAPIResponse<null>>
 export type GetUpdateBoundFormAction = ({ id }: { id: string; }) => (prevState: any, formData: FormData) => Promise<IAPIResponse<null>>
 export type GetDeleteFormAction = ({ id }: { id: string; }) => (prevState: any, formData: FormData) => Promise<IAPIResponse<null>>
 
-type CreationFormActionByCollection = { [key in ICollectionNames | 'contests' | 'inscriptions']: GetCreationBoundFormAction }
-type UpdateFormActionByCollection = { [key in ICollectionNames | 'contests' | 'inscriptions']: GetUpdateBoundFormAction }
-type DeleteFormActionByCollection = { [key in ICollectionNames | 'contests' | 'inscriptions']: GetDeleteFormAction }
+type CreationFormActionByCollection = { [key in CollectionNames | 'contests' | 'inscriptions']: GetCreationBoundFormAction }
+type UpdateFormActionByCollection = { [key in CollectionNames | 'contests' | 'inscriptions']: GetUpdateBoundFormAction }
+type DeleteFormActionByCollection = { [key in CollectionNames | 'contests' | 'inscriptions']: GetDeleteFormAction }
 
 const creationActions : CreationFormActionByCollection = {
     contests: () => getAddContestBoundAction(),
@@ -52,7 +52,7 @@ const deleteActions : DeleteFormActionByCollection = {
 export const getCreationBoundFormActionByCollection = ({ 
         collection,
     } : { 
-        collection: ICollectionNames | 'contests' | 'inscriptions'
+        collection: CollectionNames | 'contests' | 'inscriptions'
     }
 ) : GetCreationBoundFormAction => {
 
@@ -63,7 +63,7 @@ export const getCreationBoundFormActionByCollection = ({
 export const getUpdateBoundFormActionByCollection = ({ 
     collection,
 } : { 
-    collection: ICollectionNames | 'contests' | 'inscriptions',
+    collection: CollectionNames | 'contests' | 'inscriptions',
 }
 ) : GetUpdateBoundFormAction => {
     
@@ -74,7 +74,7 @@ export const getUpdateBoundFormActionByCollection = ({
 export const getDeleteBoundFormActionByCollection = ({
     collection
 } : {
-    collection: ICollectionNames | 'contests' | 'inscriptions',
+    collection: CollectionNames | 'contests' | 'inscriptions',
 }) => {
     return deleteActions[collection]
 }

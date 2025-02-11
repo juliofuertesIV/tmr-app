@@ -1,8 +1,8 @@
-import { ICollectionNames } from "@/types"
+import { CollectionNames } from "@/types"
 import { getModelByCollectionName } from "../../contests/[id]/[association]/_utils"
 
 type ICollectionCreationPayload = {
-    collection: ICollectionNames,
+    collection: CollectionNames,
     formData: FormData
 }
 

@@ -1,10 +1,10 @@
 'use client'
 
-import { IManager } from '@/types'
+import { Manager } from '@/types'
 import React from 'react'
 import MediaForm from '@/lib/forms/components/media/MediaForm'
 
-export default function Header({ manager } : { manager: IManager }) {
+export default function Header({ manager } : { manager: Manager }) {
 
   return (
         <header>

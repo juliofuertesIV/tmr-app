@@ -1,4 +1,4 @@
-import { IBrand, IContest, IContestState, IGenre, IInscription, IManager, IManagerRole, IParam, ISocialMedia, ISponsor } from "."
+import { Brand, IContest, ContestState, Genre, Inscription, Manager, ManagerRole, Param, SocialMedia, Sponsor } from "."
 import { IFooter } from "./collections"
 import { IMedia } from "./media"
 

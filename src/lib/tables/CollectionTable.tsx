@@ -1,8 +1,8 @@
-import { ICollectionNames, IAllCollections } from "@/types"
+import { CollectionNames, AllCollections } from "@/types"
 import { getTableByCollectionName } from "."
 import CollectionTableRow from "./CollectionTableRow"
 
-export default function CollectionTable({ collection, items } : { collection: ICollectionNames, items: IAllCollections[] }) {
+export default function CollectionTable({ collection, items } : { collection: CollectionNames, items: AllCollections[] }) {
 
     const table = getTableByCollectionName(collection)
 

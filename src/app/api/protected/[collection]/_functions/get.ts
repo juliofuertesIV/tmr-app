@@ -1,7 +1,7 @@
-import { ICollectionNames } from "@/types"
+import { CollectionNames } from "@/types"
 import { getModelByCollectionName } from "../../contests/[id]/[association]/_utils"
 
-export async function getCollectionByName({ collection } : { collection: ICollectionNames }) {
+export async function getCollectionByName({ collection } : { collection: CollectionNames }) {
     
     const { Model, options } = getModelByCollectionName(collection)
 

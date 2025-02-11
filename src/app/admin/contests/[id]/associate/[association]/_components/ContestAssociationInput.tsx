@@ -1,4 +1,4 @@
-import { IContestState, IParam, IContest } from '@/types'
+import { ContestState, Param, IContest } from '@/types'
 import { formInitialState } from '@/lib/forms/feedback/state'
 import React, { useEffect, useRef, useState } from 'react'
 import { useFormState } from 'react-dom'
@@ -47,7 +47,7 @@ export default function ContestAssociationInput({ contest, associationItem, asso
 
     }, [ state ])
 
-    const { description } = (associationItem as IParam | IContestState) || null
+    const { description } = (associationItem as Param | ContestState) || null
 
     const manageHoverState = (hovered: boolean) => setHovered(hovered)
 

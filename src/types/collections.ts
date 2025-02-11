@@ -1,4 +1,4 @@
-import { IContestParamIds } from "."
+import { ContestParamIds } from "."
 import { IMedia } from "./media"
 
 export type IAllCollections = IBrand & ISocialMedia & IGenre & ISponsor & ITag & ITagType
@@ -30,7 +30,7 @@ export type IGenre = {
 }
 
 export type IParam = {
-    id: IContestParamIds,
+    id: ContestParamIds,
     name: string,
     description?: string
 }

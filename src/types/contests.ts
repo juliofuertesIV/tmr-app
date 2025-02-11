@@ -1,4 +1,4 @@
-import { IBrand, IGenre, IInscription, IParam, ISocialMedia, ISponsor } from "."
+import { Brand, Genre, Inscription, Param, SocialMedia, Sponsor } from "."
 import { IMedia } from "./media"
 
 
@@ -31,13 +31,13 @@ export type IContest = {
     Logo: IMedia,
     Frame: IMedia,
     Favicon: IMedia,
-    Brand: IBrand,
+    Brand: Brand,
     State: IContestState,
-    Genres: IGenre[],
-    Inscriptions: IInscription[],
-    SocialMedia: ISocialMedia[],
-    Params: IParam[],
-    Sponsors: ISponsor[],
+    Genres: Genre[],
+    Inscriptions: Inscription[],
+    SocialMedia: SocialMedia[],
+    Params: Param[],
+    Sponsors: Sponsor[],
     createdAt: string,
     updatedAt: string
 }
@@ -48,12 +48,12 @@ export type IContestState = {
     description: string
 }
 
-export type IContestAssociations = IParam | IGenre | ISocialMedia 
+export type IContestAssociations = Param | Genre | SocialMedia 
 export type IContestAssociationNames = 'params' | 'genres' | 'social' 
 export type IContestAssociationKeys = 'Params' | 'Genres' | 'SocialMedia' 
 export type IContestAssociationIdFieldNames = 'ParamId' | 'GenreId' | 'SocialMediumId'
 
-export type IContestRelationship = IBrand | IContestState 
+export type IContestRelationship = Brand | IContestState 
 export type IContestRelationshipNames = 'brands' | 'states' 
 export type IContestRelationshipKeys = 'Brand' | 'State'  
 export type IContestRelationshipIdFields = 'BrandId' | 'StateId'

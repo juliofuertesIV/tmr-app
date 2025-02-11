@@ -4,7 +4,7 @@ import "../globals.css";
 import AdminMainNav from "./_layout/nav/AdminMainNav";
 import { getSession } from "@/lib/auth";
 import { FindOptions } from "sequelize";
-import { IManager, IManagerRoleId } from "@/types";
+import { Manager, ManagerRoleId } from "@/types";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -38,7 +38,7 @@ async function getManager() {
 
 export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
 
-    const manager = await getManager() as unknown as IManager
+    const manager = await getManager() as unknown as Manager
     
     return (
         <html lang="en">
