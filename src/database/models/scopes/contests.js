@@ -15,7 +15,7 @@ const getScopes = (models) => {
           State,
         ],
       },
-      admin: {
+      detailed: {
         order: [["createdAt", "DESC"]],
         include: [
           Brand,

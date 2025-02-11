@@ -3,7 +3,7 @@
 import { Contest } from "@/database/models"
 import { IContest } from "@/types/contests"
 
-export type ContestScope = 'basic' | 'admin' | 'public'
+export type ContestScope = 'basic' | 'detailed' | 'public'
 
 export const getAllContestsFromDatabase = async ({ scope } : { scope: ContestScope }) => {
 

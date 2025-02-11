@@ -12,7 +12,7 @@ const getData = async ({ id } : { id: string }) => {
 
     const contest = await getContestFromDatabaseById({ 
         id, 
-        scope: 'admin' 
+        scope: 'detailed' 
     })
     .then(data => JSON.parse(JSON.stringify(data)))
     .catch(error => { throw new Error(error as string)})
