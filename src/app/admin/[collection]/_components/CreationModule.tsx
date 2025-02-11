@@ -1,5 +1,5 @@
 import React from 'react'
-import CreationDialog from '../../_dashboard/CreationDialog'
+import CreationDialog from '../../_components/CreationDialog'
 import { CollectionNames } from '@/types'
 
 export default function CreationModule({ collection } : { collection: CollectionNames }) {

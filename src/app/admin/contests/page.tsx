@@ -1,6 +1,6 @@
 import { getContests } from '@/lib/fetch/get/contests'
 import React from 'react'
-import ContestGrid from '../_dashboard/ContestGrid'
+import ContestGrid from '../_components/ContestGrid'
 
 export default async function ContestsPage() {
 

@@ -1,11 +1,16 @@
 'use server'
 
 import { getEncryptedAndSignedJWT } from "@/lib/auth";
-import { Manager } from "@/types";
+import { DecryptedJWTManager, Manager } from "@/types";
 import { cookies } from "next/headers";
 import { decryptJWT } from "./jwt";
 import { NextRequest, NextResponse } from "next/server";
 
+export const getDecryptedManager = async () : Promise<DecryptedJWTManager | null> => {
+    const sessionToken = (await cookies()).get('session');
+    return sessionToken ? await decryptJWT(sessionToken.value) : null;
+}
+ 
 export async function getSession() {
     
     const session = await cookies()

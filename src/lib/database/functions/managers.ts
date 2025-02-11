@@ -2,7 +2,7 @@
 
 import { Manager } from "@/database/models"
 
-export type ManagerScope = 'list' | 'detailed'
+export type ManagerScope = 'list' | 'detailed' 
 
 export const getAllManagersFromDatabase = async ({ scope } : { scope: ManagerScope }) => {
 
