@@ -3,11 +3,11 @@
 const { Model } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
-  class TagType extends Model {
+  class TagCategory extends Model {
     static associate(models) {
-        TagType.hasMany(models.Tag)
+        TagCategory.hasMany(models.Tag)
     }
-  }  TagType.init({
+  }  TagCategory.init({
     id: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, {
     sequelize,
-    modelName: 'TagType',
+    modelName: 'TagCategory',
     timestamps: false, // Disable createdAt and updatedAt
-  });  return TagType;
+  });  return TagCategory;
 };

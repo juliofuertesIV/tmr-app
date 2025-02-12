@@ -18,10 +18,9 @@ const creationActions : CreationFormActionByCollection = {
     inscriptions: () => getAddInscriptionBoundAction(),
     managers: () => getAddManagerBoundAction(),
     brands: () => getAddCollectionItemBoundAction({ collection: 'brands' }),
-    genres: () => getAddCollectionItemBoundAction({ collection: 'genres' }),
     social: () => getAddCollectionItemBoundAction({ collection: 'social' }),
     sponsors: () => getAddCollectionItemBoundAction({ collection: 'sponsors' }),
-    tagtypes: () => getAddCollectionItemBoundAction({ collection: 'tagtypes' }),
+    tagCategories: () => getAddCollectionItemBoundAction({ collection: 'tagCategories' }),
     tags: () => getAddCollectionItemBoundAction({ collection: 'tags' })
 }
 
@@ -30,10 +29,9 @@ const updateActions : UpdateFormActionByCollection = {
     inscriptions: ({ id } : { id: string }) => getUpdateInscriptionBoundAction({ id }),
     managers: ({ id } : { id: string }) => getUpdateManagerProfileBoundAction({ id }),
     brands: ({ id } : { id: string }) => getUpdateCollectionItemBoundAction({ collection: 'brands', id }),
-    genres: ({ id } : { id: string }) => getUpdateCollectionItemBoundAction({ collection: 'genres', id }),
     social: ({ id } : { id: string }) => getUpdateCollectionItemBoundAction({ collection: 'social', id }),
     sponsors: ({ id } : { id: string }) => getUpdateCollectionItemBoundAction({ collection: 'sponsors', id }),
-    tagtypes: ({ id } : { id: string }) => getUpdateCollectionItemBoundAction({ collection: 'tagtypes', id }),
+    tagCategories: ({ id } : { id: string }) => getUpdateCollectionItemBoundAction({ collection: 'tagCategories', id }),
     tags: ({ id } : { id: string }) => getUpdateCollectionItemBoundAction({ collection: 'tags', id })
 }
 
@@ -42,10 +40,9 @@ const deleteActions : DeleteFormActionByCollection = {
     inscriptions: ({ id } : { id: string }) => getDeleteCollectionItemBoundAction({ collection: 'inscriptions', id }),
     managers: ({ id } : { id: string }) => getDeleteCollectionItemBoundAction({ collection: 'managers', id }),
     brands: ({ id } : { id: string }) => getDeleteCollectionItemBoundAction({ collection: 'brands', id }),
-    genres: ({ id } : { id: string }) => getDeleteCollectionItemBoundAction({ collection: 'genres', id }),
     social: ({ id } : { id: string }) => getDeleteCollectionItemBoundAction({ collection: 'social', id }),
     sponsors: ({ id } : { id: string }) => getDeleteCollectionItemBoundAction({ collection: 'sponsors', id }),
-    tagtypes: ({ id } : { id: string }) => getDeleteCollectionItemBoundAction({ collection: 'tagtypes', id }),
+    tagCategories: ({ id } : { id: string }) => getDeleteCollectionItemBoundAction({ collection: 'tagCategories', id }),
     tags: ({ id } : { id: string }) => getDeleteCollectionItemBoundAction({ collection: 'tags', id })
 }
 

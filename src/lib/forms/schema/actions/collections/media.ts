@@ -1,11 +1,11 @@
 import { addMediaToItem, associateMediaToItem } from "@/lib/fetch/post/media"
 import { updateCollectionItemMedium } from "@/lib/fetch/put/media"
 import { ICollectionsWithMedia, CollectionsWithMedium, IContest } from "@/types"
-import { ICollectionsWithMediaNames, ICollectionsWithMediumNames, IMedia, IMediaRole } from "@/types/media"
+import { ICollectionsWithMediaNames, ICollectionsWithMediumNames, Media, MediaRole } from "@/types/media"
 
-export const getCurrentMediumId = (collectionItem: IContest, role: IMediaRole) => {
+export const getCurrentMediumId = (collectionItem: IContest, role: MediaRole) => {
 
-    const mediumId = collectionItem.Media.find((medium: IMedia) => medium.role === role)?.id
+    const mediumId = collectionItem.Media.find((medium: Media) => medium.role === role)?.id
     return mediumId || null
 }
 

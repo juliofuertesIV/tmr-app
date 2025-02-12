@@ -1,10 +1,10 @@
-import { IMediaRole } from "@/types/media"
+import { MediaRole } from "@/types/media"
 
 type MediaCreationPayload = {
     file: File,
     width: string,
     height: string,
-    role: IMediaRole,
+    role: MediaRole,
     alt: string,
     collection: 'contests' | 'managers' | 'inscriptions' | 'sponsors',
     domain: string | null

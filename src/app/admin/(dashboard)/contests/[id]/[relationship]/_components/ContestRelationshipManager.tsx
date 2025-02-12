@@ -1,12 +1,12 @@
 'use client'
 
-import { IContest, IContestRelationship, IContestRelationshipIdFields, IContestRelationshipNames } from '@/types/contests'
+import { Contest, IContestRelationship, IContestRelationshipIdFields, IContestRelationshipNames } from '@/types/contests'
 import React from 'react'
 import ContestRelationshipInput from './ContestRelationshipInput'
 
 
 type Props = {
-    contest: IContest,
+    contest: Contest,
     relationshipItems: IContestRelationship[],
     relationshipIdField: IContestRelationshipIdFields
 }

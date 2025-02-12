@@ -52,7 +52,6 @@ module.exports = {
             description: faker.lorem.paragraph(),
             year: 2025,
             city: faker.address.city(),
-            genre: faker.music.genre(),
             video: faker.internet.url(),
             instagram: faker.internet.userName(),
             spotify: faker.internet.url(),

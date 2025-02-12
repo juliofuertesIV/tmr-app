@@ -1,11 +1,12 @@
 import { formInitialState } from '@/lib/forms/feedback/state'
-import React, { useActionState, useEffect, useRef, useState } from 'react'
-import { IContest, IContestRelationship, IContestRelationshipIdFields } from '@/types/contests'
+import React, { useEffect, useRef, useState } from 'react'
+import { Contest, IContestRelationship, IContestRelationshipIdFields } from '@/types/contests'
 import { updateContest } from '@/lib/fetch/put/contests'
 import AssociationIcon from '@/app/admin/_layout/design/icons/AssociationIcon'
+import { useFormState } from 'react-dom'
 
 type Props = {
-    contest: IContest,
+    contest: Contest,
     relationshipItem: IContestRelationship,
     relationshipIdField: IContestRelationshipIdFields,
 }
@@ -19,7 +20,7 @@ export default function ContestRelationshipInput({
 
     const boundAction = updateContest.bind(null, contest.id)
 
-    const [ state, formAction ] = useActionState(boundAction, formInitialState)
+    const [ state, formAction ] = useFormState(boundAction, formInitialState)
     const [ loading, setLoading ] = useState<boolean>(false)
     const [ hovered, setHovered ] = useState<boolean>(false)
 

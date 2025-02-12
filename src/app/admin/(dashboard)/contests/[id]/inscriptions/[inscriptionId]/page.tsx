@@ -1,25 +1,18 @@
 import { Metadata } from "next";
 import { getInscriptionById } from "@/lib/fetch/get/inscriptions";
 import EditInscriptionModule from "./_components/EditInscriptionModule";
+import { getInscriptionFromDatabase } from "./_functions";
 
 export const metadata: Metadata = {
     title: "Panel de administración TMR",
     description: "El buen admin panel"
 };
 
-const getData = async ({ id } : { id: string }) => {
-
-    const data = await getInscriptionById(id)
-
-    return data
-
-}
-
 export default async function InscriptionAdminPage({ params } : { params: { id: string, inscriptionId: string }}) {
 
     const { inscriptionId: id } = params
 
-    const { data: inscription } = await getData({ id }) 
+    const inscription = await getInscriptionFromDatabase({ id }) 
 
     if (!inscription) throw new Error('No inscription found.')
 

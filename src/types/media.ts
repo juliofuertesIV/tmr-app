@@ -1,32 +1,30 @@
-import { IContest, Inscription, Manager, Sponsor } from "."
-import { IFooter } from "./collections"
+import { CollectionNames, Manager, Sponsor } from "."
+import { Contest } from "./contests"
+import { Inscription } from "./inscriptions"
 
 export type IContestMediaRole = 'frame' | 'banner' | 'logo' | 'favicon' 
 
-export type ICollectionsWithMediaNames = 'footers'
-
 export type ICollectionsWithMediumNames = 'inscriptions' | 'sponsors' | 'managers' | 'contests'
 
-export type ICollectionsWithMedia = IFooter
+export type CollectionsWithMedium = Inscription & Manager & Sponsor & Contest
 
-export type ICollectionsWithMedium = Inscription & Manager & Sponsor & IContest
+export type MediaRole = IContestMediaRole | 'inscriptions' | 'sponsors' | 'profile'
 
-export type IMediaRole = IContestMediaRole | 'inscriptions' | 'sponsors' | 'profile'
-
-export type IMediaPayload = {
+export type MediaPayload = {
     file: File,
     width: string,
     height: string,
-    role: IMediaRole,
+    role: MediaRole,
+    collection: CollectionNames & 'contests' & 'inscriptions'
     domain: string
 }
 
-export type IMedia = {
+export type Media = {
     id: string,
     alt: string,
     width: string,
     height: string,
-    role: IMediaRole
+    role: MediaRole
     folder: string
     filename: string,
     src: string,

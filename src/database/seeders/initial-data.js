@@ -9,8 +9,7 @@ const socialMedia = require('./data/socialmedia')
 const params = require('./data/params')
 const states = require('./data/states')
 const roles = require('./data/roles')
-const genres = require('./data/genres')
-const tagtypes = require('./data/tagtypes')
+const tagCategories = require('./data/tagCategories')
 const tags = require('./data/tags')
 
 if (process.env.NODE_ENV !== 'production') {
@@ -46,11 +45,10 @@ module.exports = {
     const superAdmin = getSuperAdmin()
 
     await queryInterface.bulkInsert('Brands', brands)
-    await queryInterface.bulkInsert('Genres', genres)
     await queryInterface.bulkInsert('SocialMedia', socialMedia);
     await queryInterface.bulkInsert('States', states);
     await queryInterface.bulkInsert('Params', params)
-    await queryInterface.bulkInsert('TagTypes', tagtypes);
+    await queryInterface.bulkInsert('TagCategories', tagCategories);
     await queryInterface.bulkInsert('Tags', tags);
     await queryInterface.bulkInsert('Roles', roles);
     await queryInterface.bulkInsert('Managers', [superAdmin]);
@@ -58,9 +56,8 @@ module.exports = {
 
   async down (queryInterface, Sequelize) {
     await queryInterface.bulkDelete('Tags', null, {});
-    await queryInterface.bulkDelete('TagTypes', null, {});
+    await queryInterface.bulkDelete('TagCategories', null, {});
     await queryInterface.bulkDelete('Brands', null, {});
-    await queryInterface.bulkDelete('Genres', null, {});
     await queryInterface.bulkDelete('SocialMedia', null, {});
     await queryInterface.bulkDelete('States', null, {});
     await queryInterface.bulkDelete('Params', null, {});

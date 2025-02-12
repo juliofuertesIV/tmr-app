@@ -1,12 +1,12 @@
 import { Brand, Genre, Inscription, Param, SocialMedia, Sponsor } from "."
-import { IMedia } from "./media"
+import { Media } from "./media"
 
 
-export type IContestParamIds = 'inscriptionIsPublic' | 'videoIsRequired' | 'cityIsRequired' | 'instagramIsRequired' | 'hasManyItems' | 'hasGenres' | 'hasRanking'
+export type ContestParamIds = 'inscriptionIsPublic' | 'videoIsRequired' | 'cityIsRequired' | 'instagramIsRequired' | 'hasManyItems' | 'hasGenres' | 'hasRanking'
 
-export type IContestStateIds = 'inscriptionOnly' | 'open' | 'endedInscription' | 'ended' | 'hidden'
+export type ContestStateIds = 'inscriptionOnly' | 'open' | 'endedInscription' | 'ended' | 'hidden'
 
-export type IContest = {
+export type Contest = {
     id: string,
     name: string,
     domain: string,
@@ -21,16 +21,16 @@ export type IContest = {
     googleTagManagerId: string | null,
     metaPixelId: string | null,
     termsAndConditions: string,
-    StateId: IContestStateIds,
+    StateId: ContestStateIds,
     BrandId: number,
     BannerId: string,
     FrameId: string,
     LogoId: string,
     FaviconId: string,
-    Banner?: IMedia,
-    Logo?: IMedia,
-    Frame?: IMedia,
-    Favicon?: IMedia,
+    Banner?: Media,
+    Logo?: Media,
+    Frame?: Media,
+    Favicon?: Media,
     Brand?: Brand,
     State?: IContestState,
     Genres?: Genre[],
@@ -44,14 +44,14 @@ export type IContest = {
 
 export type IContestState = {
     name: string, 
-    id: IContestStateIds,
+    id: ContestStateIds,
     description: string
 }
 
-export type IContestAssociations = Param | Genre | SocialMedia 
-export type IContestAssociationNames = 'params' | 'genres' | 'social' 
-export type IContestAssociationKeys = 'Params' | 'Genres' | 'SocialMedia' 
-export type IContestAssociationIdFieldNames = 'ParamId' | 'GenreId' | 'SocialMediumId'
+export type ContestAssociations = Param | SocialMedia 
+export type ContestAssociationNames = 'params' | 'social' 
+export type ContestAssociationKeys = 'Params' | 'SocialMedia' 
+export type ContestAssociationIdFieldNames = 'ParamId' | 'SocialMediumId'
 
 export type IContestRelationship = Brand | IContestState 
 export type IContestRelationshipNames = 'brands' | 'states' 

@@ -3,12 +3,12 @@ import { Contest } from "@/database/models";
 import { handleApiError } from "@/lib/errors";
 import { NextRequest } from "next/server";
 import { createContestAssociation, getAssociationModelByName } from "./_functions";
-import { IContestAssociationNames } from "@/types/contests";
+import { ContestAssociationNames } from "@/types/contests";
 
 type RouteParams = {
     params: {
         id: string,
-        association: IContestAssociationNames
+        association: ContestAssociationNames
     }
 }
 

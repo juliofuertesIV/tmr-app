@@ -4,11 +4,12 @@ import { formInitialState } from '@/lib/forms/feedback/state'
 import FormSubmit from "@/lib/forms/feedback/FormSubmit"
 import AdminFormFeedback from "@/lib/forms/feedback/FormFeedback"
 import { login } from '@/lib/fetch/post/auth'
-import { useActionState, useEffect } from 'react'
+import { useEffect } from 'react'
+import { useFormState } from 'react-dom'
 
 export default function LoginForm() {
 
-    const [ state, formAction ] = useActionState(login, formInitialState)
+    const [ state, formAction ] = useFormState(login, formInitialState)
 
     useEffect(() => {
 

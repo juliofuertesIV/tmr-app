@@ -1,7 +1,7 @@
 import React from 'react'
-import { IContest } from '@/types'
 import { IContestMediaRole } from '@/types/media'
 import MediaForm from '@/lib/forms/components/media/MediaForm'
+import { Contest } from '@/types/contests';
 
 const contestMediaFields : {
     label: string,
@@ -35,7 +35,7 @@ const contestMediaFields : {
     },
 ]
 
-export default function ContestMediaManager({ contest } : { contest: IContest }) {
+export default function ContestMediaManager({ contest } : { contest: Contest }) {
 
     return (
         <div className="grid lg:grid-cols-4 gap-4 lg:max-w-5xl">

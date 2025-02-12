@@ -3,10 +3,10 @@
 import { getFormSchema } from '@/lib/forms'
 import Form from '@/lib/forms/components/Form'
 import { AllCollections } from '@/types'
-import { IContest } from '@/types/contests'
+import { Contest } from '@/types/contests'
 import React from 'react'
 
-export default function ContestEditionModule({ contest } : { contest: IContest }) {
+export default function ContestEditionModule({ contest } : { contest: Contest }) {
 
     const { id } = contest
 

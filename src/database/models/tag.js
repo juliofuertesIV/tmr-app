@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
   class Tag extends Model {
     static associate(models) {
       Tag.belongsToMany(models.Inscription, { through: 'InscriptionTags' });
-      Tag.belongsTo(models.TagType, { foreignKey: 'TagTypeId' });
+      Tag.belongsTo(models.TagCategory, { foreignKey: 'TagCategoryId' });
     }
   }  Tag.init({
     id: {
@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    TagTypeId: {
+    TagCategoryId: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -29,7 +29,7 @@ module.exports = (sequelize, DataTypes) => {
     indexes: [
       {
         unique: true,
-        fields: ['name', 'TagTypeId'], // Enforce the unique combination of name and TagTypeId
+        fields: ['name', 'TagCategoryId'], // Enforce the unique combination of name and TagCategoryId
       },
     ],
   });  return Tag;

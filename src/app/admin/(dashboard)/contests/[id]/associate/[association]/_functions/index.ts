@@ -1,35 +1,31 @@
-import { IContest, IContestAssociationIdFieldNames, IContestAssociationKeys, IContestAssociationNames, IContestAssociations } from "@/types/contests"
+import { Contest, ContestAssociationIdFieldNames, ContestAssociationKeys, ContestAssociationNames, ContestAssociations } from "@/types/contests"
 
 export const determineIfItemIsAssociatedToContest = ({
     item,
     contest,
     associationKey
 } : {
-    item: IContestAssociations,
-    contest: IContest,
-    associationKey: IContestAssociationKeys
+    item: ContestAssociations,
+    contest: Contest,
+    associationKey: ContestAssociationKeys
     
-}) => contest[associationKey]?.some(associatedItem => associatedItem.id === item.id)
+}) => contest[associationKey]?.some(associatedItem => associatedItem.id === item.id) || false
 
 
 export const getAssociationKeyAndIdFieldByName = ({ 
     associationName 
 } : { 
-    associationName: IContestAssociationNames
+    associationName: ContestAssociationNames
 }) => {
 
     const associationKeysAndIdFields : { 
-        [key in IContestAssociationNames]: { 
-            associationKey: IContestAssociationKeys,
-            associationIdField: IContestAssociationIdFieldNames
+        [key in ContestAssociationNames]: { 
+            associationKey: ContestAssociationKeys,
+            associationIdField: ContestAssociationIdFieldNames
         }} = {
         params: {
             associationKey: 'Params',
             associationIdField: 'ParamId'
-        },
-        genres: {
-            associationKey: 'Genres',
-            associationIdField: 'GenreId'
         },
         social: {
             associationKey: 'SocialMedia',

@@ -5,8 +5,9 @@ import { AllCollections, CollectionNames, } from '@/types'
 import AdminFormFeedback from '../feedback/FormFeedback'
 import FormInput from './inputs/FormInput'
 import FormSubmit from '@/lib/forms/feedback/FormSubmit'
-import { ReactNode, useActionState, useRef } from 'react'
+import { ReactNode, useRef } from 'react'
 import { formInitialState } from '../feedback/state'
+import { useFormState } from 'react-dom'
 
 type Props = {
     boundAction: IFormAction,
@@ -26,7 +27,7 @@ export default function Form({
 
     const formRef = useRef<HTMLFormElement | null>(null)
 
-    const [state, formAction] = useActionState(boundAction, formInitialState)
+    const [state, formAction] = useFormState(boundAction, formInitialState)
 
     if (state.success) formRef.current?.reset()
 

@@ -1,9 +1,9 @@
 'use server'
 
 import { IAPIResponse } from "@/types/api"
-import { IContest, IContestAssociationNames, IContestAssociations } from "@/types/contests"
+import { Contest, ContestAssociationNames, ContestAssociations } from "@/types/contests"
 
-export const getContestById = async ({ id }: { id: string }) : Promise<IAPIResponse<IContest>> => {
+export const getContestById = async ({ id }: { id: string }) : Promise<IAPIResponse<Contest>> => {
 
     const res = await fetch(`http://localhost:3000/api/protected/contests/${ id }`, {
         method: "GET",
@@ -21,7 +21,7 @@ export const getContestById = async ({ id }: { id: string }) : Promise<IAPIRespo
     return res
 }
 
-export const getContests = async () : Promise<IAPIResponse<IContest[]>> => {
+export const getContests = async () : Promise<IAPIResponse<Contest[]>> => {
 
     const res = await fetch(`http://localhost:3000/api/protected/contests/`, {
         method: "GET",
@@ -39,7 +39,7 @@ export const getContests = async () : Promise<IAPIResponse<IContest[]>> => {
     return res
 }
 
-export const getContestByDomain = async (domain: string) : Promise<IAPIResponse<IContest | null>> => {
+export const getContestByDomain = async (domain: string) : Promise<IAPIResponse<Contest | null>> => {
     
     const res = await fetch(`http://localhost:3000/api/protected/contests/domain/${ domain }`, {
         method: "GET",
@@ -62,8 +62,8 @@ export const getContestAndAssociation = async ({
     association 
 } : { 
     id: string, 
-    association: IContestAssociationNames 
-}) : Promise<IAPIResponse<{ contest: IContest, associationItems: IContestAssociations[] } | null>> => {
+    association: ContestAssociationNames 
+}) : Promise<IAPIResponse<{ contest: Contest, associationItems: ContestAssociations[] } | null>> => {
     
     const res = await fetch(`http://localhost:3000/api/protected/contests/${ id }/${ association }`, {
         method: "GET",

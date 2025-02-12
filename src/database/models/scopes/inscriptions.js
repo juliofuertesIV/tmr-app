@@ -8,15 +8,15 @@ const getScopes = (models) => {
         list: {
             order: [["createdAt", "DESC"]],
             include: [ Media, Tag ],
-            attributes: ["id", "name", "email", "RoleId"]
+            attributes: ["id", "name", "email", "ContestId"]
         },
         detailed: {
             order: [["createdAt", "DESC"]],
-            include: [ Media, Contest, Tag ]
+            include: [ Media, Tag ]
         },
         public: {
             order: [["createdAt", "DESC"]],
-            include: [ Media, Contest, Tag ],
+            include: [ Media, Tag ],
             attributes: { exclude: ["contactName, phone, email"] }
         },
         basic: {

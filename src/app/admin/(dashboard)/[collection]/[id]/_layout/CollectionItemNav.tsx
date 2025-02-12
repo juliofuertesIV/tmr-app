@@ -11,9 +11,6 @@ const navItemsByCollectionName = {
     social: [
         { name: 'Información', value: '', association: false },
     ],
-    genres: [
-        { name: 'Información', value: '', association: false },
-    ],
     managers: [
         { name: 'Información', value: '', association: false },
         { name: 'Rol', value: 'role', association: false },
@@ -22,7 +19,7 @@ const navItemsByCollectionName = {
         { name: 'Información', value: '', association: false },
         { name: 'Imágenes', value: 'media', association: false },
     ],
-    tagtypes: [
+    tagCategories: [
         { name: 'Información', value: '', association: false },
     ],
     tags: [

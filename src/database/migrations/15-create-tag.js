@@ -14,24 +14,24 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      TagTypeId: {
+      TagCategoryId: {
         type: Sequelize.STRING,
         references: {
-            model: 'TagTypes',
+            model: 'TagCategories',
             key: 'id'
         },
         allowNull: false
       },
     });
 
-    await queryInterface.addIndex('Tags', ['name', 'TagTypeId'], {
+    await queryInterface.addIndex('Tags', ['name', 'TagCategoryId'], {
       unique: true,
     });
   },
 
   async down(queryInterface, Sequelize) {
 
-    await queryInterface.removeIndex('Tags', ['name', 'TagTypeId'], {
+    await queryInterface.removeIndex('Tags', ['name', 'TagCategoryId'], {
       unique: true
     })
 

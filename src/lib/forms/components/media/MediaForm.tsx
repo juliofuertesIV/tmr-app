@@ -1,26 +1,28 @@
 'use client'
 
 import { getAddMediumBoundAction, getDeleteMediumBoundAction } from '@/lib/forms/schema/actions/collections/collections';
-import { Inscription, Manager, Sponsor } from '@/types';
-import React, { ChangeEvent, useActionState, useEffect, useRef, useState } from 'react'
+import { Manager, Sponsor } from '@/types';
+import React, { ChangeEvent, useEffect, useRef, useState } from 'react'
 import AdminFormFeedback from '@/lib/forms/feedback/FormFeedback';
 import { formInitialState } from '@/lib/forms/feedback/state';
-import { IMedia, IMediaRole } from '@/types/media';
+import { Media, MediaRole } from '@/types/media';
 import MediumPreview from './components/MediumPreview';
-import { IContest } from '@/types/contests';
+import { Contest } from '@/types/contests';
+import { Inscription } from '@/types/inscriptions';
+import { useFormState } from 'react-dom';
 
 type Props = { 
-    collectionItem: IContest | Manager | Sponsor | Inscription,
+    collectionItem: Contest | Manager | Sponsor | Inscription,
     collection: 'contests' | 'managers' | 'inscriptions' | 'sponsors',
     domain?: string,
     accepts?: string,
     previewClassName?: string,
-    role: IMediaRole
+    role: MediaRole
 }
 
-const getForeignKeyAndFieldIdByRole = (role: IMediaRole) => {
+const getForeignKeyAndFieldIdByRole = (role: MediaRole) => {
 
-    const foreignKeysAndFieldIds : { [key in IMediaRole] : { foreignKey: string, fieldId: string }} = {
+    const foreignKeysAndFieldIds : { [key in MediaRole] : { foreignKey: string, fieldId: string }} = {
         logo: {
             foreignKey: 'Logo',
             fieldId: 'LogoId'
@@ -63,7 +65,7 @@ export default function MediaForm({ collectionItem, collection, previewClassName
     const { foreignKey, fieldId } = getForeignKeyAndFieldIdByRole(role)
 
     const currentMediumId = collectionItem[fieldId as keyof typeof collectionItem] as string | null
-    const currentMedium = collectionItem[foreignKey as keyof typeof collectionItem] as unknown as IMedia | null
+    const currentMedium = collectionItem[foreignKey as keyof typeof collectionItem] as unknown as Media | null
 
     const activateFileInput = () => inputRef.current?.click()
     const deleteCurrentMedia = () => formRef.current?.requestSubmit()
@@ -74,7 +76,7 @@ export default function MediaForm({ collectionItem, collection, previewClassName
     const deletionBoundAction = getDeleteMediumBoundAction({ collection, mediumId: currentMediumId as string })
 
     const boundAction = currentMediumId ? deletionBoundAction : creationBoundAction
-    const [ state, action ] = useActionState(boundAction, formInitialState)
+    const [ state, action ] = useFormState(boundAction, formInitialState)
 
     const [ file, setFile ] = useState<File | null>(null)
     const [ imageSize, setImageSize ] = useState<{ width: number | null, height: number | null }>({ width: null, height: null })
@@ -127,7 +129,7 @@ export default function MediaForm({ collectionItem, collection, previewClassName
     return (
         <form ref={ formRef } action={ action } className='flex w-full h-full'>
             <AdminFormFeedback state={ state } />
-            <MediumPreview className={ previewClassName } medium={ currentMedium as IMedia | null } onClick={ clickAction }/> 
+            <MediumPreview className={ previewClassName } medium={ currentMedium as Media | null } onClick={ clickAction }/> 
             <input 
                 className="hidden" 
                 ref={ inputRef } 

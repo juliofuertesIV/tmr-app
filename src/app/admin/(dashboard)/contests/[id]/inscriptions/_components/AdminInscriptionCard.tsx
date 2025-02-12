@@ -1,4 +1,4 @@
-import { Inscription } from '@/types'
+import { Inscription } from '@/types/inscriptions'
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react'
@@ -8,8 +8,8 @@ export default function AdminInscriptionCard({ inscription } : { inscription: In
     const { 
         id, 
         name, 
-        ContestId, 
-        genre, 
+        Contest,
+        ContestId,
         city, 
         description, 
         Medium,

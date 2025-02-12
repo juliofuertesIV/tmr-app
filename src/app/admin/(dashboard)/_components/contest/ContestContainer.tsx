@@ -2,10 +2,10 @@
 import Link from 'next/link'
 import React from 'react'
 import Icon, { IContestIconRole } from './Icon'
-import { IContest } from '@/types/contests'
+import { Contest } from '@/types/contests'
 import { EditIcon } from '@/app/admin/_layout/design/icons/components/Edit'
 
-export default function ContestContainer({ contest } : { contest: IContest }) {
+export default function ContestContainer({ contest } : { contest: Contest }) {
 
     const contestIcons : { role: IContestIconRole }[] = [
         { role: 'stats' },

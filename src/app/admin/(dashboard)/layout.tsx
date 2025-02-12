@@ -3,6 +3,8 @@ import { Inter } from "next/font/google";
 import "../../globals.css";
 import AdminMainNav from "../_layout/nav/AdminMainNav";
 import { getLayoutData } from "./_functions";
+import { redirect } from "next/navigation";
+
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -14,6 +16,8 @@ export const metadata: Metadata = {
 export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
 
     const manager = await getLayoutData()
+
+    if (!manager) redirect('/login')
     
     return (
         <html lang="en">

@@ -1,6 +1,6 @@
 import { Media, sequelize } from '@/database/models'
 import { deleteFromCloudStorage } from '@/lib/storage/gcp_storage'
-import { IMedia } from "@/types/media"
+import { Media as MediaType } from "@/types/media"
 
 export const deleteMediaInStorageAndDatabase = async ({ MediumId } : { MediumId: string }) => {
 
@@ -8,7 +8,7 @@ export const deleteMediaInStorageAndDatabase = async ({ MediumId } : { MediumId:
     
     try {
         media = await Media.findOne({ where: { id: MediumId }})
-        .then(data => data as unknown as IMedia) 
+        .then(data => data as unknown as MediaType) 
     }
     catch(error) { 
         throw new Error(error as string) 

@@ -1,6 +1,6 @@
 import { Brand, IContest, ContestState, Genre, Inscription, Manager, ManagerRole, Param, SocialMedia, Sponsor } from "."
-import { IFooter } from "./collections"
-import { IMedia } from "./media"
+import { Footer } from "./collections"
+import { Media } from "./media"
 
 // ADD TAGS
 /* 

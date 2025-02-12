@@ -2,12 +2,12 @@ import { NextRequest } from "next/server";
 import { handleApiError } from "@/lib/errors";
 import { constructAPIResponse } from "@/app/api/_functions";
 import { deleteContestAssociation } from "./_functions";
-import { IContestAssociationNames } from "@/types/contests";
+import { ContestAssociationNames } from "@/types/contests";
 
 type Params = {
     params: {
         id: string,
-        association: IContestAssociationNames,
+        association: ContestAssociationNames,
         associationId: string
     }
 }

@@ -4,18 +4,18 @@ import { useState } from 'react'
 import DashboardNav from './DashboardNav'
 import ContestGrid from './ContestGrid'
 import React, { Suspense } from 'react';
-import { IContest } from '@/types/contests';
+import { Contest } from '@/types/contests';
 
 // Dynamically import the ContestCreation component
 const ContestCreation = React.lazy(() => import('./ContestCreation'));
 
-export default function ContestsDashboard({ contests } : { contests: IContest[] }) {
+export default function ContestsDashboard({ contests } : { contests: Contest[] }) {
 
     const [ view, setView ] = useState<string>('active')
 
     const onViewChange = (view: string) => setView(view)
 
-    const contestIsActive = (contest: IContest) => 
+    const contestIsActive = (contest: Contest) => 
         contest.StateId === 'inscriptionOnly' || contest.StateId ==='open' || contest.StateId === 'endedInscription' 
     
     const activeContests = contests?.filter(contest => contestIsActive(contest))

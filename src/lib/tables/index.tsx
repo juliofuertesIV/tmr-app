@@ -9,7 +9,7 @@ type ICollectionTable = {
     }[] | null
 }
 
-const tables : { [key in Exclude<CollectionNames, "media">]: ICollectionTable } = {
+const tables : { [key in CollectionNames & "contests"]: ICollectionTable } = {
     contests: {
         headers: ['Nombre', 'Año', 'Marca', 'Estado'],
         fields: ['name', 'year'],
@@ -19,11 +19,6 @@ const tables : { [key in Exclude<CollectionNames, "media">]: ICollectionTable } 
         ],
     },
     brands: {
-        headers: ['Nombre'],
-        fields: ['name'],
-        associations: null,
-    },
-    genres: {
         headers: ['Nombre'],
         fields: ['name'],
         associations: null,
@@ -52,6 +47,6 @@ const tables : { [key in Exclude<CollectionNames, "media">]: ICollectionTable } 
     }
 } 
 
-export const getTableByCollectionName = (collection: Exclude<CollectionNames, "media">) : ICollectionTable => {
+export const getTableByCollectionName = (collection: CollectionNames & "contests") : ICollectionTable => {
     return tables[collection]
 }

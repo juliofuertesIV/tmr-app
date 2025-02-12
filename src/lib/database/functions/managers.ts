@@ -1,22 +1,23 @@
 'use server'
 
 import { Manager } from "@/database/models"
+import { Manager as ManagerType } from "@/types"
 
 export type ManagerScope = 'list' | 'detailed' 
 
 export const getAllManagersFromDatabase = async ({ scope } : { scope: ManagerScope }) => {
 
-    const contests = await Manager.scope(scope).findAll()
+    const managers = await Manager.scope(scope).findAll()
     .then(data => data)
-    .catch(error => { throw new Error(error as string )})
+    .catch(error => { throw new Error(error as string )}) as unknown as ManagerType[] | null
 
-    return contests
+    return managers
 }
 
 export const getManagerFromDatabaseById = async ({ id, scope } : { id: string, scope: ManagerScope }) => {
-    const contest = await Manager.scope(scope).findOne({ where: { id }})
+    const manager = await Manager.scope(scope).findOne({ where: { id }})
     .then(data => data)
-    .catch(error => { throw new Error(error as string )})
+    .catch(error => { throw new Error(error as string )}) as unknown as ManagerType | null
 
-    return contest
+    return manager
 }

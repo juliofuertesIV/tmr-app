@@ -2,7 +2,7 @@
 import { Log, Manager, Role } from '@/database/models'
 import { createSession, passwordsAreMatching } from "@/lib/auth"
 import { NextRequest, NextResponse } from "next/server"
-import { Manager } from "@/types"
+import { Manager as ManagerType } from "@/types"
 import { constructAPIResponse } from "../_functions"
 import { handleApiError } from "@/lib/errors"
 
@@ -70,7 +70,7 @@ const findManagerByEmail = async (email: string) => {
         include: [ Role ]
     })
     .then(data => data) 
-    .catch(error => { throw new Error('Error buscando al manager en la base de datos.') }) as unknown as Manager
+    .catch(error => { throw new Error('Error buscando al manager en la base de datos.') }) as unknown as ManagerType
    
     return manager
 }

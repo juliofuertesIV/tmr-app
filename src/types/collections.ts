@@ -1,11 +1,11 @@
 import { ContestParamIds } from "."
-import { IMedia } from "./media"
+import { Media } from "./media"
 
-export type IAllCollections = IBrand & ISocialMedia & IGenre & ISponsor & ITag & ITagType
+export type AllCollectionItems = Brand & SocialMedia & Sponsor & Tag & TagCategory
 
-export type ICollectionNames = 'brands' | 'social' | 'genres' | 'sponsors' | 'tags' | 'tagTypes'
+export type CollectionNames = 'brands' | 'social' | 'sponsors' | 'tags' | 'tagTypes'
 
-export type IBrand = {
+export type Brand = {
     id: string | number,
     name: string,
     backgroundColor: string,
@@ -18,24 +18,19 @@ export type IBrand = {
     updatedAt: string
 }
 
-export type IFooter = {
+export type Footer = {
     id: string,
     name: string,
     ContestId: string
 }
 
-export type IGenre = {
-    id: string,
-    name: string
-}
-
-export type IParam = {
+export type Param = {
     id: ContestParamIds,
     name: string,
     description?: string
 }
 
-export type ISocialMedia = {
+export type SocialMedia = {
     id: string,
     name: string,
     icon: string,
@@ -43,22 +38,22 @@ export type ISocialMedia = {
     updatedAt: string
 }
 
-export type ISponsor = {
+export type Sponsor = {
     id: string,
     name: string,
-    Media: IMedia[],
+    Media: Media[],
     MediumId: string
 }
 
-export type ITag = {
+export type Tag = {
     id: string,
     name: string,
-    TagTypeId: string,
-    TagTypes: ITagType
+    TagCategoryId: string,
+    TagCategories: TagCategory
 }
 
-export type ITagType = {
+export type TagCategory = {
     id: string,
     name: string,
-    Tags: ITag[]
+    Tags: Tag[]
 }

@@ -12,13 +12,13 @@ import {
     closedInscription as ClosedInscriptionsIcon
 } from '@/app/admin/_layout/design/icons'
 
-import { IContest } from '@/types/contests'
+import { Contest } from '@/types/contests'
 
 export type IContestIconRole = 'stats' | 'open' | 'visible' | 'verify' | 'contestants' | 'inscription'
 
-const getContentByRole = (role: IContestIconRole, contest: IContest) => {
+const getContentByRole = (role: IContestIconRole, contest: Contest) => {
     const iconByRole = {
-        stats: (contest: IContest) => { 
+        stats: (contest: Contest) => { 
             return { 
                 Icon: StatsIcon,
                 data: contest.Inscriptions?.length,
@@ -26,7 +26,7 @@ const getContentByRole = (role: IContestIconRole, contest: IContest) => {
                 toolTip: '???'
             }
         },
-        contestants: (contest: IContest) => { 
+        contestants: (contest: Contest) => { 
             return { 
                 Icon: ContestantsIcon,
                 data: contest.Inscriptions?.length,
@@ -34,7 +34,7 @@ const getContentByRole = (role: IContestIconRole, contest: IContest) => {
                 toolTip: 'Número de inscripciones'
             }
         },
-        verify: (contest: IContest) => { 
+        verify: (contest: Contest) => { 
             return { 
                 Icon: VerifyIcon,
                 data: contest.Inscriptions?.filter(inscription => inscription.verified === false).length || null,
@@ -42,7 +42,7 @@ const getContentByRole = (role: IContestIconRole, contest: IContest) => {
                 toolTip: contest.Inscriptions?.filter(inscription => inscription.verified === false).length ? 'Participantes por verificar' : 'Nadie por verificar'
             }
         },
-        open: (contest: IContest) => { 
+        open: (contest: Contest) => { 
             return { 
                 Icon: contest.StateId === 'ended' ? ClosedIcon : OpenIcon,
                 data: null,
@@ -50,7 +50,7 @@ const getContentByRole = (role: IContestIconRole, contest: IContest) => {
                 toolTip: contest.StateId === 'ended' || contest.StateId === 'hidden' ? 'Cerrado' : 'Abierto'
             }
         },
-        visible: (contest: IContest) => { 
+        visible: (contest: Contest) => { 
             return { 
                 Icon: contest.StateId === 'hidden' ? Hiddenicon : VisibleIcon,
                 data: null,
@@ -58,7 +58,7 @@ const getContentByRole = (role: IContestIconRole, contest: IContest) => {
                 toolTip: contest.StateId === 'hidden' ? 'Oculto' : 'Visible'
             }
         },
-        inscription: (contest: IContest) => { 
+        inscription: (contest: Contest) => { 
             return { 
                 Icon: contest.StateId === 'endedInscription' || contest.StateId === 'hidden' ? ClosedInscriptionsIcon : OpenInscriptionsIcon, 
                 data: null,
@@ -72,7 +72,7 @@ const getContentByRole = (role: IContestIconRole, contest: IContest) => {
 }
 
 
-export default function Icon({ role, contest } : { role: IContestIconRole, contest: IContest }) {
+export default function Icon({ role, contest } : { role: IContestIconRole, contest: Contest }) {
 
     const { Icon, data, className, toolTip } = getContentByRole(role, contest)
 

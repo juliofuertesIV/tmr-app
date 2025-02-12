@@ -6,12 +6,10 @@ import { Sequelize, DataTypes, Options } from 'sequelize'
 import BrandModel from './brand.js';
 import ContestModel from './contest.js';
 import ContestParamModel from './contestparam.js';
-import ContestGenreModel from './contestgenre.js';
 import ContestSocialModel from './contestsocial.js';
 import ContestManagerModel from './contestmanager.js';
 import FooterModel from './footer.js';
 import FooterSponsorModel from './footersponsor.js';
-import GenreModel from './genre.js';
 import InscriptionModel from './inscription.js';
 import LogModel from './log.js';
 import ManagerModel from './manager.js';
@@ -21,7 +19,7 @@ import RoleModel from './role.js';
 import SocialMediaModel from './social-media.js';
 import SponsorModel from './sponsor.js';
 import StateModel from './state.js';
-import TagTypeModel from './tag-type.js';
+import TagCategoryModel from './tagcategory.js';
 import TagModel from './tag.js';
 import TMRVoteModel from './tmrvote.js';
 import VoteModel from './vote.js';
@@ -39,17 +37,15 @@ const Brand = BrandModel(sequelize, DataTypes)
 const Footer = FooterModel(sequelize, DataTypes)
 const State = StateModel(sequelize, DataTypes)
 const ContestParam = ContestParamModel(sequelize, DataTypes)
-const ContestGenre = ContestGenreModel(sequelize, DataTypes)
 const ContestSocial = ContestSocialModel(sequelize, DataTypes)
 const ContestManager = ContestManagerModel(sequelize, DataTypes)
 const FooterSponsor = FooterSponsorModel(sequelize, DataTypes)
-const Genre = GenreModel(sequelize, DataTypes)
 const Log = LogModel(sequelize, DataTypes)
 const Param = ParamModel(sequelize, DataTypes)
 const Role = RoleModel(sequelize, DataTypes)
 const SocialMedia = SocialMediaModel(sequelize, DataTypes)
 const Sponsor = SponsorModel(sequelize, DataTypes)
-const TagType = TagTypeModel(sequelize, DataTypes)
+const TagCategory = TagCategoryModel(sequelize, DataTypes)
 const TMRVote = TMRVoteModel(sequelize, DataTypes)
 const Voter = VoterModel(sequelize, DataTypes)
 const Vote = VoteModel(sequelize, DataTypes)
@@ -62,12 +58,10 @@ const models = [
     Brand,
     Contest,
     ContestParam,
-    ContestGenre,
     ContestSocial,
     ContestManager,
     Footer,
     FooterSponsor,
-    Genre,
     Inscription,
     Log,
     Manager,
@@ -77,7 +71,7 @@ const models = [
     SocialMedia,
     Sponsor,
     State,
-    TagType,
+    TagCategory,
     Tag,
     TMRVote,
     Vote
@@ -93,12 +87,10 @@ export {
     Brand,
     Contest,
     ContestParam,
-    ContestGenre,
     ContestSocial,
     ContestManager,
     Footer,
     FooterSponsor,
-    Genre,
     Inscription,
     Log,
     Manager,
@@ -108,7 +100,7 @@ export {
     SocialMedia,
     Sponsor,
     State,
-    TagType,
+    TagCategory,
     Tag,
     TMRVote,
     Vote,

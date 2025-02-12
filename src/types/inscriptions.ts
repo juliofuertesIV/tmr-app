@@ -1,7 +1,8 @@
-import { IContest } from ".";
-import { IMedia } from "./media";
 
-export type IInscription = {
+import { Contest } from "./contests";
+import { Media } from "./media";
+
+export type Inscription = {
     id: string,
     name: string,
     year: number,
@@ -14,7 +15,6 @@ export type IInscription = {
     verified: boolean,
     discarded: boolean,
     previousPosition: number,
-    genre?: string,
     instagram?: string,
     video?: string,
     facebook?: string,
@@ -22,6 +22,7 @@ export type IInscription = {
     tiktok?: string,
     twitter?: string,
     MediumId: string,
-    Medium: IMedia,
-    Contest: IContest,
+    Medium: Media,
+    Contest: Contest,
+    ContestId: string, // TO DO: not working
 }

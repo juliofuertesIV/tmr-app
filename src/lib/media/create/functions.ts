@@ -1,5 +1,5 @@
 import { Media, sequelize } from '@/database/models'
-import { IMedia, IMediaRole } from "@/types/media"
+import { Media as MediaType, MediaRole } from "@/types/media"
 import { Transaction } from "sequelize"
 
 export const createMediumInDatabase = async ({ 
@@ -13,7 +13,7 @@ export const createMediumInDatabase = async ({
 } : { 
     width: string,
     height: string,
-    role: IMediaRole,
+    role: MediaRole,
     alt: string,
     filename: string,
     folder: string,
@@ -35,7 +35,7 @@ export const createMediumInDatabase = async ({
             folder
         }, { 
             transaction 
-        }).then(data => data) as unknown as IMedia
+        }).then(data => data) as unknown as MediaType
     }
     catch (error) {
         throw new Error('Fallo guardando el contenido multimedia en la DB.')

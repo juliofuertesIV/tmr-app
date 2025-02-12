@@ -6,9 +6,11 @@ export const getLayoutData = async () => {
 
     const decryptedManager = await getDecryptedManager()
 
-    if (!decryptedManager) throw new Error('No manager session found')
+    if (!decryptedManager) return null
 
     const manager = await getManagerFromDatabaseById({ id: decryptedManager.id, scope: 'detailed' })
+
+    if (!manager) return null
 
     return JSON.parse(JSON.stringify(manager))
 

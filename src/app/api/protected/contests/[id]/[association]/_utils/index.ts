@@ -1,4 +1,4 @@
-import { Brand, Contest, Media, Genre, SocialMedia, Manager, Role, Log, Sponsor, Tag, TagType, Inscription } from '@/database/models';
+import { Brand, Contest, Media, SocialMedia, Manager, Role, Log, Sponsor, Tag, TagCategory, Inscription } from '@/database/models';
 import { CollectionNames } from "@/types";
 import { FindOptions, Model, ModelStatic } from "sequelize";
 
@@ -18,10 +18,6 @@ const modelsByCollectionName = {
         options: {
             include: [Contest]
         }
-    },
-    genres: {
-        Model: Genre,
-        options: {}
     },
     managers: {
         Model: Manager,
@@ -48,8 +44,8 @@ const modelsByCollectionName = {
             order: [['name', 'ASC']]
         }
     },
-    tagtypes: {
-        Model: TagType,
+    tagCategories: {
+        Model: TagCategory,
         options: {
             include: [Tag],
             order: [['name', 'ASC']]

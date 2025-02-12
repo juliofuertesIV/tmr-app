@@ -1,15 +1,15 @@
 'use client'
 
-import { IContestAssociationIdFieldNames, IContestAssociationKeys, IContestAssociationNames, IContestAssociations } from '@/types/contests'
+import { ContestAssociationIdFieldNames, ContestAssociationKeys, ContestAssociationNames, ContestAssociations } from '@/types/contests'
 import ContestAssociationInput from './ContestAssociationInput'
 import { IContest } from '@/types'
 
 type Props = {
     contest: IContest,
-    associationItems: IContestAssociations[],
-    association: IContestAssociationNames,
-    associationKey: IContestAssociationKeys,
-    associationIdField: IContestAssociationIdFieldNames,
+    associationItems: ContestAssociations[],
+    association: ContestAssociationNames,
+    associationKey: ContestAssociationKeys,
+    associationIdField: ContestAssociationIdFieldNames,
 }
 
 export default function ContestAssociationManager({ 

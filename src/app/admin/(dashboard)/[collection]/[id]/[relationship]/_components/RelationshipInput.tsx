@@ -1,6 +1,6 @@
 import { AllCollections, CollectionNames } from '@/types'
 import { formInitialState } from '@/lib/forms/feedback/state'
-import React, { useActionState, useEffect, useRef, useState } from 'react'
+import React, { useFormState, useEffect, useRef, useState } from 'react'
 import { updateCollectionItem } from '@/lib/fetch/put/collections'
 
 type Props = {
@@ -25,7 +25,7 @@ export default function RelationshipInput({
 
     const boundAction = updateCollectionItem.bind(null, collection, collectionItem.id)
 
-    const [ state, formAction ] = useActionState(boundAction, formInitialState)
+    const [ state, formAction ] = useFormState(boundAction, formInitialState)
     const [ loading, setLoading ] = useState<boolean>(false)
     const [ hovered, setHovered ] = useState<boolean>(false)
 

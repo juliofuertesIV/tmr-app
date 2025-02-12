@@ -2,7 +2,7 @@ import * as Input from '@/lib/forms/components/inputs/type'
 import { isValidString, processBasicTextInput } from "@/lib/forms/validation/functions"
 import { IActionTarget, IFormField } from "@/types/forms"
 
-export const tagtypeFields : { [key in IActionTarget]: IFormField[] } = {
+export const tagCategoryFields : { [key in Exclude<IActionTarget, "delete">]: IFormField[] } = {
     creation: [
         {
             name: 'name',
@@ -28,5 +28,5 @@ export const tagtypeFields : { [key in IActionTarget]: IFormField[] } = {
             element: Input.Base,
             required: false 
         }
-    ],
+    ]
 }

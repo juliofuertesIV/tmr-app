@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { EditIcon } from '@/app/admin/_layout/design/icons/components/Edit'
 import { CircleAddIcon } from '@/app/admin/_layout/design/icons/components/CircleAdd'
 
-export default function TagTypesGrid({ items: tagTypes, collection } : { items: AllCollections[], collection: CollectionNames }) {
+export default function TagCategoriesGrid({ items: tagTypes, collection } : { items: AllCollections[], collection: CollectionNames }) {
   return (
     <div className="flex flex-col w-full gap-4 max-w-2xl">
         { 

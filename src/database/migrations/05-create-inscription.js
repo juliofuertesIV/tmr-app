@@ -24,9 +24,6 @@ module.exports = {
       city: {
         type: Sequelize.STRING,
       },
-      genre: {
-        type: Sequelize.STRING,
-      },
       video: {
         type: Sequelize.STRING,
       },

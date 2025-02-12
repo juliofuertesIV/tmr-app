@@ -1,12 +1,13 @@
-import { ITagType } from "./collections"
-import { IContest } from "./contests"
-import { IMedia } from "./media"
+import { TagCategory } from "./collections"
+import { Contest } from "./contests"
+import { Inscription } from "./inscriptions"
+import { Media } from "./media"
 
-export type AllCollections = Brand & SocialMedia & Genre & Manager & ITagType & IContest & Inscription
+export type AllCollections = Brand & SocialMedia & Genre & Manager & TagCategory & Contest & Inscription
 
-export type CollectionNames = 'brands' | 'social' | 'genres' | 'managers' | 'sponsors' | 'tagtypes' | 'tags'
+export type CollectionNames = 'brands' | 'social' | 'managers' | 'sponsors' | 'tagCategories' | 'tags'
 
-export type CollectionsWithMedium = Inscription & Manager & Sponsor & IContest
+export type CollectionsWithMedium = Inscription & Manager & Sponsor & Contest
 
 export type ManagerRoleId = 1 | 2 | 3 | 4
 
@@ -29,11 +30,11 @@ export type Manager = {
     hash: string,
     salt: string,
     emailVerified: boolean,
-    Contests: IContest[],
+    Contests: Contest[],
     RoleId: ManagerRoleId,
     Role: ManagerRole,
     MediumId: string,
-    Medium: IMedia,
+    Medium: Media,
     createdAt: string,
     updatedAt: string
 }
@@ -90,36 +91,10 @@ export type Log = {
     createdAt: Date,
 }
 
-export type Inscription = {
-    id: string,
-    name: string,
-    year: number,
-    image: string,
-    city: string,
-    description: string,
-    email: string,
-    phone: string,
-    contactName: string,
-    verified: boolean,
-    discarded: boolean,
-    previousPosition: number,
-    genre?: string,
-    instagram?: string,
-    video?: string,
-    facebook?: string,
-    spotify?: string,
-    tiktok?: string,
-    twitter?: string,
-    MediumId: string,
-    Medium: IMedia,
-    ContestId: string,
-    Contest: IContest,
-}
-
 export type Sponsor = {
     id: string,
     name: string,
-    Media: IMedia[],
+    Media: Media[],
     MediumId: string
 }
 

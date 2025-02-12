@@ -46,7 +46,6 @@ export {
     LogOutIcon as logout,
     DashboardIcon as dashboard,
     InscriptionIcon as inscription,
-    MusicNotesIcon as genres,
     MessageIcon as message,
     ProfileIcon as profile,
     AdminIcon as admin,

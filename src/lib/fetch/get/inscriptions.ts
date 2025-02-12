@@ -1,8 +1,7 @@
 'use server'
 
-import { Inscription } from "@/types"
 import { IAPIResponse } from "@/types/api"
-import { IContest } from "@/types/contests"
+import { Inscription } from "@/types/inscriptions"
 
 export const getContestInscriptions = async (contestId: string) : Promise<IAPIResponse<Inscription[] | null>> => {
     

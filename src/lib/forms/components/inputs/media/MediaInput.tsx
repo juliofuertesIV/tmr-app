@@ -1,12 +1,12 @@
 'use client'
 
 import React, { ChangeEvent, useEffect, useState } from 'react'
-import { IMediaRole } from '@/types/media'
+import { MediaRole } from '@/types/media'
 import MediaInputPreview from './MediaInputPreview';
 import Label from '../../label/Label';
 
 type Props = {
-    role: IMediaRole,
+    role: MediaRole,
     alt: string,
     collection: 'contests' | 'managers' | 'inscriptions' | 'sponsors',
     domain: string,

@@ -1,17 +1,18 @@
 import { ContestState, Param } from '@/types'
 import { formInitialState } from '@/lib/forms/feedback/state'
-import React, { useActionState, useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import AssociationIcon from './AssociationIcon'
 import { disassociateItemsFromContest } from '@/lib/fetch/delete/contests'
 import { associateItemToContest } from '@/lib/fetch/post/contests'
 import { determineIfItemIsAssociatedToContest } from '../_functions'
-import { IContest, IContestAssociationKeys, IContestAssociationNames, IContestAssociations } from '@/types/contests'
+import { Contest, ContestAssociationKeys, ContestAssociationNames, ContestAssociations } from '@/types/contests'
+import { useFormState } from 'react-dom'
 
 type Props = {
-    contest: IContest,
-    association: IContestAssociationNames,
-    associationItem: IContestAssociations,
-    associationKey: IContestAssociationKeys
+    contest: Contest,
+    association: ContestAssociationNames,
+    associationItem: ContestAssociations,
+    associationKey: ContestAssociationKeys
 }
 
 export default function ContestAssociationInput({ contest, associationItem, association, associationKey } : Props) {
@@ -23,7 +24,7 @@ export default function ContestAssociationInput({ contest, associationItem, asso
 
     const boundAction = isCurrentlyAssociated ? boundDissociationAction : boundAssociationAction
 
-    const [ state, formAction ] = useActionState(boundAction, formInitialState)
+    const [ state, formAction ] = useFormState(boundAction, formInitialState)
     const [ loading, setLoading ] = useState<boolean>(false)
     const [ hovered, setHovered ] = useState<boolean>(false)
 

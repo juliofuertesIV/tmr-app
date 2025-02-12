@@ -1,11 +1,11 @@
 import Image from 'next/image'
 import React from 'react'
 import { useFormStatus } from 'react-dom'
-import { IMedia } from '@/types/media'
+import { Media } from '@/types/media'
 import MediumPreviewActionIcon from './MediumPreviewActionIcon'
 import MediumPreviewLoadingIcon from './MediumPreviewLoadingIcon'
 
-export default function MediumPreview({ medium, className, onClick } : { medium: IMedia | null, className?: string, onClick: () => void | undefined }) {
+export default function MediumPreview({ medium, className, onClick } : { medium: Media | null, className?: string, onClick: () => void | undefined }) {
 
     const { pending } = useFormStatus()
 

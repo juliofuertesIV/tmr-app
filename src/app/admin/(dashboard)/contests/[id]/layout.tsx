@@ -1,3 +1,4 @@
+import { getContestFromDatabaseById } from "@/lib/database/functions/contests";
 import ContestInnerNav from "./_components/ContestInnerNav";
 import { getContestById } from "@/lib/fetch/get/contests";
 
@@ -13,9 +14,9 @@ export default async function Layout({ params, children } : Props) {
 
     const { id } = params
 
-    const { data: contest, error } = await getContestById({ id }) 
+    const contest = await getContestFromDatabaseById({ id, scope: 'detailed' })
 
-    if (!!error || !contest) throw new Error(`${ error ? error.message : 'Unknown error' }`)
+    if (!contest) throw new Error('Contest not found.')
 
     return (
         <section className="admin-page-content">

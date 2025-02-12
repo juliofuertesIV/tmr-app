@@ -3,7 +3,7 @@ import * as Input from '@/lib/forms/components/inputs/type'
 import { isValidEmail, isValidString, isValidUrl, processBasicTextInput } from "@/lib/forms/validation/functions"
 import { IActionTarget, IFormField } from "@/types/forms"
 
-export const inscriptionFields : { [key in IActionTarget]: IFormField[] } = { 
+export const inscriptionFields : { [key in Exclude<IActionTarget, "delete">]: IFormField[] } = { 
     creation: [
         {
             name: 'file',
@@ -85,17 +85,6 @@ export const inscriptionFields : { [key in IActionTarget]: IFormField[] } = {
             testAgainst: null,
             type: 'text',
             element: Input.Base,
-            required: true
-        },
-        {
-            name: 'genre',
-            label: 'Género',
-            instructions: null,
-            validationMethod: isValidString,
-            processingMethod: processBasicTextInput,
-            testAgainst: null,
-            type: 'text',
-            element: Input.Select,
             required: true
         },
         {
@@ -208,17 +197,6 @@ export const inscriptionFields : { [key in IActionTarget]: IFormField[] } = {
             testAgainst: null,
             type: 'text',
             element: Input.Base,
-            required: false
-        },
-        {
-            name: 'genre',
-            label: 'Género',
-            instructions: null,
-            validationMethod: isValidString,
-            processingMethod: processBasicTextInput,
-            testAgainst: null,
-            type: 'text',
-            element: Input.Select,
             required: false
         },
         {

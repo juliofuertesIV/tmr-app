@@ -1,4 +1,4 @@
-import { IContestAssociationNames } from "@/types/contests"
+import { ContestAssociationNames } from "@/types/contests"
 import { getAssociationTableAndFieldByName } from "../../_functions"
 
 export const deleteContestAssociation = async ({ 
@@ -7,7 +7,7 @@ export const deleteContestAssociation = async ({
     associationId
 } : {
     id: string,
-    association: IContestAssociationNames,
+    association: ContestAssociationNames,
     associationId: string
 }) => {
     

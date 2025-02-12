@@ -61,13 +61,7 @@ export const adminNavSections : IAdminNavSection[] = [
                 minimumRole: 2
             },
             { 
-                collection: 'genres', 
-                label: 'Géneros',
-                isActive: (path: string) => path.includes('/admin/genres') && !path.includes('/genres/'),
-                minimumRole: 2
-            },
-            { 
-                collection: 'tagtypes', 
+                collection: 'tagCategories', 
                 label: 'Etiquetas',
                 isActive: (path: string) => path.includes('/admin/tags') && !path.includes('/tags/'),
                 minimumRole: 2

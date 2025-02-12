@@ -33,9 +33,6 @@ module.exports = (sequelize, DataTypes) => {
     city: {
       type: DataTypes.STRING,
     },
-    genre: {
-      type: DataTypes.STRING,
-    },
     video: {
       type: DataTypes.STRING,
     },
@@ -77,6 +74,9 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.BOOLEAN,
       allowNull: false,
       defaultValue: false,
+    },
+    MediumId: {
+      type: DataTypes.STRING,
     },
   }, {
     sequelize,

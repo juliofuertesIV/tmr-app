@@ -1,31 +1,32 @@
 'use server'
 
 import { getEncryptedAndSignedJWT } from "@/lib/auth";
-import { DecryptedJWTManager, Manager } from "@/types";
+import { DecryptedJWTManager, Manager as ManagerType } from "@/types";
 import { cookies } from "next/headers";
 import { decryptJWT } from "./jwt";
 import { NextRequest, NextResponse } from "next/server";
+import { Manager } from "@/database/models";
 
 export const getDecryptedManager = async () : Promise<DecryptedJWTManager | null> => {
     const sessionToken = (await cookies()).get('session');
     return sessionToken ? await decryptJWT(sessionToken.value) : null;
 }
  
-export async function getSession() {
-    
-    const session = await cookies()
-    .then(data => {
-        return data ?
-        data.get('session')?.value 
-        : null
-    })
+export async function getManagerFromSession() : Promise<ManagerType | null> {
 
-    if (!session) return null;
+    const decryptedManager = await getDecryptedManager()
 
-    return await decryptJWT(session);
+    if (!decryptedManager) return null
+
+    return ( 
+        await Manager.findOne({ where: { id: decryptedManager.id }})
+        .then(data => data)
+        .catch(error => { throw new Error(error as string )})
+        
+    ) as unknown as ManagerType | null 
 }
 
-export const createSession = async ({ manager } : { manager: Manager }) => {
+export const createSession = async ({ manager } : { manager: ManagerType }) => {
     
     const expires = new Date(Date.now() + 172800000); // 48h
 

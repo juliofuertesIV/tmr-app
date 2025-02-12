@@ -7,7 +7,6 @@ const navItems = [
     { name: 'Información', value: '', isAssociation: false },
     { name: 'Branding', value: 'brands', isAssociation: false },
     { name: 'Redes sociales', value: 'social', isAssociation: true },
-    { name: 'Géneros', value: 'genres', isAssociation: true },
     { name: 'Configuración', value: 'params', isAssociation: true },
     { name: 'Imágenes', value: 'media', isAssociation: false },
     { name: 'Estado', value: 'states', isAssociation: false },

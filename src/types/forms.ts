@@ -2,7 +2,7 @@ import { HTMLInputTypeAttribute, HTMLProps } from "react"
 import { CollectionNames } from "."
 import { IAPIResponse } from "./api"
 import { IAssociationNames } from "./associations"
-import { IMediaRole } from "./media"
+import { MediaRole } from "./media"
 
 
 export type IFormByCollectionName = {
@@ -27,7 +27,7 @@ export type IFormField = {
     element: (props: HTMLProps<HTMLInputElement & HTMLSelectElement & HTMLTextAreaElement>) => JSX.Element,
     required: boolean,
     media?: {
-        role: IMediaRole,
+        role: MediaRole,
         accept: string,
         previewClassname?: React.ComponentProps<'div'>['className'];
     },

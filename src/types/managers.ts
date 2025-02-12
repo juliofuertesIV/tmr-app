@@ -1,5 +1,5 @@
 import { IContest } from "."
-import { IMedia } from "./media"
+import { Media } from "./media"
 
 export type IManagerRoleId = 1 | 2 | 3 | 4
 
@@ -20,7 +20,7 @@ export type IManager = {
     RoleId: IManagerRoleId,
     Role: IManagerRole,
     MediumId: string,
-    Medium: IMedia,
+    Medium: Media,
     createdAt: string,
     updatedAt: string
 }

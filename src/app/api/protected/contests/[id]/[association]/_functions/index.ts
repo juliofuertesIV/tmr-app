@@ -1,29 +1,27 @@
-import { ContestGenre, ContestParam, ContestSocial, Genre, Param, SocialMedia } from "@/database/models"
-import { IContestAssociationIdFieldNames, IContestAssociationNames } from "@/types/contests"
+import { ContestParam, ContestSocial, Param, SocialMedia } from "@/database/models"
+import { ContestAssociationIdFieldNames, ContestAssociationNames } from "@/types/contests"
 
 import { Model, ModelStatic } from "sequelize"
 
-export const getAssociationModelByName = (association: IContestAssociationNames) => {
+export const getAssociationModelByName = (association: ContestAssociationNames) => {
     
-    const associationModelByIdField : { [key in IContestAssociationNames]:  ModelStatic<Model<any, any>> } = {
+    const associationModelByIdField : { [key in ContestAssociationNames]:  ModelStatic<Model<any, any>> } = {
         params: Param,
-        genres: Genre,
         social: SocialMedia
     } 
 
     return associationModelByIdField[association]
 } 
 
-export const getAssociationTableAndFieldByName = (association: IContestAssociationNames) => {
+export const getAssociationTableAndFieldByName = (association: ContestAssociationNames) => {
     
     const associationTableByIdField : { 
-        [key in IContestAssociationNames]: { 
+        [key in ContestAssociationNames]: { 
             table: ModelStatic<Model<any, any>>, 
-            idField: IContestAssociationIdFieldNames 
+            idField: ContestAssociationIdFieldNames 
         } 
     } = {
         params: { table: ContestParam, idField: 'ParamId' },
-        genres: { table: ContestGenre, idField: 'GenreId' },
         social: { table: ContestSocial, idField: 'SocialMediumId' }
     } 
 
@@ -31,7 +29,7 @@ export const getAssociationTableAndFieldByName = (association: IContestAssociati
 }
 
 
-export const createContestAssociation = async ({ id, association, formData } : { id: string, association: IContestAssociationNames, formData: FormData }) => {
+export const createContestAssociation = async ({ id, association, formData } : { id: string, association: ContestAssociationNames, formData: FormData }) => {
     
     const associatedItemId = formData.get('associationItemId') as string
     
