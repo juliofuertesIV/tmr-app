@@ -71,10 +71,10 @@ export default function MediaForm({ collectionItem, collection, previewClassName
     const deleteCurrentMedia = () => formRef.current?.requestSubmit()
     
     const clickAction = currentMediumId ? deleteCurrentMedia : activateFileInput
-
+    
     const creationBoundAction = getAddMediumBoundAction({ collection, collectionItemId: collectionItem.id })
     const deletionBoundAction = getDeleteMediumBoundAction({ collection, mediumId: currentMediumId as string })
-
+    
     const boundAction = currentMediumId ? deletionBoundAction : creationBoundAction
     const [ state, action ] = useFormState(boundAction, formInitialState)
 

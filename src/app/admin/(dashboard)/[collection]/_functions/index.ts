@@ -1,6 +1,6 @@
 import { CollectionNames } from "@/types"
 import CollectionGrid from "../_components/CollectionGrid"
-import TagCategoriesGrid from "../_components/TagCategoriesGrid"
+import TagCategoriesGrid from "../_components/TagTypesGrid"
 
 export const getGridByCollectionName = (collection: CollectionNames) => {
 

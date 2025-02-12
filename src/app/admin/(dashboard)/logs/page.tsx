@@ -1,9 +1,8 @@
 import { Log } from '@/database/models'
-import manager from '@/database/models/manager'
-import { Log } from '@/types'
+import { Log as LogType } from '@/types'
 import React from 'react'
 
-const getLogs = async () : Promise<Log[]> => {
+const getLogs = async () : Promise<LogType[]> => {
     const logs = await Log.findAll({ 
         order: [
             ['createdAt', 'DESC']
@@ -12,7 +11,7 @@ const getLogs = async () : Promise<Log[]> => {
     .then(data => data)
     .catch(error => {
         throw new Error('Unable to get database logs: ' + error)
-    }) as unknown as Log[]
+    }) as unknown as LogType[]
 
     return logs
 }

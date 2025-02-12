@@ -11,7 +11,7 @@ const getScopes = (models) => {
             attributes: ["id", "name", "email", "RoleId"]
         },
         detailed: {
-            attributes: ["id", "name", "email", "RoleId"],
+            attributes: ["id", "name", "email", "RoleId", "MediumId"],
             include: [ 
                 Media, 
                 { model: Contest.scope('basic') }, 
