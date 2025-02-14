@@ -12,7 +12,7 @@ const getScopes = (models) => {
         },
         detailed: {
             order: [["createdAt", "DESC"]],
-            include: [ Media, Tag ]
+            include: [ Media, Tag/* , Contest */ ] // TO DO: order of imports is fucked
         },
         public: {
             order: [["createdAt", "DESC"]],

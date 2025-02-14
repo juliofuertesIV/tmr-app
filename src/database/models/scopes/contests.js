@@ -2,7 +2,7 @@
 
 const getScopes = (models) => {
 
-    const { Brand, State, SocialMedia, Param, Genre, Media } = models
+    const { Brand, State, SocialMedia, Param, Media } = models
 
     return {
       basic: {

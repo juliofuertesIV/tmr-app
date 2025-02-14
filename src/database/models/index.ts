@@ -56,7 +56,6 @@ const Manager = ManagerModel(sequelize, DataTypes)
 
 const models = [
     Brand,
-    Contest,
     ContestParam,
     ContestSocial,
     ContestManager,
@@ -74,6 +73,7 @@ const models = [
     TagCategory,
     Tag,
     TMRVote,
+    Contest,
     Vote
 ]
 
@@ -84,27 +84,27 @@ models.forEach((model) => {
 });
 
 export {
-    Brand,
-    Contest,
-    ContestParam,
-    ContestSocial,
-    ContestManager,
-    Footer,
-    FooterSponsor,
-    Inscription,
-    Log,
-    Manager,
-    Media,
-    Param,    
-    Role,
-    SocialMedia,
-    Sponsor,
-    State,
-    TagCategory,
-    Tag,
-    TMRVote,
-    Vote,
-    Voter,
+    Brand as Brand,
+    Contest as Contest,
+    ContestParam as ContestParam,
+    ContestSocial as ContestSocial,
+    ContestManager as ContestManager,
+    Footer as Footer,
+    FooterSponsor as FooterSponsor,
+    Inscription as Inscription,
+    Log as Log,
+    Manager as Manager,
+    Media as Media,
+    Param as Param,
+    Role as Role,
+    SocialMedia as SocialMedia,
+    Sponsor as Sponsor,
+    State as State,
+    TagCategory as TagCategory,
+    Tag as Tag,
+    TMRVote as TMRVote,
+    Vote as Vote,
+    Voter as Voter,
     sequelize
 }
 

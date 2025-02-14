@@ -11,7 +11,7 @@ export default function ContestCreation() {
 
     return (
         <div className='p-4 max-w-lg'>
-            <Form collection={ 'contests' } boundAction={ boundAction } fields={ fields } target="creation"/>
+            <Form mediaCollection={ 'contests' } boundAction={ boundAction } fields={ fields } target="creation"/>
         </div>
     )
 }

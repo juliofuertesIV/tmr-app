@@ -4,19 +4,22 @@ import React, { ChangeEvent, useEffect, useState } from 'react'
 import { MediaRole } from '@/types/media'
 import MediaInputPreview from './MediaInputPreview';
 import Label from '../../label/Label';
+import { CollectionWithMediumNames } from '@/types';
 
 type Props = {
     role: MediaRole,
-    alt: string,
-    collection: 'contests' | 'managers' | 'inscriptions' | 'sponsors',
+    alt?: string,
+    collection: CollectionWithMediumNames,
+    accept: string,
     domain: string,
     previewClassname?: React.ComponentProps<'div'>['className'];
 }
 
 export default function MediaInput({ 
     role,
-    alt,
+    alt = 'Default alt text.',
     collection,
+    accept,
     domain,
     previewClassname
     
@@ -74,7 +77,7 @@ export default function MediaInput({
                 classname={ previewClassname }
             />
             <Label textContent={ 'Elige una imagen' } isValid={ null }>
-                <input className='text-sm' type="file" name="file" onChange={ (e) => manageFileInputChange(e) }/>
+                <input className='text-sm' type="file" name="file" onChange={ (e) => manageFileInputChange(e) } accept={ accept } />
                 <small className='pt-1'>Elige un archivo menor de 2mb.</small>
             </Label>
             <input type="hidden" name="role" value={ role }/>

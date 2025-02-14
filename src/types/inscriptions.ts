@@ -2,6 +2,8 @@
 import { Contest } from "./contests";
 import { Media } from "./media";
 
+export type InscriptionScope = 'list' | 'detailed' | 'public' | 'basic'
+
 export type Inscription = {
     id: string,
     name: string,

@@ -4,7 +4,6 @@ const { getScopes } = require('./scopes/inscriptions')
 const { Model } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
-
   class Inscription extends Model {
     static associate(models) {
       Inscription.belongsTo(models.Contest, { foreignKey: 'ContestId' });
@@ -86,7 +85,7 @@ module.exports = (sequelize, DataTypes) => {
     defaultScope: getScopes(sequelize.models).basic,
     indexes: [
       {
-        fields: ['instagram', 'video', 'ContestId', 'year'],
+        fields: ['name', 'instagram', 'video', 'ContestId', 'year'],
         unique: true,
       },
     ],

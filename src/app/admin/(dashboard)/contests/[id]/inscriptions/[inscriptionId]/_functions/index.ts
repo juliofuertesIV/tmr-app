@@ -1,7 +1,7 @@
 import { Inscription } from "@/database/models"
-import { Inscription as InscriptionType } from "@/types/inscriptions"
+import { InscriptionScope, Inscription as InscriptionType } from "@/types/inscriptions"
 
-export const getInscriptionFromDatabase = async ({ id } : { id: string }) : Promise<InscriptionType | null> => {
+export const getInscriptionFromDatabase = async ({ id, scope } : { id: string, scope: InscriptionScope }) : Promise<InscriptionType | null> => {
 
     const inscription = await Inscription.scope('detailed').findOne({ where: { id }})
     .then(data => data)

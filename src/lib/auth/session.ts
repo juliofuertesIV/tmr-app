@@ -8,7 +8,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { Manager } from "@/database/models";
 
 export const getDecryptedManager = async () : Promise<DecryptedJWTManager | null> => {
-    const sessionToken = (await cookies()).get('session');
+    const sessionToken = cookies().get('session');
     return sessionToken ? await decryptJWT(sessionToken.value) : null;
 }
  

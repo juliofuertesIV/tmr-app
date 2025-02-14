@@ -1,7 +1,5 @@
 import { Inscription } from "@/database/models"
-import { Inscription as InscriptionType } from "@/types/inscriptions"
-
-export type InscriptionScope = 'list' | 'detailed' | 'public' | 'basic'
+import { InscriptionScope, Inscription as InscriptionType } from "@/types/inscriptions"
 
 export const getContestInscriptionsFromDatabase = async ({ contestId, scope } : { contestId: string, scope: InscriptionScope }) : Promise<InscriptionType[]> => {
     return await Inscription.scope(scope).findAll({ where: { ContestId: contestId }})

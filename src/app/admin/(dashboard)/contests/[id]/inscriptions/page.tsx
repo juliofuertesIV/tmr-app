@@ -16,8 +16,6 @@ export default async function ContestInscriptionsPage({ params } : { params: { i
 
     if (!inscriptions) throw new Error('No se ha encontrado el concurso en la base de datos.')
 
-    console.log(inscriptions)
-
     return (
         <section>
             <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 w-full max-w-7xl">

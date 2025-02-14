@@ -1,10 +1,16 @@
 import React, { ChangeEvent, useState } from 'react'
 import { IFormField } from '@/types/forms'
 import { validateInput } from '@/lib/forms/validation'
-import { AllCollections } from '@/types'
+import { AllCollections, CollectionWithMediumNames } from '@/types'
 import Label from '../label/Label'
+import MediaInput from './media/MediaInput'
 
-export default function FormInput({ field, collectionItem } : { field: IFormField, collectionItem?: AllCollections }) {
+type Props = { 
+    field: IFormField, 
+    collectionItem?: AllCollections,
+}
+
+export default function FormInput({ field, collectionItem } : Props) {
 
     const [ value, setValue ] = useState<string | null>(null)
     const [ isValid, setIsValid ] = useState<boolean | null>(null)
@@ -30,15 +36,20 @@ export default function FormInput({ field, collectionItem } : { field: IFormFiel
 
     const InputElement = element
 
-/*     if (field.media) return ( 
-        <MediaInput 
-            role={ field.media.role } 
-            alt={ 'Alt text for image.' } 
-            previewClassname={ field.media.previewClassname }
-            collection={ collection } SPECIFIC FOR MEDIA
-            domain={ domain } SPECIFIC FOR MEDIA
-        /> 
-    ) */
+    if (field.media) {
+
+        if (!collection) throw new Error('No collection provided for media field.')
+
+        return ( 
+            <MediaInput 
+                role={ field.media.role } 
+                alt={ 'Alt text for image.' } 
+                previewClassname={ field.media.previewClassname }
+                collection={ collection } 
+                domain={ domain || "" }
+            /> 
+        ) 
+    }
 
     return (
         <Label textContent={ label } isValid={ isValid }>

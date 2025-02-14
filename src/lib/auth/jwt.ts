@@ -1,4 +1,4 @@
-import { DecryptedJWTManager, Manager } from "@/types";
+import { DecryptedJWTManager } from "@/types";
 import { SignJWT, jwtVerify } from "jose";
 
 const secretJWTKey = process.env.SECRET_JWT_KEY
@@ -21,7 +21,13 @@ export async function decryptJWT(input: string): Promise<DecryptedJWTManager | n
 
     if (!input) return null
     
-    const data = await jwtVerify(input, key, { algorithms: ["HS256"] }).then((data) => { return data.payload }) as { manager: DecryptedJWTManager }
+    const data = await jwtVerify(
+        input,
+        key, { 
+            algorithms: ["HS256"] 
+        })
+        .then((data) => data.payload
+    ) as { manager: DecryptedJWTManager }
     
     const { manager } = data
 

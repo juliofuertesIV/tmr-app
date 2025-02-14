@@ -1,16 +1,14 @@
-import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
-import { decryptJWT } from "./lib/auth";
+import { NextRequest, NextResponse } from "next/server";
 
 export const middleware = async (req: NextRequest) => {
-    
-/*     const sessionToken = await cookies().get('session');
-    const decryptedManager = sessionToken ? await decryptJWT(sessionToken.value) : null;
 
-    const isAdminRoute = req.nextUrl.pathname.startsWith('/admin');
-    const isApiProtectedRoute = req.nextUrl.pathname.startsWith('/api/protected');
+    const isAdminRoute = req.nextUrl.pathname.startsWith('/admin')
+    const isApiProtectedRoute = req.nextUrl.pathname.startsWith('/api/protected'); 
 
-    if (!decryptedManager) {
+    const sessionToken = cookies().get('session');
+
+    if (!sessionToken) {
         if (isApiProtectedRoute) {
             return NextResponse.json({ success: false, message: 'Not allowed.' }, { status: 401 });
         }
@@ -18,8 +16,8 @@ export const middleware = async (req: NextRequest) => {
         if (isAdminRoute) {
             return NextResponse.redirect(new URL('/login', req.url));
         }
-    } */
-
+    }
+    
     return NextResponse.next();
 };
 
