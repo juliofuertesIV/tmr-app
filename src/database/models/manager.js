@@ -37,6 +37,14 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         isEmail: true // Ensure valid email format
       }
+    },
+    RoleId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+            model: 'Roles',
+            key: 'id'
+        }
     }
   }, {
     sequelize,

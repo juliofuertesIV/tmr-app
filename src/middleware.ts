@@ -21,5 +21,5 @@ export const middleware = async (req: NextRequest) => {
 };
 
 export const config = {
-    matcher: ['/admin/:path*', '/api/protected/:path'], // TO DO: Fix API calls to include cookies
+    matcher: ['/admin/:path*', '/api/protected/:path'], // TO DO: Fix API FETCH calls to include cookies /path* (get works fine)
 };

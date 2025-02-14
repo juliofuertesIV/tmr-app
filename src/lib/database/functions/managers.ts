@@ -15,9 +15,10 @@ export const getAllManagersFromDatabase = async ({ scope } : { scope: ManagerSco
 }
 
 export const getManagerFromDatabaseById = async ({ id, scope } : { id: string, scope: ManagerScope }) => {
+    
     const manager = await Manager.scope(scope).findOne({ where: { id }})
     .then(data => data)
-    .catch(error => { throw new Error(error as string )}) as unknown as ManagerType | null
+    .catch(error => { throw new Error(error as string )}) 
 
     return manager
 }

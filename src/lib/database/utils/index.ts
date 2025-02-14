@@ -51,7 +51,7 @@ const modelsByCollectionName = { // TO DO: SCOPESSSS!!
      tagCategories: {
          Model: TagCategory,
          options: {
-             include: [Tag],
+             include: [ Tag ],
              order: [['name', 'ASC']]
          }
      }
