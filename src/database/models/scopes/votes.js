@@ -1,18 +1,21 @@
-// src/scopes/contests.js
 
-const getScopes = (models) => {
+const getVoteScopes = (models) => {
 
     const { Voter } = models
     
-    return {
-        public: {
-            attributes: ["VoterId", "InscriptionId"],
-        },
-        detailed: {
-            include: [ Voter ],
+    return [
+        {
+            name: 'public',
+            scope: {
+                attributes: ["VoterId", "InscriptionId"],
+            },
+            name: 'detailed',
+            scope: {
+                include: [ Voter ],
+            }
         }
-    };
-  };
+    ]
+}
   
-  module.exports = { getScopes };
+  module.exports = { getVoteScopes };
   

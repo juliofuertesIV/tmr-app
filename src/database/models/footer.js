@@ -4,13 +4,9 @@ const { Model } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
   class Footer extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     */
     static associate(models) {
         Footer.hasOne(models.Contest);
-        Footer.belongsToMany(models.Media, { through: 'FooterMedia', onDelete: 'CASCADE' });
+        Footer.Sponsors = Footer.belongsToMany(models.Sponsor, { through: 'FooterSponsors' })
     }
   }  Footer.init({
     id: {

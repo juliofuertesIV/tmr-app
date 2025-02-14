@@ -1,9 +1,35 @@
-import { IContest, CollectionNames, Inscription, Sponsor, Manager } from "@/types"
-import { IAssociationKeys, IAssociation, ICollectionsWithAssociations, IContestRelationship, IRelationshipIdFieldnames, IAssociationIdFieldnames, IContestRelationshipIdFields, IInscriptionRelationshipIdFields, ISponsorRelationshipIdFields, IMedialessRelationshipIdFieldnames, IMedialessAssociationIdFieldnames, IMedialessAssociationKeys, IMedialessRelationship, IMedialessAssociation, ICollectionsWithAssociationsNames, IManagerRelationshipIdFields } from "@/types/associations"
 
-// TO DO: Tidy up this mess   
+import { Sponsor, Tag } from "@/database/models"
+import { AssociationKeys, AssociationIdFieldnames, CollectionsWithAssociationNames } from "@/types/associations"
+import { Model, ModelStatic } from "sequelize"
 
+export const getAssociationKeyAndIdFieldByCollectionName = ({ 
+    collectionName,
+} : { 
+    collectionName: CollectionsWithAssociationNames,
+}) => {
 
+    const associationKeysAndIdFields : { 
+        [key in CollectionsWithAssociationNames]: { 
+            associationKey: AssociationKeys,
+            associationIdField: AssociationIdFieldnames,
+            model: ModelStatic<Model<any, any>>
+        }} = {
+        inscriptions: {
+            associationKey: 'Tags',
+            associationIdField: 'TagId',
+            model: Tag,
+        },
+        footers: {
+            associationKey: 'Sponsors',
+            associationIdField: 'SponsorId',
+            model: Sponsor,
+        },
+    }
+    return associationKeysAndIdFields[collectionName]
+}
+
+/* 
 export const determineIfItemIsAssociated = ({
     item,
     collectionItem,
@@ -41,4 +67,4 @@ const isCurrentRelationshipByCollection = {
 } as {
     [key in ICollectionsWithAssociationsNames]: (collectionItem: ICollectionsWithAssociations, field: IMedialessRelationshipIdFieldnames, item: IMedialessRelationship) => boolean
 }
-
+ */

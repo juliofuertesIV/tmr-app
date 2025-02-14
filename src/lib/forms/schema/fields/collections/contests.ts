@@ -1,8 +1,8 @@
 import * as Input from '@/lib/forms/components/inputs/type'
 import { extractedSubdomainString, isValidDomain, isValidString, isValidUrl, processBasicTextInput } from "@/lib/forms/validation/functions"
-import { IActionTarget, IFormField, IMediaFormField } from "@/types/forms"
+import { ActionTarget, FormField, IMediaFormField } from "@/types/forms"
 
-export const contestFields : { [key in IActionTarget]: IFormField[] } = {
+export const contestFields : { [key in Exclude<ActionTarget, "delete">]: FormField[] } = {
     creation: [
         {
             name: 'name',

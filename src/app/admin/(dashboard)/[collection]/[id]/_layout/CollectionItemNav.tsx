@@ -15,6 +15,10 @@ const navItemsByCollectionName = {
         { name: 'Información', value: '', association: false },
         { name: 'Rol', value: 'role', association: false },
     ],
+    footers: [
+        { name: 'Información', value: '', association: false },
+        { name: 'Sponsors', value: 'sponsors', association: true },
+    ],
     sponsors: [
         { name: 'Información', value: '', association: false },
         { name: 'Imágenes', value: 'media', association: false },

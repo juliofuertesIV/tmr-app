@@ -9,6 +9,7 @@ export const getGridByCollectionName = (collection: CollectionNames) => {
         social: CollectionGrid,
         managers: CollectionGrid,
         sponsors: CollectionGrid,
+        footers: CollectionGrid,
         tags: CollectionGrid,
         tagCategories: TagCategoriesGrid
     }
@@ -24,6 +25,7 @@ export const getPageTitleByCollection = (collection: CollectionNames) => {
         managers: 'Usuarios',
         sponsors: 'Sponsors',
         tags: 'Etiquetas',
+        footers: 'Footers',
         tagCategories: 'Categorías de etiqueta'
     }
 

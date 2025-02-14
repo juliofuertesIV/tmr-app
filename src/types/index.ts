@@ -5,7 +5,7 @@ import { Media } from "./media"
 
 
 export type AllCollections = Brand & SocialMedia & Genre & Manager & TagCategory & Contest & Inscription
-export type CollectionNames = 'brands' | 'social' | 'managers' | 'sponsors' | 'tagCategories' | 'tags'
+export type CollectionNames = 'brands' | 'social' | 'managers' | 'sponsors' | 'tagCategories' | 'tags' | 'footers'
 
 export type CollectionWithMediumNames = 'inscriptions' | 'managers' | 'contests' | 'sponsors'
 export type CollectionsWithMedium = Inscription & Manager & Sponsor & Contest

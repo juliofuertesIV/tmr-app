@@ -1,4 +1,6 @@
-import { Brand, Genre, Inscription, Param, SocialMedia, Sponsor } from "."
+import { Brand, Genre, Param, SocialMedia, Sponsor } from "."
+import { Footer } from "./collections"
+import { Inscription } from "./inscriptions"
 import { Media } from "./media"
 
 
@@ -32,6 +34,8 @@ export type Contest = {
     Frame?: Media,
     Favicon?: Media,
     Brand?: Brand,
+    Footer: Footer,
+    FooterId: string,
     State?: IContestState,
     Genres?: Genre[],
     Inscriptions?: Inscription[],

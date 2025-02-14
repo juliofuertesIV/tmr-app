@@ -1,6 +1,6 @@
 'use client'
 
-import { IFormAction, IFormField } from '@/types/forms'
+import { IFormAction, FormField } from '@/types/forms'
 import { AllCollections, CollectionWithMediumNames, } from '@/types'
 import AdminFormFeedback from '../feedback/FormFeedback'
 import FormInput from './inputs/FormInput'
@@ -12,7 +12,7 @@ import MediaInput from './inputs/media/MediaInput'
 
 type Props = {
     boundAction: IFormAction,
-    fields: IFormField[],
+    fields: FormField[],
     children?: ReactNode
     mediaCollection?: CollectionWithMediumNames,
     domain?: string,

@@ -31,13 +31,11 @@ module.exports = (sequelize, DataTypes) => {
     },
     order: {
         type: DataTypes.INTEGER,
-        allowNull: false,
         unique: true
     }
   }, {
     sequelize,
-    modelName: 'FooterSponsor',
-    paranoid: true
+    modelName: 'FooterSponsor'
   })
 
   return FooterSponsor

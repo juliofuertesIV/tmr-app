@@ -17,7 +17,7 @@ export const getCollectionFromDatabase = async ({ collectionName } : { collectio
     const { Model, options /*, scope instead of options */ } = getModelByCollectionName(collectionName)
 
     return await Model.findAll({ ...options })
-    .then(data => JSON.parse(JSON.stringify(data)))
+    .then(data => data)
     .catch(error => { throw new Error(error as string) })
 }
 
@@ -35,6 +35,7 @@ export const getCollectionItemFromDatabase = async ({ collectionName, id } : { c
     const { Model, options /*, scope instead of options */ } = getModelByCollectionName(collectionName)
 
     return await Model.findOne({ where: { id }, ...options })
-    .then(data => JSON.parse(JSON.stringify(data)))
-    .catch(error => { throw new Error(error as string) })
+        .then(data => data)
+        .catch(error => { throw new Error(error as string) })
 }
+

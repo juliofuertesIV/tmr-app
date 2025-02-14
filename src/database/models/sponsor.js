@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-        Sponsor.belongsToMany(models.Contest, { through: 'ContestSponsors' })
+        Sponsor.belongsToMany(models.Footer, { through: 'FooterSponsors' })
         Sponsor.belongsTo(models.Media, { foreignKey: 'MediumId' })
     }
   }

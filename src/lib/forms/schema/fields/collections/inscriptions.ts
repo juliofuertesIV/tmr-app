@@ -1,9 +1,9 @@
 import * as Input from '@/lib/forms/components/inputs/type'
 
 import { isValidEmail, isValidString, isValidUrl, processBasicTextInput } from "@/lib/forms/validation/functions"
-import { IActionTarget, IFormField } from "@/types/forms"
+import { ActionTarget, FormField } from "@/types/forms"
 
-export const inscriptionFields : { [key in Exclude<IActionTarget, "delete">]: IFormField[] } = { 
+export const inscriptionFields : { [key in Exclude<ActionTarget, "delete">]: FormField[] } = { 
     creation: [
         {
             name: 'file',

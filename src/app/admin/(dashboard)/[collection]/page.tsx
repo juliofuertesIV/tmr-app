@@ -9,13 +9,18 @@ export const metadata: Metadata = {
     description: "El buen admin panel"
 };
 
+const getCollectionPageData = async ({ collectionName } : { collectionName: CollectionNames }) => {
+
+    const items = await getCollectionFromDatabase({ collectionName })
+
+    return JSON.parse(JSON.stringify(items))
+}
+
 export default async function AdminElementPage({ params } : { params: { collection: CollectionNames }}) {
     
     const { collection } = params
 
-    const items = await getCollectionFromDatabase({ collectionName: collection }) 
-
-    if (!items) return null
+    const items = await getCollectionPageData({ collectionName: collection }) 
 
     const ItemGrid = getGridByCollectionName(collection)
 

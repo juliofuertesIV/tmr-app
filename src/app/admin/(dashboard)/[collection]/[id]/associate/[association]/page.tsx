@@ -1,8 +1,8 @@
 import { Metadata } from "next";
 import AssociationManager from "./_components/AssociationManager";
-import { IAssociationNames, ICollectionsWithAssociationsNames, IMedialessAssociation, IMedialessAssociationIdFieldnames, IMedialessAssociationKeys, IMedialessAssociationNames } from "@/types/associations";
+import { AssociationNames, CollectionsWithAssociationNames } from "@/types/associations";
 import AssociationPageHeader from "./_components/AssociationPageHeader";
-import { getCollectionElementAndAssociationsById } from "@/lib/fetch/get/collections";
+import { getCollectionAssociationPageData } from "./_functions";
 
 export const metadata: Metadata = {
     title: "Panel de administración TMR",
@@ -11,32 +11,30 @@ export const metadata: Metadata = {
 
 type Props = {
     params: { 
-        collection: ICollectionsWithAssociationsNames,
+        collection: CollectionsWithAssociationNames,
         id: string,
-        association: IAssociationNames 
+        association: AssociationNames 
     }
 }
 
-export default async function AdminAssociationPage({ params } : Props) {
+export default async function CollectionAssociationPage({ params } : Props) {
     
     const { collection, id, association } = params
 
-    const { data } = await getCollectionElementAndAssociationsById(collection, id, association)
-
-    if (!data) throw new Error('Error fetching shit.')
+    const data = await getCollectionAssociationPageData({ collection, id, association })
 
     const { item, associationItems, associationIdField, associationKey } = data
 
     return (
-        <section className="w-full flex flex-col items-center">
+        <section className="w-full flex flex-col">
             <AssociationPageHeader association={ association } item={ item } collection={ collection }/>
             <AssociationManager 
                 collection={ collection }
                 collectionItem={ item } 
-                association={ association as IMedialessAssociationNames }
-                associationItems={ associationItems as IMedialessAssociation[] }
-                associationKey={ associationKey as IMedialessAssociationKeys }
-                associationIdField={ associationIdField as IMedialessAssociationIdFieldnames }
+                association={ association }
+                associationItems={ associationItems }
+                associationKey={ associationKey }
+                associationIdField={ associationIdField }
             />
         </section>
     )

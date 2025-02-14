@@ -1,4 +1,5 @@
 
+import { Tag } from "./collections";
 import { Contest } from "./contests";
 import { Media } from "./media";
 
@@ -25,6 +26,7 @@ export type Inscription = {
     twitter?: string,
     MediumId: string,
     Medium: Media,
+    Tags: Tag[],
     Contest: Contest,
     ContestId: string, // TO DO: not working
 }

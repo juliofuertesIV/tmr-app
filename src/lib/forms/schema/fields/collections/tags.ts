@@ -1,8 +1,8 @@
 import * as Input from '@/lib/forms/components/inputs/type'
 import { isValidString, processBasicTextInput } from "@/lib/forms/validation/functions"
-import { IActionTarget, IFormField } from "@/types/forms"
+import { ActionTarget, FormField } from "@/types/forms"
 
-export const tagFields : { [key in IActionTarget]: IFormField[] } = {
+export const tagFields : { [key in Exclude<ActionTarget, "delete">]: FormField[] } = {
     creation: [
         {
             name: 'name',

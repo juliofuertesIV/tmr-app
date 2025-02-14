@@ -1,4 +1,4 @@
-import { Brand, Contest, Inscription, Log, Manager, Media, Role, SocialMedia, Sponsor, Tag, TagCategory } from "@/database/models";
+import { Brand, Contest, Footer, Inscription, Log, Manager, Media, Role, SocialMedia, Sponsor, Tag, TagCategory } from "@/database/models";
 import { CollectionNames } from "@/types"
 import { FindOptions, Model, ModelStatic } from "sequelize";
 
@@ -12,15 +12,16 @@ const modelsByCollectionName = { // TO DO: SCOPESSSS!!
             include: [ Contest ]
          }
      },
+     footers: {
+        Model: Footer,
+        options: {
+            order: [['name', 'ASC']],
+            include: [ Sponsor ]
+        }
+     },
      social: {
          Model: SocialMedia,
          options: {}
-     },
-     inscriptions: {
-         Model: Inscription,
-         options: {
-             include: [Contest]
-         }
      },
      managers: {
          Model: Manager,

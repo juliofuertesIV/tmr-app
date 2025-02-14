@@ -1,16 +1,21 @@
 // src/scopes/contests.js
 
-const getScopes = (models) => {
-
-    return {
-        public: {
-            attributes: { exclude: ["folder", "filename", "role"]}
+const getMediaScopes = (models) => {
+    return [
+        {
+            name: 'public',
+            scope: {
+                attributes: { exclude: ["folder", "filename", "role"]}
+            },
         },
-        detailed: {
-            order: [["createdAt", "DESC"]]
+        { 
+            name: 'detailed',
+            scope: {
+                order: [["createdAt", "DESC"]]
+            }
         }
-    };
-  };
-  
-  module.exports = { getScopes };
+    ]
+}
+
+  module.exports = { getMediaScopes };
   

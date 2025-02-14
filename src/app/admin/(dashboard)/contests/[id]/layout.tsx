@@ -1,6 +1,5 @@
 import { getContestFromDatabaseById } from "@/lib/database/functions/contests";
 import ContestInnerNav from "./_components/ContestInnerNav";
-import { getContestById } from "@/lib/fetch/get/contests";
 
 type Props = {
     params: {
@@ -10,11 +9,18 @@ type Props = {
 }
 
 
+const getLayoutData = async ({ id } : { id: string }) => {
+
+    const contest = await getContestFromDatabaseById({ id, scope: 'detailed'})
+
+    return JSON.parse(JSON.stringify(contest))
+}
+
 export default async function Layout({ params, children } : Props) {
 
     const { id } = params
 
-    const contest = await getContestFromDatabaseById({ id, scope: 'detailed' })
+    const contest = await getLayoutData({ id })
 
     if (!contest) throw new Error('Contest not found.')
 
@@ -23,7 +29,7 @@ export default async function Layout({ params, children } : Props) {
             <header className="flex gap-4 items-center mb-2">
                 <h1 className="leading-none">{ contest.name } <span className="font-thin">{ contest.year }</span></h1>
             </header>
-            <ContestInnerNav id={ id }/>
+            <ContestInnerNav contest={ contest }/>
             { children }
         </section>
     )

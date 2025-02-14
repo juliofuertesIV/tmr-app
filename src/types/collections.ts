@@ -21,7 +21,8 @@ export type Brand = {
 export type Footer = {
     id: string,
     name: string,
-    ContestId: string
+    ContestId: string,
+    Sponsors: Sponsor[]
 }
 
 export type Param = {

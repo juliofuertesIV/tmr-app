@@ -2,7 +2,7 @@
 
 const getContestScopes = (models) => {
 
-    const { Brand, State, SocialMedia, Param, Media } = models
+    const { Brand, State, SocialMedia, Param, Media, Footer } = models
  
     return [
         { 
@@ -25,6 +25,7 @@ const getContestScopes = (models) => {
                     State,
                     SocialMedia,
                     Param,
+                    { model: Footer, include: [ models.Sponsor ]},
                     { model: Media, as: "Logo" },
                     { model: Media, as: "Banner" },
                     { model: Media, as: "Frame" },
@@ -41,6 +42,7 @@ const getContestScopes = (models) => {
                     State,
                     SocialMedia,
                     Param,
+                    { model: Footer, include: [ models.Sponsor ]},
                     { model: Media, as: "Logo" },
                     { model: Media, as: "Banner" },
                     { model: Media, as: "Frame" },

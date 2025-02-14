@@ -1,12 +1,12 @@
 'use server'
 
 import { IAPIResponse } from "@/types/api"
-import { IContestAssociationNames } from "@/types/associations"
+import { ContestAssociationNames } from "@/types/contests"
 import { revalidateTag } from "next/cache"
 
 export const disassociateItemsFromContest = async (
     contestId: string | number,
-    association: IContestAssociationNames,
+    association: ContestAssociationNames,
     associatedItemId: string,
     prevState: any
 ) : Promise<IAPIResponse<null>> => {

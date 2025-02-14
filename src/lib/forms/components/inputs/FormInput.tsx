@@ -1,12 +1,12 @@
 import React, { ChangeEvent, useState } from 'react'
-import { IFormField } from '@/types/forms'
+import { FormField } from '@/types/forms'
 import { validateInput } from '@/lib/forms/validation'
 import { AllCollections, CollectionWithMediumNames } from '@/types'
 import Label from '../label/Label'
 import MediaInput from './media/MediaInput'
 
 type Props = { 
-    field: IFormField, 
+    field: FormField, 
     collectionItem?: AllCollections,
 }
 

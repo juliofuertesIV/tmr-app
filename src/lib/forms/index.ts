@@ -1,10 +1,10 @@
 import { CollectionNames } from "@/types"
 import { GetCreationBoundFormAction, getCreationBoundFormActionByCollection, getDeleteBoundFormActionByCollection, GetDeleteFormAction, GetUpdateBoundFormAction, getUpdateBoundFormActionByCollection } from "./schema/actions"
-import { IActionTarget, IFormField } from "@/types/forms"
+import { ActionTarget, FormField } from "@/types/forms"
 import { getFieldsByCollectionAndActionTarget } from "./schema/fields"
 
 type FormSchema = {
-    fields: IFormField[],
+    fields: FormField[],
     bindCreationAction: GetCreationBoundFormAction,
     bindUpdateAction: GetUpdateBoundFormAction,
     bindDeleteAction: GetDeleteFormAction
@@ -15,7 +15,7 @@ export const getFormSchema = ({
     actionTarget 
 } : { 
     collection: CollectionNames | 'contests' | 'inscriptions',
-    actionTarget: IActionTarget 
+    actionTarget: ActionTarget 
 }) : FormSchema => {
 
     return {

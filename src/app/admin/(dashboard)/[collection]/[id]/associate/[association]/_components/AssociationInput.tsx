@@ -1,38 +1,34 @@
-/* import { IContestState, ICollectionNames, IParam } from '@/types'
 import { formInitialState } from '@/lib/forms/feedback/state'
 import React, { useEffect, useRef, useState } from 'react'
 import { useFormState } from 'react-dom'
-import AssociationIcon from './AssociationIcon'
-
-import { updateCollectionItem } from '@/lib/fetch/put/collections'
+import { Association, AssociationKeys, AssociationNames, CollectionsWithAssociationNames, CollectionsWithAssociations } from '@/types/associations'
+import AssociationIcon from '@/app/admin/_layout/design/icons/AssociationIcon'
+import { associateToCollectionItem } from '@/lib/fetch/post/collections'
+import { dissociateFromCollectionItem } from '@/lib/fetch/delete/collections'
 
 type Props = {
-    collection: ICollectionNames,
-    collectionItem: ICollectionsWithAssociations,
-    association: IAssociationNames | IContestRelationshipNames,
-    associationItem: IAssociation | IContestRelationship,
-    associationIdField: IAssociationIdFieldnames | IRelationshipIdFieldnames,
-    isCurrentlyAssociated: boolean,
-    isRelationship: boolean
+    collectionItem: CollectionsWithAssociations,
+    associationItem: Association,
+    association: AssociationNames
+    associationKey: AssociationKeys,
+    collection: CollectionsWithAssociationNames,
 }
 
 export default function AssociationInput({ 
     collection,
     collectionItem,
     associationItem,
-    associationIdField,
-    isCurrentlyAssociated,
-    isRelationship,
     association,
+    associationKey
     
 } : Props) {
 
+    const isCurrentlyAssociated = collectionItem[associationKey].some(item => item.id === associationItem.id)
 
-    const boundAssociationAction = associateItems.bind(null, collection, collectionItem.id, association as IAssociationNames)
-    const boundDissociationAction = disassociateItems.bind(null, collection, collectionItem.id, association as IAssociationNames, associationItem.id)
-    const boundRelationshipAction = updateCollectionItem.bind(null, collection, collectionItem.id)
-
-    const boundAction = isRelationship ? boundRelationshipAction : (isCurrentlyAssociated ? boundDissociationAction : boundAssociationAction)
+    const boundAssociationAction = associateToCollectionItem.bind(null, collection, collectionItem.id, association)
+    const boundDissociationAction = dissociateFromCollectionItem.bind(null, collection, collectionItem.id, association, associationItem.id)
+    
+    const boundAction = isCurrentlyAssociated ? boundDissociationAction : boundAssociationAction
 
     const [ state, formAction ] = useFormState(boundAction, formInitialState)
     const [ loading, setLoading ] = useState<boolean>(false)
@@ -57,18 +53,14 @@ export default function AssociationInput({
 
     }, [ state ])
 
-    const { description } = (associationItem as IParam | IContestState) || null
-
     const manageHoverState = (hovered: boolean) => setHovered(hovered)
-
-    if (association === 'media') return null
 
     return (
         <div 
             className="bg-neutral-300 text-neutral-800 rounded-sm px-4 py-1 cursor-pointer hover:bg-neutral-100 data-[active='true']:bg-green-400 data-[active='true']:text-neutral-900 data-[active='true']:hover:bg-red-400 data-[loading='true']:pointer-events-none data-[loading='true']:bg-orange-500 "
             data-active={ isCurrentlyAssociated }
             data-loading={ loading }
-            style={{ pointerEvents: isCurrentlyAssociated && isRelationship ? 'none' : (loading ? 'none' : 'auto') }}
+            style={{ pointerEvents: loading ? 'none' : 'auto' }}
             onClick={ onClickItem }
             onMouseEnter={ () => manageHoverState(true) }
             onMouseOver={ () => manageHoverState(true) }
@@ -77,14 +69,12 @@ export default function AssociationInput({
             <div className='flex w-full justify-between items-center py-2'>
                 <div className='flex flex-col gap-1.5'>
                     <p className='text-sm uppercase leading-none'>{ (associationItem as any).name }</p> 
-                    { description && <p className='text-xs leading-none'>{ description }</p> }
                 </div>
                 <AssociationIcon loading={ loading } checked={ isCurrentlyAssociated } hovered={ hovered }/>
             </div>
             <form action={ formAction } ref={ form }>
-                <input type="hidden" name={ isRelationship ? associationIdField : "associationId" } value={ associationItem.id }/>
+                <input type="hidden" name={ "associationId" } value={ associationItem.id }/>
             </form>
         </div>            
     )
 }
- */

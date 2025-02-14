@@ -9,11 +9,19 @@ export const metadata: Metadata = {
     description: "El buen admin panel"
 };
 
+const getCollectionItemPageData = async ({ collectionName, id } : { collectionName: CollectionNames, id: string }) => {
+
+    const item = await getCollectionItemFromDatabase({ collectionName, id })
+
+    return JSON.parse(JSON.stringify(item))
+
+}
+
 export default async function AdminElementPage({ params } : { params: { collection: CollectionNames, id: string }}) {
     
     const { collection, id } = params
 
-    const item = await getCollectionItemFromDatabase({ collectionName: collection, id })
+    const item = await getCollectionItemPageData({ collectionName: collection, id })
     
     if (!item) throw new Error('No se ha encontrado el elemento en la base de datos.')
 

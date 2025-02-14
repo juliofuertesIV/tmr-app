@@ -11,6 +11,7 @@ import ContestManagerModel from './contestmanager.js';
 import FooterModel from './footer.js';
 import FooterSponsorModel from './footersponsor.js';
 import InscriptionModel from './inscription.js';
+import InscriptionTagModel from './inscriptiontags.js';
 import LogModel from './log.js';
 import ManagerModel from './manager.js';
 import MediaModel from './media.js';
@@ -28,6 +29,8 @@ import configData from '../config/config.js'
 import { getManagerScopes } from './scopes/managers.js';
 import { getContestScopes } from './scopes/contests.js';
 import { getInscriptionScopes } from './scopes/inscriptions.js';
+import { getVoteScopes } from './scopes/votes.js';
+import { getMediaScopes } from './scopes/media.js';
 
 const env = process.env.NODE_ENV || 'development';
 const config = configData[env] as Options
@@ -53,6 +56,7 @@ const Voter = VoterModel(sequelize, DataTypes)
 const Vote = VoteModel(sequelize, DataTypes)
 const Tag = TagModel(sequelize, DataTypes)
 const Inscription = InscriptionModel(sequelize, DataTypes)
+const InscriptionTag = InscriptionTagModel(sequelize, DataTypes)
 const Contest = ContestModel(sequelize, DataTypes)
 const Manager = ManagerModel(sequelize, DataTypes)
 
@@ -64,8 +68,9 @@ const models = [
     { model: Footer, getScopeList: null },
     { model: FooterSponsor, getScopeList: null },
     { model: Inscription, getScopeList: getInscriptionScopes },
+    { model: InscriptionTag, getScopeList: null },
     { model: Log, getScopeList: null },
-    { model: Media, getScopeList: null },
+    { model: Media, getScopeList: getMediaScopes },
     { model: Param, getScopeList: null },
     { model: Role, getScopeList: null },
     { model: SocialMedia, getScopeList: null },
@@ -76,7 +81,7 @@ const models = [
     { model: TMRVote, getScopeList: null },
     { model: Manager, getScopeList: getManagerScopes },
     { model: Contest, getScopeList: getContestScopes },
-    { model: Vote, getScopeList: null },
+    { model: Vote, getScopeList: getVoteScopes },
 ]
 
 
@@ -114,27 +119,28 @@ models.forEach((item) => {
 });
 
 export {
-    Brand as Brand,
-    Contest as Contest,
-    ContestParam as ContestParam,
-    ContestSocial as ContestSocial,
-    ContestManager as ContestManager,
-    Footer as Footer,
-    FooterSponsor as FooterSponsor,
-    Inscription as Inscription,
-    Log as Log,
-    Manager as Manager,
-    Media as Media,
-    Param as Param,
-    Role as Role,
-    SocialMedia as SocialMedia,
-    Sponsor as Sponsor,
-    State as State,
-    TagCategory as TagCategory,
-    Tag as Tag,
-    TMRVote as TMRVote,
-    Vote as Vote,
-    Voter as Voter,
+    Brand,
+    Contest,
+    ContestParam,
+    ContestSocial,
+    ContestManager,
+    Footer,
+    FooterSponsor,
+    Inscription,
+    InscriptionTag,
+    Log,
+    Manager,
+    Media,
+    Param,
+    Role,
+    SocialMedia,
+    Sponsor,
+    State,
+    TagCategory,
+    Tag,
+    TMRVote,
+    Vote,
+    Voter,
     sequelize
 }
 

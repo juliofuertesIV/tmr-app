@@ -1,8 +1,8 @@
 import { Metadata } from "next";
-import { getModelByCollectionName, getRelationshipModelByName } from "@/app/api/protected/contests/[id]/[association]/_utils";
-import { ICollectionsWithAssociations, IContestRelationshipNames, IContestRelationship, IMedialessAssociationIdFieldnames, IMedialessAssociation, IMedialessRelationship, ICollectionsWithAssociationsNames } from "@/types/associations";
+import { getModelByCollectionName } from "@/app/api/protected/contests/[id]/[association]/_utils";
 import AssociationPageHeader from "../associate/[association]/_components/AssociationPageHeader";
 import AssociationManager from "../associate/[association]/_components/AssociationManager";
+import { CollectionNames } from "@/types";
 
 export const metadata: Metadata = {
     title: "Panel de administración TMR",
@@ -11,13 +11,13 @@ export const metadata: Metadata = {
 
 type Props = {
     params: { 
-        collection: ICollectionsWithAssociationsNames,
+        collection: CollectionNames,
         id: string,
-        relationship: IContestRelationshipNames
+        relationship: string
     }
 }
 
-const getPageData = async ({ collection, id, relationship } : { collection: ICollectionsWithAssociationsNames, id: string, relationship: IContestRelationshipNames }) => {
+/* const getPageData = async ({ collection, id, relationship } : { collection: ICollectionsWithAssociationsNames, id: string, relationship: IContestRelationshipNames }) => {
 
     const { RelationshipModel, options: relationshipOptions } = getRelationshipModelByName(relationship)
     const { Model, options } = getModelByCollectionName(collection)
@@ -29,11 +29,11 @@ const getPageData = async ({ collection, id, relationship } : { collection: ICol
         item: JSON.parse(JSON.stringify(item)), 
         relationshipItems: JSON.parse(JSON.stringify(relationshipItems)) 
     }
-}
+} */
 
 export default async function AdminRelationshipPage({ params } : Props) {
     
-    const { collection, id, relationship } = params
+/*     const { collection, id, relationship } = params
 
     const { item, relationshipItems } = await getPageData({ collection, relationship, id }) 
 
@@ -43,11 +43,11 @@ export default async function AdminRelationshipPage({ params } : Props) {
 
         return null
 
-    }
+    } */
 
     return (
         <section className="w-full flex flex-col items-center">
-            <AssociationPageHeader collection={ collection } association={ relationship } item={ item }/>
+            {/* <AssociationPageHeader collection={ collection } association={ relationship } item={ item }/>
             <AssociationManager 
                 collection={ collection }
                 collectionItem={ item } 
@@ -55,7 +55,7 @@ export default async function AdminRelationshipPage({ params } : Props) {
                 associationIdField={ relationshipIdFieldName as IMedialessAssociationIdFieldnames }
                 associationItems={ relationshipItems as IMedialessAssociation[] | IMedialessRelationship[] }
                 associationKey={ null }
-            />
+            /> */}
         </section>
     )
 }

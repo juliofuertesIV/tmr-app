@@ -3,8 +3,9 @@ import { deleteAssociation } from "./_functions/delete";
 import { constructAPIResponse } from "@/app/api/_functions";
 import { handleApiError } from "@/lib/errors";
 import { NextRequest } from "next/server";
+import { AssociationNames } from "@/types/associations";
 
-type Params = { params: { collection: CollectionNames, id: string, association: string, associationId: string }}
+type Params = { params: { collection: CollectionNames, id: string, association: AssociationNames, associationId: string }}
 
 export const DELETE = async (req: NextRequest, { params } : Params) => {
 
@@ -12,6 +13,15 @@ export const DELETE = async (req: NextRequest, { params } : Params) => {
 
     try {
         await deleteAssociation({ collection, id, association, associationId })
+
+        return Response.json(
+            constructAPIResponse({
+                message: 'Asociación eliminada correctamente.',
+                success: true,
+                error: null,
+                data: null
+            })
+        )
     } catch (error) {
         return await handleApiError({
             req,
@@ -20,14 +30,4 @@ export const DELETE = async (req: NextRequest, { params } : Params) => {
             route: `/api/collections/${ collection }/${ id }/${ association }/${ associationId }`,
         })
     }
-
-    return Response.json(
-        constructAPIResponse({
-            message: 'Asociación eliminada correctamente.',
-            success: true,
-            error: null,
-            data: null
-        })
-    )
-
 }

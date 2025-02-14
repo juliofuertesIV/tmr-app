@@ -20,9 +20,6 @@ export default async function Layout({ params, children } : Props) {
 
     return (
         <section className="admin-page-content">
-            <header>
-                <h1>{ item.name }</h1>
-            </header>
             <CollectionItemNav collection={ collection } id={ id }/>
             { children }
         </section>
