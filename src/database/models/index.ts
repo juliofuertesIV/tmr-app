@@ -1,6 +1,6 @@
 'use strict';
 
-import { Sequelize, DataTypes, Options } from 'sequelize'
+import { Sequelize, DataTypes, Options, FindOptions, ModelStatic, Model } from 'sequelize'
 
 // Models Import (Static import for individual models)
 import BrandModel from './brand.js';
@@ -24,8 +24,10 @@ import TagModel from './tag.js';
 import TMRVoteModel from './tmrvote.js';
 import VoteModel from './vote.js';
 import VoterModel from './voter.js';
-
 import configData from '../config/config.js'
+import { getManagerScopes } from './scopes/managers.js';
+import { getContestScopes } from './scopes/contests.js';
+import { getInscriptionScopes } from './scopes/inscriptions.js';
 
 const env = process.env.NODE_ENV || 'development';
 const config = configData[env] as Options
@@ -55,32 +57,60 @@ const Contest = ContestModel(sequelize, DataTypes)
 const Manager = ManagerModel(sequelize, DataTypes)
 
 const models = [
-    Brand,
-    ContestParam,
-    ContestSocial,
-    ContestManager,
-    Footer,
-    FooterSponsor,
-    Inscription,
-    Log,
-    Manager,
-    Media,
-    Param,
-    Role,
-    SocialMedia,
-    Sponsor,
-    State,
-    TagCategory,
-    Tag,
-    TMRVote,
-    Contest,
-    Vote
+    { model: Brand, getScopeList: null },
+    { model: ContestParam, getScopeList: null },
+    { model: ContestSocial, getScopeList: null },
+    { model: ContestManager, getScopeList: null },
+    { model: Footer, getScopeList: null },
+    { model: FooterSponsor, getScopeList: null },
+    { model: Inscription, getScopeList: getInscriptionScopes },
+    { model: Log, getScopeList: null },
+    { model: Media, getScopeList: null },
+    { model: Param, getScopeList: null },
+    { model: Role, getScopeList: null },
+    { model: SocialMedia, getScopeList: null },
+    { model: Sponsor, getScopeList: null },
+    { model: State, getScopeList: null },
+    { model: TagCategory, getScopeList: null },
+    { model: Tag, getScopeList: null },
+    { model: TMRVote, getScopeList: null },
+    { model: Manager, getScopeList: getManagerScopes },
+    { model: Contest, getScopeList: getContestScopes },
+    { model: Vote, getScopeList: null },
 ]
 
-models.forEach((model) => {
-    if (model.associate) {
-        model.associate(sequelize.models);
-    }
+
+type ScopeList = { name: string, scope: FindOptions }[]
+
+const addScopes = ({ 
+    getScopeList,
+    model,
+    listOfModels 
+} : { 
+    getScopeList: (listOfModels: { [key: string]: ModelStatic<Model<any, any>>; }) => any,
+    model: ModelStatic<Model>,
+    listOfModels: { [key: string]: ModelStatic<Model<any, any>>; } 
+}) => {
+        
+    const scopes = getScopeList(listOfModels) as ScopeList
+
+    scopes.forEach((one) => {
+        model.addScope(
+            one.name,
+            one.scope
+        )
+    })
+}
+
+models.forEach((item) => {
+
+    const { model, getScopeList } = item
+    
+    if (model.associate) model.associate(sequelize.models);
+   
+    if (getScopeList) {
+        addScopes({ getScopeList, listOfModels: sequelize.models, model })
+    }    
 });
 
 export {
@@ -107,4 +137,6 @@ export {
     Voter as Voter,
     sequelize
 }
+
+
 

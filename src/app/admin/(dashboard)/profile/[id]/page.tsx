@@ -14,6 +14,8 @@ export default async function ProfilePage({ params } : { params: { id: string }}
     const { id } = params
 
     const manager = await getProfilePageData({ id })
+
+    console.log({ manager })
     
     return (
         <section className="admin-page-content">

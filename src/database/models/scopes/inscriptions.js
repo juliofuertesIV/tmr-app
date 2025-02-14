@@ -1,29 +1,41 @@
 // src/scopes/contests.js
 
-const getScopes = (models) => {
+const getInscriptionScopes = (models) => {
 
     const { Contest, Media, Tag } = models
 
-    return {
-        list: {
-            order: [["createdAt", "DESC"]],
-            include: [ Media, Tag ],
-            attributes: ["id", "name", "email", "ContestId"]
+    return [
+        { 
+            name: 'list', 
+            scope: {
+                order: [["createdAt", "DESC"]],
+                include: [ Media, Tag ],
+                attributes: ["id", "name", "email", "ContestId"]
+            },
         },
-        detailed: {
-            order: [["createdAt", "DESC"]],
-            include: [ Media, Tag/* , Contest */ ] // TO DO: order of imports is fucked
+        { 
+            name: 'detailed', 
+            scope: {
+                order: [["createdAt", "DESC"]],
+                include: [ Media, Tag, Contest ] 
+            }
         },
-        public: {
-            order: [["createdAt", "DESC"]],
-            include: [ Media, Tag ],
-            attributes: { exclude: ["contactName, phone, email"] }
+        { 
+            name: 'public', 
+            scope: {
+                order: [["createdAt", "DESC"]],
+                include: [ Media, Tag ],
+                attributes: { exclude: ["contactName, phone, email"] }
+            }
         },
-        basic: {
-            attributes: ["id", "verified"]
+        { 
+            name: 'basic', 
+                scope: {
+                attributes: ["id", "verified"]
+            }
         }
-    };
-  };
+    ]
+}
   
-  module.exports = { getScopes };
+  module.exports = { getInscriptionScopes };
   

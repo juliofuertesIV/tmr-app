@@ -1,7 +1,7 @@
 'use server'
 
 import { IAPIResponse } from "@/types/api"
-import { IContestAssociationNames } from "@/types/associations"
+import { ContestAssociationNames } from "@/types/contests"
 import { revalidateTag } from "next/cache"
 
 export const addContest = async (
@@ -12,6 +12,7 @@ export const addContest = async (
     const res = await fetch(`http://localhost:3000/api/protected/contests`, {
         method: "POST",
         cache: 'no-cache',
+        credentials: 'include',
         body: formData
     })
     .then(async data => await data.json())
@@ -24,7 +25,7 @@ export const addContest = async (
 
 export const associateItemToContest = async (
     contestId: string,
-    association: IContestAssociationNames,
+    association: ContestAssociationNames,
     prevState: any,
     formData: FormData
 ) : Promise<IAPIResponse<null>> => {

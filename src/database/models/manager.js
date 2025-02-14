@@ -6,10 +6,10 @@ const { Model } = require('sequelize')
 module.exports = (sequelize, DataTypes) => {
   class Manager extends Model {
     static associate(models) {
-        Manager.belongsToMany(models.Contest, { through: 'ManagerContests', })
-        Manager.belongsTo(models.Media, { foreignKey: 'MediumId', onDelete: 'SET NULL' })
-        Manager.belongsTo(models.Role),
-        Manager.hasMany(models.Log)
+        Manager.Contest = Manager.belongsToMany(models.Contest, { through: 'ManagerContests' })
+        Manager.Media = Manager.belongsTo(models.Media, { foreignKey: 'MediumId', onDelete: 'SET NULL' })
+        Manager.Role = Manager.belongsTo(models.Role),
+        Manager.Log = Manager.hasMany(models.Log)
     }
   }
   Manager.init({
@@ -40,8 +40,6 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, {
     sequelize,
-    scopes: getScopes(sequelize.models),
-    defaultScope: getScopes(sequelize.models).list,
     modelName: 'Manager',
   });
   return Manager;

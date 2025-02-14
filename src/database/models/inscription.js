@@ -81,8 +81,6 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'Inscription',
     paranoid: true,
-    scopes: getScopes(sequelize.models),
-    defaultScope: getScopes(sequelize.models).basic,
     indexes: [
       {
         fields: ['name', 'instagram', 'video', 'ContestId', 'year'],

@@ -17,19 +17,18 @@ module.exports = (sequelize, DataTypes) => {
     
     class Contest extends Model {
     static associate(models) {
-        Contest.belongsToMany(models.Param, { through: 'ContestParams'})
-        Contest.belongsToMany(models.SocialMedia, { through: 'ContestSocials' });
-        Contest.belongsToMany(models.Manager, { through: 'ManagerContests' });
-        Contest.hasMany(models.Voter);
-        Contest.hasMany(models.Voter);
-        Contest.belongsTo(models.Brand);
-        Contest.belongsTo(models.State);
-        Contest.belongsTo(models.Footer);
-        Contest.belongsTo(models.Media, { as: 'Logo', foreignKey: 'LogoId', onDelete: 'SET NULL' });
-        Contest.belongsTo(models.Media, { as: 'Banner', foreignKey: 'BannerId', onDelete: 'SET NULL' });
-        Contest.belongsTo(models.Media, { as: 'Frame', foreignKey: 'FrameId', onDelete: 'SET NULL' });
-        Contest.belongsTo(models.Media, { as: 'Favicon', foreignKey: 'FaviconId', onDelete: 'SET NULL' });
-        Contest.hasMany(models.Inscription);   
+        Contest.Params = Contest.belongsToMany(models.Param, { through: 'ContestParams'})
+        Contest.SocialMedia = Contest.belongsToMany(models.SocialMedia, { through: 'ContestSocials' });
+        Contest.Managers = Contest.belongsToMany(models.Manager, { through: 'ManagerContests' });
+        Contest.Voters = Contest.hasMany(models.Voter);
+        Contest.Brand = Contest.belongsTo(models.Brand);
+        Contest.State = Contest.belongsTo(models.State);
+        Contest.Footer = Contest.belongsTo(models.Footer);
+        Contest.Logo = Contest.belongsTo(models.Media, { as: 'Logo', foreignKey: 'LogoId', onDelete: 'SET NULL' });
+        Contest.Banner = Contest.belongsTo(models.Media, { as: 'Banner', foreignKey: 'BannerId', onDelete: 'SET NULL' });
+        Contest.Frame = Contest.belongsTo(models.Media, { as: 'Frame', foreignKey: 'FrameId', onDelete: 'SET NULL' });
+        Contest.Favicon = Contest.belongsTo(models.Media, { as: 'Favicon', foreignKey: 'FaviconId', onDelete: 'SET NULL' });
+        Contest.Inscriptions = Contest.hasMany(models.Inscription);
       }
   }  Contest.init({
     id: {
@@ -91,8 +90,6 @@ module.exports = (sequelize, DataTypes) => {
         unique: true,
       },
     ],
-    scopes: getScopes(sequelize.models),
-    defaultScope: getScopes(sequelize.models).public,
     hooks: {
       beforeValidate: (record) => {
         if (!record.dataValues.metaUrl) return; 
@@ -101,6 +98,7 @@ module.exports = (sequelize, DataTypes) => {
         record.dataValues.domain = parsedDomain;
       }
     },
-  });  
+  }); 
+  
   return Contest;
 };
