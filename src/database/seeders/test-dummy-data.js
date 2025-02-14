@@ -15,7 +15,7 @@ module.exports = {
         await queryInterface.bulkInsert('Footers', [
             {
                 id: footerId,
-                name: 'Battle of the Bands 2025',
+                name: 'Battle of the Bands (2025)',
             }
         ])
 

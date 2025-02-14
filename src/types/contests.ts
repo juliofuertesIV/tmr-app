@@ -57,9 +57,9 @@ export type ContestAssociationNames = 'params' | 'social'
 export type ContestAssociationKeys = 'Params' | 'SocialMedia' 
 export type ContestAssociationIdFieldNames = 'ParamId' | 'SocialMediumId'
 
-export type IContestRelationship = Brand | IContestState 
-export type IContestRelationshipNames = 'brands' | 'states' 
-export type IContestRelationshipKeys = 'Brand' | 'State'  
-export type IContestRelationshipIdFields = 'BrandId' | 'StateId'
+export type ContestRelationship = Brand | IContestState | Footer
+export type ContestRelationshipNames = 'brands' | 'states' | 'footers'
+export type ContestRelationshipKeys = 'Brand' | 'State' | 'Footer'
+export type ContestRelationshipIdFields = 'BrandId' | 'StateId' | 'FooterId'
 
-export type IContestMediaFieldNames = 'LogoId' | 'FrameId' | 'BannerId' | 'FaviconId'
+export type ContestMediaFieldNames = 'LogoId' | 'FrameId' | 'BannerId' | 'FaviconId'

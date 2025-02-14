@@ -1,14 +1,14 @@
 import { formInitialState } from '@/lib/forms/feedback/state'
 import React, { useEffect, useRef, useState } from 'react'
-import { Contest, IContestRelationship, IContestRelationshipIdFields } from '@/types/contests'
+import { Contest, ContestRelationship, ContestRelationshipIdFields } from '@/types/contests'
 import { updateContest } from '@/lib/fetch/put/contests'
 import AssociationIcon from '@/app/admin/_layout/design/icons/AssociationIcon'
 import { useFormState } from 'react-dom'
 
 type Props = {
     contest: Contest,
-    relationshipItem: IContestRelationship,
-    relationshipIdField: IContestRelationshipIdFields,
+    relationshipItem: ContestRelationship,
+    relationshipIdField: ContestRelationshipIdFields,
 }
 
 export default function ContestRelationshipInput({ 

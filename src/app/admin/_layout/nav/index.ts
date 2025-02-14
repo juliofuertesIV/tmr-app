@@ -55,6 +55,12 @@ export const adminNavSections : IAdminNavSection[] = [
                 minimumRole: 2
             },
             { 
+                collection: 'footers', 
+                label: 'Footers',
+                isActive: (path: string) => path.includes('/admin/footers') && !path.includes('/footers/'),
+                minimumRole: 2
+            },
+            { 
                 collection: 'sponsors', 
                 label: 'Sponsors',
                 isActive: (path: string) => path.includes('/admin/sponsors') && !path.includes('/sponsors/'),

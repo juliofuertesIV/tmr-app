@@ -38,7 +38,7 @@ const navItems = [
     { 
         name: 'Footer', 
         value: 'footer',
-        getPath: (contest: Contest) => `/admin/footers/${ contest.FooterId }`,
+        getPath: (contest: Contest) => `/admin/contests/${ contest.id }/footers`,
         isAssociation: false },
     { 
         name: 'Gestionar inscripciones', 

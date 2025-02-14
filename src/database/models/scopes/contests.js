@@ -2,7 +2,7 @@
 
 const getContestScopes = (models) => {
 
-    const { Brand, State, SocialMedia, Param, Media, Footer } = models
+    const { Brand, State, SocialMedia, Param, Media, Footer, Sponsor, Inscription } = models
  
     return [
         { 
@@ -10,7 +10,7 @@ const getContestScopes = (models) => {
             scope: {
                 order: [["createdAt", "DESC"]],
                 include: [
-                    { model: models.Inscription },
+                    { model: Inscription },
                     Brand,
                     State,
                 ],
@@ -25,7 +25,11 @@ const getContestScopes = (models) => {
                     State,
                     SocialMedia,
                     Param,
-                    { model: Footer, include: [ models.Sponsor ]},
+                    { model: Footer, 
+                        include: [ 
+                            { model: Sponsor, include: [ Media ]}
+                        ]
+                    },
                     { model: Media, as: "Logo" },
                     { model: Media, as: "Banner" },
                     { model: Media, as: "Frame" },
@@ -42,7 +46,7 @@ const getContestScopes = (models) => {
                     State,
                     SocialMedia,
                     Param,
-                    { model: Footer, include: [ models.Sponsor ]},
+                    { model: Footer, include: [ Sponsor ]},
                     { model: Media, as: "Logo" },
                     { model: Media, as: "Banner" },
                     { model: Media, as: "Frame" },
