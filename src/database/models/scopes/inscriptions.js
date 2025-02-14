@@ -3,7 +3,7 @@
 const getInscriptionScopes = (models) => {
 
     const { Contest, Media, Tag } = models
-
+    
     return [
         { 
             name: 'list', 
@@ -17,7 +17,14 @@ const getInscriptionScopes = (models) => {
             name: 'detailed', 
             scope: {
                 order: [["createdAt", "DESC"]],
-                include: [ Media, Tag, Contest ] 
+                include: [ 
+                    Media,
+                    Tag,
+                    { 
+                        model: Contest,
+                        attributes: ['id', 'name', 'year', 'domain'],
+                    }
+                ] 
             }
         },
         { 

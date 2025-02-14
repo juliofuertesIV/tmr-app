@@ -13,7 +13,6 @@ export default function EditInscriptionModule({ inscription } : { inscription: I
 
     return (
         <section>
-            { /* TO DO: ADD MEDIA FORM */ }
             <Form 
                 fields={ fields }
                 boundAction={ boundAction }

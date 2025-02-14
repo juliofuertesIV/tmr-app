@@ -1,11 +1,11 @@
 import { Inscription } from "@/database/models"
-import { InscriptionScope, Inscription as InscriptionType } from "@/types/inscriptions"
+import { InscriptionScope } from "@/types/inscriptions"
 
-export const getInscriptionFromDatabase = async ({ id, scope } : { id: string, scope: InscriptionScope }) : Promise<InscriptionType | null> => {
+export const getInscriptionFromDatabase = async ({ id, scope } : { id: string, scope: InscriptionScope }) => {
 
-    const inscription = await Inscription.scope('detailed').findOne({ where: { id }})
+    const inscription = await Inscription.scope(scope).findOne({ where: { id }})
     .then(data => data)
-    .catch(error => { throw new Error(error as string) }) as unknown as InscriptionType | null
+    .catch(error => { throw new Error(error as string) }) 
 
-    return JSON.parse(JSON.stringify(inscription))
+    return inscription
 }

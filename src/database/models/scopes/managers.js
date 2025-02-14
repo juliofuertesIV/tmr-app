@@ -27,8 +27,6 @@ const getManagerScopes = (models) => {
 
     const { Contest, Media, Role } = models
 
-    console.log({ Contest, Media, Role })
-    
     return [
         { 
             name: 'list',
