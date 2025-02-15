@@ -1,34 +1,9 @@
 
 import { CollectionNames } from '@/types'
-import { getCollectionByName } from './_functions/get'
 import { addToCollection } from './_functions/post'
 import { handleApiError } from '@/lib/errors'
 import { constructAPIResponse } from '../../_functions'
 import { NextRequest } from 'next/server'
-
-export const GET = async (req: NextRequest, { params } : { params: { collection: CollectionNames }}) => {
-
-    const { collection } = params
-    
-    try {
-        const data = await getCollectionByName({ collection })
-        return Response.json(
-            constructAPIResponse({
-                message: 'Fetched ok.',
-                success: true,
-                error: null,
-                data
-            })
-        )
-    }
-    catch (error) {
-        return await handleApiError({
-            req,
-            error, 
-            route: `/api/${ collection }`
-        })
-    }
-}
 
 export const POST = async (req: NextRequest, { params } : { params: { collection: CollectionNames }}) => {
 
