@@ -1,3 +1,4 @@
+import { RequestCookie } from "next/dist/compiled/@edge-runtime/cookies";
 import { NextRequest, NextResponse } from "next/server";
 
 export const middleware = async (req: NextRequest) => {
@@ -5,7 +6,19 @@ export const middleware = async (req: NextRequest) => {
     const isAdminRoute = req.nextUrl.pathname.startsWith('/admin')
     const isApiProtectedRoute = req.nextUrl.pathname.startsWith('/api/protected'); 
     
-    const sessionToken = req.cookies.get('session');
+    let sessionToken = req.cookies.get('session');
+
+    if (!sessionToken) {
+        const cookieHeader = req.headers.get("cookie");
+        console.log({ cookieHeader })
+        sessionToken = cookieHeader?.split("; ")
+            .find(row => row.startsWith("session="))
+            ?.split("=")[1] as unknown as RequestCookie 
+    }
+
+    console.log("Url: " + req.url)
+    console.log("Request method: " + req.method)
+    console.log({ sessionToken })
     
     if (!sessionToken) {
         if (isApiProtectedRoute) {
@@ -21,5 +34,5 @@ export const middleware = async (req: NextRequest) => {
 };
 
 export const config = {
-    matcher: ['/admin/:path*', '/api/protected/:path'], // TO DO: Fix API FETCH calls to include cookies /path* (get works fine)
+    matcher: ['/admin/:path*', '/api/protected/:path*'], // TO DO: Fix API FETCH calls to include cookies /path* (get works fine)
 };

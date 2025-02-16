@@ -2,11 +2,12 @@ import { HTMLInputTypeAttribute, HTMLProps } from "react"
 import { CollectionNames } from "."
 import { IAPIResponse } from "./api"
 import { MediaRole } from "./media"
+import { AssociationNames } from "./associations"
 
 
 export type FormByCollectionName = {
     action: { 
-        [key in ActionTarget]: IFormAction
+        [key in ActionTarget]: FormAction
     },
     fields: {
         [key in CollectionNames]: FormField[] 
@@ -34,10 +35,10 @@ export type FormField = {
     readonly?: boolean
 }
 
-export type IFormAction = (...args: any) => Promise<IAPIResponse<any>>
+export type FormAction = (...args: any) => Promise<IAPIResponse<any>>
 
-export type IFormEditionAction = (collection: CollectionNames, id: string, prevState: any, formData: FormData) => Promise<IAPIResponse<any>>
+export type FormEditionAction = (collection: CollectionNames, id: string, prevState: any, formData: FormData) => Promise<IAPIResponse<any>>
 
-export type IAssociationAction = (collection: CollectionNames, collectionItemId: string | number, association: AssociationNames, prevState: any, formData: FormData) => Promise<IAPIResponse<any>>
+export type AssociationAction = (collection: CollectionNames, collectionItemId: string | number, association: AssociationNames, prevState: any, formData: FormData) => Promise<IAPIResponse<any>>
 
-export type IDissociationAction = (collection: CollectionNames, collectionItemId: string | number, association: IAssociationNames, associationId: string | number, prevState: any, formData: FormData) => Promise<IAPIResponse<any>>
+export type DissociationAction = (collection: CollectionNames, collectionItemId: string | number, association: AssociationNames, associationId: string | number, prevState: any, formData: FormData) => Promise<IAPIResponse<any>>

@@ -14,6 +14,10 @@ export const updateCollectionItem = async (
     const res = await fetch(`http://localhost:3000/api/protected/${ collection }/${ id }`, {
         method: "PUT",
         cache: 'no-cache',
+        headers: {
+            "Accept": "application/json"
+        },
+        credentials: 'same-origin',
         body: formData
     })
     .then(async data => data.json())

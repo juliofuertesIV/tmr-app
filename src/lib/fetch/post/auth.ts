@@ -26,9 +26,10 @@ export const login = async (
                 'session',
                 session,
                 { 
-                    secure: true,
+                    secure: process.env.NODE_ENV === "production",
                     maxAge: 1000 * 60 * 60 * 72,
                     domain: 'localhost',
+                    sameSite: 'strict',
                     httpOnly: true 
                 }
             )
